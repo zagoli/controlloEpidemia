@@ -10,8 +10,8 @@ import javax.persistence.metamodel.EntityType;
 import java.util.Map;
 
 public class Main {
-    private static final SessionFactory ourSessionFactory;
 
+    private static final SessionFactory ourSessionFactory;
     static {
         try {
             Configuration configuration = new Configuration();
