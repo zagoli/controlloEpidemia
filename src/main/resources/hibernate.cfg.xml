@@ -17,5 +17,7 @@
         <property name="hibernate.hbm2ddl.auto">update</property>
         <property name="hibernate.dialect">org.hibernate.dialect.DerbyTenSevenDialect</property>
 
+        <mapping class="com.jgg.controlloEpidemia.model.Eliminami"/>
+
     </session-factory>
 </hibernate-configuration>

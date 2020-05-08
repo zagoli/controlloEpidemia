@@ -28,8 +28,7 @@ public class Main {
     }
 
     public static void main(final String[] args) throws Exception {
-        final Session session = getSession();
-        try {
+        try (Session session = getSession()) {
             System.out.println("querying all the managed entities...");
             final Metamodel metamodel = session.getSessionFactory().getMetamodel();
             for (EntityType<?> entityType : metamodel.getEntities()) {
@@ -40,8 +39,6 @@ public class Main {
                     System.out.println("  " + o);
                 }
             }
-        } finally {
-            session.close();
         }
     }
 }
