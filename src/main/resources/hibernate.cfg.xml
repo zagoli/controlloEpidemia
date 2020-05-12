@@ -17,7 +17,14 @@
         <property name="hibernate.hbm2ddl.auto">update</property>
         <property name="hibernate.dialect">org.hibernate.dialect.DerbyTenSevenDialect</property>
 
-        <mapping class="com.jgg.controlloEpidemia.model.Eliminami"/>
+        <mapping class="com.jgg.controlloEpidemia.model.Comune"/>
+        <mapping class="com.jgg.controlloEpidemia.model.DecessiAnnuali"/>
+        <mapping class="com.jgg.controlloEpidemia.model.MalattieSettimanali"/>
+        <mapping class="com.jgg.controlloEpidemia.model.Permessi"/>
+        <mapping class="com.jgg.controlloEpidemia.model.Provincia"/>
+        <mapping class="com.jgg.controlloEpidemia.model.Regione"/>
+        <mapping class= "com.jgg.controlloEpidemia.model.Utente"/>
+
 
     </session-factory>
 </hibernate-configuration>
