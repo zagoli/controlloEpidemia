@@ -5,7 +5,7 @@
     <facet type="hibernate" name="Hibernate">
       <configuration>
         <datasource-map>
-          <unit-entry name="hibernate.cfg.xml" value="02173d83-d94f-4402-beed-a9a7afb02e84" />
+          <unit-entry name="hibernate.cfg.xml" value="23d738ff-07a0-484e-9360-d4e28a4bc035" />
         </datasource-map>
         <naming-strategy-map />
         <deploymentDescriptor name="hibernate.cfg.xml" url="file://$MODULE_DIR$/src/main/resources/hibernate.cfg.xml" />
@@ -19,6 +19,7 @@
       <sourceFolder url="file://$MODULE_DIR$/src/main/java" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/main/resources" type="java-resource" />
       <sourceFolder url="file://$MODULE_DIR$/src/test/java" isTestSource="true" />
+      <excludeFolder url="file://$MODULE_DIR$/controlloEpidemiaDb" />
       <excludeFolder url="file://$MODULE_DIR$/target" />
     </content>
     <orderEntry type="inheritedJdk" />
@@ -44,7 +45,8 @@
     <orderEntry type="library" name="Maven: org.hibernate.validator:hibernate-validator:6.1.4.Final" level="project" />
     <orderEntry type="library" name="Maven: jakarta.validation:jakarta.validation-api:2.0.2" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: org.projectlombok:lombok:1.18.12" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.derby:derby:10.14.2.0" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.derby:derby:10.14.1.0" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.derby:derbyLocale_it:10.14.2.0" level="project" />
     <orderEntry type="library" name="Maven: org.openjfx:javafx-controls:14" level="project" />
     <orderEntry type="library" name="Maven: org.openjfx:javafx-controls:win:14" level="project" />
     <orderEntry type="library" name="Maven: org.openjfx:javafx-graphics:14" level="project" />

@@ -1,9 +1,11 @@
 package com.jgg.controlloEpidemia.model;
 
 import lombok.*;
-import org.hibernate.annotations.Fetch;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 import java.util.List;
 
@@ -11,7 +13,7 @@ import java.util.List;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-public class TipoTerritorio {
+public class Ruolo {
 
     @Id
     @Getter
@@ -23,4 +25,5 @@ public class TipoTerritorio {
     @Getter
     @Setter
     private String nome;
+
 }

@@ -2,10 +2,11 @@ package com.jgg.controlloEpidemia.model;
 
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 
 @Entity
 @ToString
@@ -15,7 +16,6 @@ public class Provincia {
 
     @Id
     @Getter
-    @Setter
     @NotNull
     @GeneratedValue(generator = "increment")
     private Integer id;
@@ -29,4 +29,20 @@ public class Provincia {
     @Getter
     @Setter
     private Integer superficie;
+
+    @NotNull
+    @Getter
+    @Setter
+    @OneToOne
+    private Comune capoluogo;
+
+    @NotNull
+    @Getter
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    private final List<Comune> comuni = new LinkedList<>();
+
+    @NotNull
+    @Getter
+    @OneToMany
+    final private List<DecessiAnnuali> decessiAnnuali = new ArrayList<>();
 }

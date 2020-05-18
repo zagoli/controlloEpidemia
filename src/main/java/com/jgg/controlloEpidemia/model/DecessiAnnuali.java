@@ -5,6 +5,7 @@ import lombok.*;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 
 @Entity
@@ -15,7 +16,6 @@ public class DecessiAnnuali {
 
     @Id
     @Getter
-    @Setter
     @NotNull
     @GeneratedValue(generator = "increment")
     private Integer id;
@@ -44,5 +44,11 @@ public class DecessiAnnuali {
     @Setter
     @NotNull
     private Integer malattieContagiose;
+
+    @Getter
+    @Setter
+    @NotNull
+    @ManyToOne
+    private Provincia provincia;
 
 }

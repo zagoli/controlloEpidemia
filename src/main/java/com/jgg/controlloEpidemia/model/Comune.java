@@ -2,10 +2,11 @@ package com.jgg.controlloEpidemia.model;
 
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @ToString
@@ -17,7 +18,6 @@ public class Comune {
     @Getter
     @Setter
     @NotNull
-    //@GeneratedValue(generator = "increment")
     private Integer codiceIstat;
 
     @NotNull
@@ -38,10 +38,17 @@ public class Comune {
     @NotNull
     @Getter
     @Setter
-    private Enum tipoTerritorio;
+    private Boolean siAffacciaSulMare;
 
     @NotNull
     @Getter
     @Setter
-    private Boolean siAffacciaSulMare;
+    @ManyToOne
+    private TipoTerritorio tipoTerritorio;
+
+    @NotNull
+    @Getter
+    @OneToMany
+    final private List<MalattieSettimanali> malattieSettimanali = new ArrayList<>();
+
 }

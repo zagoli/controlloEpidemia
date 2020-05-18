@@ -8,8 +8,6 @@
 
         <property name="hibernate.connection.driver_class">org.apache.derby.jdbc.EmbeddedDriver</property>
         <property name="hibernate.connection.url">jdbc:derby:controlloEpidemiaDb;create=true</property>
-        <property name="hibernate.connection.username"/>
-        <property name="hibernate.connection.password"/>
 
         <!-- Enable Hibernate's automatic session context management -->
         <property name="current_session_context_class">thread</property>
@@ -24,6 +22,8 @@
         <mapping class="com.jgg.controlloEpidemia.model.Provincia"/>
         <mapping class="com.jgg.controlloEpidemia.model.Regione"/>
         <mapping class= "com.jgg.controlloEpidemia.model.Utente"/>
+        <mapping class= "com.jgg.controlloEpidemia.model.Ruolo"/>
+        <mapping class= "com.jgg.controlloEpidemia.model.TipoTerritorio"/>
 
 
     </session-factory>

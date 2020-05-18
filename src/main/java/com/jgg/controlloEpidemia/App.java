@@ -1,4 +1,4 @@
-package com.jgg.controlloEpidemia.view;
+package com.jgg.controlloEpidemia;
 
 import javafx.application.Application;
 import javafx.scene.Scene;

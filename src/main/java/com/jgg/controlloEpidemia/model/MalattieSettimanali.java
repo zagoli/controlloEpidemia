@@ -2,10 +2,9 @@ package com.jgg.controlloEpidemia.model;
 
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 
 @Entity
 @ToString
@@ -15,7 +14,6 @@ public class MalattieSettimanali {
 
     @Id
     @Getter
-    @Setter
     @NotNull
     @GeneratedValue(generator = "increment")
     private Integer id;
@@ -98,11 +96,17 @@ public class MalattieSettimanali {
     @Getter
     @Setter
     @NotNull
-    private Integer ricoveratiGastroEnterite;
+    private Integer ricoveratiGastroenterite;
 
     @Getter
     @Setter
     @NotNull
-    private Integer inCuraGastroEnterite;
+    private Integer inCuraGastroenterite;
+
+    @Getter
+    @Setter
+    @NotNull
+    @ManyToOne
+    private Comune comune;
 
 }
