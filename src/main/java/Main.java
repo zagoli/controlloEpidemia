@@ -1,13 +1,17 @@
+import com.jgg.controlloEpidemia.dao.ComuneDao;
+import com.jgg.controlloEpidemia.model.Comune;
+import com.jgg.controlloEpidemia.model.TipoTerritorio;
 import org.hibernate.HibernateException;
 import org.hibernate.Metamodel;
-import org.hibernate.query.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
+import org.hibernate.query.Query;
 
 import javax.persistence.metamodel.EntityType;
+import java.util.*;
 
-import java.util.Map;
+import static java.lang.String.valueOf;
 
 public class Main {
 
@@ -40,5 +44,13 @@ public class Main {
                 }
             }
         }
+
+        Comune c = new Comune();
+        c.setCodiceIstat("a");
+        ComuneDao y = new ComuneDao();
+        y.save(c);
+        Optional<Comune> a = y.findByCodiceIstat("a");
+        System.out.println(a.get());
+
     }
 }

@@ -1,11 +1,11 @@
 package com.jgg.controlloEpidemia.model;
 
 import lombok.*;
-import org.hibernate.annotations.Fetch;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
-import java.util.List;
 
 @Entity
 @ToString
