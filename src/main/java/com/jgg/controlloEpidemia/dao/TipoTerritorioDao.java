@@ -1,6 +1,5 @@
 package com.jgg.controlloEpidemia.dao;
 
-import com.jgg.controlloEpidemia.model.Comune;
 import com.jgg.controlloEpidemia.model.TipoTerritorio;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -8,19 +7,17 @@ import org.hibernate.Transaction;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 
-import java.util.List;
+public class TipoTerritorioDao implements TipoTerritorioInterface {
 
-public class ComuneDao implements ComuneDaoInterface {
     private Session currentSession;
 
     private Transaction currentTransaction;
 
-    public ComuneDao() {
+    public TipoTerritorioDao() {
     }
 
     private static SessionFactory getSessionFactory() {
         Configuration configuration = new Configuration().configure();
-        configuration.addAnnotatedClass(Comune.class);
         configuration.addAnnotatedClass(TipoTerritorio.class);
         StandardServiceRegistryBuilder builder = new StandardServiceRegistryBuilder()
                 .applySettings(configuration.getProperties());
@@ -64,29 +61,8 @@ public class ComuneDao implements ComuneDaoInterface {
         this.currentTransaction = currentTransaction;
     }
 
-
     @Override
-    public void save(Comune c) {
-        getCurrentSession().save(c);
-    }
-
-    @Override
-    public void deleteByCodiceIstat(String codice) {
-        Comune comune = (Comune) getCurrentSession().get(Comune.class, codice);
-        getCurrentSession().delete(comune);
-    }
-
-    @Override
-    public Comune findByCodiceIstat(String codice) {
-        Comune comune = (Comune) getCurrentSession().get(Comune.class, codice);
-        return comune;
-    }
-
-    @Override
-    @SuppressWarnings("unchecked")
-    public List<Comune> findAll() {
-        List<Comune> comune = (List<Comune>) getCurrentSession().createQuery("from Comune").list();
-        return comune;
+    public void save(TipoTerritorio t) {
+        getCurrentSession().save(t);
     }
 }
-

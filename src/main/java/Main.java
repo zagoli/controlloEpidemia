@@ -1,21 +1,21 @@
-import com.jgg.controlloEpidemia.dao.ComuneDao;
 import com.jgg.controlloEpidemia.model.Comune;
 import com.jgg.controlloEpidemia.model.TipoTerritorio;
+import com.jgg.controlloEpidemia.service.ComuneService;
+import com.jgg.controlloEpidemia.service.TipoTerritorioService;
 import org.hibernate.HibernateException;
-import org.hibernate.Metamodel;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
-import org.hibernate.query.Query;
 
 import javax.persistence.metamodel.EntityType;
-import java.util.*;
-
-import static java.lang.String.valueOf;
+import javax.persistence.metamodel.Metamodel;
+import java.util.Date;
 
 public class Main {
 
     private static final SessionFactory ourSessionFactory;
+
     static {
         try {
             Configuration configuration = new Configuration();
@@ -44,13 +44,17 @@ public class Main {
                 }
             }
         }
+        TipoTerritorio tp = new TipoTerritorio(1, "pianeggiante");
+        Comune c = new Comune("a", "castelnuovo", new Date(), 139, true, tp);
 
-        Comune c = new Comune();
-        c.setCodiceIstat("a");
-        ComuneDao y = new ComuneDao();
-        y.save(c);
-        Optional<Comune> a = y.findByCodiceIstat("a");
-        System.out.println(a.get());
+        TipoTerritorioService tipoTerritorioService = new TipoTerritorioService();
+        ComuneService comuneService = new ComuneService();
+
+        tipoTerritorioService.save(tp);
+
+        comuneService.save(c);
+        Comune a = comuneService.findByCodiceIstat("a");
+        System.out.println(a.toString());
 
     }
 }

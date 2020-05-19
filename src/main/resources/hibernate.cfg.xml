@@ -21,9 +21,9 @@
         <mapping class="com.jgg.controlloEpidemia.model.Permessi"/>
         <mapping class="com.jgg.controlloEpidemia.model.Provincia"/>
         <mapping class="com.jgg.controlloEpidemia.model.Regione"/>
-        <mapping class= "com.jgg.controlloEpidemia.model.Utente"/>
-        <mapping class= "com.jgg.controlloEpidemia.model.Ruolo"/>
-        <mapping class= "com.jgg.controlloEpidemia.model.TipoTerritorio"/>
+        <mapping class="com.jgg.controlloEpidemia.model.Utente"/>
+        <mapping class="com.jgg.controlloEpidemia.model.Ruolo"/>
+        <mapping class="com.jgg.controlloEpidemia.model.TipoTerritorio"/>
 
 
     </session-factory>

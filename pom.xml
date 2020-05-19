@@ -40,7 +40,6 @@
             <scope>compile</scope>
         </dependency>
 
-        <!-- https://mvnrepository.com/artifact/org.apache.derby/derbyLocale_it -->
         <dependency>
             <groupId>org.apache.derby</groupId>
             <artifactId>derbyLocale_it</artifactId>
