@@ -14,9 +14,9 @@ public class ComuneService {
     }
 
     public void save(Comune entity) {
-        comuneDao.openCurrentSessionwithTransaction();
+        comuneDao.openCurrentSessionWithTransaction();
         comuneDao.save(entity);
-        comuneDao.closeCurrentSessionwithTransaction();
+        comuneDao.closeCurrentSessionWithTransaction();
     }
 
     public Comune findByCodiceIstat(String codice) {
@@ -27,10 +27,9 @@ public class ComuneService {
     }
 
     public void deleteByCodiceIstat(String codice) {
-        comuneDao.openCurrentSessionwithTransaction();
-        Comune comune = comuneDao.findByCodiceIstat(codice);
+        comuneDao.openCurrentSessionWithTransaction();
         comuneDao.deleteByCodiceIstat(codice);
-        comuneDao.closeCurrentSessionwithTransaction();
+        comuneDao.closeCurrentSessionWithTransaction();
     }
 
     public List<Comune> findAll() {

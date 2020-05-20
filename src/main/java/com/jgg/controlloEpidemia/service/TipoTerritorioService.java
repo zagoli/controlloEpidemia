@@ -12,8 +12,8 @@ public class TipoTerritorioService {
     }
 
     public void save(TipoTerritorio entity) {
-        tipoTerritorioDao.openCurrentSessionwithTransaction();
+        tipoTerritorioDao.openCurrentSessionWithTransaction();
         tipoTerritorioDao.save(entity);
-        tipoTerritorioDao.closeCurrentSessionwithTransaction();
+        tipoTerritorioDao.closeCurrentSessionWithTransaction();
     }
 }

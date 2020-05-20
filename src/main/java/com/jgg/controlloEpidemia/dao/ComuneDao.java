@@ -24,26 +24,23 @@ public class ComuneDao implements ComuneDaoInterface {
         configuration.addAnnotatedClass(TipoTerritorio.class);
         StandardServiceRegistryBuilder builder = new StandardServiceRegistryBuilder()
                 .applySettings(configuration.getProperties());
-        SessionFactory sessionFactory = configuration.buildSessionFactory(builder.build());
-        return sessionFactory;
+        return configuration.buildSessionFactory(builder.build());
     }
 
-    public Session openCurrentSession() {
+    public void openCurrentSession() {
         currentSession = getSessionFactory().openSession();
-        return currentSession;
     }
 
-    public Session openCurrentSessionwithTransaction() {
+    public void openCurrentSessionWithTransaction() {
         currentSession = getSessionFactory().openSession();
         currentTransaction = currentSession.beginTransaction();
-        return currentSession;
     }
 
     public void closeCurrentSession() {
         currentSession.close();
     }
 
-    public void closeCurrentSessionwithTransaction() {
+    public void closeCurrentSessionWithTransaction() {
         currentTransaction.commit();
         currentSession.close();
     }
@@ -78,15 +75,13 @@ public class ComuneDao implements ComuneDaoInterface {
 
     @Override
     public Comune findByCodiceIstat(String codice) {
-        Comune comune = (Comune) getCurrentSession().get(Comune.class, codice);
-        return comune;
+        return getCurrentSession().get(Comune.class, codice);
     }
 
     @Override
     @SuppressWarnings("unchecked")
     public List<Comune> findAll() {
-        List<Comune> comune = (List<Comune>) getCurrentSession().createQuery("from Comune").list();
-        return comune;
+        return (List<Comune>) getCurrentSession().createQuery("from Comune").list();
     }
 }
 
