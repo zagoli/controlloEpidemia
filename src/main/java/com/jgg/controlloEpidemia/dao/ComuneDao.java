@@ -8,37 +8,37 @@ import java.util.List;
 @NoArgsConstructor
 public class ComuneDao implements ComuneDaoInterface {
 
-    private static Session s = new Session();
+    private static Session session = new Session();
 
     @Override
     public void save(Comune c) {
-        s.openCurrentSessionwithTransaction();
-        s.getCurrentSession().save(c);
-        s.closeCurrentSessionwithTransaction();
+        session.openCurrentSessionwithTransaction();
+        session.getCurrentSession().save(c);
+        session.closeCurrentSessionwithTransaction();
     }
 
     @Override
-    public void deleteByCodiceIstat(String codice) {
-        s.openCurrentSessionwithTransaction();
-        Comune comune = s.getCurrentSession().get(Comune.class, codice);
-        s.getCurrentSession().delete(comune);
-        s.closeCurrentSessionwithTransaction();
+    public void deleteByCodiceIstat(String codiceIstat) {
+        session.openCurrentSessionwithTransaction();
+        Comune comune = session.getCurrentSession().get(Comune.class, codiceIstat);
+        session.getCurrentSession().delete(comune);
+        session.closeCurrentSessionwithTransaction();
     }
 
     @Override
-    public Comune findByCodiceIstat(String codice) {
-        s.openCurrentSession();
-        Comune comune = s.getCurrentSession().get(Comune.class, codice);
-        s.closeCurrentSession();
+    public Comune findByCodiceIstat(String codiceIstat) {
+        session.openCurrentSession();
+        Comune comune = session.getCurrentSession().get(Comune.class, codiceIstat);
+        session.closeCurrentSession();
         return comune;
     }
 
     @Override
     @SuppressWarnings("unchecked")
     public List<Comune> findAll() {
-        s.openCurrentSession();
-        List<Comune> comune = (List<Comune>) s.getCurrentSession().createQuery("from Comune").list();
-        s.closeCurrentSession();
+        session.openCurrentSession();
+        List<Comune> comune = session.getCurrentSession().createQuery("from Comune").list();
+        session.closeCurrentSession();
         return comune;
     }
 }

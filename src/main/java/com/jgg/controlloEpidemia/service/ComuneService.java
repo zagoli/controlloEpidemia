@@ -11,24 +11,21 @@ public class ComuneService {
 
     private static ComuneDao comuneDao = new ComuneDao();
 
-    public void save(Comune entity) {
-        comuneDao.save(entity);
+    public void save(Comune comune) {
+        comuneDao.save(comune);
     }
 
-    public Comune findByCodiceIstat(String codice) {
-        return comuneDao.findByCodiceIstat(codice);
+    public Comune findByCodiceIstat(String codiceIstat) {
+        return comuneDao.findByCodiceIstat(codiceIstat);
     }
 
-    public void deleteByCodiceIstat(String codice) {
-        Comune comune = comuneDao.findByCodiceIstat(codice);
-        comuneDao.deleteByCodiceIstat(codice);
+    public void deleteByCodiceIstat(String codiceIstat) {
+        Comune comune = comuneDao.findByCodiceIstat(codiceIstat);
+        comuneDao.deleteByCodiceIstat(codiceIstat);
     }
 
     public List<Comune> findAll() {
         return comuneDao.findAll();
     }
 
-    public ComuneDao comuneDao() {
-        return comuneDao;
-    }
 }

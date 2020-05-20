@@ -6,11 +6,11 @@ import java.util.List;
 
 public interface ComuneDaoInterface {
 
-    void save(Comune c);
+    void save(Comune comune);
 
-    void deleteByCodiceIstat(String codice);
+    void deleteByCodiceIstat(String codiceIstat);
 
-    Comune findByCodiceIstat(String codice);
+    Comune findByCodiceIstat(String codiceIstat);
 
     List<Comune> findAll();
 }
