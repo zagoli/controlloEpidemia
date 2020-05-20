@@ -1,37 +1,29 @@
-import com.jgg.controlloEpidemia.model.Comune;
 import com.jgg.controlloEpidemia.model.TipoTerritorio;
-import com.jgg.controlloEpidemia.service.ComuneService;
 import com.jgg.controlloEpidemia.service.TipoTerritorioService;
+import org.apache.log4j.BasicConfigurator;
 import org.hibernate.HibernateException;
-import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
+import org.hibernate.query.Query;
 
 import javax.persistence.metamodel.EntityType;
 import javax.persistence.metamodel.Metamodel;
-import java.util.Date;
 
 public class Main {
 
     private static final SessionFactory ourSessionFactory;
 
     static {
-        try {
-            Configuration configuration = new Configuration();
-            configuration.configure();
-
-            ourSessionFactory = configuration.buildSessionFactory();
-        } catch (Throwable ex) {
-            throw new ExceptionInInitializerError(ex);
-        }
+        Configuration configuration = new Configuration().configure();
+        ourSessionFactory = configuration.buildSessionFactory();
     }
 
     public static Session getSession() throws HibernateException {
         return ourSessionFactory.openSession();
     }
 
-    public static void main(final String[] args) throws Exception {
+    public static void main(final String[] args){
         try (Session session = getSession()) {
             System.out.println("querying all the managed entities...");
             final Metamodel metamodel = session.getSessionFactory().getMetamodel();
@@ -44,17 +36,10 @@ public class Main {
                 }
             }
         }
+
+        //Esempio salvataggio tipoterritorio
         TipoTerritorio tp = new TipoTerritorio(1, "pianeggiante");
-        Comune c = new Comune("a", "castelnuovo", new Date(), 139, true, tp);
-
         TipoTerritorioService tipoTerritorioService = new TipoTerritorioService();
-        ComuneService comuneService = new ComuneService();
-
         tipoTerritorioService.save(tp);
-
-        comuneService.save(c);
-        Comune a = comuneService.findByCodiceIstat("a");
-        System.out.println(a.toString());
-
     }
 }

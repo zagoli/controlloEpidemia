@@ -14,6 +14,7 @@
         <!-- DB schema will be updated if needed -->
         <property name="hibernate.hbm2ddl.auto">update</property>
         <property name="hibernate.dialect">org.hibernate.dialect.DerbyTenSevenDialect</property>
+        <property name="hibernate.show_sql">false</property>
 
         <mapping class="com.jgg.controlloEpidemia.model.Comune"/>
         <mapping class="com.jgg.controlloEpidemia.model.DecessiAnnuali"/>

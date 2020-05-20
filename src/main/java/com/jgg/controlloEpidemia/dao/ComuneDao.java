@@ -1,91 +1,44 @@
 package com.jgg.controlloEpidemia.dao;
 
 import com.jgg.controlloEpidemia.model.Comune;
-import com.jgg.controlloEpidemia.model.TipoTerritorio;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
-import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
-import org.hibernate.cfg.Configuration;
+import lombok.NoArgsConstructor;
 
 import java.util.List;
 
+@NoArgsConstructor
 public class ComuneDao implements ComuneDaoInterface {
-    private Session currentSession;
 
-    private Transaction currentTransaction;
-
-    public ComuneDao() {
-    }
-
-    private static SessionFactory getSessionFactory() {
-        Configuration configuration = new Configuration().configure();
-        configuration.addAnnotatedClass(Comune.class);
-        configuration.addAnnotatedClass(TipoTerritorio.class);
-        StandardServiceRegistryBuilder builder = new StandardServiceRegistryBuilder()
-                .applySettings(configuration.getProperties());
-        SessionFactory sessionFactory = configuration.buildSessionFactory(builder.build());
-        return sessionFactory;
-    }
-
-    public Session openCurrentSession() {
-        currentSession = getSessionFactory().openSession();
-        return currentSession;
-    }
-
-    public Session openCurrentSessionwithTransaction() {
-        currentSession = getSessionFactory().openSession();
-        currentTransaction = currentSession.beginTransaction();
-        return currentSession;
-    }
-
-    public void closeCurrentSession() {
-        currentSession.close();
-    }
-
-    public void closeCurrentSessionwithTransaction() {
-        currentTransaction.commit();
-        currentSession.close();
-    }
-
-    public Session getCurrentSession() {
-        return currentSession;
-    }
-
-    public void setCurrentSession(Session currentSession) {
-        this.currentSession = currentSession;
-    }
-
-    public Transaction getCurrentTransaction() {
-        return currentTransaction;
-    }
-
-    public void setCurrentTransaction(Transaction currentTransaction) {
-        this.currentTransaction = currentTransaction;
-    }
-
+    private static Session s = new Session();
 
     @Override
     public void save(Comune c) {
-        getCurrentSession().save(c);
+        s.openCurrentSessionwithTransaction();
+        s.getCurrentSession().save(c);
+        s.closeCurrentSessionwithTransaction();
     }
 
     @Override
     public void deleteByCodiceIstat(String codice) {
-        Comune comune = (Comune) getCurrentSession().get(Comune.class, codice);
-        getCurrentSession().delete(comune);
+        s.openCurrentSessionwithTransaction();
+        Comune comune = s.getCurrentSession().get(Comune.class, codice);
+        s.getCurrentSession().delete(comune);
+        s.closeCurrentSessionwithTransaction();
     }
 
     @Override
     public Comune findByCodiceIstat(String codice) {
-        Comune comune = (Comune) getCurrentSession().get(Comune.class, codice);
+        s.openCurrentSession();
+        Comune comune = s.getCurrentSession().get(Comune.class, codice);
+        s.closeCurrentSession();
         return comune;
     }
 
     @Override
     @SuppressWarnings("unchecked")
     public List<Comune> findAll() {
-        List<Comune> comune = (List<Comune>) getCurrentSession().createQuery("from Comune").list();
+        s.openCurrentSession();
+        List<Comune> comune = (List<Comune>) s.getCurrentSession().createQuery("from Comune").list();
+        s.closeCurrentSession();
         return comune;
     }
 }
