@@ -1,7 +1,6 @@
 package com.jgg.controlloEpidemia.service;
 
 import com.jgg.controlloEpidemia.dao.RuoloDao;
-import com.jgg.controlloEpidemia.model.DecessiAnnuali;
 import com.jgg.controlloEpidemia.model.Ruolo;
 import lombok.NoArgsConstructor;
 
@@ -14,6 +13,15 @@ public class RuoloService {
 
     public void save(Ruolo ruolo) {
         ruoloDao.save(ruolo);
+    }
+
+    public Ruolo findById(Integer id) {
+        return ruoloDao.findById(id);
+    }
+
+    public void deleteByCodiceIstat(Integer id) {
+        Ruolo ruolo = ruoloDao.findById(id);
+        ruoloDao.deleteById(id);
     }
 
     public List<Ruolo> findAll() {

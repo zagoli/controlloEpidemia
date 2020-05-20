@@ -1,6 +1,5 @@
 package com.jgg.controlloEpidemia.dao;
 
-import com.jgg.controlloEpidemia.model.DecessiAnnuali;
 import com.jgg.controlloEpidemia.model.Permessi;
 import lombok.NoArgsConstructor;
 
@@ -15,6 +14,22 @@ public class PermessiDao implements PermessiDaoInterface {
         session.openCurrentSessionwithTransaction();
         session.getCurrentSession().save(permessi);
         session.closeCurrentSessionwithTransaction();
+    }
+
+    @Override
+    public void deleteById(Integer id) {
+        session.openCurrentSessionwithTransaction();
+        Permessi permessi = session.getCurrentSession().get(Permessi.class, id);
+        session.getCurrentSession().delete(permessi);
+        session.closeCurrentSessionwithTransaction();
+    }
+
+    @Override
+    public Permessi findById(Integer id) {
+        session.openCurrentSession();
+        Permessi permessi = session.getCurrentSession().get(Permessi.class, id);
+        session.closeCurrentSession();
+        return permessi;
     }
 
     @Override

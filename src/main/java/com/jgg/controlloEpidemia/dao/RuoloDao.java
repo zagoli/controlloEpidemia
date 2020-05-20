@@ -1,6 +1,5 @@
 package com.jgg.controlloEpidemia.dao;
 
-import com.jgg.controlloEpidemia.model.DecessiAnnuali;
 import com.jgg.controlloEpidemia.model.Ruolo;
 import lombok.NoArgsConstructor;
 
@@ -16,6 +15,22 @@ public class RuoloDao implements RuoloDaoInterface {
         session.openCurrentSessionwithTransaction();
         session.getCurrentSession().save(ruolo);
         session.closeCurrentSessionwithTransaction();
+    }
+
+    @Override
+    public void deleteById(Integer id) {
+        session.openCurrentSessionwithTransaction();
+        Ruolo ruolo = session.getCurrentSession().get(Ruolo.class, id);
+        session.getCurrentSession().delete(ruolo);
+        session.closeCurrentSessionwithTransaction();
+    }
+
+    @Override
+    public Ruolo findById(Integer id) {
+        session.openCurrentSession();
+        Ruolo ruolo = session.getCurrentSession().get(Ruolo.class, id);
+        session.closeCurrentSession();
+        return ruolo;
     }
 
     @Override

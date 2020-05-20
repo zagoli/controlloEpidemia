@@ -8,5 +8,9 @@ public interface MalattieSettimanaliDaoInterface {
 
     void save(MalattieSettimanali malattieSettimanali);
 
+    void deleteById(Integer id);
+
+    MalattieSettimanali findById(Integer id);
+
     List<MalattieSettimanali> findAll();
 }

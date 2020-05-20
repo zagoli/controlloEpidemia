@@ -1,7 +1,6 @@
 package com.jgg.controlloEpidemia.service;
 
 import com.jgg.controlloEpidemia.dao.ProvinciaDao;
-import com.jgg.controlloEpidemia.model.DecessiAnnuali;
 import com.jgg.controlloEpidemia.model.Provincia;
 import lombok.NoArgsConstructor;
 
@@ -14,6 +13,15 @@ public class ProvinciaService {
 
     public void save(Provincia provincia) {
         provinciaDao.save(provincia);
+    }
+
+    public Provincia findById(Integer id) {
+        return provinciaDao.findById(id);
+    }
+
+    public void deleteByCodiceIstat(Integer id) {
+        Provincia provincia = provinciaDao.findById(id);
+        provinciaDao.deleteById(id);
     }
 
     public List<Provincia> findAll() {

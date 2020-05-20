@@ -1,6 +1,5 @@
 package com.jgg.controlloEpidemia.dao;
 
-import com.jgg.controlloEpidemia.model.DecessiAnnuali;
 import com.jgg.controlloEpidemia.model.TipoTerritorio;
 
 import java.util.List;
@@ -14,6 +13,22 @@ public class TipoTerritorioDao implements TipoTerritorioInterface {
         session.openCurrentSessionwithTransaction();
         session.getCurrentSession().save(tipoTerritorio);
         session.closeCurrentSessionwithTransaction();
+    }
+
+    @Override
+    public void deleteById(Integer id) {
+        session.openCurrentSessionwithTransaction();
+        TipoTerritorio tipoTerritorio = session.getCurrentSession().get(TipoTerritorio.class, id);
+        session.getCurrentSession().delete(tipoTerritorio);
+        session.closeCurrentSessionwithTransaction();
+    }
+
+    @Override
+    public TipoTerritorio findById(Integer id) {
+        session.openCurrentSession();
+        TipoTerritorio tipoTerritorio = session.getCurrentSession().get(TipoTerritorio.class, id);
+        session.closeCurrentSession();
+        return tipoTerritorio;
     }
 
     @Override

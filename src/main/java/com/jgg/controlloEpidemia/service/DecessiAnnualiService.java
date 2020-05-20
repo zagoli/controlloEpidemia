@@ -1,7 +1,6 @@
 package com.jgg.controlloEpidemia.service;
 
 import com.jgg.controlloEpidemia.dao.DecessiAnnualiDao;
-import com.jgg.controlloEpidemia.model.Comune;
 import com.jgg.controlloEpidemia.model.DecessiAnnuali;
 import lombok.NoArgsConstructor;
 
@@ -14,6 +13,15 @@ public class DecessiAnnualiService {
 
     public void save(DecessiAnnuali decessiAnnuali) {
         decessiAnnualiDao.save(decessiAnnuali);
+    }
+
+    public DecessiAnnuali findById(Integer id) {
+        return decessiAnnualiDao.findById(id);
+    }
+
+    public void deleteByCodiceIstat(Integer id) {
+        DecessiAnnuali decessiAnnuali = decessiAnnualiDao.findById(id);
+        decessiAnnualiDao.deleteById(id);
     }
 
     public List<DecessiAnnuali> findAll() {

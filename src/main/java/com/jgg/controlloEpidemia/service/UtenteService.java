@@ -1,7 +1,6 @@
 package com.jgg.controlloEpidemia.service;
 
 import com.jgg.controlloEpidemia.dao.UtenteDao;
-import com.jgg.controlloEpidemia.model.DecessiAnnuali;
 import com.jgg.controlloEpidemia.model.Utente;
 import lombok.NoArgsConstructor;
 
@@ -13,6 +12,15 @@ public class UtenteService {
 
     public void save(Utente utente) {
         utenteDao.save(utente);
+    }
+
+    public Utente findById(Integer id) {
+        return utenteDao.findById(id);
+    }
+
+    public void deleteByCodiceIstat(Integer id) {
+        Utente utente = utenteDao.findById(id);
+        utenteDao.deleteById(id);
     }
 
     public List<Utente> findAll() {

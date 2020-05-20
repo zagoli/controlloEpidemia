@@ -15,6 +15,15 @@ public class MalattieSettimanaliService {
         malattieSettimanaliDao.save(malattieSettimanali);
     }
 
+    public MalattieSettimanali findById(Integer id) {
+        return malattieSettimanaliDao.findById(id);
+    }
+
+    public void deleteByCodiceIstat(Integer id) {
+        MalattieSettimanali malattieSettimanali = malattieSettimanaliDao.findById(id);
+        malattieSettimanaliDao.deleteById(id);
+    }
+
     public List<MalattieSettimanali> findAll() {
         return malattieSettimanaliDao.findAll();
     }

@@ -1,6 +1,5 @@
 package com.jgg.controlloEpidemia.dao;
 
-import com.jgg.controlloEpidemia.model.DecessiAnnuali;
 import com.jgg.controlloEpidemia.model.Regione;
 import lombok.NoArgsConstructor;
 
@@ -15,9 +14,23 @@ public class RegioneDao implements RegioneDaoInterface {
         session.openCurrentSessionwithTransaction();
         session.getCurrentSession().save(regione);
         session.closeCurrentSessionwithTransaction();
-
     }
 
+    @Override
+    public void deleteById(Integer id) {
+        session.openCurrentSessionwithTransaction();
+        Regione regione = session.getCurrentSession().get(Regione.class, id);
+        session.getCurrentSession().delete(regione);
+        session.closeCurrentSessionwithTransaction();
+    }
+
+    @Override
+    public Regione findById(Integer id) {
+        session.openCurrentSession();
+        Regione regione = session.getCurrentSession().get(Regione.class, id);
+        session.closeCurrentSession();
+        return regione;
+    }
 
     @Override
     @SuppressWarnings("unchecked")

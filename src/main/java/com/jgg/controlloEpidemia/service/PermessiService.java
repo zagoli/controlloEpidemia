@@ -1,7 +1,6 @@
 package com.jgg.controlloEpidemia.service;
 
 import com.jgg.controlloEpidemia.dao.PermessiDao;
-import com.jgg.controlloEpidemia.model.DecessiAnnuali;
 import com.jgg.controlloEpidemia.model.Permessi;
 import lombok.NoArgsConstructor;
 
@@ -14,6 +13,15 @@ public class PermessiService {
 
     public void save(Permessi permessi) {
         permessiDao.save(permessi);
+    }
+
+    public Permessi findById(Integer id) {
+        return permessiDao.findById(id);
+    }
+
+    public void deleteByCodiceIstat(Integer id) {
+        Permessi permessi = permessiDao.findById(id);
+        permessiDao.deleteById(id);
     }
 
     public List<Permessi> findAll() {

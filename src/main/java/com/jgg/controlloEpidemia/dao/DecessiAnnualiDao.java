@@ -18,6 +18,22 @@ public class DecessiAnnualiDao implements DecessiAnnualiDaoInterface {
     }
 
     @Override
+    public void deleteById(Integer id) {
+        session.openCurrentSessionwithTransaction();
+        DecessiAnnuali decessiAnnuali = session.getCurrentSession().get(DecessiAnnuali.class, id);
+        session.getCurrentSession().delete(decessiAnnuali);
+        session.closeCurrentSessionwithTransaction();
+    }
+
+    @Override
+    public DecessiAnnuali findById(Integer id) {
+        session.openCurrentSession();
+        DecessiAnnuali decessiAnnuali = session.getCurrentSession().get(DecessiAnnuali.class, id);
+        session.closeCurrentSession();
+        return decessiAnnuali;
+    }
+
+    @Override
     @SuppressWarnings("unchecked")
     public List<DecessiAnnuali> findAll() {
         session.openCurrentSession();

@@ -1,7 +1,6 @@
 package com.jgg.controlloEpidemia.service;
 
 import com.jgg.controlloEpidemia.dao.TipoTerritorioDao;
-import com.jgg.controlloEpidemia.model.DecessiAnnuali;
 import com.jgg.controlloEpidemia.model.TipoTerritorio;
 import lombok.NoArgsConstructor;
 
@@ -14,6 +13,15 @@ public class TipoTerritorioService {
 
     public void save(TipoTerritorio tipoTerritorio) {
         tipoTerritorioDao.save(tipoTerritorio);
+    }
+
+    public TipoTerritorio findById(Integer id) {
+        return tipoTerritorioDao.findById(id);
+    }
+
+    public void deleteByCodiceIstat(Integer id) {
+        TipoTerritorio tipoTerritorio = tipoTerritorioDao.findById(id);
+        tipoTerritorioDao.deleteById(id);
     }
 
     public List<TipoTerritorio> findAll() {

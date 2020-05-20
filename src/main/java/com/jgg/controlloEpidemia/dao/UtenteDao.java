@@ -14,7 +14,22 @@ public class UtenteDao implements UtenteDaoInterface {
         session.openCurrentSessionwithTransaction();
         session.getCurrentSession().save(utente);
         session.closeCurrentSessionwithTransaction();
+    }
 
+    @Override
+    public void deleteById(Integer id) {
+        session.openCurrentSessionwithTransaction();
+        Utente utente = session.getCurrentSession().get(Utente.class, id);
+        session.getCurrentSession().delete(utente);
+        session.closeCurrentSessionwithTransaction();
+    }
+
+    @Override
+    public Utente findById(Integer id) {
+        session.openCurrentSession();
+        Utente utente = session.getCurrentSession().get(Utente.class, id);
+        session.closeCurrentSession();
+        return utente;
     }
 
     @Override

@@ -8,5 +8,9 @@ public interface DecessiAnnualiDaoInterface {
 
     void save(DecessiAnnuali decessiAnnuali);
 
+    void deleteById(Integer id);
+
+    DecessiAnnuali findById(Integer id);
+
     List<DecessiAnnuali> findAll();
 }
