@@ -1,6 +1,5 @@
 import com.jgg.controlloEpidemia.model.TipoTerritorio;
 import com.jgg.controlloEpidemia.service.TipoTerritorioService;
-import org.apache.log4j.BasicConfigurator;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -23,7 +22,7 @@ public class Main {
         return ourSessionFactory.openSession();
     }
 
-    public static void main(final String[] args){
+    public static void main(final String[] args) {
         try (Session session = getSession()) {
             System.out.println("querying all the managed entities...");
             final Metamodel metamodel = session.getSessionFactory().getMetamodel();
