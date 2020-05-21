@@ -25,13 +25,6 @@ public class MalattieSettimanaliDao implements MalattieSettimanaliDaoInterface {
     }
 
     @Override
-    public void delete(MalattieSettimanali m) {
-        session.openCurrentSessionwithTransaction();
-        session.getCurrentSession().delete(m);
-        session.closeCurrentSessionwithTransaction();
-    }
-
-    @Override
     public MalattieSettimanali findById(Integer id) {
         session.openCurrentSession();
         MalattieSettimanali malattieSettimanali = session.getCurrentSession().get(MalattieSettimanali.class, id);
