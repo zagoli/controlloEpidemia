@@ -10,8 +10,9 @@ import javax.validation.constraints.NotNull;
 
 @Entity
 @ToString
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
+@RequiredArgsConstructor
 public class MalattieSettimanali {
 
     @Id
@@ -20,94 +21,114 @@ public class MalattieSettimanali {
     @GeneratedValue(generator = "increment")
     private Integer id;
 
+    // NotNull-->database  NonNull-->lombok
+
     @Getter
     @Setter
     @NotNull
+    @NonNull
     private Integer anno;
 
     @Getter
     @Setter
     @NotNull
+    @NonNull
     private Integer settimana;
 
     @Getter
     @Setter
     @NotNull
+    @NonNull
     private Integer ricoveratiInfluenza;
 
     @Getter
     @Setter
     @NotNull
+    @NonNull
     private Integer inCuraInfluenza;
 
     @Getter
     @Setter
     @NotNull
+    @NonNull
     private Integer complicanzeRespiratorie;
 
     @Getter
     @Setter
     @NotNull
+    @NonNull
     private Integer ricoveratiPolmonite;
 
     @Getter
     @Setter
     @NotNull
+    @NonNull
     private Integer inCuraPolmonite;
 
     @Getter
     @Setter
     @NotNull
+    @NonNull
     private Integer ricoveratiMeningite;
 
     @Getter
     @Setter
     @NotNull
+    @NonNull
     private Integer inCuraMeningite;
 
     @Getter
     @Setter
     @NotNull
+    @NonNull
     private Integer ricoveratiEpatite;
 
     @Getter
     @Setter
     @NotNull
+    @NonNull
     private Integer inCuraEpatite;
 
     @Getter
     @Setter
     @NotNull
+    @NonNull
     private Integer ricoveratiMorbillo;
 
     @Getter
     @Setter
     @NotNull
+    @NonNull
     private Integer inCuraMorbillo;
 
     @Getter
     @Setter
     @NotNull
+    @NonNull
     private Integer ricoveratiTubercolosi;
 
     @Getter
     @Setter
     @NotNull
+    @NonNull
     private Integer inCuraTubercolosi;
 
     @Getter
     @Setter
     @NotNull
+    @NonNull
     private Integer ricoveratiGastroenterite;
 
     @Getter
     @Setter
     @NotNull
+    @NonNull
     private Integer inCuraGastroenterite;
 
     @Getter
     @Setter
     @NotNull
+    @NonNull
     @ManyToOne
     private Comune comune;
 

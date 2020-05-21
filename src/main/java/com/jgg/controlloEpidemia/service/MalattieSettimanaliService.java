@@ -9,7 +9,7 @@ import java.util.List;
 @NoArgsConstructor
 public class MalattieSettimanaliService {
 
-    private static MalattieSettimanaliDao malattieSettimanaliDao = new MalattieSettimanaliDao();
+    private static final MalattieSettimanaliDao malattieSettimanaliDao = new MalattieSettimanaliDao();
 
     public void save(MalattieSettimanali malattieSettimanali) {
         malattieSettimanaliDao.save(malattieSettimanali);
@@ -19,9 +19,13 @@ public class MalattieSettimanaliService {
         return malattieSettimanaliDao.findById(id);
     }
 
-    public void deleteByCodiceIstat(Integer id) {
+    public void deleteById(Integer id) {
         MalattieSettimanali malattieSettimanali = malattieSettimanaliDao.findById(id);
         malattieSettimanaliDao.deleteById(id);
+    }
+
+    public void delete(MalattieSettimanali m) {
+        malattieSettimanaliDao.delete(m);
     }
 
     public List<MalattieSettimanali> findAll() {

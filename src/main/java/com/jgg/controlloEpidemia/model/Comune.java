@@ -2,10 +2,7 @@ package com.jgg.controlloEpidemia.model;
 
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.Date;
@@ -45,7 +42,7 @@ public class Comune {
     @ManyToOne
     private TipoTerritorio tipoTerritorio;
     @Getter
-    @OneToMany
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "comune", cascade = CascadeType.ALL)
     final private List<MalattieSettimanali> malattieSettimanali = new ArrayList<>();
 
     @Override
