@@ -45,13 +45,17 @@ public class Provincia {
     private Comune capoluogo;
 
     @Getter
+    @NotNull
     @EqualsAndHashCode.Exclude
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @ToString.Exclude
+    @OneToMany(cascade = CascadeType.REMOVE)
     private final List<Comune> comuni = new LinkedList<>();
 
     @Getter
+    @NotNull
     @EqualsAndHashCode.Exclude
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @ToString.Exclude
+    @OneToMany(cascade = CascadeType.REMOVE)
     final private List<DecessiAnnuali> decessiAnnuali = new ArrayList<>();
 
 }

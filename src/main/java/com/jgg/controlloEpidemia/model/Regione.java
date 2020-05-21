@@ -44,7 +44,9 @@ public class Regione {
     private Comune capoluogo;
 
     @Getter
+    @NotNull
     @EqualsAndHashCode.Exclude
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @ToString.Exclude
+    @OneToMany(cascade = CascadeType.REMOVE)
     private final List<Provincia> province = new LinkedList<>();
 }

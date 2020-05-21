@@ -21,6 +21,7 @@ public class MalattieSettimanali {
     @NotNull
     @GeneratedValue(generator = "increment")
     @EqualsAndHashCode.Include
+    @ToString.Include
     private Integer id;
 
     @Getter
@@ -28,6 +29,7 @@ public class MalattieSettimanali {
     @NotNull
     @NonNull
     @EqualsAndHashCode.Include
+    @ToString.Include
     private Integer anno;
 
     @Getter
@@ -35,6 +37,7 @@ public class MalattieSettimanali {
     @NotNull
     @NonNull
     @EqualsAndHashCode.Include
+    @ToString.Include
     private Integer settimana;
 
     @Getter
@@ -42,6 +45,7 @@ public class MalattieSettimanali {
     @NotNull
     @NonNull
     @EqualsAndHashCode.Include
+    @ToString.Include
     private Integer ricoveratiInfluenza;
 
     @Getter
@@ -49,6 +53,7 @@ public class MalattieSettimanali {
     @NotNull
     @NonNull
     @EqualsAndHashCode.Include
+    @ToString.Include
     private Integer inCuraInfluenza;
 
     @Getter
@@ -56,6 +61,7 @@ public class MalattieSettimanali {
     @NotNull
     @NonNull
     @EqualsAndHashCode.Include
+    @ToString.Include
     private Integer complicanzeRespiratorie;
 
     @Getter
@@ -63,6 +69,7 @@ public class MalattieSettimanali {
     @NotNull
     @NonNull
     @EqualsAndHashCode.Include
+    @ToString.Include
     private Integer ricoveratiPolmonite;
 
     @Getter
@@ -70,6 +77,7 @@ public class MalattieSettimanali {
     @NotNull
     @NonNull
     @EqualsAndHashCode.Include
+    @ToString.Include
     private Integer inCuraPolmonite;
 
     @Getter
@@ -77,6 +85,7 @@ public class MalattieSettimanali {
     @NotNull
     @NonNull
     @EqualsAndHashCode.Include
+    @ToString.Include
     private Integer ricoveratiMeningite;
 
     @Getter
@@ -84,6 +93,7 @@ public class MalattieSettimanali {
     @NotNull
     @NonNull
     @EqualsAndHashCode.Include
+    @ToString.Include
     private Integer inCuraMeningite;
 
     @Getter
@@ -91,6 +101,7 @@ public class MalattieSettimanali {
     @NotNull
     @NonNull
     @EqualsAndHashCode.Include
+    @ToString.Include
     private Integer ricoveratiEpatite;
 
     @Getter
@@ -98,6 +109,7 @@ public class MalattieSettimanali {
     @NotNull
     @NonNull
     @EqualsAndHashCode.Include
+    @ToString.Include
     private Integer inCuraEpatite;
 
     @Getter
@@ -105,6 +117,7 @@ public class MalattieSettimanali {
     @NotNull
     @NonNull
     @EqualsAndHashCode.Include
+    @ToString.Include
     private Integer ricoveratiMorbillo;
 
     @Getter
@@ -112,6 +125,7 @@ public class MalattieSettimanali {
     @NotNull
     @NonNull
     @EqualsAndHashCode.Include
+    @ToString.Include
     private Integer inCuraMorbillo;
 
     @Getter
@@ -119,6 +133,7 @@ public class MalattieSettimanali {
     @NotNull
     @NonNull
     @EqualsAndHashCode.Include
+    @ToString.Include
     private Integer ricoveratiTubercolosi;
 
     @Getter
@@ -126,6 +141,7 @@ public class MalattieSettimanali {
     @NotNull
     @NonNull
     @EqualsAndHashCode.Include
+    @ToString.Include
     private Integer inCuraTubercolosi;
 
     @Getter
@@ -133,6 +149,7 @@ public class MalattieSettimanali {
     @NotNull
     @NonNull
     @EqualsAndHashCode.Include
+    @ToString.Include
     private Integer ricoveratiGastroenterite;
 
     @Getter
@@ -140,6 +157,7 @@ public class MalattieSettimanali {
     @NotNull
     @NonNull
     @EqualsAndHashCode.Include
+    @ToString.Include
     private Integer inCuraGastroenterite;
 
     @Getter
@@ -147,6 +165,7 @@ public class MalattieSettimanali {
     @NotNull
     @NonNull
     @EqualsAndHashCode.Include
+    @ToString.Include
     @ManyToOne
     private Comune comune;
 

@@ -6,32 +6,42 @@ import com.jgg.controlloEpidemia.model.TipoTerritorio;
 import org.junit.jupiter.api.Test;
 
 import java.util.Date;
+import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 class MalattieSettimanaliServiceTest {
 
     @Test
     void test() {
-        // Inserisco un nuovo comune
-        TipoTerritorio tp = new TipoTerritorio(1, "pianeggiante");
-        Comune c = new Comune("a", "castelnuovo", new Date(), 139, true, tp);
+        //Inizializzo i service
         TipoTerritorioService tipoTerritorioService = new TipoTerritorioService();
         ComuneService comuneService = new ComuneService();
-        tipoTerritorioService.save(tp);
-        comuneService.save(c);
-
-        // Creo malattia settimanale
-        MalattieSettimanaliService malattieSettimanaliService= new MalattieSettimanaliService();
-        MalattieSettimanali m = new MalattieSettimanali(2019,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,c);
-        malattieSettimanaliService.save(m);
-
-        Comune test = comuneService.findByCodiceIstat("a");
-        assertEquals(test.getMalattieSettimanali().size(), 1);
-        assertEquals(test.getMalattieSettimanali().get(0).getAnno(), 2019);
-
-        //Cancella tutto
-        malattieSettimanaliService.delete(m);
-        comuneService.deleteByCodiceIstat("a");
+        MalattieSettimanaliService malattieSettimanaliService = new MalattieSettimanaliService();
+        //Creo i model
+        TipoTerritorio tipoTerritorio = new TipoTerritorio("Pianeggiante");
+        Comune comune = new Comune("a", "Castelnuovo", new Date(), 139, true, tipoTerritorio);
+        MalattieSettimanali malattieSettimanali = new MalattieSettimanali(2019, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, comune);
+        MalattieSettimanali malattieSettimanali2 = new MalattieSettimanali(2020, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, comune);
+        //Salvo i model
+        tipoTerritorioService.save(tipoTerritorio);
+        comuneService.save(comune);
+        malattieSettimanaliService.save(malattieSettimanali);
+        malattieSettimanaliService.save(malattieSettimanali2);
+        //Cerco i model
+        MalattieSettimanali findMalattieSettimanali = malattieSettimanaliService.findById(malattieSettimanali.getId());
+        assertEquals(malattieSettimanali, findMalattieSettimanali);
+        //Cerco tutti  i model
+        List<MalattieSettimanali> malattieSettimanaliList = malattieSettimanaliService.findAll();
+        assertEquals(malattieSettimanaliList.size(), 2);
+        //Elimino i model
+        malattieSettimanaliService.deleteById(malattieSettimanali.getId());
+        malattieSettimanaliService.deleteById(malattieSettimanali2.getId());
+        //Assert dei model
+        malattieSettimanali = malattieSettimanaliService.findById(malattieSettimanali.getId());
+        assertNull(malattieSettimanali);
+        malattieSettimanaliList = malattieSettimanaliService.findAll();
+        assertEquals(malattieSettimanaliList.size(), 0);
     }
 }

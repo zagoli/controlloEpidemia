@@ -58,12 +58,16 @@ public class Utente {
     private Ruolo ruolo;
 
     @Getter
+    @NotNull
     @EqualsAndHashCode.Exclude
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @ToString.Exclude
+    @OneToMany(cascade = CascadeType.REMOVE)
     private final List<Permessi> permessi = new ArrayList<>();
 
     @Getter
+    @NotNull
     @EqualsAndHashCode.Exclude
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @ToString.Exclude
+    @OneToMany(cascade = CascadeType.REMOVE)
     private final List<Comune> comuni = new ArrayList<>();
 }

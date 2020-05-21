@@ -20,6 +20,7 @@ public class Comune {
     @Getter
     @NotNull
     @EqualsAndHashCode.Include
+    @ToString.Include
     private String codiceIstat;
 
     @Getter
@@ -27,6 +28,7 @@ public class Comune {
     @NotNull
     @NonNull
     @EqualsAndHashCode.Include
+    @ToString.Include
     private String nome;
 
     @Getter
@@ -34,6 +36,7 @@ public class Comune {
     @NotNull
     @NonNull
     @EqualsAndHashCode.Include
+    @ToString.Include
     private Date dataIstituzione;
 
     @Getter
@@ -41,6 +44,7 @@ public class Comune {
     @NotNull
     @NonNull
     @EqualsAndHashCode.Include
+    @ToString.Include
     private Integer superficie;
 
     @Getter
@@ -48,6 +52,7 @@ public class Comune {
     @NotNull
     @NonNull
     @EqualsAndHashCode.Include
+    @ToString.Include
     private Boolean siAffacciaSulMare;
 
     @Getter
@@ -55,12 +60,15 @@ public class Comune {
     @NotNull
     @NonNull
     @EqualsAndHashCode.Include
+    @ToString.Include
     @ManyToOne
     private TipoTerritorio tipoTerritorio;
 
     @Getter
+    @NotNull
     @EqualsAndHashCode.Exclude
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "comune", cascade = CascadeType.ALL)
+    @ToString.Exclude
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "comune", cascade = CascadeType.REMOVE)
     final private List<MalattieSettimanali> malattieSettimanali = new ArrayList<>();
 
 }

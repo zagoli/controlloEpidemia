@@ -14,30 +14,30 @@ class ComuneServiceTest {
 
     @Test
     void testComune() {
-        TipoTerritorio tp = new TipoTerritorio(1, "pianeggiante");
-        Comune c = new Comune("a", "castelnuovo", new Date(), 139, true, tp);
+        //Inizializzo i service
         TipoTerritorioService tipoTerritorioService = new TipoTerritorioService();
         ComuneService comuneService = new ComuneService();
-
-        tipoTerritorioService.save(tp);
-        comuneService.save(c);
-
-        // trovo comune
-        Comune a = comuneService.findByCodiceIstat("a");
-        assertEquals(c,a);
-
-        //find all
-        c = new Comune("b", "babbalabba", new Date(), 139, true, tp);
-        comuneService.save(c);
-        List<Comune> lc = comuneService.findAll();
-        assertEquals(lc.size(), 2);
-
-        //elimino il comune
+        //Creo i model
+        TipoTerritorio tipoTerritorio = new TipoTerritorio(1, "pianeggiante");
+        Comune comune = new Comune("a", "Castelnuovo", new Date(), 139, true, tipoTerritorio);
+        Comune comune2 = new Comune("b", "Bussolengo", new Date(), 139, true, tipoTerritorio);
+        //Salvo i model
+        tipoTerritorioService.save(tipoTerritorio);
+        comuneService.save(comune);
+        comuneService.save(comune2);
+        //Cerco i model
+        Comune findComune = comuneService.findByCodiceIstat("a");
+        assertEquals(comune,findComune);
+        //Cerco tutti  i model
+        List<Comune> comuneList = comuneService.findAll();
+        assertEquals(comuneList.size(), 2);
+        //Elimino i model
         comuneService.deleteByCodiceIstat("a");
         comuneService.deleteByCodiceIstat("b");
-        a = comuneService.findByCodiceIstat("a");
-        assertNull(a);
-        lc = comuneService.findAll();
-        assertEquals(lc.size(), 0);
+        //Assert dei model
+        comune = comuneService.findByCodiceIstat("a");
+        assertNull(comune);
+        comuneList = comuneService.findAll();
+        assertEquals(comuneList.size(), 0);
     }
 }
