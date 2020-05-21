@@ -20,8 +20,7 @@ public class RegioneService {
     }
 
     public void deleteByCodiceIstat(Integer id) {
-        Regione regione = regioneDao.findById(id);
-        regioneDao.deleteById(id);
+       regioneDao.deleteById(id);
     }
 
     public List<Regione> findAll() {

@@ -20,8 +20,7 @@ public class PermessiService {
     }
 
     public void deleteByCodiceIstat(Integer id) {
-        Permessi permessi = permessiDao.findById(id);
-        permessiDao.deleteById(id);
+      permessiDao.deleteById(id);
     }
 
     public List<Permessi> findAll() {

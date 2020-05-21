@@ -20,7 +20,6 @@ public class DecessiAnnualiService {
     }
 
     public void deleteByCodiceIstat(Integer id) {
-        DecessiAnnuali decessiAnnuali = decessiAnnualiDao.findById(id);
         decessiAnnualiDao.deleteById(id);
     }
 

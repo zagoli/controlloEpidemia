@@ -20,7 +20,6 @@ public class ProvinciaService {
     }
 
     public void deleteByCodiceIstat(Integer id) {
-        Provincia provincia = provinciaDao.findById(id);
         provinciaDao.deleteById(id);
     }
 

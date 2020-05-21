@@ -20,12 +20,7 @@ public class MalattieSettimanaliService {
     }
 
     public void deleteById(Integer id) {
-        MalattieSettimanali malattieSettimanali = malattieSettimanaliDao.findById(id);
         malattieSettimanaliDao.deleteById(id);
-    }
-
-    public void delete(MalattieSettimanali m) {
-        malattieSettimanaliDao.delete(m);
     }
 
     public List<MalattieSettimanali> findAll() {

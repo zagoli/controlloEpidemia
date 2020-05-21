@@ -19,8 +19,7 @@ public class UtenteService {
     }
 
     public void deleteByCodiceIstat(Integer id) {
-        Utente utente = utenteDao.findById(id);
-        utenteDao.deleteById(id);
+      utenteDao.deleteById(id);
     }
 
     public List<Utente> findAll() {

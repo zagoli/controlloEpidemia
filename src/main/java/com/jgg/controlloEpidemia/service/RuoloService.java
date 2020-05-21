@@ -20,8 +20,7 @@ public class RuoloService {
     }
 
     public void deleteByCodiceIstat(Integer id) {
-        Ruolo ruolo = ruoloDao.findById(id);
-        ruoloDao.deleteById(id);
+       ruoloDao.deleteById(id);
     }
 
     public List<Ruolo> findAll() {
