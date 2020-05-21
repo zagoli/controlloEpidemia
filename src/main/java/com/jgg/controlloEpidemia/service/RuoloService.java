@@ -19,7 +19,7 @@ public class RuoloService {
         return ruoloDao.findById(id);
     }
 
-    public void deleteByCodiceIstat(Integer id) {
+    public void deleteById(Integer id) {
        ruoloDao.deleteById(id);
     }
 

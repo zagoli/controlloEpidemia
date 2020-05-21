@@ -19,7 +19,7 @@ public class ProvinciaService {
         return provinciaDao.findById(id);
     }
 
-    public void deleteByCodiceIstat(Integer id) {
+    public void deleteById(Integer id) {
         provinciaDao.deleteById(id);
     }
 

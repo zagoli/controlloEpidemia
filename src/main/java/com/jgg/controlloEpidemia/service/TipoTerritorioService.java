@@ -19,7 +19,7 @@ public class TipoTerritorioService {
         return tipoTerritorioDao.findById(id);
     }
 
-    public void deleteByCodiceIstat(Integer id) {
+    public void deleteById(Integer id) {
       tipoTerritorioDao.deleteById(id);
     }
 

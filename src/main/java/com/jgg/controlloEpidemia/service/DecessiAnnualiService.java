@@ -19,7 +19,7 @@ public class DecessiAnnualiService {
         return decessiAnnualiDao.findById(id);
     }
 
-    public void deleteByCodiceIstat(Integer id) {
+    public void deleteById(Integer id) {
         decessiAnnualiDao.deleteById(id);
     }
 

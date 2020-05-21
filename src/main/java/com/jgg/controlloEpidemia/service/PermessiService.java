@@ -19,7 +19,7 @@ public class PermessiService {
         return permessiDao.findById(id);
     }
 
-    public void deleteByCodiceIstat(Integer id) {
+    public void deleteById(Integer id) {
       permessiDao.deleteById(id);
     }
 
