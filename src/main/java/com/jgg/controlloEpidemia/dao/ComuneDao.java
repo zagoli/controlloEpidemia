@@ -8,7 +8,7 @@ import java.util.List;
 @NoArgsConstructor
 public class ComuneDao implements ComuneDaoInterface {
 
-    private static Session session = new Session();
+    private static final Session session = new Session();
 
     @Override
     public void save(Comune c) {

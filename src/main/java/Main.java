@@ -35,10 +35,5 @@ public class Main {
                 }
             }
         }
-
-        //Esempio salvataggio tipoterritorio
-        TipoTerritorio tp = new TipoTerritorio(1, "pianeggiante");
-        TipoTerritorioService tipoTerritorioService = new TipoTerritorioService();
-        tipoTerritorioService.save(tp);
     }
 }
