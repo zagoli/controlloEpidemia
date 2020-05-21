@@ -11,41 +11,59 @@ import java.util.List;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
+@RequiredArgsConstructor
+@EqualsAndHashCode
 public class Utente {
 
-
-    @NotNull
-    @Getter
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    private final List<Permessi> permessi = new ArrayList<>();
-    @NotNull
-    @Getter
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    private final List<Comune> comuni = new ArrayList<>();
     @Id
     @Getter
     @NotNull
     @GeneratedValue(generator = "increment")
     private Integer id;
-    @NotNull
+
     @Getter
     @Setter
+    @NotNull
+    @NonNull
+    @EqualsAndHashCode.Include
     private String username;
-    @NotNull
+
     @Getter
     @Setter
+    @NotNull
+    @NonNull
+    @EqualsAndHashCode.Include
     private String password;
-    @NotNull
+
     @Getter
     @Setter
+    @NotNull
+    @NonNull
+    @EqualsAndHashCode.Include
     private String nome;
-    @NotNull
+
     @Getter
     @Setter
+    @NotNull
+    @NonNull
+    @EqualsAndHashCode.Include
     private String cognome;
-    @NotNull
+
     @Getter
     @Setter
+    @NotNull
+    @NonNull
+    @EqualsAndHashCode.Include
     @ManyToOne
     private Ruolo ruolo;
+
+    @Getter
+    @EqualsAndHashCode.Exclude
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    private final List<Permessi> permessi = new ArrayList<>();
+
+    @Getter
+    @EqualsAndHashCode.Exclude
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    private final List<Comune> comuni = new ArrayList<>();
 }

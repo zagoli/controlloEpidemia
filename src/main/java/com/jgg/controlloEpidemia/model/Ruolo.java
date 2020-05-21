@@ -11,17 +11,22 @@ import javax.validation.constraints.NotNull;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
+@RequiredArgsConstructor
+@EqualsAndHashCode
 public class Ruolo {
 
     @Id
     @Getter
     @NotNull
+    @EqualsAndHashCode.Include
     @GeneratedValue(generator = "increment")
     private Integer id;
 
-    @NotNull
     @Getter
     @Setter
+    @NotNull
+    @NonNull
+    @EqualsAndHashCode.Include
     private String nome;
 
 }

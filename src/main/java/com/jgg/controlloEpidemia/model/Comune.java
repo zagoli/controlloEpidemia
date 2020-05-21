@@ -7,59 +7,60 @@ import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Objects;
 
 @Entity
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
+@RequiredArgsConstructor
+@EqualsAndHashCode
 public class Comune {
 
     @Id
     @Getter
-    @Setter
     @NotNull
+    @EqualsAndHashCode.Include
     private String codiceIstat;
-    @NotNull
+
     @Getter
     @Setter
+    @NotNull
+    @NonNull
+    @EqualsAndHashCode.Include
     private String nome;
-    @NotNull
+
     @Getter
     @Setter
+    @NotNull
+    @NonNull
+    @EqualsAndHashCode.Include
     private Date dataIstituzione;
-    @NotNull
+
     @Getter
     @Setter
+    @NotNull
+    @NonNull
+    @EqualsAndHashCode.Include
     private Integer superficie;
-    @NotNull
+
     @Getter
     @Setter
+    @NotNull
+    @NonNull
+    @EqualsAndHashCode.Include
     private Boolean siAffacciaSulMare;
-    @NotNull
+
     @Getter
     @Setter
+    @NotNull
+    @NonNull
+    @EqualsAndHashCode.Include
     @ManyToOne
     private TipoTerritorio tipoTerritorio;
+
     @Getter
+    @EqualsAndHashCode.Exclude
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "comune", cascade = CascadeType.ALL)
     final private List<MalattieSettimanali> malattieSettimanali = new ArrayList<>();
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Comune comune = (Comune) o;
-        return getCodiceIstat().equals(comune.getCodiceIstat()) &&
-                getNome().equals(comune.getNome()) &&
-                getDataIstituzione().equals(comune.getDataIstituzione()) &&
-                getSuperficie().equals(comune.getSuperficie()) &&
-                getSiAffacciaSulMare().equals(comune.getSiAffacciaSulMare()) &&
-                getTipoTerritorio().equals(comune.getTipoTerritorio());
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(getCodiceIstat(), getNome(), getDataIstituzione(), getSuperficie(), getSiAffacciaSulMare(), getTipoTerritorio());
-    }
 }

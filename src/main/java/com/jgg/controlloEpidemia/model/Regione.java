@@ -11,28 +11,40 @@ import java.util.List;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
+@RequiredArgsConstructor
+@EqualsAndHashCode
 public class Regione {
 
-    @NotNull
-    @Getter
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    private final List<Provincia> province = new LinkedList<>();
     @Id
     @Getter
     @NotNull
     @GeneratedValue(generator = "increment")
     private Integer id;
-    @NotNull
+
     @Getter
     @Setter
+    @NotNull
+    @NonNull
+    @EqualsAndHashCode.Include
     private String nome;
-    @NotNull
+
     @Getter
     @Setter
+    @NotNull
+    @NonNull
+    @EqualsAndHashCode.Include
     private Integer superficie;
-    @NotNull
+
     @Getter
     @Setter
+    @NotNull
+    @NonNull
+    @EqualsAndHashCode.Include
     @OneToOne
     private Comune capoluogo;
+
+    @Getter
+    @EqualsAndHashCode.Exclude
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    private final List<Provincia> province = new LinkedList<>();
 }

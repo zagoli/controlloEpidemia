@@ -1,5 +1,3 @@
-import com.jgg.controlloEpidemia.model.TipoTerritorio;
-import com.jgg.controlloEpidemia.service.TipoTerritorioService;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
