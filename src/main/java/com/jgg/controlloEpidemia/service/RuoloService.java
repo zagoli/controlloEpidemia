@@ -20,7 +20,7 @@ public class RuoloService {
     }
 
     public void deleteById(Integer id) {
-       ruoloDao.deleteById(id);
+        ruoloDao.deleteById(id);
     }
 
     public List<Ruolo> findAll() {

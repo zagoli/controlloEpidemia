@@ -38,6 +38,8 @@ class MalattieSettimanaliServiceTest {
         //Elimino i model
         malattieSettimanaliService.deleteById(malattieSettimanali.getId());
         malattieSettimanaliService.deleteById(malattieSettimanali2.getId());
+        comuneService.deleteByCodiceIstat(comune.getCodiceIstat());
+        tipoTerritorioService.deleteById(tipoTerritorio.getId());
         //Assert dei model
         malattieSettimanali = malattieSettimanaliService.findById(malattieSettimanali.getId());
         assertNull(malattieSettimanali);

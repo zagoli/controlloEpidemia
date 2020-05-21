@@ -19,13 +19,11 @@ public class TipoTerritorio {
     @Getter
     @NotNull
     @GeneratedValue(generator = "increment")
-    @EqualsAndHashCode.Include
     private Integer id;
 
     @Getter
     @Setter
     @NotNull
     @NonNull
-    @EqualsAndHashCode.Include
     private String nome;
 }

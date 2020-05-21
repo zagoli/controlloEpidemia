@@ -16,59 +16,41 @@ import java.util.List;
 @EqualsAndHashCode
 public class Comune {
 
-    @Id
-    @Getter
-    @NotNull
-    @EqualsAndHashCode.Include
-    @ToString.Include
-    private String codiceIstat;
-
-    @Getter
-    @Setter
-    @NotNull
-    @NonNull
-    @EqualsAndHashCode.Include
-    @ToString.Include
-    private String nome;
-
-    @Getter
-    @Setter
-    @NotNull
-    @NonNull
-    @EqualsAndHashCode.Include
-    @ToString.Include
-    private Date dataIstituzione;
-
-    @Getter
-    @Setter
-    @NotNull
-    @NonNull
-    @EqualsAndHashCode.Include
-    @ToString.Include
-    private Integer superficie;
-
-    @Getter
-    @Setter
-    @NotNull
-    @NonNull
-    @EqualsAndHashCode.Include
-    @ToString.Include
-    private Boolean siAffacciaSulMare;
-
-    @Getter
-    @Setter
-    @NotNull
-    @NonNull
-    @EqualsAndHashCode.Include
-    @ToString.Include
-    @ManyToOne
-    private TipoTerritorio tipoTerritorio;
-
     @Getter
     @NotNull
     @EqualsAndHashCode.Exclude
     @ToString.Exclude
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "comune", cascade = CascadeType.REMOVE)
     final private List<MalattieSettimanali> malattieSettimanali = new ArrayList<>();
+    @Id
+    @Getter
+    @NotNull
+    private String codiceIstat;
+    @Getter
+    @Setter
+    @NotNull
+    @NonNull
+    private String nome;
+    @Getter
+    @Setter
+    @NotNull
+    @NonNull
+    private Date dataIstituzione;
+    @Getter
+    @Setter
+    @NotNull
+    @NonNull
+    private Integer superficie;
+    @Getter
+    @Setter
+    @NotNull
+    @NonNull
+    private Boolean siAffacciaSulMare;
+    @Getter
+    @Setter
+    @NotNull
+    @NonNull
+    @ManyToOne
+    private TipoTerritorio tipoTerritorio;
 
 }

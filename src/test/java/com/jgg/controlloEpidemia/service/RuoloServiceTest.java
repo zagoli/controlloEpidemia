@@ -1,6 +1,5 @@
 package com.jgg.controlloEpidemia.service;
 
-import com.jgg.controlloEpidemia.model.Comune;
 import com.jgg.controlloEpidemia.model.Ruolo;
 import org.junit.jupiter.api.Test;
 

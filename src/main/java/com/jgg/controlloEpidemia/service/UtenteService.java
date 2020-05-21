@@ -19,7 +19,7 @@ public class UtenteService {
     }
 
     public void deleteById(Integer id) {
-      utenteDao.deleteById(id);
+        utenteDao.deleteById(id);
     }
 
     public List<Utente> findAll() {

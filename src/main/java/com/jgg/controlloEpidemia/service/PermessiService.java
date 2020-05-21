@@ -20,7 +20,7 @@ public class PermessiService {
     }
 
     public void deleteById(Integer id) {
-      permessiDao.deleteById(id);
+        permessiDao.deleteById(id);
     }
 
     public List<Permessi> findAll() {

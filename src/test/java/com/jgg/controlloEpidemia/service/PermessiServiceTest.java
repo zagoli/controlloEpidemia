@@ -1,7 +1,6 @@
 package com.jgg.controlloEpidemia.service;
 
 import com.jgg.controlloEpidemia.model.Permessi;
-import com.jgg.controlloEpidemia.model.Ruolo;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -15,8 +14,8 @@ public class PermessiServiceTest {
         //Inizializzo i service
         PermessiService permessiService = new PermessiService();
         //Creo i model
-        Permessi permessi = new Permessi("Lettura","può leggere");
-        Permessi permessi2 = new Permessi("Scrittura","può scrivere");
+        Permessi permessi = new Permessi("Lettura", "può leggere");
+        Permessi permessi2 = new Permessi("Scrittura", "può scrivere");
         //Salvo i model
         permessiService.save(permessi);
         permessiService.save(permessi2);

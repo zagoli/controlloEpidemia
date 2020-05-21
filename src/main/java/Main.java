@@ -1,9 +1,3 @@
-import com.jgg.controlloEpidemia.model.Comune;
-import com.jgg.controlloEpidemia.model.MalattieSettimanali;
-import com.jgg.controlloEpidemia.model.TipoTerritorio;
-import com.jgg.controlloEpidemia.service.ComuneService;
-import com.jgg.controlloEpidemia.service.MalattieSettimanaliService;
-import com.jgg.controlloEpidemia.service.TipoTerritorioService;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -12,7 +6,6 @@ import org.hibernate.query.Query;
 
 import javax.persistence.metamodel.EntityType;
 import javax.persistence.metamodel.Metamodel;
-import java.util.Date;
 
 public class Main {
 

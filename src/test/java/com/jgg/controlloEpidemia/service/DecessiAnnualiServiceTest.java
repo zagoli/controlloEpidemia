@@ -24,8 +24,8 @@ public class DecessiAnnualiServiceTest {
         TipoTerritorio tipoTerritorio = new TipoTerritorio("Pianeggiante");
         Comune comune = new Comune("a", "Castelnuovo", new Date(), 139, true, tipoTerritorio);
         Provincia provincia = new Provincia("Verona", 143, comune);
-        DecessiAnnuali decessiAnnuali = new DecessiAnnuali(2019,0,0,0,0,provincia);
-        DecessiAnnuali decessiAnnuali2 = new DecessiAnnuali(2020,0,0,0,0,provincia);
+        DecessiAnnuali decessiAnnuali = new DecessiAnnuali(2019, 0, 0, 0, 0, provincia);
+        DecessiAnnuali decessiAnnuali2 = new DecessiAnnuali(2020, 0, 0, 0, 0, provincia);
         //Salvo i model
         tipoTerritorioService.save(tipoTerritorio);
         comuneService.save(comune);
@@ -41,6 +41,9 @@ public class DecessiAnnualiServiceTest {
         //Elimino i model
         decessiAnnualiService.deleteById(decessiAnnuali.getId());
         decessiAnnualiService.deleteById(decessiAnnuali2.getId());
+        provinciaService.deleteById(provincia.getId());
+        comuneService.deleteByCodiceIstat(comune.getCodiceIstat());
+        tipoTerritorioService.deleteById(tipoTerritorio.getId());
         //Assert dei model
         decessiAnnuali = decessiAnnualiService.findById(decessiAnnuali.getId());
         assertNull(decessiAnnuali);

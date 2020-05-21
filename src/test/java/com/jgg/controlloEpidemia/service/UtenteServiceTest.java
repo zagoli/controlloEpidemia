@@ -18,8 +18,8 @@ public class UtenteServiceTest {
         UtenteService utenteService = new UtenteService();
         //Creo i model
         Ruolo ruolo = new Ruolo("Pianeggiante");
-        Utente utente = new Utente("utente1","password","Utente","Uno",ruolo);
-        Utente utente2 = new Utente("utente2","password2","Utente","Due",ruolo);
+        Utente utente = new Utente("utente1", "password", "Utente", "Uno", ruolo);
+        Utente utente2 = new Utente("utente2", "password2", "Utente", "Due", ruolo);
         //Salvo i model
         ruoloService.save(ruolo);
         utenteService.save(utente);
@@ -33,6 +33,7 @@ public class UtenteServiceTest {
         //Elimino i model
         utenteService.deleteById(utente.getId());
         utenteService.deleteById(utente2.getId());
+        ruoloService.deleteById(ruolo.getId());
         //Assert dei model
         utente = utenteService.findById(utente.getId());
         assertNull(utente);

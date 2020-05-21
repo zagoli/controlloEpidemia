@@ -20,7 +20,7 @@ public class RegioneService {
     }
 
     public void deleteById(Integer id) {
-       regioneDao.deleteById(id);
+        regioneDao.deleteById(id);
     }
 
     public List<Regione> findAll() {

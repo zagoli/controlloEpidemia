@@ -18,7 +18,6 @@ public class Permessi {
     @Id
     @Getter
     @NotNull
-    @EqualsAndHashCode.Include
     @GeneratedValue(generator = "increment")
     private Integer id;
 
@@ -26,14 +25,12 @@ public class Permessi {
     @Setter
     @NotNull
     @NonNull
-    @EqualsAndHashCode.Include
     private String nome;
 
     @Getter
     @Setter
     @NotNull
     @NonNull
-    @EqualsAndHashCode.Include
     private String descrizione;
 
 }

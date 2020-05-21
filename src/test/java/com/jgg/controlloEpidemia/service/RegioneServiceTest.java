@@ -37,6 +37,8 @@ public class RegioneServiceTest {
         //Elimino i model
         regioneService.deleteById(regione.getId());
         regioneService.deleteById(regione2.getId());
+        comuneService.deleteByCodiceIstat(comune.getCodiceIstat());
+        tipoTerritorioService.deleteById(tipoTerritorio.getId());
         //Assert dei model
         regione = regioneService.findById(regione.getId());
         assertNull(regione);

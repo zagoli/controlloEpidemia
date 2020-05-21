@@ -6,9 +6,9 @@ import org.junit.jupiter.api.Test;
 
 import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 class ComuneServiceTest {
 
@@ -27,13 +27,14 @@ class ComuneServiceTest {
         comuneService.save(comune2);
         //Cerco i model
         Comune findComune = comuneService.findByCodiceIstat("a");
-        assertEquals(comune,findComune);
+        assertEquals(comune, findComune);
         //Cerco tutti  i model
         List<Comune> comuneList = comuneService.findAll();
         assertEquals(comuneList.size(), 2);
         //Elimino i model
         comuneService.deleteByCodiceIstat("a");
         comuneService.deleteByCodiceIstat("b");
+        tipoTerritorioService.deleteById(tipoTerritorio.getId());
         //Assert dei model
         comune = comuneService.findByCodiceIstat("a");
         assertNull(comune);

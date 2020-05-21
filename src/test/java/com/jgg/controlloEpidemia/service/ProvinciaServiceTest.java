@@ -37,6 +37,8 @@ public class ProvinciaServiceTest {
         //Elimino i model
         provinciaService.deleteById(provincia.getId());
         provinciaService.deleteById(provincia2.getId());
+        comuneService.deleteByCodiceIstat(comune.getCodiceIstat());
+        tipoTerritorioService.deleteById(tipoTerritorio.getId());
         //Assert dei model
         provincia = provinciaService.findById(provincia.getId());
         assertNull(provincia);

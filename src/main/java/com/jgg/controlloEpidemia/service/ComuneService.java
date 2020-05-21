@@ -20,7 +20,7 @@ public class ComuneService {
     }
 
     public void deleteByCodiceIstat(String codiceIstat) {
-       comuneDao.deleteByCodiceIstat(codiceIstat);
+        comuneDao.deleteByCodiceIstat(codiceIstat);
     }
 
     public List<Comune> findAll() {

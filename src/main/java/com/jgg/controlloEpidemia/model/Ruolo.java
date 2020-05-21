@@ -18,7 +18,6 @@ public class Ruolo {
     @Id
     @Getter
     @NotNull
-    @EqualsAndHashCode.Include
     @GeneratedValue(generator = "increment")
     private Integer id;
 
@@ -26,7 +25,6 @@ public class Ruolo {
     @Setter
     @NotNull
     @NonNull
-    @EqualsAndHashCode.Include
     private String nome;
 
 }

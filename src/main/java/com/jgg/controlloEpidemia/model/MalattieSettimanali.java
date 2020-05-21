@@ -20,152 +20,114 @@ public class MalattieSettimanali {
     @Getter
     @NotNull
     @GeneratedValue(generator = "increment")
-    @EqualsAndHashCode.Include
-    @ToString.Include
     private Integer id;
 
     @Getter
     @Setter
     @NotNull
     @NonNull
-    @EqualsAndHashCode.Include
-    @ToString.Include
     private Integer anno;
 
     @Getter
     @Setter
     @NotNull
     @NonNull
-    @EqualsAndHashCode.Include
-    @ToString.Include
     private Integer settimana;
 
     @Getter
     @Setter
     @NotNull
     @NonNull
-    @EqualsAndHashCode.Include
-    @ToString.Include
     private Integer ricoveratiInfluenza;
 
     @Getter
     @Setter
     @NotNull
     @NonNull
-    @EqualsAndHashCode.Include
-    @ToString.Include
     private Integer inCuraInfluenza;
 
     @Getter
     @Setter
     @NotNull
     @NonNull
-    @EqualsAndHashCode.Include
-    @ToString.Include
     private Integer complicanzeRespiratorie;
 
     @Getter
     @Setter
     @NotNull
     @NonNull
-    @EqualsAndHashCode.Include
-    @ToString.Include
     private Integer ricoveratiPolmonite;
 
     @Getter
     @Setter
     @NotNull
     @NonNull
-    @EqualsAndHashCode.Include
-    @ToString.Include
     private Integer inCuraPolmonite;
 
     @Getter
     @Setter
     @NotNull
     @NonNull
-    @EqualsAndHashCode.Include
-    @ToString.Include
     private Integer ricoveratiMeningite;
 
     @Getter
     @Setter
     @NotNull
     @NonNull
-    @EqualsAndHashCode.Include
-    @ToString.Include
     private Integer inCuraMeningite;
 
     @Getter
     @Setter
     @NotNull
     @NonNull
-    @EqualsAndHashCode.Include
-    @ToString.Include
     private Integer ricoveratiEpatite;
 
     @Getter
     @Setter
     @NotNull
     @NonNull
-    @EqualsAndHashCode.Include
-    @ToString.Include
     private Integer inCuraEpatite;
 
     @Getter
     @Setter
     @NotNull
     @NonNull
-    @EqualsAndHashCode.Include
-    @ToString.Include
     private Integer ricoveratiMorbillo;
 
     @Getter
     @Setter
     @NotNull
     @NonNull
-    @EqualsAndHashCode.Include
-    @ToString.Include
     private Integer inCuraMorbillo;
 
     @Getter
     @Setter
     @NotNull
     @NonNull
-    @EqualsAndHashCode.Include
-    @ToString.Include
     private Integer ricoveratiTubercolosi;
 
     @Getter
     @Setter
     @NotNull
     @NonNull
-    @EqualsAndHashCode.Include
-    @ToString.Include
     private Integer inCuraTubercolosi;
 
     @Getter
     @Setter
     @NotNull
     @NonNull
-    @EqualsAndHashCode.Include
-    @ToString.Include
     private Integer ricoveratiGastroenterite;
 
     @Getter
     @Setter
     @NotNull
     @NonNull
-    @EqualsAndHashCode.Include
-    @ToString.Include
     private Integer inCuraGastroenterite;
 
     @Getter
     @Setter
     @NotNull
     @NonNull
-    @EqualsAndHashCode.Include
-    @ToString.Include
     @ManyToOne
     private Comune comune;
 

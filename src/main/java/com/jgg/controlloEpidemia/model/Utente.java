@@ -15,59 +15,47 @@ import java.util.List;
 @EqualsAndHashCode
 public class Utente {
 
-    @Id
-    @Getter
-    @NotNull
-    @GeneratedValue(generator = "increment")
-    private Integer id;
-
-    @Getter
-    @Setter
-    @NotNull
-    @NonNull
-    @EqualsAndHashCode.Include
-    private String username;
-
-    @Getter
-    @Setter
-    @NotNull
-    @NonNull
-    @EqualsAndHashCode.Include
-    private String password;
-
-    @Getter
-    @Setter
-    @NotNull
-    @NonNull
-    @EqualsAndHashCode.Include
-    private String nome;
-
-    @Getter
-    @Setter
-    @NotNull
-    @NonNull
-    @EqualsAndHashCode.Include
-    private String cognome;
-
-    @Getter
-    @Setter
-    @NotNull
-    @NonNull
-    @EqualsAndHashCode.Include
-    @ManyToOne
-    private Ruolo ruolo;
-
     @Getter
     @NotNull
     @EqualsAndHashCode.Exclude
     @ToString.Exclude
     @OneToMany(cascade = CascadeType.REMOVE)
     private final List<Permessi> permessi = new ArrayList<>();
-
     @Getter
     @NotNull
     @EqualsAndHashCode.Exclude
     @ToString.Exclude
     @OneToMany(cascade = CascadeType.REMOVE)
     private final List<Comune> comuni = new ArrayList<>();
+    @Id
+    @Getter
+    @NotNull
+    @GeneratedValue(generator = "increment")
+    private Integer id;
+    @Getter
+    @Setter
+    @NotNull
+    @NonNull
+    private String username;
+    @Getter
+    @Setter
+    @NotNull
+    @NonNull
+    private String password;
+    @Getter
+    @Setter
+    @NotNull
+    @NonNull
+    private String nome;
+    @Getter
+    @Setter
+    @NotNull
+    @NonNull
+    private String cognome;
+    @Getter
+    @Setter
+    @NotNull
+    @NonNull
+    @ManyToOne
+    private Ruolo ruolo;
 }

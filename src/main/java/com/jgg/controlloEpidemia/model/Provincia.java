@@ -16,46 +16,38 @@ import java.util.List;
 @EqualsAndHashCode
 public class Provincia {
 
-    @Id
-    @Getter
-    @NotNull
-    @GeneratedValue(generator = "increment")
-    private Integer id;
-
-    @Getter
-    @Setter
-    @NotNull
-    @NonNull
-    @EqualsAndHashCode.Include
-    private String nome;
-
-    @Getter
-    @Setter
-    @NotNull
-    @NonNull
-    @EqualsAndHashCode.Include
-    private Integer superficie;
-
-    @Getter
-    @Setter
-    @NotNull
-    @NonNull
-    @EqualsAndHashCode.Include
-    @OneToOne
-    private Comune capoluogo;
-
     @Getter
     @NotNull
     @EqualsAndHashCode.Exclude
     @ToString.Exclude
     @OneToMany(cascade = CascadeType.REMOVE)
     private final List<Comune> comuni = new LinkedList<>();
-
     @Getter
     @NotNull
     @EqualsAndHashCode.Exclude
     @ToString.Exclude
     @OneToMany(cascade = CascadeType.REMOVE)
     final private List<DecessiAnnuali> decessiAnnuali = new ArrayList<>();
+    @Id
+    @Getter
+    @NotNull
+    @GeneratedValue(generator = "increment")
+    private Integer id;
+    @Getter
+    @Setter
+    @NotNull
+    @NonNull
+    private String nome;
+    @Getter
+    @Setter
+    @NotNull
+    @NonNull
+    private Integer superficie;
+    @Getter
+    @Setter
+    @NotNull
+    @NonNull
+    @OneToOne
+    private Comune capoluogo;
 
 }
