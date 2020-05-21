@@ -25,6 +25,11 @@ public class TipoTerritorioServiceTest {
         //Cerco tutti  i model
         List<TipoTerritorio> tipoTerritorioList = tipoTerritorioService.findAll();
         assertEquals(tipoTerritorioList.size(), 2);
+        //Aggiorno i model
+        tipoterritorio.setNome("Personale dell'ente2");
+        tipoTerritorioService.update(tipoterritorio);
+        findTipoTerritorio = tipoTerritorioService.findById(tipoterritorio.getId());
+        assertEquals(tipoterritorio, findTipoTerritorio);
         //Elimino i model
         tipoTerritorioService.deleteById(tipoterritorio.getId());
         tipoTerritorioService.deleteById(tipoterritorio2.getId());

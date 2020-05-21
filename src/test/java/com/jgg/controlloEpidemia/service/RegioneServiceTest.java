@@ -34,6 +34,11 @@ public class RegioneServiceTest {
         //Cerco tutti  i model
         List<Regione> regioneList = regioneService.findAll();
         assertEquals(regioneList.size(), 2);
+        //Aggiorno i model
+        regione.setSuperficie(987);
+        regioneService.update(regione);
+        findRegione = regioneService.findById(regione.getId());
+        assertEquals(regione, findRegione);
         //Elimino i model
         regioneService.deleteById(regione.getId());
         regioneService.deleteById(regione2.getId());

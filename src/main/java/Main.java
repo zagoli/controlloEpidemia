@@ -1,3 +1,5 @@
+import com.jgg.controlloEpidemia.model.Ruolo;
+import com.jgg.controlloEpidemia.service.RuoloService;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;

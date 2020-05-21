@@ -35,6 +35,11 @@ class MalattieSettimanaliServiceTest {
         //Cerco tutti  i model
         List<MalattieSettimanali> malattieSettimanaliList = malattieSettimanaliService.findAll();
         assertEquals(malattieSettimanaliList.size(), 2);
+        //Aggiorno i model
+        malattieSettimanali.setAnno(2021);
+        malattieSettimanaliService.update(malattieSettimanali);
+        findMalattieSettimanali = malattieSettimanaliService.findById(malattieSettimanali.getId());
+        assertEquals(malattieSettimanali, findMalattieSettimanali);
         //Elimino i model
         malattieSettimanaliService.deleteById(malattieSettimanali.getId());
         malattieSettimanaliService.deleteById(malattieSettimanali2.getId());

@@ -38,6 +38,11 @@ public class DecessiAnnualiServiceTest {
         //Cerco tutti  i model
         List<DecessiAnnuali> decessiAnnualiList = decessiAnnualiService.findAll();
         assertEquals(decessiAnnualiList.size(), 2);
+        //Aggiorno i model
+        decessiAnnuali.setAnno(2021);
+        decessiAnnualiService.update(decessiAnnuali);
+        findDecessiAnnuali = decessiAnnualiService.findById(decessiAnnuali.getId());
+        assertEquals(decessiAnnuali, findDecessiAnnuali);
         //Elimino i model
         decessiAnnualiService.deleteById(decessiAnnuali.getId());
         decessiAnnualiService.deleteById(decessiAnnuali2.getId());

@@ -1,8 +1,10 @@
 package com.jgg.controlloEpidemia.service;
 
+import com.jgg.controlloEpidemia.model.Comune;
 import com.jgg.controlloEpidemia.model.Ruolo;
 import org.junit.jupiter.api.Test;
 
+import java.util.Date;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -26,6 +28,11 @@ public class RuoloServiceTest {
         //Cerco tutti  i model
         List<Ruolo> ruoloList = ruoloService.findAll();
         assertEquals(ruoloList.size(), 2);
+        //Aggiorno i model
+        ruolo.setNome("Collinare");
+        ruoloService.update(ruolo);
+        findRuolo = ruoloService.findById(ruolo.getId());
+        assertEquals(ruolo, findRuolo);
         //Elimino i model
         ruoloService.deleteById(ruolo.getId());
         ruoloService.deleteById(ruolo2.getId());

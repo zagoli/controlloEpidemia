@@ -30,6 +30,11 @@ public class UtenteServiceTest {
         //Cerco tutti  i model
         List<Utente> utenteList = utenteService.findAll();
         assertEquals(utenteList.size(), 2);
+        //Aggiorno i model
+        utente.setCognome("DOS");
+        utenteService.update(utente);
+        findUtente = utenteService.findById(utente.getId());
+        assertEquals(utente, findUtente);
         //Elimino i model
         utenteService.deleteById(utente.getId());
         utenteService.deleteById(utente2.getId());

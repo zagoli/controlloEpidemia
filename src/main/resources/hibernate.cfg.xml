@@ -19,7 +19,7 @@
         <mapping class="com.jgg.controlloEpidemia.model.Comune"/>
         <mapping class="com.jgg.controlloEpidemia.model.DecessiAnnuali"/>
         <mapping class="com.jgg.controlloEpidemia.model.MalattieSettimanali"/>
-        <mapping class="com.jgg.controlloEpidemia.model.Permessi"/>
+        <mapping class="com.jgg.controlloEpidemia.model.Permesso"/>
         <mapping class="com.jgg.controlloEpidemia.model.Provincia"/>
         <mapping class="com.jgg.controlloEpidemia.model.Regione"/>
         <mapping class="com.jgg.controlloEpidemia.model.Utente"/>
