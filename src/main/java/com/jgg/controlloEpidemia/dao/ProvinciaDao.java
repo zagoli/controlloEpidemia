@@ -1,6 +1,7 @@
 package com.jgg.controlloEpidemia.dao;
 
 import com.jgg.controlloEpidemia.model.Provincia;
+import com.jgg.controlloEpidemia.model.Ruolo;
 import lombok.NoArgsConstructor;
 
 import java.util.List;
@@ -21,6 +22,13 @@ public class ProvinciaDao implements ProvinciaDaoInterface {
         session.openCurrentSessionwithTransaction();
         Provincia provincia = session.getCurrentSession().get(Provincia.class, id);
         session.getCurrentSession().delete(provincia);
+        session.closeCurrentSessionwithTransaction();
+    }
+
+    @Override
+    public void update(Provincia provincia) {
+        session.openCurrentSessionwithTransaction();
+        session.getCurrentSession().update(provincia);
         session.closeCurrentSessionwithTransaction();
     }
 

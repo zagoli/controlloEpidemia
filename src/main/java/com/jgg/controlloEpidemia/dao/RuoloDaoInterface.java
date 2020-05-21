@@ -10,6 +10,8 @@ public interface RuoloDaoInterface {
 
     void deleteById(Integer id);
 
+    void update(Ruolo ruolo);
+
     Ruolo findById(Integer id);
 
     List<Ruolo> findAll();

@@ -2,6 +2,7 @@ package com.jgg.controlloEpidemia.service;
 
 import com.jgg.controlloEpidemia.dao.ProvinciaDao;
 import com.jgg.controlloEpidemia.model.Provincia;
+import com.jgg.controlloEpidemia.model.Ruolo;
 import lombok.NoArgsConstructor;
 
 import java.util.List;
@@ -17,6 +18,10 @@ public class ProvinciaService {
 
     public Provincia findById(Integer id) {
         return provinciaDao.findById(id);
+    }
+
+    public void update(Provincia provincia) {
+        provinciaDao.update(provincia);
     }
 
     public void deleteById(Integer id) {

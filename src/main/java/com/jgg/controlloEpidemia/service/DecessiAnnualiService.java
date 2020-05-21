@@ -2,6 +2,7 @@ package com.jgg.controlloEpidemia.service;
 
 import com.jgg.controlloEpidemia.dao.DecessiAnnualiDao;
 import com.jgg.controlloEpidemia.model.DecessiAnnuali;
+import com.jgg.controlloEpidemia.model.Ruolo;
 import lombok.NoArgsConstructor;
 
 import java.util.List;
@@ -17,6 +18,10 @@ public class DecessiAnnualiService {
 
     public DecessiAnnuali findById(Integer id) {
         return decessiAnnualiDao.findById(id);
+    }
+
+    public void update(DecessiAnnuali decessiAnnuali) {
+        decessiAnnualiDao.update(decessiAnnuali);
     }
 
     public void deleteById(Integer id) {

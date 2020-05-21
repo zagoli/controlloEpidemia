@@ -13,7 +13,7 @@ public class ImportData {
     ComuneService comuneService = new ComuneService();
     DecessiAnnualiService decessiAnnualiService = new DecessiAnnualiService();
     MalattieSettimanaliService malattieSettimanaliService = new MalattieSettimanaliService();
-    PermessiService permessiService = new PermessiService();
+    PermessoService permessoService = new PermessoService();
     ProvinciaService provinciaService = new ProvinciaService();
     RegioneService regioneService = new RegioneService();
     RuoloService ruoloService = new RuoloService();

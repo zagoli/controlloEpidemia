@@ -26,6 +26,13 @@ public class RuoloDao implements RuoloDaoInterface {
     }
 
     @Override
+    public void update(Ruolo ruolo) {
+        session.openCurrentSessionwithTransaction();
+        session.getCurrentSession().update(ruolo);
+        session.closeCurrentSessionwithTransaction();
+    }
+
+    @Override
     public Ruolo findById(Integer id) {
         session.openCurrentSession();
         Ruolo ruolo = session.getCurrentSession().get(Ruolo.class, id);

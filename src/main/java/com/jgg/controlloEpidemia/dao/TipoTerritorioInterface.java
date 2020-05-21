@@ -10,6 +10,8 @@ public interface TipoTerritorioInterface {
 
     void deleteById(Integer id);
 
+    void update(TipoTerritorio tipoTerritorio);
+
     TipoTerritorio findById(Integer id);
 
     List<TipoTerritorio> findAll();

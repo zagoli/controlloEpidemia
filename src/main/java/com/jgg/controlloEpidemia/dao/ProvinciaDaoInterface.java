@@ -10,6 +10,8 @@ public interface ProvinciaDaoInterface {
 
     void deleteById(Integer id);
 
+    void update(Provincia provincia);
+
     Provincia findById(Integer id);
 
     List<Provincia> findAll();

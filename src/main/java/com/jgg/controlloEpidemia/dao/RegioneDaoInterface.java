@@ -10,6 +10,8 @@ public interface RegioneDaoInterface {
 
     void deleteById(Integer id);
 
+    void update(Regione regione);
+
     Regione findById(Integer id);
 
     List<Regione> findAll();

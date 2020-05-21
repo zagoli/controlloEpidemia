@@ -20,7 +20,7 @@ public class Utente {
     @EqualsAndHashCode.Exclude
     @ToString.Exclude
     @OneToMany(cascade = CascadeType.REMOVE)
-    private final List<Permessi> permessi = new ArrayList<>();
+    private final List<Permesso> permesso = new ArrayList<>();
     @Getter
     @NotNull
     @EqualsAndHashCode.Exclude

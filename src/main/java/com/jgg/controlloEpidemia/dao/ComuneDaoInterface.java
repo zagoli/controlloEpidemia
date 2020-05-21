@@ -10,6 +10,8 @@ public interface ComuneDaoInterface {
 
     void deleteByCodiceIstat(String codiceIstat);
 
+    void update(Comune comune);
+
     Comune findByCodiceIstat(String codiceIstat);
 
     List<Comune> findAll();

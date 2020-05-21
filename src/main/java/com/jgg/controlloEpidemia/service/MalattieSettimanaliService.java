@@ -19,6 +19,10 @@ public class MalattieSettimanaliService {
         return malattieSettimanaliDao.findById(id);
     }
 
+    public void update(MalattieSettimanali malattieSettimanali) {
+        malattieSettimanaliDao.update(malattieSettimanali);
+    }
+
     public void deleteById(Integer id) {
         malattieSettimanaliDao.deleteById(id);
     }

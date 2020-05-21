@@ -1,51 +1,51 @@
 package com.jgg.controlloEpidemia.dao;
 
+import com.jgg.controlloEpidemia.model.Permesso;
 import com.jgg.controlloEpidemia.model.Ruolo;
-import com.jgg.controlloEpidemia.model.Utente;
 import lombok.NoArgsConstructor;
 
 import java.util.List;
 
 @NoArgsConstructor
-public class UtenteDao implements UtenteDaoInterface {
+public class PermessoDao implements PermessoDaoInterface {
     private static Session session = new Session();
 
     @Override
-    public void save(Utente utente) {
+    public void save(Permesso permesso) {
         session.openCurrentSessionwithTransaction();
-        session.getCurrentSession().save(utente);
+        session.getCurrentSession().save(permesso);
         session.closeCurrentSessionwithTransaction();
     }
 
     @Override
     public void deleteById(Integer id) {
         session.openCurrentSessionwithTransaction();
-        Utente utente = session.getCurrentSession().get(Utente.class, id);
-        session.getCurrentSession().delete(utente);
+        Permesso permesso = session.getCurrentSession().get(Permesso.class, id);
+        session.getCurrentSession().delete(permesso);
         session.closeCurrentSessionwithTransaction();
     }
 
     @Override
-    public void update(Utente utente) {
+    public void update(Permesso permesso) {
         session.openCurrentSessionwithTransaction();
-        session.getCurrentSession().update(utente);
+        session.getCurrentSession().update(permesso);
         session.closeCurrentSessionwithTransaction();
     }
 
     @Override
-    public Utente findById(Integer id) {
+    public Permesso findById(Integer id) {
         session.openCurrentSession();
-        Utente utente = session.getCurrentSession().get(Utente.class, id);
+        Permesso permesso = session.getCurrentSession().get(Permesso.class, id);
         session.closeCurrentSession();
-        return utente;
+        return permesso;
     }
 
     @Override
     @SuppressWarnings("unchecked")
-    public List<Utente> findAll() {
+    public List<Permesso> findAll() {
         session.openCurrentSession();
-        List<Utente> utente = session.getCurrentSession().createQuery("from Utente").list();
+        List<Permesso> permesso = session.getCurrentSession().createQuery("from Permesso").list();
         session.closeCurrentSession();
-        return utente;
+        return permesso;
     }
 }

@@ -15,6 +15,10 @@ public class RuoloService {
         ruoloDao.save(ruolo);
     }
 
+    public void update(Ruolo ruolo) {
+        ruoloDao.update(ruolo);
+    }
+
     public Ruolo findById(Integer id) {
         return ruoloDao.findById(id);
     }

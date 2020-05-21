@@ -13,7 +13,7 @@ import javax.validation.constraints.NotNull;
 @AllArgsConstructor
 @RequiredArgsConstructor
 @EqualsAndHashCode
-public class Permessi {
+public class Permesso {
 
     @Id
     @Getter

@@ -1,6 +1,7 @@
 package com.jgg.controlloEpidemia.dao;
 
 import com.jgg.controlloEpidemia.model.DecessiAnnuali;
+import com.jgg.controlloEpidemia.model.Ruolo;
 import lombok.NoArgsConstructor;
 
 import java.util.List;
@@ -22,6 +23,13 @@ public class DecessiAnnualiDao implements DecessiAnnualiDaoInterface {
         session.openCurrentSessionwithTransaction();
         DecessiAnnuali decessiAnnuali = session.getCurrentSession().get(DecessiAnnuali.class, id);
         session.getCurrentSession().delete(decessiAnnuali);
+        session.closeCurrentSessionwithTransaction();
+    }
+
+    @Override
+    public void update(DecessiAnnuali decessiAnnuali) {
+        session.openCurrentSessionwithTransaction();
+        session.getCurrentSession().update(decessiAnnuali);
         session.closeCurrentSessionwithTransaction();
     }
 

@@ -1,6 +1,7 @@
 package com.jgg.controlloEpidemia.service;
 
 import com.jgg.controlloEpidemia.dao.UtenteDao;
+import com.jgg.controlloEpidemia.model.Ruolo;
 import com.jgg.controlloEpidemia.model.Utente;
 import lombok.NoArgsConstructor;
 
@@ -16,6 +17,10 @@ public class UtenteService {
 
     public Utente findById(Integer id) {
         return utenteDao.findById(id);
+    }
+
+    public void update(Utente utente) {
+        utenteDao.update(utente);
     }
 
     public void deleteById(Integer id) {

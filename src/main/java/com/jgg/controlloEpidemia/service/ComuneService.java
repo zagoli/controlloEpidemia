@@ -19,6 +19,10 @@ public class ComuneService {
         return comuneDao.findByCodiceIstat(codiceIstat);
     }
 
+    public void update(Comune comune) {
+        comuneDao.update(comune);
+    }
+
     public void deleteByCodiceIstat(String codiceIstat) {
         comuneDao.deleteByCodiceIstat(codiceIstat);
     }
