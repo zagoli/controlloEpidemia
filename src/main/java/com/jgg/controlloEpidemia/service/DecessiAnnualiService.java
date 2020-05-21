@@ -9,7 +9,7 @@ import java.util.List;
 @NoArgsConstructor
 public class DecessiAnnualiService {
 
-    private static DecessiAnnualiDao decessiAnnualiDao = new DecessiAnnualiDao();
+    private static final DecessiAnnualiDao decessiAnnualiDao = new DecessiAnnualiDao();
 
     public void save(DecessiAnnuali decessiAnnuali) {
         decessiAnnualiDao.save(decessiAnnuali);

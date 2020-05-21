@@ -8,7 +8,7 @@ import java.util.List;
 
 @NoArgsConstructor
 public class UtenteService {
-    private static UtenteDao utenteDao = new UtenteDao();
+    private static final UtenteDao utenteDao = new UtenteDao();
 
     public void save(Utente utente) {
         utenteDao.save(utente);

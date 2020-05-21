@@ -9,7 +9,7 @@ import java.util.List;
 @NoArgsConstructor
 public class PermessiService {
 
-    private static PermessiDao permessiDao = new PermessiDao();
+    private static final PermessiDao permessiDao = new PermessiDao();
 
     public void save(Permessi permessi) {
         permessiDao.save(permessi);

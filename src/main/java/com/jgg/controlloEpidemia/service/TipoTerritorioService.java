@@ -9,7 +9,7 @@ import java.util.List;
 @NoArgsConstructor
 public class TipoTerritorioService {
 
-    private static TipoTerritorioDao tipoTerritorioDao = new TipoTerritorioDao();
+    private static final TipoTerritorioDao tipoTerritorioDao = new TipoTerritorioDao();
 
     public void save(TipoTerritorio tipoTerritorio) {
         tipoTerritorioDao.save(tipoTerritorio);

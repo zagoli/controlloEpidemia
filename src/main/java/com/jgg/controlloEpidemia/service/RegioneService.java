@@ -9,7 +9,7 @@ import java.util.List;
 @NoArgsConstructor
 public class RegioneService {
 
-    private static RegioneDao regioneDao = new RegioneDao();
+    private static final  RegioneDao regioneDao = new RegioneDao();
 
     public void save(Regione regione) {
         regioneDao.save(regione);

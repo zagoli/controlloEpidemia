@@ -9,7 +9,7 @@ import java.util.List;
 @NoArgsConstructor
 public class RuoloService {
 
-    private static RuoloDao ruoloDao = new RuoloDao();
+    private static final RuoloDao ruoloDao = new RuoloDao();
 
     public void save(Ruolo ruolo) {
         ruoloDao.save(ruolo);

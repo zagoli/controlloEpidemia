@@ -9,7 +9,7 @@ import java.util.List;
 @NoArgsConstructor
 public class ProvinciaService {
 
-    private static ProvinciaDao provinciaDao = new ProvinciaDao();
+    private static final ProvinciaDao provinciaDao = new ProvinciaDao();
 
     public void save(Provincia provincia) {
         provinciaDao.save(provincia);

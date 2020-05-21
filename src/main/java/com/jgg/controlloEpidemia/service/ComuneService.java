@@ -9,7 +9,7 @@ import java.util.List;
 @NoArgsConstructor
 public class ComuneService {
 
-    private static ComuneDao comuneDao = new ComuneDao();
+    private static final ComuneDao comuneDao = new ComuneDao();
 
     public void save(Comune comune) {
         comuneDao.save(comune);
