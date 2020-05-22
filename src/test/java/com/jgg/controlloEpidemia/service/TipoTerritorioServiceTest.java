@@ -14,15 +14,15 @@ public class TipoTerritorioServiceTest {
         //Inizializzo i service
         TipoTerritorioService tipoTerritorioService = new TipoTerritorioService();
         //Creo i model
-        TipoTerritorio tipoterritorio = new TipoTerritorio("Personale dell'ente");
-        TipoTerritorio tipoterritorio2 = new TipoTerritorio("Personale a contratto");
+        TipoTerritorio tipoterritorio = new TipoTerritorio("Pianeggiante");
+        TipoTerritorio tipoterritorio2 = new TipoTerritorio("Montano");
         //Salvo i model
         tipoTerritorioService.save(tipoterritorio);
         tipoTerritorioService.save(tipoterritorio2);
         //Cerco i model
         TipoTerritorio findTipoTerritorio = tipoTerritorioService.findById(tipoterritorio.getId());
         assertEquals(tipoterritorio, findTipoTerritorio);
-        //Cerco tutti  i model
+        //Cerco tutti i model
         List<TipoTerritorio> tipoTerritorioList = tipoTerritorioService.findAll();
         assertEquals(tipoTerritorioList.size(), 2);
         //Aggiorno i model
