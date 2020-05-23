@@ -25,7 +25,7 @@ public class Comune {
     @Id
     @Getter
     @NotNull
-    private String codiceIstat;
+    private Integer codiceIstat;
     @Getter
     @Setter
     @NotNull
