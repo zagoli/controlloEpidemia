@@ -15,7 +15,7 @@ public class ComuneService {
         comuneDao.save(comune);
     }
 
-    public Comune findByCodiceIstat(String codiceIstat) {
+    public Comune findByCodiceIstat(Integer codiceIstat) {
         return comuneDao.findByCodiceIstat(codiceIstat);
     }
 
@@ -23,7 +23,7 @@ public class ComuneService {
         comuneDao.update(comune);
     }
 
-    public void deleteByCodiceIstat(String codiceIstat) {
+    public void deleteByCodiceIstat(Integer codiceIstat) {
         comuneDao.deleteByCodiceIstat(codiceIstat);
     }
 
