@@ -1,7 +1,6 @@
 package com.jgg.controlloEpidemia.dao;
 
 import com.jgg.controlloEpidemia.model.MalattieSettimanali;
-import com.jgg.controlloEpidemia.model.Ruolo;
 import lombok.NoArgsConstructor;
 
 import java.util.List;
@@ -12,24 +11,24 @@ public class MalattieSettimanaliDao implements MalattieSettimanaliDaoInterface {
 
     @Override
     public void save(MalattieSettimanali malattieSettimanali) {
-        session.openCurrentSessionwithTransaction();
+        session.openCurrentSessionWithTransaction();
         session.getCurrentSession().save(malattieSettimanali);
-        session.closeCurrentSessionwithTransaction();
+        session.closeCurrentSessionWithTransaction();
     }
 
     @Override
     public void deleteById(Integer id) {
-        session.openCurrentSessionwithTransaction();
+        session.openCurrentSessionWithTransaction();
         MalattieSettimanali malattieSettimanali = session.getCurrentSession().get(MalattieSettimanali.class, id);
         session.getCurrentSession().delete(malattieSettimanali);
-        session.closeCurrentSessionwithTransaction();
+        session.closeCurrentSessionWithTransaction();
     }
 
     @Override
     public void update(MalattieSettimanali malattieSettimanali) {
-        session.openCurrentSessionwithTransaction();
+        session.openCurrentSessionWithTransaction();
         session.getCurrentSession().update(malattieSettimanali);
-        session.closeCurrentSessionwithTransaction();
+        session.closeCurrentSessionWithTransaction();
     }
 
     @Override

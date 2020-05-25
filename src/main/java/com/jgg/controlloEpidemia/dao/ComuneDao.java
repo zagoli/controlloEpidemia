@@ -1,7 +1,6 @@
 package com.jgg.controlloEpidemia.dao;
 
 import com.jgg.controlloEpidemia.model.Comune;
-import com.jgg.controlloEpidemia.model.Ruolo;
 import lombok.NoArgsConstructor;
 
 import java.util.List;
@@ -13,24 +12,24 @@ public class ComuneDao implements ComuneDaoInterface {
 
     @Override
     public void save(Comune c) {
-        session.openCurrentSessionwithTransaction();
+        session.openCurrentSessionWithTransaction();
         session.getCurrentSession().save(c);
-        session.closeCurrentSessionwithTransaction();
+        session.closeCurrentSessionWithTransaction();
     }
 
     @Override
     public void deleteByCodiceIstat(String codiceIstat) {
-        session.openCurrentSessionwithTransaction();
+        session.openCurrentSessionWithTransaction();
         Comune comune = session.getCurrentSession().get(Comune.class, codiceIstat);
         session.getCurrentSession().delete(comune);
-        session.closeCurrentSessionwithTransaction();
+        session.closeCurrentSessionWithTransaction();
     }
 
     @Override
     public void update(Comune comune) {
-        session.openCurrentSessionwithTransaction();
+        session.openCurrentSessionWithTransaction();
         session.getCurrentSession().update(comune);
-        session.closeCurrentSessionwithTransaction();
+        session.closeCurrentSessionWithTransaction();
     }
 
     @Override

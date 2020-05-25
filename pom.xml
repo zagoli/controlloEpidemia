@@ -57,10 +57,11 @@
             <artifactId>javafx-fxml</artifactId>
             <version>14</version>
         </dependency>
+
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter</artifactId>
-            <version>RELEASE</version>
+            <version>5.6.0</version>
             <scope>test</scope>
         </dependency>
 
@@ -80,7 +81,7 @@
                 <artifactId>javafx-maven-plugin</artifactId>
                 <version>0.0.4</version>
                 <configuration>
-                    <mainClass>com.jgg.controlloEpidemia.view.App</mainClass>
+                    <mainClass>com.jgg.controlloEpidemia.App</mainClass>
                 </configuration>
             </plugin>
 
@@ -89,8 +90,9 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.8.1</version>
                 <configuration>
-                    <source>8</source>
-                    <target>8</target>
+                    <source>11</source>
+                    <target>11</target>
+                    <release>11</release>
                 </configuration>
             </plugin>
 

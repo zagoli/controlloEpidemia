@@ -33,7 +33,7 @@ public class Session {
         currentSession = getSessionFactory().openSession();
     }
 
-    protected void openCurrentSessionwithTransaction() {
+    protected void openCurrentSessionWithTransaction() {
         currentSession = getSessionFactory().openSession();
         currentTransaction = currentSession.beginTransaction();
     }
@@ -42,7 +42,7 @@ public class Session {
         currentSession.close();
     }
 
-    protected void closeCurrentSessionwithTransaction() {
+    protected void closeCurrentSessionWithTransaction() {
         currentTransaction.commit();
         currentSession.close();
     }

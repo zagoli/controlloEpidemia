@@ -1,7 +1,6 @@
 package com.jgg.controlloEpidemia.dao;
 
 import com.jgg.controlloEpidemia.model.Permesso;
-import com.jgg.controlloEpidemia.model.Ruolo;
 import lombok.NoArgsConstructor;
 
 import java.util.List;
@@ -12,24 +11,24 @@ public class PermessoDao implements PermessoDaoInterface {
 
     @Override
     public void save(Permesso permesso) {
-        session.openCurrentSessionwithTransaction();
+        session.openCurrentSessionWithTransaction();
         session.getCurrentSession().save(permesso);
-        session.closeCurrentSessionwithTransaction();
+        session.closeCurrentSessionWithTransaction();
     }
 
     @Override
     public void deleteById(Integer id) {
-        session.openCurrentSessionwithTransaction();
+        session.openCurrentSessionWithTransaction();
         Permesso permesso = session.getCurrentSession().get(Permesso.class, id);
         session.getCurrentSession().delete(permesso);
-        session.closeCurrentSessionwithTransaction();
+        session.closeCurrentSessionWithTransaction();
     }
 
     @Override
     public void update(Permesso permesso) {
-        session.openCurrentSessionwithTransaction();
+        session.openCurrentSessionWithTransaction();
         session.getCurrentSession().update(permesso);
-        session.closeCurrentSessionwithTransaction();
+        session.closeCurrentSessionWithTransaction();
     }
 
     @Override

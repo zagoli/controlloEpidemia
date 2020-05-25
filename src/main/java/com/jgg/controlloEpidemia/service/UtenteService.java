@@ -19,6 +19,8 @@ public class UtenteService {
         return utenteDao.findById(id);
     }
 
+    public Utente findByUsername(String username) {return utenteDao.findByUsername(username);}
+
     public void update(Utente utente) {
         utenteDao.update(utente);
     }

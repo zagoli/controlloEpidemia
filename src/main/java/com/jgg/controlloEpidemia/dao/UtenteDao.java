@@ -1,9 +1,13 @@
 package com.jgg.controlloEpidemia.dao;
 
-import com.jgg.controlloEpidemia.model.Ruolo;
 import com.jgg.controlloEpidemia.model.Utente;
 import lombok.NoArgsConstructor;
+import org.hibernate.query.Query;
 
+import javax.persistence.NoResultException;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 import java.util.List;
 
 @NoArgsConstructor
@@ -12,30 +16,48 @@ public class UtenteDao implements UtenteDaoInterface {
 
     @Override
     public void save(Utente utente) {
-        session.openCurrentSessionwithTransaction();
+        session.openCurrentSessionWithTransaction();
         session.getCurrentSession().save(utente);
-        session.closeCurrentSessionwithTransaction();
+        session.closeCurrentSessionWithTransaction();
     }
 
     @Override
     public void deleteById(Integer id) {
-        session.openCurrentSessionwithTransaction();
+        session.openCurrentSessionWithTransaction();
         Utente utente = session.getCurrentSession().get(Utente.class, id);
         session.getCurrentSession().delete(utente);
-        session.closeCurrentSessionwithTransaction();
+        session.closeCurrentSessionWithTransaction();
     }
 
     @Override
     public void update(Utente utente) {
-        session.openCurrentSessionwithTransaction();
+        session.openCurrentSessionWithTransaction();
         session.getCurrentSession().update(utente);
-        session.closeCurrentSessionwithTransaction();
+        session.closeCurrentSessionWithTransaction();
     }
 
     @Override
     public Utente findById(Integer id) {
         session.openCurrentSession();
         Utente utente = session.getCurrentSession().get(Utente.class, id);
+        session.closeCurrentSession();
+        return utente;
+    }
+
+    @Override
+    public Utente findByUsername(String username) {
+        session.openCurrentSession();
+        CriteriaBuilder cb = session.getCurrentSession().getCriteriaBuilder();
+        CriteriaQuery<Utente> cq = cb.createQuery(Utente.class);
+        Root<Utente> root = cq.from(Utente.class);
+        cq.select(root).where(cb.equal(root.get("username"),username));
+        Query<Utente> query = session.getCurrentSession().createQuery(cq);
+        Utente utente;
+        try{
+            utente = query.getSingleResult();
+        } catch (NoResultException ex){
+            utente = null;
+        }
         session.closeCurrentSession();
         return utente;
     }

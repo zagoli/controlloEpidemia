@@ -1,6 +1,5 @@
 package com.jgg.controlloEpidemia.dao;
 
-import com.jgg.controlloEpidemia.model.Ruolo;
 import com.jgg.controlloEpidemia.model.TipoTerritorio;
 
 import java.util.List;
@@ -11,24 +10,24 @@ public class TipoTerritorioDao implements TipoTerritorioInterface {
 
     @Override
     public void save(TipoTerritorio tipoTerritorio) {
-        session.openCurrentSessionwithTransaction();
+        session.openCurrentSessionWithTransaction();
         session.getCurrentSession().save(tipoTerritorio);
-        session.closeCurrentSessionwithTransaction();
+        session.closeCurrentSessionWithTransaction();
     }
 
     @Override
     public void deleteById(Integer id) {
-        session.openCurrentSessionwithTransaction();
+        session.openCurrentSessionWithTransaction();
         TipoTerritorio tipoTerritorio = session.getCurrentSession().get(TipoTerritorio.class, id);
         session.getCurrentSession().delete(tipoTerritorio);
-        session.closeCurrentSessionwithTransaction();
+        session.closeCurrentSessionWithTransaction();
     }
 
     @Override
     public void update(TipoTerritorio tipoTerritorio) {
-        session.openCurrentSessionwithTransaction();
+        session.openCurrentSessionWithTransaction();
         session.getCurrentSession().update(tipoTerritorio);
-        session.closeCurrentSessionwithTransaction();
+        session.closeCurrentSessionWithTransaction();
     }
 
     @Override

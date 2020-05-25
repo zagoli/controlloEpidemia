@@ -15,5 +15,7 @@ public interface UtenteDaoInterface {
 
     Utente findById(Integer id);
 
+    Utente findByUsername(String username);
+
     List<Utente> findAll();
 }
