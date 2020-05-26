@@ -4,6 +4,7 @@ import lombok.*;
 import org.hibernate.annotations.SelectBeforeUpdate;
 
 import javax.persistence.*;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.Date;
@@ -42,6 +43,7 @@ public class Comune {
     @Setter
     @NotNull
     @NonNull
+    @Min(0)
     private Integer superficie;
     @Getter
     @Setter

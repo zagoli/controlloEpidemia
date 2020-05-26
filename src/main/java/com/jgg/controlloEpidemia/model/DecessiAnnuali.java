@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
 @Entity
@@ -28,30 +29,35 @@ public class DecessiAnnuali {
     @Setter
     @NotNull
     @NonNull
+    @Min(1900)
     private Integer anno;
 
     @Getter
     @Setter
     @NotNull
     @NonNull
+    @Min(0)
     private Integer incidentiStradali;
 
     @Getter
     @Setter
     @NotNull
     @NonNull
+    @Min(0)
     private Integer malattieTumorali;
 
     @Getter
     @Setter
     @NotNull
     @NonNull
+    @Min(0)
     private Integer malattieCardiovascolari;
 
     @Getter
     @Setter
     @NotNull
     @NonNull
+    @Min(0)
     private Integer malattieContagiose;
 
     @Getter

@@ -4,6 +4,7 @@ import lombok.*;
 import org.hibernate.annotations.SelectBeforeUpdate;
 
 import javax.persistence.*;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import java.util.LinkedList;
 import java.util.List;
@@ -37,6 +38,7 @@ public class Regione {
     @Setter
     @NotNull
     @NonNull
+    @Min(0)
     private Integer superficie;
     @Getter
     @Setter
