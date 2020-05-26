@@ -1,0 +1,1 @@
+nome;dataist;superficie;siaffacciamare;tipoterritorio

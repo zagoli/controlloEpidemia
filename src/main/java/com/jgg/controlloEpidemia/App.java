@@ -1,6 +1,8 @@
 package com.jgg.controlloEpidemia;
 
+import com.jgg.controlloEpidemia.model.Regione;
 import com.jgg.controlloEpidemia.model.Utente;
+import com.jgg.controlloEpidemia.service.ComuneService;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
