@@ -21,7 +21,7 @@ class MalattieSettimanaliServiceTest {
         MalattieSettimanaliService malattieSettimanaliService = new MalattieSettimanaliService();
         //Creo i model
         TipoTerritorio tipoTerritorio = new TipoTerritorio("Pianeggiante");
-        Comune comune = new Comune("a", "Castelnuovo", new Date(), 139, true, tipoTerritorio);
+        Comune comune = new Comune(023015, "Castelnuovo", new Date(), 139, true, tipoTerritorio);
         MalattieSettimanali malattieSettimanali = new MalattieSettimanali(2019, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, comune);
         MalattieSettimanali malattieSettimanali2 = new MalattieSettimanali(2020, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, comune);
         //Salvo i model

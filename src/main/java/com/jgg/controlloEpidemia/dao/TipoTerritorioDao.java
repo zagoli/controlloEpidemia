@@ -4,7 +4,7 @@ import com.jgg.controlloEpidemia.model.TipoTerritorio;
 
 import java.util.List;
 
-public class TipoTerritorioDao implements TipoTerritorioInterface {
+public class TipoTerritorioDao implements TipoTerritorioDaoInterface {
 
     private static Session session = new Session();
 
@@ -27,6 +27,13 @@ public class TipoTerritorioDao implements TipoTerritorioInterface {
     public void update(TipoTerritorio tipoTerritorio) {
         session.openCurrentSessionWithTransaction();
         session.getCurrentSession().update(tipoTerritorio);
+        session.closeCurrentSessionWithTransaction();
+    }
+
+    @Override
+    public void saveOrUpdate(TipoTerritorio tipoTerritorio) {
+        session.openCurrentSessionWithTransaction();
+        session.getCurrentSession().saveOrUpdate(tipoTerritorio);
         session.closeCurrentSessionWithTransaction();
     }
 

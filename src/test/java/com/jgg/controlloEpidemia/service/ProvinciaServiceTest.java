@@ -20,7 +20,7 @@ public class ProvinciaServiceTest {
         ProvinciaService provinciaService = new ProvinciaService();
         //Creo i model
         TipoTerritorio tipoTerritorio = new TipoTerritorio("Pianeggiante");
-        Comune comune = new Comune("a", "Castelnuovo", new Date(), 139, true, tipoTerritorio);
+        Comune comune = new Comune(023015, "Castelnuovo", new Date(), 139, true, tipoTerritorio);
         Provincia provincia = new Provincia("Verona", 143, comune);
         Provincia provincia2 = new Provincia("Vicenza", 156, comune);
         //Salvo i model

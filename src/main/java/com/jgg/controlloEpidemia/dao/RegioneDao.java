@@ -32,6 +32,13 @@ public class RegioneDao implements RegioneDaoInterface {
     }
 
     @Override
+    public void saveOrUpdate(Regione regione) {
+        session.openCurrentSessionWithTransaction();
+        session.getCurrentSession().saveOrUpdate(regione);
+        session.closeCurrentSessionWithTransaction();
+    }
+
+    @Override
     public Regione findById(Integer id) {
         session.openCurrentSession();
         Regione regione = session.getCurrentSession().get(Regione.class, id);

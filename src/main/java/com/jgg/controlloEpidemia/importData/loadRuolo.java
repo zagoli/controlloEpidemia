@@ -10,8 +10,7 @@ public class loadRuolo {
     public void loadTipoterritorio() {
         Ruolo r = new Ruolo();
 
-        //usare merge o saveOrUpdate?
-        ruoloService.save(r);
+        ruoloService.saveOrUpdate(r);
 
     }
 }

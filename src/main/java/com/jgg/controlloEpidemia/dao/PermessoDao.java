@@ -32,6 +32,13 @@ public class PermessoDao implements PermessoDaoInterface {
     }
 
     @Override
+    public void saveOrUpdate(Permesso permesso) {
+        session.openCurrentSessionWithTransaction();
+        session.getCurrentSession().saveOrUpdate(permesso);
+        session.closeCurrentSessionWithTransaction();
+    }
+
+    @Override
     public Permesso findById(Integer id) {
         session.openCurrentSession();
         Permesso permesso = session.getCurrentSession().get(Permesso.class, id);

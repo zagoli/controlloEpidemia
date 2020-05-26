@@ -32,6 +32,13 @@ public class ProvinciaDao implements ProvinciaDaoInterface {
     }
 
     @Override
+    public void saveOrUpdate(Provincia provincia) {
+        session.openCurrentSessionWithTransaction();
+        session.getCurrentSession().saveOrUpdate(provincia);
+        session.closeCurrentSessionWithTransaction();
+    }
+
+    @Override
     public Provincia findById(Integer id) {
         session.openCurrentSession();
         Provincia provincia = session.getCurrentSession().get(Provincia.class, id);

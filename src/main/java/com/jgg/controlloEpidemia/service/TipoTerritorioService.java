@@ -1,7 +1,6 @@
 package com.jgg.controlloEpidemia.service;
 
 import com.jgg.controlloEpidemia.dao.TipoTerritorioDao;
-import com.jgg.controlloEpidemia.model.Ruolo;
 import com.jgg.controlloEpidemia.model.TipoTerritorio;
 import lombok.NoArgsConstructor;
 
@@ -16,16 +15,20 @@ public class TipoTerritorioService {
         tipoTerritorioDao.save(tipoTerritorio);
     }
 
-    public TipoTerritorio findById(Integer id) {
-        return tipoTerritorioDao.findById(id);
+    public void deleteById(Integer id) {
+        tipoTerritorioDao.deleteById(id);
     }
 
     public void update(TipoTerritorio tipoTerritorio) {
         tipoTerritorioDao.update(tipoTerritorio);
     }
 
-    public void deleteById(Integer id) {
-        tipoTerritorioDao.deleteById(id);
+    public void saveOrUpdate(TipoTerritorio tipoTerritorio) {
+        tipoTerritorioDao.saveOrUpdate(tipoTerritorio);
+    }
+
+    public TipoTerritorio findById(Integer id) {
+        return tipoTerritorioDao.findById(id);
     }
 
     public List<TipoTerritorio> findAll() {

@@ -13,6 +13,8 @@ public interface DecessiAnnualiDaoInterface {
 
     void update(DecessiAnnuali decessiAnnuali);
 
+    void saveOrUpdate(DecessiAnnuali decessiAnnuali);
+
     DecessiAnnuali findById(Integer id);
 
     List<DecessiAnnuali> findAll();

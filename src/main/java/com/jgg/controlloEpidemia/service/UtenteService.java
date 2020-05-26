@@ -15,19 +15,23 @@ public class UtenteService {
         utenteDao.save(utente);
     }
 
-    public Utente findById(Integer id) {
-        return utenteDao.findById(id);
+    public void deleteById(Integer id) {
+        utenteDao.deleteById(id);
     }
-
-    public Utente findByUsername(String username) {return utenteDao.findByUsername(username);}
 
     public void update(Utente utente) {
         utenteDao.update(utente);
     }
 
-    public void deleteById(Integer id) {
-        utenteDao.deleteById(id);
+    public void saveOrUpdate(Utente utente) {
+        utenteDao.saveOrUpdate(utente);
     }
+
+    public Utente findById(Integer id) {
+        return utenteDao.findById(id);
+    }
+
+    public Utente findByUsername(String username) {return utenteDao.findByUsername(username);}
 
     public List<Utente> findAll() {
         return utenteDao.findAll();

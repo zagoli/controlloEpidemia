@@ -12,6 +12,8 @@ public interface MalattieSettimanaliDaoInterface {
 
     void update(MalattieSettimanali malattieSettimanali);
 
+    void saveOrUpdate(MalattieSettimanali malattieSettimanali);
+
     MalattieSettimanali findById(Integer id);
 
     List<MalattieSettimanali> findAll();

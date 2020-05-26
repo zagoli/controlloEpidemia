@@ -33,6 +33,13 @@ public class DecessiAnnualiDao implements DecessiAnnualiDaoInterface {
     }
 
     @Override
+    public void saveOrUpdate(DecessiAnnuali decessiAnnuali) {
+        session.openCurrentSessionWithTransaction();
+        session.getCurrentSession().saveOrUpdate(decessiAnnuali);
+        session.closeCurrentSessionWithTransaction();
+    }
+
+    @Override
     public DecessiAnnuali findById(Integer id) {
         session.openCurrentSession();
         DecessiAnnuali decessiAnnuali = session.getCurrentSession().get(DecessiAnnuali.class, id);

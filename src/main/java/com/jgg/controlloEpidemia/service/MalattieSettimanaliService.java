@@ -15,16 +15,20 @@ public class MalattieSettimanaliService {
         malattieSettimanaliDao.save(malattieSettimanali);
     }
 
-    public MalattieSettimanali findById(Integer id) {
-        return malattieSettimanaliDao.findById(id);
+    public void deleteById(Integer id) {
+        malattieSettimanaliDao.deleteById(id);
     }
 
     public void update(MalattieSettimanali malattieSettimanali) {
         malattieSettimanaliDao.update(malattieSettimanali);
     }
 
-    public void deleteById(Integer id) {
-        malattieSettimanaliDao.deleteById(id);
+    public void saveOrUpdate(MalattieSettimanali malattieSettimanali) {
+        malattieSettimanaliDao.saveOrUpdate(malattieSettimanali);
+    }
+
+    public MalattieSettimanali findById(Integer id) {
+        return malattieSettimanaliDao.findById(id);
     }
 
     public List<MalattieSettimanali> findAll() {

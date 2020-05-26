@@ -9,25 +9,29 @@ import java.util.List;
 @NoArgsConstructor
 public class PermessoService {
 
-    private static final PermessoDao PERMESSO_DAO = new PermessoDao();
+    private static final PermessoDao permessoDao = new PermessoDao();
 
     public void save(Permesso permesso) {
-        PERMESSO_DAO.save(permesso);
-    }
-
-    public Permesso findById(Integer id) {
-        return PERMESSO_DAO.findById(id);
-    }
-
-    public void update(Permesso permesso) {
-        PERMESSO_DAO.update(permesso);
+        permessoDao.save(permesso);
     }
 
     public void deleteById(Integer id) {
-        PERMESSO_DAO.deleteById(id);
+        permessoDao.deleteById(id);
+    }
+
+    public void update(Permesso permesso) {
+        permessoDao.update(permesso);
+    }
+
+    public void saveOrUpdate(Permesso permesso) {
+        permessoDao.saveOrUpdate(permesso);
+    }
+
+    public Permesso findById(Integer id) {
+        return permessoDao.findById(id);
     }
 
     public List<Permesso> findAll() {
-        return PERMESSO_DAO.findAll();
+        return permessoDao.findAll();
     }
 }

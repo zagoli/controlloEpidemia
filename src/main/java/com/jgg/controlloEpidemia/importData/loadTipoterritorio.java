@@ -5,18 +5,16 @@ import com.jgg.controlloEpidemia.service.TipoTerritorioService;
 
 public class loadTipoterritorio {
 
-
     static final TipoTerritorioService tipoTerritorioService = new TipoTerritorioService();
 
-    public void loadTipoterritorio() {
-        TipoTerritorio montano = new TipoTerritorio();
-        TipoTerritorio collinare = new TipoTerritorio();
-        TipoTerritorio pianeggiante = new TipoTerritorio();
+    public loadTipoterritorio() {
+        TipoTerritorio montano = new TipoTerritorio("montano");
+        TipoTerritorio collinare = new TipoTerritorio("collinare");
+        TipoTerritorio pianeggiante = new TipoTerritorio("pianeggiante");
 
-        //usare merge o saveOrUpdate?
-        tipoTerritorioService.save(montano);
-        tipoTerritorioService.save(collinare);
-        tipoTerritorioService.save(pianeggiante);
+        tipoTerritorioService.saveOrUpdate(montano);
+        tipoTerritorioService.saveOrUpdate(collinare);
+        tipoTerritorioService.saveOrUpdate(pianeggiante);
 
     }
 }

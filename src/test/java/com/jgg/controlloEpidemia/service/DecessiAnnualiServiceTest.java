@@ -22,7 +22,7 @@ public class DecessiAnnualiServiceTest {
         DecessiAnnualiService decessiAnnualiService = new DecessiAnnualiService();
         //Creo i model
         TipoTerritorio tipoTerritorio = new TipoTerritorio("Pianeggiante");
-        Comune comune = new Comune("a", "Castelnuovo", new Date(), 139, true, tipoTerritorio);
+        Comune comune = new Comune(023015, "Castelnuovo", new Date(), 139, true, tipoTerritorio);
         Provincia provincia = new Provincia("Verona", 143, comune);
         DecessiAnnuali decessiAnnuali = new DecessiAnnuali(2019, 0, 0, 0, 0, provincia);
         DecessiAnnuali decessiAnnuali2 = new DecessiAnnuali(2020, 0, 0, 0, 0, provincia);

@@ -11,8 +11,7 @@ public class loadPermesso {
     public void loadTipoterritorio() {
         Permesso p = new Permesso();
 
-        //usare merge o saveOrUpdate?
-        permessoService.save(p);
+        permessoService.saveOrUpdate(p);
 
     }
 }

@@ -12,6 +12,8 @@ public interface ComuneDaoInterface {
 
     void update(Comune comune);
 
+    void saveOrUpdate(Comune comune);
+
     Comune findByCodiceIstat(Integer codiceIstat);
 
     List<Comune> findAll();

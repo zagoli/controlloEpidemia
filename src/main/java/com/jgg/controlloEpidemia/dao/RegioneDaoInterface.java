@@ -12,6 +12,8 @@ public interface RegioneDaoInterface {
 
     void update(Regione regione);
 
+    void saveOrUpdate(Regione regione);
+
     Regione findById(Integer id);
 
     List<Regione> findAll();

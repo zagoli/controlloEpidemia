@@ -15,17 +15,22 @@ public class RuoloService {
         ruoloDao.save(ruolo);
     }
 
+    public void deleteById(Integer id) {
+        ruoloDao.deleteById(id);
+    }
+
     public void update(Ruolo ruolo) {
         ruoloDao.update(ruolo);
+    }
+
+    public void saveOrUpdate(Ruolo ruolo) {
+        ruoloDao.saveOrUpdate(ruolo);
     }
 
     public Ruolo findById(Integer id) {
         return ruoloDao.findById(id);
     }
 
-    public void deleteById(Integer id) {
-        ruoloDao.deleteById(id);
-    }
 
     public List<Ruolo> findAll() {
         return ruoloDao.findAll();

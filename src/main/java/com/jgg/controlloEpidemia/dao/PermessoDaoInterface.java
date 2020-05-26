@@ -12,6 +12,8 @@ public interface PermessoDaoInterface {
 
     void update(Permesso permesso);
 
+    void saveOrUpdate(Permesso permesso);
+
     Permesso findById(Integer id);
 
     List<Permesso> findAll();

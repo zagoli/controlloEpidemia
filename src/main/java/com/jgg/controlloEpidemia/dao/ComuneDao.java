@@ -33,6 +33,13 @@ public class ComuneDao implements ComuneDaoInterface {
     }
 
     @Override
+    public void saveOrUpdate(Comune comune) {
+        session.openCurrentSessionWithTransaction();
+        session.getCurrentSession().saveOrUpdate(comune);
+        session.closeCurrentSessionWithTransaction();
+    }
+
+    @Override
     public Comune findByCodiceIstat(Integer codiceIstat) {
         session.openCurrentSession();
         Comune comune = session.getCurrentSession().get(Comune.class, codiceIstat);

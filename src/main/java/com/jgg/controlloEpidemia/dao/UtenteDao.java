@@ -37,6 +37,13 @@ public class UtenteDao implements UtenteDaoInterface {
     }
 
     @Override
+    public void saveOrUpdate(Utente utente) {
+        session.openCurrentSessionWithTransaction();
+        session.getCurrentSession().saveOrUpdate(utente);
+        session.closeCurrentSessionWithTransaction();
+    }
+
+    @Override
     public Utente findById(Integer id) {
         session.openCurrentSession();
         Utente utente = session.getCurrentSession().get(Utente.class, id);

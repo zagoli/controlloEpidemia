@@ -12,6 +12,8 @@ public interface ProvinciaDaoInterface {
 
     void update(Provincia provincia);
 
+    void saveOrUpdate(Provincia provincia);
+
     Provincia findById(Integer id);
 
     List<Provincia> findAll();

@@ -12,6 +12,8 @@ public interface RuoloDaoInterface {
 
     void update(Ruolo ruolo);
 
+    void saveOrUpdate(Ruolo ruolo);
+
     Ruolo findById(Integer id);
 
     List<Ruolo> findAll();

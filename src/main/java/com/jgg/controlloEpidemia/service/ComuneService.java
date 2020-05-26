@@ -15,16 +15,20 @@ public class ComuneService {
         comuneDao.save(comune);
     }
 
-    public Comune findByCodiceIstat(Integer codiceIstat) {
-        return comuneDao.findByCodiceIstat(codiceIstat);
+    public void deleteByCodiceIstat(Integer codiceIstat) {
+        comuneDao.deleteByCodiceIstat(codiceIstat);
     }
 
     public void update(Comune comune) {
         comuneDao.update(comune);
     }
 
-    public void deleteByCodiceIstat(Integer codiceIstat) {
-        comuneDao.deleteByCodiceIstat(codiceIstat);
+    public void saveOrUpdate(Comune comune) {
+        comuneDao.saveOrUpdate(comune);
+    }
+
+    public Comune findByCodiceIstat(Integer codiceIstat) {
+        return comuneDao.findByCodiceIstat(codiceIstat);
     }
 
     public List<Comune> findAll() {

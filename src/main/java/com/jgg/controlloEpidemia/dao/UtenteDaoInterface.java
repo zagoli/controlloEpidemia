@@ -13,6 +13,8 @@ public interface UtenteDaoInterface {
 
     void update(Utente utente);
 
+    void saveOrUpdate(Utente utente);
+
     Utente findById(Integer id);
 
     Utente findByUsername(String username);
