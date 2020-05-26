@@ -26,7 +26,7 @@ class ComuneServiceTest {
         comuneService.save(comune);
         comuneService.save(comune2);
         //Cerco i model
-        Comune findComune = comuneService.findByCodiceIstat("a");
+        Comune findComune = comuneService.findByCodiceIstat(023015);
         assertEquals(comune, findComune);
         //Cerco tutti  i model
         List<Comune> comuneList = comuneService.findAll();
@@ -34,14 +34,14 @@ class ComuneServiceTest {
         //Aggiorno i model
         comune.setSuperficie(158);
         comuneService.update(comune);
-        findComune = comuneService.findByCodiceIstat("a");
+        findComune = comuneService.findByCodiceIstat(023015);
         assertEquals(comune, findComune);
         //Elimino i model
-        comuneService.deleteByCodiceIstat("a");
-        comuneService.deleteByCodiceIstat("b");
+        comuneService.deleteByCodiceIstat(023015);
+        comuneService.deleteByCodiceIstat(023022);
         tipoTerritorioService.deleteById(tipoTerritorio.getId());
         //Assert dei model
-        comune = comuneService.findByCodiceIstat("a");
+        comune = comuneService.findByCodiceIstat(023015);
         assertNull(comune);
         comuneList = comuneService.findAll();
         assertEquals(comuneList.size(), 0);

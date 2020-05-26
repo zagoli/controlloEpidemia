@@ -1,6 +1,7 @@
 package com.jgg.controlloEpidemia.model;
 
 import lombok.*;
+import org.hibernate.annotations.SelectBeforeUpdate;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -13,6 +14,7 @@ import java.util.List;
 @AllArgsConstructor
 @RequiredArgsConstructor
 @EqualsAndHashCode
+@SelectBeforeUpdate
 public class Utente {
 
     @Getter
