@@ -24,7 +24,7 @@ class ComuneServiceTest {
         //Salvo i model
         tipoTerritorioService.save(tipoTerritorio);
         comuneService.save(comune);
-        comuneService.save(comune2);
+        comuneService.saveOrUpdate(comune2);
         //Cerco i model
         Comune findComune = comuneService.findByCodiceIstat(023015);
         assertEquals(comune, findComune);

@@ -28,7 +28,7 @@ class MalattieSettimanaliServiceTest {
         tipoTerritorioService.save(tipoTerritorio);
         comuneService.save(comune);
         malattieSettimanaliService.save(malattieSettimanali);
-        malattieSettimanaliService.save(malattieSettimanali2);
+        malattieSettimanaliService.saveOrUpdate(malattieSettimanali2);
         //Cerco i model
         MalattieSettimanali findMalattieSettimanali = malattieSettimanaliService.findById(malattieSettimanali.getId());
         assertEquals(malattieSettimanali, findMalattieSettimanali);

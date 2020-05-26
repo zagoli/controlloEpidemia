@@ -31,7 +31,7 @@ public class DecessiAnnualiServiceTest {
         comuneService.save(comune);
         provinciaService.save(provincia);
         decessiAnnualiService.save(decessiAnnuali);
-        decessiAnnualiService.save(decessiAnnuali2);
+        decessiAnnualiService.saveOrUpdate(decessiAnnuali2);
         //Cerco i model
         DecessiAnnuali findDecessiAnnuali = decessiAnnualiService.findById(decessiAnnuali.getId());
         assertEquals(decessiAnnuali, findDecessiAnnuali);

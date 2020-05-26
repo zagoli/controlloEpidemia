@@ -23,10 +23,13 @@ public class UtenteServiceTest {
         //Salvo i model
         ruoloService.save(ruolo);
         utenteService.save(utente);
-        utenteService.save(utente2);
+        utenteService.saveOrUpdate(utente2);
         //Cerco i model
         Utente findUtente = utenteService.findById(utente.getId());
         assertEquals(utente, findUtente);
+        //Cerco il model dallo username
+        findUtente = utenteService.findByUsername("utente1");
+        assertEquals(utente,findUtente);
         //Cerco tutti i model
         List<Utente> utenteList = utenteService.findAll();
         assertEquals(utenteList.size(), 2);
@@ -44,29 +47,5 @@ public class UtenteServiceTest {
         assertNull(utente);
         utenteList = utenteService.findAll();
         assertEquals(utenteList.size(), 0);
-    }
-
-    @Test
-    void findById(){
-        //Inizializzo i service
-        RuoloService ruoloService = new RuoloService();
-        UtenteService utenteService = new UtenteService();
-        //Creo i model
-        Ruolo ruolo = new Ruolo("amministratore");
-        Utente utente = new Utente("gianni rivera", "password", "Gianni", "Rivera", ruolo);
-        // Salvo i dati
-        ruoloService.save(ruolo);
-        utenteService.save(utente);
-        //Cerco utente
-        Utente found = utenteService.findByUsername(utente.getUsername());
-        Utente notfound = utenteService.findByUsername("caciotta");
-        // Sono uguali?
-        assertEquals(utente,found);
-        // Utente non trovato
-        assertNull(notfound);
-        // Elimino i test
-        utenteService.deleteById(utente.getId());
-        ruoloService.deleteById(ruolo.getId());
-
     }
 }

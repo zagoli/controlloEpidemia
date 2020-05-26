@@ -27,7 +27,7 @@ public class RegioneServiceTest {
         tipoTerritorioService.save(tipoTerritorio);
         comuneService.save(comune);
         regioneService.save(regione);
-        regioneService.save(regione2);
+        regioneService.saveOrUpdate(regione2);
         //Cerco i model
         Regione findRegione = regioneService.findById(regione.getId());
         assertEquals(regione, findRegione);

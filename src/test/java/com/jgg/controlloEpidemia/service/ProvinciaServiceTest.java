@@ -27,7 +27,7 @@ public class ProvinciaServiceTest {
         tipoTerritorioService.save(tipoTerritorio);
         comuneService.save(comune);
         provinciaService.save(provincia);
-        provinciaService.save(provincia2);
+        provinciaService.saveOrUpdate(provincia2);
         //Cerco i model
         Provincia findProvincia = provinciaService.findById(provincia.getId());
         assertEquals(provincia, findProvincia);
