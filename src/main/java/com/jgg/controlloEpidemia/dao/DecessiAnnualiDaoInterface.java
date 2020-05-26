@@ -1,7 +1,6 @@
 package com.jgg.controlloEpidemia.dao;
 
 import com.jgg.controlloEpidemia.model.DecessiAnnuali;
-import com.jgg.controlloEpidemia.model.Ruolo;
 
 import java.util.List;
 

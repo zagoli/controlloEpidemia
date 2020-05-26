@@ -38,24 +38,23 @@ public class LoginPageController implements Initializable {
     }
 
     @FXML
-    private void onLoginButtonClicked(){
+    private void onLoginButtonClicked() {
         String user = usernameField.getText();
         String password = passwordField.getText();
         final UtenteService utenteService = new UtenteService();
         Utente u = utenteService.findByUsername(user);
-        if (u == null){
+        if (u == null) {
             // utente non esiste
-            if (errorLabel.isVisible()){
+            if (errorLabel.isVisible()) {
                 errorLabel.setText("Utente non trovato");
                 errorAnimation();
             } else {
                 errorLabel.setText("Utente non trovato");
                 errorLabel.setVisible(true);
             }
-        }
-        else if (u.getPassword() != password){
+        } else if (!u.getPassword().equals(password)) {
             // password errata
-            if (errorLabel.isVisible()){
+            if (errorLabel.isVisible()) {
                 errorLabel.setText("La password è errata");
                 errorAnimation();
             } else {
@@ -68,7 +67,7 @@ public class LoginPageController implements Initializable {
         }
     }
 
-    private void errorAnimation(){
+    private void errorAnimation() {
         ScaleTransition st = new ScaleTransition(Duration.millis(200), errorLabel);
         st.setByX(0.2);
         st.setByY(0.2);

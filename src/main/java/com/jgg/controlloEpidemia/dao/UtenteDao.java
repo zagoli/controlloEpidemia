@@ -57,12 +57,12 @@ public class UtenteDao implements UtenteDaoInterface {
         CriteriaBuilder cb = session.getCurrentSession().getCriteriaBuilder();
         CriteriaQuery<Utente> cq = cb.createQuery(Utente.class);
         Root<Utente> root = cq.from(Utente.class);
-        cq.select(root).where(cb.equal(root.get("username"),username));
+        cq.select(root).where(cb.equal(root.get("username"), username));
         Query<Utente> query = session.getCurrentSession().createQuery(cq);
         Utente utente;
-        try{
+        try {
             utente = query.getSingleResult();
-        } catch (NoResultException ex){
+        } catch (NoResultException ex) {
             utente = null;
         }
         session.closeCurrentSession();

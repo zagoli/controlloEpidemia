@@ -2,9 +2,7 @@ package com.jgg.controlloEpidemia.importData;
 
 import com.jgg.controlloEpidemia.App;
 import com.jgg.controlloEpidemia.model.Comune;
-import com.jgg.controlloEpidemia.model.Provincia;
 import com.jgg.controlloEpidemia.service.ComuneService;
-import com.jgg.controlloEpidemia.service.ProvinciaService;
 import com.jgg.controlloEpidemia.service.RuoloService;
 import com.jgg.controlloEpidemia.service.TipoTerritorioService;
 
@@ -20,6 +18,45 @@ public class etlComune {
     static final ComuneService comuneService = new ComuneService();
     static final TipoTerritorioService tipoTerritorioService = new TipoTerritorioService();
 
+    private static void caricaComune(String[] vett) {
+
+        if (vett[0].equals("")) {
+            System.out.println("Err");
+        }
+        if (Integer.parseInt(vett[2]) <= 0) {
+            System.out.println("Err");
+        }
+        if (!vett[3].equals("si") && !vett[3].equals("no")) {
+            System.out.println("Err");
+        }
+        if (Integer.parseInt(vett[4]) <= 0) {
+            System.out.println("Err");
+        }
+
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        Date data = null;
+        try {
+            data = sdf.parse(vett[1]);
+        } catch (ParseException e) {
+            System.out.println("Err");
+        }
+
+        boolean siAff = false;
+        if (vett[3].equals("si")) {
+            siAff = true;
+        }
+
+        //Cerco
+        RuoloService rs = new RuoloService();
+        if (App.utenteCorrente.getRuolo().equals(rs.findById(1))) {
+            Comune c = new Comune(vett[0], data, Integer.parseInt(vett[2]), siAff, tipoTerritorioService.findById(Integer.parseInt(vett[4])));
+            comuneService.save(c);
+        } else {
+            System.out.println("No");
+        }
+
+
+    }
 
     public void etl(String path) throws FileNotFoundException {
 
@@ -45,47 +82,6 @@ public class etlComune {
         }
 
         myReader.close();
-    }
-
-    private static void caricaComune(String[] vett){
-
-        if (vett[0].equals("")){
-            System.out.println("Err");
-        }
-        if (Integer.parseInt(vett[2])<=0){
-            System.out.println("Err");
-        }
-        if (vett[3].equals("si") == false && vett[3].equals("no") == false){
-            System.out.println("Err");
-        }
-        if (Integer.parseInt(vett[4])<=0){
-            System.out.println("Err");
-        }
-
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-        Date data= null;
-        try {
-            data = sdf.parse(vett[1]);
-        } catch (ParseException e) {
-            System.out.println("Err");
-        }
-
-        Boolean siAff=false;
-        if (vett[3].equals("si")){
-            siAff=true;
-        }
-
-        //Cerco
-        RuoloService rs = new RuoloService();
-        if(App.utenteCorrente.getRuolo().equals(rs.findById(1))){
-            Comune c = new Comune(vett[0],data,Integer.parseInt(vett[2]),siAff,tipoTerritorioService.findById(Integer.parseInt(vett[4])));
-            comuneService.save(c);
-        }
-        else{
-            System.out.println("No");
-        }
-
-
     }
 
 }

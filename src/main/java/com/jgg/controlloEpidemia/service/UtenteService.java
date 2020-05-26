@@ -1,7 +1,6 @@
 package com.jgg.controlloEpidemia.service;
 
 import com.jgg.controlloEpidemia.dao.UtenteDao;
-import com.jgg.controlloEpidemia.model.Ruolo;
 import com.jgg.controlloEpidemia.model.Utente;
 import lombok.NoArgsConstructor;
 
@@ -31,7 +30,9 @@ public class UtenteService {
         return utenteDao.findById(id);
     }
 
-    public Utente findByUsername(String username) {return utenteDao.findByUsername(username);}
+    public Utente findByUsername(String username) {
+        return utenteDao.findByUsername(username);
+    }
 
     public List<Utente> findAll() {
         return utenteDao.findAll();

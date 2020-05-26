@@ -1,7 +1,6 @@
 package com.jgg.controlloEpidemia.importData;
 
 import com.jgg.controlloEpidemia.model.Permesso;
-import com.jgg.controlloEpidemia.model.Ruolo;
 import com.jgg.controlloEpidemia.service.PermessoService;
 
 public class loadPermesso {

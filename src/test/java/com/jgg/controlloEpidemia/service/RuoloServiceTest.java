@@ -1,10 +1,8 @@
 package com.jgg.controlloEpidemia.service;
 
-import com.jgg.controlloEpidemia.model.Comune;
 import com.jgg.controlloEpidemia.model.Ruolo;
 import org.junit.jupiter.api.Test;
 
-import java.util.Date;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

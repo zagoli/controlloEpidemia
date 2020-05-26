@@ -29,7 +29,7 @@ public class UtenteServiceTest {
         assertEquals(utente, findUtente);
         //Cerco il model dallo username
         findUtente = utenteService.findByUsername("utente1");
-        assertEquals(utente,findUtente);
+        assertEquals(utente, findUtente);
         //Cerco tutti i model
         List<Utente> utenteList = utenteService.findAll();
         assertEquals(utenteList.size(), 2);
