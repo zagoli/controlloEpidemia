@@ -1,9 +1,12 @@
 package com.jgg.controlloEpidemia.dao;
 
+import com.jgg.controlloEpidemia.model.Permesso;
+import com.jgg.controlloEpidemia.model.Ruolo;
 import com.jgg.controlloEpidemia.model.Utente;
 import lombok.NoArgsConstructor;
 import org.hibernate.query.Query;
 
+import javax.persistence.NoResultException;
 import java.util.List;
 
 @NoArgsConstructor
@@ -34,9 +37,12 @@ public class UtenteDao implements UtenteDaoInterface {
 
     @Override
     public void saveOrUpdate(Utente utente) {
-        session.openCurrentSessionWithTransaction();
-        session.getCurrentSession().saveOrUpdate(utente);
-        session.closeCurrentSessionWithTransaction();
+        session.openCurrentSession();
+        Utente eUtente = findByUsername(utente.getUsername());
+        if (eUtente == null) {
+            save(utente);
+        }
+        session.closeCurrentSession();
     }
 
     @Override
@@ -49,25 +55,15 @@ public class UtenteDao implements UtenteDaoInterface {
 
     @Override
     public Utente findByUsername(String username) {
-       /* session.openCurrentSession();
-        CriteriaBuilder cb = session.getCurrentSession().getCriteriaBuilder();
-        CriteriaQuery<Utente> cq = cb.createQuery(Utente.class);
-        Root<Utente> root = cq.from(Utente.class);
-        cq.select(root).where(cb.equal(root.get("username"), username));
-        Query<Utente> query = session.getCurrentSession().createQuery(cq);
-        Utente utente;
-        try {
-            utente = query.getSingleResult();
-        } catch (NoResultException ex) {
-            utente = null;
-        }
-        session.closeCurrentSession();
-        return utente;*/
         session.openCurrentSession();
         String hql = "FROM Utente where username = :username";
         Query query = session.createQuery(hql);
         query.setParameter("username", username);
-        Utente utente=(Utente) query.getSingleResult();
+        Utente utente = null;
+        try {
+            utente = (Utente) query.getSingleResult();
+        } catch (NoResultException ignored) {
+        }
         session.closeCurrentSession();
         return utente;
     }

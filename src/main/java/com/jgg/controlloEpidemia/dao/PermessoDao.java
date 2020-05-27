@@ -2,9 +2,11 @@ package com.jgg.controlloEpidemia.dao;
 
 import com.jgg.controlloEpidemia.model.Permesso;
 import com.jgg.controlloEpidemia.model.TipoTerritorio;
+import com.jgg.controlloEpidemia.model.Utente;
 import lombok.NoArgsConstructor;
 import org.hibernate.query.Query;
 
+import javax.persistence.NoResultException;
 import java.util.List;
 
 @NoArgsConstructor
@@ -35,9 +37,12 @@ public class PermessoDao implements PermessoDaoInterface {
 
     @Override
     public void saveOrUpdate(Permesso permesso) {
-        session.openCurrentSessionWithTransaction();
-        session.getCurrentSession().saveOrUpdate(permesso);
-        session.closeCurrentSessionWithTransaction();
+        session.openCurrentSession();
+        Permesso ePermesso = findByNome(permesso.getNome());
+        if (ePermesso == null) {
+            save(permesso);
+        }
+        session.closeCurrentSession();
     }
 
     @Override
@@ -54,7 +59,11 @@ public class PermessoDao implements PermessoDaoInterface {
         String hql = "FROM Permesso where nome = :nome";
         Query query = session.createQuery(hql);
         query.setParameter("nome", nome);
-        Permesso permesso = (Permesso) query.getSingleResult();
+        Permesso permesso = null;
+        try {
+            permesso = (Permesso) query.getSingleResult();
+        } catch (NoResultException ignored) {
+        }
         session.closeCurrentSession();
         return permesso;
     }

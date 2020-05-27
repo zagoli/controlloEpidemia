@@ -1,10 +1,10 @@
 package com.jgg.controlloEpidemia.dao;
 
 import com.jgg.controlloEpidemia.model.Ruolo;
-import com.jgg.controlloEpidemia.model.TipoTerritorio;
 import lombok.NoArgsConstructor;
 import org.hibernate.query.Query;
 
+import javax.persistence.NoResultException;
 import java.util.List;
 
 @NoArgsConstructor
@@ -36,9 +36,12 @@ public class RuoloDao implements RuoloDaoInterface {
 
     @Override
     public void saveOrUpdate(Ruolo ruolo) {
-        session.openCurrentSessionWithTransaction();
-        session.getCurrentSession().saveOrUpdate(ruolo);
-        session.closeCurrentSessionWithTransaction();
+        session.openCurrentSession();
+        Ruolo eRuolo = findByNome(ruolo.getNome());
+        if (eRuolo == null) {
+            save(ruolo);
+        }
+        session.closeCurrentSession();
     }
 
     @Override
@@ -55,7 +58,11 @@ public class RuoloDao implements RuoloDaoInterface {
         String hql = "FROM Ruolo where nome = :nome";
         Query query = session.createQuery(hql);
         query.setParameter("nome", nome);
-        Ruolo ruolo = (Ruolo) query.getSingleResult();
+        Ruolo ruolo = null;
+        try {
+            ruolo = (Ruolo) query.getSingleResult();
+        } catch (NoResultException ignored) {
+        }
         session.closeCurrentSession();
         return ruolo;
     }

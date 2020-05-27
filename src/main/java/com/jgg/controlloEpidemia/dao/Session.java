@@ -4,7 +4,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.query.Query;
 
@@ -17,7 +16,7 @@ public class Session {
 
     @Getter
     @Setter
-    private Transaction currentTransaction;
+    private org.hibernate.Transaction currentTransaction;
 
     private static SessionFactory getSessionFactory() {
         Configuration configuration = new Configuration().configure();
@@ -43,8 +42,7 @@ public class Session {
     }
 
     protected org.hibernate.query.Query createQuery(String hql) {
-        Query query = currentSession.createQuery(hql);
-        return query;
+        return currentSession.createQuery(hql);
     }
 
 }

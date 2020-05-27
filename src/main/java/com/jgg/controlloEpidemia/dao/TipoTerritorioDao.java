@@ -1,8 +1,11 @@
 package com.jgg.controlloEpidemia.dao;
 
+import com.jgg.controlloEpidemia.model.Permesso;
+import com.jgg.controlloEpidemia.model.Ruolo;
 import com.jgg.controlloEpidemia.model.TipoTerritorio;
 import org.hibernate.query.Query;
 
+import javax.persistence.NoResultException;
 import java.util.List;
 
 public class TipoTerritorioDao implements TipoTerritorioDaoInterface {
@@ -33,9 +36,12 @@ public class TipoTerritorioDao implements TipoTerritorioDaoInterface {
 
     @Override
     public void saveOrUpdate(TipoTerritorio tipoTerritorio) {
-        session.openCurrentSessionWithTransaction();
-        session.getCurrentSession().saveOrUpdate(tipoTerritorio);
-        session.closeCurrentSessionWithTransaction();
+        session.openCurrentSession();
+        TipoTerritorio eTipoTerritorio = findByNome(tipoTerritorio.getNome());
+        if (eTipoTerritorio == null) {
+            save(tipoTerritorio);
+        }
+        session.closeCurrentSession();
     }
 
     @Override
@@ -52,10 +58,15 @@ public class TipoTerritorioDao implements TipoTerritorioDaoInterface {
         String hql = "FROM TipoTerritorio where nome = :nome";
         Query query = session.createQuery(hql);
         query.setParameter("nome", nome);
-        TipoTerritorio tipoTerritorio = (TipoTerritorio) query.getSingleResult();
+        TipoTerritorio tipoTerritorio = null;
+        try {
+            tipoTerritorio = (TipoTerritorio) query.getSingleResult();
+        } catch (NoResultException ignored) {
+        }
         session.closeCurrentSession();
         return tipoTerritorio;
     }
+
 
     @Override
     @SuppressWarnings("unchecked")
