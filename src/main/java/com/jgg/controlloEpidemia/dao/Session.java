@@ -6,6 +6,7 @@ import lombok.Setter;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
+import org.hibernate.query.Query;
 
 @NoArgsConstructor
 public class Session {
@@ -20,12 +21,6 @@ public class Session {
 
     private static SessionFactory getSessionFactory() {
         Configuration configuration = new Configuration().configure();
-      /*  configuration.addAnnotatedClass(Ruolo.class);
-        configuration.
-        StandardServiceRegistryBuilder builder = new StandardServiceRegistryBuilder()
-                .applySettings(configuration.getProperties());
-        SessionFactory sessionFactory = configuration.buildSessionFactory(builder.build());*/
-        //versione 2 sotto uguale a main
         return configuration.buildSessionFactory();
     }
 
@@ -45,6 +40,11 @@ public class Session {
     protected void closeCurrentSessionWithTransaction() {
         currentTransaction.commit();
         currentSession.close();
+    }
+
+    protected org.hibernate.query.Query createQuery(String hql) {
+        Query query = currentSession.createQuery(hql);
+        return query;
     }
 
 }

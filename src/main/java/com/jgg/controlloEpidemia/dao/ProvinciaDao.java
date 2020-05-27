@@ -1,7 +1,9 @@
 package com.jgg.controlloEpidemia.dao;
 
 import com.jgg.controlloEpidemia.model.Provincia;
+import com.jgg.controlloEpidemia.model.TipoTerritorio;
 import lombok.NoArgsConstructor;
+import org.hibernate.query.Query;
 
 import java.util.List;
 
@@ -42,6 +44,17 @@ public class ProvinciaDao implements ProvinciaDaoInterface {
     public Provincia findById(Integer id) {
         session.openCurrentSession();
         Provincia provincia = session.getCurrentSession().get(Provincia.class, id);
+        session.closeCurrentSession();
+        return provincia;
+    }
+
+    @Override
+    public Provincia findByNome(String nome) {
+        session.openCurrentSession();
+        String hql = "FROM Provincia where nome = :nome";
+        Query query = session.createQuery(hql);
+        query.setParameter("nome", nome);
+        Provincia provincia = (Provincia) query.getSingleResult();
         session.closeCurrentSession();
         return provincia;
     }

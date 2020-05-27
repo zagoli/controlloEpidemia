@@ -1,7 +1,9 @@
 package com.jgg.controlloEpidemia.dao;
 
 import com.jgg.controlloEpidemia.model.Regione;
+import com.jgg.controlloEpidemia.model.TipoTerritorio;
 import lombok.NoArgsConstructor;
+import org.hibernate.query.Query;
 
 import java.util.List;
 
@@ -42,6 +44,17 @@ public class RegioneDao implements RegioneDaoInterface {
     public Regione findById(Integer id) {
         session.openCurrentSession();
         Regione regione = session.getCurrentSession().get(Regione.class, id);
+        session.closeCurrentSession();
+        return regione;
+    }
+
+    @Override
+    public Regione findByNome(String nome) {
+        session.openCurrentSession();
+        String hql = "FROM Regione where nome = :nome";
+        Query query = session.createQuery(hql);
+        query.setParameter("nome", nome);
+        Regione regione = (Regione) query.getSingleResult();
         session.closeCurrentSession();
         return regione;
     }

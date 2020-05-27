@@ -1,7 +1,9 @@
 package com.jgg.controlloEpidemia.dao;
 
 import com.jgg.controlloEpidemia.model.Comune;
+import com.jgg.controlloEpidemia.model.TipoTerritorio;
 import lombok.NoArgsConstructor;
+import org.hibernate.query.Query;
 
 import java.util.List;
 
@@ -43,6 +45,17 @@ public class ComuneDao implements ComuneDaoInterface {
     public Comune findByCodiceIstat(Integer codiceIstat) {
         session.openCurrentSession();
         Comune comune = session.getCurrentSession().get(Comune.class, codiceIstat);
+        session.closeCurrentSession();
+        return comune;
+    }
+
+    @Override
+    public Comune findByNome(String nome) {
+        session.openCurrentSession();
+        String hql = "FROM Comune where nome = :nome";
+        Query query = session.createQuery(hql);
+        query.setParameter("nome", nome);
+        Comune comune = (Comune) query.getSingleResult();
         session.closeCurrentSession();
         return comune;
     }

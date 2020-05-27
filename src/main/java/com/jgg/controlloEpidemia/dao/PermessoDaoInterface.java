@@ -1,6 +1,7 @@
 package com.jgg.controlloEpidemia.dao;
 
 import com.jgg.controlloEpidemia.model.Permesso;
+import com.jgg.controlloEpidemia.model.TipoTerritorio;
 
 import java.util.List;
 
@@ -15,6 +16,8 @@ public interface PermessoDaoInterface {
     void saveOrUpdate(Permesso permesso);
 
     Permesso findById(Integer id);
+
+    Permesso findByNome(String nome);
 
     List<Permesso> findAll();
 }

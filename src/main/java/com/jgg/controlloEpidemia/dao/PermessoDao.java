@@ -1,7 +1,9 @@
 package com.jgg.controlloEpidemia.dao;
 
 import com.jgg.controlloEpidemia.model.Permesso;
+import com.jgg.controlloEpidemia.model.TipoTerritorio;
 import lombok.NoArgsConstructor;
+import org.hibernate.query.Query;
 
 import java.util.List;
 
@@ -42,6 +44,17 @@ public class PermessoDao implements PermessoDaoInterface {
     public Permesso findById(Integer id) {
         session.openCurrentSession();
         Permesso permesso = session.getCurrentSession().get(Permesso.class, id);
+        session.closeCurrentSession();
+        return permesso;
+    }
+
+    @Override
+    public Permesso findByNome(String nome) {
+        session.openCurrentSession();
+        String hql = "FROM Permesso where nome = :nome";
+        Query query = session.createQuery(hql);
+        query.setParameter("nome", nome);
+        Permesso permesso = (Permesso) query.getSingleResult();
         session.closeCurrentSession();
         return permesso;
     }

@@ -1,6 +1,7 @@
 package com.jgg.controlloEpidemia.dao;
 
 import com.jgg.controlloEpidemia.model.TipoTerritorio;
+import org.hibernate.query.Query;
 
 import java.util.List;
 
@@ -41,6 +42,17 @@ public class TipoTerritorioDao implements TipoTerritorioDaoInterface {
     public TipoTerritorio findById(Integer id) {
         session.openCurrentSession();
         TipoTerritorio tipoTerritorio = session.getCurrentSession().get(TipoTerritorio.class, id);
+        session.closeCurrentSession();
+        return tipoTerritorio;
+    }
+
+    @Override
+    public TipoTerritorio findByNome(String nome) {
+        session.openCurrentSession();
+        String hql = "FROM TipoTerritorio where nome = :nome";
+        Query query = session.createQuery(hql);
+        query.setParameter("nome", nome);
+        TipoTerritorio tipoTerritorio = (TipoTerritorio) query.getSingleResult();
         session.closeCurrentSession();
         return tipoTerritorio;
     }

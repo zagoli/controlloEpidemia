@@ -1,6 +1,7 @@
 package com.jgg.controlloEpidemia.dao;
 
 import com.jgg.controlloEpidemia.model.Regione;
+import com.jgg.controlloEpidemia.model.TipoTerritorio;
 
 import java.util.List;
 
@@ -15,6 +16,8 @@ public interface RegioneDaoInterface {
     void saveOrUpdate(Regione regione);
 
     Regione findById(Integer id);
+
+    Regione findByNome(String nome);
 
     List<Regione> findAll();
 }

@@ -4,10 +4,6 @@ import com.jgg.controlloEpidemia.model.Utente;
 import lombok.NoArgsConstructor;
 import org.hibernate.query.Query;
 
-import javax.persistence.NoResultException;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Root;
 import java.util.List;
 
 @NoArgsConstructor
@@ -53,7 +49,7 @@ public class UtenteDao implements UtenteDaoInterface {
 
     @Override
     public Utente findByUsername(String username) {
-        session.openCurrentSession();
+       /* session.openCurrentSession();
         CriteriaBuilder cb = session.getCurrentSession().getCriteriaBuilder();
         CriteriaQuery<Utente> cq = cb.createQuery(Utente.class);
         Root<Utente> root = cq.from(Utente.class);
@@ -65,6 +61,13 @@ public class UtenteDao implements UtenteDaoInterface {
         } catch (NoResultException ex) {
             utente = null;
         }
+        session.closeCurrentSession();
+        return utente;*/
+        session.openCurrentSession();
+        String hql = "FROM Utente where username = :username";
+        Query query = session.createQuery(hql);
+        query.setParameter("username", username);
+        Utente utente=(Utente) query.getSingleResult();
         session.closeCurrentSession();
         return utente;
     }

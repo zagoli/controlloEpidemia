@@ -1,7 +1,9 @@
 package com.jgg.controlloEpidemia.dao;
 
 import com.jgg.controlloEpidemia.model.Ruolo;
+import com.jgg.controlloEpidemia.model.TipoTerritorio;
 import lombok.NoArgsConstructor;
+import org.hibernate.query.Query;
 
 import java.util.List;
 
@@ -43,6 +45,17 @@ public class RuoloDao implements RuoloDaoInterface {
     public Ruolo findById(Integer id) {
         session.openCurrentSession();
         Ruolo ruolo = session.getCurrentSession().get(Ruolo.class, id);
+        session.closeCurrentSession();
+        return ruolo;
+    }
+
+    @Override
+    public Ruolo findByNome(String nome) {
+        session.openCurrentSession();
+        String hql = "FROM Ruolo where nome = :nome";
+        Query query = session.createQuery(hql);
+        query.setParameter("nome", nome);
+        Ruolo ruolo = (Ruolo) query.getSingleResult();
         session.closeCurrentSession();
         return ruolo;
     }
