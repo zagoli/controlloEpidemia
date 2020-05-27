@@ -40,6 +40,7 @@ public class Provincia {
     @Setter
     @NotNull
     @NonNull
+    @Column(unique = true)
     private String nome;
     @Getter
     @Setter

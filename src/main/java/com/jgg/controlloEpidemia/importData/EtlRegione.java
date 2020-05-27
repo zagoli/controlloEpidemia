@@ -10,7 +10,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
-public class etlRegione {
+public class EtlRegione {
 
     static final ComuneService comuneService = new ComuneService();
     static final RegioneService regioneService = new RegioneService();

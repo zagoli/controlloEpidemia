@@ -13,7 +13,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Scanner;
 
-public class etlComune {
+public class EtlComune {
 
     static final ComuneService comuneService = new ComuneService();
     static final TipoTerritorioService tipoTerritorioService = new TipoTerritorioService();

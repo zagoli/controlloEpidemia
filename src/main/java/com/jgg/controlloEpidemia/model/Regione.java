@@ -33,6 +33,7 @@ public class Regione {
     @Setter
     @NotNull
     @NonNull
+    @Column(unique = true)
     private String nome;
     @Getter
     @Setter

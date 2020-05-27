@@ -8,7 +8,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
-public class etlMalattie {
+public class EtlMalattie {
 
     static final ComuneService comuneService = new ComuneService();
     static final MalattieSettimanaliService malattieSettimanaliService = new MalattieSettimanaliService();

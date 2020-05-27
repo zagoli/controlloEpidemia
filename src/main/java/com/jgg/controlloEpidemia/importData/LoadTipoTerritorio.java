@@ -2,12 +2,14 @@ package com.jgg.controlloEpidemia.importData;
 
 import com.jgg.controlloEpidemia.model.TipoTerritorio;
 import com.jgg.controlloEpidemia.service.TipoTerritorioService;
+import lombok.NoArgsConstructor;
 
-public class loadTipoterritorio {
+@NoArgsConstructor
+public class LoadTipoTerritorio {
 
     static final TipoTerritorioService tipoTerritorioService = new TipoTerritorioService();
 
-    public loadTipoterritorio() {
+    public void load() {
         TipoTerritorio montano = new TipoTerritorio("montano");
         TipoTerritorio collinare = new TipoTerritorio("collinare");
         TipoTerritorio pianeggiante = new TipoTerritorio("pianeggiante");
@@ -15,6 +17,5 @@ public class loadTipoterritorio {
         tipoTerritorioService.saveOrUpdate(montano);
         tipoTerritorioService.saveOrUpdate(collinare);
         tipoTerritorioService.saveOrUpdate(pianeggiante);
-
     }
 }

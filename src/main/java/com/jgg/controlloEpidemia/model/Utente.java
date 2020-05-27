@@ -38,6 +38,7 @@ public class Utente {
     @Setter
     @NotNull
     @NonNull
+    @Column(unique = true)
     private String username;
     @Getter
     @Setter
