@@ -14,21 +14,19 @@ public class EtlProvincia {
 
     static final ComuneService comuneService = new ComuneService();
     static final ProvinciaService provinciaService = new ProvinciaService();
+    static final RuoloService ruoloService = new RuoloService();
 
     private static void caricaProvincia(String[] vett) {
-
         if (vett[0].equals("")) {
-            System.out.println("Err");
+            System.out.println("Errore");
         }
         if (Integer.parseInt(vett[1]) <= 0) {
-            System.out.println("Err");
+            System.out.println("Errore");
         }
         if (Integer.parseInt(vett[2]) <= 0) {
-            System.out.println("Err");
+            System.out.println("Errore");
         }
-        //Cerco
-        RuoloService rs = new RuoloService();
-        if (App.utenteCorrente.getRuolo().equals(rs.findById(1))) {
+        if (App.utenteCorrente.getRuolo().equals(ruoloService.findById(1))) {
             Provincia p = new Provincia(vett[0], Integer.parseInt(vett[1]), comuneService.findByCodiceIstat(Integer.parseInt(vett[2])));
             provinciaService.save(p);
         } else {
@@ -37,21 +35,18 @@ public class EtlProvincia {
     }
 
     public void etl(String path) throws FileNotFoundException {
-        File fProvince = new File(path);
-        Scanner myReader = new Scanner(fProvince);
-        while (myReader.hasNextLine()) {
-            //Leggo la riga, la metto in un vettore
-            String riga = myReader.nextLine();
+        File fileProvince = new File(path);
+        Scanner reader = new Scanner(fileProvince);
+        while (reader.hasNextLine()) {
+            String riga = reader.nextLine();
             String[] vettore;
             if (!riga.equals("")) {
                 vettore = riga.split(";");
                 if (vettore.length == 3) {
-                    //Chiamo metodo per caricare su db la riga
                     caricaProvincia(vettore);
                 }
             }
         }
-        myReader.close();
+        reader.close();
     }
-
 }

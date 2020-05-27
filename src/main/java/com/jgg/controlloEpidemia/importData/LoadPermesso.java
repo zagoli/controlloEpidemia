@@ -10,7 +10,7 @@ public class LoadPermesso {
     static final PermessoService permessoService = new PermessoService();
 
     public void load() {
-        Permesso p = new Permesso("Visualizzazione","Solo visualizzazione");
+        Permesso p = new Permesso("Visualizzazione", "Solo visualizzazione");
 
         permessoService.saveOrUpdate(p);
 

@@ -14,56 +14,40 @@ public class EtlRegione {
 
     static final ComuneService comuneService = new ComuneService();
     static final RegioneService regioneService = new RegioneService();
+    static final RuoloService ruoloService = new RuoloService();
 
     private static void caricaRegione(String[] vett) {
-
         if (vett[0].equals("")) {
-            System.out.println("Err");
+            System.out.println("Errore");
         }
         if (Integer.parseInt(vett[1]) <= 0) {
-            System.out.println("Err");
+            System.out.println("Errore");
         }
         if (Integer.parseInt(vett[2]) <= 0) {
-            System.out.println("Err");
+            System.out.println("Errore");
         }
-
-
-        //Cerco
-        RuoloService rs = new RuoloService();
-        if (App.utenteCorrente.getRuolo().equals(rs.findById(1))) {
-            Regione r = new Regione(vett[0], Integer.parseInt(vett[1]), comuneService.findByCodiceIstat(Integer.parseInt(vett[2])));
-            regioneService.save(r);
+        if (App.utenteCorrente.getRuolo().equals(ruoloService.findById(1))) {
+            Regione regione = new Regione(vett[0], Integer.parseInt(vett[1]), comuneService.findByCodiceIstat(Integer.parseInt(vett[2])));
+            regioneService.save(regione);
         } else {
             System.out.println("No");
         }
-
-
     }
 
     public void etl(String path) throws FileNotFoundException {
-
-
-        File fRegioni = new File(path);
-        Scanner myReader = new Scanner(fRegioni);
-
-        while (myReader.hasNextLine()) {
-
-            //Leggo la riga, la metto in un vettore
-            String riga = myReader.nextLine();
+        File fileRegioni = new File(path);
+        Scanner reader = new Scanner(fileRegioni);
+        while (reader.hasNextLine()) {
+            String riga = reader.nextLine();
             String[] vettore;
-
-
             if (!riga.equals("")) {
                 vettore = riga.split(";");
-
                 if (vettore.length == 3) {
-                    //Chiamo metodo per caricare su db la riga
                     caricaRegione(vettore);
                 }
             }
         }
-
-        myReader.close();
+        reader.close();
     }
 
 }

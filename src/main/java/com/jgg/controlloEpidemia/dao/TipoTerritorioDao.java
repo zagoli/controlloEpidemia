@@ -1,7 +1,5 @@
 package com.jgg.controlloEpidemia.dao;
 
-import com.jgg.controlloEpidemia.model.Permesso;
-import com.jgg.controlloEpidemia.model.Ruolo;
 import com.jgg.controlloEpidemia.model.TipoTerritorio;
 import org.hibernate.query.Query;
 

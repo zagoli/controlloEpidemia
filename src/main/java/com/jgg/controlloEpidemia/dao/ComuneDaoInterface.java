@@ -1,7 +1,6 @@
 package com.jgg.controlloEpidemia.dao;
 
 import com.jgg.controlloEpidemia.model.Comune;
-import com.jgg.controlloEpidemia.model.TipoTerritorio;
 
 import java.util.List;
 
