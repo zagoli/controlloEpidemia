@@ -23,6 +23,7 @@ public class App extends Application {
 
     @Override
     public void start(Stage primaryStage) throws IOException {
+        // Inizializzazione dati per prototipo -------------------------
         LoadRuolo loadRuolo = new LoadRuolo();
         loadRuolo.load();
         LoadTipoTerritorio loadTipoTerritorio = new LoadTipoTerritorio();
@@ -31,11 +32,12 @@ public class App extends Application {
         loadPermesso.load();
         LoadUtenti loadUtenti = new LoadUtenti();
         loadUtenti.load();
+        // --------------------------------------------------------------
 
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/loginPage.fxml"));
         Scene scene = new Scene(root);
         primaryStage.setScene(scene);
-        primaryStage.setTitle("Login");
+        primaryStage.setTitle("Controllo Epidemia");
         primaryStage.show();
 
 

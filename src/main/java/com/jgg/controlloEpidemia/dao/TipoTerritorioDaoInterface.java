@@ -12,7 +12,7 @@ public interface TipoTerritorioDaoInterface {
 
     void update(TipoTerritorio tipoTerritorio);
 
-    void saveOrUpdate(TipoTerritorio tipoTerritorio);
+    void saveIfNotPresent(TipoTerritorio tipoTerritorio);
 
     TipoTerritorio findById(Integer id);
 

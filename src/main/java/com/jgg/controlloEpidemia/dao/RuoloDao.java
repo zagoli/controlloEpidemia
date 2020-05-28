@@ -35,7 +35,7 @@ public class RuoloDao implements RuoloDaoInterface {
     }
 
     @Override
-    public void saveOrUpdate(Ruolo ruolo) {
+    public void saveIfNotPresent(Ruolo ruolo) {
         session.openCurrentSession();
         Ruolo eRuolo = findByNome(ruolo.getNome());
         if (eRuolo == null) {

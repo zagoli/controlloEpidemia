@@ -23,7 +23,7 @@ public class UtenteServiceTest {
         //Salvo i model
         ruoloService.save(ruolo);
         utenteService.save(utente);
-        utenteService.saveOrUpdate(utente2);
+        utenteService.saveIfNotPresent(utente2);
         //Cerco i model
         Utente findUtente = utenteService.findById(utente.getId());
         assertEquals(utente, findUtente);

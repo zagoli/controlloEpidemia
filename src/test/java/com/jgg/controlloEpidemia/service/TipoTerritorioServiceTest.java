@@ -18,7 +18,7 @@ public class TipoTerritorioServiceTest {
         TipoTerritorio tipoterritorio2 = new TipoTerritorio("Montano");
         //Salvo i model
         tipoTerritorioService.save(tipoterritorio);
-        tipoTerritorioService.saveOrUpdate(tipoterritorio2);
+        tipoTerritorioService.saveIfNotPresent(tipoterritorio2);
         //Cerco i model
         TipoTerritorio findTipoTerritorio = tipoTerritorioService.findById(tipoterritorio.getId());
         assertEquals(tipoterritorio, findTipoTerritorio);

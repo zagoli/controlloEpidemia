@@ -12,7 +12,7 @@ public interface PermessoDaoInterface {
 
     void update(Permesso permesso);
 
-    void saveOrUpdate(Permesso permesso);
+    void saveIfNotPresent(Permesso permesso);
 
     Permesso findById(Integer id);
 

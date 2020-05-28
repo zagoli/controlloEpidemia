@@ -17,10 +17,10 @@ public class LoadUtenti {
         Utente u3 = new Utente("Personale", "ww", "Ignazio", "Romano", ruoloService.findById(3));
         Utente u4 = new Utente("Ricercatore", "gg", "Dalila", "Ferri", ruoloService.findById(4));
 
-        utenteService.saveOrUpdate(u);
-        utenteService.saveOrUpdate(u2);
-        utenteService.saveOrUpdate(u3);
-        utenteService.saveOrUpdate(u4);
+        utenteService.saveIfNotPresent(u);
+        utenteService.saveIfNotPresent(u2);
+        utenteService.saveIfNotPresent(u3);
+        utenteService.saveIfNotPresent(u4);
 
 
     }

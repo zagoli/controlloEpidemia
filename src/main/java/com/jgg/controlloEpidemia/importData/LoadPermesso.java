@@ -12,7 +12,7 @@ public class LoadPermesso {
     public void load() {
         Permesso p = new Permesso("Visualizzazione", "Solo visualizzazione");
 
-        permessoService.saveOrUpdate(p);
+        permessoService.saveIfNotPresent(p);
 
     }
 

@@ -19,7 +19,7 @@ public class RuoloServiceTest {
         Ruolo ruolo2 = new Ruolo("Marittimo");
         //Salvo i model
         ruoloService.save(ruolo);
-        ruoloService.saveOrUpdate(ruolo2);
+        ruoloService.saveIfNotPresent(ruolo2);
         //Cerco i model
         Ruolo findRuolo = ruoloService.findById(ruolo.getId());
         assertEquals(ruolo, findRuolo);

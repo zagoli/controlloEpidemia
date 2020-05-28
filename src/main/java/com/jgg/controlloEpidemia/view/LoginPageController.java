@@ -5,14 +5,18 @@ import com.jgg.controlloEpidemia.model.Utente;
 import com.jgg.controlloEpidemia.service.UtenteService;
 import javafx.animation.ScaleTransition;
 import javafx.beans.binding.Bindings;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.util.Duration;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -38,7 +42,7 @@ public class LoginPageController implements Initializable {
     }
 
     @FXML
-    private void onLoginButtonClicked() {
+    private void onLoginButtonClicked(ActionEvent e) throws IOException {
         String user = usernameField.getText();
         String password = passwordField.getText();
         final UtenteService utenteService = new UtenteService();
@@ -64,6 +68,8 @@ public class LoginPageController implements Initializable {
         } else {
             App.utenteCorrente = u;
             // vai alla pagina principale
+            Parent root = FXMLLoader.load(getClass().getResource("/fxml/homePage.fxml"));
+            ((Button)e.getSource()).getScene().setRoot(root);
         }
     }
 

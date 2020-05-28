@@ -23,8 +23,8 @@ public class RuoloService {
         ruoloDao.update(ruolo);
     }
 
-    public void saveOrUpdate(Ruolo ruolo) {
-        ruoloDao.saveOrUpdate(ruolo);
+    public void saveIfNotPresent(Ruolo ruolo) {
+        ruoloDao.saveIfNotPresent(ruolo);
     }
 
     public Ruolo findById(Integer id) {

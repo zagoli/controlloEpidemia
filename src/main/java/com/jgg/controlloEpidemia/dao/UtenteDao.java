@@ -34,7 +34,7 @@ public class UtenteDao implements UtenteDaoInterface {
     }
 
     @Override
-    public void saveOrUpdate(Utente utente) {
+    public void saveIfNotPresent(Utente utente) {
         session.openCurrentSession();
         Utente eUtente = findByUsername(utente.getUsername());
         if (eUtente == null) {

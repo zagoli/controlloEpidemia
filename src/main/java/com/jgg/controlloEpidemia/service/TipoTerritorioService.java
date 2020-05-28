@@ -23,8 +23,8 @@ public class TipoTerritorioService {
         tipoTerritorioDao.update(tipoTerritorio);
     }
 
-    public void saveOrUpdate(TipoTerritorio tipoTerritorio) {
-        tipoTerritorioDao.saveOrUpdate(tipoTerritorio);
+    public void saveIfNotPresent(TipoTerritorio tipoTerritorio) {
+        tipoTerritorioDao.saveIfNotPresent(tipoTerritorio);
     }
 
     public TipoTerritorio findById(Integer id) {
