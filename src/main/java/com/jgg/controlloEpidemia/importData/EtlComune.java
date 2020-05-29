@@ -6,8 +6,7 @@ import com.jgg.controlloEpidemia.service.ComuneService;
 import com.jgg.controlloEpidemia.service.RuoloService;
 import com.jgg.controlloEpidemia.service.TipoTerritorioService;
 
-import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -51,17 +50,15 @@ public class EtlComune {
         }
     }
 
-    public void etl(String path) throws FileNotFoundException {
-        File fileComune = new File(path);
-        Scanner reader = new Scanner(fileComune);
-        while (reader.hasNextLine()) {
-            String riga = reader.nextLine();
-            String[] vettore;
-            if (!riga.equals("")) {
-                vettore = riga.split(";");
-                if (vettore.length == 5) {
-                    caricaComune(vettore);
-                }
+    public void load(String path) throws IOException {
+        File fileComuni = new File(path);
+        BufferedReader reader = new BufferedReader(new FileReader(fileComuni));
+        String riga = reader.readLine();
+        String[] vettore;
+        while (!riga.equals("") && riga != null) {
+            vettore = riga.split(";");
+            if (vettore.length == 5) {
+                caricaComune(vettore);
             }
         }
         reader.close();

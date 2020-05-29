@@ -4,9 +4,10 @@ import com.jgg.controlloEpidemia.model.MalattieSettimanali;
 import com.jgg.controlloEpidemia.service.ComuneService;
 import com.jgg.controlloEpidemia.service.MalattieSettimanaliService;
 
+import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.util.Scanner;
+import java.io.FileReader;
+import java.io.IOException;
 
 public class EtlMalattie {
 
@@ -27,17 +28,15 @@ public class EtlMalattie {
         malattieSettimanaliService.save(malattieSettimanali);
     }
 
-    public void etl(String path) throws FileNotFoundException {
+    public void load(String path) throws IOException {
         File fileMalattie = new File(path);
-        Scanner reader = new Scanner(fileMalattie);
-        while (reader.hasNextLine()) {
-            String riga = reader.nextLine();
-            String[] vettore;
-            if (!riga.equals("")) {
-                vettore = riga.split(";");
-                if (vettore.length == 18) {
-                    caricaMalattia(vettore);
-                }
+        BufferedReader reader = new BufferedReader(new FileReader(fileMalattie));
+        String riga = reader.readLine();
+        String[] vettore;
+        while (!riga.equals("") && riga != null) {
+            vettore = riga.split(";");
+            if (vettore.length == 18) {
+                caricaMalattia(vettore);
             }
         }
         reader.close();

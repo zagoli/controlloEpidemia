@@ -6,9 +6,10 @@ import com.jgg.controlloEpidemia.service.DecessiAnnualiService;
 import com.jgg.controlloEpidemia.service.ProvinciaService;
 import com.jgg.controlloEpidemia.service.RuoloService;
 
+import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.util.Scanner;
+import java.io.FileReader;
+import java.io.IOException;
 
 public class EtlDecessi {
 
@@ -43,17 +44,15 @@ public class EtlDecessi {
         }
     }
 
-    public void etl(String path) throws FileNotFoundException {
+    public void load(String path) throws IOException {
         File fileDecessi = new File(path);
-        Scanner reader = new Scanner(fileDecessi);
-        while (reader.hasNextLine()) {
-            String riga = reader.nextLine();
-            String[] vettore;
-            if (!riga.equals("")) {
-                vettore = riga.split(";");
-                if (vettore.length == 6) {
-                    caricaDecessi(vettore);
-                }
+        BufferedReader reader = new BufferedReader(new FileReader(fileDecessi));
+        String riga = reader.readLine();
+        String[] vettore;
+        while (!riga.equals("") && riga != null) {
+            vettore = riga.split(";");
+            if (vettore.length == 6) {
+                caricaDecessi(vettore);
             }
         }
         reader.close();

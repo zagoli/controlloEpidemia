@@ -6,9 +6,10 @@ import com.jgg.controlloEpidemia.service.ComuneService;
 import com.jgg.controlloEpidemia.service.ProvinciaService;
 import com.jgg.controlloEpidemia.service.RuoloService;
 
+import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.util.Scanner;
+import java.io.FileReader;
+import java.io.IOException;
 
 public class EtlProvincia {
 
@@ -34,17 +35,15 @@ public class EtlProvincia {
         }
     }
 
-    public void etl(String path) throws FileNotFoundException {
+    public void load(String path) throws IOException {
         File fileProvince = new File(path);
-        Scanner reader = new Scanner(fileProvince);
-        while (reader.hasNextLine()) {
-            String riga = reader.nextLine();
-            String[] vettore;
-            if (!riga.equals("")) {
-                vettore = riga.split(";");
-                if (vettore.length == 3) {
-                    caricaProvincia(vettore);
-                }
+        BufferedReader reader = new BufferedReader(new FileReader(fileProvince));
+        String riga = reader.readLine();
+        String[] vettore;
+        while (!riga.equals("") && riga != null) {
+            vettore = riga.split(";");
+            if (vettore.length == 3) {
+                caricaProvincia(vettore);
             }
         }
         reader.close();
