@@ -34,7 +34,6 @@ public class Provincia {
     @Id
     @Getter
     @NotNull
-    @NonNull
     private Integer id;
     @Getter
     @Setter

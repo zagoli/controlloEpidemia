@@ -1,1 +1,1 @@
-codiceIstat,nome;superficie;dataist;siaffacciamare;tipoterritorio;provincia
+codiceIstat,nome;superficie;dataIstat;siAffacciAlMare;tipoTerritorio;provincia
