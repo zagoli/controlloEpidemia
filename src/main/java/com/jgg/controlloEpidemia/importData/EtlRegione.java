@@ -18,15 +18,6 @@ public class EtlRegione {
     static final RuoloService ruoloService = new RuoloService();
 
     private static void caricaRegione(String[] vett) {
-        if (vett[0].equals("")) {
-            System.out.println("Errore");
-        }
-        if (Integer.parseInt(vett[1]) <= 0) {
-            System.out.println("Errore");
-        }
-        if (Integer.parseInt(vett[2]) <= 0) {
-            System.out.println("Errore");
-        }
         if (App.utenteCorrente.getRuolo().equals(ruoloService.findById(1))) {
             Regione regione = new Regione(vett[0], Integer.parseInt(vett[1]), comuneService.findByCodiceIstat(Integer.parseInt(vett[2])));
             regioneService.save(regione);

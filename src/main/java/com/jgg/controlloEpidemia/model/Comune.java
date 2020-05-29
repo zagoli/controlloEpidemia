@@ -2,6 +2,7 @@ package com.jgg.controlloEpidemia.model;
 
 import lombok.*;
 import org.hibernate.annotations.SelectBeforeUpdate;
+import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
 import javax.validation.constraints.Min;
@@ -28,6 +29,7 @@ public class Comune {
     @Id
     @Getter
     @NotNull
+    @NonNull
     private Integer codiceIstat;
     @Getter
     @Setter
@@ -39,13 +41,13 @@ public class Comune {
     @Setter
     @NotNull
     @NonNull
-    private Date dataIstituzione;
+    @Min(0)
+    private Integer superficie;
     @Getter
     @Setter
     @NotNull
     @NonNull
-    @Min(0)
-    private Integer superficie;
+    private Date dataIstituzione;
     @Getter
     @Setter
     @NotNull
@@ -57,5 +59,10 @@ public class Comune {
     @NonNull
     @ManyToOne
     private TipoTerritorio tipoTerritorio;
-
+    @Getter
+    @Setter
+    @NotNull
+    @NonNull
+    @ManyToOne
+    private Provincia provincia;
 }

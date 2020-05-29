@@ -4,6 +4,7 @@ import com.jgg.controlloEpidemia.App;
 import com.jgg.controlloEpidemia.model.Provincia;
 import com.jgg.controlloEpidemia.service.ComuneService;
 import com.jgg.controlloEpidemia.service.ProvinciaService;
+import com.jgg.controlloEpidemia.service.RegioneService;
 import com.jgg.controlloEpidemia.service.RuoloService;
 
 import java.io.BufferedReader;
@@ -16,19 +17,11 @@ public class EtlProvincia {
     static final ComuneService comuneService = new ComuneService();
     static final ProvinciaService provinciaService = new ProvinciaService();
     static final RuoloService ruoloService = new RuoloService();
+    static final RegioneService regioneService = new RegioneService();
 
     private static void caricaProvincia(String[] vett) {
-        if (vett[0].equals("")) {
-            System.out.println("Errore");
-        }
-        if (Integer.parseInt(vett[1]) <= 0) {
-            System.out.println("Errore");
-        }
-        if (Integer.parseInt(vett[2]) <= 0) {
-            System.out.println("Errore");
-        }
         if (App.utenteCorrente.getRuolo().equals(ruoloService.findById(1))) {
-            Provincia p = new Provincia(vett[0], Integer.parseInt(vett[1]), comuneService.findByCodiceIstat(Integer.parseInt(vett[2])));
+            Provincia p = new Provincia(Integer.parseInt(vett[0]),vett[1],Integer.parseInt(vett[2]), comuneService.findByCodiceIstat(Integer.parseInt(vett[3])),regioneService.findById(Integer.parseInt(vett[4])));
             provinciaService.save(p);
         } else {
             System.out.println("No");
@@ -42,7 +35,7 @@ public class EtlProvincia {
         String[] vettore;
         while (!riga.equals("") && riga != null) {
             vettore = riga.split(";");
-            if (vettore.length == 3) {
+            if (vettore.length == 5) {
                 caricaProvincia(vettore);
             }
         }
