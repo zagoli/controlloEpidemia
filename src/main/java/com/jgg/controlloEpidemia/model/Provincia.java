@@ -34,7 +34,7 @@ public class Provincia {
     @Id
     @Getter
     @NotNull
-    @GeneratedValue(generator = "increment")
+    @NonNull
     private Integer id;
     @Getter
     @Setter
@@ -54,5 +54,11 @@ public class Provincia {
     @NonNull
     @OneToOne
     private Comune capoluogo;
+    @Getter
+    @Setter
+    @NotNull
+    @NonNull
+    @ManyToOne
+    private Regione regione;
 
 }

@@ -6,9 +6,10 @@ import com.jgg.controlloEpidemia.service.ComuneService;
 import com.jgg.controlloEpidemia.service.RegioneService;
 import com.jgg.controlloEpidemia.service.RuoloService;
 
+import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.util.Scanner;
+import java.io.FileReader;
+import java.io.IOException;
 
 public class EtlRegione {
 
@@ -17,15 +18,6 @@ public class EtlRegione {
     static final RuoloService ruoloService = new RuoloService();
 
     private static void caricaRegione(String[] vett) {
-        if (vett[0].equals("")) {
-            System.out.println("Errore");
-        }
-        if (Integer.parseInt(vett[1]) <= 0) {
-            System.out.println("Errore");
-        }
-        if (Integer.parseInt(vett[2]) <= 0) {
-            System.out.println("Errore");
-        }
         if (App.utenteCorrente.getRuolo().equals(ruoloService.findById(1))) {
             Regione regione = new Regione(vett[0], Integer.parseInt(vett[1]), comuneService.findByCodiceIstat(Integer.parseInt(vett[2])));
             regioneService.save(regione);
@@ -34,17 +26,15 @@ public class EtlRegione {
         }
     }
 
-    public void etl(String path) throws FileNotFoundException {
+    public void load(String path) throws IOException {
         File fileRegioni = new File(path);
-        Scanner reader = new Scanner(fileRegioni);
-        while (reader.hasNextLine()) {
-            String riga = reader.nextLine();
-            String[] vettore;
-            if (!riga.equals("")) {
-                vettore = riga.split(";");
-                if (vettore.length == 3) {
-                    caricaRegione(vettore);
-                }
+        BufferedReader reader = new BufferedReader(new FileReader(fileRegioni));
+        String riga = reader.readLine();
+        String[] vettore;
+        while (!riga.equals("") && riga != null) {
+            vettore = riga.split(";");
+            if (vettore.length == 3) {
+                caricaRegione(vettore);
             }
         }
         reader.close();
