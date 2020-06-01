@@ -78,6 +78,13 @@ public class HomePageController implements Initializable {
             switch ((Integer)((Button)actionEvent.getSource()).getUserData()){
                 case 0:
                     // vai a pagina gestione dati territorio
+                    Parent root = null;
+                    try {
+                        root = FXMLLoader.load(getClass().getResource("/fxml/datiTerritoriali.fxml"));
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    button.getScene().setRoot(root);
                     break;
                 case 1:
                     // vai a pagina autorizzazione comuni per il personale contratto

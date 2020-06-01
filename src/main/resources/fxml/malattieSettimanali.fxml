@@ -1,0 +1,414 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<Pane layoutY="32.0" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.jgg.controlloEpidemia.view.DecessiAnnualiController">
+    <children>
+        <TabPane prefHeight="600.0" prefWidth="800.0" tabClosingPolicy="UNAVAILABLE">
+            <tabs>
+                <Tab text="Visualizzazione">
+                    <content>
+                        <Pane minHeight="0.0" minWidth="0.0" prefHeight="600.0" prefWidth="800.0">
+                            <children>
+                                <ScrollPane layoutX="1.0" layoutY="-1.0" prefHeight="600.0" prefWidth="800.0" />
+                            </children>
+                        </Pane>
+                    </content>
+                </Tab>
+                <Tab text="Inserimento">
+                    <content>
+                        <Pane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                            <children>
+                                <TextField layoutX="61.0" layoutY="47.0">
+                                    <font>
+                                        <Font name="Segoe UI Bold" size="15.0" />
+                                    </font>
+                                </TextField>
+                                <TextField layoutX="61.0" layoutY="110.0">
+                                    <font>
+                                        <Font name="Segoe UI Bold" size="15.0" />
+                                    </font>
+                                </TextField>
+                                <TextField layoutX="58.0" layoutY="177.0">
+                                    <font>
+                                        <Font name="Segoe UI Bold" size="15.0" />
+                                    </font>
+                                </TextField>
+                                <TextField layoutX="58.0" layoutY="242.0">
+                                    <font>
+                                        <Font name="Segoe UI Bold" size="15.0" />
+                                    </font>
+                                </TextField>
+                                <TextField layoutX="58.0" layoutY="287.0">
+                                    <font>
+                                        <Font name="Segoe UI Bold" size="15.0" />
+                                    </font>
+                                </TextField>
+                                <Label layoutX="63.0" layoutY="18.0" text="Anno">
+                                    <font>
+                                        <Font name="Segoe UI Bold" size="20.0" />
+                                    </font>
+                                </Label>
+                                <Label layoutX="289.0" layoutY="14.0" text="Settimana">
+                                    <font>
+                                        <Font name="Segoe UI Bold" size="20.0" />
+                                    </font>
+                                </Label>
+                                <Label layoutX="47.0" layoutY="86.0" text="Ricoverati con influenza">
+                                    <font>
+                                        <Font name="Segoe UI Bold" size="20.0" />
+                                    </font>
+                                </Label>
+                                <Label layoutX="286.0" layoutY="86.0" text="In cura con influenza">
+                                    <font>
+                                        <Font name="Segoe UI Bold" size="20.0" />
+                                    </font>
+                                </Label>
+                                <Label layoutX="662.0" layoutY="379.0" text="Comune">
+                                    <font>
+                                        <Font name="Segoe UI Bold" size="20.0" />
+                                    </font>
+                                </Label>
+                                <Button layoutX="667.0" layoutY="458.0" mnemonicParsing="false" text="Inserisci">
+                                    <font>
+                                        <Font name="Segoe UI Bold" size="20.0" />
+                                    </font>
+                                </Button>
+                                <Button layoutX="632.0" layoutY="513.0" mnemonicParsing="false" text="Inserisci csv">
+                                    <font>
+                                        <Font name="Segoe UI Bold" size="20.0" />
+                                    </font>
+                                </Button>
+                        <TextField layoutX="55.0" layoutY="391.0">
+                           <font>
+                              <Font name="Segoe UI Bold" size="15.0" />
+                           </font>
+                        </TextField>
+                        <TextField layoutX="58.0" layoutY="336.0">
+                           <font>
+                              <Font name="Segoe UI Bold" size="15.0" />
+                           </font>
+                        </TextField>
+                        <TextField layoutX="44.0" layoutY="463.0">
+                           <font>
+                              <Font name="Segoe UI Bold" size="15.0" />
+                           </font>
+                        </TextField>
+                        <TextField layoutX="289.0" layoutY="391.0">
+                           <font>
+                              <Font name="Segoe UI Bold" size="15.0" />
+                           </font>
+                        </TextField>
+                        <TextField layoutX="289.0" layoutY="47.0">
+                           <font>
+                              <Font name="Segoe UI Bold" size="15.0" />
+                           </font>
+                        </TextField>
+                        <TextField layoutX="289.0" layoutY="110.0">
+                           <font>
+                              <Font name="Segoe UI Bold" size="15.0" />
+                           </font>
+                        </TextField>
+                        <TextField layoutX="508.0" layoutY="110.0">
+                           <font>
+                              <Font name="Segoe UI Bold" size="15.0" />
+                           </font>
+                        </TextField>
+                        <TextField layoutX="281.0" layoutY="177.0">
+                           <font>
+                              <Font name="Segoe UI Bold" size="15.0" />
+                           </font>
+                        </TextField>
+                        <TextField layoutX="301.0" layoutY="242.0">
+                           <font>
+                              <Font name="Segoe UI Bold" size="15.0" />
+                           </font>
+                        </TextField>
+                        <TextField layoutX="281.0" layoutY="287.0">
+                           <font>
+                              <Font name="Segoe UI Bold" size="15.0" />
+                           </font>
+                        </TextField>
+                        <TextField layoutX="270.0" layoutY="336.0">
+                           <font>
+                              <Font name="Segoe UI Bold" size="15.0" />
+                           </font>
+                        </TextField>
+                        <TextField layoutX="295.0" layoutY="458.0">
+                           <font>
+                              <Font name="Segoe UI Bold" size="15.0" />
+                           </font>
+                        </TextField>
+                        <Label layoutX="40.0" layoutY="153.0" text="Ricoverati con polmonite">
+                           <font>
+                              <Font name="Segoe UI Bold" size="20.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="291.0" layoutY="153.0" text="In cura con polmonite">
+                           <font>
+                              <Font name="Segoe UI Bold" size="20.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="43.0" layoutY="210.0" prefHeight="24.0" prefWidth="228.0" text="Ricoverati con meningite">
+                           <font>
+                              <Font name="Segoe UI Bold" size="20.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="291.0" layoutY="210.0" text="In cura con meningite">
+                           <font>
+                              <Font name="Segoe UI Bold" size="20.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="46.0" layoutY="259.0" prefHeight="24.0" prefWidth="228.0" text="Ricoverati con epatite">
+                           <font>
+                              <Font name="Segoe UI Bold" size="20.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="280.0" layoutY="263.0" prefHeight="24.0" prefWidth="228.0" text="In cura con epatite">
+                           <font>
+                              <Font name="Segoe UI Bold" size="20.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="44.0" layoutY="324.0" prefHeight="24.0" prefWidth="228.0" text="Ricoverati con morbillo">
+                           <font>
+                              <Font name="Segoe UI Bold" size="20.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="280.0" layoutY="324.0" prefHeight="24.0" prefWidth="228.0" text="In cura con morbillo">
+                           <font>
+                              <Font name="Segoe UI Bold" size="20.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="40.0" layoutY="364.0" prefHeight="24.0" prefWidth="228.0" text="Ricoverati con tubercolosi">
+                           <font>
+                              <Font name="Segoe UI Bold" size="20.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="266.0" layoutY="364.0" prefHeight="24.0" prefWidth="228.0" text="In cura con tubercolosi">
+                           <font>
+                              <Font name="Segoe UI Bold" size="20.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="40.0" layoutY="426.0" prefHeight="24.0" prefWidth="228.0" text="Ricoverati con gastroenterite">
+                           <font>
+                              <Font name="Segoe UI Bold" size="20.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="280.0" layoutY="426.0" prefHeight="24.0" prefWidth="228.0" text="In cura con gastroenterite">
+                           <font>
+                              <Font name="Segoe UI Bold" size="20.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="508.0" layoutY="76.0" text="Complicanze respiratorie">
+                           <font>
+                              <Font name="Segoe UI Bold" size="20.0" />
+                           </font>
+                        </Label>
+                        <ComboBox layoutX="607.0" layoutY="414.0" prefWidth="150.0" />
+                            </children>
+                        </Pane>
+                    </content>
+                </Tab>
+                <Tab text="Modifica">
+                    <content>
+
+                        <Pane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                            <children>
+                                <TextField layoutX="61.0" layoutY="47.0">
+                                    <font>
+                                        <Font name="Segoe UI Bold" size="15.0" />
+                                    </font>
+                                </TextField>
+                                <TextField layoutX="61.0" layoutY="110.0">
+                                    <font>
+                                        <Font name="Segoe UI Bold" size="15.0" />
+                                    </font>
+                                </TextField>
+                                <TextField layoutX="58.0" layoutY="177.0">
+                                    <font>
+                                        <Font name="Segoe UI Bold" size="15.0" />
+                                    </font>
+                                </TextField>
+                                <TextField layoutX="58.0" layoutY="242.0">
+                                    <font>
+                                        <Font name="Segoe UI Bold" size="15.0" />
+                                    </font>
+                                </TextField>
+                                <TextField layoutX="58.0" layoutY="287.0">
+                                    <font>
+                                        <Font name="Segoe UI Bold" size="15.0" />
+                                    </font>
+                                </TextField>
+                                <Label layoutX="63.0" layoutY="18.0" text="Anno">
+                                    <font>
+                                        <Font name="Segoe UI Bold" size="20.0" />
+                                    </font>
+                                </Label>
+                                <Label layoutX="289.0" layoutY="14.0" text="Settimana">
+                                    <font>
+                                        <Font name="Segoe UI Bold" size="20.0" />
+                                    </font>
+                                </Label>
+                                <Label layoutX="47.0" layoutY="86.0" text="Ricoverati con influenza">
+                                    <font>
+                                        <Font name="Segoe UI Bold" size="20.0" />
+                                    </font>
+                                </Label>
+                                <Label layoutX="286.0" layoutY="86.0" text="In cura con influenza">
+                                    <font>
+                                        <Font name="Segoe UI Bold" size="20.0" />
+                                    </font>
+                                </Label>
+                                <Label layoutX="662.0" layoutY="379.0" text="Comune">
+                                    <font>
+                                        <Font name="Segoe UI Bold" size="20.0" />
+                                    </font>
+                                </Label>
+                                <Button layoutX="667.0" layoutY="458.0" mnemonicParsing="false" text="Modifica">
+                                    <font>
+                                        <Font name="Segoe UI Bold" size="20.0" />
+                                    </font>
+                                </Button>
+                                <TextField layoutX="55.0" layoutY="391.0">
+                                    <font>
+                                        <Font name="Segoe UI Bold" size="15.0" />
+                                    </font>
+                                </TextField>
+                                <TextField layoutX="58.0" layoutY="336.0">
+                                    <font>
+                                        <Font name="Segoe UI Bold" size="15.0" />
+                                    </font>
+                                </TextField>
+                                <TextField layoutX="44.0" layoutY="463.0">
+                                    <font>
+                                        <Font name="Segoe UI Bold" size="15.0" />
+                                    </font>
+                                </TextField>
+                                <TextField layoutX="289.0" layoutY="391.0">
+                                    <font>
+                                        <Font name="Segoe UI Bold" size="15.0" />
+                                    </font>
+                                </TextField>
+                                <TextField layoutX="289.0" layoutY="47.0">
+                                    <font>
+                                        <Font name="Segoe UI Bold" size="15.0" />
+                                    </font>
+                                </TextField>
+                                <TextField layoutX="289.0" layoutY="110.0">
+                                    <font>
+                                        <Font name="Segoe UI Bold" size="15.0" />
+                                    </font>
+                                </TextField>
+                                <TextField layoutX="508.0" layoutY="110.0">
+                                    <font>
+                                        <Font name="Segoe UI Bold" size="15.0" />
+                                    </font>
+                                </TextField>
+                                <TextField layoutX="281.0" layoutY="177.0">
+                                    <font>
+                                        <Font name="Segoe UI Bold" size="15.0" />
+                                    </font>
+                                </TextField>
+                                <TextField layoutX="301.0" layoutY="242.0">
+                                    <font>
+                                        <Font name="Segoe UI Bold" size="15.0" />
+                                    </font>
+                                </TextField>
+                                <TextField layoutX="281.0" layoutY="287.0">
+                                    <font>
+                                        <Font name="Segoe UI Bold" size="15.0" />
+                                    </font>
+                                </TextField>
+                                <TextField layoutX="270.0" layoutY="336.0">
+                                    <font>
+                                        <Font name="Segoe UI Bold" size="15.0" />
+                                    </font>
+                                </TextField>
+                                <TextField layoutX="295.0" layoutY="458.0">
+                                    <font>
+                                        <Font name="Segoe UI Bold" size="15.0" />
+                                    </font>
+                                </TextField>
+                                <Label layoutX="40.0" layoutY="153.0" text="Ricoverati con polmonite">
+                                    <font>
+                                        <Font name="Segoe UI Bold" size="20.0" />
+                                    </font>
+                                </Label>
+                                <Label layoutX="291.0" layoutY="153.0" text="In cura con polmonite">
+                                    <font>
+                                        <Font name="Segoe UI Bold" size="20.0" />
+                                    </font>
+                                </Label>
+                                <Label layoutX="43.0" layoutY="210.0" prefHeight="24.0" prefWidth="228.0" text="Ricoverati con meningite">
+                                    <font>
+                                        <Font name="Segoe UI Bold" size="20.0" />
+                                    </font>
+                                </Label>
+                                <Label layoutX="291.0" layoutY="210.0" text="In cura con meningite">
+                                    <font>
+                                        <Font name="Segoe UI Bold" size="20.0" />
+                                    </font>
+                                </Label>
+                                <Label layoutX="46.0" layoutY="259.0" prefHeight="24.0" prefWidth="228.0" text="Ricoverati con epatite">
+                                    <font>
+                                        <Font name="Segoe UI Bold" size="20.0" />
+                                    </font>
+                                </Label>
+                                <Label layoutX="280.0" layoutY="263.0" prefHeight="24.0" prefWidth="228.0" text="In cura con epatite">
+                                    <font>
+                                        <Font name="Segoe UI Bold" size="20.0" />
+                                    </font>
+                                </Label>
+                                <Label layoutX="44.0" layoutY="324.0" prefHeight="24.0" prefWidth="228.0" text="Ricoverati con morbillo">
+                                    <font>
+                                        <Font name="Segoe UI Bold" size="20.0" />
+                                    </font>
+                                </Label>
+                                <Label layoutX="280.0" layoutY="324.0" prefHeight="24.0" prefWidth="228.0" text="In cura con morbillo">
+                                    <font>
+                                        <Font name="Segoe UI Bold" size="20.0" />
+                                    </font>
+                                </Label>
+                                <Label layoutX="40.0" layoutY="364.0" prefHeight="24.0" prefWidth="228.0" text="Ricoverati con tubercolosi">
+                                    <font>
+                                        <Font name="Segoe UI Bold" size="20.0" />
+                                    </font>
+                                </Label>
+                                <Label layoutX="266.0" layoutY="364.0" prefHeight="24.0" prefWidth="228.0" text="In cura con tubercolosi">
+                                    <font>
+                                        <Font name="Segoe UI Bold" size="20.0" />
+                                    </font>
+                                </Label>
+                                <Label layoutX="40.0" layoutY="426.0" prefHeight="24.0" prefWidth="228.0" text="Ricoverati con gastroenterite">
+                                    <font>
+                                        <Font name="Segoe UI Bold" size="20.0" />
+                                    </font>
+                                </Label>
+                                <Label layoutX="280.0" layoutY="426.0" prefHeight="24.0" prefWidth="228.0" text="In cura con gastroenterite">
+                                    <font>
+                                        <Font name="Segoe UI Bold" size="20.0" />
+                                    </font>
+                                </Label>
+                                <Label layoutX="508.0" layoutY="76.0" text="Complicanze respiratorie">
+                                    <font>
+                                        <Font name="Segoe UI Bold" size="20.0" />
+                                    </font>
+                                </Label>
+                                <ComboBox layoutX="607.0" layoutY="414.0" prefWidth="150.0" />
+                            </children>
+                        </Pane>
+                    </content>
+                </Tab>
+            </tabs>
+        </TabPane>
+        <Button layoutX="12.0" layoutY="-29.0" mnemonicParsing="false" onAction="#onHomepageButtonClicked" text="Homepage" />
+    </children>
+</Pane>

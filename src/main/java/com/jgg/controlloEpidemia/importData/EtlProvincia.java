@@ -21,7 +21,7 @@ public class EtlProvincia {
 
     private static void caricaProvincia(String[] vett) {
         if (App.utenteCorrente.getRuolo().equals(ruoloService.findById(1))) {
-            Provincia p = new Provincia(Integer.parseInt(vett[0]),vett[1],Integer.parseInt(vett[2]), comuneService.findByCodiceIstat(Integer.parseInt(vett[3])),regioneService.findById(Integer.parseInt(vett[4])));
+            Provincia p = new Provincia(Integer.parseInt(vett[0]), vett[1], Integer.parseInt(vett[2]), comuneService.findByCodiceIstat(Integer.parseInt(vett[3])), regioneService.findById(Integer.parseInt(vett[4])));
             provinciaService.save(p);
         } else {
             System.out.println("No");

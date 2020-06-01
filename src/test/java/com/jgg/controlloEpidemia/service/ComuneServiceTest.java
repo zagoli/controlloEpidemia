@@ -19,8 +19,8 @@ class ComuneServiceTest {
         ComuneService comuneService = new ComuneService();
         //Creo i model
         TipoTerritorio tipoTerritorio = new TipoTerritorio(1, "pianeggiante");
-        Comune comune = new Comune(023015, "Castelnuovo", new Date(), 139, true, tipoTerritorio);
-        Comune comune2 = new Comune(023022, "Bussolengo", new Date(), 140, true, tipoTerritorio);
+        Comune comune = new Comune(023015,"Castelnuovo", 139, new Date(), true, tipoTerritorio,  );
+        Comune comune2 = new Comune(023022,"Bussolengo",140 , new Date(), true, tipoTerritorio, );
         //Salvo i model
         tipoTerritorioService.save(tipoTerritorio);
         comuneService.save(comune);

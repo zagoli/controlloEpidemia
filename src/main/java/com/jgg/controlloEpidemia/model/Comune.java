@@ -2,7 +2,6 @@ package com.jgg.controlloEpidemia.model;
 
 import lombok.*;
 import org.hibernate.annotations.SelectBeforeUpdate;
-import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
 import javax.validation.constraints.Min;
@@ -51,7 +50,7 @@ public class Comune {
     @Setter
     @NotNull
     @NonNull
-    @org.hibernate.annotations.Type(type="true_false")
+    @org.hibernate.annotations.Type(type = "true_false")
     private Boolean siAffacciaSulMare;
     @Getter
     @Setter
