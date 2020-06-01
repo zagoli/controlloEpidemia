@@ -21,8 +21,8 @@ public class EtlDecessi {
         decessiAnnualiService.save(da);
     }
 
-    public void load(String path) throws IOException {
-        File fileDecessi = new File(path);
+    public void load() throws IOException {
+        File fileDecessi = new File(getClass().getResource("/csvToLoad/decessi.csv").getFile());
         BufferedReader reader = new BufferedReader(new FileReader(fileDecessi));
         String riga = reader.readLine();
         String[] vettore;

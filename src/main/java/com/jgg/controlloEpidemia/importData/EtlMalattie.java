@@ -19,8 +19,8 @@ public class EtlMalattie {
         malattieSettimanaliService.save(malattieSettimanali);
     }
 
-    public void load(String path) throws IOException {
-        File fileMalattie = new File(path);
+    public void load() throws IOException {
+        File fileMalattie = new File(getClass().getResource("/csvToLoad/malattiesettimanali.csv.csv").getFile());
         BufferedReader reader = new BufferedReader(new FileReader(fileMalattie));
         String riga = reader.readLine();
         String[] vettore;

@@ -1,9 +1,6 @@
 package com.jgg.controlloEpidemia;
 
-import com.jgg.controlloEpidemia.importData.LoadPermesso;
-import com.jgg.controlloEpidemia.importData.LoadRuolo;
-import com.jgg.controlloEpidemia.importData.LoadTipoTerritorio;
-import com.jgg.controlloEpidemia.importData.LoadUtenti;
+import com.jgg.controlloEpidemia.importData.*;
 import com.jgg.controlloEpidemia.model.Utente;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -40,6 +37,10 @@ public class App extends Application {
         primaryStage.setScene(scene);
         primaryStage.setTitle("Controllo Epidemia");
         primaryStage.show();
+
+        //EtlRegione etlRegione=new EtlRegione();
+        //etlRegione.load();
+
 
     }
 

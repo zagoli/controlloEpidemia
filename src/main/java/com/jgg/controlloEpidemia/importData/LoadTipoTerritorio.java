@@ -14,8 +14,8 @@ public class LoadTipoTerritorio {
         TipoTerritorio collinare = new TipoTerritorio("collinare");
         TipoTerritorio pianeggiante = new TipoTerritorio("pianeggiante");
 
-        tipoTerritorioService.saveIfNotPresent(montano);
-        tipoTerritorioService.saveIfNotPresent(collinare);
-        tipoTerritorioService.saveIfNotPresent(pianeggiante);
+        tipoTerritorioService.saveOrUpdate(montano);
+        tipoTerritorioService.saveOrUpdate(collinare);
+        tipoTerritorioService.saveOrUpdate(pianeggiante);
     }
 }

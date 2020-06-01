@@ -34,11 +34,15 @@ public class PermessoDao implements PermessoDaoInterface {
     }
 
     @Override
-    public void saveIfNotPresent(Permesso permesso) {
+    public void saveOrUpdate(Permesso permesso) {
         session.openCurrentSession();
         Permesso ePermesso = findByNome(permesso.getNome());
         if (ePermesso == null) {
             save(permesso);
+        }else{
+            ePermesso.setNome(permesso.getNome());
+            ePermesso.setDescrizione(permesso.getDescrizione());
+            update(ePermesso);
         }
         session.closeCurrentSession();
     }

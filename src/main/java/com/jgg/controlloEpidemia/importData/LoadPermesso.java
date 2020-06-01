@@ -11,7 +11,7 @@ public class LoadPermesso {
 
     public void load() {
         Permesso p = new Permesso("vediDecessi", "Visualizzazione dei dati annuali sui decessi");
-        permessoService.saveIfNotPresent(p);
+        permessoService.saveOrUpdate(p);
     }
 
 
