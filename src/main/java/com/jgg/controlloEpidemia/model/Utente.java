@@ -21,7 +21,7 @@ public class Utente {
     @NotNull
     @EqualsAndHashCode.Exclude
     @ToString.Exclude
-    @OneToMany(cascade = CascadeType.REMOVE)
+    @ManyToMany(cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
     private final List<Permesso> permesso = new ArrayList<>();
     @Getter
     @NotNull

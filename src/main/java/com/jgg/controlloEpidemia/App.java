@@ -20,6 +20,7 @@ public class App extends Application {
 
     @Override
     public void start(Stage primaryStage) throws IOException {
+
         // Inizializzazione dati per prototipo -------------------------
         LoadRuolo loadRuolo = new LoadRuolo();
         loadRuolo.load();
@@ -36,7 +37,6 @@ public class App extends Application {
         primaryStage.setScene(scene);
         primaryStage.setTitle("Controllo Epidemia");
         primaryStage.show();
-
 
     }
 
