@@ -29,7 +29,7 @@ public class DecessiAnnuali {
     @Setter
     @NotNull
     @NonNull
-    @Min(1900)
+    @Min(1990)
     private Integer anno;
 
     @Getter

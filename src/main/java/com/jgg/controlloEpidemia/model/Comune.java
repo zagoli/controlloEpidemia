@@ -29,7 +29,6 @@ public class Comune {
     @Id
     @Getter
     @NotNull
-    @NonNull
     private Integer codiceIstat;
     @Getter
     @Setter
@@ -52,6 +51,7 @@ public class Comune {
     @Setter
     @NotNull
     @NonNull
+    @org.hibernate.annotations.Type(type="true_false")
     private Boolean siAffacciaSulMare;
     @Getter
     @Setter
