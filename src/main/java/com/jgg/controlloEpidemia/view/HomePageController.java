@@ -43,7 +43,7 @@ public class HomePageController implements Initializable {
             mainPanel.getChildren().add(decessiButton);
         }
         if (ruolo.equals("Personale a contratto") || ruolo.equals("Amministratore")) {
-            Button malattieButton = new Button("GESTISCI DATI EPIDEMIOLOGICI");
+            Button malattieButton = new Button("GESTISCI MALATTIE SETTIMANALI");
             malattieButton.setUserData(3);
             prepareButton(malattieButton);
             mainPanel.getChildren().add(malattieButton);
@@ -54,7 +54,7 @@ public class HomePageController implements Initializable {
             prepareButton(vediMalattieButton);
             mainPanel.getChildren().add(vediMalattieButton);
         }
-        if (App.utenteCorrente.getPermesso().stream().anyMatch(o -> o.getNome().equals("vediDecessi"))){
+        if (App.utenteCorrente.getPermesso().stream().anyMatch(o -> o.getNome().equals("vediDecessi"))) {
             Button vediDecessiButton = new Button("VISUALIZZA DATI DECESSI");
             vediDecessiButton.setUserData(5);
             prepareButton(vediDecessiButton);
@@ -72,28 +72,40 @@ public class HomePageController implements Initializable {
         ((Button) e.getSource()).getScene().setRoot(root);
     }
 
-    private void prepareButton(Button button){
+    private void prepareButton(Button button) {
         button.setFont(new Font("Segoe UI", 22));
+        final Parent[] root = {null, null, null, null, null};
         button.setOnAction(actionEvent -> {
-            switch ((Integer)((Button)actionEvent.getSource()).getUserData()){
+            switch ((Integer) ((Button) actionEvent.getSource()).getUserData()) {
                 case 0:
                     // vai a pagina gestione dati territorio
-                    Parent root = null;
                     try {
-                        root = FXMLLoader.load(getClass().getResource("/fxml/datiTerritoriali.fxml"));
+                        root[0] = FXMLLoader.load(getClass().getResource("/fxml/datiTerritoriali.fxml"));
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
-                    button.getScene().setRoot(root);
+                    button.getScene().setRoot(root[0]);
                     break;
                 case 1:
                     // vai a pagina autorizzazione comuni per il personale contratto
                     break;
                 case 2:
                     // vai a pagina gestione decessi annuali
+                    try {
+                        root[2] = FXMLLoader.load(getClass().getResource("/fxml/decessiAnnuali.fxml"));
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    button.getScene().setRoot(root[2]);
                     break;
                 case 3:
-                    // vai a pagina inserimento e gestione dati epidemiologici
+                    // vai a pagina inserimento e gestione malattie settimanali
+                    try {
+                        root[3] = FXMLLoader.load(getClass().getResource("/fxml/malattieSettimanali.fxml"));
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    button.getScene().setRoot(root[3]);
                     break;
                 case 4:
                     // vai a pagina analisi dei dati ricercatore analista
