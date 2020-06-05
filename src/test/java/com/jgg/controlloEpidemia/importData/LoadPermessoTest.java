@@ -13,9 +13,7 @@ public class LoadPermessoTest {
     void testLoadPermesso() {
         new LoadPermesso().load();
 
-        PermessoService permessoService = new PermessoService();
-
-        List<Permesso> permessoList = permessoService.findAll();
+        List<Permesso> permessoList = new PermessoService().findAll();
         assertEquals(permessoList.size(), 1);
     }
 }

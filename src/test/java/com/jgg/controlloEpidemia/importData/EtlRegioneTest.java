@@ -15,14 +15,10 @@ public class EtlRegioneTest {
 
     @Test
     void testEtlRegioni() throws IOException {
-        UtenteService utenteService = new UtenteService();
-        EtlRegione etlRegione = new EtlRegione();
-        RegioneService regioneService = new RegioneService();
+        App.utenteCorrente = new UtenteService().findById(1);
+        new EtlRegione().load("src\\main\\resources\\csvToLoad\\regione.csv");
 
-        App.utenteCorrente = utenteService.findById(1);
-        etlRegione.load("src\\main\\resources\\csvToLoad\\regione.csv");
-
-        List<Regione> regioneList = regioneService.findAll();
+        List<Regione> regioneList = new RegioneService().findAll();
         assertEquals(regioneList.size(), 20);
     }
 

@@ -15,14 +15,10 @@ public class EtlComuneTest {
 
     @Test
     void testEtlComune() throws IOException {
-        UtenteService utenteService = new UtenteService();
-        EtlComune etlComune = new EtlComune();
-        ComuneService comuneService = new ComuneService();
+        App.utenteCorrente = new UtenteService().findById(1);
+        new EtlComune().load("src\\main\\resources\\csvToLoad\\comune.csv");
 
-        App.utenteCorrente = utenteService.findById(1);
-        etlComune.load("src\\main\\resources\\csvToLoad\\comune.csv");
-
-        List<Comune> comuneList = comuneService.findAll();
+        List<Comune> comuneList = new ComuneService().findAll();
         assertEquals(comuneList.size(), 8092);
     }
 

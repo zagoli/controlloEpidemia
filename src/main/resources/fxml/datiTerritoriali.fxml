@@ -25,27 +25,27 @@
             <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE">
                 <Tab text="Province">
                     <Pane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                        <TextField layoutX="40.0" layoutY="60.0">
+                        <TextField layoutX="40.0" layoutY="60.0" prefHeight="29.0" prefWidth="20.0">
                             <font>
                                 <Font name="Segoe UI" size="15.0" />
                             </font>
                         </TextField>
-                        <TextField layoutX="40.0" layoutY="120.0">
+                        <TextField layoutX="40.0" layoutY="120.0" prefHeight="29.0" prefWidth="64.0">
                             <font>
                                 <Font name="Segoe UI" size="15.0" />
                             </font>
                         </TextField>
-                        <TextField layoutX="40.0" layoutY="180.0">
+                        <TextField layoutX="40.0" layoutY="180.0" prefHeight="29.0" prefWidth="98.0">
                             <font>
                                 <Font name="Segoe UI" size="15.0" />
                             </font>
                         </TextField>
-                        <TextField layoutX="40.0" layoutY="240.0">
+                        <TextField layoutX="40.0" layoutY="240.0" prefHeight="29.0" prefWidth="208.0">
                             <font>
                                 <Font name="Segoe UI" size="15.0" />
                             </font>
                         </TextField>
-                        <TextField layoutX="40.0" layoutY="300.0">
+                        <TextField layoutX="40.0" layoutY="300.0" prefHeight="29.0" prefWidth="194.0">
                             <font>
                                 <Font name="Segoe UI" size="15.0" />
                             </font>
@@ -99,22 +99,22 @@
                                 <Font name="Segoe UI Bold" size="20.0" />
                             </font>
                         </Label>
-                        <Label layoutX="40.0" layoutY="158.0" text="Superficie">
+                        <Label layoutX="40.0" layoutY="156.0" text="Superficie">
                             <font>
                                 <Font name="Segoe UI Bold" size="20.0" />
                             </font>
                         </Label>
-                        <Label layoutX="40.0" layoutY="218.0" text="Data di istituzione">
+                        <Label layoutX="40.0" layoutY="216.0" text="Data di istituzione">
                             <font>
                                 <Font name="Segoe UI Bold" size="20.0" />
                             </font>
                         </Label>
-                        <Label layoutX="40.0" layoutY="278.0" text="Si affaccia sul mare">
+                        <Label layoutX="40.0" layoutY="276.0" text="Si affaccia sul mare">
                             <font>
                                 <Font name="Segoe UI Bold" size="20.0" />
                             </font>
                         </Label>
-                        <Label layoutX="40.0" layoutY="338.0" text="Tipo Territorio">
+                        <Label layoutX="40.0" layoutY="336.0" text="Tipo Territorio">
                             <font>
                                 <Font name="Segoe UI Bold" size="20.0" />
                             </font>
@@ -142,12 +142,12 @@
                         <ComboBox layoutX="40.0" layoutY="300.0" prefWidth="150.0" />
                         <ComboBox layoutX="40.0" layoutY="360.0" prefWidth="150.0" />
                         <ComboBox layoutX="40.0" layoutY="420.0" prefWidth="150.0" />
-                        <Button layoutX="300.0" layoutY="150.0" mnemonicParsing="false" text="Inserisci">
+                        <Button layoutX="300.0" layoutY="150.0" mnemonicParsing="false" prefHeight="40.0" text="Inserisci">
                             <font>
                                 <Font name="Segoe UI Bold" size="20.0" />
                             </font>
                         </Button>
-                        <Button layoutX="300.0" layoutY="200.0" mnemonicParsing="false" text="Inserisci csv">
+                        <Button layoutX="300.0" layoutY="200.0" mnemonicParsing="false" prefHeight="40.0" text="Inserisci csv">
                             <font>
                                 <Font name="Segoe UI Bold" size="20.0" />
                             </font>

@@ -14,14 +14,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class EtlMalattieTest {
     @Test
     void testEtlMalattie() throws IOException {
-        UtenteService utenteService = new UtenteService();
-        EtlMalattie etlMalattie = new EtlMalattie();
-        MalattieSettimanaliService malattieSettimanaliService = new MalattieSettimanaliService();
+        App.utenteCorrente = new UtenteService().findById(1);
+        new EtlMalattie().load("src\\main\\resources\\csvToLoad\\malattiesettimanali.csv");
 
-        App.utenteCorrente = utenteService.findById(1);
-        etlMalattie.load("src\\main\\resources\\csvToLoad\\malattiesettimanali.csv");
-
-        List<MalattieSettimanali> malattieSettimanaliList = malattieSettimanaliService.findAll();
+        List<MalattieSettimanali> malattieSettimanaliList = new MalattieSettimanaliService().findAll();
         assertEquals(malattieSettimanaliList.size(), 11);
     }
 }

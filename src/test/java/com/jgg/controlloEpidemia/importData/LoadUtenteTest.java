@@ -13,9 +13,7 @@ public class LoadUtenteTest {
     void testLoadUtente() {
         new LoadUtente().load();
 
-        UtenteService utenteService = new UtenteService();
-
-        List<Utente> utenteList = utenteService.findAll();
+        List<Utente> utenteList = new UtenteService().findAll();
         assertEquals(utenteList.size(), 4);
     }
 }
