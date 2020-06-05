@@ -166,7 +166,6 @@ public class DecessiAnnualiController implements Initializable {
         decessiAnnualiTabPane.getSelectionModel().select(2);
         String decessi= idDecessiAnnualiListView.getSelectionModel().getSelectedItem();
         //String decessiEntry[]=decessi.split(",");
-        //TODO
         //Stampare bene con toString i decessi annuali
     }
 
