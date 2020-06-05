@@ -31,6 +31,10 @@ public class ComuneService {
         return comuneDao.findByCodiceIstat(codiceIstat);
     }
 
+    public Comune findByNome(String nome) {
+        return comuneDao.findByNome(nome);
+    }
+
     public List<Comune> findAll() {
         return comuneDao.findAll();
     }

@@ -9,7 +9,10 @@ import java.util.List;
 
 @NoArgsConstructor
 public class PermessoDao implements PermessoDaoInterface {
+
     private static Session session = new Session();
+
+    final private String FROM_PERMESSO_WHERE_NOME = "FROM Permesso where nome = :nome";
 
     @Override
     public void save(Permesso permesso) {
@@ -39,7 +42,7 @@ public class PermessoDao implements PermessoDaoInterface {
         Permesso ePermesso = findByNome(permesso.getNome());
         if (ePermesso == null) {
             save(permesso);
-        }else{
+        } else {
             ePermesso.setNome(permesso.getNome());
             ePermesso.setDescrizione(permesso.getDescrizione());
             update(ePermesso);
@@ -58,8 +61,7 @@ public class PermessoDao implements PermessoDaoInterface {
     @Override
     public Permesso findByNome(String nome) {
         session.openCurrentSession();
-        String hql = "FROM Permesso where nome = :nome";
-        Query query = session.createQuery(hql);
+        Query query = session.createQuery(FROM_PERMESSO_WHERE_NOME);
         query.setParameter("nome", nome);
         Permesso permesso = null;
         try {

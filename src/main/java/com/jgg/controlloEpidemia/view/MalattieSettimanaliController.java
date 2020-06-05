@@ -78,6 +78,60 @@ public class MalattieSettimanaliController implements Initializable {
     @FXML
     private ComboBox<String> comuneInserimentoComboBox;
 
+    @FXML
+    private TextField annoModificaTextField;
+
+    @FXML
+    private TextField settimanaModificaTextField;
+
+    @FXML
+    private TextField ricoveratiConInfluenzaModificaTextField;
+
+    @FXML
+    private TextField inCuraConInfluenzaModificaTextField;
+
+    @FXML
+    private TextField complicanzeRespiratorieModificaTextField;
+
+    @FXML
+    private TextField inCuraConPolmoniteModificaTextField;
+
+    @FXML
+    private TextField ricoveratiConMeningiteModificaTextField;
+
+    @FXML
+    private TextField ricoveratiConPolmoniteModificaTextField;
+
+    @FXML
+    private TextField ricoveratiConEpatiteModificaTextField;
+
+    @FXML
+    private TextField ricoveratiConTubercolosiModificaTextField;
+
+    @FXML
+    private TextField ricoveratiConMorbilloModificaTextField;
+
+    @FXML
+    private TextField ricoveratiConGastroenteriteModificaTextField;
+
+    @FXML
+    private TextField InCuraConTubercolosiModificaTextField;
+
+    @FXML
+    private TextField inCuraConMeningiteModificaTextField;
+
+    @FXML
+    private TextField inCuraConEpatiteModificaTextField;
+
+    @FXML
+    private TextField inCuraConMorbilloModificaTextField;
+
+    @FXML
+    private TextField inCuraConGastroenteriteModificaTextField;
+
+    @FXML
+    private ComboBox<String> comuneModificaComboBox;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         TipoTerritorioService tipoTerritorioService = new TipoTerritorioService();
@@ -96,7 +150,7 @@ public class MalattieSettimanaliController implements Initializable {
 
     @FXML
     void inserisciInserimentoOnClicked(ActionEvent event) {
-        /*ComuneService comuneService = new ComuneService();
+        ComuneService comuneService = new ComuneService();
         MalattieSettimanali malattieSettimanali = new MalattieSettimanali(
                 Integer.parseInt(annoInserimentoTextField.getText()),
                 Integer.parseInt(settimanaInserimentoTextField.getText()),
@@ -138,7 +192,7 @@ public class MalattieSettimanaliController implements Initializable {
             inCuraConEpatiteInserimentoTextField.clear();
             inCuraConMorbilloInserimentoTextField.clear();
             inCuraConGastroenteriteInserimentoTextField.clear();
-        }*/
+        }
     }
 
     @FXML
@@ -159,49 +213,49 @@ public class MalattieSettimanaliController implements Initializable {
 
     @FXML
     void inserisciModificaOnClicked(ActionEvent event) {
-        /*ComuneService comuneService = new ComuneService();
+        ComuneService comuneService = new ComuneService();
         MalattieSettimanali malattieSettimanali = new MalattieSettimanali(
-                Integer.parseInt(annoInserimentoTextField.getText()),
-                Integer.parseInt(settimanaInserimentoTextField.getText()),
-                Integer.parseInt(ricoveratiConInfluenzaInserimentoTextField.getText()),
-                Integer.parseInt(inCuraConInfluenzaInserimentoTextField.getText()),
-                Integer.parseInt(complicanzeRespiratorieInserimentoTextField.getText()),
-                Integer.parseInt(inCuraConPolmoniteInserimentoTextField.getText()),
-                Integer.parseInt(ricoveratiConMeningiteInserimentoTextField.getText()),
-                Integer.parseInt(ricoveratiConPolmoniteInserimentoTextField.getText()),
-                Integer.parseInt(ricoveratiConEpatiteInserimentoTextField.getText()),
-                Integer.parseInt(ricoveratiConTubercolosiInserimentoTextField.getText()),
-                Integer.parseInt(ricoveratiConMorbilloInserimentoTextField.getText()),
-                Integer.parseInt(ricoveratiConGastroenteriteInserimentoTextField.getText()),
-                Integer.parseInt(InCuraConTubercolosiInserimentoTextField.getText()),
-                Integer.parseInt(inCuraConMeningiteInserimentoTextField.getText()),
-                Integer.parseInt(inCuraConEpatiteInserimentoTextField.getText()),
-                Integer.parseInt(inCuraConMorbilloInserimentoTextField.getText()),
-                Integer.parseInt(inCuraConGastroenteriteInserimentoTextField.getText()),
+                Integer.parseInt(annoModificaTextField.getText()),
+                Integer.parseInt(settimanaModificaTextField.getText()),
+                Integer.parseInt(ricoveratiConInfluenzaModificaTextField.getText()),
+                Integer.parseInt(inCuraConInfluenzaModificaTextField.getText()),
+                Integer.parseInt(complicanzeRespiratorieModificaTextField.getText()),
+                Integer.parseInt(inCuraConPolmoniteModificaTextField.getText()),
+                Integer.parseInt(ricoveratiConMeningiteModificaTextField.getText()),
+                Integer.parseInt(ricoveratiConPolmoniteModificaTextField.getText()),
+                Integer.parseInt(ricoveratiConEpatiteModificaTextField.getText()),
+                Integer.parseInt(ricoveratiConTubercolosiModificaTextField.getText()),
+                Integer.parseInt(ricoveratiConMorbilloModificaTextField.getText()),
+                Integer.parseInt(ricoveratiConGastroenteriteModificaTextField.getText()),
+                Integer.parseInt(InCuraConTubercolosiModificaTextField.getText()),
+                Integer.parseInt(inCuraConMeningiteModificaTextField.getText()),
+                Integer.parseInt(inCuraConEpatiteModificaTextField.getText()),
+                Integer.parseInt(inCuraConMorbilloModificaTextField.getText()),
+                Integer.parseInt(inCuraConGastroenteriteModificaTextField.getText()),
                 comuneService.findByNome(comuneModificaComboBox.getValue())
         );
         MalattieSettimanaliService malattieSettimanaliService = new MalattieSettimanaliService();
         malattieSettimanaliService.update(malattieSettimanali);
         if (malattieSettimanaliService.findById(malattieSettimanali.getId()) != null) {
             System.out.println("ok");
-            annoInserimentoTextField.clear();
-            settimanaInserimentoTextField.clear();
-            ricoveratiConInfluenzaInserimentoTextField.clear();
-            inCuraConInfluenzaInserimentoTextField.clear();
-            complicanzeRespiratorieInserimentoTextField.clear();
-            inCuraConPolmoniteInserimentoTextField.clear();
-            ricoveratiConMeningiteInserimentoTextField.clear();
-            ricoveratiConPolmoniteInserimentoTextField.clear();
-            ricoveratiConEpatiteInserimentoTextField.clear();
-            ricoveratiConTubercolosiInserimentoTextField.clear();
-            ricoveratiConMorbilloInserimentoTextField.clear();
-            ricoveratiConGastroenteriteInserimentoTextField.clear();
-            InCuraConTubercolosiInserimentoTextField.clear();
-            inCuraConMeningiteInserimentoTextField.clear();
-            inCuraConEpatiteInserimentoTextField.clear();
-            inCuraConMorbilloInserimentoTextField.clear();
-            inCuraConGastroenteriteInserimentoTextField.clear();
-        }*/
+            annoModificaTextField.clear();
+            settimanaModificaTextField.clear();
+            ricoveratiConInfluenzaModificaTextField.clear();
+            inCuraConInfluenzaModificaTextField.clear();
+            complicanzeRespiratorieModificaTextField.clear();
+            inCuraConPolmoniteModificaTextField.clear();
+            ricoveratiConMeningiteModificaTextField.clear();
+            ricoveratiConPolmoniteModificaTextField.clear();
+            ricoveratiConEpatiteModificaTextField.clear();
+            ricoveratiConTubercolosiModificaTextField.clear();
+            ricoveratiConMorbilloModificaTextField.clear();
+            ricoveratiConGastroenteriteModificaTextField.clear();
+            InCuraConTubercolosiModificaTextField.clear();
+            inCuraConMeningiteModificaTextField.clear();
+            inCuraConEpatiteModificaTextField.clear();
+            inCuraConMorbilloModificaTextField.clear();
+            inCuraConGastroenteriteModificaTextField.clear();
+        }
     }
 
 }

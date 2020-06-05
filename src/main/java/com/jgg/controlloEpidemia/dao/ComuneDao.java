@@ -11,6 +11,8 @@ public class ComuneDao implements ComuneDaoInterface {
 
     private static final Session session = new Session();
 
+    final private String FROM_COMUNE_WHERE_NOME = "FROM Comune where nome = :nome";
+
     @Override
     public void save(Comune c) {
         session.openCurrentSessionWithTransaction();
@@ -51,8 +53,7 @@ public class ComuneDao implements ComuneDaoInterface {
     @Override
     public Comune findByNome(String nome) {
         session.openCurrentSession();
-        String hql = "FROM Comune where nome = :nome";
-        Query query = session.createQuery(hql);
+        Query query = session.createQuery(FROM_COMUNE_WHERE_NOME);
         query.setParameter("nome", nome);
         Comune comune = (Comune) query.getSingleResult();
         session.closeCurrentSession();

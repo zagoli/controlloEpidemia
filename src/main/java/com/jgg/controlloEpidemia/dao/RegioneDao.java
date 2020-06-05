@@ -8,7 +8,10 @@ import java.util.List;
 
 @NoArgsConstructor
 public class RegioneDao implements RegioneDaoInterface {
+
     private static Session session = new Session();
+
+    final private String FROM_REGIONE_WHERE_NOME = "FROM Regione where nome = :nome";
 
     @Override
     public void save(Regione regione) {
@@ -50,8 +53,7 @@ public class RegioneDao implements RegioneDaoInterface {
     @Override
     public Regione findByNome(String nome) {
         session.openCurrentSession();
-        String hql = "FROM Regione where nome = :nome";
-        Query query = session.createQuery(hql);
+        Query query = session.createQuery(FROM_REGIONE_WHERE_NOME);
         query.setParameter("nome", nome);
         Regione regione = (Regione) query.getSingleResult();
         session.closeCurrentSession();

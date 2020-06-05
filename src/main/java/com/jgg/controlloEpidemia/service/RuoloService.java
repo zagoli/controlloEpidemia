@@ -31,6 +31,9 @@ public class RuoloService {
         return ruoloDao.findById(id);
     }
 
+    public Ruolo findByNome(String nome) {
+        return ruoloDao.findByNome(nome);
+    }
 
     public List<Ruolo> findAll() {
         return ruoloDao.findAll();

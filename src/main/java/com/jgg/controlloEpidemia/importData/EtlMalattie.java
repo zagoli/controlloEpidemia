@@ -19,12 +19,12 @@ public class EtlMalattie {
         malattieSettimanaliService.save(malattieSettimanali);
     }
 
-    public void load() throws IOException {
-        File fileMalattie = new File(getClass().getResource("/csvToLoad/malattiesettimanali.csv.csv").getFile());
+    public void load(String path) throws IOException {
+        File fileMalattie = new File(path);
         BufferedReader reader = new BufferedReader(new FileReader(fileMalattie));
         String riga = reader.readLine();
         String[] vettore;
-        while (riga!=null && !riga.equals("")) {
+        while (riga != null && !riga.equals("")) {
             vettore = riga.split(";");
             if (vettore.length == 18) {
                 caricaMalattia(vettore);

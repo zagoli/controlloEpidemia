@@ -31,6 +31,10 @@ public class PermessoService {
         return permessoDao.findById(id);
     }
 
+    public Permesso findByNome(String nome) {
+        return permessoDao.findByNome(nome);
+    }
+
     public List<Permesso> findAll() {
         return permessoDao.findAll();
     }

@@ -9,8 +9,11 @@ import java.util.List;
 
 @NoArgsConstructor
 public class UtenteDao implements UtenteDaoInterface {
+
     private final Session session = new Session();
+
     final private String FIND_ALL_PERSONALE_CONTRATTO = "FROM Utente where ruolo.id = 2"; // Personale a contratto ha id ruolo = 2
+    final private String FROM_UTENTE_WHERE_USERNAME = "FROM Utente where username = :username";
 
     @Override
     public void save(Utente utente) {
@@ -40,7 +43,7 @@ public class UtenteDao implements UtenteDaoInterface {
         Utente eUtente = findByUsername(utente.getUsername());
         if (eUtente == null) {
             save(utente);
-        }else{
+        } else {
             eUtente.setUsername(utente.getUsername());
             eUtente.setPassword(utente.getPassword());
             eUtente.setNome(utente.getNome());
@@ -62,8 +65,7 @@ public class UtenteDao implements UtenteDaoInterface {
     @Override
     public Utente findByUsername(String username) {
         session.openCurrentSession();
-        String hql = "FROM Utente where username = :username";
-        Query query = session.createQuery(hql);
+        Query query = session.createQuery(FROM_UTENTE_WHERE_USERNAME);
         query.setParameter("username", username);
         Utente utente = null;
         try {

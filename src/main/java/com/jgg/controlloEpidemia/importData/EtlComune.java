@@ -19,7 +19,6 @@ public class EtlComune {
 
     final ComuneService comuneService = new ComuneService();
     final TipoTerritorioService tipoTerritorioService = new TipoTerritorioService();
-    final RuoloService ruoloService = new RuoloService();
     final ProvinciaService provinciaService = new ProvinciaService();
 
     private void caricaComune(String[] vett) {
@@ -35,12 +34,12 @@ public class EtlComune {
             siAffacciaSulMare = true;
         }
 
-        if (App.utenteCorrente.getRuolo().getId()==1) {
+        if (App.utenteCorrente.getRuolo().getId() == 1) {
             Comune c = new Comune(Integer.parseInt(vett[0]), vett[1], Integer.parseInt(vett[2]), data, siAffacciaSulMare, tipoTerritorioService.findById(Integer.parseInt(vett[5])), provinciaService.findById(Integer.parseInt(vett[6])));
             comuneService.save(c);
             System.out.println(vett[1]);
         } else {
-                 System.out.println("No");
+            System.out.println("No");
         }
     }
 
@@ -49,12 +48,12 @@ public class EtlComune {
         BufferedReader reader = new BufferedReader(new FileReader(fileComuni));
         String riga = reader.readLine();
         String[] vettore;
-        while (riga!=null && !riga.equals("")) {
+        while (riga != null && !riga.equals("")) {
             vettore = riga.split(";");
             if (vettore.length == 7) {
                 caricaComune(vettore);
             }
-            riga=reader.readLine();
+            riga = reader.readLine();
         }
         reader.close();
     }

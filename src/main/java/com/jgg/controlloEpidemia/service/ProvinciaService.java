@@ -31,6 +31,9 @@ public class ProvinciaService {
         return provinciaDao.findById(id);
     }
 
+    public Provincia findByNome(String nome) {
+        return provinciaDao.findByNome(nome);
+    }
 
     public List<Provincia> findAll() {
         return provinciaDao.findAll();

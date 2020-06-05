@@ -10,6 +10,8 @@ public class TipoTerritorioDao implements TipoTerritorioDaoInterface {
 
     private static Session session = new Session();
 
+    final private String FROM_TIPOTERRITORIO_WHERE_NOME = "FROM TipoTerritorio where nome = :nome";
+
     @Override
     public void save(TipoTerritorio tipoTerritorio) {
         session.openCurrentSessionWithTransaction();
@@ -38,7 +40,7 @@ public class TipoTerritorioDao implements TipoTerritorioDaoInterface {
         TipoTerritorio eTipoTerritorio = findByNome(tipoTerritorio.getNome());
         if (eTipoTerritorio == null) {
             save(tipoTerritorio);
-        }else{
+        } else {
             eTipoTerritorio.setNome(tipoTerritorio.getNome());
             update(eTipoTerritorio);
         }
@@ -56,8 +58,7 @@ public class TipoTerritorioDao implements TipoTerritorioDaoInterface {
     @Override
     public TipoTerritorio findByNome(String nome) {
         session.openCurrentSession();
-        String hql = "FROM TipoTerritorio where nome = :nome";
-        Query query = session.createQuery(hql);
+        Query query = session.createQuery(FROM_TIPOTERRITORIO_WHERE_NOME);
         query.setParameter("nome", nome);
         TipoTerritorio tipoTerritorio = null;
         try {

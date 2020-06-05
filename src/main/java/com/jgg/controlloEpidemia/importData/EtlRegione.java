@@ -2,7 +2,6 @@ package com.jgg.controlloEpidemia.importData;
 
 import com.jgg.controlloEpidemia.App;
 import com.jgg.controlloEpidemia.model.Regione;
-import com.jgg.controlloEpidemia.service.ComuneService;
 import com.jgg.controlloEpidemia.service.RegioneService;
 import com.jgg.controlloEpidemia.service.RuoloService;
 
@@ -14,10 +13,9 @@ import java.io.IOException;
 public class EtlRegione {
 
     final RegioneService regioneService = new RegioneService();
-    final RuoloService ruoloService = new RuoloService();
 
     private void caricaRegione(String[] vett) {
-        if (App.utenteCorrente.getRuolo().getId()==1) {
+        if (App.utenteCorrente.getRuolo().getId() == 1) {
             Regione regione = new Regione(vett[0], Integer.parseInt(vett[1]), Integer.parseInt(vett[2]));
             regioneService.save(regione);
         } else {
@@ -30,12 +28,12 @@ public class EtlRegione {
         BufferedReader reader = new BufferedReader(new FileReader(fileRegioni));
         String riga = reader.readLine();
         String[] vettore;
-        while (riga!=null && !riga.equals("")) {
+        while (riga != null && !riga.equals("")) {
             vettore = riga.split(";");
             if (vettore.length == 3) {
                 caricaRegione(vettore);
             }
-            riga=reader.readLine();
+            riga = reader.readLine();
         }
         reader.close();
     }

@@ -12,6 +12,8 @@ public class RuoloDao implements RuoloDaoInterface {
 
     private static Session session = new Session();
 
+    final private String FROM_RUOLO_WHERE_NOME = "FROM Ruolo where nome = :nome";
+
     @Override
     public void save(Ruolo ruolo) {
         session.openCurrentSessionWithTransaction();
@@ -40,7 +42,7 @@ public class RuoloDao implements RuoloDaoInterface {
         Ruolo eRuolo = findByNome(ruolo.getNome());
         if (eRuolo == null) {
             save(ruolo);
-        }else{
+        } else {
             eRuolo.setNome(ruolo.getNome());
             update(eRuolo);
         }
@@ -58,8 +60,7 @@ public class RuoloDao implements RuoloDaoInterface {
     @Override
     public Ruolo findByNome(String nome) {
         session.openCurrentSession();
-        String hql = "FROM Ruolo where nome = :nome";
-        Query query = session.createQuery(hql);
+        Query query = session.createQuery(FROM_RUOLO_WHERE_NOME);
         query.setParameter("nome", nome);
         Ruolo ruolo = null;
         try {

@@ -1,7 +1,6 @@
 package com.jgg.controlloEpidemia.model;
 
 import lombok.*;
-import org.hibernate.annotations.SelectBeforeUpdate;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;

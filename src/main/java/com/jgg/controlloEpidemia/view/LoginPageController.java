@@ -69,7 +69,7 @@ public class LoginPageController implements Initializable {
             App.utenteCorrente = u;
             // vai alla pagina principale
             Parent root = FXMLLoader.load(getClass().getResource("/fxml/homePage.fxml"));
-            ((Button)event.getSource()).getScene().setRoot(root);
+            ((Button) event.getSource()).getScene().setRoot(root);
         }
     }
 

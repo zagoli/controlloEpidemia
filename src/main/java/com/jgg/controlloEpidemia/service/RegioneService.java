@@ -31,6 +31,10 @@ public class RegioneService {
         return regioneDao.findById(id);
     }
 
+    public Regione findByNome(String nome) {
+        return regioneDao.findByNome(nome);
+    }
+
     public List<Regione> findAll() {
         return regioneDao.findAll();
     }

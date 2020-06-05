@@ -3,7 +3,6 @@ package com.jgg.controlloEpidemia.view;
 import com.jgg.controlloEpidemia.model.Comune;
 import com.jgg.controlloEpidemia.model.Utente;
 import com.jgg.controlloEpidemia.service.UtenteService;
-import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -40,17 +39,17 @@ public class AutorizzaComuniController implements Initializable {
     }
 
     @FXML
-    private void onSaveButtonClicked(){
+    private void onSaveButtonClicked() {
 
     }
 
     @FXML
-    private void addComune(){
+    private void addComune() {
 
     }
 
     @FXML
-    private void removeComune(){
+    private void removeComune() {
 
     }
 }

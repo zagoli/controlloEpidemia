@@ -31,6 +31,10 @@ public class TipoTerritorioService {
         return tipoTerritorioDao.findById(id);
     }
 
+    public TipoTerritorio findByNome(String nome) {
+        return tipoTerritorioDao.findByNome(nome);
+    }
+
     public List<TipoTerritorio> findAll() {
         return tipoTerritorioDao.findAll();
     }

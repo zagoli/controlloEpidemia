@@ -7,6 +7,7 @@ import java.util.List;
 
 @NoArgsConstructor
 public class MalattieSettimanaliDao implements MalattieSettimanaliDaoInterface {
+
     private static Session session = new Session();
 
     @Override
