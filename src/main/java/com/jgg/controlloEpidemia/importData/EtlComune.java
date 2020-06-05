@@ -37,7 +37,6 @@ public class EtlComune {
         if (App.utenteCorrente.getRuolo().getId() == 1) {
             Comune c = new Comune(Integer.parseInt(vettore[0]), vettore[1], Integer.parseInt(vettore[2]), data, siAffacciaSulMare, tipoTerritorioService.findById(Integer.parseInt(vettore[5])), provinciaService.findById(Integer.parseInt(vettore[6])));
             comuneService.saveOrUpdate(c);
-            System.out.println(vettore[1]);
         } else {
             System.out.println("No");
         }

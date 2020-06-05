@@ -16,10 +16,10 @@ public class EtlRegioneTest {
     @Test
     void testEtlRegioni() throws IOException {
         App.utenteCorrente = new UtenteService().findById(1);
-        new EtlRegione().load("src\\main\\resources\\csvToLoad\\regione.csv");
+        new EtlRegione().load("src\\test\\resources\\csvToLoadTest\\regione.csv");
 
         List<Regione> regioneList = new RegioneService().findAll();
-        assertEquals(regioneList.size(), 20);
+        assertEquals(regioneList.size(), 1);
     }
 
 }

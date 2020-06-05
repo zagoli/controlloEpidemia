@@ -16,10 +16,10 @@ public class EtlComuneTest {
     @Test
     void testEtlComune() throws IOException {
         App.utenteCorrente = new UtenteService().findById(1);
-        new EtlComune().load("src\\main\\resources\\csvToLoad\\comune.csv");
+        new EtlComune().load("src\\test\\resources\\csvToLoadTest\\comune.csv");
 
         List<Comune> comuneList = new ComuneService().findAll();
-        assertEquals(comuneList.size(), 8092);
+        assertEquals(comuneList.size(), 50);
     }
 
 }

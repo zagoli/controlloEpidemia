@@ -15,7 +15,7 @@ public class EtlDecessiTest {
     @Test
     void testEtlMalattie() throws IOException {
         App.utenteCorrente = new UtenteService().findById(1);
-        new EtlDecessi().load("src\\main\\resources\\csvToLoad\\decessi.csv");
+        new EtlDecessi().load("src\\test\\resources\\csvToLoadTest\\decessi.csv");
 
         List<DecessiAnnuali> decessiAnnualiList = new DecessiAnnualiService().findAll();
         assertEquals(decessiAnnualiList.size(), 5);
