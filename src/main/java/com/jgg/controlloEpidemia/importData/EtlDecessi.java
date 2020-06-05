@@ -16,8 +16,8 @@ public class EtlDecessi {
     final ProvinciaService provinciaService = new ProvinciaService();
 
     private void caricaDecessi(String[] vett) {
-        DecessiAnnuali da = new DecessiAnnuali(Integer.parseInt(vett[0]), Integer.parseInt(vett[1]), Integer.parseInt(vett[2]), Integer.parseInt(vett[3]), Integer.parseInt(vett[4]), provinciaService.findById(Integer.parseInt(vett[5])));
-        decessiAnnualiService.save(da);
+        DecessiAnnuali d = new DecessiAnnuali(Integer.parseInt(vett[0]), Integer.parseInt(vett[1]), Integer.parseInt(vett[2]), Integer.parseInt(vett[3]), Integer.parseInt(vett[4]), provinciaService.findById(Integer.parseInt(vett[5])));
+        decessiAnnualiService.save(d);
     }
 
     public void load(String path) throws IOException {

@@ -21,23 +21,23 @@ public class EtlComune {
     final TipoTerritorioService tipoTerritorioService = new TipoTerritorioService();
     final ProvinciaService provinciaService = new ProvinciaService();
 
-    private void caricaComune(String[] vett) {
+    private void caricaComune(String[] vettore) {
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         Date data = null;
         try {
-            data = sdf.parse(vett[3]);
+            data = sdf.parse(vettore[3]);
         } catch (ParseException e) {
             System.out.println("Errore");
         }
         boolean siAffacciaSulMare = false;
-        if (Integer.parseInt(vett[4]) == 1) {
+        if (Integer.parseInt(vettore[4]) == 1) {
             siAffacciaSulMare = true;
         }
 
         if (App.utenteCorrente.getRuolo().getId() == 1) {
-            Comune c = new Comune(Integer.parseInt(vett[0]), vett[1], Integer.parseInt(vett[2]), data, siAffacciaSulMare, tipoTerritorioService.findById(Integer.parseInt(vett[5])), provinciaService.findById(Integer.parseInt(vett[6])));
-            comuneService.save(c);
-            System.out.println(vett[1]);
+            Comune c = new Comune(Integer.parseInt(vettore[0]), vettore[1], Integer.parseInt(vettore[2]), data, siAffacciaSulMare, tipoTerritorioService.findById(Integer.parseInt(vettore[5])), provinciaService.findById(Integer.parseInt(vettore[6])));
+            comuneService.saveOrUpdate(c);
+            System.out.println(vettore[1]);
         } else {
             System.out.println("No");
         }

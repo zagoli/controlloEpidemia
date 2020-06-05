@@ -3,7 +3,7 @@ package com.jgg.controlloEpidemia;
 import com.jgg.controlloEpidemia.importData.LoadPermesso;
 import com.jgg.controlloEpidemia.importData.LoadRuolo;
 import com.jgg.controlloEpidemia.importData.LoadTipoTerritorio;
-import com.jgg.controlloEpidemia.importData.LoadUtenti;
+import com.jgg.controlloEpidemia.importData.LoadUtente;
 import com.jgg.controlloEpidemia.model.Utente;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -25,14 +25,10 @@ public class App extends Application {
     public void start(Stage primaryStage) throws IOException {
 
         // Inizializzazione dati per prototipo -------------------------
-        LoadRuolo loadRuolo = new LoadRuolo();
-        loadRuolo.load();
-        LoadTipoTerritorio loadTipoTerritorio = new LoadTipoTerritorio();
-        loadTipoTerritorio.load();
-        LoadPermesso loadPermesso = new LoadPermesso();
-        loadPermesso.load();
-        LoadUtenti loadUtenti = new LoadUtenti();
-        loadUtenti.load();
+        new LoadRuolo().load();
+        new LoadTipoTerritorio().load();
+        new LoadPermesso().load();
+        new LoadUtente().load();
         // --------------------------------------------------------------
 
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/loginPage.fxml"));
@@ -40,7 +36,6 @@ public class App extends Application {
         primaryStage.setScene(scene);
         primaryStage.setTitle("Controllo Epidemia");
         primaryStage.show();
-
 
     }
 

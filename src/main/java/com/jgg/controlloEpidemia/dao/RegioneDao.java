@@ -1,9 +1,11 @@
 package com.jgg.controlloEpidemia.dao;
 
 import com.jgg.controlloEpidemia.model.Regione;
+import com.jgg.controlloEpidemia.model.Utente;
 import lombok.NoArgsConstructor;
 import org.hibernate.query.Query;
 
+import javax.persistence.NoResultException;
 import java.util.List;
 
 @NoArgsConstructor
@@ -37,9 +39,17 @@ public class RegioneDao implements RegioneDaoInterface {
 
     @Override
     public void saveOrUpdate(Regione regione) {
-        session.openCurrentSessionWithTransaction();
-        session.getCurrentSession().saveOrUpdate(regione);
-        session.closeCurrentSessionWithTransaction();
+        session.openCurrentSession();
+        Regione eRegione = findByNome(regione.getNome());
+        if (eRegione == null) {
+            save(regione);
+        } else {
+            eRegione.setNome(regione.getNome());
+            eRegione.setSuperficie(regione.getSuperficie());
+            eRegione.setCapoluogo(regione.getCapoluogo());
+            update(eRegione);
+        }
+        session.closeCurrentSession();
     }
 
     @Override
@@ -55,7 +65,11 @@ public class RegioneDao implements RegioneDaoInterface {
         session.openCurrentSession();
         Query query = session.createQuery(FROM_REGIONE_WHERE_NOME);
         query.setParameter("nome", nome);
-        Regione regione = (Regione) query.getSingleResult();
+        Regione regione = null;
+        try {
+            regione = (Regione) query.getSingleResult();
+        } catch (NoResultException ignored) {
+        }
         session.closeCurrentSession();
         return regione;
     }

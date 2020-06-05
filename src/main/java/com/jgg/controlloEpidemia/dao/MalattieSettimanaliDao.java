@@ -1,5 +1,6 @@
 package com.jgg.controlloEpidemia.dao;
 
+import com.jgg.controlloEpidemia.model.Comune;
 import com.jgg.controlloEpidemia.model.MalattieSettimanali;
 import lombok.NoArgsConstructor;
 
@@ -34,9 +35,20 @@ public class MalattieSettimanaliDao implements MalattieSettimanaliDaoInterface {
 
     @Override
     public void saveOrUpdate(MalattieSettimanali malattieSettimanali) {
-        session.openCurrentSessionWithTransaction();
-        session.getCurrentSession().saveOrUpdate(malattieSettimanali);
-        session.closeCurrentSessionWithTransaction();
+      /*  session.openCurrentSession();
+        Comune eComune = findByNome(comune.getNome());
+        if (eComune == null) {
+            save(comune);
+        } else {
+            eComune.setNome(comune.getNome());
+            eComune.setSuperficie(comune.getSuperficie());
+            eComune.setDataIstituzione(comune.getDataIstituzione());
+            eComune.setSiAffacciaSulMare(comune.getSiAffacciaSulMare());
+            eComune.setTipoTerritorio(comune.getTipoTerritorio());
+            eComune.setProvincia(comune.getProvincia());
+            update(eComune);
+        }
+        session.closeCurrentSession();*/
     }
 
     @Override

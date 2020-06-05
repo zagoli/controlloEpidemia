@@ -7,7 +7,7 @@ import com.jgg.controlloEpidemia.service.UtenteService;
 import lombok.NoArgsConstructor;
 
 @NoArgsConstructor
-public class LoadUtenti {
+public class LoadUtente {
 
     final UtenteService utenteService = new UtenteService();
     final RuoloService ruoloService = new RuoloService();

@@ -3,7 +3,6 @@ package com.jgg.controlloEpidemia.importData;
 import com.jgg.controlloEpidemia.App;
 import com.jgg.controlloEpidemia.model.Regione;
 import com.jgg.controlloEpidemia.service.RegioneService;
-import com.jgg.controlloEpidemia.service.RuoloService;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -14,10 +13,10 @@ public class EtlRegione {
 
     final RegioneService regioneService = new RegioneService();
 
-    private void caricaRegione(String[] vett) {
+    private void caricaRegione(String[] vettore) {
         if (App.utenteCorrente.getRuolo().getId() == 1) {
-            Regione regione = new Regione(vett[0], Integer.parseInt(vett[1]), Integer.parseInt(vett[2]));
-            regioneService.save(regione);
+            Regione r = new Regione(vettore[0], Integer.parseInt(vettore[1]), Integer.parseInt(vettore[2]));
+            regioneService.saveOrUpdate(r);
         } else {
             System.out.println("No");
         }

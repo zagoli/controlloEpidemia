@@ -1,9 +1,11 @@
 package com.jgg.controlloEpidemia.dao;
 
 import com.jgg.controlloEpidemia.model.Comune;
+import com.jgg.controlloEpidemia.model.Provincia;
 import lombok.NoArgsConstructor;
 import org.hibernate.query.Query;
 
+import javax.persistence.NoResultException;
 import java.util.List;
 
 @NoArgsConstructor
@@ -37,9 +39,20 @@ public class ComuneDao implements ComuneDaoInterface {
 
     @Override
     public void saveOrUpdate(Comune comune) {
-        session.openCurrentSessionWithTransaction();
-        session.getCurrentSession().saveOrUpdate(comune);
-        session.closeCurrentSessionWithTransaction();
+        session.openCurrentSession();
+        Comune eComune = findByNome(comune.getNome());
+        if (eComune == null) {
+            save(comune);
+        } else {
+            eComune.setNome(comune.getNome());
+            eComune.setSuperficie(comune.getSuperficie());
+            eComune.setDataIstituzione(comune.getDataIstituzione());
+            eComune.setSiAffacciaSulMare(comune.getSiAffacciaSulMare());
+            eComune.setTipoTerritorio(comune.getTipoTerritorio());
+            eComune.setProvincia(comune.getProvincia());
+            update(eComune);
+        }
+        session.closeCurrentSession();
     }
 
     @Override
@@ -55,7 +68,11 @@ public class ComuneDao implements ComuneDaoInterface {
         session.openCurrentSession();
         Query query = session.createQuery(FROM_COMUNE_WHERE_NOME);
         query.setParameter("nome", nome);
-        Comune comune = (Comune) query.getSingleResult();
+        Comune comune = null;
+        try {
+            comune = (Comune) query.getSingleResult();
+        } catch (NoResultException ignored) {
+        }
         session.closeCurrentSession();
         return comune;
     }

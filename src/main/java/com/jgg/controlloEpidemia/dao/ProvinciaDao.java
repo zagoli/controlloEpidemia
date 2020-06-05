@@ -1,9 +1,11 @@
 package com.jgg.controlloEpidemia.dao;
 
 import com.jgg.controlloEpidemia.model.Provincia;
+import com.jgg.controlloEpidemia.model.Utente;
 import lombok.NoArgsConstructor;
 import org.hibernate.query.Query;
 
+import javax.persistence.NoResultException;
 import java.util.List;
 
 @NoArgsConstructor
@@ -37,9 +39,18 @@ public class ProvinciaDao implements ProvinciaDaoInterface {
 
     @Override
     public void saveOrUpdate(Provincia provincia) {
-        session.openCurrentSessionWithTransaction();
-        session.getCurrentSession().saveOrUpdate(provincia);
-        session.closeCurrentSessionWithTransaction();
+        session.openCurrentSession();
+        Provincia eProvincia = findByNome(provincia.getNome());
+        if (eProvincia == null) {
+            save(provincia);
+        } else {
+            eProvincia.setNome(provincia.getNome());
+            eProvincia.setSuperficie(provincia.getSuperficie());
+            eProvincia.setCapoluogo(provincia.getCapoluogo());
+            eProvincia.setRegione(provincia.getRegione());
+            update(eProvincia);
+        }
+        session.closeCurrentSession();
     }
 
     @Override
@@ -55,7 +66,11 @@ public class ProvinciaDao implements ProvinciaDaoInterface {
         session.openCurrentSession();
         Query query = session.createQuery(FROM_PROVINCIA_WHERE_NOME);
         query.setParameter("nome", nome);
-        Provincia provincia = (Provincia) query.getSingleResult();
+        Provincia provincia = null;
+        try {
+            provincia = (Provincia) query.getSingleResult();
+        } catch (NoResultException ignored) {
+        }
         session.closeCurrentSession();
         return provincia;
     }
