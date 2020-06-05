@@ -1,5 +1,6 @@
 package com.jgg.controlloEpidemia.importData;
 
+import com.jgg.controlloEpidemia.App;
 import com.jgg.controlloEpidemia.model.Provincia;
 import com.jgg.controlloEpidemia.service.ComuneService;
 import com.jgg.controlloEpidemia.service.ProvinciaService;
@@ -13,22 +14,21 @@ import java.io.IOException;
 
 public class EtlProvincia {
 
-    static final ComuneService comuneService = new ComuneService();
-    static final ProvinciaService provinciaService = new ProvinciaService();
-    static final RuoloService ruoloService = new RuoloService();
-    static final RegioneService regioneService = new RegioneService();
+    final ProvinciaService provinciaService = new ProvinciaService();
+    final RuoloService ruoloService = new RuoloService();
+    final RegioneService regioneService = new RegioneService();
 
-    private static void caricaProvincia(String[] vett) {
-        //  if (App.utenteCorrente.getRuolo().equals(ruoloService.findById(1))) {
-        Provincia p = new Provincia(Integer.parseInt(vett[0]), vett[1], Integer.parseInt(vett[2]), comuneService.findByCodiceIstat(Integer.parseInt(vett[3])), regioneService.findById(Integer.parseInt(vett[4])));
-        provinciaService.save(p);
-        //   } else {
-        //        System.out.println("No");
-        //    }
+    private void caricaProvincia(String[] vett) {
+        if (App.utenteCorrente.getRuolo().equals(ruoloService.findById(1))) {
+            Provincia p = new Provincia(Integer.parseInt(vett[0]), vett[1], Integer.parseInt(vett[2]), vett[3], regioneService.findById(Integer.parseInt(vett[4])));
+            provinciaService.save(p);
+        } else {
+            System.out.println("No");
+        }
     }
 
-    public void load() throws IOException {
-        File fileProvince = new File(getClass().getResource("/csvToLoad/provincia.csv").getFile());
+    public void load(String path) throws IOException {
+        File fileProvince = new File(path);
         BufferedReader reader = new BufferedReader(new FileReader(fileProvince));
         String riga = reader.readLine();
         String[] vettore;

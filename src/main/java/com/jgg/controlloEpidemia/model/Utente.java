@@ -14,7 +14,7 @@ import java.util.List;
 @AllArgsConstructor
 @RequiredArgsConstructor
 @EqualsAndHashCode
-@SelectBeforeUpdate
+
 public class Utente {
 
     @Getter

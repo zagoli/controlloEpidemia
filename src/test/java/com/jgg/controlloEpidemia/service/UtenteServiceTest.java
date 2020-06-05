@@ -8,6 +8,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class UtenteServiceTest {
 
@@ -17,7 +18,7 @@ public class UtenteServiceTest {
         RuoloService ruoloService = new RuoloService();
         UtenteService utenteService = new UtenteService();
         //Creo i model
-        Ruolo ruolo = new Ruolo("Pianeggiante");
+        Ruolo ruolo = new Ruolo("Amministratore");
         Utente utente = new Utente("utente1", "password", "Utente", "Uno", ruolo);
         Utente utente2 = new Utente("utente2", "password2", "Utente", "Due", ruolo);
         //Salvo i model
@@ -47,5 +48,22 @@ public class UtenteServiceTest {
         assertNull(utente);
         utenteList = utenteService.findAll();
         assertEquals(utenteList.size(), 0);
+    }
+
+    @Test
+    //Assume che i ruoli siano già caricati
+    void testFindPersonaleAContratto(){
+        //Inizializzo i service
+        RuoloService ruoloService = new RuoloService();
+        UtenteService utenteService = new UtenteService();
+        //Creo i model
+        Utente utente = new Utente("utente1", "password", "Utente", "Uno", ruoloService.findById(2));
+        // Salvo l'utente
+        utenteService.save(utente);
+        // Cerco gli utenti con ruolo personale a contratto
+        List<Utente> utenti = utenteService.findAllPersonaleContratto();
+        assertTrue(utenti.size() >= 1);
+
+        utenteService.deleteById(utente.getId());
     }
 }

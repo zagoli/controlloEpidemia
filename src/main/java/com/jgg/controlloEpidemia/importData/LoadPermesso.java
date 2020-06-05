@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class LoadPermesso {
 
-    static final PermessoService permessoService = new PermessoService();
+    final PermessoService permessoService = new PermessoService();
 
     public void load() {
         Permesso p = new Permesso("vediDecessi", "Visualizzazione dei dati annuali sui decessi");

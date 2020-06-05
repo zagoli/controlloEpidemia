@@ -2,6 +2,7 @@ package com.jgg.controlloEpidemia.view;
 
 import com.jgg.controlloEpidemia.App;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -74,46 +75,56 @@ public class HomePageController implements Initializable {
 
     private void prepareButton(Button button) {
         button.setFont(new Font("Segoe UI", 22));
-        final Parent[] root = {null, null, null, null, null};
-        button.setOnAction(actionEvent -> {
-            switch ((Integer) ((Button) actionEvent.getSource()).getUserData()) {
-                case 0:
-                    // vai a pagina gestione dati territorio
-                    try {
-                        root[0] = FXMLLoader.load(getClass().getResource("/fxml/datiTerritoriali.fxml"));
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                    button.getScene().setRoot(root[0]);
-                    break;
-                case 1:
-                    // vai a pagina autorizzazione comuni per il personale contratto
-                    break;
-                case 2:
-                    // vai a pagina gestione decessi annuali
-                    try {
-                        root[2] = FXMLLoader.load(getClass().getResource("/fxml/decessiAnnuali.fxml"));
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                    button.getScene().setRoot(root[2]);
-                    break;
-                case 3:
-                    // vai a pagina inserimento e gestione malattie settimanali
-                    try {
-                        root[3] = FXMLLoader.load(getClass().getResource("/fxml/malattieSettimanali.fxml"));
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                    button.getScene().setRoot(root[3]);
-                    break;
-                case 4:
-                    // vai a pagina analisi dei dati ricercatore analista
-                    break;
-                case 5:
-                    // vai a pagina visualizzazione dati decessi
-                    break;
-                default:
+        button.setOnAction(new EventHandler<>() {
+            private Parent root;
+
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                switch ((Integer) ((Button) actionEvent.getSource()).getUserData()) {
+                    case 0:
+                        // vai a pagina gestione dati territorio
+                        try {
+                            root = FXMLLoader.load(HomePageController.this.getClass().getResource("/fxml/datiTerritoriali.fxml"));
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                        button.getScene().setRoot(root);
+                        break;
+                    case 1:
+                        // vai a pagina autorizzazione comuni per il personale contratto
+                        try {
+                            root = FXMLLoader.load(HomePageController.this.getClass().getResource("/fxml/autorizzaComuni.fxml"));
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                        button.getScene().setRoot(root);
+                        break;
+                    case 2:
+                        // vai a pagina gestione decessi annuali
+                        try {
+                            root = FXMLLoader.load(HomePageController.this.getClass().getResource("/fxml/decessiAnnuali.fxml"));
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                        button.getScene().setRoot(root);
+                        break;
+                    case 3:
+                        // vai a pagina inserimento e gestione malattie settimanali
+                        try {
+                            root = FXMLLoader.load(HomePageController.this.getClass().getResource("/fxml/malattieSettimanali.fxml"));
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                        button.getScene().setRoot(root);
+                        break;
+                    case 4:
+                        // vai a pagina analisi dei dati ricercatore analista
+                        break;
+                    case 5:
+                        // vai a pagina visualizzazione dati decessi
+                        break;
+                    default:
+                }
             }
         });
     }

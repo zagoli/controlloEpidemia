@@ -9,7 +9,8 @@ import java.util.List;
 
 @NoArgsConstructor
 public class UtenteDao implements UtenteDaoInterface {
-    private static Session session = new Session();
+    private final Session session = new Session();
+    final private String FIND_ALL_PERSONALE_CONTRATTO = "FROM Utente where ruolo.id = 2"; // Personale a contratto ha id ruolo = 2
 
     @Override
     public void save(Utente utente) {
@@ -80,5 +81,14 @@ public class UtenteDao implements UtenteDaoInterface {
         List<Utente> utente = session.getCurrentSession().createQuery("from Utente").list();
         session.closeCurrentSession();
         return utente;
+    }
+
+    @Override
+    @SuppressWarnings("unchecked")
+    public List<Utente> findAllPersonaleContratto() {
+        session.openCurrentSession();
+        List<Utente> utenti = session.getCurrentSession().createQuery(FIND_ALL_PERSONALE_CONTRATTO).list();
+        session.closeCurrentSession();
+        return null;
     }
 }

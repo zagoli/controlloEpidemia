@@ -31,7 +31,7 @@ public class RegioneServiceTest {
         //Cerco i model
         Regione findRegione = regioneService.findById(regione.getId());
         assertEquals(regione, findRegione);
-        //Cerco tutti  i model
+        //Cerco tutti i model
         List<Regione> regioneList = regioneService.findAll();
         assertEquals(regioneList.size(), 2);
         //Aggiorno i model

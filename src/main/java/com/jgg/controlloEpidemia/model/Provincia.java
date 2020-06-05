@@ -16,7 +16,7 @@ import java.util.List;
 @AllArgsConstructor
 @RequiredArgsConstructor
 @EqualsAndHashCode
-@SelectBeforeUpdate
+
 public class Provincia {
 
     @Getter
@@ -51,8 +51,7 @@ public class Provincia {
     @Setter
     @NotNull
     @NonNull
-    @OneToOne
-    private Comune capoluogo;
+    private String capoluogo;
     @Getter
     @Setter
     @NotNull

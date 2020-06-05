@@ -16,12 +16,12 @@ import java.util.Date;
 
 public class EtlComune {
 
-    static final ComuneService comuneService = new ComuneService();
-    static final TipoTerritorioService tipoTerritorioService = new TipoTerritorioService();
-    static final RuoloService ruoloService = new RuoloService();
-    static final ProvinciaService provinciaService = new ProvinciaService();
+    final ComuneService comuneService = new ComuneService();
+    final TipoTerritorioService tipoTerritorioService = new TipoTerritorioService();
+    final RuoloService ruoloService = new RuoloService();
+    final ProvinciaService provinciaService = new ProvinciaService();
 
-    private static void caricaComune(String[] vett) {
+    private void caricaComune(String[] vett) {
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         Date data = null;
         try {
