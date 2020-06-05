@@ -26,11 +26,12 @@ public class EtlDecessi {
         BufferedReader reader = new BufferedReader(new FileReader(fileDecessi));
         String riga = reader.readLine();
         String[] vettore;
-        while (!riga.equals("") && riga != null) {
+        while (riga!=null && !riga.equals("")) {
             vettore = riga.split(";");
             if (vettore.length == 6) {
                 caricaDecessi(vettore);
             }
+            riga=reader.readLine();
         }
         reader.close();
     }

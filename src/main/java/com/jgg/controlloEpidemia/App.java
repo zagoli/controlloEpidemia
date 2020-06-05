@@ -38,9 +38,6 @@ public class App extends Application {
         primaryStage.setTitle("Controllo Epidemia");
         primaryStage.show();
 
-        //EtlRegione etlRegione=new EtlRegione();
-        //etlRegione.load();
-
 
     }
 

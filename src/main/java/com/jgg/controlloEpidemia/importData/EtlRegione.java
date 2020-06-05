@@ -17,7 +17,7 @@ public class EtlRegione {
     final RuoloService ruoloService = new RuoloService();
 
     private void caricaRegione(String[] vett) {
-        if (App.utenteCorrente.getRuolo().equals(ruoloService.findById(1))) {
+        if (App.utenteCorrente.getRuolo().getId()==1) {
             Regione regione = new Regione(vett[0], Integer.parseInt(vett[1]), Integer.parseInt(vett[2]));
             regioneService.save(regione);
         } else {
@@ -30,11 +30,12 @@ public class EtlRegione {
         BufferedReader reader = new BufferedReader(new FileReader(fileRegioni));
         String riga = reader.readLine();
         String[] vettore;
-        while (!riga.equals("") && riga != null) {
+        while (riga!=null && !riga.equals("")) {
             vettore = riga.split(";");
             if (vettore.length == 3) {
                 caricaRegione(vettore);
             }
+            riga=reader.readLine();
         }
         reader.close();
     }
