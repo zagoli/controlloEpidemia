@@ -20,11 +20,11 @@ public class DecessiAnnualiServiceTest {
         DecessiAnnualiService decessiAnnualiService = new DecessiAnnualiService();
         //Creo i model
         TipoTerritorio tipoTerritorio = new TipoTerritorio("Pianeggiante");
-        Regione r = new Regione("Banditizia",1,333333);
+        Regione r = new Regione("Banditizia", 1, 333333);
         regioneService.save(r);
-        Provincia p = new Provincia(4,"Cuneo",3,777777,r);
+        Provincia p = new Provincia(4, "Cuneo", 3, 777777, r);
         provinciaService.save(p);
-        Comune comune = new Comune(333333,"Castelnuovo",1, new Date(), true, tipoTerritorio, p);
+        Comune comune = new Comune(333333, "Castelnuovo", 1, new Date(), true, tipoTerritorio, p);
         DecessiAnnuali decessiAnnuali = new DecessiAnnuali(2019, 0, 0, 0, 0, p);
         DecessiAnnuali decessiAnnuali2 = new DecessiAnnuali(2020, 0, 0, 0, 0, p);
         //Salvo i model

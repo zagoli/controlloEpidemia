@@ -1,11 +1,9 @@
 package com.jgg.controlloEpidemia.service;
 
-import com.jgg.controlloEpidemia.model.Comune;
 import com.jgg.controlloEpidemia.model.Regione;
 import com.jgg.controlloEpidemia.model.TipoTerritorio;
 import org.junit.jupiter.api.Test;
 
-import java.util.Date;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -19,7 +17,7 @@ public class RegioneServiceTest {
         RegioneService regioneService = new RegioneService();
         //Creo i model
         TipoTerritorio tipoTerritorio = new TipoTerritorio("Pianeggiante");
-        Regione regione = new Regione("Banditizia",1,333333);
+        Regione regione = new Regione("Banditizia", 1, 333333);
         Regione regione2 = new Regione("Lombardia", 143, 123456);
         //Salvo i model
         tipoTerritorioService.save(tipoTerritorio);

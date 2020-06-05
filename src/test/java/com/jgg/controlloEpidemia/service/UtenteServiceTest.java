@@ -6,9 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class UtenteServiceTest {
 
@@ -51,8 +49,8 @@ public class UtenteServiceTest {
     }
 
     @Test
-    //Non funzionerà mai più con gli id autogenerati
-    void testFindPersonaleAContratto(){
+        //Non funzionerà mai più con gli id autogenerati
+    void testFindPersonaleAContratto() {
         //Inizializzo i service
         RuoloService ruoloService = new RuoloService();
         Ruolo r = new Ruolo("Personale a contratto");

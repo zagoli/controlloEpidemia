@@ -1,11 +1,10 @@
 package com.jgg.controlloEpidemia.view;
 
 import com.jgg.controlloEpidemia.importData.EtlMalattie;
+import com.jgg.controlloEpidemia.model.Comune;
 import com.jgg.controlloEpidemia.model.MalattieSettimanali;
-import com.jgg.controlloEpidemia.model.TipoTerritorio;
 import com.jgg.controlloEpidemia.service.ComuneService;
 import com.jgg.controlloEpidemia.service.MalattieSettimanaliService;
-import com.jgg.controlloEpidemia.service.TipoTerritorioService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -134,11 +133,11 @@ public class MalattieSettimanaliController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        TipoTerritorioService tipoTerritorioService = new TipoTerritorioService();
-        List<TipoTerritorio> tipoTerritorioList = tipoTerritorioService.findAll();
-        for (TipoTerritorio t : tipoTerritorioList) {
-            comuneInserimentoComboBox.getItems().add(t.getNome());
-            //comuneInserimentoComboBox.getItems().add(t.getNome());
+        ComuneService comuneService = new ComuneService();
+        List<Comune> comuneList = comuneService.findAll();
+        for (Comune c : comuneList) {
+            comuneInserimentoComboBox.getItems().add(c.getNome());
+            comuneModificaComboBox.getItems().add(c.getNome());
         }
     }
 
@@ -149,7 +148,12 @@ public class MalattieSettimanaliController implements Initializable {
     }
 
     @FXML
-    void inserisciInserimentoOnClicked(ActionEvent event) {
+    private void comuneInserimentoComboBoxOnClicked() {
+        System.out.println("ok");
+    }
+
+    @FXML
+    void inserisciInserimentoOnClicked() {
         ComuneService comuneService = new ComuneService();
         MalattieSettimanali malattieSettimanali = new MalattieSettimanali(
                 Integer.parseInt(annoInserimentoTextField.getText()),
@@ -196,7 +200,7 @@ public class MalattieSettimanaliController implements Initializable {
     }
 
     @FXML
-    void inserisciCsvInserimentoOnClicked(ActionEvent event) {
+    void inserisciCsvInserimentoOnClicked() throws IOException {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Open Resource File");
         FileChooser.ExtensionFilter extensionFilter = new FileChooser.ExtensionFilter("CSV files (*.csv)", "*.csv");
@@ -205,7 +209,7 @@ public class MalattieSettimanaliController implements Initializable {
         EtlMalattie etlMalattie = new EtlMalattie();
         if (selectedFile != null) {
             System.out.println("ok");
-            //etlMalattie.load(selectedFile);
+            etlMalattie.load(selectedFile.getPath());
         } else {
             System.out.println("no trovato il file");
         }

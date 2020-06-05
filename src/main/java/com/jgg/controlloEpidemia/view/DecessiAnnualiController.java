@@ -2,6 +2,7 @@ package com.jgg.controlloEpidemia.view;
 
 import com.jgg.controlloEpidemia.importData.EtlDecessi;
 import com.jgg.controlloEpidemia.model.DecessiAnnuali;
+import com.jgg.controlloEpidemia.model.Provincia;
 import com.jgg.controlloEpidemia.model.TipoTerritorio;
 import com.jgg.controlloEpidemia.service.DecessiAnnualiService;
 import com.jgg.controlloEpidemia.service.ProvinciaService;
@@ -62,11 +63,11 @@ public class DecessiAnnualiController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        TipoTerritorioService tipoTerritorioService = new TipoTerritorioService();
-        List<TipoTerritorio> tipoTerritorioList = tipoTerritorioService.findAll();
-        for (TipoTerritorio t : tipoTerritorioList) {
-            provinciaInserimentoComboBox.getItems().add(t.getNome());
-            provinciaModificaComboBox.getItems().add(t.getNome());
+        ProvinciaService provinciaService = new ProvinciaService();
+        List<Provincia> provinciaList = provinciaService.findAll();
+        for (Provincia p : provinciaList) {
+            provinciaInserimentoComboBox.getItems().add(p.getNome());
+            provinciaModificaComboBox.getItems().add(p.getNome());
         }
     }
 
@@ -104,7 +105,7 @@ public class DecessiAnnualiController implements Initializable {
     }
 
     @FXML
-    private void inserisciCsvInserimentoButtonOnClicked() {
+    private void inserisciCsvInserimentoButtonOnClicked() throws IOException {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Open Resource File");
         FileChooser.ExtensionFilter extensionFilter = new FileChooser.ExtensionFilter("CSV files (*.csv)", "*.csv");
@@ -113,7 +114,7 @@ public class DecessiAnnualiController implements Initializable {
         EtlDecessi etlDecessi = new EtlDecessi();
         if (selectedFile != null) {
             System.out.println("ok");
-            //etlDecessi.load(selectedFile);
+            etlDecessi.load(selectedFile.getPath());
         } else {
             System.out.println("no trovato il file");
         }

@@ -21,11 +21,11 @@ class MalattieSettimanaliServiceTest {
         ProvinciaService provinciaService = new ProvinciaService();
         //Creo i model
         TipoTerritorio tipoTerritorio = new TipoTerritorio("Pianeggiante");
-        Regione r = new Regione("Banditizia",1,333333);
+        Regione r = new Regione("Banditizia", 1, 333333);
         regioneService.save(r);
-        Provincia p = new Provincia(4,"Cuneo",3,777777,r);
+        Provincia p = new Provincia(4, "Cuneo", 3, 777777, r);
         provinciaService.save(p);
-        Comune comune = new Comune(333333,"Castelnuovo",1, new Date(), true, tipoTerritorio, p);
+        Comune comune = new Comune(333333, "Castelnuovo", 1, new Date(), true, tipoTerritorio, p);
         MalattieSettimanali malattieSettimanali = new MalattieSettimanali(2019, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, comune);
         MalattieSettimanali malattieSettimanali2 = new MalattieSettimanali(2020, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, comune);
         //Salvo i model

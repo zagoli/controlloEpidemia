@@ -304,7 +304,7 @@
                         <Font name="Segoe UI Bold" size="20.0" />
                     </font>
                 </Label>
-                <Button layoutX="580.0" layoutY="410.0" mnemonicParsing="false" onAction="#inserisciModificaOnClicked" prefHeight="40.0" text="Inserisci">
+                <Button layoutX="580.0" layoutY="410.0" mnemonicParsing="false" onAction="#inserisciModificaOnClicked" prefHeight="40.0" text="Modifica">
                     <font>
                         <Font name="Segoe UI Bold" size="20.0" />
                     </font>
@@ -401,7 +401,7 @@
                         <Font name="Segoe UI Bold" size="20.0" />
                     </font>
                 </Label>
-                <ComboBox fx:id="comuneModificaComboBox" layoutX="580.0" layoutY="370.0" prefHeight="20.0" prefWidth="150.0" />
+                <ComboBox fx:id="comuneModificaComboBox" layoutX="580.0" layoutY="370.0" onAction="#comuneInserimentoComboBoxOnClicked" prefHeight="20.0" prefWidth="150.0" />
             </Pane>
         </Tab>
     </TabPane>
