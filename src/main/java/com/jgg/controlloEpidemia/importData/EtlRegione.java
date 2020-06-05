@@ -18,7 +18,7 @@ public class EtlRegione {
 
     private void caricaRegione(String[] vett) {
         if (App.utenteCorrente.getRuolo().equals(ruoloService.findById(1))) {
-            Regione regione = new Regione(vett[0], Integer.parseInt(vett[1]), vett[2]);
+            Regione regione = new Regione(vett[0], Integer.parseInt(vett[1]), Integer.parseInt(vett[2]));
             regioneService.save(regione);
         } else {
             System.out.println("No");

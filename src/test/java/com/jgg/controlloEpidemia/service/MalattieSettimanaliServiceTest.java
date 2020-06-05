@@ -1,8 +1,6 @@
 package com.jgg.controlloEpidemia.service;
 
-import com.jgg.controlloEpidemia.model.Comune;
-import com.jgg.controlloEpidemia.model.MalattieSettimanali;
-import com.jgg.controlloEpidemia.model.TipoTerritorio;
+import com.jgg.controlloEpidemia.model.*;
 import org.junit.jupiter.api.Test;
 
 import java.util.Date;
@@ -19,9 +17,15 @@ class MalattieSettimanaliServiceTest {
         TipoTerritorioService tipoTerritorioService = new TipoTerritorioService();
         ComuneService comuneService = new ComuneService();
         MalattieSettimanaliService malattieSettimanaliService = new MalattieSettimanaliService();
+        RegioneService regioneService = new RegioneService();
+        ProvinciaService provinciaService = new ProvinciaService();
         //Creo i model
         TipoTerritorio tipoTerritorio = new TipoTerritorio("Pianeggiante");
-        Comune comune = new Comune(023015, "Castelnuovo", new Date(), 139, true, tipoTerritorio);
+        Regione r = new Regione("Banditizia",1,333333);
+        regioneService.save(r);
+        Provincia p = new Provincia(4,"Cuneo",3,777777,r);
+        provinciaService.save(p);
+        Comune comune = new Comune(333333,"Castelnuovo",1, new Date(), true, tipoTerritorio, p);
         MalattieSettimanali malattieSettimanali = new MalattieSettimanali(2019, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, comune);
         MalattieSettimanali malattieSettimanali2 = new MalattieSettimanali(2020, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, comune);
         //Salvo i model
@@ -43,7 +47,9 @@ class MalattieSettimanaliServiceTest {
         //Elimino i model
         malattieSettimanaliService.deleteById(malattieSettimanali.getId());
         malattieSettimanaliService.deleteById(malattieSettimanali2.getId());
-        comuneService.deleteByCodiceIstat(comune.getCodiceIstat());
+        comuneService.deleteByCodiceIstat(333333);
+        provinciaService.deleteById(4);
+        regioneService.deleteById(r.getId());
         tipoTerritorioService.deleteById(tipoTerritorio.getId());
         //Assert dei model
         malattieSettimanali = malattieSettimanaliService.findById(malattieSettimanali.getId());

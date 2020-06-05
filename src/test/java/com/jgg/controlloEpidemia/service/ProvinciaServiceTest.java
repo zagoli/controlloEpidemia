@@ -2,6 +2,7 @@ package com.jgg.controlloEpidemia.service;
 
 import com.jgg.controlloEpidemia.model.Comune;
 import com.jgg.controlloEpidemia.model.Provincia;
+import com.jgg.controlloEpidemia.model.Regione;
 import com.jgg.controlloEpidemia.model.TipoTerritorio;
 import org.junit.jupiter.api.Test;
 
@@ -15,17 +16,17 @@ public class ProvinciaServiceTest {
     @Test
     void testProvincia() {
         //Inizializzo i service
+        RegioneService regioneService = new RegioneService();
         TipoTerritorioService tipoTerritorioService = new TipoTerritorioService();
-        ComuneService comuneService = new ComuneService();
         ProvinciaService provinciaService = new ProvinciaService();
         //Creo i model
         TipoTerritorio tipoTerritorio = new TipoTerritorio("Pianeggiante");
-        Comune comune = new Comune(023015, "Castelnuovo", new Date(), 139, true, tipoTerritorio);
-        Provincia provincia = new Provincia("Verona", 143, comune);
-        Provincia provincia2 = new Provincia("Vicenza", 156, comune);
+        Regione r = new Regione("Banditizia",1,333333);
+        regioneService.save(r);
+        Provincia provincia = new Provincia(4,"Cuneo",3,777777,r);
+        Provincia provincia2 = new Provincia(4,"Cuneo",3,777777,r);
         //Salvo i model
         tipoTerritorioService.save(tipoTerritorio);
-        comuneService.save(comune);
         provinciaService.save(provincia);
         provinciaService.saveOrUpdate(provincia2);
         //Cerco i model
@@ -42,7 +43,7 @@ public class ProvinciaServiceTest {
         //Elimino i model
         provinciaService.deleteById(provincia.getId());
         provinciaService.deleteById(provincia2.getId());
-        comuneService.deleteByCodiceIstat(comune.getCodiceIstat());
+        regioneService.deleteById(r.getId());
         tipoTerritorioService.deleteById(tipoTerritorio.getId());
         //Assert dei model
         provincia = provinciaService.findById(provincia.getId());

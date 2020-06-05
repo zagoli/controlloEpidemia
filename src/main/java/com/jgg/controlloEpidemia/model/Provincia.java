@@ -51,7 +51,7 @@ public class Provincia {
     @Setter
     @NotNull
     @NonNull
-    private String capoluogo;
+    private Integer capoluogo;
     @Getter
     @Setter
     @NotNull

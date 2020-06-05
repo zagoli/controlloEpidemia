@@ -1,9 +1,6 @@
 package com.jgg.controlloEpidemia.service;
 
-import com.jgg.controlloEpidemia.model.Comune;
-import com.jgg.controlloEpidemia.model.DecessiAnnuali;
-import com.jgg.controlloEpidemia.model.Provincia;
-import com.jgg.controlloEpidemia.model.TipoTerritorio;
+import com.jgg.controlloEpidemia.model.*;
 import org.junit.jupiter.api.Test;
 
 import java.util.Date;
@@ -19,17 +16,21 @@ public class DecessiAnnualiServiceTest {
         TipoTerritorioService tipoTerritorioService = new TipoTerritorioService();
         ComuneService comuneService = new ComuneService();
         ProvinciaService provinciaService = new ProvinciaService();
+        RegioneService regioneService = new RegioneService();
         DecessiAnnualiService decessiAnnualiService = new DecessiAnnualiService();
         //Creo i model
         TipoTerritorio tipoTerritorio = new TipoTerritorio("Pianeggiante");
-        Comune comune = new Comune(023015, "Castelnuovo", new Date(), 139, true, tipoTerritorio);
-        Provincia provincia = new Provincia("Verona", 143, comune);
-        DecessiAnnuali decessiAnnuali = new DecessiAnnuali(2019, 0, 0, 0, 0, provincia);
-        DecessiAnnuali decessiAnnuali2 = new DecessiAnnuali(2020, 0, 0, 0, 0, provincia);
+        Regione r = new Regione("Banditizia",1,333333);
+        regioneService.save(r);
+        Provincia p = new Provincia(4,"Cuneo",3,777777,r);
+        provinciaService.save(p);
+        Comune comune = new Comune(333333,"Castelnuovo",1, new Date(), true, tipoTerritorio, p);
+        DecessiAnnuali decessiAnnuali = new DecessiAnnuali(2019, 0, 0, 0, 0, p);
+        DecessiAnnuali decessiAnnuali2 = new DecessiAnnuali(2020, 0, 0, 0, 0, p);
         //Salvo i model
         tipoTerritorioService.save(tipoTerritorio);
         comuneService.save(comune);
-        provinciaService.save(provincia);
+        provinciaService.save(p);
         decessiAnnualiService.save(decessiAnnuali);
         decessiAnnualiService.saveOrUpdate(decessiAnnuali2);
         //Cerco i model
@@ -46,8 +47,9 @@ public class DecessiAnnualiServiceTest {
         //Elimino i model
         decessiAnnualiService.deleteById(decessiAnnuali.getId());
         decessiAnnualiService.deleteById(decessiAnnuali2.getId());
-        provinciaService.deleteById(provincia.getId());
-        comuneService.deleteByCodiceIstat(comune.getCodiceIstat());
+        provinciaService.deleteById(p.getId());
+        comuneService.deleteByCodiceIstat(333333);
+        regioneService.deleteById(r.getId());
         tipoTerritorioService.deleteById(tipoTerritorio.getId());
         //Assert dei model
         decessiAnnuali = decessiAnnualiService.findById(decessiAnnuali.getId());

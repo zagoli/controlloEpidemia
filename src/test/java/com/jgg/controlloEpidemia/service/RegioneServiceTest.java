@@ -16,16 +16,13 @@ public class RegioneServiceTest {
     void testRegione() {
         //Inizializzo i service
         TipoTerritorioService tipoTerritorioService = new TipoTerritorioService();
-        ComuneService comuneService = new ComuneService();
         RegioneService regioneService = new RegioneService();
         //Creo i model
         TipoTerritorio tipoTerritorio = new TipoTerritorio("Pianeggiante");
-        Comune comune = new Comune(023015, "Castelnuovo", new Date(), 139, true, tipoTerritorio);
-        Regione regione = new Regione("Veneto", 147, comune);
-        Regione regione2 = new Regione("Lombardia", 143, comune);
+        Regione regione = new Regione("Banditizia",1,333333);
+        Regione regione2 = new Regione("Lombardia", 143, 123456);
         //Salvo i model
         tipoTerritorioService.save(tipoTerritorio);
-        comuneService.save(comune);
         regioneService.save(regione);
         regioneService.saveOrUpdate(regione2);
         //Cerco i model
@@ -42,7 +39,6 @@ public class RegioneServiceTest {
         //Elimino i model
         regioneService.deleteById(regione.getId());
         regioneService.deleteById(regione2.getId());
-        comuneService.deleteByCodiceIstat(comune.getCodiceIstat());
         tipoTerritorioService.deleteById(tipoTerritorio.getId());
         //Assert dei model
         regione = regioneService.findById(regione.getId());

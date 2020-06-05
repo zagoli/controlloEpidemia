@@ -1,6 +1,8 @@
 package com.jgg.controlloEpidemia.service;
 
 import com.jgg.controlloEpidemia.model.Comune;
+import com.jgg.controlloEpidemia.model.Provincia;
+import com.jgg.controlloEpidemia.model.Regione;
 import com.jgg.controlloEpidemia.model.TipoTerritorio;
 import org.junit.jupiter.api.Test;
 
@@ -17,16 +19,22 @@ class ComuneServiceTest {
         //Inizializzo i service
         TipoTerritorioService tipoTerritorioService = new TipoTerritorioService();
         ComuneService comuneService = new ComuneService();
+        RegioneService regioneService = new RegioneService();
+        ProvinciaService provinciaService = new ProvinciaService();
         //Creo i model
         TipoTerritorio tipoTerritorio = new TipoTerritorio(1, "pianeggiante");
-        Comune comune = new Comune(023015,"Castelnuovo", 139, new Date(), true, tipoTerritorio,  );
-        Comune comune2 = new Comune(023022,"Bussolengo",140 , new Date(), true, tipoTerritorio, );
+        Regione r = new Regione("Banditizia",1,333333);
+        regioneService.save(r);
+        Provincia p = new Provincia(4,"Cuneo",3,777777,r);
+        provinciaService.save(p);
+        Comune comune = new Comune(333333,"Castelnuovo",1, new Date(), true, tipoTerritorio, p);
+        Comune comune2 = new Comune(444444,"Gelateria",4, new Date(), true, tipoTerritorio, p);
         //Salvo i model
         tipoTerritorioService.save(tipoTerritorio);
         comuneService.save(comune);
         comuneService.saveOrUpdate(comune2);
         //Cerco i model
-        Comune findComune = comuneService.findByCodiceIstat(023015);
+        Comune findComune = comuneService.findByCodiceIstat(333333);
         assertEquals(comune, findComune);
         //Cerco tutti  i model
         List<Comune> comuneList = comuneService.findAll();
@@ -34,16 +42,17 @@ class ComuneServiceTest {
         //Aggiorno i model
         comune.setSuperficie(158);
         comuneService.update(comune);
-        findComune = comuneService.findByCodiceIstat(023015);
+        findComune = comuneService.findByCodiceIstat(333333);
         assertEquals(comune, findComune);
         //Elimino i model
-        comuneService.deleteByCodiceIstat(023015);
-        comuneService.deleteByCodiceIstat(023022);
+        comuneService.deleteByCodiceIstat(333333);
+        comuneService.deleteByCodiceIstat(444444);
+        provinciaService.deleteById(4);
+        regioneService.deleteById(r.getId());
         tipoTerritorioService.deleteById(tipoTerritorio.getId());
         //Assert dei model
-        comune = comuneService.findByCodiceIstat(023015);
+        comune = comuneService.findByCodiceIstat(333333);
         assertNull(comune);
-        comuneList = comuneService.findAll();
-        assertEquals(comuneList.size(), 0);
+
     }
 }
