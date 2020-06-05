@@ -15,7 +15,7 @@ import java.util.List;
 @AllArgsConstructor
 @RequiredArgsConstructor
 @EqualsAndHashCode
-@SelectBeforeUpdate
+
 public class Regione {
 
     @Getter
@@ -45,6 +45,5 @@ public class Regione {
     @Setter
     @NotNull
     @NonNull
-    @OneToOne
-    private Comune capoluogo;
+    private String capoluogo;
 }

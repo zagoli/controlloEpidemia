@@ -17,7 +17,7 @@ import javax.validation.constraints.NotNull;
 @AllArgsConstructor
 @RequiredArgsConstructor
 @EqualsAndHashCode
-@SelectBeforeUpdate
+
 public class MalattieSettimanali {
 
     @Id

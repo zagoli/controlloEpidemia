@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class LoadRuolo {
 
-    static final RuoloService ruoloService = new RuoloService();
+    final RuoloService ruoloService = new RuoloService();
 
     public void load() {
         Ruolo r = new Ruolo("Amministratore");

@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class LoadTipoTerritorio {
 
-    static final TipoTerritorioService tipoTerritorioService = new TipoTerritorioService();
+    final TipoTerritorioService tipoTerritorioService = new TipoTerritorioService();
 
     public void load() {
         TipoTerritorio montano = new TipoTerritorio("montano");

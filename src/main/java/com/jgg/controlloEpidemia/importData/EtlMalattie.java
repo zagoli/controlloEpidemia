@@ -11,10 +11,10 @@ import java.io.IOException;
 
 public class EtlMalattie {
 
-    static final ComuneService comuneService = new ComuneService();
-    static final MalattieSettimanaliService malattieSettimanaliService = new MalattieSettimanaliService();
+    final ComuneService comuneService = new ComuneService();
+    final MalattieSettimanaliService malattieSettimanaliService = new MalattieSettimanaliService();
 
-    private static void caricaMalattia(String[] vett) {
+    private void caricaMalattia(String[] vett) {
         MalattieSettimanali malattieSettimanali = new MalattieSettimanali(Integer.parseInt(vett[0]), Integer.parseInt(vett[1]), Integer.parseInt(vett[2]), Integer.parseInt(vett[3]), Integer.parseInt(vett[4]), Integer.parseInt(vett[5]), Integer.parseInt(vett[6]), Integer.parseInt(vett[7]), Integer.parseInt(vett[8]), Integer.parseInt(vett[9]), Integer.parseInt(vett[10]), Integer.parseInt(vett[11]), Integer.parseInt(vett[12]), Integer.parseInt(vett[13]), Integer.parseInt(vett[14]), Integer.parseInt(vett[15]), Integer.parseInt(vett[16]), comuneService.findByCodiceIstat(Integer.parseInt(vett[17])));
         malattieSettimanaliService.save(malattieSettimanali);
     }

@@ -12,11 +12,11 @@ import java.io.IOException;
 
 public class EtlDecessi {
 
-    static final DecessiAnnualiService decessiAnnualiService = new DecessiAnnualiService();
-    static final ProvinciaService provinciaService = new ProvinciaService();
-    static final RuoloService ruoloService = new RuoloService();
+    final DecessiAnnualiService decessiAnnualiService = new DecessiAnnualiService();
+    final ProvinciaService provinciaService = new ProvinciaService();
+    final RuoloService ruoloService = new RuoloService();
 
-    private static void caricaDecessi(String[] vett) {
+    private void caricaDecessi(String[] vett) {
         DecessiAnnuali da = new DecessiAnnuali(Integer.parseInt(vett[0]), Integer.parseInt(vett[1]), Integer.parseInt(vett[2]), Integer.parseInt(vett[3]), Integer.parseInt(vett[4]), provinciaService.findById(Integer.parseInt(vett[5])));
         decessiAnnualiService.save(da);
     }

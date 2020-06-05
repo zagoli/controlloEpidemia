@@ -19,4 +19,6 @@ public interface UtenteDaoInterface {
     Utente findByUsername(String username);
 
     List<Utente> findAll();
+
+    List<Utente> findAllPersonaleContratto();
 }

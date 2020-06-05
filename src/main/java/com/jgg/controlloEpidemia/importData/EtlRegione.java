@@ -13,13 +13,12 @@ import java.io.IOException;
 
 public class EtlRegione {
 
-    static final ComuneService comuneService = new ComuneService();
-    static final RegioneService regioneService = new RegioneService();
-    static final RuoloService ruoloService = new RuoloService();
+    final RegioneService regioneService = new RegioneService();
+    final RuoloService ruoloService = new RuoloService();
 
-    private static void caricaRegione(String[] vett) {
+    private void caricaRegione(String[] vett) {
         if (App.utenteCorrente.getRuolo().equals(ruoloService.findById(1))) {
-            Regione regione = new Regione(vett[0], Integer.parseInt(vett[1]), comuneService.findByCodiceIstat(Integer.parseInt(vett[2])));
+            Regione regione = new Regione(vett[0], Integer.parseInt(vett[1]), vett[2]);
             regioneService.save(regione);
         } else {
             System.out.println("No");
