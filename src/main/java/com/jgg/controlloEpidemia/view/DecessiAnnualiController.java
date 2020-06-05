@@ -12,9 +12,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.FileChooser;
 
 import java.io.File;
@@ -24,6 +22,14 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 public class DecessiAnnualiController implements Initializable {
+
+    @FXML
+    public Button decessiAnnualiVisualizzazioneModificaButton;
+    @FXML
+    public TabPane decessiAnnualiTabPane;
+
+    @FXML
+    public ListView<String> idDecessiAnnualiListView;
 
     @FXML
     private TextField annoInserimentoTextField;
@@ -69,6 +75,13 @@ public class DecessiAnnualiController implements Initializable {
             provinciaInserimentoComboBox.getItems().add(p.getNome());
             provinciaModificaComboBox.getItems().add(p.getNome());
         }
+
+        DecessiAnnualiService decessiAnnualiService = new DecessiAnnualiService();
+        List<DecessiAnnuali> decessiAnnualiList = decessiAnnualiService.findAll();
+        for (DecessiAnnuali d : decessiAnnualiList) {
+            idDecessiAnnualiListView.getItems().add(d.toString());
+        }
+
     }
 
     @FXML
@@ -146,6 +159,15 @@ public class DecessiAnnualiController implements Initializable {
             malattieCardiovascolariModificaTextField.clear();
             malattieContagioseModificaTextField.clear();
         }
+    }
+
+    @FXML
+    private void DecessiAnnualiVisualizzazioneModificaButtonOnClicked(){
+        decessiAnnualiTabPane.getSelectionModel().select(2);
+        String decessi= idDecessiAnnualiListView.getSelectionModel().getSelectedItem();
+        //String decessiEntry[]=decessi.split(",");
+        //TODO
+        //Stampare bene con toString i decessi annuali
     }
 
 }

@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class EtlDecessiTest {
     @Test
-    void testEtlMalattie() throws IOException {
+    void testEtlDecessi() throws IOException {
         App.utenteCorrente = new UtenteService().findById(1);
         new EtlDecessi().load("src\\test\\resources\\csvToLoadTest\\decessi.csv");
 
