@@ -42,7 +42,7 @@ public class LoginPageController implements Initializable {
     }
 
     @FXML
-    private void onLoginButtonClicked(ActionEvent e) throws IOException {
+    private void onLoginButtonClicked(ActionEvent event) throws IOException {
         String user = usernameField.getText();
         String password = passwordField.getText();
         final UtenteService utenteService = new UtenteService();
@@ -69,7 +69,7 @@ public class LoginPageController implements Initializable {
             App.utenteCorrente = u;
             // vai alla pagina principale
             Parent root = FXMLLoader.load(getClass().getResource("/fxml/homePage.fxml"));
-            ((Button)e.getSource()).getScene().setRoot(root);
+            ((Button)event.getSource()).getScene().setRoot(root);
         }
     }
 

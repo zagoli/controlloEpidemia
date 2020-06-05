@@ -22,8 +22,8 @@ public class UtenteService {
         utenteDao.update(utente);
     }
 
-    public void saveIfNotPresent(Utente utente) {
-        utenteDao.saveIfNotPresent(utente);
+    public void saveOrUpdate(Utente utente) {
+        utenteDao.saveOrUpdate(utente);
     }
 
     public Utente findById(Integer id) {

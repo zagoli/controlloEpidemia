@@ -33,11 +33,14 @@ public class TipoTerritorioDao implements TipoTerritorioDaoInterface {
     }
 
     @Override
-    public void saveIfNotPresent(TipoTerritorio tipoTerritorio) {
+    public void saveOrUpdate(TipoTerritorio tipoTerritorio) {
         session.openCurrentSession();
         TipoTerritorio eTipoTerritorio = findByNome(tipoTerritorio.getNome());
         if (eTipoTerritorio == null) {
             save(tipoTerritorio);
+        }else{
+            eTipoTerritorio.setNome(tipoTerritorio.getNome());
+            update(eTipoTerritorio);
         }
         session.closeCurrentSession();
     }

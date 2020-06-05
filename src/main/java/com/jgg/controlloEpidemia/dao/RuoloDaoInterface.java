@@ -12,7 +12,7 @@ public interface RuoloDaoInterface {
 
     void update(Ruolo ruolo);
 
-    void saveIfNotPresent(Ruolo ruolo);
+    void saveOrUpdate(Ruolo ruolo);
 
     Ruolo findById(Integer id);
 

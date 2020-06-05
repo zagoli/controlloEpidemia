@@ -23,8 +23,8 @@ public class PermessoService {
         permessoDao.update(permesso);
     }
 
-    public void saveIfNotPresent(Permesso permesso) {
-        permessoDao.saveIfNotPresent(permesso);
+    public void saveOrUpdate(Permesso permesso) {
+        permessoDao.saveOrUpdate(permesso);
     }
 
     public Permesso findById(Integer id) {

@@ -15,10 +15,10 @@ public class LoadRuolo {
         Ruolo r3 = new Ruolo("Personale dell'ente");
         Ruolo r4 = new Ruolo("Ricercatore Analista");
 
-        ruoloService.saveIfNotPresent(r);
-        ruoloService.saveIfNotPresent(r2);
-        ruoloService.saveIfNotPresent(r3);
-        ruoloService.saveIfNotPresent(r4);
+        ruoloService.saveOrUpdate(r);
+        ruoloService.saveOrUpdate(r2);
+        ruoloService.saveOrUpdate(r3);
+        ruoloService.saveOrUpdate(r4);
 
     }
 }

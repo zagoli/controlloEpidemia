@@ -21,10 +21,10 @@ public class LoadUtenti {
         u.getPermesso().add(permessoService.findById(1));
         u4.getPermesso().add(permessoService.findById(1));
 
-        utenteService.saveIfNotPresent(u);
-        utenteService.saveIfNotPresent(u2);
-        utenteService.saveIfNotPresent(u3);
-        utenteService.saveIfNotPresent(u4);
+        utenteService.saveOrUpdate(u);
+        utenteService.saveOrUpdate(u2);
+        utenteService.saveOrUpdate(u3);
+        utenteService.saveOrUpdate(u4);
 
     }
 }

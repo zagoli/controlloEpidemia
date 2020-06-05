@@ -66,11 +66,11 @@ public class HomePageController implements Initializable {
     }
 
     @FXML
-    private void onLogoutButtonClicked(ActionEvent e) throws IOException {
+    private void onLogoutButtonClicked(ActionEvent event) throws IOException {
         App.utenteCorrente = null;
         // vai alla pagina di login
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/loginPage.fxml"));
-        ((Button) e.getSource()).getScene().setRoot(root);
+        ((Button) event.getSource()).getScene().setRoot(root);
     }
 
     private void prepareButton(Button button) {
