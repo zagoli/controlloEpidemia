@@ -152,7 +152,7 @@
                                 <Font name="Segoe UI Bold" size="20.0" />
                             </font>
                         </Button>
-                        <DatePicker layoutX="40.0" layoutY="240.0" />
+                        <DatePicker fx:id="dataDiIstituzioneComuneInserimento" layoutX="40.0" layoutY="240.0" onAction="#dataDiIstituzioneComuneInserimentoOnClicked" />
                     </Pane>
                 </Tab>
             </TabPane>
