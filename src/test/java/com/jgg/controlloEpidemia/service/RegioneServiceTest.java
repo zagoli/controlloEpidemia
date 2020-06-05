@@ -16,7 +16,7 @@ public class RegioneServiceTest {
         TipoTerritorioService tipoTerritorioService = new TipoTerritorioService();
         RegioneService regioneService = new RegioneService();
         //Creo i model
-        TipoTerritorio tipoTerritorio = new TipoTerritorio("Pianeggiante");
+        TipoTerritorio tipoTerritorio = new TipoTerritorio("PianeggianteTest");
         Regione regione = new Regione("Banditizia", 1, 333333);
         Regione regione2 = new Regione("Lombardia", 143, 123456);
         //Salvo i model
@@ -28,7 +28,7 @@ public class RegioneServiceTest {
         assertEquals(regione, findRegione);
         //Cerco tutti i model
         List<Regione> regioneList = regioneService.findAll();
-        assertEquals(regioneList.size(), 2);
+        assertEquals(regioneList.size(), 3);
         //Aggiorno i model
         regione.setSuperficie(987);
         regioneService.update(regione);
@@ -42,6 +42,6 @@ public class RegioneServiceTest {
         regione = regioneService.findById(regione.getId());
         assertNull(regione);
         regioneList = regioneService.findAll();
-        assertEquals(regioneList.size(), 0);
+        assertEquals(regioneList.size(), 1);
     }
 }

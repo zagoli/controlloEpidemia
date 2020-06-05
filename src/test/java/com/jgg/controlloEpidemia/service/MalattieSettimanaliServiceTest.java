@@ -20,10 +20,10 @@ class MalattieSettimanaliServiceTest {
         RegioneService regioneService = new RegioneService();
         ProvinciaService provinciaService = new ProvinciaService();
         //Creo i model
-        TipoTerritorio tipoTerritorio = new TipoTerritorio("Pianeggiante");
-        Regione r = new Regione("Banditizia", 1, 333333);
+        TipoTerritorio tipoTerritorio = new TipoTerritorio("PianeggianteTest");
+        Regione r = new Regione("BanditiziaTest", 1, 333333);
         regioneService.save(r);
-        Provincia p = new Provincia(4, "Cuneo", 3, 777777, r);
+        Provincia p = new Provincia(16, "CuneoTest", 3, 777777, r);
         provinciaService.save(p);
         Comune comune = new Comune(333333, "Castelnuovo", 1, new Date(), true, tipoTerritorio, p);
         MalattieSettimanali malattieSettimanali = new MalattieSettimanali(2019, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, comune);
@@ -38,7 +38,7 @@ class MalattieSettimanaliServiceTest {
         assertEquals(malattieSettimanali, findMalattieSettimanali);
         //Cerco tutti  i model
         List<MalattieSettimanali> malattieSettimanaliList = malattieSettimanaliService.findAll();
-        assertEquals(malattieSettimanaliList.size(), 2);
+        assertEquals(malattieSettimanaliList.size(), 13);
         //Aggiorno i model
         malattieSettimanali.setAnno(2021);
         malattieSettimanaliService.update(malattieSettimanali);
@@ -48,13 +48,13 @@ class MalattieSettimanaliServiceTest {
         malattieSettimanaliService.deleteById(malattieSettimanali.getId());
         malattieSettimanaliService.deleteById(malattieSettimanali2.getId());
         comuneService.deleteByCodiceIstat(333333);
-        provinciaService.deleteById(4);
+        provinciaService.deleteById(p.getId());
         regioneService.deleteById(r.getId());
         tipoTerritorioService.deleteById(tipoTerritorio.getId());
         //Assert dei model
         malattieSettimanali = malattieSettimanaliService.findById(malattieSettimanali.getId());
         assertNull(malattieSettimanali);
         malattieSettimanaliList = malattieSettimanaliService.findAll();
-        assertEquals(malattieSettimanaliList.size(), 0);
+        assertEquals(malattieSettimanaliList.size(), 11);
     }
 }

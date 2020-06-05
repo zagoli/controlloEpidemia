@@ -16,7 +16,7 @@ public class UtenteServiceTest {
         RuoloService ruoloService = new RuoloService();
         UtenteService utenteService = new UtenteService();
         //Creo i model
-        Ruolo ruolo = new Ruolo("Amministratore");
+        Ruolo ruolo = new Ruolo("AmministratoreTest");
         Utente utente = new Utente("utente1", "password", "Utente", "Uno", ruolo);
         Utente utente2 = new Utente("utente2", "password2", "Utente", "Due", ruolo);
         //Salvo i model
@@ -31,7 +31,7 @@ public class UtenteServiceTest {
         assertEquals(utente, findUtente);
         //Cerco tutti i model
         List<Utente> utenteList = utenteService.findAll();
-        assertEquals(utenteList.size(), 2);
+        assertEquals(utenteList.size(), 6);
         //Aggiorno i model
         utente.setCognome("DOS");
         utenteService.update(utente);
@@ -45,15 +45,14 @@ public class UtenteServiceTest {
         utente = utenteService.findById(utente.getId());
         assertNull(utente);
         utenteList = utenteService.findAll();
-        assertEquals(utenteList.size(), 0);
+        assertEquals(utenteList.size(), 4);
     }
 
     @Test
-        //Non funzionerà mai più con gli id autogenerati
     void testFindPersonaleAContratto() {
         //Inizializzo i service
         RuoloService ruoloService = new RuoloService();
-        Ruolo r = new Ruolo("Personale a contratto");
+        Ruolo r = new Ruolo("Personale a contratto Test");
         ruoloService.save(r);
         UtenteService utenteService = new UtenteService();
         //Creo i model
@@ -65,6 +64,6 @@ public class UtenteServiceTest {
         assertTrue(utenti.size() >= 1);
 
         utenteService.deleteById(utente.getId());
-        ruoloService.deleteById(1);
+        ruoloService.deleteById(5);
     }
 }

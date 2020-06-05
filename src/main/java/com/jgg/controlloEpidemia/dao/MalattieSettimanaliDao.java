@@ -1,15 +1,21 @@
 package com.jgg.controlloEpidemia.dao;
 
 import com.jgg.controlloEpidemia.model.Comune;
+import com.jgg.controlloEpidemia.model.DecessiAnnuali;
 import com.jgg.controlloEpidemia.model.MalattieSettimanali;
+import com.jgg.controlloEpidemia.model.Provincia;
 import lombok.NoArgsConstructor;
+import org.hibernate.query.Query;
 
+import javax.persistence.NoResultException;
 import java.util.List;
 
 @NoArgsConstructor
 public class MalattieSettimanaliDao implements MalattieSettimanaliDaoInterface {
 
     private static Session session = new Session();
+
+    final private String FROM_COMUNE_WHERE_ANNO_SETTIMANA_COMUNE="FROM MalattieSettimanali where ANNO= :anno and SETTIMANA= :settimana and COMUNE_CODICEISTAT= :comune";
 
     @Override
     public void save(MalattieSettimanali malattieSettimanali) {
@@ -35,26 +41,54 @@ public class MalattieSettimanaliDao implements MalattieSettimanaliDaoInterface {
 
     @Override
     public void saveOrUpdate(MalattieSettimanali malattieSettimanali) {
-      /*  session.openCurrentSession();
-        Comune eComune = findByNome(comune.getNome());
-        if (eComune == null) {
-            save(comune);
+        session.openCurrentSession();
+        MalattieSettimanali eMalattieSettimanali = findByAnnoSettimanaComune(malattieSettimanali.getAnno(),malattieSettimanali.getSettimana(),malattieSettimanali.getComune());
+        if (eMalattieSettimanali == null) {
+            save(malattieSettimanali);
         } else {
-            eComune.setNome(comune.getNome());
-            eComune.setSuperficie(comune.getSuperficie());
-            eComune.setDataIstituzione(comune.getDataIstituzione());
-            eComune.setSiAffacciaSulMare(comune.getSiAffacciaSulMare());
-            eComune.setTipoTerritorio(comune.getTipoTerritorio());
-            eComune.setProvincia(comune.getProvincia());
-            update(eComune);
+            eMalattieSettimanali.setAnno(malattieSettimanali.getAnno());
+            eMalattieSettimanali.setSettimana(malattieSettimanali.getSettimana());
+            eMalattieSettimanali.setRicoveratiInfluenza(malattieSettimanali.getRicoveratiInfluenza());
+            eMalattieSettimanali.setInCuraInfluenza(malattieSettimanali.getInCuraInfluenza());
+            eMalattieSettimanali.setComplicanzeRespiratorie(malattieSettimanali.getComplicanzeRespiratorie());
+            eMalattieSettimanali.setRicoveratiPolmonite(malattieSettimanali.getRicoveratiPolmonite());
+            eMalattieSettimanali.setInCuraPolmonite(malattieSettimanali.getInCuraPolmonite());
+            eMalattieSettimanali.setRicoveratiMeningite(malattieSettimanali.getRicoveratiMeningite());
+            eMalattieSettimanali.setInCuraMeningite(malattieSettimanali.getInCuraMeningite());
+            eMalattieSettimanali.setRicoveratiEpatite(malattieSettimanali.getRicoveratiEpatite());
+            eMalattieSettimanali.setInCuraEpatite(malattieSettimanali.getInCuraEpatite());
+            eMalattieSettimanali.setRicoveratiMorbillo(malattieSettimanali.getRicoveratiMorbillo());
+            eMalattieSettimanali.setInCuraMorbillo(malattieSettimanali.getInCuraMorbillo());
+            eMalattieSettimanali.setRicoveratiTubercolosi(malattieSettimanali.getRicoveratiTubercolosi());
+            eMalattieSettimanali.setInCuraTubercolosi(malattieSettimanali.getInCuraTubercolosi());
+            eMalattieSettimanali.setRicoveratiGastroenterite(malattieSettimanali.getRicoveratiGastroenterite());
+            eMalattieSettimanali.setInCuraGastroenterite(malattieSettimanali.getRicoveratiGastroenterite());
+            eMalattieSettimanali.setComune(malattieSettimanali.getComune());
+            update(eMalattieSettimanali);
         }
-        session.closeCurrentSession();*/
+        session.closeCurrentSession();
     }
 
     @Override
     public MalattieSettimanali findById(Integer id) {
         session.openCurrentSession();
         MalattieSettimanali malattieSettimanali = session.getCurrentSession().get(MalattieSettimanali.class, id);
+        session.closeCurrentSession();
+        return malattieSettimanali;
+    }
+
+    @Override
+    public MalattieSettimanali findByAnnoSettimanaComune(Integer anno, Integer settimana, Comune comune) {
+        session.openCurrentSession();
+        Query query = session.createQuery(FROM_COMUNE_WHERE_ANNO_SETTIMANA_COMUNE);
+        query.setParameter("anno", anno);
+        query.setParameter("settimana", settimana);
+        query.setParameter("comune", comune.getCodiceIstat());
+        MalattieSettimanali malattieSettimanali = null;
+        try {
+            malattieSettimanali = (MalattieSettimanali) query.getSingleResult();
+        } catch (NoResultException ignored) {
+        }
         session.closeCurrentSession();
         return malattieSettimanali;
     }

@@ -2,14 +2,19 @@ package com.jgg.controlloEpidemia.dao;
 
 import com.jgg.controlloEpidemia.model.Comune;
 import com.jgg.controlloEpidemia.model.DecessiAnnuali;
+import com.jgg.controlloEpidemia.model.Provincia;
 import lombok.NoArgsConstructor;
+import org.hibernate.query.Query;
 
+import javax.persistence.NoResultException;
 import java.util.List;
 
 @NoArgsConstructor
 public class DecessiAnnualiDao implements DecessiAnnualiDaoInterface {
 
     private static Session session = new Session();
+
+    final private String FROM_COMUNE_WHERE_ANNO_PROVINCIA="FROM DecessiAnnuali where ANNO= :anno and PROVINCIA_ID= :provincia";
 
     @Override
     public void save(DecessiAnnuali decessiAnnuali) {
@@ -35,26 +40,41 @@ public class DecessiAnnualiDao implements DecessiAnnualiDaoInterface {
 
     @Override
     public void saveOrUpdate(DecessiAnnuali decessiAnnuali) {
-       /* session.openCurrentSession();
-        Comune eComune = findByNome(comune.getNome());
-        if (eComune == null) {
-            save(comune);
+        session.openCurrentSession();
+        DecessiAnnuali eDecessiAnnuali = findByAnnoProvincia(decessiAnnuali.getAnno(),decessiAnnuali.getProvincia());
+        if (eDecessiAnnuali == null) {
+            save(decessiAnnuali);
         } else {
-            eComune.setNome(comune.getNome());
-            eComune.setSuperficie(comune.getSuperficie());
-            eComune.setDataIstituzione(comune.getDataIstituzione());
-            eComune.setSiAffacciaSulMare(comune.getSiAffacciaSulMare());
-            eComune.setTipoTerritorio(comune.getTipoTerritorio());
-            eComune.setProvincia(comune.getProvincia());
-            update(eComune);
+            eDecessiAnnuali.setAnno(decessiAnnuali.getAnno());
+            eDecessiAnnuali.setIncidentiStradali(decessiAnnuali.getIncidentiStradali());
+            eDecessiAnnuali.setMalattieTumorali(decessiAnnuali.getMalattieTumorali());
+            eDecessiAnnuali.setMalattieCardiovascolari(decessiAnnuali.getMalattieCardiovascolari());
+            eDecessiAnnuali.setMalattieContagiose(decessiAnnuali.getMalattieContagiose());
+            eDecessiAnnuali.setProvincia(decessiAnnuali.getProvincia());
+            update(eDecessiAnnuali);
         }
-        session.closeCurrentSession();*/
+        session.closeCurrentSession();
     }
 
     @Override
     public DecessiAnnuali findById(Integer id) {
         session.openCurrentSession();
         DecessiAnnuali decessiAnnuali = session.getCurrentSession().get(DecessiAnnuali.class, id);
+        session.closeCurrentSession();
+        return decessiAnnuali;
+    }
+
+    @Override
+    public DecessiAnnuali findByAnnoProvincia(Integer anno, Provincia provincia) {
+        session.openCurrentSession();
+        Query query = session.createQuery(FROM_COMUNE_WHERE_ANNO_PROVINCIA);
+        query.setParameter("anno", anno);
+        query.setParameter("provincia", provincia.getId());
+        DecessiAnnuali decessiAnnuali = null;
+        try {
+            decessiAnnuali = (DecessiAnnuali) query.getSingleResult();
+        } catch (NoResultException ignored) {
+        }
         session.closeCurrentSession();
         return decessiAnnuali;
     }

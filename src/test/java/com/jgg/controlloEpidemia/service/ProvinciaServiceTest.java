@@ -15,16 +15,13 @@ public class ProvinciaServiceTest {
     void testProvincia() {
         //Inizializzo i service
         RegioneService regioneService = new RegioneService();
-        TipoTerritorioService tipoTerritorioService = new TipoTerritorioService();
         ProvinciaService provinciaService = new ProvinciaService();
         //Creo i model
-        TipoTerritorio tipoTerritorio = new TipoTerritorio("Pianeggiante");
-        Regione r = new Regione("Banditizia", 1, 333333);
+        Regione r = new Regione("BanditiziaTest", 1, 1006);
         regioneService.save(r);
-        Provincia provincia = new Provincia(4, "Cuneo", 3, 777777, r);
-        Provincia provincia2 = new Provincia(4, "Cuneo", 3, 777777, r);
+        Provincia provincia = new Provincia(15, "Verona", 3, 1004, r);
+        Provincia provincia2 = new Provincia(14, "Mantova", 3, 1005, r);
         //Salvo i model
-        tipoTerritorioService.save(tipoTerritorio);
         provinciaService.save(provincia);
         provinciaService.saveOrUpdate(provincia2);
         //Cerco i model
@@ -32,7 +29,7 @@ public class ProvinciaServiceTest {
         assertEquals(provincia, findProvincia);
         //Cerco tutti  i model
         List<Provincia> provinciaList = provinciaService.findAll();
-        assertEquals(provinciaList.size(), 2);
+        assertEquals(provinciaList.size(), 10);
         //Aggiorno i model
         provincia.setSuperficie(198);
         provinciaService.update(provincia);
@@ -42,11 +39,10 @@ public class ProvinciaServiceTest {
         provinciaService.deleteById(provincia.getId());
         provinciaService.deleteById(provincia2.getId());
         regioneService.deleteById(r.getId());
-        tipoTerritorioService.deleteById(tipoTerritorio.getId());
         //Assert dei model
         provincia = provinciaService.findById(provincia.getId());
         assertNull(provincia);
         provinciaList = provinciaService.findAll();
-        assertEquals(provinciaList.size(), 0);
+        assertEquals(provinciaList.size(), 8);
     }
 }

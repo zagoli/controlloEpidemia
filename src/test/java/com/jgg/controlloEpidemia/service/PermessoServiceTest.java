@@ -14,8 +14,8 @@ public class PermessoServiceTest {
         //Inizializzo i service
         PermessoService permessoService = new PermessoService();
         //Creo i model
-        Permesso permesso = new Permesso("Lettura", "può leggere");
-        Permesso permesso2 = new Permesso("Scrittura", "può scrivere");
+        Permesso permesso = new Permesso("LetturaTest", "può leggere");
+        Permesso permesso2 = new Permesso("ScritturaTest", "può scrivere");
         //Salvo i model
         permessoService.save(permesso);
         permessoService.saveOrUpdate(permesso2);
@@ -24,7 +24,7 @@ public class PermessoServiceTest {
         assertEquals(permesso, findRuolo);
         //Cerco tutti  i model
         List<Permesso> permessoList = permessoService.findAll();
-        assertEquals(permessoList.size(), 2);
+        assertEquals(permessoList.size(), 3);
         //Aggiorno i model
         permesso.setNome("Aggiornamento utenti");
         permessoService.update(permesso);
@@ -36,7 +36,9 @@ public class PermessoServiceTest {
         //Assert dei model
         permesso = permessoService.findById(permesso.getId());
         assertNull(permesso);
+        permesso2 = permessoService.findByNome(permesso2.getNome());
+        assertNull(permesso2);
         permessoList = permessoService.findAll();
-        assertEquals(permessoList.size(), 0);
+        assertEquals(permessoList.size(), 1);
     }
 }
