@@ -18,7 +18,7 @@ public class PermessoServiceTest {
         Permesso permesso2 = new Permesso("Scrittura", "può scrivere");
         //Salvo i model
         permessoService.save(permesso);
-        permessoService.saveIfNotPresent(permesso2);
+        permessoService.saveOrUpdate(permesso2);
         //Cerco i model
         Permesso findRuolo = permessoService.findById(permesso.getId());
         assertEquals(permesso, findRuolo);

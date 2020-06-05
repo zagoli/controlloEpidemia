@@ -96,7 +96,7 @@ public class MalattieSettimanaliController implements Initializable {
 
     @FXML
     void inserisciInserimentoOnClicked(ActionEvent event) {
-        ComuneService comuneService = new ComuneService();
+        /*ComuneService comuneService = new ComuneService();
         MalattieSettimanali malattieSettimanali = new MalattieSettimanali(
                 Integer.parseInt(annoInserimentoTextField.getText()),
                 Integer.parseInt(settimanaInserimentoTextField.getText()),
@@ -138,7 +138,7 @@ public class MalattieSettimanaliController implements Initializable {
             inCuraConEpatiteInserimentoTextField.clear();
             inCuraConMorbilloInserimentoTextField.clear();
             inCuraConGastroenteriteInserimentoTextField.clear();
-        }
+        }*/
     }
 
     @FXML
@@ -159,7 +159,7 @@ public class MalattieSettimanaliController implements Initializable {
 
     @FXML
     void inserisciModificaOnClicked(ActionEvent event) {
-        ComuneService comuneService = new ComuneService();
+        /*ComuneService comuneService = new ComuneService();
         MalattieSettimanali malattieSettimanali = new MalattieSettimanali(
                 Integer.parseInt(annoInserimentoTextField.getText()),
                 Integer.parseInt(settimanaInserimentoTextField.getText()),
@@ -201,7 +201,7 @@ public class MalattieSettimanaliController implements Initializable {
             inCuraConEpatiteInserimentoTextField.clear();
             inCuraConMorbilloInserimentoTextField.clear();
             inCuraConGastroenteriteInserimentoTextField.clear();
-        }
+        }*/
     }
 
 }

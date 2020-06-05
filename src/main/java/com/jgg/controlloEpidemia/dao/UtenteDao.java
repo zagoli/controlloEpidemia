@@ -89,6 +89,6 @@ public class UtenteDao implements UtenteDaoInterface {
         session.openCurrentSession();
         List<Utente> utenti = session.getCurrentSession().createQuery(FIND_ALL_PERSONALE_CONTRATTO).list();
         session.closeCurrentSession();
-        return null;
+        return utenti;
     }
 }

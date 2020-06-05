@@ -83,6 +83,7 @@ public class DecessiAnnualiController implements Initializable {
 
     @FXML
     private void inserisciInserimentoButtonOnClicked() {
+        /*
         ProvinciaService provinciaService = new ProvinciaService();
         DecessiAnnuali decessiAnnuali = new DecessiAnnuali(Integer.parseInt(annoInserimentoTextField.getText()),
                 Integer.parseInt(incidentiStradaliInserimentoTextField.getText()),
@@ -101,6 +102,8 @@ public class DecessiAnnualiController implements Initializable {
             malattieCardiovascolariInserimentoTextField.clear();
             malattieContagioseInserimentoTextField.clear();
         }
+
+         */
     }
 
     @FXML
@@ -126,7 +129,7 @@ public class DecessiAnnualiController implements Initializable {
 
     @FXML
     private void inserisciModificaButtonOnClicked() {
-        ProvinciaService provinciaService = new ProvinciaService();
+        /*ProvinciaService provinciaService = new ProvinciaService();
         DecessiAnnuali decessiAnnuali = new DecessiAnnuali(
                 Integer.parseInt(annoModificaTextField.getText()),
                 Integer.parseInt(incidentiStradaliModificaTextField.getText()),
@@ -145,6 +148,7 @@ public class DecessiAnnualiController implements Initializable {
             malattieCardiovascolariModificaTextField.clear();
             malattieContagioseModificaTextField.clear();
         }
+        */
     }
 
 }

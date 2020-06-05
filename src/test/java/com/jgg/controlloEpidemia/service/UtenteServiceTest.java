@@ -24,7 +24,7 @@ public class UtenteServiceTest {
         //Salvo i model
         ruoloService.save(ruolo);
         utenteService.save(utente);
-        utenteService.saveIfNotPresent(utente2);
+        utenteService.saveOrUpdate(utente2);
         //Cerco i model
         Utente findUtente = utenteService.findById(utente.getId());
         assertEquals(utente, findUtente);
@@ -51,13 +51,15 @@ public class UtenteServiceTest {
     }
 
     @Test
-    //Assume che i ruoli siano già caricati
+    //Non funzionerà mai più con gli id autogenerati
     void testFindPersonaleAContratto(){
         //Inizializzo i service
         RuoloService ruoloService = new RuoloService();
+        Ruolo r = new Ruolo("Personale a contratto");
+        ruoloService.save(r);
         UtenteService utenteService = new UtenteService();
         //Creo i model
-        Utente utente = new Utente("utente1", "password", "Utente", "Uno", ruoloService.findById(2));
+        Utente utente = new Utente("utente1", "password", "Utente", "Uno", ruoloService.findById(1));
         // Salvo l'utente
         utenteService.save(utente);
         // Cerco gli utenti con ruolo personale a contratto
@@ -65,5 +67,6 @@ public class UtenteServiceTest {
         assertTrue(utenti.size() >= 1);
 
         utenteService.deleteById(utente.getId());
+        ruoloService.deleteById(1);
     }
 }
