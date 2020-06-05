@@ -2,11 +2,14 @@ package com.jgg.controlloEpidemia.view;
 
 import com.jgg.controlloEpidemia.importData.EtlMalattie;
 import com.jgg.controlloEpidemia.model.MalattieSettimanali;
+import com.jgg.controlloEpidemia.model.TipoTerritorio;
 import com.jgg.controlloEpidemia.service.ComuneService;
 import com.jgg.controlloEpidemia.service.MalattieSettimanaliService;
+import com.jgg.controlloEpidemia.service.TipoTerritorioService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -15,8 +18,11 @@ import javafx.stage.FileChooser;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.URL;
+import java.util.List;
+import java.util.ResourceBundle;
 
-public class MalattieSettimanaliController {
+public class MalattieSettimanaliController implements Initializable {
 
     @FXML
     private TextField annoInserimentoTextField;
@@ -70,7 +76,17 @@ public class MalattieSettimanaliController {
     private TextField inCuraConGastroenteriteInserimentoTextField;
 
     @FXML
-    private ComboBox<?> comuneInserimentoComboBox;
+    private ComboBox<String> comuneInserimentoComboBox;
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        TipoTerritorioService tipoTerritorioService = new TipoTerritorioService();
+        List<TipoTerritorio> tipoTerritorioList = tipoTerritorioService.findAll();
+        for (TipoTerritorio t : tipoTerritorioList) {
+            comuneInserimentoComboBox.getItems().add(t.getNome());
+            //comuneInserimentoComboBox.getItems().add(t.getNome());
+        }
+    }
 
     @FXML
     void homepageButtonOnClicked(ActionEvent event) throws IOException {

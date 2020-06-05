@@ -1,14 +1,10 @@
 package com.jgg.controlloEpidemia.view;
 
 import com.jgg.controlloEpidemia.importData.EtlDecessi;
-import com.jgg.controlloEpidemia.importData.EtlMalattie;
 import com.jgg.controlloEpidemia.model.DecessiAnnuali;
-import com.jgg.controlloEpidemia.model.Provincia;
-import com.jgg.controlloEpidemia.model.Regione;
 import com.jgg.controlloEpidemia.model.TipoTerritorio;
 import com.jgg.controlloEpidemia.service.DecessiAnnualiService;
 import com.jgg.controlloEpidemia.service.ProvinciaService;
-import com.jgg.controlloEpidemia.service.RegioneService;
 import com.jgg.controlloEpidemia.service.TipoTerritorioService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -114,7 +110,7 @@ public class DecessiAnnualiController implements Initializable {
         FileChooser.ExtensionFilter extensionFilter = new FileChooser.ExtensionFilter("CSV files (*.csv)", "*.csv");
         fileChooser.getExtensionFilters().add(extensionFilter);
         File selectedFile = fileChooser.showOpenDialog(null);
-        EtlDecessi etlDecessi=new EtlDecessi();
+        EtlDecessi etlDecessi = new EtlDecessi();
         if (selectedFile != null) {
             System.out.println("ok");
             //etlDecessi.load(selectedFile);
