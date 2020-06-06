@@ -4,7 +4,6 @@ import com.jgg.controlloEpidemia.App;
 import com.jgg.controlloEpidemia.model.Comune;
 import com.jgg.controlloEpidemia.service.ComuneService;
 import com.jgg.controlloEpidemia.service.ProvinciaService;
-import com.jgg.controlloEpidemia.service.RuoloService;
 import com.jgg.controlloEpidemia.service.TipoTerritorioService;
 
 import java.io.BufferedReader;

@@ -1,124 +1,114 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ListView?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.paint.LinearGradient?>
-<?import javafx.scene.paint.Stop?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
 <?import javafx.scene.shape.Polygon?>
 <?import javafx.scene.text.Font?>
-
-<BorderPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.jgg.controlloEpidemia.view.AutorizzaComuniController">
-   <top>
-      <Button mnemonicParsing="false" onAction="#onHomePageButtonClicked" text="Homepage" BorderPane.alignment="TOP_LEFT">
-         <BorderPane.margin>
-            <Insets left="5.0" top="5.0" />
-         </BorderPane.margin>
-      </Button>
-   </top>
-   <center>
-      <GridPane alignment="CENTER" BorderPane.alignment="CENTER">
-        <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="272.79998779296875" minWidth="10.0" prefWidth="265.5999755859375" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="195.20001220703125" minWidth="10.0" prefWidth="74.80003662109374" />
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="252.39996337890625" minWidth="10.0" prefWidth="252.39996337890625" />
-        </columnConstraints>
-        <rowConstraints>
-          <RowConstraints maxHeight="178.00000610351563" minHeight="10.0" prefHeight="69.9999984741211" vgrow="SOMETIMES" />
-          <RowConstraints maxHeight="299.59998931884763" minHeight="10.0" prefHeight="298.8000015258789" vgrow="SOMETIMES" />
-        </rowConstraints>
-         <children>
+<BorderPane xmlns:fx="http://javafx.com/fxml/1" prefHeight="600.0" prefWidth="800.0"
+            xmlns="http://javafx.com/javafx/11.0.1"
+            fx:controller="com.jgg.controlloEpidemia.view.AutorizzaComuniController">
+    <top>
+        <Button mnemonicParsing="false" onAction="#onHomePageButtonClicked" text="Homepage"
+                BorderPane.alignment="TOP_LEFT">
+            <BorderPane.margin>
+                <Insets left="5.0" top="5.0"/>
+            </BorderPane.margin>
+        </Button>
+    </top>
+    <center>
+        <GridPane alignment="CENTER" BorderPane.alignment="CENTER">
+            <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="272.79998779296875" minWidth="10.0"
+                                   prefWidth="265.5999755859375"/>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="195.20001220703125" minWidth="10.0"
+                                   prefWidth="74.80003662109374"/>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="252.39996337890625" minWidth="10.0"
+                                   prefWidth="252.39996337890625"/>
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints maxHeight="178.00000610351563" minHeight="10.0" prefHeight="69.9999984741211"
+                                vgrow="SOMETIMES"/>
+                <RowConstraints maxHeight="299.59998931884763" minHeight="10.0" prefHeight="298.8000015258789"
+                                vgrow="SOMETIMES"/>
+            </rowConstraints>
             <VBox prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="1">
-               <children>
-                  <HBox alignment="CENTER">
-                     <children>
-                        <Label text="Tutti i comuni">
-                           <font>
-                              <Font size="17.0" />
-                           </font>
-                        </Label>
-                     </children>
-                  </HBox>
-                  <ListView fx:id="allComuniList" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
-                     <VBox.margin>
-                        <Insets bottom="10.0" />
-                     </VBox.margin>
-                  </ListView>
-               </children>
-               <GridPane.margin>
-                  <Insets left="5.0" />
-               </GridPane.margin>
+                <GridPane.margin>
+                    <Insets left="5.0"/>
+                </GridPane.margin>
+                <HBox alignment="CENTER">
+                    <Label text="Tutti i comuni">
+                        <font>
+                            <Font size="17.0"/>
+                        </font>
+                    </Label>
+                </HBox>
+                <ListView fx:id="allComuniList" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+                    <VBox.margin>
+                        <Insets bottom="10.0"/>
+                    </VBox.margin>
+                </ListView>
             </VBox>
             <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
-               <children>
-                  <HBox alignment="CENTER">
-                     <VBox.margin>
-                        <Insets />
-                     </VBox.margin>
-                     <children>
-                        <Label text="Comuni autorizzati">
-                           <font>
-                              <Font size="17.0" />
-                           </font>
-                        </Label>
-                     </children>
-                  </HBox>
-                  <ListView fx:id="authorizedComuni" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
-                     <VBox.margin>
-                        <Insets bottom="10.0" />
-                     </VBox.margin>
-                  </ListView>
-               </children>
-               <GridPane.margin>
-                  <Insets right="5.0" />
-               </GridPane.margin>
+                <GridPane.margin>
+                    <Insets right="5.0"/>
+                </GridPane.margin>
+                <HBox alignment="CENTER">
+                    <VBox.margin>
+                        <Insets/>
+                    </VBox.margin>
+                    <Label text="Comuni autorizzati">
+                        <font>
+                            <Font size="17.0"/>
+                        </font>
+                    </Label>
+                </HBox>
+                <ListView fx:id="authorizedComuni" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+                    <VBox.margin>
+                        <Insets bottom="10.0"/>
+                    </VBox.margin>
+                </ListView>
             </VBox>
-            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.valignment="CENTER">
-               <children>
-                  <HBox alignment="CENTER">
-                     <children>
-                        <Polygon onMouseClicked="#addComune" points="-16.40066146850586, 30.000009536743164, -16.40066146850586, 41.8665885925293, 9.999332427978516, 18.93324851989746, -16.40066146850586, -3.2000770568847656, -16.40066146850586, 8.799966812133789, -50.00068664550781, 8.799966812133789, -50.00051498413086, 30.000009536743164" stroke="BLACK" strokeType="INSIDE">
-                           <fill>
-                              <LinearGradient endX="1.0" endY="1.0">
-                                 <stops>
-                                    <Stop color="WHITE" />
-                                    <Stop color="BLACK" offset="1.0" />
-                                 </stops>
-                              </LinearGradient>
-                           </fill>
-                        </Polygon>
-                     </children>
-                  </HBox>
-                  <HBox alignment="CENTER" layoutX="10.0" layoutY="137.0">
-                     <children>
-                        <Polygon onMouseClicked="#removeComune" points="-16.40066146850586, 30.000009536743164, -16.40066146850586, 41.8665885925293, 9.999332427978516, 18.93324851989746, -16.40066146850586, -3.2000770568847656, -16.40066146850586, 8.799966812133789, -50.00068664550781, 8.799966812133789, -50.00051498413086, 30.000009536743164" rotate="180.0" stroke="BLACK" strokeType="INSIDE">
-                           <fill>
-                              <LinearGradient endX="1.0" endY="1.0">
-                                 <stops>
-                                    <Stop color="WHITE" />
-                                    <Stop color="BLACK" offset="1.0" />
-                                 </stops>
-                              </LinearGradient>
-                           </fill></Polygon>
-                     </children>
-                  </HBox>
-               </children>
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0" GridPane.columnIndex="1"
+                  GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                <HBox alignment="CENTER">
+                    <Polygon onMouseClicked="#addComune"
+                             points="-16.40066146850586, 30.000009536743164, -16.40066146850586, 41.8665885925293, 9.999332427978516, 18.93324851989746, -16.40066146850586, -3.2000770568847656, -16.40066146850586, 8.799966812133789, -50.00068664550781, 8.799966812133789, -50.00051498413086, 30.000009536743164"
+                             stroke="BLACK" strokeType="INSIDE">
+                        <fill>
+                            <LinearGradient>
+                                <stops>
+                                    <Stop color="WHITE"/>
+                                    <Stop color="BLACK" offset="1.0"/>
+                                </stops>
+                            </LinearGradient>
+                        </fill>
+                    </Polygon>
+                </HBox>
+                <HBox alignment="CENTER" layoutX="10.0" layoutY="137.0">
+                    <Polygon onMouseClicked="#removeComune"
+                             points="-16.40066146850586, 30.000009536743164, -16.40066146850586, 41.8665885925293, 9.999332427978516, 18.93324851989746, -16.40066146850586, -3.2000770568847656, -16.40066146850586, 8.799966812133789, -50.00068664550781, 8.799966812133789, -50.00051498413086, 30.000009536743164"
+                             rotate="180.0" stroke="BLACK" strokeType="INSIDE">
+                        <fill>
+                            <LinearGradient>
+                                <stops>
+                                    <Stop color="WHITE"/>
+                                    <Stop color="BLACK" offset="1.0"/>
+                                </stops>
+                            </LinearGradient>
+                        </fill>
+                    </Polygon>
+                </HBox>
             </VBox>
-            <Button mnemonicParsing="false" onAction="#onSaveButtonClicked" text="Salva le modifiche" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
-               <font>
-                  <Font size="15.0" />
-               </font>
+            <Button mnemonicParsing="false" onAction="#onSaveButtonClicked" text="Salva le modifiche"
+                    GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                <font>
+                    <Font size="15.0"/>
+                </font>
             </Button>
-            <ComboBox fx:id="utentiComboBox" prefWidth="150.0" promptText="Seleziona un utente" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-         </children>
-      </GridPane>
-   </center>
+            <ComboBox fx:id="utentiComboBox" prefWidth="150.0" promptText="Seleziona un utente"
+                      GridPane.halignment="CENTER" GridPane.valignment="CENTER"/>
+        </GridPane>
+    </center>
 </BorderPane>

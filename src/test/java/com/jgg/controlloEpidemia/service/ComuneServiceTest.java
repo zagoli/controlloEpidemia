@@ -18,9 +18,9 @@ class ComuneServiceTest {
     void testComune() {
         //Inizializzo i service
         ComuneService comuneService = new ComuneService();
-        TipoTerritorioService tipoTerritorioService=new TipoTerritorioService();
-        RegioneService regioneService=new RegioneService();
-        ProvinciaService provinciaService=new ProvinciaService();
+        TipoTerritorioService tipoTerritorioService = new TipoTerritorioService();
+        RegioneService regioneService = new RegioneService();
+        ProvinciaService provinciaService = new ProvinciaService();
         //Creo i model
         TipoTerritorio tipoTerritorio = new TipoTerritorio(4, "pianeggianteTest");
         Regione r = new Regione("BanditiziaTest", 1, 1001);
