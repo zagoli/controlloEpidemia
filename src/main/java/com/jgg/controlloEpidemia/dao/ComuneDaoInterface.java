@@ -19,4 +19,6 @@ public interface ComuneDaoInterface {
     Comune findByNome(String nome);
 
     List<Comune> findAll();
+
+    Integer countComuni();
 }

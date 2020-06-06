@@ -16,7 +16,6 @@ import java.util.List;
 @AllArgsConstructor
 @RequiredArgsConstructor
 @EqualsAndHashCode
-
 public class Comune {
 
     @Getter
