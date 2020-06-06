@@ -1,53 +1,55 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.text.Font?>
+<BorderPane xmlns:fx="http://javafx.com/fxml/1" prefHeight="600.0" prefWidth="800.0"
+            xmlns="http://javafx.com/javafx/10.0.2-internal" fx:controller="com.jgg.controlloEpidemia.view.HomePageController">
+    <padding>
+        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+    </padding>
+    <top>
+        <GridPane prefHeight="90.0">
+            <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="642.199951171875" minWidth="10.0"
+                                   prefWidth="640.5999755859375"/>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="390.20001220703125" minWidth="10.0"
+                                   prefWidth="149.4000244140625"/>
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+            </rowConstraints>
+            <VBox spacing="10.0">
+                <padding>
+                    <Insets left="10.0" top="10.0"/>
+                </padding>
+                <Label alignment="TOP_LEFT" text="Controllo Epidemia">
+                    <font>
+                        <Font name="Segoe UI Bold" size="40.0"/>
+                    </font>
+                    <VBox.margin>
+                        <Insets/>
+                    </VBox.margin>
+                </Label>
+                <Label fx:id="welcomeLabel">
+                    <font>
+                        <Font name="Segoe UI" size="20.0"/>
+                    </font>
+                </Label>
+            </VBox>
+            <Button mnemonicParsing="false" onAction="#onLogoutButtonClicked" text="LOGOUT" GridPane.columnIndex="1"
+                    GridPane.halignment="CENTER">
+                <font>
+                    <Font name="Segoe UI Bold" size="20.0"/>
+                </font>
+            </Button>
+        </GridPane>
+    </top>
+    <center>
+        <VBox fx:id="mainPanel" alignment="CENTER" spacing="20.0" BorderPane.alignment="CENTER">
 
-<BorderPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.jgg.controlloEpidemia.view.HomePageController">
-   <padding>
-      <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-   </padding>
-   <top>
-       <GridPane prefHeight="90.0">
-           <columnConstraints>
-               <ColumnConstraints hgrow="SOMETIMES" maxWidth="642.199951171875" minWidth="10.0" prefWidth="640.5999755859375" />
-               <ColumnConstraints hgrow="SOMETIMES" maxWidth="390.20001220703125" minWidth="10.0" prefWidth="149.4000244140625" />
-           </columnConstraints>
-           <rowConstraints>
-               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-           </rowConstraints>
-           <VBox spacing="10.0">
-              <children>
-                  <Label alignment="TOP_LEFT" text="Controllo Epidemia">
-                      <font>
-                          <Font name="Segoe UI Bold" size="40.0" />
-                      </font>
-                      <VBox.margin>
-                          <Insets />
-                      </VBox.margin>
-                  </Label>
-                  <Label fx:id="welcomeLabel">
-                      <font>
-                          <Font name="Segoe UI" size="20.0" />
-                      </font>
-                  </Label>
-              </children>
-              <padding>
-                  <Insets left="10.0" top="10.0" />
-              </padding>
-           </VBox>
-           <Button mnemonicParsing="false" onAction="#onLogoutButtonClicked" text="LOGOUT" GridPane.columnIndex="1" GridPane.halignment="CENTER">
-              <font>
-                  <Font name="Segoe UI Bold" size="20.0" />
-              </font>
-           </Button>
-       </GridPane>
-   </top>
-   <center>
-       <VBox fx:id="mainPanel" alignment="CENTER" spacing="20.0" BorderPane.alignment="CENTER">
-
-          </VBox>
-   </center>
+        </VBox>
+    </center>
 </BorderPane>

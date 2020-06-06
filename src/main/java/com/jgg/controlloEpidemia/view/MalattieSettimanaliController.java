@@ -211,12 +211,12 @@ public class MalattieSettimanaliController implements Initializable {
             System.out.println("ok");
             etlMalattie.load(selectedFile.getPath());
         } else {
-            System.out.println("no trovato il file");
+            System.out.println("non ho trovato il file");
         }
     }
 
     @FXML
-    void inserisciModificaOnClicked(ActionEvent event) {
+    void modificaModificaOnClicked() {
         ComuneService comuneService = new ComuneService();
         MalattieSettimanali malattieSettimanali = new MalattieSettimanali(
                 Integer.parseInt(annoModificaTextField.getText()),

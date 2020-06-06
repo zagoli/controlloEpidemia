@@ -1,9 +1,7 @@
 package com.jgg.controlloEpidemia.dao;
 
 import com.jgg.controlloEpidemia.model.Comune;
-import com.jgg.controlloEpidemia.model.DecessiAnnuali;
 import com.jgg.controlloEpidemia.model.MalattieSettimanali;
-import com.jgg.controlloEpidemia.model.Provincia;
 import lombok.NoArgsConstructor;
 import org.hibernate.query.Query;
 
@@ -15,7 +13,7 @@ public class MalattieSettimanaliDao implements MalattieSettimanaliDaoInterface {
 
     private static Session session = new Session();
 
-    final private String FROM_COMUNE_WHERE_ANNO_SETTIMANA_COMUNE="FROM MalattieSettimanali where ANNO= :anno and SETTIMANA= :settimana and COMUNE_CODICEISTAT= :comune";
+    final private String FROM_COMUNE_WHERE_ANNO_SETTIMANA_COMUNE = "FROM MalattieSettimanali where ANNO= :anno and SETTIMANA= :settimana and COMUNE_CODICEISTAT= :comune";
 
     @Override
     public void save(MalattieSettimanali malattieSettimanali) {
@@ -42,7 +40,7 @@ public class MalattieSettimanaliDao implements MalattieSettimanaliDaoInterface {
     @Override
     public void saveOrUpdate(MalattieSettimanali malattieSettimanali) {
         session.openCurrentSession();
-        MalattieSettimanali eMalattieSettimanali = findByAnnoSettimanaComune(malattieSettimanali.getAnno(),malattieSettimanali.getSettimana(),malattieSettimanali.getComune());
+        MalattieSettimanali eMalattieSettimanali = findByAnnoSettimanaComune(malattieSettimanali.getAnno(), malattieSettimanali.getSettimana(), malattieSettimanali.getComune());
         if (eMalattieSettimanali == null) {
             save(malattieSettimanali);
         } else {

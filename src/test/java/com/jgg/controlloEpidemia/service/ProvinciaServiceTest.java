@@ -2,7 +2,6 @@ package com.jgg.controlloEpidemia.service;
 
 import com.jgg.controlloEpidemia.model.Provincia;
 import com.jgg.controlloEpidemia.model.Regione;
-import com.jgg.controlloEpidemia.model.TipoTerritorio;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;

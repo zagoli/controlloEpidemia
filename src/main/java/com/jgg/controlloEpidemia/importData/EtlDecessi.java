@@ -3,7 +3,6 @@ package com.jgg.controlloEpidemia.importData;
 import com.jgg.controlloEpidemia.model.DecessiAnnuali;
 import com.jgg.controlloEpidemia.service.DecessiAnnualiService;
 import com.jgg.controlloEpidemia.service.ProvinciaService;
-import com.jgg.controlloEpidemia.service.RuoloService;
 
 import java.io.BufferedReader;
 import java.io.File;

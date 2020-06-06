@@ -3,10 +3,8 @@ package com.jgg.controlloEpidemia.view;
 import com.jgg.controlloEpidemia.importData.EtlDecessi;
 import com.jgg.controlloEpidemia.model.DecessiAnnuali;
 import com.jgg.controlloEpidemia.model.Provincia;
-import com.jgg.controlloEpidemia.model.TipoTerritorio;
 import com.jgg.controlloEpidemia.service.DecessiAnnualiService;
 import com.jgg.controlloEpidemia.service.ProvinciaService;
-import com.jgg.controlloEpidemia.service.TipoTerritorioService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -24,12 +22,13 @@ import java.util.ResourceBundle;
 public class DecessiAnnualiController implements Initializable {
 
     @FXML
-    public Button decessiAnnualiVisualizzazioneModificaButton;
-    @FXML
-    public TabPane decessiAnnualiTabPane;
+    private Button decessiAnnualiVisualizzazioneModificaButton;
 
     @FXML
-    public ListView<String> idDecessiAnnualiListView;
+    private TabPane decessiAnnualiTabPane;
+
+    @FXML
+    private ListView<String> idDecessiAnnualiListView;
 
     @FXML
     private TextField annoInserimentoTextField;
@@ -139,7 +138,7 @@ public class DecessiAnnualiController implements Initializable {
     }
 
     @FXML
-    private void inserisciModificaButtonOnClicked() {
+    private void modificaModificaButtonOnClicked() {
         ProvinciaService provinciaService = new ProvinciaService();
         DecessiAnnuali decessiAnnuali = new DecessiAnnuali(
                 Integer.parseInt(annoModificaTextField.getText()),
@@ -162,9 +161,9 @@ public class DecessiAnnualiController implements Initializable {
     }
 
     @FXML
-    private void DecessiAnnualiVisualizzazioneModificaButtonOnClicked(){
+    private void DecessiAnnualiVisualizzazioneModificaButtonOnClicked() {
         decessiAnnualiTabPane.getSelectionModel().select(2);
-        String decessi= idDecessiAnnualiListView.getSelectionModel().getSelectedItem();
+        String decessi = idDecessiAnnualiListView.getSelectionModel().getSelectedItem();
         //String decessiEntry[]=decessi.split(",");
         //Stampare bene con toString i decessi annuali
     }

@@ -1,6 +1,5 @@
 package com.jgg.controlloEpidemia.dao;
 
-import com.jgg.controlloEpidemia.model.Comune;
 import com.jgg.controlloEpidemia.model.DecessiAnnuali;
 import com.jgg.controlloEpidemia.model.Provincia;
 import lombok.NoArgsConstructor;
@@ -14,7 +13,7 @@ public class DecessiAnnualiDao implements DecessiAnnualiDaoInterface {
 
     private static Session session = new Session();
 
-    final private String FROM_COMUNE_WHERE_ANNO_PROVINCIA="FROM DecessiAnnuali where ANNO= :anno and PROVINCIA_ID= :provincia";
+    final private String FROM_COMUNE_WHERE_ANNO_PROVINCIA = "FROM DecessiAnnuali where ANNO= :anno and PROVINCIA_ID= :provincia";
 
     @Override
     public void save(DecessiAnnuali decessiAnnuali) {
@@ -41,7 +40,7 @@ public class DecessiAnnualiDao implements DecessiAnnualiDaoInterface {
     @Override
     public void saveOrUpdate(DecessiAnnuali decessiAnnuali) {
         session.openCurrentSession();
-        DecessiAnnuali eDecessiAnnuali = findByAnnoProvincia(decessiAnnuali.getAnno(),decessiAnnuali.getProvincia());
+        DecessiAnnuali eDecessiAnnuali = findByAnnoProvincia(decessiAnnuali.getAnno(), decessiAnnuali.getProvincia());
         if (eDecessiAnnuali == null) {
             save(decessiAnnuali);
         } else {
