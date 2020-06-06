@@ -70,7 +70,7 @@ public class DecessiAnnualiController implements Initializable {
     @FXML
     private ComboBox<String> provinciaModificaComboBox;
 
-    int selectedId;
+    private int selectedId;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {

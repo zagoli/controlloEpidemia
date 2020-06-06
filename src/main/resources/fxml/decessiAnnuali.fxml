@@ -23,7 +23,7 @@
                         <Font name="Segoe UI Bold" size="20.0" />
                     </font>
                 </Label>
-                <TextField fx:id="annoInserimentoTextField" layoutX="60" layoutY="60" prefHeight="30.0" prefWidth="52.0">
+                <TextField fx:id="annoInserimentoTextField" layoutX="60" layoutY="60" prefHeight="30.0" prefWidth="100.0">
                     <font>
                         <Font name="Segoe UI" size="15.0" />
                     </font>
@@ -34,7 +34,7 @@
                         <Font name="Segoe UI Bold" size="20.0" />
                     </font>
                 </Label>
-                <TextField fx:id="incidentiStradaliInserimentoTextField" layoutX="60.0" layoutY="120.0" prefHeight="30.0" prefWidth="162.0">
+                <TextField fx:id="incidentiStradaliInserimentoTextField" layoutX="60.0" layoutY="120.0" prefHeight="30.0" prefWidth="100.0">
                     <font>
                         <Font name="Segoe UI" size="15.0" />
                     </font>
@@ -45,7 +45,7 @@
                         <Font name="Segoe UI Bold" size="20.0" />
                     </font>
                 </Label>
-                <TextField fx:id="malattieTumoraliInserimentoTextField" layoutX="60.0" layoutY="180.0" prefHeight="30.0" prefWidth="170.0">
+                <TextField fx:id="malattieTumoraliInserimentoTextField" layoutX="60.0" layoutY="180.0" prefHeight="30.0" prefWidth="100.0">
                     <font>
                         <Font name="Segoe UI" size="15.0" />
                     </font>
@@ -56,7 +56,7 @@
                         <Font name="Segoe UI Bold" size="20.0" />
                     </font>
                 </Label>
-                <TextField fx:id="malattieCardiovascolariInserimentoTextField" layoutX="60.0" layoutY="240.0" prefHeight="30.0" prefWidth="226.0">
+                <TextField fx:id="malattieCardiovascolariInserimentoTextField" layoutX="60.0" layoutY="240.0" prefHeight="30.0" prefWidth="100.0">
                     <font>
                         <Font name="Segoe UI" size="15.0" />
                     </font>
@@ -67,7 +67,7 @@
                         <Font name="Segoe UI Bold" size="20.0" />
                     </font>
                 </Label>
-                <TextField fx:id="malattieContagioseInserimentoTextField" layoutX="60.0" layoutY="300.0" prefHeight="30.0" prefWidth="188.0">
+                <TextField fx:id="malattieContagioseInserimentoTextField" layoutX="60.0" layoutY="300.0" prefHeight="30.0" prefWidth="100.0">
                     <font>
                         <Font name="Segoe UI" size="15.0" />
                     </font>
@@ -99,7 +99,7 @@
                         <Font name="Segoe UI Bold" size="20.0" />
                     </font>
                 </Label>
-                <TextField fx:id="annoModificaTextField" layoutX="60" layoutY="60" prefHeight="30.0" prefWidth="52.0">
+                <TextField fx:id="annoModificaTextField" layoutX="60" layoutY="60" prefHeight="30.0" prefWidth="100.0">
                     <font>
                         <Font name="Segoe UI" size="15.0" />
                     </font>
@@ -110,7 +110,7 @@
                         <Font name="Segoe UI Bold" size="20.0" />
                     </font>
                 </Label>
-                <TextField fx:id="incidentiStradaliModificaTextField" layoutX="60.0" layoutY="120.0" prefHeight="30.0" prefWidth="162.0">
+                <TextField fx:id="incidentiStradaliModificaTextField" layoutX="60.0" layoutY="120.0" prefHeight="30.0" prefWidth="100.0">
                     <font>
                         <Font name="Segoe UI" size="15.0" />
                     </font>
@@ -121,7 +121,7 @@
                         <Font name="Segoe UI Bold" size="20.0" />
                     </font>
                 </Label>
-                <TextField fx:id="malattieTumoraliModificaTextField" layoutX="60.0" layoutY="180.0" prefHeight="30.0" prefWidth="170.0">
+                <TextField fx:id="malattieTumoraliModificaTextField" layoutX="60.0" layoutY="180.0" prefHeight="30.0" prefWidth="100.0">
                     <font>
                         <Font name="Segoe UI" size="15.0" />
                     </font>
@@ -132,7 +132,7 @@
                         <Font name="Segoe UI Bold" size="20.0" />
                     </font>
                 </Label>
-                <TextField fx:id="malattieCardiovascolariModificaTextField" layoutX="60.0" layoutY="240.0" prefHeight="30.0" prefWidth="226.0">
+                <TextField fx:id="malattieCardiovascolariModificaTextField" layoutX="60.0" layoutY="240.0" prefHeight="30.0" prefWidth="100.0">
                     <font>
                         <Font name="Segoe UI" size="15.0" />
                     </font>
@@ -143,7 +143,7 @@
                         <Font name="Segoe UI Bold" size="20.0" />
                     </font>
                 </Label>
-                <TextField fx:id="malattieContagioseModificaTextField" layoutX="60.0" layoutY="300.0" prefHeight="30.0" prefWidth="188.0">
+                <TextField fx:id="malattieContagioseModificaTextField" layoutX="60.0" layoutY="300.0" prefHeight="30.0" prefWidth="50.0">
                     <font>
                         <Font name="Segoe UI" size="15.0" />
                     </font>
