@@ -12,6 +12,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.stage.FileChooser;
+import javafx.util.Callback;
 
 import java.io.File;
 import java.io.IOException;
@@ -20,6 +21,9 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 public class DecessiAnnualiController implements Initializable {
+
+    @FXML
+    private Tab decessiAnnualiModificaTab;
 
     @FXML
     private Button decessiAnnualiVisualizzazioneModificaButton;
@@ -66,8 +70,12 @@ public class DecessiAnnualiController implements Initializable {
     @FXML
     private ComboBox<String> provinciaModificaComboBox;
 
+    int selectedId;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        decessiAnnualiModificaTab.setDisable(true);
+
         ProvinciaService provinciaService = new ProvinciaService();
         List<Provincia> provinciaList = provinciaService.findAll();
         for (Provincia p : provinciaList) {
@@ -77,9 +85,13 @@ public class DecessiAnnualiController implements Initializable {
 
         DecessiAnnualiService decessiAnnualiService = new DecessiAnnualiService();
         List<DecessiAnnuali> decessiAnnualiList = decessiAnnualiService.findAll();
+        idDecessiAnnualiListView.getItems().add("ID|ANNO|INCIDENTI STRADALI|MALATTIE TUMORALI|MALATTIE CARDIOVSCOLARI|MALATTIE CONTAGIOSE|PROVINCIA");
         for (DecessiAnnuali d : decessiAnnualiList) {
-            idDecessiAnnualiListView.getItems().add(d.toString());
+            idDecessiAnnualiListView.getItems().add(d.getId()+"|"+d.getAnno()+"|"+
+                    d.getIncidentiStradali()+"|"+d.getMalattieTumorali()+"|"+d.getMalattieCardiovascolari()+"|"+
+                    d.getMalattieContagiose()+"|"+d.getProvincia().getNome());
         }
+        idDecessiAnnualiListView.getSelectionModel().select(1);
 
     }
 
@@ -93,6 +105,7 @@ public class DecessiAnnualiController implements Initializable {
     private void provinciaInserimentoComboBoxOnClicked() {
         System.out.println("ok");
     }
+
 
     @FXML
     private void inserisciInserimentoButtonOnClicked() {
@@ -141,12 +154,13 @@ public class DecessiAnnualiController implements Initializable {
     private void modificaModificaButtonOnClicked() {
         ProvinciaService provinciaService = new ProvinciaService();
         DecessiAnnuali decessiAnnuali = new DecessiAnnuali(
+                selectedId,
                 Integer.parseInt(annoModificaTextField.getText()),
                 Integer.parseInt(incidentiStradaliModificaTextField.getText()),
                 Integer.parseInt(malattieTumoraliModificaTextField.getText()),
                 Integer.parseInt(malattieCardiovascolariModificaTextField.getText()),
                 Integer.parseInt(malattieContagioseModificaTextField.getText()),
-                provinciaService.findByNome(provinciaInserimentoComboBox.getValue())
+                provinciaService.findByNome(provinciaModificaComboBox.getValue())
         );
         DecessiAnnualiService decessiAnnualiService = new DecessiAnnualiService();
         decessiAnnualiService.update(decessiAnnuali);
@@ -158,14 +172,27 @@ public class DecessiAnnualiController implements Initializable {
             malattieCardiovascolariModificaTextField.clear();
             malattieContagioseModificaTextField.clear();
         }
+        decessiAnnualiTabPane.getSelectionModel().select(0);
+        decessiAnnualiModificaTab.setDisable(true);
     }
 
     @FXML
     private void DecessiAnnualiVisualizzazioneModificaButtonOnClicked() {
-        decessiAnnualiTabPane.getSelectionModel().select(2);
+        decessiAnnualiModificaTab.setDisable(false);
         String decessi = idDecessiAnnualiListView.getSelectionModel().getSelectedItem();
-        //String decessiEntry[]=decessi.split(",");
-        //Stampare bene con toString i decessi annuali
+        String[] decessiEntry;
+        decessiEntry=decessi.split("\\|");
+        decessiAnnualiTabPane.getSelectionModel().select(2);
+        selectedId=Integer.parseInt(decessiEntry[0]);
+        annoModificaTextField.setText(decessiEntry[1]);
+        incidentiStradaliModificaTextField.setText(decessiEntry[2]);
+        malattieTumoraliModificaTextField.setText(decessiEntry[3]);
+        malattieCardiovascolariModificaTextField.setText(decessiEntry[4]);
+        malattieContagioseModificaTextField.setText(decessiEntry[5]);
+        provinciaModificaComboBox.getSelectionModel().select(decessiEntry[6]);
+
+
+
     }
 
 }
