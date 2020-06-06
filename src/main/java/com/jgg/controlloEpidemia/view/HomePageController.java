@@ -1,6 +1,7 @@
 package com.jgg.controlloEpidemia.view;
 
 import com.jgg.controlloEpidemia.App;
+import com.jgg.controlloEpidemia.service.ComuneService;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -34,9 +35,13 @@ public class HomePageController implements Initializable {
             mainPanel.getChildren().add(territorioButton);
         }
         if (ruolo.equals("Personale dell'ente") || ruolo.equals("Amministratore")) {
+            ComuneService comuneService = new ComuneService();
             Button comunePersonaleContrattoButton = new Button("AUTORIZZA COMUNI PERSONALE A CONTRATTO");
             comunePersonaleContrattoButton.setUserData(1);
             prepareButton(comunePersonaleContrattoButton);
+            if (comuneService.countComuni() == 0){
+                comunePersonaleContrattoButton.setDisable(true);
+            }
             mainPanel.getChildren().add(comunePersonaleContrattoButton);
             Button decessiButton = new Button("GESTISCI DATI DECESSI ANNUALI");
             decessiButton.setUserData(2);

@@ -13,6 +13,7 @@ public class ComuneDao implements ComuneDaoInterface {
     private static final Session session = new Session();
 
     final private String FROM_COMUNE_WHERE_NOME = "FROM Comune where nome = :nome";
+    final private String COUNT_COMUNE = "select count(*) FROM Comune";
 
     @Override
     public void save(Comune c) {
@@ -83,6 +84,14 @@ public class ComuneDao implements ComuneDaoInterface {
         List<Comune> comune = session.getCurrentSession().createQuery("from Comune").list();
         session.closeCurrentSession();
         return comune;
+    }
+
+    @Override
+    public Integer countComuni() {
+        session.openCurrentSession();
+        Integer count = Math.toIntExact((Long) session.getCurrentSession().createQuery(COUNT_COMUNE).getSingleResult());
+        session.closeCurrentSession();
+        return count;
     }
 }
 

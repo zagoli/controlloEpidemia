@@ -1,6 +1,8 @@
 package com.jgg.controlloEpidemia.model;
 
 import lombok.*;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -20,13 +22,15 @@ public class Utente {
     @NotNull
     @EqualsAndHashCode.Exclude
     @ToString.Exclude
-    @ManyToMany(cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
+    @ManyToMany(cascade = CascadeType.REMOVE)
+    @LazyCollection(LazyCollectionOption.FALSE)
     private final List<Permesso> permesso = new ArrayList<>();
     @Getter
     @NotNull
     @EqualsAndHashCode.Exclude
     @ToString.Exclude
     @OneToMany(cascade = CascadeType.REMOVE)
+    @LazyCollection(LazyCollectionOption.FALSE)
     private final List<Comune> comuni = new ArrayList<>();
     @Id
     @Getter
