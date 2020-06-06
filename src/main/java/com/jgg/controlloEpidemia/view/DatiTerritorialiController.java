@@ -2,14 +2,8 @@ package com.jgg.controlloEpidemia.view;
 
 import com.jgg.controlloEpidemia.importData.EtlComune;
 import com.jgg.controlloEpidemia.importData.EtlProvincia;
-import com.jgg.controlloEpidemia.model.Comune;
-import com.jgg.controlloEpidemia.model.Provincia;
-import com.jgg.controlloEpidemia.model.Regione;
-import com.jgg.controlloEpidemia.model.TipoTerritorio;
-import com.jgg.controlloEpidemia.service.ComuneService;
-import com.jgg.controlloEpidemia.service.ProvinciaService;
-import com.jgg.controlloEpidemia.service.RegioneService;
-import com.jgg.controlloEpidemia.service.TipoTerritorioService;
+import com.jgg.controlloEpidemia.model.*;
+import com.jgg.controlloEpidemia.service.*;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -34,12 +28,6 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 public class DatiTerritorialiController implements Initializable {
-
-
-    @FXML
-    public ComboBox regioneModificaProvinceComboBox;
-
-
 
     @FXML
     private TextField idInserimentoProvinceTextField;
@@ -78,25 +66,62 @@ public class DatiTerritorialiController implements Initializable {
     private ComboBox<String> provinciaInserimentoComuniComboBox;
 
     @FXML
-    public DatePicker dataDiIstituzioneComuneModifica;
+    private TextField idModificaProvinceTextField;
+
+    @FXML
+    private TextField nomeModificaProvinceTextField;
+
+    @FXML
+    private TextField superficieModificaProvinceTextField;
+
+    @FXML
+    private TextField comuneDiCapoluogoModificaProvinceTextField;
+
+    @FXML
+    private ComboBox<String> regioneModificaProvinceComboBox;
+
+    @FXML
+    private TextField codiceIstatModificaComuniTextField;
+
+    @FXML
+    private TextField nomeModificaComuniTextField;
+
+    @FXML
+    private TextField superficieModificaComuniTextField;
+
+    @FXML
+    private DatePicker dataDiIstituzioneModificaComuniDatePicker;
+
+    @FXML
+    private ComboBox<String> siAffacciaSulMareModificaComuniComboBox;
+
+    @FXML
+    private ComboBox<String> tipoTerritorioModificaComuniComboBox;
+
+    @FXML
+    private ComboBox<String> provinciaModificaComuniComboBox;
 
     public void initialize(URL location, ResourceBundle resources) {
        ProvinciaService provinciaService = new ProvinciaService();
         List<Provincia> provinciaList = provinciaService.findAll();
         for (Provincia p : provinciaList) {
             provinciaInserimentoComuniComboBox.getItems().add(p.getNome());
+            provinciaModificaComuniComboBox.getItems().add(p.getNome());
         }
         TipoTerritorioService tipoTerritorioService = new TipoTerritorioService();
         List<TipoTerritorio> tipoTerritorioList = tipoTerritorioService.findAll();
         for (TipoTerritorio t : tipoTerritorioList) {
             tipoTerritorioInserimentoComuniComboBox.getItems().add(t.getNome());
+            tipoTerritorioModificaComuniComboBox.getItems().add(t.getNome());
         }
         RegioneService regioneService = new RegioneService();
         List<Regione> regioneList = regioneService.findAll();
         for (Regione r : regioneList) {
             regioneInserimentoProvinceComboBox.getItems().add(r.getNome());
+            regioneModificaProvinceComboBox.getItems().add(r.getNome());
         }
         siAffacciaSulMareInserimentoComuniComboBox.getItems().setAll(FXCollections.observableArrayList("Si","No"));
+        siAffacciaSulMareModificaComuniComboBox.getItems().setAll(FXCollections.observableArrayList("Si","No"));
     }
 
     @FXML
@@ -191,6 +216,58 @@ public class DatiTerritorialiController implements Initializable {
         } else {
             System.out.println("non ho trovato il file");
         }
+    }
+
+    @FXML
+    private void modificaModificaProvinciaButtonOnClicked() {
+      /*  ProvinciaService provinciaService = new ProvinciaService();
+        DecessiAnnuali decessiAnnuali = new DecessiAnnuali(
+                selectedId,
+                Integer.parseInt(annoModificaTextField.getText()),
+                Integer.parseInt(incidentiStradaliModificaTextField.getText()),
+                Integer.parseInt(malattieTumoraliModificaTextField.getText()),
+                Integer.parseInt(malattieCardiovascolariModificaTextField.getText()),
+                Integer.parseInt(malattieContagioseModificaTextField.getText()),
+                provinciaService.findByNome(provinciaModificaComboBox.getValue())
+        );
+        DecessiAnnualiService decessiAnnualiService = new DecessiAnnualiService();
+        decessiAnnualiService.update(decessiAnnuali);
+        if (decessiAnnualiService.findById(decessiAnnuali.getId()) != null) {
+            System.out.println("ok");
+            annoModificaTextField.clear();
+            incidentiStradaliModificaTextField.clear();
+            malattieTumoraliModificaTextField.clear();
+            malattieCardiovascolariModificaTextField.clear();
+            malattieContagioseModificaTextField.clear();
+        }
+        decessiAnnualiTabPane.getSelectionModel().select(0);
+        decessiAnnualiModificaTab.setDisable(true);*/
+    }
+
+    @FXML
+    private void modificaModificaComuneButtonOnClicked() {
+     /*   ProvinciaService provinciaService = new ProvinciaService();
+        DecessiAnnuali decessiAnnuali = new DecessiAnnuali(
+                selectedId,
+                Integer.parseInt(annoModificaTextField.getText()),
+                Integer.parseInt(incidentiStradaliModificaTextField.getText()),
+                Integer.parseInt(malattieTumoraliModificaTextField.getText()),
+                Integer.parseInt(malattieCardiovascolariModificaTextField.getText()),
+                Integer.parseInt(malattieContagioseModificaTextField.getText()),
+                provinciaService.findByNome(provinciaModificaComboBox.getValue())
+        );
+        DecessiAnnualiService decessiAnnualiService = new DecessiAnnualiService();
+        decessiAnnualiService.update(decessiAnnuali);
+        if (decessiAnnualiService.findById(decessiAnnuali.getId()) != null) {
+            System.out.println("ok");
+            annoModificaTextField.clear();
+            incidentiStradaliModificaTextField.clear();
+            malattieTumoraliModificaTextField.clear();
+            malattieCardiovascolariModificaTextField.clear();
+            malattieContagioseModificaTextField.clear();
+        }
+        decessiAnnualiTabPane.getSelectionModel().select(0);
+        decessiAnnualiModificaTab.setDisable(true);*/
     }
 
 }

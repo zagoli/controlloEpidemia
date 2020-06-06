@@ -146,11 +146,6 @@ public class DecessiAnnualiController implements Initializable {
     }
 
     @FXML
-    private void provinciaModificaComboBoxOnClicked() {
-        System.out.println("ok");
-    }
-
-    @FXML
     private void modificaModificaButtonOnClicked() {
         ProvinciaService provinciaService = new ProvinciaService();
         DecessiAnnuali decessiAnnuali = new DecessiAnnuali(

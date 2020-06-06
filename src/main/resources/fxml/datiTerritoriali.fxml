@@ -148,7 +148,7 @@
                                 <Font name="Segoe UI Bold" size="20.0" />
                             </font>
                         </Button>
-                        <DatePicker fx:id="dataDiIstituzioneInserimentoComuniDatePicker" layoutX="40.0" layoutY="240.0" onAction="#dataDiIstituzioneInserimentoComuniOnClicked" prefHeight="25.0" prefWidth="150.0" />
+                        <DatePicker fx:id="dataDiIstituzioneInserimentoComuniDatePicker" layoutX="40.0" layoutY="240.0" prefHeight="25.0" prefWidth="150.0" />
                     </Pane>
                 </Tab>
             </TabPane>
@@ -157,22 +157,22 @@
             <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE">
                 <Tab text="Provincia">
                     <Pane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                        <TextField layoutX="40.0" layoutY="60.0" prefHeight="30.0" prefWidth="50.0">
+                        <TextField fx:id="idModificaProvinceTextField" layoutX="40.0" layoutY="60.0" prefHeight="30.0" prefWidth="50.0">
                             <font>
                                 <Font name="Segoe UI" size="15.0" />
                             </font>
                         </TextField>
-                        <TextField layoutX="40.0" layoutY="120.0" prefHeight="29.0" prefWidth="150.0">
+                        <TextField fx:id="nomeModificaProvinceTextField" layoutX="40.0" layoutY="120.0" prefHeight="29.0" prefWidth="150.0">
                             <font>
                                 <Font name="Segoe UI" size="15.0" />
                             </font>
                         </TextField>
-                        <TextField layoutX="40.0" layoutY="180.0" prefHeight="29.0" prefWidth="100.0">
+                        <TextField fx:id="superficieModificaProvinceTextField" layoutX="40.0" layoutY="180.0" prefHeight="29.0" prefWidth="100.0">
                             <font>
                                 <Font name="Segoe UI" size="15.0" />
                             </font>
                         </TextField>
-                        <TextField layoutX="40.0" layoutY="240.0" prefHeight="29.0" prefWidth="100.0">
+                        <TextField fx:id="comuneDiCapoluogoModificaProvinceTextField" layoutX="40.0" layoutY="240.0" prefHeight="29.0" prefWidth="100.0">
                             <font>
                                 <Font name="Segoe UI" size="15.0" />
                             </font>
@@ -208,7 +208,7 @@
                             </font>
                         </Label>
                         <ComboBox fx:id="regioneModificaProvinceComboBox" layoutX="40.0" layoutY="300.0" prefHeight="25.0" prefWidth="192.0" />
-                        <Button layoutX="300.0" layoutY="150.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="112.0" text="Modifica">
+                        <Button layoutX="300.0" layoutY="150.0" mnemonicParsing="false" onAction="#modificaModificaProvinciaButtonOnClicked" prefHeight="40.0" prefWidth="112.0" text="Modifica">
                             <font>
                                 <Font name="Segoe UI Bold" size="20.0" />
                             </font>
@@ -252,30 +252,30 @@
                                 <Font name="Segoe UI Bold" size="20.0" />
                             </font>
                         </Label>
-                        <TextField layoutX="40.0" layoutY="60.0" prefHeight="29.0" prefWidth="100.0">
+                        <TextField fx:id="codiceIstatModificaComuniTextField" layoutX="40.0" layoutY="60.0" prefHeight="29.0" prefWidth="100.0">
                             <font>
                                 <Font name="Segoe UI" size="15.0" />
                             </font>
                         </TextField>
-                        <TextField layoutX="40.0" layoutY="120.0" prefHeight="29.0" prefWidth="150.0">
+                        <TextField fx:id="nomeModificaComuniTextField" layoutX="40.0" layoutY="120.0" prefHeight="29.0" prefWidth="150.0">
                             <font>
                                 <Font name="Segoe UI" size="15.0" />
                             </font>
                         </TextField>
-                        <TextField layoutX="40.0" layoutY="180.0" prefHeight="29.0" prefWidth="100.0">
+                        <TextField fx:id="superficieModificaComuniTextField" layoutX="40.0" layoutY="180.0" prefHeight="29.0" prefWidth="100.0">
                             <font>
                                 <Font name="Segoe UI" size="15.0" />
                             </font>
                         </TextField>
-                        <ComboBox layoutX="40.0" layoutY="300.0" prefHeight="25.0" prefWidth="50.0" />
-                        <ComboBox layoutX="40.0" layoutY="360.0" prefHeight="25.0" prefWidth="150.0" />
-                        <ComboBox layoutX="40.0" layoutY="420.0" prefHeight="25.0" prefWidth="150.0" />
-                        <Button layoutX="300.0" layoutY="150.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="112.0" text="Modifica">
+                        <ComboBox fx:id="siAffacciaSulMareModificaComuniComboBox" layoutX="40.0" layoutY="300.0" prefHeight="25.0" prefWidth="50.0" />
+                        <ComboBox fx:id="tipoTerritorioModificaComuniComboBox" layoutX="40.0" layoutY="360.0" prefHeight="25.0" prefWidth="150.0" />
+                        <ComboBox fx:id="provinciaModificaComuniComboBox" layoutX="40.0" layoutY="420.0" prefHeight="25.0" prefWidth="150.0" />
+                        <Button layoutX="300.0" layoutY="150.0" mnemonicParsing="false" onAction="#modificaModificaComuneButtonOnClicked" prefHeight="40.0" prefWidth="112.0" text="Modifica">
                             <font>
                                 <Font name="Segoe UI Bold" size="20.0" />
                             </font>
                         </Button>
-                        <DatePicker fx:id="dataDiIstituzioneComuneModifica" layoutX="40.0" layoutY="240.0" prefHeight="25.0" prefWidth="150.0" />
+                        <DatePicker fx:id="dataDiIstituzioneModificaComuniDatePicker" layoutX="40.0" layoutY="240.0" prefHeight="25.0" prefWidth="150.0" />
                     </Pane>
                 </Tab>
             </TabPane>

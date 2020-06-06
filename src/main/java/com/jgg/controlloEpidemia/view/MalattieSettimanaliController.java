@@ -148,11 +148,6 @@ public class MalattieSettimanaliController implements Initializable {
     }
 
     @FXML
-    private void comuneInserimentoComboBoxOnClicked() {
-        System.out.println("ok");
-    }
-
-    @FXML
     void inserisciInserimentoOnClicked() {
         ComuneService comuneService = new ComuneService();
         MalattieSettimanali malattieSettimanali = new MalattieSettimanali(
