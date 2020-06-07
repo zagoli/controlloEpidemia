@@ -20,7 +20,6 @@ public class Ruolo {
     @Id
     @Getter
     @NotNull
-    @GeneratedValue(generator = "increment")
     private Integer id;
 
     @Getter

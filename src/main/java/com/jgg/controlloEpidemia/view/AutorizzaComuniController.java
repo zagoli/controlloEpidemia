@@ -5,6 +5,8 @@ import com.jgg.controlloEpidemia.model.Utente;
 import com.jgg.controlloEpidemia.service.ComuneService;
 import com.jgg.controlloEpidemia.service.UtenteService;
 import javafx.animation.FadeTransition;
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -34,6 +36,8 @@ public class AutorizzaComuniController implements Initializable {
     private ComboBox<Utente> utenteComboBox;
     @FXML
     private Label savedLabel;
+    @FXML
+    private Button saveButton;
 
     private final UtenteService utenteService = new UtenteService();
     private final ComuneService comuneService = new ComuneService();
@@ -75,6 +79,7 @@ public class AutorizzaComuniController implements Initializable {
             authorizedComuniObservableList.setAll(user.getComuni());
             allComuniObservableList.setAll(allComuniList);
             allComuniObservableList.removeAll(authorizedComuniObservableList);
+            saveButton.setDisable(true);
         });
     }
 
@@ -87,19 +92,18 @@ public class AutorizzaComuniController implements Initializable {
     @FXML
     private void onSaveButtonClicked(){
         Utente u = utenteComboBox.getValue();
-        if (u != null){
-            List<Comune> toAuthorizeComuni = authorizedComuniListView.getItems();
-            u.getComuni().clear();
-            u.getComuni().addAll(toAuthorizeComuni);
-            UtenteService utenteService = new UtenteService();
-            utenteService.update(u);
-            FadeTransition transition = new FadeTransition(Duration.millis(500), savedLabel);
-            transition.setFromValue(0);
-            transition.setByValue(1);
-            transition.setCycleCount(2);
-            transition.setAutoReverse(true);
-            transition.play();
-        }
+        List<Comune> toAuthorizeComuni = authorizedComuniListView.getItems();
+        u.getComuni().clear();
+        u.getComuni().addAll(toAuthorizeComuni);
+        UtenteService utenteService = new UtenteService();
+        utenteService.update(u);
+        saveButton.setDisable(true);
+        FadeTransition transition = new FadeTransition(Duration.millis(500), savedLabel);
+        transition.setFromValue(0);
+        transition.setByValue(1);
+        transition.setCycleCount(2);
+        transition.setAutoReverse(true);
+        transition.play();
     }
 
     @FXML
@@ -108,6 +112,8 @@ public class AutorizzaComuniController implements Initializable {
         // Penso che sia perché la lista selected deriva da allComuniObservableList e poi quando cambi una roba si ripete a cascata o robe simili
         List<Comune> selected = new LinkedList<>(allComuniListView.getSelectionModel().getSelectedItems());
         if (!selected.isEmpty()){
+            if (saveButton.isDisable())
+                saveButton.setDisable(false);
             // Non devo aggiornare nulla, perché sono observable
             authorizedComuniObservableList.addAll(selected);
             authorizedComuniObservableList.sort(new ComuneComparator());
@@ -121,6 +127,8 @@ public class AutorizzaComuniController implements Initializable {
         // Penso che sia perché la lista selected deriva da allComuniObservableList e poi quando cambi una roba si ripete a cascata o robe simili
         List<Comune> selected = new LinkedList<>(authorizedComuniListView.getSelectionModel().getSelectedItems());
         if (!selected.isEmpty()){
+            if (saveButton.isDisable())
+                saveButton.setDisable(false);
             // Non devo aggiornare nulla, perché sono observable
             allComuniObservableList.addAll(selected);
             allComuniObservableList.sort(new ComuneComparator());

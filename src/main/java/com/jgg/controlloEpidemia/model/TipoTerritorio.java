@@ -20,7 +20,6 @@ public class TipoTerritorio {
     @Id
     @Getter
     @NotNull
-    @GeneratedValue(generator = "increment")
     private Integer id;
 
     @Getter

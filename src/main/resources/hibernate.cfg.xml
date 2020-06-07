@@ -15,6 +15,7 @@
         <property name="hibernate.hbm2ddl.auto">update</property>
         <property name="hibernate.dialect">org.hibernate.dialect.DerbyTenSevenDialect</property>
         <property name="hibernate.show_sql">false</property>
+        <property name="hibernate.connection.autocommit">false</property>
 
         <mapping class="com.jgg.controlloEpidemia.model.Comune"/>
         <mapping class="com.jgg.controlloEpidemia.model.DecessiAnnuali"/>
@@ -25,7 +26,6 @@
         <mapping class="com.jgg.controlloEpidemia.model.Utente"/>
         <mapping class="com.jgg.controlloEpidemia.model.Ruolo"/>
         <mapping class="com.jgg.controlloEpidemia.model.TipoTerritorio"/>
-
 
     </session-factory>
 </hibernate-configuration>

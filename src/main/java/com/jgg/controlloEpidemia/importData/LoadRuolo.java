@@ -10,10 +10,10 @@ public class LoadRuolo {
     final RuoloService ruoloService = new RuoloService();
 
     public void load() {
-        Ruolo r = new Ruolo("Amministratore");
-        Ruolo r2 = new Ruolo("Personale a contratto");
-        Ruolo r3 = new Ruolo("Personale dell'ente");
-        Ruolo r4 = new Ruolo("Ricercatore Analista");
+        Ruolo r = new Ruolo(1,"Amministratore");
+        Ruolo r2 = new Ruolo(2,"Personale a contratto");
+        Ruolo r3 = new Ruolo(3,"Personale dell'ente");
+        Ruolo r4 = new Ruolo(4,"Ricercatore Analista");
 
         ruoloService.saveOrUpdate(r);
         ruoloService.saveOrUpdate(r2);
