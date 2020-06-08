@@ -6,17 +6,26 @@
 
 <Pane layoutY="32.0" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.jgg.controlloEpidemia.view.DecessiAnnualiController">
     <TabPane fx:id="decessiAnnualiTabPane" prefHeight="600.0" prefWidth="800.0" tabClosingPolicy="UNAVAILABLE">
-        <Tab text="Visualizzazione">
+        <Tab fx:id="decessiAnnualiVisualizzazioneTab" text="Visualizzazione">
             <Pane minHeight="0.0" minWidth="0.0" prefHeight="600.0" prefWidth="800.0">
-                <ListView fx:id="idDecessiAnnualiListView" layoutX="14.0" layoutY="14.0" prefHeight="450.0" prefWidth="750.0" />
-                <Button fx:id="decessiAnnualiVisualizzazioneModificaButton" layoutX="314.0" layoutY="472.0" mnemonicParsing="false" onAction="#DecessiAnnualiVisualizzazioneModificaButtonOnClicked" prefHeight="45.0" prefWidth="150.0" text="Modifica">
+                <ListView fx:id="idDecessiAnnualiListView" layoutX="14.0" layoutY="14.0" prefHeight="425.0" prefWidth="750.0" />
+                <Button fx:id="decessiAnnualiVisualizzazioneModificaButton" layoutX="315.0" layoutY="450.0" mnemonicParsing="false" onAction="#DecessiAnnualiVisualizzazioneModificaButtonOnClicked" prefHeight="45.0" prefWidth="150.0" text="Modifica">
                     <font>
                         <Font name="Segoe UI Bold" size="20.0" />
                     </font>
                 </Button>
+            <Label fx:id="noDataSelectedLabel" layoutX="328.0" layoutY="500.0" prefHeight="17.0" prefWidth="130.0" text="No valid data selected" textAlignment="CENTER" textFill="RED">
+               <font>
+                  <Font name="Segoe UI Bold" size="12.0" />
+               </font>
+            </Label>
+            <Button layoutX="600.0" layoutY="450.0" mnemonicParsing="false" onAction="#decessiAnnualiCancellaButtonOnClicked" prefHeight="45.0" prefWidth="150.0" text="Cancella">
+               <font>
+                  <Font name="Segoe UI Bold" size="20.0" />
+               </font></Button>
             </Pane>
         </Tab>
-        <Tab text="Inserimento">
+        <Tab fx:id="decessiAnnualiInserimentoTab" text="Inserimento">
             <Pane minHeight="0.0" minWidth="0.0" prefHeight="600.0" prefWidth="800.0">
                 <Label layoutX="60.0" layoutY="36.0" prefHeight="30.0" prefWidth="52.0" text="Anno">
                     <font>
@@ -78,7 +87,7 @@
                         <Font name="Segoe UI Bold" size="20.0" />
                     </font>
                 </Label>
-                <ComboBox fx:id="provinciaInserimentoComboBox" layoutX="60.0" layoutY="360.0" onAction="#provinciaInserimentoComboBoxOnClicked" prefHeight="30.0" prefWidth="176.0" />
+                <ComboBox fx:id="provinciaInserimentoComboBox" layoutX="60.0" layoutY="360.0" prefHeight="30.0" prefWidth="176.0" />
 
                 <Button layoutX="440.0" layoutY="120.0" mnemonicParsing="false" onAction="#inserisciInserimentoButtonOnClicked" prefHeight="50.0" prefWidth="150.0" text="Inserisci">
                     <font>

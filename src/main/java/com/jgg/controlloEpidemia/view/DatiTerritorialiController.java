@@ -19,11 +19,11 @@ import javafx.stage.FileChooser;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
-import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -131,12 +131,11 @@ public class DatiTerritorialiController implements Initializable {
     }
 
     @FXML
-    private Date dataDiIstituzioneInserimentoComuniOnClicked() throws ParseException {
+    private java.util.Date dataDiIstituzioneInserimentoComuniOnClicked() throws ParseException {
         LocalDate data = dataDiIstituzioneInserimentoComuniDatePicker.getValue();
-        String format = data.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
-        java.util.Date date = new SimpleDateFormat("dd/MM/yyyy").parse(format);
-        System.out.println("ok");
-        return (Date) date;
+        String[] toParseData =data.toString().split("-");
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        return sdf.parse(toParseData[2]+"/"+toParseData[1]+"/"+toParseData[0]);
     }
 
     @FXML
@@ -181,6 +180,7 @@ public class DatiTerritorialiController implements Initializable {
         ComuneService comuneService = new ComuneService();
         TipoTerritorioService tipoTerritorioService = new TipoTerritorioService();
         ProvinciaService provinciaService = new ProvinciaService();
+
         Comune comune = new Comune(
                 Integer.parseInt(codiceIstatInserimentoComuniTextField.getText()),
                 nomeInserimentoComuniTextField.getText(),
@@ -220,7 +220,7 @@ public class DatiTerritorialiController implements Initializable {
 
     @FXML
     private void modificaModificaProvinciaButtonOnClicked() {
-      /*  ProvinciaService provinciaService = new ProvinciaService();
+       /* ProvinciaService provinciaService = new ProvinciaService();
         DecessiAnnuali decessiAnnuali = new DecessiAnnuali(
                 selectedId,
                 Integer.parseInt(annoModificaTextField.getText()),
