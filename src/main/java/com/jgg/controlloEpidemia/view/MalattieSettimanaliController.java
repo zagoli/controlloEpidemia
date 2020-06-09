@@ -148,11 +148,6 @@ public class MalattieSettimanaliController implements Initializable {
     }
 
     @FXML
-    private void comuneInserimentoComboBoxOnClicked() {
-        System.out.println("ok");
-    }
-
-    @FXML
     void inserisciInserimentoOnClicked() {
         ComuneService comuneService = new ComuneService();
         MalattieSettimanali malattieSettimanali = new MalattieSettimanali(
@@ -219,6 +214,7 @@ public class MalattieSettimanaliController implements Initializable {
     void modificaModificaOnClicked() {
         ComuneService comuneService = new ComuneService();
         MalattieSettimanali malattieSettimanali = new MalattieSettimanali(
+                1,
                 Integer.parseInt(annoModificaTextField.getText()),
                 Integer.parseInt(settimanaModificaTextField.getText()),
                 Integer.parseInt(ricoveratiConInfluenzaModificaTextField.getText()),

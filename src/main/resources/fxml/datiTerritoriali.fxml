@@ -3,21 +3,21 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
-<Pane xmlns:fx="http://javafx.com/fxml/1" layoutY="32.0" prefHeight="600.0" prefWidth="800.0"
-      xmlns="http://javafx.com/javafx/10.0.2-internal" fx:controller="com.jgg.controlloEpidemia.view.DatiTerritorialiController">
+
+<Pane layoutY="32.0" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.jgg.controlloEpidemia.view.DatiTerritorialiController">
     <TabPane prefHeight="600.0" prefWidth="800.0" tabClosingPolicy="UNAVAILABLE">
         <Tab text="Visualizzazione">
             <TabPane prefHeight="800.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE">
                 <Tab text="Regioni">
                     <Pane minHeight="0.0" minWidth="0.0" prefHeight="600.0" prefWidth="800.0">
-                        <ScrollPane layoutX="1.0" layoutY="-1.0" prefHeight="600.0" prefWidth="800.0"/>
+                        <ScrollPane layoutX="1.0" layoutY="-1.0" prefHeight="600.0" prefWidth="800.0" />
                     </Pane>
                 </Tab>
                 <Tab text="Province">
-                    <Pane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0"/>
+                    <Pane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
                 </Tab>
                 <Tab text="Comuni">
-                    <Pane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0"/>
+                    <Pane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
                 </Tab>
             </TabPane>
         </Tab>
@@ -25,155 +25,130 @@
             <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE">
                 <Tab text="Provincia">
                     <Pane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                        <TextField fx:id="idInserimentoProvinceTextField" layoutX="40.0" layoutY="60.0"
-                                   prefHeight="30.0" prefWidth="20.0">
+                        <TextField fx:id="idInserimentoProvinceTextField" layoutX="40.0" layoutY="60.0" prefHeight="30.0" prefWidth="100.0">
                             <font>
-                                <Font name="Segoe UI" size="15.0"/>
+                                <Font name="Segoe UI" size="15.0" />
                             </font>
                         </TextField>
-                        <TextField fx:id="nomeInserimentoProvinceTextField" layoutX="40.0" layoutY="120.0"
-                                   prefHeight="29.0" prefWidth="58.0">
+                        <TextField fx:id="nomeInserimentoProvinceTextField" layoutX="40.0" layoutY="120.0" prefHeight="29.0" prefWidth="150.0">
                             <font>
-                                <Font name="Segoe UI" size="15.0"/>
+                                <Font name="Segoe UI" size="15.0" />
                             </font>
                         </TextField>
-                        <TextField fx:id="superficieInserimentoProvinceTextField" layoutX="40.0" layoutY="180.0"
-                                   prefHeight="29.0" prefWidth="94.0">
+                        <TextField fx:id="superficieInserimentoProvinceTextField" layoutX="40.0" layoutY="180.0" prefHeight="29.0" prefWidth="100.0">
                             <font>
-                                <Font name="Segoe UI" size="15.0"/>
+                                <Font name="Segoe UI" size="15.0" />
                             </font>
                         </TextField>
-                        <TextField fx:id="comuneDiCapoluogoInserimentoProvinceTextField" layoutX="40.0" layoutY="240.0"
-                                   prefHeight="29.0" prefWidth="208.0">
+                        <TextField fx:id="comuneDiCapoluogoInserimentoProvinceTextField" layoutX="40.0" layoutY="240.0" prefHeight="29.0" prefWidth="100.0">
                             <font>
-                                <Font name="Segoe UI" size="15.0"/>
+                                <Font name="Segoe UI" size="15.0" />
                             </font>
                         </TextField>
                         <Label layoutX="40.0" layoutY="36.0" prefHeight="24.0" prefWidth="20.0" text="Id">
                             <font>
-                                <Font name="Segoe UI Bold" size="20.0"/>
+                                <Font name="Segoe UI Bold" size="20.0" />
                             </font>
                         </Label>
                         <Label layoutX="40.0" layoutY="96.0" prefHeight="24.0" prefWidth="58.0" text="Nome">
                             <font>
-                                <Font name="Segoe UI Bold" size="20.0"/>
+                                <Font name="Segoe UI Bold" size="20.0" />
                             </font>
                         </Label>
                         <Label layoutX="40.0" layoutY="156.0" prefHeight="24.0" prefWidth="94.0" text="Superficie">
                             <font>
-                                <Font name="Segoe UI Bold" size="20.0"/>
+                                <Font name="Segoe UI Bold" size="20.0" />
                             </font>
                         </Label>
-                        <Label layoutX="40.0" layoutY="216.0" prefHeight="24.0" prefWidth="208.0"
-                               text="Comune di capoluogo">
+                        <Label layoutX="40.0" layoutY="216.0" prefHeight="24.0" prefWidth="208.0" text="Comune di capoluogo">
                             <font>
-                                <Font name="Segoe UI Bold" size="20.0"/>
+                                <Font name="Segoe UI Bold" size="20.0" />
                             </font>
                         </Label>
                         <Label layoutX="40.0" layoutY="276.0" prefHeight="24.0" prefWidth="192.0" text="Regione">
                             <font>
-                                <Font name="Segoe UI Bold" size="20.0"/>
+                                <Font name="Segoe UI Bold" size="20.0" />
                             </font>
                         </Label>
-                        <Button layoutX="300.0" layoutY="150.0" mnemonicParsing="false"
-                                onAction="#inserisciInserimentoProvinceButtonOnClicked" prefHeight="40.0"
-                                prefWidth="104.0" text="Inserisci">
+                        <Button layoutX="300.0" layoutY="150.0" mnemonicParsing="false" onAction="#inserisciInserimentoProvinceButtonOnClicked" prefHeight="40.0" prefWidth="104.0" text="Inserisci">
                             <font>
-                                <Font name="Segoe UI Bold" size="20.0"/>
+                                <Font name="Segoe UI Bold" size="20.0" />
                             </font>
                         </Button>
-                        <Button layoutX="300.0" layoutY="200.0" mnemonicParsing="false"
-                                onAction="#inserisciCsvInserimentoProvinceButtonOnClicked" prefHeight="40.0"
-                                prefWidth="140.0" text="Inserisci csv">
+                        <Button layoutX="300.0" layoutY="200.0" mnemonicParsing="false" onAction="#inserisciCsvInserimentoProvinceButtonOnClicked" prefHeight="40.0" prefWidth="140.0" text="Inserisci csv">
                             <font>
-                                <Font name="Segoe UI Bold" size="20.0"/>
+                                <Font name="Segoe UI Bold" size="20.0" />
                             </font>
                         </Button>
-                        <ComboBox fx:id="regioneInserimentoProvinceComboBox" layoutX="40.0" layoutY="300.0"
-                                  prefHeight="25.0" prefWidth="192.0"/>
+                        <ComboBox fx:id="regioneInserimentoProvinceComboBox" layoutX="40.0" layoutY="300.0" prefHeight="25.0" prefWidth="192.0" />
                     </Pane>
                 </Tab>
                 <Tab text="Comune">
                     <Pane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                         <Label layoutX="40.0" layoutY="36.0" prefHeight="24.0" prefWidth="112.0" text="Codice Istat">
                             <font>
-                                <Font name="Segoe UI Bold" size="20.0"/>
+                                <Font name="Segoe UI Bold" size="20.0" />
                             </font>
                         </Label>
                         <Label layoutX="40.0" layoutY="96.0" prefHeight="24.0" prefWidth="58.0" text="Nome">
                             <font>
-                                <Font name="Segoe UI Bold" size="20.0"/>
+                                <Font name="Segoe UI Bold" size="20.0" />
                             </font>
                         </Label>
                         <Label layoutX="40.0" layoutY="156.0" prefHeight="24.0" prefWidth="94.0" text="Superficie">
                             <font>
-                                <Font name="Segoe UI Bold" size="20.0"/>
+                                <Font name="Segoe UI Bold" size="20.0" />
                             </font>
                         </Label>
-                        <Label layoutX="40.0" layoutY="216.0" prefHeight="24.0" prefWidth="172.0"
-                               text="Data di istituzione">
+                        <Label layoutX="40.0" layoutY="216.0" prefHeight="24.0" prefWidth="172.0" text="Data di istituzione">
                             <font>
-                                <Font name="Segoe UI Bold" size="20.0"/>
+                                <Font name="Segoe UI Bold" size="20.0" />
                             </font>
                         </Label>
-                        <Label layoutX="40.0" layoutY="276.0" prefHeight="24.0" prefWidth="182.0"
-                               text="Si affaccia sul mare">
+                        <Label layoutX="40.0" layoutY="276.0" prefHeight="24.0" prefWidth="182.0" text="Si affaccia sul mare">
                             <font>
-                                <Font name="Segoe UI Bold" size="20.0"/>
+                                <Font name="Segoe UI Bold" size="20.0" />
                             </font>
                         </Label>
-                        <Label layoutX="40.0" layoutY="336.0" prefHeight="24.0" prefWidth="138.0"
-                               text="Tipo Territorio">
+                        <Label layoutX="40.0" layoutY="336.0" prefHeight="24.0" prefWidth="138.0" text="Tipo Territorio">
                             <font>
-                                <Font name="Segoe UI Bold" size="20.0"/>
+                                <Font name="Segoe UI Bold" size="20.0" />
                             </font>
                         </Label>
                         <Label layoutX="40.0" layoutY="396.0" prefHeight="24.0" prefWidth="88.0" text="Provincia">
                             <font>
-                                <Font name="Segoe UI Bold" size="20.0"/>
+                                <Font name="Segoe UI Bold" size="20.0" />
                             </font>
                         </Label>
-                        <TextField fx:id="codiceIstatInserimentoComuniTextField" layoutX="40.0" layoutY="60.0"
-                                   prefHeight="29.0" prefWidth="112.0">
+                        <TextField fx:id="codiceIstatInserimentoComuniTextField" layoutX="40.0" layoutY="60.0" prefHeight="29.0" prefWidth="100.0">
                             <font>
-                                <Font name="Segoe UI" size="15.0"/>
+                                <Font name="Segoe UI" size="15.0" />
                             </font>
                         </TextField>
-                        <TextField fx:id="nomeInserimentoComuniTextField" layoutX="40.0" layoutY="120.0"
-                                   prefHeight="29.0" prefWidth="58.0">
+                        <TextField fx:id="nomeInserimentoComuniTextField" layoutX="40.0" layoutY="120.0" prefHeight="29.0" prefWidth="150.0">
                             <font>
-                                <Font name="Segoe UI" size="15.0"/>
+                                <Font name="Segoe UI" size="15.0" />
                             </font>
                         </TextField>
-                        <TextField fx:id="superficieInserimentoComuniTextField" layoutX="40.0" layoutY="180.0"
-                                   prefHeight="29.0" prefWidth="94.0">
+                        <TextField fx:id="superficieInserimentoComuniTextField" layoutX="40.0" layoutY="180.0" prefHeight="29.0" prefWidth="100.0">
                             <font>
-                                <Font name="Segoe UI" size="15.0"/>
+                                <Font name="Segoe UI" size="15.0" />
                             </font>
                         </TextField>
-                        <ComboBox fx:id="siAffacciaSulMareInserimentoComuniComboBox" layoutX="40.0" layoutY="300.0"
-                                  prefHeight="25.0" prefWidth="182.0"/>
-                        <ComboBox fx:id="tipoTerritorioInserimentoComuniComboBox" layoutX="40.0" layoutY="360.0"
-                                  prefHeight="25.0" prefWidth="138.0"/>
-                        <ComboBox fx:id="provinciaInserimentoComuniComboBox" layoutX="40.0" layoutY="420.0"
-                                  prefHeight="25.0" prefWidth="88.0"/>
-                        <Button layoutX="300.0" layoutY="150.0" mnemonicParsing="false"
-                                onAction="#inserisciInserimentoComuniButtonOnClicked" prefHeight="40.0"
-                                prefWidth="104.0" text="Inserisci">
+                        <ComboBox fx:id="siAffacciaSulMareInserimentoComuniComboBox" layoutX="40.0" layoutY="300.0" prefHeight="25.0" prefWidth="100.0" />
+                        <ComboBox fx:id="tipoTerritorioInserimentoComuniComboBox" layoutX="40.0" layoutY="360.0" prefHeight="25.0" prefWidth="150.0" />
+                        <ComboBox fx:id="provinciaInserimentoComuniComboBox" layoutX="40.0" layoutY="420.0" prefHeight="25.0" prefWidth="150.0" />
+                        <Button layoutX="300.0" layoutY="150.0" mnemonicParsing="false" onAction="#inserisciInserimentoComuniButtonOnClicked" prefHeight="40.0" prefWidth="104.0" text="Inserisci">
                             <font>
-                                <Font name="Segoe UI Bold" size="20.0"/>
+                                <Font name="Segoe UI Bold" size="20.0" />
                             </font>
                         </Button>
-                        <Button layoutX="300.0" layoutY="200.0" mnemonicParsing="false"
-                                onAction="#inserisciCsvInserimentoComuniButtonOnClicked" prefHeight="40.0"
-                                prefWidth="140.0" text="Inserisci csv">
+                        <Button layoutX="300.0" layoutY="200.0" mnemonicParsing="false" onAction="#inserisciCsvInserimentoComuniButtonOnClicked" prefHeight="40.0" prefWidth="140.0" text="Inserisci csv">
                             <font>
-                                <Font name="Segoe UI Bold" size="20.0"/>
+                                <Font name="Segoe UI Bold" size="20.0" />
                             </font>
                         </Button>
-                        <DatePicker fx:id="dataDiIstituzioneInserimentoComuniDatePicker" layoutX="40.0" layoutY="240.0"
-                                    onAction="#dataDiIstituzioneInserimentoComuniOnClicked" prefHeight="25.0"
-                                    prefWidth="172.0"/>
+                        <DatePicker fx:id="dataDiIstituzioneInserimentoComuniDatePicker" layoutX="40.0" layoutY="240.0" prefHeight="25.0" prefWidth="150.0" />
                     </Pane>
                 </Tab>
             </TabPane>
@@ -182,62 +157,60 @@
             <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE">
                 <Tab text="Provincia">
                     <Pane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                        <TextField layoutX="40.0" layoutY="60.0" prefHeight="30.0" prefWidth="20.0">
+                        <TextField fx:id="idModificaProvinceTextField" layoutX="40.0" layoutY="60.0" prefHeight="30.0" prefWidth="50.0">
                             <font>
-                                <Font name="Segoe UI" size="15.0"/>
+                                <Font name="Segoe UI" size="15.0" />
                             </font>
                         </TextField>
-                        <TextField layoutX="40.0" layoutY="120.0" prefHeight="29.0" prefWidth="58.0">
+                        <TextField fx:id="nomeModificaProvinceTextField" layoutX="40.0" layoutY="120.0" prefHeight="29.0" prefWidth="150.0">
                             <font>
-                                <Font name="Segoe UI" size="15.0"/>
+                                <Font name="Segoe UI" size="15.0" />
                             </font>
                         </TextField>
-                        <TextField layoutX="40.0" layoutY="180.0" prefHeight="29.0" prefWidth="94.0">
+                        <TextField fx:id="superficieModificaProvinceTextField" layoutX="40.0" layoutY="180.0" prefHeight="29.0" prefWidth="100.0">
                             <font>
-                                <Font name="Segoe UI" size="15.0"/>
+                                <Font name="Segoe UI" size="15.0" />
                             </font>
                         </TextField>
-                        <TextField layoutX="40.0" layoutY="240.0" prefHeight="29.0" prefWidth="208.0">
+                        <TextField fx:id="comuneDiCapoluogoModificaProvinceTextField" layoutX="40.0" layoutY="240.0" prefHeight="29.0" prefWidth="100.0">
                             <font>
-                                <Font name="Segoe UI" size="15.0"/>
+                                <Font name="Segoe UI" size="15.0" />
                             </font>
                         </TextField>
                         <TextField layoutX="40.0" layoutY="300.0" prefHeight="29.0" prefWidth="192.0">
                             <font>
-                                <Font name="Segoe UI" size="15.0"/>
+                                <Font name="Segoe UI" size="15.0" />
                             </font>
                         </TextField>
                         <Label layoutX="40.0" layoutY="36.0" prefHeight="24.0" prefWidth="20.0" text="Id">
                             <font>
-                                <Font name="Segoe UI Bold" size="20.0"/>
+                                <Font name="Segoe UI Bold" size="20.0" />
                             </font>
                         </Label>
                         <Label layoutX="40.0" layoutY="96.0" prefHeight="24.0" prefWidth="58.0" text="Nome">
                             <font>
-                                <Font name="Segoe UI Bold" size="20.0"/>
+                                <Font name="Segoe UI Bold" size="20.0" />
                             </font>
                         </Label>
                         <Label layoutX="40.0" layoutY="156.0" prefHeight="24.0" prefWidth="94.0" text="Superficie">
                             <font>
-                                <Font name="Segoe UI Bold" size="20.0"/>
+                                <Font name="Segoe UI Bold" size="20.0" />
                             </font>
                         </Label>
-                        <Label layoutX="40.0" layoutY="216.0" prefHeight="24.0" prefWidth="208.0"
-                               text="Comune di capoluogo">
+                        <Label layoutX="40.0" layoutY="216.0" prefHeight="24.0" prefWidth="208.0" text="Comune di capoluogo">
                             <font>
-                                <Font name="Segoe UI Bold" size="20.0"/>
+                                <Font name="Segoe UI Bold" size="20.0" />
                             </font>
                         </Label>
-                        <Label layoutX="40.0" layoutY="276.0" prefHeight="24.0" prefWidth="192.0"
-                               text="Codice della regione">
+                        <Label layoutX="40.0" layoutY="276.0" prefHeight="24.0" prefWidth="192.0" text="Regione">
                             <font>
-                                <Font name="Segoe UI Bold" size="20.0"/>
+                                <Font name="Segoe UI Bold" size="20.0" />
                             </font>
                         </Label>
-                        <Button layoutX="300.0" layoutY="150.0" mnemonicParsing="false" prefHeight="40.0"
-                                prefWidth="112.0" text="Modifica">
+                        <ComboBox fx:id="regioneModificaProvinceComboBox" layoutX="40.0" layoutY="300.0" prefHeight="25.0" prefWidth="192.0" />
+                        <Button layoutX="300.0" layoutY="150.0" mnemonicParsing="false" onAction="#modificaModificaProvinciaButtonOnClicked" prefHeight="40.0" prefWidth="112.0" text="Modifica">
                             <font>
-                                <Font name="Segoe UI Bold" size="20.0"/>
+                                <Font name="Segoe UI Bold" size="20.0" />
                             </font>
                         </Button>
                     </Pane>
@@ -246,73 +219,67 @@
                     <Pane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                         <Label layoutX="40.0" layoutY="36.0" prefHeight="24.0" prefWidth="112.0" text="Codice Istat">
                             <font>
-                                <Font name="Segoe UI Bold" size="20.0"/>
+                                <Font name="Segoe UI Bold" size="20.0" />
                             </font>
                         </Label>
                         <Label layoutX="40.0" layoutY="96.0" prefHeight="24.0" prefWidth="58.0" text="Nome">
                             <font>
-                                <Font name="Segoe UI Bold" size="20.0"/>
+                                <Font name="Segoe UI Bold" size="20.0" />
                             </font>
                         </Label>
                         <Label layoutX="40.0" layoutY="156.0" prefHeight="24.0" prefWidth="94.0" text="Superficie">
                             <font>
-                                <Font name="Segoe UI Bold" size="20.0"/>
+                                <Font name="Segoe UI Bold" size="20.0" />
                             </font>
                         </Label>
-                        <Label layoutX="40.0" layoutY="216.0" prefHeight="24.0" prefWidth="172.0"
-                               text="Data di istituzione">
+                        <Label layoutX="40.0" layoutY="216.0" prefHeight="24.0" prefWidth="172.0" text="Data di istituzione">
                             <font>
-                                <Font name="Segoe UI Bold" size="20.0"/>
+                                <Font name="Segoe UI Bold" size="20.0" />
                             </font>
                         </Label>
-                        <Label layoutX="40.0" layoutY="276.0" prefHeight="24.0" prefWidth="182.0"
-                               text="Si affaccia sul mare">
+                        <Label layoutX="40.0" layoutY="276.0" prefHeight="24.0" prefWidth="182.0" text="Si affaccia sul mare">
                             <font>
-                                <Font name="Segoe UI Bold" size="20.0"/>
+                                <Font name="Segoe UI Bold" size="20.0" />
                             </font>
                         </Label>
-                        <Label layoutX="40.0" layoutY="336.0" prefHeight="24.0" prefWidth="138.0"
-                               text="Tipo Territorio">
+                        <Label layoutX="40.0" layoutY="336.0" prefHeight="24.0" prefWidth="138.0" text="Tipo Territorio">
                             <font>
-                                <Font name="Segoe UI Bold" size="20.0"/>
+                                <Font name="Segoe UI Bold" size="20.0" />
                             </font>
                         </Label>
                         <Label layoutX="40.0" layoutY="396.0" prefHeight="24.0" prefWidth="88.0" text="Provincia">
                             <font>
-                                <Font name="Segoe UI Bold" size="20.0"/>
+                                <Font name="Segoe UI Bold" size="20.0" />
                             </font>
                         </Label>
-                        <TextField layoutX="40.0" layoutY="60.0" prefHeight="29.0" prefWidth="112.0">
+                        <TextField fx:id="codiceIstatModificaComuniTextField" layoutX="40.0" layoutY="60.0" prefHeight="29.0" prefWidth="100.0">
                             <font>
-                                <Font name="Segoe UI" size="15.0"/>
+                                <Font name="Segoe UI" size="15.0" />
                             </font>
                         </TextField>
-                        <TextField layoutX="40.0" layoutY="120.0" prefHeight="29.0" prefWidth="58.0">
+                        <TextField fx:id="nomeModificaComuniTextField" layoutX="40.0" layoutY="120.0" prefHeight="29.0" prefWidth="150.0">
                             <font>
-                                <Font name="Segoe UI" size="15.0"/>
+                                <Font name="Segoe UI" size="15.0" />
                             </font>
                         </TextField>
-                        <TextField layoutX="40.0" layoutY="180.0" prefHeight="29.0" prefWidth="94.0">
+                        <TextField fx:id="superficieModificaComuniTextField" layoutX="40.0" layoutY="180.0" prefHeight="29.0" prefWidth="100.0">
                             <font>
-                                <Font name="Segoe UI" size="15.0"/>
+                                <Font name="Segoe UI" size="15.0" />
                             </font>
                         </TextField>
-                        <ComboBox layoutX="40.0" layoutY="300.0" prefHeight="25.0" prefWidth="182.0"/>
-                        <ComboBox layoutX="40.0" layoutY="360.0" prefHeight="25.0" prefWidth="138.0"/>
-                        <ComboBox layoutX="40.0" layoutY="420.0" prefHeight="25.0" prefWidth="88.0"/>
-                        <Button layoutX="300.0" layoutY="150.0" mnemonicParsing="false" prefHeight="40.0"
-                                prefWidth="112.0" text="Modifica">
+                        <ComboBox fx:id="siAffacciaSulMareModificaComuniComboBox" layoutX="40.0" layoutY="300.0" prefHeight="25.0" prefWidth="50.0" />
+                        <ComboBox fx:id="tipoTerritorioModificaComuniComboBox" layoutX="40.0" layoutY="360.0" prefHeight="25.0" prefWidth="150.0" />
+                        <ComboBox fx:id="provinciaModificaComuniComboBox" layoutX="40.0" layoutY="420.0" prefHeight="25.0" prefWidth="150.0" />
+                        <Button layoutX="300.0" layoutY="150.0" mnemonicParsing="false" onAction="#modificaModificaComuneButtonOnClicked" prefHeight="40.0" prefWidth="112.0" text="Modifica">
                             <font>
-                                <Font name="Segoe UI Bold" size="20.0"/>
+                                <Font name="Segoe UI Bold" size="20.0" />
                             </font>
                         </Button>
-                        <DatePicker fx:id="dataDiIstituzioneComuneModifica" layoutX="40.0" layoutY="240.0"
-                                    onAction="#dataDiIstituzioneComuneModificaOnClicked" prefHeight="25.0"
-                                    prefWidth="172.0"/>
+                        <DatePicker fx:id="dataDiIstituzioneModificaComuniDatePicker" layoutX="40.0" layoutY="240.0" prefHeight="25.0" prefWidth="150.0" />
                     </Pane>
                 </Tab>
             </TabPane>
         </Tab>
     </TabPane>
-    <Button layoutX="12.0" layoutY="-29.0" mnemonicParsing="false" onAction="#onHomepageButtonClicked" text="Homepage"/>
+    <Button layoutX="12.0" layoutY="-29.0" mnemonicParsing="false" onAction="#onHomepageButtonClicked" text="Homepage" />
 </Pane>
