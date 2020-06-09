@@ -5,13 +5,27 @@
 <?import javafx.scene.text.*?>
 
 <Pane layoutY="32.0" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.jgg.controlloEpidemia.view.MalattieSettimanaliController">
-    <TabPane prefHeight="600.0" prefWidth="800.0" tabClosingPolicy="UNAVAILABLE">
-        <Tab text="Visualizzazione">
+    <TabPane fx:id="malattieSettimanaliTabPane" prefHeight="600.0" prefWidth="800.0" tabClosingPolicy="UNAVAILABLE">
+        <Tab fx:id="malattieSettimanaliVisualizzazioneTab" text="Visualizzazione">
             <Pane minHeight="0.0" minWidth="0.0" prefHeight="600.0" prefWidth="800.0">
-                <ScrollPane layoutX="1.0" layoutY="-1.0" prefHeight="600.0" prefWidth="800.0" />
+                <ListView fx:id="idMalattieSettimanaliListView" layoutX="14.0" layoutY="14.0" prefHeight="425.0" prefWidth="750.0" />
+                <Button layoutX="315.0" layoutY="450.0" mnemonicParsing="false" onAction="#malattieSettimanaliVisualizzazioneModificaButtonOnClicked" prefHeight="45.0" prefWidth="150.0" text="Modifica">
+                    <font>
+                        <Font name="Segoe UI Bold" size="20.0" />
+                    </font>
+                </Button>
+                <Label fx:id="noDataSelectedLabel" layoutX="328.0" layoutY="500.0" prefHeight="17.0" prefWidth="130.0" text="No valid data selected" textAlignment="CENTER" textFill="RED">
+                    <font>
+                        <Font name="Segoe UI Bold" size="12.0" />
+                    </font>
+                </Label>
+                <Button layoutX="600.0" layoutY="450.0" mnemonicParsing="false" onAction="#malattieSettimanaliCancellaButtonOnClicked" prefHeight="45.0" prefWidth="150.0" text="Cancella">
+                    <font>
+                        <Font name="Segoe UI Bold" size="20.0" />
+                    </font></Button>
             </Pane>
         </Tab>
-        <Tab text="Inserimento">
+        <Tab fx:id="malattieSettimanaliInserimentoTab" text="Inserimento">
             <Pane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                 <Label layoutX="20.0" layoutY="16.0" prefHeight="20.0" prefWidth="52.0" text="Anno">
                     <font>
@@ -210,7 +224,7 @@
                 <ComboBox fx:id="comuneInserimentoComboBox" layoutX="580.0" layoutY="370.0" prefHeight="20.0" prefWidth="150.0" />
             </Pane>
         </Tab>
-        <Tab text="Modifica">
+        <Tab fx:id="malattieSettimanaliModificaTab" text="Modifica">
             <Pane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                 <Label layoutX="20.0" layoutY="16.0" prefHeight="20.0" prefWidth="52.0" text="Anno">
                     <font>

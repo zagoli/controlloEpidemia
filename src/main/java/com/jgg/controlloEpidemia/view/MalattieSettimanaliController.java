@@ -4,16 +4,17 @@ import com.jgg.controlloEpidemia.importData.EtlMalattie;
 import com.jgg.controlloEpidemia.model.Comune;
 import com.jgg.controlloEpidemia.model.MalattieSettimanali;
 import com.jgg.controlloEpidemia.service.ComuneService;
+import com.jgg.controlloEpidemia.service.DecessiAnnualiService;
 import com.jgg.controlloEpidemia.service.MalattieSettimanaliService;
+import javafx.animation.ScaleTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.FileChooser;
+import javafx.util.Duration;
 
 import java.io.File;
 import java.io.IOException;
@@ -22,6 +23,24 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 public class MalattieSettimanaliController implements Initializable {
+
+    @FXML
+    private Label noDataSelectedLabel;
+
+    @FXML
+    private Tab malattieSettimanaliVisualizzazioneTab;
+
+    @FXML
+    private Tab malattieSettimanaliInserimentoTab;
+
+    @FXML
+    private Tab malattieSettimanaliModificaTab;
+
+    @FXML
+    private TabPane malattieSettimanaliTabPane;
+
+    @FXML
+    private ListView<String> idMalattieSettimanaliListView;
 
     @FXML
     private TextField annoInserimentoTextField;
@@ -131,14 +150,38 @@ public class MalattieSettimanaliController implements Initializable {
     @FXML
     private ComboBox<String> comuneModificaComboBox;
 
+    private int selectedId;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        malattieSettimanaliModificaTab.setDisable(true);
         ComuneService comuneService = new ComuneService();
         List<Comune> comuneList = comuneService.findAll();
         for (Comune c : comuneList) {
             comuneInserimentoComboBox.getItems().add(c.getNome());
             comuneModificaComboBox.getItems().add(c.getNome());
         }
+        updateList();
+        noDataSelectedLabel.setVisible(false);
+        idMalattieSettimanaliListView.getSelectionModel().select(0);
+    }
+
+    private void updateList() {
+        idMalattieSettimanaliListView.getItems().clear();
+        MalattieSettimanaliService malattieSettimanaliService = new MalattieSettimanaliService();
+        List<MalattieSettimanali> malattieSettimanaliList = malattieSettimanaliService.findAll();
+          idMalattieSettimanaliListView.getItems().add("ID|");
+        //for (MalattieSettimanali d : malattieSettimanaliList) {
+            //      idMalattieSettimanaliListView.getItems().add(
+            //      d.getId()
+            //      +"|"+d.getAnno()
+            //      +"|"+d.getIncidentiStradali()
+            //      +"|"+d.getMalattieTumorali()
+            //      +"|"+d.getMalattieCardiovascolari()
+            //      +"|"+d.getMalattieContagiose()
+            //      +"|"+d.getProvincia().getNome());
+       // }
+        noDataSelectedLabel.setVisible(false);
     }
 
     @FXML
@@ -192,6 +235,9 @@ public class MalattieSettimanaliController implements Initializable {
             inCuraConMorbilloInserimentoTextField.clear();
             inCuraConGastroenteriteInserimentoTextField.clear();
         }
+        malattieSettimanaliTabPane.getSelectionModel().select(0);
+        idMalattieSettimanaliListView.getSelectionModel().select(0);
+        updateList();
     }
 
     @FXML
@@ -205,6 +251,9 @@ public class MalattieSettimanaliController implements Initializable {
         if (selectedFile != null) {
             System.out.println("ok");
             etlMalattie.load(selectedFile.getPath());
+            malattieSettimanaliTabPane.getSelectionModel().select(0);
+            idMalattieSettimanaliListView.getSelectionModel().select(0);
+            updateList();
         } else {
             System.out.println("non ho trovato il file");
         }
@@ -214,7 +263,7 @@ public class MalattieSettimanaliController implements Initializable {
     void modificaModificaOnClicked() {
         ComuneService comuneService = new ComuneService();
         MalattieSettimanali malattieSettimanali = new MalattieSettimanali(
-                1,
+                selectedId,
                 Integer.parseInt(annoModificaTextField.getText()),
                 Integer.parseInt(settimanaModificaTextField.getText()),
                 Integer.parseInt(ricoveratiConInfluenzaModificaTextField.getText()),
@@ -256,6 +305,65 @@ public class MalattieSettimanaliController implements Initializable {
             inCuraConMorbilloModificaTextField.clear();
             inCuraConGastroenteriteModificaTextField.clear();
         }
+        malattieSettimanaliTabPane.getSelectionModel().select(0);
+        idMalattieSettimanaliListView.getSelectionModel().select(0);
+        malattieSettimanaliModificaTab.setDisable(true);
+        malattieSettimanaliVisualizzazioneTab.setDisable(false);
+        malattieSettimanaliInserimentoTab.setDisable(false);
+        updateList();
+    }
+
+    @FXML
+    private void malattieSettimanaliCancellaButtonOnClicked(){
+        if(idMalattieSettimanaliListView.getSelectionModel().getSelectedIndex()!=0) {
+            String malattie = idMalattieSettimanaliListView.getSelectionModel().getSelectedItem();
+            String[] malattieEntry;
+            malattieEntry = malattie.split("\\|");
+            selectedId = Integer.parseInt(malattieEntry[0]);
+            DecessiAnnualiService decessiAnnualiService = new DecessiAnnualiService();
+            decessiAnnualiService.deleteById(selectedId);
+            updateList();
+        }
+        else{
+            noDataSelectedLabel.setVisible(true);
+            errorAnimation();
+        }
+    }
+
+    @FXML
+    private void malattieSettimanaliVisualizzazioneModificaButtonOnClicked() {
+        if(idMalattieSettimanaliListView.getSelectionModel().getSelectedIndex()!=0) {
+            malattieSettimanaliModificaTab.setDisable(false);
+            malattieSettimanaliVisualizzazioneTab.setDisable(true);
+            malattieSettimanaliInserimentoTab.setDisable(true);
+            String malattie = idMalattieSettimanaliListView.getSelectionModel().getSelectedItem();
+            String[] malattieEntry;
+            malattieEntry = malattie.split("\\|");
+            malattieSettimanaliTabPane.getSelectionModel().select(2);
+            selectedId = Integer.parseInt(malattieEntry[0]);
+          /*
+            annoModificaTextField.setText(malattieEntry[1]);
+            incidentiStradaliModificaTextField.setText(malattieEntry[2]);
+            malattieTumoraliModificaTextField.setText(malattieEntry[3]);
+            malattieCardiovascolariModificaTextField.setText(malattieEntry[4]);
+            malattieContagioseModificaTextField.setText(malattieEntry[5]);
+            provinciaModificaComboBox.getSelectionModel().select(malattieEntry[6]);
+          */
+        }
+        else{
+            noDataSelectedLabel.setVisible(true);
+            errorAnimation();
+        }
+    }
+
+    private void errorAnimation() {
+        ScaleTransition st = new ScaleTransition(Duration.millis(200), noDataSelectedLabel);
+        st.setByX(0.2);
+        st.setByY(0.2);
+        st.setCycleCount(2);
+        st.setAutoReverse(true);
+        st.play();
+        //noDataSelectedLabel.setVisible(false);
     }
 
 }

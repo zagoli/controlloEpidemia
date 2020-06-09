@@ -37,9 +37,6 @@ public class DecessiAnnualiController implements Initializable {
     private Tab decessiAnnualiModificaTab;
 
     @FXML
-    private Button decessiAnnualiVisualizzazioneModificaButton;
-
-    @FXML
     private TabPane decessiAnnualiTabPane;
 
     @FXML
@@ -86,7 +83,6 @@ public class DecessiAnnualiController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         decessiAnnualiModificaTab.setDisable(true);
-
         ProvinciaService provinciaService = new ProvinciaService();
         List<Provincia> provinciaList = provinciaService.findAll();
         for (Provincia p : provinciaList) {
@@ -96,8 +92,6 @@ public class DecessiAnnualiController implements Initializable {
         updateList();
         noDataSelectedLabel.setVisible(false);
         idDecessiAnnualiListView.getSelectionModel().select(0);
-
-
     }
 
     private void updateList(){
@@ -162,7 +156,6 @@ public class DecessiAnnualiController implements Initializable {
         } else {
             System.out.println("non ho trovato il file");
         }
-
     }
 
     @FXML
@@ -208,12 +201,11 @@ public class DecessiAnnualiController implements Initializable {
         else{
             noDataSelectedLabel.setVisible(true);
             errorAnimation();
-
         }
     }
 
     @FXML
-    private void DecessiAnnualiVisualizzazioneModificaButtonOnClicked() {
+    private void decessiAnnualiVisualizzazioneModificaButtonOnClicked() {
         if(idDecessiAnnualiListView.getSelectionModel().getSelectedIndex()!=0) {
             decessiAnnualiModificaTab.setDisable(false);
             decessiAnnualiVisualizzazioneTab.setDisable(true);
@@ -234,10 +226,7 @@ public class DecessiAnnualiController implements Initializable {
             noDataSelectedLabel.setVisible(true);
             errorAnimation();
         }
-
-
     }
-
 
     private void errorAnimation() {
         ScaleTransition st = new ScaleTransition(Duration.millis(200), noDataSelectedLabel);

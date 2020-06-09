@@ -40,11 +40,6 @@
                                 <Font name="Segoe UI" size="15.0" />
                             </font>
                         </TextField>
-                        <TextField fx:id="comuneDiCapoluogoInserimentoProvinceTextField" layoutX="40.0" layoutY="240.0" prefHeight="29.0" prefWidth="100.0">
-                            <font>
-                                <Font name="Segoe UI" size="15.0" />
-                            </font>
-                        </TextField>
                         <Label layoutX="40.0" layoutY="36.0" prefHeight="24.0" prefWidth="20.0" text="Id">
                             <font>
                                 <Font name="Segoe UI Bold" size="20.0" />
@@ -81,6 +76,7 @@
                             </font>
                         </Button>
                         <ComboBox fx:id="regioneInserimentoProvinceComboBox" layoutX="40.0" layoutY="300.0" prefHeight="25.0" prefWidth="192.0" />
+                  <ComboBox fx:id="comuneDiCapoluogoInserimentoProvinceComboBox" layoutX="40.0" layoutY="240.0" prefHeight="25.0" prefWidth="192.0" />
                     </Pane>
                 </Tab>
                 <Tab text="Comune">
@@ -172,16 +168,6 @@
                                 <Font name="Segoe UI" size="15.0" />
                             </font>
                         </TextField>
-                        <TextField fx:id="comuneDiCapoluogoModificaProvinceTextField" layoutX="40.0" layoutY="240.0" prefHeight="29.0" prefWidth="100.0">
-                            <font>
-                                <Font name="Segoe UI" size="15.0" />
-                            </font>
-                        </TextField>
-                        <TextField layoutX="40.0" layoutY="300.0" prefHeight="29.0" prefWidth="192.0">
-                            <font>
-                                <Font name="Segoe UI" size="15.0" />
-                            </font>
-                        </TextField>
                         <Label layoutX="40.0" layoutY="36.0" prefHeight="24.0" prefWidth="20.0" text="Id">
                             <font>
                                 <Font name="Segoe UI Bold" size="20.0" />
@@ -213,6 +199,7 @@
                                 <Font name="Segoe UI Bold" size="20.0" />
                             </font>
                         </Button>
+                  <ComboBox fx:id="comuneDiCapoluogoModificaProvinceComboBox" layoutX="40.0" layoutY="240.0" prefHeight="25.0" prefWidth="192.0" />
                     </Pane>
                 </Tab>
                 <Tab text="Comune">
