@@ -2,14 +2,8 @@ package com.jgg.controlloEpidemia.view;
 
 import com.jgg.controlloEpidemia.importData.EtlComune;
 import com.jgg.controlloEpidemia.importData.EtlProvincia;
-import com.jgg.controlloEpidemia.model.Comune;
-import com.jgg.controlloEpidemia.model.Provincia;
-import com.jgg.controlloEpidemia.model.Regione;
-import com.jgg.controlloEpidemia.model.TipoTerritorio;
-import com.jgg.controlloEpidemia.service.ComuneService;
-import com.jgg.controlloEpidemia.service.ProvinciaService;
-import com.jgg.controlloEpidemia.service.RegioneService;
-import com.jgg.controlloEpidemia.service.TipoTerritorioService;
+import com.jgg.controlloEpidemia.model.*;
+import com.jgg.controlloEpidemia.service.*;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -30,32 +24,33 @@ import java.util.ResourceBundle;
 
 public class DatiTerritorialiController implements Initializable {
 
-    @FXML
-    private Label noDataSelectedLabel;
 
     @FXML
-    private Tab datiTerritorialiVisualizzazioneTab;
+    private Tab visualizzazioneTab;
 
     @FXML
-    private Tab datiTerritorialiInserimentoTab;
+    private Tab regioniTab;
 
     @FXML
-    private Tab datiTerritorialiModificaTab;
+    private ListView<String> regioniListView;
 
     @FXML
-    private TabPane datiTerritorialiTabPane;
-
-    /*@FXML
-    private TabPane datiTerritorialiTabPane;*/
+    private ListView<String> comuniListView;
 
     @FXML
-    private ListView<String> idComuniListView;
+    private ListView<String> provinceListView;
 
     @FXML
-    private ListView<String> idProvinceListView;
+    private Tab provinceVisualizzazioneTab;
 
     @FXML
-    private ListView<String> idRegioniListView;
+    private Tab comuniVisualizzazioneTab;
+
+    @FXML
+    private Tab inserimentoTab;
+
+    @FXML
+    private Tab provinciaInserimentoTab;
 
     @FXML
     private TextField idInserimentoProvinceTextField;
@@ -67,10 +62,13 @@ public class DatiTerritorialiController implements Initializable {
     private TextField superficieInserimentoProvinceTextField;
 
     @FXML
+    private ComboBox<String> regioneInserimentoProvinceComboBox;
+
+    @FXML
     private ComboBox<String> comuneDiCapoluogoInserimentoProvinceComboBox;
 
     @FXML
-    private ComboBox<String> regioneInserimentoProvinceComboBox;
+    private Tab comuneInserimentoTab;
 
     @FXML
     private TextField codiceIstatInserimentoComuniTextField;
@@ -82,9 +80,6 @@ public class DatiTerritorialiController implements Initializable {
     private TextField superficieInserimentoComuniTextField;
 
     @FXML
-    private DatePicker dataDiIstituzioneInserimentoComuniDatePicker;
-
-    @FXML
     private ComboBox<String> siAffacciaSulMareInserimentoComuniComboBox;
 
     @FXML
@@ -92,6 +87,15 @@ public class DatiTerritorialiController implements Initializable {
 
     @FXML
     private ComboBox<String> provinciaInserimentoComuniComboBox;
+
+    @FXML
+    private DatePicker dataDiIstituzioneInserimentoComuniDatePicker;
+
+    @FXML
+    private Tab modificaTab;
+
+    @FXML
+    private Tab provinciaModificaTab;
 
     @FXML
     private TextField idModificaProvinceTextField;
@@ -103,10 +107,13 @@ public class DatiTerritorialiController implements Initializable {
     private TextField superficieModificaProvinceTextField;
 
     @FXML
+    private ComboBox<String> regioneModificaProvinceComboBox;
+
+    @FXML
     private ComboBox<String> comuneDiCapoluogoModificaProvinceComboBox;
 
     @FXML
-    private ComboBox<String> regioneModificaProvinceComboBox;
+    private Tab comuneModificaTab;
 
     @FXML
     private TextField codiceIstatModificaComuniTextField;
@@ -118,9 +125,6 @@ public class DatiTerritorialiController implements Initializable {
     private TextField superficieModificaComuniTextField;
 
     @FXML
-    private DatePicker dataDiIstituzioneModificaComuniDatePicker;
-
-    @FXML
     private ComboBox<String> siAffacciaSulMareModificaComuniComboBox;
 
     @FXML
@@ -128,6 +132,10 @@ public class DatiTerritorialiController implements Initializable {
 
     @FXML
     private ComboBox<String> provinciaModificaComuniComboBox;
+
+    @FXML
+    private DatePicker dataDiIstituzioneModificaComuniDatePicker;
+
 
     private int selectedId;
 
@@ -152,13 +160,78 @@ public class DatiTerritorialiController implements Initializable {
         }
         RegioneService regioneService = new RegioneService();
         List<Regione> regioneList = regioneService.findAll();
+        regioniListView.getItems().add("ID|NOME|SUPERFICIE|CAPOLUOGO");
+        String c;
+        Comune capoluogo;
         for (Regione r : regioneList) {
             regioneInserimentoProvinceComboBox.getItems().add(r.getNome());
             regioneModificaProvinceComboBox.getItems().add(r.getNome());
+            capoluogo=comuneService.findByCodiceIstat(r.getCapoluogo());
+            c="null";
+            if(capoluogo!=null){
+                c=capoluogo.getNome();
+            }
+            regioniListView.getItems().add(r.getId()+"|"+r.getNome()+"|"+r.getSuperficie()+"|"+c);
         }
+        updateListComuni();
+        updateListProvince();
         siAffacciaSulMareInserimentoComuniComboBox.getItems().setAll(FXCollections.observableArrayList("Si", "No"));
         siAffacciaSulMareModificaComuniComboBox.getItems().setAll(FXCollections.observableArrayList("Si", "No"));
+
+        //noDataSelectedLabel.setVisible(false);
+
+
     }
+
+    private void updateListComuni(){
+        comuniListView.getItems().clear();
+        ComuneService comuneService = new ComuneService();
+        List<Comune> comuniList = comuneService.findAll();
+        comuniListView.getItems().add("CODICE ISTAT|NOME|SUPERFICIE|DATA ISTITUZIONE|SI AFFACCIA SUL MARE|TIPO TERRITORIO|PROVINCIA");
+        String siAffacciaSulMare;
+        for (Comune c : comuniList) {
+            siAffacciaSulMare="si";
+            if(c.getSiAffacciaSulMare()){
+                siAffacciaSulMare="no";
+            }
+            comuniListView.getItems().add(
+                    c.getCodiceIstat()+"|"+
+                            c.getNome()+"|"+
+                            c.getSuperficie()+"|"+
+                            c.getDataIstituzione()+"|"+
+                            siAffacciaSulMare+"|"+
+                            c.getTipoTerritorio().getNome()+"|"+
+                            c.getProvincia().getNome());
+        }
+        //noDataSelectedLabel.setVisible(false);
+    }
+
+    private void updateListProvince(){
+        String c;
+        Comune capoluogo;
+        ComuneService comuneService = new ComuneService();
+        provinceListView.getItems().clear();
+        ProvinciaService provinciaService = new ProvinciaService();
+        List<Provincia> provinciaList = provinciaService.findAll();
+        provinceListView.getItems().add("ID|NOME|SUPERFICIE|CAPOLUOGO|REGIONE");
+        for (Provincia p : provinciaList) {
+            c="null";
+            capoluogo=comuneService.findByCodiceIstat(p.getCapoluogo());
+            if(capoluogo!=null){
+                c=capoluogo.getNome();
+            }
+            provinceListView.getItems().add(
+                   p.getId()+"|"+
+                            p.getNome()+"|"+
+                            p.getSuperficie()+"|"+
+                            c+"|"+
+                            p.getRegione().getNome());
+        }
+        //noDataSelectedLabel.setVisible(false);
+    }
+
+
+
 
     @FXML
     private void onHomepageButtonClicked(ActionEvent event) throws IOException {
@@ -179,11 +252,11 @@ public class DatiTerritorialiController implements Initializable {
         ProvinciaService provinciaService = new ProvinciaService();
         RegioneService regioneService = new RegioneService();
         ComuneService comuneService = new ComuneService();
-     /*   Provincia provincia = new Provincia(
+        Provincia provincia = new Provincia(
                 Integer.parseInt(idInserimentoProvinceTextField.getText()),
                 nomeInserimentoProvinceTextField.getText(),
                 Integer.parseInt(superficieInserimentoProvinceTextField.getText()),
-            //    comuneService.findByNome(comuneDiCapoluogoInserimentoProvinceComboBox.getValue()),
+                comuneService.findByNome(comuneDiCapoluogoInserimentoProvinceComboBox.getValue()).getCodiceIstat(),
                 regioneService.findByNome(regioneInserimentoProvinceComboBox.getValue())
         );
         provinciaService.save(provincia);
@@ -194,7 +267,7 @@ public class DatiTerritorialiController implements Initializable {
             superficieInserimentoProvinceTextField.clear();
             comuneDiCapoluogoInserimentoProvinceComboBox.getValue();
             regioneInserimentoProvinceComboBox.getSelectionModel().clearSelection();
-        }*/
+        }
     }
 
     @FXML

@@ -1,29 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
 
-<Pane layoutY="32.0" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.jgg.controlloEpidemia.view.DatiTerritorialiController">
+<Pane layoutY="32.0" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.jgg.controlloEpidemia.view.DatiTerritorialiController">
     <TabPane prefHeight="600.0" prefWidth="800.0" tabClosingPolicy="UNAVAILABLE">
-        <Tab text="Visualizzazione">
+        <Tab fx:id="visualizzazioneTab" text="Visualizzazione">
             <TabPane prefHeight="800.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE">
-                <Tab text="Regioni">
+                <Tab fx:id="regioniTab" text="Regioni">
                     <Pane minHeight="0.0" minWidth="0.0" prefHeight="600.0" prefWidth="800.0">
-                        <ScrollPane layoutX="1.0" layoutY="-1.0" prefHeight="600.0" prefWidth="800.0" />
+                        <ScrollPane layoutX="1.0" layoutY="-1.0" prefHeight="600.0" prefWidth="800.0">
+                            <ListView fx:id="regioniListView" prefHeight="500.0" prefWidth="780.0"/>
+                        </ScrollPane>
                     </Pane>
                 </Tab>
-                <Tab text="Province">
-                    <Pane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                <Tab fx:id="provinceVisualizzazioneTab" text="Province">
+                    <Pane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                        <ListView fx:id="provinceListView" prefHeight="500.0" prefWidth="780.0"/>
+                    </Pane>
                 </Tab>
-                <Tab text="Comuni">
-                    <Pane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                <Tab fx:id="comuniVisualizzazioneTab" text="Comuni">
+                    <Pane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                        <ListView fx:id="comuniListView" prefHeight="500.0" prefWidth="780.0"/>
+                    </Pane>
                 </Tab>
             </TabPane>
         </Tab>
-        <Tab text="Inserimento">
+        <Tab fx:id="inserimentoTab" text="Inserimento">
             <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE">
-                <Tab text="Provincia">
+                <Tab fx:id="provinciaInserimentoTab" text="Provincia">
                     <Pane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                         <TextField fx:id="idInserimentoProvinceTextField" layoutX="40.0" layoutY="60.0" prefHeight="30.0" prefWidth="100.0">
                             <font>
@@ -79,7 +93,7 @@
                   <ComboBox fx:id="comuneDiCapoluogoInserimentoProvinceComboBox" layoutX="40.0" layoutY="240.0" prefHeight="25.0" prefWidth="192.0" />
                     </Pane>
                 </Tab>
-                <Tab text="Comune">
+                <Tab fx:id="comuneInserimentoTab" text="Comune">
                     <Pane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                         <Label layoutX="40.0" layoutY="36.0" prefHeight="24.0" prefWidth="112.0" text="Codice Istat">
                             <font>
@@ -149,9 +163,9 @@
                 </Tab>
             </TabPane>
         </Tab>
-        <Tab text="Modifica">
+        <Tab fx:id="modificaTab" text="Modifica">
             <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE">
-                <Tab text="Provincia">
+                <Tab fx:id="provinciaModificaTab" text="Provincia">
                     <Pane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                         <TextField fx:id="idModificaProvinceTextField" layoutX="40.0" layoutY="60.0" prefHeight="30.0" prefWidth="50.0">
                             <font>
@@ -202,7 +216,7 @@
                   <ComboBox fx:id="comuneDiCapoluogoModificaProvinceComboBox" layoutX="40.0" layoutY="240.0" prefHeight="25.0" prefWidth="192.0" />
                     </Pane>
                 </Tab>
-                <Tab text="Comune">
+                <Tab fx:id="comuneModificaTab" text="Comune">
                     <Pane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                         <Label layoutX="40.0" layoutY="36.0" prefHeight="24.0" prefWidth="112.0" text="Codice Istat">
                             <font>
