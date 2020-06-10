@@ -43,7 +43,7 @@ public class HomePageController implements Initializable {
                 comunePersonaleContrattoButton.setDisable(true);
             }
             mainPanel.getChildren().add(comunePersonaleContrattoButton);
-            Button decessiButton = new Button("GESTISCI DATI DECESSI ANNUALI");
+            Button decessiButton = new Button("GESTISCI DECESSI ANNUALI");
             decessiButton.setUserData(2);
             prepareButton(decessiButton);
             mainPanel.getChildren().add(decessiButton);

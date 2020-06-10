@@ -96,6 +96,12 @@ public class DecessiAnnualiController implements Initializable {
         idDecessiAnnualiListView.getSelectionModel().select(0);
     }
 
+    @FXML
+    private void homepageButtonOnClicked(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/homePage.fxml"));
+        ((Button) event.getSource()).getScene().setRoot(root);
+    }
+
     private void updateList() {
         idDecessiAnnualiListView.getItems().clear();
         List<DecessiAnnuali> decessiAnnualiList = decessiAnnualiService.findAll();
@@ -114,11 +120,42 @@ public class DecessiAnnualiController implements Initializable {
     }
 
     @FXML
-    private void homepageButtonOnClicked(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/homePage.fxml"));
-        ((Button) event.getSource()).getScene().setRoot(root);
+    private void decessiAnnualiCancellaButtonOnClicked() {
+        if (idDecessiAnnualiListView.getSelectionModel().getSelectedIndex() != 0) {
+            String decessi = idDecessiAnnualiListView.getSelectionModel().getSelectedItem();
+            String[] decessiEntry;
+            decessiEntry = decessi.split("\\|");
+            selectedId = Integer.parseInt(decessiEntry[0]);
+            decessiAnnualiService.deleteById(selectedId);
+            updateList();
+        } else {
+            noDataSelectedLabel.setVisible(true);
+            errorAnimation(noDataSelectedLabel);
+        }
     }
 
+    @FXML
+    private void decessiAnnualiVisualizzazioneModificaButtonOnClicked() {
+        if (idDecessiAnnualiListView.getSelectionModel().getSelectedIndex() != 0) {
+            decessiAnnualiModificaTab.setDisable(false);
+            decessiAnnualiVisualizzazioneTab.setDisable(true);
+            decessiAnnualiInserimentoTab.setDisable(true);
+            String decessi = idDecessiAnnualiListView.getSelectionModel().getSelectedItem();
+            String[] decessiEntry;
+            decessiEntry = decessi.split("\\|");
+            decessiAnnualiTabPane.getSelectionModel().select(2);
+            selectedId = Integer.parseInt(decessiEntry[0]);
+            annoModificaTextField.setText(decessiEntry[1]);
+            incidentiStradaliModificaTextField.setText(decessiEntry[2]);
+            malattieTumoraliModificaTextField.setText(decessiEntry[3]);
+            malattieCardiovascolariModificaTextField.setText(decessiEntry[4]);
+            malattieContagioseModificaTextField.setText(decessiEntry[5]);
+            provinciaModificaComboBox.getSelectionModel().select(decessiEntry[6]);
+        } else {
+            noDataSelectedLabel.setVisible(true);
+            errorAnimation(noDataSelectedLabel);
+        }
+    }
 
     @FXML
     private void inserisciInserimentoButtonOnClicked() {
@@ -188,52 +225,14 @@ public class DecessiAnnualiController implements Initializable {
         updateList();
     }
 
-    @FXML
-    private void decessiAnnualiCancellaButtonOnClicked() {
-        if (idDecessiAnnualiListView.getSelectionModel().getSelectedIndex() != 0) {
-            String decessi = idDecessiAnnualiListView.getSelectionModel().getSelectedItem();
-            String[] decessiEntry;
-            decessiEntry = decessi.split("\\|");
-            selectedId = Integer.parseInt(decessiEntry[0]);
-            decessiAnnualiService.deleteById(selectedId);
-            updateList();
-        } else {
-            noDataSelectedLabel.setVisible(true);
-            errorAnimation();
-        }
-    }
 
-    @FXML
-    private void decessiAnnualiVisualizzazioneModificaButtonOnClicked() {
-        if (idDecessiAnnualiListView.getSelectionModel().getSelectedIndex() != 0) {
-            decessiAnnualiModificaTab.setDisable(false);
-            decessiAnnualiVisualizzazioneTab.setDisable(true);
-            decessiAnnualiInserimentoTab.setDisable(true);
-            String decessi = idDecessiAnnualiListView.getSelectionModel().getSelectedItem();
-            String[] decessiEntry;
-            decessiEntry = decessi.split("\\|");
-            decessiAnnualiTabPane.getSelectionModel().select(2);
-            selectedId = Integer.parseInt(decessiEntry[0]);
-            annoModificaTextField.setText(decessiEntry[1]);
-            incidentiStradaliModificaTextField.setText(decessiEntry[2]);
-            malattieTumoraliModificaTextField.setText(decessiEntry[3]);
-            malattieCardiovascolariModificaTextField.setText(decessiEntry[4]);
-            malattieContagioseModificaTextField.setText(decessiEntry[5]);
-            provinciaModificaComboBox.getSelectionModel().select(decessiEntry[6]);
-        } else {
-            noDataSelectedLabel.setVisible(true);
-            errorAnimation();
-        }
-    }
-
-    private void errorAnimation() {
-        ScaleTransition st = new ScaleTransition(Duration.millis(200), noDataSelectedLabel);
+    private void errorAnimation(Label label) {
+        ScaleTransition st = new ScaleTransition(Duration.millis(200), label);
         st.setByX(0.2);
         st.setByY(0.2);
         st.setCycleCount(2);
         st.setAutoReverse(true);
         st.play();
-        //noDataSelectedLabel.setVisible(false);
     }
 
 }
