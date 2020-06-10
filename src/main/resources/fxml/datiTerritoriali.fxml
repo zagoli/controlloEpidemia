@@ -1,29 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
 
-<Pane layoutY="32.0" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.jgg.controlloEpidemia.view.DatiTerritorialiController">
-    <TabPane prefHeight="600.0" prefWidth="800.0" tabClosingPolicy="UNAVAILABLE">
-        <Tab text="Visualizzazione">
-            <TabPane prefHeight="800.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE">
-                <Tab text="Regioni">
+<Pane layoutY="32.0" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.jgg.controlloEpidemia.view.DatiTerritorialiController">
+    <TabPane fx:id="datiTerritorialiTabPane" prefHeight="600.0" prefWidth="800.0" tabClosingPolicy="UNAVAILABLE">
+        <Tab fx:id="visualizzazioneTab" text="Visualizzazione">
+            <TabPane fx:id="visualizzazioneTabPane" prefHeight="800.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE">
+                <Tab fx:id="regioniTab" text="Regioni">
                     <Pane minHeight="0.0" minWidth="0.0" prefHeight="600.0" prefWidth="800.0">
-                        <ScrollPane layoutX="1.0" layoutY="-1.0" prefHeight="600.0" prefWidth="800.0" />
+                        <ScrollPane layoutX="1.0" layoutY="-1.0" prefHeight="600.0" prefWidth="800.0">
+                            <ListView fx:id="regioniListView" prefHeight="500.0" prefWidth="780.0" />
+                        </ScrollPane>
                     </Pane>
                 </Tab>
-                <Tab text="Province">
-                    <Pane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                <Tab fx:id="provinceVisualizzazioneTab" text="Province">
+                    <Pane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                        <ListView fx:id="provinceListView" prefHeight="400.0" prefWidth="780.0" />
+                  <Button fx:id="provinciaModificaVisualizzazioneButton" layoutX="364.0" layoutY="434.0" mnemonicParsing="false" onAction="#provinciaModificaVisualizzazioneButtonOnClicked" text="Modifica" />
+                  <Button fx:id="provinciaEliminaVisualizzazioneButton" layoutX="693.0" layoutY="434.0" mnemonicParsing="false" onAction="#provinciaEliminaVisualizzazioneButtonOnClicked" text="Elimina" />
+                  <Label fx:id="provinciaNoDataSelectedLabel" layoutX="381.0" layoutY="471.0" text="No valid data selected" />
+                    </Pane>
                 </Tab>
-                <Tab text="Comuni">
-                    <Pane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                <Tab fx:id="comuniVisualizzazioneTab" text="Comuni">
+                    <Pane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                        <ListView fx:id="comuniListView" prefHeight="400.0" prefWidth="780.0" />
+                  <Button fx:id="comuneModificaVisualizzazioneButton" layoutX="364.0" layoutY="428.0" mnemonicParsing="false" onAction="#comuneModificaVisualizzazioneButtonOnClicked" text="Modifica" />
+                  <Button fx:id="comuneEliminaVisualizzazioneButton" layoutX="728.0" layoutY="428.0" mnemonicParsing="false" onAction="#comuneEliminaVisualizzazioneButtonOnClicked" text="Elimina" />
+                  <Label fx:id="comuneNoDataSelectedLabel" layoutX="381.0" layoutY="470.0" text="No valid data selected" />
+                    </Pane>
                 </Tab>
             </TabPane>
         </Tab>
-        <Tab text="Inserimento">
+        <Tab fx:id="inserimentoTab" text="Inserimento">
             <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE">
-                <Tab text="Provincia">
+                <Tab fx:id="provinciaInserimentoTab" text="Provincia">
                     <Pane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                         <TextField fx:id="idInserimentoProvinceTextField" layoutX="40.0" layoutY="60.0" prefHeight="30.0" prefWidth="100.0">
                             <font>
@@ -36,11 +56,6 @@
                             </font>
                         </TextField>
                         <TextField fx:id="superficieInserimentoProvinceTextField" layoutX="40.0" layoutY="180.0" prefHeight="29.0" prefWidth="100.0">
-                            <font>
-                                <Font name="Segoe UI" size="15.0" />
-                            </font>
-                        </TextField>
-                        <TextField fx:id="comuneDiCapoluogoInserimentoProvinceTextField" layoutX="40.0" layoutY="240.0" prefHeight="29.0" prefWidth="100.0">
                             <font>
                                 <Font name="Segoe UI" size="15.0" />
                             </font>
@@ -81,9 +96,10 @@
                             </font>
                         </Button>
                         <ComboBox fx:id="regioneInserimentoProvinceComboBox" layoutX="40.0" layoutY="300.0" prefHeight="25.0" prefWidth="192.0" />
+                  <ComboBox fx:id="comuneDiCapoluogoInserimentoProvinceComboBox" layoutX="40.0" layoutY="240.0" prefHeight="25.0" prefWidth="192.0" />
                     </Pane>
                 </Tab>
-                <Tab text="Comune">
+                <Tab fx:id="comuneInserimentoTab" text="Comune">
                     <Pane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                         <Label layoutX="40.0" layoutY="36.0" prefHeight="24.0" prefWidth="112.0" text="Codice Istat">
                             <font>
@@ -153,9 +169,9 @@
                 </Tab>
             </TabPane>
         </Tab>
-        <Tab text="Modifica">
-            <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE">
-                <Tab text="Provincia">
+        <Tab fx:id="modificaTab" text="Modifica">
+            <TabPane fx:id="modificaTabPane" prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE">
+                <Tab fx:id="provinciaModificaTab" text="Provincia">
                     <Pane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                         <TextField fx:id="idModificaProvinceTextField" layoutX="40.0" layoutY="60.0" prefHeight="30.0" prefWidth="50.0">
                             <font>
@@ -168,16 +184,6 @@
                             </font>
                         </TextField>
                         <TextField fx:id="superficieModificaProvinceTextField" layoutX="40.0" layoutY="180.0" prefHeight="29.0" prefWidth="100.0">
-                            <font>
-                                <Font name="Segoe UI" size="15.0" />
-                            </font>
-                        </TextField>
-                        <TextField fx:id="comuneDiCapoluogoModificaProvinceTextField" layoutX="40.0" layoutY="240.0" prefHeight="29.0" prefWidth="100.0">
-                            <font>
-                                <Font name="Segoe UI" size="15.0" />
-                            </font>
-                        </TextField>
-                        <TextField layoutX="40.0" layoutY="300.0" prefHeight="29.0" prefWidth="192.0">
                             <font>
                                 <Font name="Segoe UI" size="15.0" />
                             </font>
@@ -213,9 +219,10 @@
                                 <Font name="Segoe UI Bold" size="20.0" />
                             </font>
                         </Button>
+                  <ComboBox fx:id="comuneDiCapoluogoModificaProvinceComboBox" layoutX="40.0" layoutY="240.0" prefHeight="25.0" prefWidth="192.0" />
                     </Pane>
                 </Tab>
-                <Tab text="Comune">
+                <Tab fx:id="comuneModificaTab" text="Comune">
                     <Pane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                         <Label layoutX="40.0" layoutY="36.0" prefHeight="24.0" prefWidth="112.0" text="Codice Istat">
                             <font>
@@ -267,7 +274,7 @@
                                 <Font name="Segoe UI" size="15.0" />
                             </font>
                         </TextField>
-                        <ComboBox fx:id="siAffacciaSulMareModificaComuniComboBox" layoutX="40.0" layoutY="300.0" prefHeight="25.0" prefWidth="50.0" />
+                        <ComboBox fx:id="siAffacciaSulMareModificaComuniComboBox" layoutX="40.0" layoutY="300.0" prefHeight="25.0" prefWidth="60.0" />
                         <ComboBox fx:id="tipoTerritorioModificaComuniComboBox" layoutX="40.0" layoutY="360.0" prefHeight="25.0" prefWidth="150.0" />
                         <ComboBox fx:id="provinciaModificaComuniComboBox" layoutX="40.0" layoutY="420.0" prefHeight="25.0" prefWidth="150.0" />
                         <Button layoutX="300.0" layoutY="150.0" mnemonicParsing="false" onAction="#modificaModificaComuneButtonOnClicked" prefHeight="40.0" prefWidth="112.0" text="Modifica">

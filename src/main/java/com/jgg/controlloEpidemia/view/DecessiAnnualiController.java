@@ -13,7 +13,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.stage.FileChooser;
-import javafx.util.Callback;
 import javafx.util.Duration;
 
 import java.io.File;
@@ -35,9 +34,6 @@ public class DecessiAnnualiController implements Initializable {
 
     @FXML
     private Tab decessiAnnualiModificaTab;
-
-    @FXML
-    private Button decessiAnnualiVisualizzazioneModificaButton;
 
     @FXML
     private TabPane decessiAnnualiTabPane;
@@ -83,11 +79,13 @@ public class DecessiAnnualiController implements Initializable {
 
     private int selectedId;
 
+    private final ProvinciaService provinciaService = new ProvinciaService();
+
+    private final DecessiAnnualiService decessiAnnualiService = new DecessiAnnualiService();
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         decessiAnnualiModificaTab.setDisable(true);
-
-        ProvinciaService provinciaService = new ProvinciaService();
         List<Provincia> provinciaList = provinciaService.findAll();
         for (Provincia p : provinciaList) {
             provinciaInserimentoComboBox.getItems().add(p.getNome());
@@ -96,19 +94,21 @@ public class DecessiAnnualiController implements Initializable {
         updateList();
         noDataSelectedLabel.setVisible(false);
         idDecessiAnnualiListView.getSelectionModel().select(0);
-
-
     }
 
-    private void updateList(){
+    private void updateList() {
         idDecessiAnnualiListView.getItems().clear();
-        DecessiAnnualiService decessiAnnualiService = new DecessiAnnualiService();
         List<DecessiAnnuali> decessiAnnualiList = decessiAnnualiService.findAll();
         idDecessiAnnualiListView.getItems().add("ID|ANNO|INCIDENTI STRADALI|MALATTIE TUMORALI|MALATTIE CARDIOVSCOLARI|MALATTIE CONTAGIOSE|PROVINCIA");
         for (DecessiAnnuali d : decessiAnnualiList) {
-            idDecessiAnnualiListView.getItems().add(d.getId()+"|"+d.getAnno()+"|"+
-                    d.getIncidentiStradali()+"|"+d.getMalattieTumorali()+"|"+d.getMalattieCardiovascolari()+"|"+
-                    d.getMalattieContagiose()+"|"+d.getProvincia().getNome());
+            idDecessiAnnualiListView.getItems().add(
+                    d.getId()
+                            + "|" + d.getAnno()
+                            + "|" + d.getIncidentiStradali()
+                            + "|" + d.getMalattieTumorali()
+                            + "|" + d.getMalattieCardiovascolari()
+                            + "|" + d.getMalattieContagiose()
+                            + "|" + d.getProvincia().getNome());
         }
         noDataSelectedLabel.setVisible(false);
     }
@@ -122,7 +122,6 @@ public class DecessiAnnualiController implements Initializable {
 
     @FXML
     private void inserisciInserimentoButtonOnClicked() {
-        ProvinciaService provinciaService = new ProvinciaService();
         DecessiAnnuali decessiAnnuali = new DecessiAnnuali(Integer.parseInt(annoInserimentoTextField.getText()),
                 Integer.parseInt(incidentiStradaliInserimentoTextField.getText()),
                 Integer.parseInt(malattieTumoraliInserimentoTextField.getText()),
@@ -130,7 +129,6 @@ public class DecessiAnnualiController implements Initializable {
                 Integer.parseInt(malattieContagioseInserimentoTextField.getText()),
                 provinciaService.findByNome(provinciaInserimentoComboBox.getValue())
         );
-        DecessiAnnualiService decessiAnnualiService = new DecessiAnnualiService();
         decessiAnnualiService.save(decessiAnnuali);
         if (decessiAnnualiService.findById(decessiAnnuali.getId()) != null) {
             System.out.println("ok");
@@ -152,22 +150,19 @@ public class DecessiAnnualiController implements Initializable {
         FileChooser.ExtensionFilter extensionFilter = new FileChooser.ExtensionFilter("CSV files (*.csv)", "*.csv");
         fileChooser.getExtensionFilters().add(extensionFilter);
         File selectedFile = fileChooser.showOpenDialog(null);
-        EtlDecessi etlDecessi = new EtlDecessi();
         if (selectedFile != null) {
             System.out.println("ok");
-            etlDecessi.load(selectedFile.getPath());
+            new EtlDecessi().load(selectedFile.getPath());
             decessiAnnualiTabPane.getSelectionModel().select(0);
             idDecessiAnnualiListView.getSelectionModel().select(0);
             updateList();
         } else {
             System.out.println("non ho trovato il file");
         }
-
     }
 
     @FXML
     private void modificaModificaButtonOnClicked() {
-        ProvinciaService provinciaService = new ProvinciaService();
         DecessiAnnuali decessiAnnuali = new DecessiAnnuali(
                 selectedId,
                 Integer.parseInt(annoModificaTextField.getText()),
@@ -177,7 +172,6 @@ public class DecessiAnnualiController implements Initializable {
                 Integer.parseInt(malattieContagioseModificaTextField.getText()),
                 provinciaService.findByNome(provinciaModificaComboBox.getValue())
         );
-        DecessiAnnualiService decessiAnnualiService = new DecessiAnnualiService();
         decessiAnnualiService.update(decessiAnnuali);
         if (decessiAnnualiService.findById(decessiAnnuali.getId()) != null) {
             annoModificaTextField.clear();
@@ -195,26 +189,23 @@ public class DecessiAnnualiController implements Initializable {
     }
 
     @FXML
-    private void decessiAnnualiCancellaButtonOnClicked(){
-        if(idDecessiAnnualiListView.getSelectionModel().getSelectedIndex()!=0) {
+    private void decessiAnnualiCancellaButtonOnClicked() {
+        if (idDecessiAnnualiListView.getSelectionModel().getSelectedIndex() != 0) {
             String decessi = idDecessiAnnualiListView.getSelectionModel().getSelectedItem();
             String[] decessiEntry;
             decessiEntry = decessi.split("\\|");
             selectedId = Integer.parseInt(decessiEntry[0]);
-            DecessiAnnualiService decessiAnnualiService = new DecessiAnnualiService();
             decessiAnnualiService.deleteById(selectedId);
             updateList();
-        }
-        else{
+        } else {
             noDataSelectedLabel.setVisible(true);
             errorAnimation();
-
         }
     }
 
     @FXML
-    private void DecessiAnnualiVisualizzazioneModificaButtonOnClicked() {
-        if(idDecessiAnnualiListView.getSelectionModel().getSelectedIndex()!=0) {
+    private void decessiAnnualiVisualizzazioneModificaButtonOnClicked() {
+        if (idDecessiAnnualiListView.getSelectionModel().getSelectedIndex() != 0) {
             decessiAnnualiModificaTab.setDisable(false);
             decessiAnnualiVisualizzazioneTab.setDisable(true);
             decessiAnnualiInserimentoTab.setDisable(true);
@@ -229,15 +220,11 @@ public class DecessiAnnualiController implements Initializable {
             malattieCardiovascolariModificaTextField.setText(decessiEntry[4]);
             malattieContagioseModificaTextField.setText(decessiEntry[5]);
             provinciaModificaComboBox.getSelectionModel().select(decessiEntry[6]);
-        }
-        else{
+        } else {
             noDataSelectedLabel.setVisible(true);
             errorAnimation();
         }
-
-
     }
-
 
     private void errorAnimation() {
         ScaleTransition st = new ScaleTransition(Duration.millis(200), noDataSelectedLabel);

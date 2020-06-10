@@ -9,7 +9,7 @@
         <Tab fx:id="decessiAnnualiVisualizzazioneTab" text="Visualizzazione">
             <Pane minHeight="0.0" minWidth="0.0" prefHeight="600.0" prefWidth="800.0">
                 <ListView fx:id="idDecessiAnnualiListView" layoutX="14.0" layoutY="14.0" prefHeight="425.0" prefWidth="750.0" />
-                <Button fx:id="decessiAnnualiVisualizzazioneModificaButton" layoutX="315.0" layoutY="450.0" mnemonicParsing="false" onAction="#DecessiAnnualiVisualizzazioneModificaButtonOnClicked" prefHeight="45.0" prefWidth="150.0" text="Modifica">
+                <Button layoutX="315.0" layoutY="450.0" mnemonicParsing="false" onAction="#decessiAnnualiVisualizzazioneModificaButtonOnClicked" prefHeight="45.0" prefWidth="150.0" text="Modifica">
                     <font>
                         <Font name="Segoe UI Bold" size="20.0" />
                     </font>
@@ -152,7 +152,7 @@
                         <Font name="Segoe UI Bold" size="20.0" />
                     </font>
                 </Label>
-                <TextField fx:id="malattieContagioseModificaTextField" layoutX="60.0" layoutY="300.0" prefHeight="30.0" prefWidth="50.0">
+                <TextField fx:id="malattieContagioseModificaTextField" layoutX="60.0" layoutY="300.0" prefHeight="30.0" prefWidth="100.0">
                     <font>
                         <Font name="Segoe UI" size="15.0" />
                     </font>
