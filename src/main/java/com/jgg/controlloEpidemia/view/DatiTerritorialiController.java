@@ -10,6 +10,7 @@ import com.jgg.controlloEpidemia.service.ComuneService;
 import com.jgg.controlloEpidemia.service.ProvinciaService;
 import com.jgg.controlloEpidemia.service.RegioneService;
 import com.jgg.controlloEpidemia.service.TipoTerritorioService;
+import javafx.animation.ScaleTransition;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -18,6 +19,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.stage.FileChooser;
+import javafx.util.Duration;
 
 import java.io.File;
 import java.io.IOException;
@@ -30,6 +32,32 @@ import java.util.ResourceBundle;
 
 public class DatiTerritorialiController implements Initializable {
 
+    @FXML
+    private Label comuneNoDataSelectedLabel;
+
+    @FXML
+    private Label provinciaNoDataSelectedLabel;
+
+    @FXML
+    private Button provinciaModificaVisualizzazioneButton;
+
+    @FXML
+    private Button provinciaEliminaVisualizzazioneButton;
+
+    @FXML
+    private Button comuneModificaVisualizzazioneButton;
+
+    @FXML
+    private Button comuneEliminaVisualizzazioneButton;
+
+    @FXML
+    private TabPane datiTerritorialiTabPane;
+
+    @FXML
+    private TabPane visualizzazioneTabPane;
+
+    @FXML
+    private TabPane modificaTabPane;
 
     @FXML
     private Tab visualizzazioneTab;
@@ -144,7 +172,6 @@ public class DatiTerritorialiController implements Initializable {
     @FXML
     private DatePicker dataDiIstituzioneModificaComuniDatePicker;
 
-    private int selectedId;
 
     private final ProvinciaService provinciaService = new ProvinciaService();
 
@@ -188,7 +215,12 @@ public class DatiTerritorialiController implements Initializable {
         updateListProvince();
         siAffacciaSulMareInserimentoComuniComboBox.getItems().setAll(FXCollections.observableArrayList("Si", "No"));
         siAffacciaSulMareModificaComuniComboBox.getItems().setAll(FXCollections.observableArrayList("Si", "No"));
-        //noDataSelectedLabel.setVisible(false);
+
+        modificaTab.setDisable(true);
+        datiTerritorialiTabPane.getSelectionModel().select(0);
+        visualizzazioneTabPane.getSelectionModel().select(0);
+        comuneNoDataSelectedLabel.setVisible(false);
+        provinciaNoDataSelectedLabel.setVisible(false);
     }
 
     private void updateListComuni() {
@@ -197,9 +229,9 @@ public class DatiTerritorialiController implements Initializable {
         comuniListView.getItems().add("CODICE ISTAT|NOME|SUPERFICIE|DATA ISTITUZIONE|SI AFFACCIA SUL MARE|TIPO TERRITORIO|PROVINCIA");
         String siAffacciaSulMare;
         for (Comune c : comuniList) {
-            siAffacciaSulMare = "si";
+            siAffacciaSulMare = "Si";
             if (c.getSiAffacciaSulMare()) {
-                siAffacciaSulMare = "no";
+                siAffacciaSulMare = "No";
             }
             comuniListView.getItems().add(
                     c.getCodiceIstat() + "|" +
@@ -210,7 +242,10 @@ public class DatiTerritorialiController implements Initializable {
                             c.getTipoTerritorio().getNome() + "|" +
                             c.getProvincia().getNome());
         }
-        //noDataSelectedLabel.setVisible(false);
+
+        datiTerritorialiTabPane.getSelectionModel().select(0);
+        visualizzazioneTabPane.getSelectionModel().select(2);
+        comuneNoDataSelectedLabel.setVisible(false);
     }
 
     private void updateListProvince() {
@@ -232,7 +267,11 @@ public class DatiTerritorialiController implements Initializable {
                             c + "|" +
                             p.getRegione().getNome());
         }
-        //noDataSelectedLabel.setVisible(false);
+
+        datiTerritorialiTabPane.getSelectionModel().select(0);
+        visualizzazioneTabPane.getSelectionModel().select(1);
+
+        provinciaNoDataSelectedLabel.setVisible(false);
     }
 
 
@@ -268,6 +307,7 @@ public class DatiTerritorialiController implements Initializable {
             comuneDiCapoluogoInserimentoProvinceComboBox.getValue();
             regioneInserimentoProvinceComboBox.getSelectionModel().clearSelection();
         }
+        updateListProvince();
     }
 
     @FXML
@@ -283,6 +323,7 @@ public class DatiTerritorialiController implements Initializable {
         } else {
             System.out.println("non ho trovato il file");
         }
+        updateListProvince();
     }
 
     @FXML
@@ -307,6 +348,7 @@ public class DatiTerritorialiController implements Initializable {
             tipoTerritorioInserimentoComuniComboBox.getSelectionModel().clearSelection();
             provinciaInserimentoComuniComboBox.getSelectionModel().clearSelection();
         }
+        updateListComuni();
     }
 
     @FXML
@@ -322,7 +364,95 @@ public class DatiTerritorialiController implements Initializable {
         } else {
             System.out.println("non ho trovato il file");
         }
+        updateListComuni();
     }
+
+    @FXML
+    private void provinciaEliminaVisualizzazioneButtonOnClicked(){
+        if (provinceListView.getSelectionModel().getSelectedIndex() != 0) {
+            String provincia = provinceListView.getSelectionModel().getSelectedItem();
+            String[] provinciaEntry;
+            provinciaEntry = provincia.split("\\|");
+            provinciaService.deleteById(Integer.parseInt(provinciaEntry[0]));
+            updateListProvince();
+        } else {
+            provinciaNoDataSelectedLabel.setVisible(true);
+            errorAnimation(provinciaNoDataSelectedLabel);
+        }
+    }
+
+    @FXML
+    private void comuneEliminaVisualizzazioneButtonOnClicked(){
+        if (comuniListView.getSelectionModel().getSelectedIndex() != 0) {
+            String comuni = comuniListView.getSelectionModel().getSelectedItem();
+            String[] comuniEntry;
+            comuniEntry = comuni.split("\\|");
+            comuneService.deleteByCodiceIstat(Integer.parseInt(comuniEntry[0]));
+            updateListComuni();
+        } else {
+            comuneNoDataSelectedLabel.setVisible(true);
+            errorAnimation(comuneNoDataSelectedLabel);
+        }
+    }
+
+    @FXML
+    private void comuneModificaVisualizzazioneButtonOnClicked(){
+        if (comuniListView.getSelectionModel().getSelectedIndex() != 0) {
+            modificaTab.setDisable(false);
+            provinciaModificaTab.setDisable(true);
+            visualizzazioneTab.setDisable(true);
+            inserimentoTab.setDisable(true);
+            String comune = comuniListView.getSelectionModel().getSelectedItem();
+            String[] comuneEntry;
+            comuneEntry = comune.split("\\|");
+            datiTerritorialiTabPane.getSelectionModel().select(2);
+            modificaTabPane.getSelectionModel().select(1);
+
+            codiceIstatModificaComuniTextField.setText(comuneEntry[0]);
+            nomeModificaComuniTextField.setText(comuneEntry[1]);
+            superficieModificaComuniTextField.setText(comuneEntry[2]);
+            dataDiIstituzioneModificaComuniDatePicker(comuneEntry[3]);
+            siAffacciaSulMareModificaComuniComboBox.getSelectionModel().select(comuneEntry[4]);
+            tipoTerritorioModificaComuniComboBox.getSelectionModel().select(comuneEntry[5]);
+            provinciaModificaComuniComboBox.getSelectionModel().select(comuneEntry[6]);
+
+        } else {
+            comuneNoDataSelectedLabel.setVisible(true);
+            errorAnimation(comuneNoDataSelectedLabel);
+        }
+
+    }
+
+    private void dataDiIstituzioneModificaComuniDatePicker(String data){
+
+    }
+
+    @FXML
+    private void provinciaModificaVisualizzazioneButtonOnClicked(){
+        if (provinceListView.getSelectionModel().getSelectedIndex() != 0) {
+            modificaTab.setDisable(false);
+            comuneModificaTab.setDisable(true);
+            visualizzazioneTab.setDisable(true);
+            inserimentoTab.setDisable(true);
+            String provincia = provinceListView.getSelectionModel().getSelectedItem();
+            String[] provinciaEntry;
+            provinciaEntry = provincia.split("\\|");
+            datiTerritorialiTabPane.getSelectionModel().select(2);
+            modificaTabPane.getSelectionModel().select(0);
+
+            idModificaProvinceTextField.setText(provinciaEntry[0]);
+            nomeModificaProvinceTextField.setText(provinciaEntry[1]);
+            superficieModificaProvinceTextField.setText(provinciaEntry[2]);
+            comuneDiCapoluogoModificaProvinceComboBox.getSelectionModel().select(provinciaEntry[3]);
+            regioneModificaProvinceComboBox.getSelectionModel().select(provinciaEntry[4]);
+
+        } else {
+            provinciaNoDataSelectedLabel.setVisible(true);
+            errorAnimation(provinciaNoDataSelectedLabel);
+        }
+
+    }
+
 
     @FXML
     private void modificaModificaProvinciaButtonOnClicked() {
@@ -371,6 +501,18 @@ public class DatiTerritorialiController implements Initializable {
         decessiAnnualiTabPane.getSelectionModel().select(0);
         decessiAnnualiModificaTab.setDisable(true);*/
     }
+
+    private void errorAnimation(Label label) {
+        ScaleTransition st = new ScaleTransition(Duration.millis(200), label);
+        st.setByX(0.2);
+        st.setByY(0.2);
+        st.setCycleCount(2);
+        st.setAutoReverse(true);
+        st.play();
+        //
+    }
+
+
 
 }
 
