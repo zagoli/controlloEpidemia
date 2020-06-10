@@ -4,7 +4,6 @@ import com.jgg.controlloEpidemia.importData.EtlMalattie;
 import com.jgg.controlloEpidemia.model.Comune;
 import com.jgg.controlloEpidemia.model.MalattieSettimanali;
 import com.jgg.controlloEpidemia.service.ComuneService;
-import com.jgg.controlloEpidemia.service.DecessiAnnualiService;
 import com.jgg.controlloEpidemia.service.MalattieSettimanaliService;
 import javafx.animation.ScaleTransition;
 import javafx.event.ActionEvent;
@@ -152,10 +151,13 @@ public class MalattieSettimanaliController implements Initializable {
 
     private int selectedId;
 
+    private final ComuneService comuneService = new ComuneService();
+
+    private final MalattieSettimanaliService malattieSettimanaliService = new MalattieSettimanaliService();
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         malattieSettimanaliModificaTab.setDisable(true);
-        ComuneService comuneService = new ComuneService();
         List<Comune> comuneList = comuneService.findAll();
         for (Comune c : comuneList) {
             comuneInserimentoComboBox.getItems().add(c.getNome());
@@ -168,7 +170,6 @@ public class MalattieSettimanaliController implements Initializable {
 
     private void updateList() {
         idMalattieSettimanaliListView.getItems().clear();
-        MalattieSettimanaliService malattieSettimanaliService = new MalattieSettimanaliService();
         List<MalattieSettimanali> malattieSettimanaliList = malattieSettimanaliService.findAll();
         idMalattieSettimanaliListView.getItems().add("ID|COMUNE|ANNO|SETTIMANA|R.INFLUENZA|C.INFLUENZA|CP.RESPIRATORIE|R.POLMONITE|C.POLMONITE|R.MENINGITE|C.MENINGITE|R.EPATITE|C.EPATITE|R.MORBILLO|C.MORBILLO|R.TUBERCOLOSI|C.TUBERCOLOSI|R.GASTROENTERITE|C.GASTROENTERITE");
         for (MalattieSettimanali m : malattieSettimanaliList) {
@@ -204,7 +205,6 @@ public class MalattieSettimanaliController implements Initializable {
 
     @FXML
     void inserisciInserimentoOnClicked() {
-        ComuneService comuneService = new ComuneService();
         MalattieSettimanali malattieSettimanali = new MalattieSettimanali(
                 Integer.parseInt(annoInserimentoTextField.getText()),
                 Integer.parseInt(settimanaInserimentoTextField.getText()),
@@ -225,7 +225,6 @@ public class MalattieSettimanaliController implements Initializable {
                 Integer.parseInt(inCuraConGastroenteriteInserimentoTextField.getText()),
                 comuneService.findByNome(comuneInserimentoComboBox.getValue())
         );
-        MalattieSettimanaliService malattieSettimanaliService = new MalattieSettimanaliService();
         malattieSettimanaliService.save(malattieSettimanali);
         if (malattieSettimanaliService.findById(malattieSettimanali.getId()) != null) {
             System.out.println("ok");
@@ -259,10 +258,9 @@ public class MalattieSettimanaliController implements Initializable {
         FileChooser.ExtensionFilter extensionFilter = new FileChooser.ExtensionFilter("CSV files (*.csv)", "*.csv");
         fileChooser.getExtensionFilters().add(extensionFilter);
         File selectedFile = fileChooser.showOpenDialog(null);
-        EtlMalattie etlMalattie = new EtlMalattie();
         if (selectedFile != null) {
             System.out.println("ok");
-            etlMalattie.load(selectedFile.getPath());
+            new EtlMalattie().load(selectedFile.getPath());
             malattieSettimanaliTabPane.getSelectionModel().select(0);
             idMalattieSettimanaliListView.getSelectionModel().select(0);
             updateList();
@@ -273,7 +271,6 @@ public class MalattieSettimanaliController implements Initializable {
 
     @FXML
     void modificaModificaOnClicked() {
-        ComuneService comuneService = new ComuneService();
         MalattieSettimanali malattieSettimanali = new MalattieSettimanali(
                 selectedId,
                 Integer.parseInt(annoModificaTextField.getText()),
@@ -295,7 +292,6 @@ public class MalattieSettimanaliController implements Initializable {
                 Integer.parseInt(inCuraConGastroenteriteModificaTextField.getText()),
                 comuneService.findByNome(comuneModificaComboBox.getValue())
         );
-        MalattieSettimanaliService malattieSettimanaliService = new MalattieSettimanaliService();
         malattieSettimanaliService.update(malattieSettimanali);
         if (malattieSettimanaliService.findById(malattieSettimanali.getId()) != null) {
             System.out.println("ok");
@@ -332,7 +328,6 @@ public class MalattieSettimanaliController implements Initializable {
             String[] malattieEntry;
             malattieEntry = malattie.split("\\|");
             selectedId = Integer.parseInt(malattieEntry[0]);
-            MalattieSettimanaliService malattieSettimanaliService = new MalattieSettimanaliService();
             malattieSettimanaliService.deleteById(selectedId);
             updateList();
         } else {
@@ -370,8 +365,6 @@ public class MalattieSettimanaliController implements Initializable {
             inCuraConTubercolosiModificaTextField.setText(malattieEntry[16]);
             ricoveratiConGastroenteriteModificaTextField.setText(malattieEntry[17]);
             inCuraConGastroenteriteModificaTextField.setText(malattieEntry[18]);
-
-
         } else {
             noDataSelectedLabel.setVisible(true);
             errorAnimation();
