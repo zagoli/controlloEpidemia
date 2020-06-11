@@ -6,6 +6,7 @@ import com.jgg.controlloEpidemia.model.Provincia;
 import com.jgg.controlloEpidemia.service.DecessiAnnualiService;
 import com.jgg.controlloEpidemia.service.ProvinciaService;
 import javafx.animation.ScaleTransition;
+import javafx.beans.binding.Bindings;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -94,6 +95,8 @@ public class DecessiAnnualiController implements Initializable {
         updateList();
         noDataSelectedLabel.setVisible(false);
         idDecessiAnnualiListView.getSelectionModel().select(0);
+
+
     }
 
     @FXML

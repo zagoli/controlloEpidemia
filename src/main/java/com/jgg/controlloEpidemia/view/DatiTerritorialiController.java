@@ -27,6 +27,7 @@ import java.net.URL;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -229,7 +230,7 @@ public class DatiTerritorialiController implements Initializable {
                     c.getCodiceIstat() + "|" +
                             c.getNome() + "|" +
                             c.getSuperficie() + "|" +
-                            c.getDataIstituzione() + "|" +
+                            c.getDataIstituzione().toString().split(" ")[0] + "|" +
                             siAffacciaSulMare + "|" +
                             c.getTipoTerritorio().getNome() + "|" +
                             c.getProvincia().getNome());
@@ -272,11 +273,17 @@ public class DatiTerritorialiController implements Initializable {
     }
 
     @FXML
-    private java.util.Date dataDiIstituzioneModificaComuniDatePickerOnClicked() throws ParseException{
-        LocalDate data = dataDiIstituzioneInserimentoComuniDatePicker.getValue();
+    private java.util.Date getDataDiIstituzioneModificaComuniDatePicker() throws ParseException{
+        LocalDate data = dataDiIstituzioneModificaComuniDatePicker.getValue();
         String[] toParseData = data.toString().split("-");
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         return sdf.parse(toParseData[2] + "/" + toParseData[1] + "/" + toParseData[0]);
+    }
+
+    private void setDataDiIstituzioneModificaComuniDatePicker(String data){
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDate localDate = LocalDate.parse(data, formatter);
+        dataDiIstituzioneModificaComuniDatePicker.setValue(localDate);
     }
 
     @FXML
@@ -293,7 +300,7 @@ public class DatiTerritorialiController implements Initializable {
             codiceIstatModificaComuniTextField.setText(comuneEntry[0]);
             nomeModificaComuniTextField.setText(comuneEntry[1]);
             superficieModificaComuniTextField.setText(comuneEntry[2]);
-            //dataDiIstituzioneModificaComuniDatePicker(comuneEntry[3]);
+            setDataDiIstituzioneModificaComuniDatePicker(comuneEntry[3]);
             siAffacciaSulMareModificaComuniComboBox.getSelectionModel().select(comuneEntry[4]);
             tipoTerritorioModificaComuniComboBox.getSelectionModel().select(comuneEntry[5]);
             provinciaModificaComuniComboBox.getSelectionModel().select(comuneEntry[6]);
@@ -448,17 +455,22 @@ public class DatiTerritorialiController implements Initializable {
             regioneInserimentoProvinceComboBox.getSelectionModel().clearSelection();
         }
         datiTerritorialiTabPane.getSelectionModel().select(0);
-        provinciaModificaTab.setDisable(true);
+        modificaTab.setDisable(true);
+        visualizzazioneTab.setDisable(false);
+        inserimentoTab.setDisable(false);
+        datiTerritorialiTabPane.getSelectionModel().select(0);
+        visualizzazioneTabPane.getSelectionModel().select(1);
+
+
     }
 
     @FXML
-    private void modificaModificaComuneButtonOnClicked() {
+    private void modificaModificaComuneButtonOnClicked() throws ParseException {
         Comune comune = new Comune(
                 codiceIstatModificaComuniTextField.getText(),
                 nomeModificaComuniTextField.getText(),
                 Integer.parseInt(superficieModificaComuniTextField.getText()),
-              //  dataDiIstituzioneModificaComuniDatePicker(),
-                new Date(),
+                getDataDiIstituzioneModificaComuniDatePicker(),
                 siAffacciaSulMareModificaComuniComboBox.getValue().equals("Si"),
                 tipoTerritorioService.findByNome(tipoTerritorioModificaComuniComboBox.getValue()),
                 provinciaService.findByNome(provinciaModificaComuniComboBox.getValue())
@@ -475,7 +487,11 @@ public class DatiTerritorialiController implements Initializable {
             provinciaInserimentoComuniComboBox.getSelectionModel().clearSelection();
         }
         datiTerritorialiTabPane.getSelectionModel().select(0);
-        comuneModificaTab.setDisable(true);
+        modificaTab.setDisable(true);
+        visualizzazioneTab.setDisable(false);
+        inserimentoTab.setDisable(false);
+        datiTerritorialiTabPane.getSelectionModel().select(0);
+        visualizzazioneTabPane.getSelectionModel().select(2);
     }
 
     private void errorAnimation(Label label) {
