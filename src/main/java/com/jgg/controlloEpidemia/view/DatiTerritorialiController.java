@@ -11,6 +11,7 @@ import com.jgg.controlloEpidemia.service.ProvinciaService;
 import com.jgg.controlloEpidemia.service.RegioneService;
 import com.jgg.controlloEpidemia.service.TipoTerritorioService;
 import javafx.animation.ScaleTransition;
+import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -121,6 +122,14 @@ public class DatiTerritorialiController implements Initializable {
     private ComboBox<String> provinciaModificaComuniComboBox;
     @FXML
     private DatePicker dataDiIstituzioneModificaComuniDatePicker;
+    @FXML
+    private Button provinciaInserisciButton;
+    @FXML
+    private Button comuneInserisciButton;
+    @FXML
+    private Button provinciaModificaButton;
+    @FXML
+    private Button comuneModificaButton;
 
     public void initialize(URL location, ResourceBundle resources) {
         List<Provincia> provinciaList = provinciaService.findAll();
@@ -161,6 +170,45 @@ public class DatiTerritorialiController implements Initializable {
         visualizzazioneTabPane.getSelectionModel().select(0);
         comuneNoDataSelectedLabel.setVisible(false);
         provinciaNoDataSelectedLabel.setVisible(false);
+
+
+        provinciaInserisciButton.disableProperty().bind(
+                Bindings.isEmpty(idInserimentoProvinceTextField.textProperty())
+                        .or(Bindings.isEmpty(nomeInserimentoProvinceTextField.textProperty()))
+                        .or(Bindings.isEmpty(superficieInserimentoProvinceTextField.textProperty()))
+                        .or(comuneDiCapoluogoInserimentoProvinceComboBox.valueProperty().isNull())
+                        .or(regioneInserimentoProvinceComboBox.valueProperty().isNull())
+        );
+        provinciaModificaButton.disableProperty().bind(
+                Bindings.isEmpty(idModificaProvinceTextField.textProperty())
+                        .or(Bindings.isEmpty(nomeModificaProvinceTextField.textProperty()))
+                        .or(Bindings.isEmpty(superficieModificaProvinceTextField.textProperty()))
+                        .or(comuneDiCapoluogoModificaProvinceComboBox.valueProperty().isNull())
+                        .or(regioneModificaProvinceComboBox.valueProperty().isNull())
+        );
+        comuneInserisciButton.disableProperty().bind(
+                Bindings.isEmpty(codiceIstatInserimentoComuniTextField.textProperty())
+                        .or(Bindings.isEmpty(nomeInserimentoComuniTextField.textProperty()))
+                        .or(Bindings.isEmpty(superficieInserimentoComuniTextField.textProperty()))
+                        .or(siAffacciaSulMareInserimentoComuniComboBox.valueProperty().isNull())
+                        .or(tipoTerritorioInserimentoComuniComboBox.valueProperty().isNull())
+                        .or(provinciaInserimentoComuniComboBox.valueProperty().isNull())
+                        .or(dataDiIstituzioneInserimentoComuniDatePicker.valueProperty().isNull())
+        );
+        comuneModificaButton.disableProperty().bind(
+                Bindings.isEmpty(codiceIstatModificaComuniTextField.textProperty())
+                        .or(Bindings.isEmpty(nomeModificaComuniTextField.textProperty()))
+                        .or(Bindings.isEmpty(superficieModificaComuniTextField.textProperty()))
+                        .or(siAffacciaSulMareModificaComuniComboBox.valueProperty().isNull())
+                        .or(tipoTerritorioModificaComuniComboBox.valueProperty().isNull())
+                        .or(provinciaModificaComuniComboBox.valueProperty().isNull())
+                        .or(dataDiIstituzioneModificaComuniDatePicker.valueProperty().isNull())
+        );
+
+
+
+
+
     }
 
     @FXML
@@ -195,7 +243,7 @@ public class DatiTerritorialiController implements Initializable {
             }
             comuniListView.getItems().add(
                     c.getCodiceIstat() + "  " +
-                            c.getNome() + "  " +
+                            c.getNome() + "  "+
                             c.getSuperficie() + "  " +
                             c.getDataIstituzione().toString().split(" ")[0] + "  " +
                             siAffacciaSulMare + "  " +
@@ -247,7 +295,7 @@ public class DatiTerritorialiController implements Initializable {
             visualizzazioneTab.setDisable(true);
             inserimentoTab.setDisable(true);
             String comune = comuniListView.getSelectionModel().getSelectedItem();
-            String[] comuneEntry = comune.split(" ");
+            String[] comuneEntry = comune.split("\\s{2}+");
             datiTerritorialiTabPane.getSelectionModel().select(2);
             modificaTabPane.getSelectionModel().select(1);
             codiceIstatModificaComuniTextField.setText(comuneEntry[0]);
@@ -271,7 +319,7 @@ public class DatiTerritorialiController implements Initializable {
             visualizzazioneTab.setDisable(true);
             inserimentoTab.setDisable(true);
             String provincia = provinceListView.getSelectionModel().getSelectedItem();
-            String[] provinciaEntry = provincia.split(" ");
+            String[] provinciaEntry = provincia.split("\\s{2}");
             datiTerritorialiTabPane.getSelectionModel().select(2);
             modificaTabPane.getSelectionModel().select(0);
             idModificaProvinceTextField.setText(provinciaEntry[0]);
@@ -289,7 +337,7 @@ public class DatiTerritorialiController implements Initializable {
     private void comuneEliminaVisualizzazioneButtonOnClicked() {
         if (comuniListView.getSelectionModel().getSelectedIndex() != 0) {
             String comuni = comuniListView.getSelectionModel().getSelectedItem();
-            String[] comuniEntry = comuni.split(" ");
+            String[] comuniEntry = comuni.split("\\s{2}");
             comuneService.deleteByCodiceIstat(comuniEntry[0]);
             updateListComuni();
         } else {
@@ -302,7 +350,7 @@ public class DatiTerritorialiController implements Initializable {
     private void provinciaEliminaVisualizzazioneButtonOnClicked() {
         if (provinceListView.getSelectionModel().getSelectedIndex() != 0) {
             String provincia = provinceListView.getSelectionModel().getSelectedItem();
-            String[] provinciaEntry = provincia.split(" ");
+            String[] provinciaEntry = provincia.split("\\s{2}");
             provinciaService.deleteById(Integer.parseInt(provinciaEntry[0]));
             updateListProvince();
         } else {
@@ -411,8 +459,7 @@ public class DatiTerritorialiController implements Initializable {
         modificaTab.setDisable(true);
         visualizzazioneTab.setDisable(false);
         inserimentoTab.setDisable(false);
-        datiTerritorialiTabPane.getSelectionModel().select(0);
-        visualizzazioneTabPane.getSelectionModel().select(1);
+        updateListProvince();
 
 
     }
@@ -443,8 +490,7 @@ public class DatiTerritorialiController implements Initializable {
         modificaTab.setDisable(true);
         visualizzazioneTab.setDisable(false);
         inserimentoTab.setDisable(false);
-        datiTerritorialiTabPane.getSelectionModel().select(0);
-        visualizzazioneTabPane.getSelectionModel().select(2);
+        updateListComuni();
     }
 
     private void errorAnimation(Label label) {

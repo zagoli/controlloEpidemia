@@ -1,25 +1,26 @@
 package com.jgg.controlloEpidemia.view;
 
+import com.jgg.controlloEpidemia.model.Comune;
 import com.jgg.controlloEpidemia.model.DecessiAnnuali;
+import com.jgg.controlloEpidemia.service.ComuneService;
 import com.jgg.controlloEpidemia.service.DecessiAnnualiService;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
-import javafx.scene.control.Button;
-import javafx.scene.control.ListView;
-import javafx.scene.control.Tab;
-import javafx.scene.control.TabPane;
+import javafx.scene.control.*;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.ResourceBundle;
 
 public class VisualizzaDecessiController implements Initializable {
 
-    private final DecessiAnnualiService decessiAnnualiService = new DecessiAnnualiService();
 
     @FXML
     private TabPane decessiAnnualiTabPane;
@@ -28,13 +29,36 @@ public class VisualizzaDecessiController implements Initializable {
     private Tab decessiAnnualiVisualizzazioneTab;
 
     @FXML
-    private ListView<String> visualizzaDecessiListView;
+    private ListView<DecessiAnnuali> visualizzaDecessiListView;
+
+    private final DecessiAnnualiService decessiAnnualiService = new DecessiAnnualiService();
+    private final List<DecessiAnnuali> decessiAnnualiList = decessiAnnualiService.findAll();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        updateList();
-        visualizzaDecessiListView.getSelectionModel().select(0);
+        visualizzaDecessiListView.setCellFactory(decessiAnnualiListView -> new DecessiAnnualiFormatCell());
+        ObservableList<DecessiAnnuali> decessiAnnualiObservableList = FXCollections.observableArrayList(decessiAnnualiList);
+        visualizzaDecessiListView.setItems(decessiAnnualiObservableList);
     }
+
+
+    private static class DecessiAnnualiFormatCell extends ListCell<DecessiAnnuali> {
+        public DecessiAnnualiFormatCell() {
+        }
+
+        @Override
+        protected void updateItem(DecessiAnnuali item, boolean empty) {
+            super.updateItem(item, empty);
+            setText(item == null ? "" : item.getId()+" "
+                    +item.getAnno()+" "
+                    +item.getProvincia().getNome()+" "
+                    +item.getIncidentiStradali()+" "
+                    +item.getMalattieTumorali()+" "
+                    +item.getMalattieContagiose()+" "
+                    +item.getMalattieCardiovascolari());
+        }
+    }
+
 
     @FXML
     private void homepageButtonOnClicked(ActionEvent event) throws IOException {
@@ -42,20 +66,5 @@ public class VisualizzaDecessiController implements Initializable {
         ((Button) event.getSource()).getScene().setRoot(root);
     }
 
-    private void updateList() {
-        visualizzaDecessiListView.getItems().clear();
-        List<DecessiAnnuali> decessiAnnualiList = decessiAnnualiService.findAll();
-        visualizzaDecessiListView.getItems().add("ID ANNO INCIDENTI STRADALI MALATTIE TUMORALI MALATTIE CARDIOVSCOLARI MALATTIE CONTAGIOSE PROVINCIA");
-        for (DecessiAnnuali d : decessiAnnualiList) {
-            visualizzaDecessiListView.getItems().add(
-                    d.getId()
-                            + " " + d.getAnno()
-                            + " " + d.getIncidentiStradali()
-                            + " " + d.getMalattieTumorali()
-                            + " " + d.getMalattieCardiovascolari()
-                            + " " + d.getMalattieContagiose()
-                            + " " + d.getProvincia().getNome());
-        }
-    }
 
 }

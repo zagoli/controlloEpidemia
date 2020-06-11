@@ -6,6 +6,8 @@ import com.jgg.controlloEpidemia.model.Provincia;
 import com.jgg.controlloEpidemia.service.DecessiAnnualiService;
 import com.jgg.controlloEpidemia.service.ProvinciaService;
 import javafx.animation.ScaleTransition;
+import javafx.beans.binding.Bindings;
+import javafx.beans.value.ObservableStringValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -27,6 +29,8 @@ public class DecessiAnnualiController implements Initializable {
     private final DecessiAnnualiService decessiAnnualiService = new DecessiAnnualiService();
     @FXML
     private Button decessiAnnualiInserisciButton;
+    @FXML
+    private Button decessiAnnualiModificaButton;
     @FXML
     private Label noDataSelectedLabel;
     @FXML
@@ -77,14 +81,23 @@ public class DecessiAnnualiController implements Initializable {
         noDataSelectedLabel.setVisible(false);
         decessiAnnualiListView.getSelectionModel().select(0);
 
-        /*decessiAnnualiInserisciButton.disableProperty().bind(Bindings.createBooleanBinding(
-                () -> annoInserimentoTextField.getText().isEmpty()
-                        //incidentiStradaliInserimentoTextField.getText().isEmpty() ||
-                        //malattieTumoraliInserimentoTextField.getText().isEmpty() ||
-                        //malattieCardiovascolariInserimentoTextField.getText().isEmpty() ||
-                        //malattieContagioseInserimentoTextField.getText().isEmpty()
-                        //provinciaInserimentoComboBox.getSelectionModel().getSelectedItem().isEmpty()
-                ));*/
+        decessiAnnualiInserisciButton.disableProperty().bind(
+                Bindings.isEmpty(incidentiStradaliInserimentoTextField.textProperty())
+                        .or(Bindings.isEmpty(annoInserimentoTextField.textProperty()))
+                        .or(Bindings.isEmpty(malattieTumoraliInserimentoTextField.textProperty()))
+                        .or(Bindings.isEmpty(malattieCardiovascolariInserimentoTextField.textProperty()))
+                        .or(Bindings.isEmpty(malattieContagioseInserimentoTextField.textProperty()))
+                        .or(provinciaInserimentoComboBox.valueProperty().isNull())
+        );
+        decessiAnnualiModificaButton.disableProperty().bind(
+                Bindings.isEmpty(incidentiStradaliModificaTextField.textProperty())
+                        .or(Bindings.isEmpty(annoModificaTextField.textProperty()))
+                        .or(Bindings.isEmpty(malattieTumoraliModificaTextField.textProperty()))
+                        .or(Bindings.isEmpty(malattieCardiovascolariModificaTextField.textProperty()))
+                        .or(Bindings.isEmpty(malattieContagioseModificaTextField.textProperty()))
+                        .or(provinciaModificaComboBox.valueProperty().isNull())
+        );
+
 
     }
 
@@ -101,12 +114,12 @@ public class DecessiAnnualiController implements Initializable {
         for (DecessiAnnuali d : decessiAnnualiList) {
             decessiAnnualiListView.getItems().add(
                     d.getId()
-                            + " " + d.getAnno()
-                            + " " + d.getIncidentiStradali()
-                            + " " + d.getMalattieTumorali()
-                            + " " + d.getMalattieCardiovascolari()
-                            + " " + d.getMalattieContagiose()
-                            + " " + d.getProvincia().getNome());
+                            + "  " + d.getAnno()
+                            + "  " + d.getIncidentiStradali()
+                            + "  " + d.getMalattieTumorali()
+                            + "  " + d.getMalattieCardiovascolari()
+                            + "  " + d.getMalattieContagiose()
+                            + "  " + d.getProvincia().getNome());
         }
         noDataSelectedLabel.setVisible(false);
     }
@@ -116,7 +129,7 @@ public class DecessiAnnualiController implements Initializable {
         if (decessiAnnualiListView.getSelectionModel().getSelectedIndex() != 0) {
             String decessi = decessiAnnualiListView.getSelectionModel().getSelectedItem();
             String[] decessiEntry;
-            decessiEntry = decessi.split(" ");
+            decessiEntry = decessi.split("\\s{2}");
             selectedId = Integer.parseInt(decessiEntry[0]);
             decessiAnnualiService.deleteById(selectedId);
             updateList();
@@ -134,7 +147,7 @@ public class DecessiAnnualiController implements Initializable {
             decessiAnnualiInserimentoTab.setDisable(true);
             String decessi = decessiAnnualiListView.getSelectionModel().getSelectedItem();
             String[] decessiEntry;
-            decessiEntry = decessi.split(" ");
+            decessiEntry = decessi.split("\\s{2}");
             decessiAnnualiTabPane.getSelectionModel().select(2);
             selectedId = Integer.parseInt(decessiEntry[0]);
             annoModificaTextField.setText(decessiEntry[1]);

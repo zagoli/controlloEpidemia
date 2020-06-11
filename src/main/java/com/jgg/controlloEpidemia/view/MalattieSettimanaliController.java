@@ -6,6 +6,7 @@ import com.jgg.controlloEpidemia.model.MalattieSettimanali;
 import com.jgg.controlloEpidemia.service.ComuneService;
 import com.jgg.controlloEpidemia.service.MalattieSettimanaliService;
 import javafx.animation.ScaleTransition;
+import javafx.beans.binding.Bindings;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -109,6 +110,10 @@ public class MalattieSettimanaliController implements Initializable {
     private TextField inCuraConGastroenteriteModificaTextField;
     @FXML
     private ComboBox<String> comuneModificaComboBox;
+    @FXML
+    private Button malattieSettimanaliInserisciButton;
+    @FXML
+    private Button malattieSettimanaliModificaButton;
     private int selectedId;
 
     @Override
@@ -122,6 +127,50 @@ public class MalattieSettimanaliController implements Initializable {
         updateList();
         noDataSelectedLabel.setVisible(false);
         idMalattieSettimanaliListView.getSelectionModel().select(0);
+
+        malattieSettimanaliInserisciButton.disableProperty().bind(
+                Bindings.isEmpty(annoInserimentoTextField.textProperty())
+                        .or(Bindings.isEmpty(settimanaInserimentoTextField.textProperty()))
+                        .or(Bindings.isEmpty(ricoveratiConInfluenzaInserimentoTextField.textProperty()))
+                        .or(Bindings.isEmpty(inCuraConInfluenzaInserimentoTextField.textProperty()))
+                        .or(Bindings.isEmpty(complicanzeRespiratorieInserimentoTextField.textProperty()))
+                        .or(Bindings.isEmpty(ricoveratiConPolmoniteInserimentoTextField.textProperty()))
+                        .or(Bindings.isEmpty(inCuraConPolmoniteInserimentoTextField.textProperty()))
+                        .or(Bindings.isEmpty(ricoveratiConMeningiteInserimentoTextField.textProperty()))
+                        .or(Bindings.isEmpty(inCuraConMeningiteInserimentoTextField.textProperty()))
+                        .or(Bindings.isEmpty(ricoveratiConEpatiteInserimentoTextField.textProperty()))
+                        .or(Bindings.isEmpty(inCuraConEpatiteInserimentoTextField.textProperty()))
+                        .or(Bindings.isEmpty(ricoveratiConMorbilloInserimentoTextField.textProperty()))
+                        .or(Bindings.isEmpty(inCuraConMorbilloInserimentoTextField.textProperty()))
+                        .or(Bindings.isEmpty(ricoveratiConTubercolosiInserimentoTextField.textProperty()))
+                        .or(Bindings.isEmpty(inCuraConTubercolosiInserimentoTextField.textProperty()))
+                        .or(Bindings.isEmpty(ricoveratiConGastroenteriteInserimentoTextField.textProperty()))
+                        .or(Bindings.isEmpty(inCuraConGastroenteriteInserimentoTextField.textProperty()))
+                        .or(comuneInserimentoComboBox.valueProperty().isNull())
+        );
+        malattieSettimanaliModificaButton.disableProperty().bind(
+                Bindings.isEmpty(annoModificaTextField.textProperty())
+                        .or(Bindings.isEmpty(settimanaModificaTextField.textProperty()))
+                        .or(Bindings.isEmpty(ricoveratiConInfluenzaModificaTextField.textProperty()))
+                        .or(Bindings.isEmpty(inCuraConInfluenzaModificaTextField.textProperty()))
+                        .or(Bindings.isEmpty(complicanzeRespiratorieModificaTextField.textProperty()))
+                        .or(Bindings.isEmpty(ricoveratiConPolmoniteModificaTextField.textProperty()))
+                        .or(Bindings.isEmpty(inCuraConPolmoniteModificaTextField.textProperty()))
+                        .or(Bindings.isEmpty(ricoveratiConMeningiteModificaTextField.textProperty()))
+                        .or(Bindings.isEmpty(inCuraConMeningiteModificaTextField.textProperty()))
+                        .or(Bindings.isEmpty(ricoveratiConEpatiteModificaTextField.textProperty()))
+                        .or(Bindings.isEmpty(inCuraConEpatiteModificaTextField.textProperty()))
+                        .or(Bindings.isEmpty(ricoveratiConMorbilloModificaTextField.textProperty()))
+                        .or(Bindings.isEmpty(inCuraConMorbilloModificaTextField.textProperty()))
+                        .or(Bindings.isEmpty(ricoveratiConTubercolosiModificaTextField.textProperty()))
+                        .or(Bindings.isEmpty(inCuraConTubercolosiModificaTextField.textProperty()))
+                        .or(Bindings.isEmpty(ricoveratiConGastroenteriteModificaTextField.textProperty()))
+                        .or(Bindings.isEmpty(inCuraConGastroenteriteModificaTextField.textProperty()))
+                        .or(comuneModificaComboBox.valueProperty().isNull())
+        );
+
+
+
     }
 
     @FXML
@@ -164,7 +213,7 @@ public class MalattieSettimanaliController implements Initializable {
         if (idMalattieSettimanaliListView.getSelectionModel().getSelectedIndex() != 0) {
             String malattie = idMalattieSettimanaliListView.getSelectionModel().getSelectedItem();
             String[] malattieEntry;
-            malattieEntry = malattie.split(" ");
+            malattieEntry = malattie.split("\\s{2}");
             selectedId = Integer.parseInt(malattieEntry[0]);
             malattieSettimanaliService.deleteById(selectedId);
             updateList();
@@ -182,7 +231,7 @@ public class MalattieSettimanaliController implements Initializable {
             malattieSettimanaliInserimentoTab.setDisable(true);
             String malattie = idMalattieSettimanaliListView.getSelectionModel().getSelectedItem();
             String[] malattieEntry;
-            malattieEntry = malattie.split(" ");
+            malattieEntry = malattie.split("\\s{2}");
             malattieSettimanaliTabPane.getSelectionModel().select(2);
             selectedId = Integer.parseInt(malattieEntry[0]);
             comuneModificaComboBox.getSelectionModel().select(malattieEntry[1]);
