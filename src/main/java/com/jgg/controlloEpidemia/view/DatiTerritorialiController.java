@@ -185,7 +185,7 @@ public class DatiTerritorialiController implements Initializable {
             tipoTerritorioModificaComuniComboBox.getItems().add(t.getNome());
         }
         List<Regione> regioneList = regioneService.findAll();
-        regioniListView.getItems().add("ID|NOME|SUPERFICIE|CAPOLUOGO");
+        regioniListView.getItems().add("ID  NOME  SUPERFICIE  CAPOLUOGO");
         String c;
         Comune capoluogo;
         for (Regione r : regioneList) {
@@ -196,7 +196,7 @@ public class DatiTerritorialiController implements Initializable {
             if (capoluogo != null) {
                 c = capoluogo.getNome();
             }
-            regioniListView.getItems().add(r.getId() + "|" + r.getNome() + "|" + r.getSuperficie() + "|" + c);
+            regioniListView.getItems().add(r.getId() + "  " + r.getNome() + "  " + r.getSuperficie() + "  " + c);
         }
         updateListComuni();
         updateListProvince();
@@ -219,7 +219,7 @@ public class DatiTerritorialiController implements Initializable {
     private void updateListComuni() {
         comuniListView.getItems().clear();
         List<Comune> comuniList = comuneService.findAll();
-        comuniListView.getItems().add("CODICE ISTAT|NOME|SUPERFICIE|DATA ISTITUZIONE|SI AFFACCIA SUL MARE|TIPO TERRITORIO|PROVINCIA");
+        comuniListView.getItems().add("CODICE ISTAT  NOME  SUPERFICIE  DATA ISTITUZIONE  SI AFFACCIA SUL MARE  TIPO TERRITORIO  PROVINCIA");
         String siAffacciaSulMare;
         for (Comune c : comuniList) {
             siAffacciaSulMare = "Si";
@@ -227,12 +227,12 @@ public class DatiTerritorialiController implements Initializable {
                 siAffacciaSulMare = "No";
             }
             comuniListView.getItems().add(
-                    c.getCodiceIstat() + "|" +
-                            c.getNome() + "|" +
-                            c.getSuperficie() + "|" +
-                            c.getDataIstituzione().toString().split(" ")[0] + "|" +
-                            siAffacciaSulMare + "|" +
-                            c.getTipoTerritorio().getNome() + "|" +
+                    c.getCodiceIstat() + "  " +
+                            c.getNome() + "  " +
+                            c.getSuperficie() + "  " +
+                            c.getDataIstituzione().toString().split(" ")[0] + "  " +
+                            siAffacciaSulMare + "  " +
+                            c.getTipoTerritorio().getNome() + "  " +
                             c.getProvincia().getNome());
         }
         datiTerritorialiTabPane.getSelectionModel().select(0);
@@ -245,7 +245,7 @@ public class DatiTerritorialiController implements Initializable {
         Comune capoluogoDb;
         provinceListView.getItems().clear();
         List<Provincia> provinciaList = provinciaService.findAll();
-        provinceListView.getItems().add("ID|NOME|SUPERFICIE|CAPOLUOGO|REGIONE");
+        provinceListView.getItems().add("ID  NOME  SUPERFICIE  CAPOLUOGO  REGIONE");
         for (Provincia p : provinciaList) {
             capoluogo = "null";
             capoluogoDb = comuneService.findByCodiceIstat(p.getCapoluogo());
@@ -253,10 +253,10 @@ public class DatiTerritorialiController implements Initializable {
                 capoluogo = capoluogoDb.getNome();
             }
             provinceListView.getItems().add(
-                    p.getId() + "|" +
-                            p.getNome() + "|" +
-                            p.getSuperficie() + "|" +
-                            capoluogo + "|" +
+                    p.getId() + "  " +
+                            p.getNome() + "  " +
+                            p.getSuperficie() + "  " +
+                            capoluogo + "  " +
                             p.getRegione().getNome());
         }
         datiTerritorialiTabPane.getSelectionModel().select(0);
@@ -294,7 +294,7 @@ public class DatiTerritorialiController implements Initializable {
             visualizzazioneTab.setDisable(true);
             inserimentoTab.setDisable(true);
             String comune = comuniListView.getSelectionModel().getSelectedItem();
-            String[] comuneEntry = comune.split("\\|");
+            String[] comuneEntry = comune.split(" ");
             datiTerritorialiTabPane.getSelectionModel().select(2);
             modificaTabPane.getSelectionModel().select(1);
             codiceIstatModificaComuniTextField.setText(comuneEntry[0]);
@@ -318,7 +318,7 @@ public class DatiTerritorialiController implements Initializable {
             visualizzazioneTab.setDisable(true);
             inserimentoTab.setDisable(true);
             String provincia = provinceListView.getSelectionModel().getSelectedItem();
-            String[] provinciaEntry = provincia.split("\\|");
+            String[] provinciaEntry = provincia.split(" ");
             datiTerritorialiTabPane.getSelectionModel().select(2);
             modificaTabPane.getSelectionModel().select(0);
             idModificaProvinceTextField.setText(provinciaEntry[0]);
@@ -336,7 +336,7 @@ public class DatiTerritorialiController implements Initializable {
     private void comuneEliminaVisualizzazioneButtonOnClicked() {
         if (comuniListView.getSelectionModel().getSelectedIndex() != 0) {
             String comuni = comuniListView.getSelectionModel().getSelectedItem();
-            String[] comuniEntry = comuni.split("\\|");
+            String[] comuniEntry = comuni.split(" ");
             comuneService.deleteByCodiceIstat(comuniEntry[0]);
             updateListComuni();
         } else {
@@ -349,7 +349,7 @@ public class DatiTerritorialiController implements Initializable {
     private void provinciaEliminaVisualizzazioneButtonOnClicked() {
         if (provinceListView.getSelectionModel().getSelectedIndex() != 0) {
             String provincia = provinceListView.getSelectionModel().getSelectedItem();
-            String[] provinciaEntry = provincia.split("\\|");
+            String[] provinciaEntry = provincia.split(" ");
             provinciaService.deleteById(Integer.parseInt(provinciaEntry[0]));
             updateListProvince();
         } else {

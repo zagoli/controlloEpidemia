@@ -39,7 +39,7 @@ public class HomePageController implements Initializable {
             Button comunePersonaleContrattoButton = new Button("AUTORIZZA COMUNI PERSONALE A CONTRATTO");
             comunePersonaleContrattoButton.setUserData(1);
             prepareButton(comunePersonaleContrattoButton);
-            if (comuneService.countComuni() == 0){
+            if (comuneService.countComuni() == 0) {
                 comunePersonaleContrattoButton.setDisable(true);
             }
             mainPanel.getChildren().add(comunePersonaleContrattoButton);
@@ -87,18 +87,18 @@ public class HomePageController implements Initializable {
             public void handle(ActionEvent actionEvent) {
                 switch ((Integer) ((Button) actionEvent.getSource()).getUserData()) {
                     case 0:
-                        // vai a pagina autorizzazione comuni per il personale contratto
+                        // vai a pagina gestione dati territorio
                         try {
-                            root = FXMLLoader.load(HomePageController.this.getClass().getResource("/fxml/autorizzaComuni.fxml"));
+                            root = FXMLLoader.load(HomePageController.this.getClass().getResource("/fxml/datiTerritoriali.fxml"));
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
                         button.getScene().setRoot(root);
                         break;
                     case 1:
-                        // vai a pagina gestione dati territorio
+                        // vai a pagina autorizzazione comuni per il personale contratto
                         try {
-                            root = FXMLLoader.load(HomePageController.this.getClass().getResource("/fxml/datiTerritoriali.fxml"));
+                            root = FXMLLoader.load(HomePageController.this.getClass().getResource("/fxml/autorizzaComuni.fxml"));
                         } catch (IOException e) {
                             e.printStackTrace();
                         }

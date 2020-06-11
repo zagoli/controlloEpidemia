@@ -90,7 +90,7 @@
                 </Label>
                 <ComboBox fx:id="provinciaInserimentoComboBox" layoutX="60.0" layoutY="360.0" prefHeight="30.0" prefWidth="200.0" />
 
-                <Button layoutX="440.0" layoutY="120.0" mnemonicParsing="false" onAction="#inserisciInserimentoButtonOnClicked" prefHeight="50.0" prefWidth="150.0" text="Inserisci">
+                <Button fx:id="decessiAnnualiInserisciButton" layoutX="440.0" layoutY="120.0" mnemonicParsing="false" onAction="#inserisciInserimentoButtonOnClicked" prefHeight="50.0" prefWidth="150.0" text="Inserisci">
                     <font>
                         <Font name="Segoe UI Bold" size="20.0" />
                     </font>

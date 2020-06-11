@@ -25,6 +25,9 @@ import java.util.ResourceBundle;
 public class DecessiAnnualiController implements Initializable {
 
     @FXML
+    private Button decessiAnnualiInserisciButton;
+
+    @FXML
     private Label noDataSelectedLabel;
 
     @FXML
@@ -96,6 +99,14 @@ public class DecessiAnnualiController implements Initializable {
         noDataSelectedLabel.setVisible(false);
         idDecessiAnnualiListView.getSelectionModel().select(0);
 
+        /*decessiAnnualiInserisciButton.disableProperty().bind(Bindings.createBooleanBinding(
+                () -> annoInserimentoTextField.getText().isEmpty()
+                        //incidentiStradaliInserimentoTextField.getText().isEmpty() ||
+                        //malattieTumoraliInserimentoTextField.getText().isEmpty() ||
+                        //malattieCardiovascolariInserimentoTextField.getText().isEmpty() ||
+                        //malattieContagioseInserimentoTextField.getText().isEmpty()
+                        //provinciaInserimentoComboBox.getSelectionModel().getSelectedItem().isEmpty()
+                ));*/
 
     }
 
@@ -108,16 +119,16 @@ public class DecessiAnnualiController implements Initializable {
     private void updateList() {
         idDecessiAnnualiListView.getItems().clear();
         List<DecessiAnnuali> decessiAnnualiList = decessiAnnualiService.findAll();
-        idDecessiAnnualiListView.getItems().add("ID|ANNO|INCIDENTI STRADALI|MALATTIE TUMORALI|MALATTIE CARDIOVSCOLARI|MALATTIE CONTAGIOSE|PROVINCIA");
+        idDecessiAnnualiListView.getItems().add("ID ANNO INCIDENTI STRADALI MALATTIE TUMORALI MALATTIE CARDIOVSCOLARI MALATTIE CONTAGIOSE PROVINCIA");
         for (DecessiAnnuali d : decessiAnnualiList) {
             idDecessiAnnualiListView.getItems().add(
                     d.getId()
-                            + "|" + d.getAnno()
-                            + "|" + d.getIncidentiStradali()
-                            + "|" + d.getMalattieTumorali()
-                            + "|" + d.getMalattieCardiovascolari()
-                            + "|" + d.getMalattieContagiose()
-                            + "|" + d.getProvincia().getNome());
+                            + " " + d.getAnno()
+                            + " " + d.getIncidentiStradali()
+                            + " " + d.getMalattieTumorali()
+                            + " " + d.getMalattieCardiovascolari()
+                            + " " + d.getMalattieContagiose()
+                            + " " + d.getProvincia().getNome());
         }
         noDataSelectedLabel.setVisible(false);
     }
@@ -127,7 +138,7 @@ public class DecessiAnnualiController implements Initializable {
         if (idDecessiAnnualiListView.getSelectionModel().getSelectedIndex() != 0) {
             String decessi = idDecessiAnnualiListView.getSelectionModel().getSelectedItem();
             String[] decessiEntry;
-            decessiEntry = decessi.split("\\|");
+            decessiEntry = decessi.split(" ");
             selectedId = Integer.parseInt(decessiEntry[0]);
             decessiAnnualiService.deleteById(selectedId);
             updateList();
@@ -145,7 +156,7 @@ public class DecessiAnnualiController implements Initializable {
             decessiAnnualiInserimentoTab.setDisable(true);
             String decessi = idDecessiAnnualiListView.getSelectionModel().getSelectedItem();
             String[] decessiEntry;
-            decessiEntry = decessi.split("\\|");
+            decessiEntry = decessi.split(" ");
             decessiAnnualiTabPane.getSelectionModel().select(2);
             selectedId = Integer.parseInt(decessiEntry[0]);
             annoModificaTextField.setText(decessiEntry[1]);

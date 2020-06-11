@@ -177,28 +177,28 @@ public class MalattieSettimanaliController implements Initializable {
     private void updateList() {
         idMalattieSettimanaliListView.getItems().clear();
         List<MalattieSettimanali> malattieSettimanaliList = malattieSettimanaliService.findAll();
-        idMalattieSettimanaliListView.getItems().add("ID|COMUNE|ANNO|SETTIMANA|R.INFLUENZA|C.INFLUENZA|CP.RESPIRATORIE|R.POLMONITE|C.POLMONITE|R.MENINGITE|C.MENINGITE|R.EPATITE|C.EPATITE|R.MORBILLO|C.MORBILLO|R.TUBERCOLOSI|C.TUBERCOLOSI|R.GASTROENTERITE|C.GASTROENTERITE");
+        idMalattieSettimanaliListView.getItems().add("ID  COMUNE  ANNO  SETTIMANA  R.INFLUENZA  C.INFLUENZA  CP.RESPIRATORIE  R.POLMONITE  C.POLMONITE  R.MENINGITE  C.MENINGITE  R.EPATITE  C.EPATITE  R.MORBILLO  C.MORBILLO  R.TUBERCOLOSI  C.TUBERCOLOSI  R.GASTROENTERITE  C.GASTROENTERITE");
         for (MalattieSettimanali m : malattieSettimanaliList) {
             idMalattieSettimanaliListView.getItems().add(
                     m.getId()
-                            + "|" + m.getComune().getNome()
-                            + "|" + m.getAnno()
-                            + "|" + m.getSettimana()
-                            + "|" + m.getRicoveratiInfluenza()
-                            + "|" + m.getInCuraInfluenza()
-                            + "|" + m.getComplicanzeRespiratorie()
-                            + "|" + m.getRicoveratiPolmonite()
-                            + "|" + m.getInCuraPolmonite()
-                            + "|" + m.getRicoveratiMeningite()
-                            + "|" + m.getInCuraMeningite()
-                            + "|" + m.getRicoveratiEpatite()
-                            + "|" + m.getInCuraEpatite()
-                            + "|" + m.getRicoveratiMorbillo()
-                            + "|" + m.getInCuraMorbillo()
-                            + "|" + m.getRicoveratiTubercolosi()
-                            + "|" + m.getInCuraTubercolosi()
-                            + "|" + m.getRicoveratiGastroenterite()
-                            + "|" + m.getInCuraGastroenterite());
+                            + "  " + m.getComune().getNome()
+                            + "  " + m.getAnno()
+                            + "  " + m.getSettimana()
+                            + "  " + m.getRicoveratiInfluenza()
+                            + "  " + m.getInCuraInfluenza()
+                            + "  " + m.getComplicanzeRespiratorie()
+                            + "  " + m.getRicoveratiPolmonite()
+                            + "  " + m.getInCuraPolmonite()
+                            + "  " + m.getRicoveratiMeningite()
+                            + "  " + m.getInCuraMeningite()
+                            + "  " + m.getRicoveratiEpatite()
+                            + "  " + m.getInCuraEpatite()
+                            + "  " + m.getRicoveratiMorbillo()
+                            + "  " + m.getInCuraMorbillo()
+                            + "  " + m.getRicoveratiTubercolosi()
+                            + "  " + m.getInCuraTubercolosi()
+                            + "  " + m.getRicoveratiGastroenterite()
+                            + "  " + m.getInCuraGastroenterite());
         }
         noDataSelectedLabel.setVisible(false);
     }
@@ -208,7 +208,7 @@ public class MalattieSettimanaliController implements Initializable {
         if (idMalattieSettimanaliListView.getSelectionModel().getSelectedIndex() != 0) {
             String malattie = idMalattieSettimanaliListView.getSelectionModel().getSelectedItem();
             String[] malattieEntry;
-            malattieEntry = malattie.split("\\|");
+            malattieEntry = malattie.split(" ");
             selectedId = Integer.parseInt(malattieEntry[0]);
             malattieSettimanaliService.deleteById(selectedId);
             updateList();
@@ -226,7 +226,7 @@ public class MalattieSettimanaliController implements Initializable {
             malattieSettimanaliInserimentoTab.setDisable(true);
             String malattie = idMalattieSettimanaliListView.getSelectionModel().getSelectedItem();
             String[] malattieEntry;
-            malattieEntry = malattie.split("\\|");
+            malattieEntry = malattie.split(" ");
             malattieSettimanaliTabPane.getSelectionModel().select(2);
             selectedId = Integer.parseInt(malattieEntry[0]);
             comuneModificaComboBox.getSelectionModel().select(malattieEntry[1]);
