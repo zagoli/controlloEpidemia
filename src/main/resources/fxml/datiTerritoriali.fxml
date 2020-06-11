@@ -296,7 +296,7 @@
                                 <Font name="Segoe UI Bold" size="20.0" />
                             </font>
                         </Button>
-                        <DatePicker fx:id="dataDiIstituzioneModificaComuniDatePicker" layoutX="40.0" layoutY="240.0" onAction="#dataDiIstituzioneModificaComuniDatePickerOnClicked" prefHeight="25.0" prefWidth="150.0" />
+                        <DatePicker fx:id="dataDiIstituzioneModificaComuniDatePicker" layoutX="40.0" layoutY="240.0" prefHeight="25.0" prefWidth="150.0" />
                     </Pane>
                 </Tab>
             </TabPane>
