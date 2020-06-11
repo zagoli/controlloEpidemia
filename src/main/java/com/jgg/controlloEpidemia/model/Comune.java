@@ -28,7 +28,7 @@ public class Comune {
     @Id
     @Getter
     @NotNull
-    @Length(min = 6,max = 6)
+    @Column(length = 6)
     private String codiceIstat;
     @Getter
     @Setter
