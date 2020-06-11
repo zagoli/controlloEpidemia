@@ -23,137 +23,93 @@ import java.util.ResourceBundle;
 
 public class MalattieSettimanaliController implements Initializable {
 
+    private final ComuneService comuneService = new ComuneService();
+    private final MalattieSettimanaliService malattieSettimanaliService = new MalattieSettimanaliService();
     @FXML
     private Label noDataSelectedLabel;
-
     @FXML
     private Tab malattieSettimanaliVisualizzazioneTab;
-
     @FXML
     private Tab malattieSettimanaliInserimentoTab;
-
     @FXML
     private Tab malattieSettimanaliModificaTab;
-
     @FXML
     private TabPane malattieSettimanaliTabPane;
-
     @FXML
     private ListView<String> idMalattieSettimanaliListView;
-
     @FXML
     private TextField annoInserimentoTextField;
-
     @FXML
     private TextField settimanaInserimentoTextField;
-
     @FXML
     private TextField ricoveratiConInfluenzaInserimentoTextField;
-
     @FXML
     private TextField inCuraConInfluenzaInserimentoTextField;
-
     @FXML
     private TextField complicanzeRespiratorieInserimentoTextField;
-
     @FXML
     private TextField inCuraConPolmoniteInserimentoTextField;
-
     @FXML
     private TextField ricoveratiConMeningiteInserimentoTextField;
-
     @FXML
     private TextField ricoveratiConPolmoniteInserimentoTextField;
-
     @FXML
     private TextField ricoveratiConEpatiteInserimentoTextField;
-
     @FXML
     private TextField ricoveratiConTubercolosiInserimentoTextField;
-
     @FXML
     private TextField ricoveratiConMorbilloInserimentoTextField;
-
     @FXML
     private TextField ricoveratiConGastroenteriteInserimentoTextField;
-
     @FXML
     private TextField inCuraConTubercolosiInserimentoTextField;
-
     @FXML
     private TextField inCuraConMeningiteInserimentoTextField;
-
     @FXML
     private TextField inCuraConEpatiteInserimentoTextField;
-
     @FXML
     private TextField inCuraConMorbilloInserimentoTextField;
-
     @FXML
     private TextField inCuraConGastroenteriteInserimentoTextField;
-
     @FXML
     private ComboBox<String> comuneInserimentoComboBox;
-
     @FXML
     private TextField annoModificaTextField;
-
     @FXML
     private TextField settimanaModificaTextField;
-
     @FXML
     private TextField ricoveratiConInfluenzaModificaTextField;
-
     @FXML
     private TextField inCuraConInfluenzaModificaTextField;
-
     @FXML
     private TextField complicanzeRespiratorieModificaTextField;
-
     @FXML
     private TextField inCuraConPolmoniteModificaTextField;
-
     @FXML
     private TextField ricoveratiConMeningiteModificaTextField;
-
     @FXML
     private TextField ricoveratiConPolmoniteModificaTextField;
-
     @FXML
     private TextField ricoveratiConEpatiteModificaTextField;
-
     @FXML
     private TextField ricoveratiConTubercolosiModificaTextField;
-
     @FXML
     private TextField ricoveratiConMorbilloModificaTextField;
-
     @FXML
     private TextField ricoveratiConGastroenteriteModificaTextField;
-
     @FXML
     private TextField inCuraConTubercolosiModificaTextField;
-
     @FXML
     private TextField inCuraConMeningiteModificaTextField;
-
     @FXML
     private TextField inCuraConEpatiteModificaTextField;
-
     @FXML
     private TextField inCuraConMorbilloModificaTextField;
-
     @FXML
     private TextField inCuraConGastroenteriteModificaTextField;
-
     @FXML
     private ComboBox<String> comuneModificaComboBox;
-
     private int selectedId;
-
-    private final ComuneService comuneService = new ComuneService();
-
-    private final MalattieSettimanaliService malattieSettimanaliService = new MalattieSettimanaliService();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {

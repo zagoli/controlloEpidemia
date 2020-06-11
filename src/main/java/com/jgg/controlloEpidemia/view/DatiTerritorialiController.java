@@ -28,145 +28,99 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
 
 public class DatiTerritorialiController implements Initializable {
 
+    private final ProvinciaService provinciaService = new ProvinciaService();
+    private final ComuneService comuneService = new ComuneService();
+    private final TipoTerritorioService tipoTerritorioService = new TipoTerritorioService();
+    private final RegioneService regioneService = new RegioneService();
     @FXML
     private Label comuneNoDataSelectedLabel;
-
     @FXML
     private Label provinciaNoDataSelectedLabel;
-
     @FXML
     private TabPane datiTerritorialiTabPane;
-
     @FXML
     private TabPane visualizzazioneTabPane;
-
     @FXML
     private TabPane modificaTabPane;
-
     @FXML
     private Tab visualizzazioneTab;
-
     @FXML
     private Tab inserimentoTab;
-
     @FXML
     private Tab modificaTab;
-
     @FXML
     private Tab regioniTab;
-
     @FXML
     private Tab provinceVisualizzazioneTab;
-
     @FXML
     private Tab provinciaInserimentoTab;
-
     @FXML
     private Tab provinciaModificaTab;
-
     @FXML
     private Tab comuniVisualizzazioneTab;
-
     @FXML
     private Tab comuneInserimentoTab;
-
     @FXML
     private Tab comuneModificaTab;
-
     @FXML
     private ListView<String> regioniListView;
-
     @FXML
     private ListView<String> comuniListView;
-
     @FXML
     private ListView<String> provinceListView;
-
     @FXML
     private TextField idInserimentoProvinceTextField;
-
     @FXML
     private TextField nomeInserimentoProvinceTextField;
-
     @FXML
     private TextField superficieInserimentoProvinceTextField;
-
     @FXML
     private ComboBox<String> regioneInserimentoProvinceComboBox;
-
     @FXML
     private ComboBox<String> comuneDiCapoluogoInserimentoProvinceComboBox;
-
     @FXML
     private TextField codiceIstatInserimentoComuniTextField;
-
     @FXML
     private TextField nomeInserimentoComuniTextField;
-
     @FXML
     private TextField superficieInserimentoComuniTextField;
-
     @FXML
     private ComboBox<String> siAffacciaSulMareInserimentoComuniComboBox;
-
     @FXML
     private ComboBox<String> tipoTerritorioInserimentoComuniComboBox;
-
     @FXML
     private ComboBox<String> provinciaInserimentoComuniComboBox;
-
     @FXML
     private DatePicker dataDiIstituzioneInserimentoComuniDatePicker;
-
     @FXML
     private TextField idModificaProvinceTextField;
-
     @FXML
     private TextField nomeModificaProvinceTextField;
-
     @FXML
     private TextField superficieModificaProvinceTextField;
-
     @FXML
     private ComboBox<String> regioneModificaProvinceComboBox;
-
     @FXML
     private ComboBox<String> comuneDiCapoluogoModificaProvinceComboBox;
-
     @FXML
     private TextField codiceIstatModificaComuniTextField;
-
     @FXML
     private TextField nomeModificaComuniTextField;
-
     @FXML
     private TextField superficieModificaComuniTextField;
-
     @FXML
     private ComboBox<String> siAffacciaSulMareModificaComuniComboBox;
-
     @FXML
     private ComboBox<String> tipoTerritorioModificaComuniComboBox;
-
     @FXML
     private ComboBox<String> provinciaModificaComuniComboBox;
-
     @FXML
     private DatePicker dataDiIstituzioneModificaComuniDatePicker;
-
-    private final ProvinciaService provinciaService = new ProvinciaService();
-
-    private final ComuneService comuneService = new ComuneService();
-
-    private final TipoTerritorioService tipoTerritorioService = new TipoTerritorioService();
-
-    private final RegioneService regioneService = new RegioneService();
 
     public void initialize(URL location, ResourceBundle resources) {
         List<Provincia> provinciaList = provinciaService.findAll();
@@ -202,12 +156,25 @@ public class DatiTerritorialiController implements Initializable {
         updateListProvince();
         siAffacciaSulMareInserimentoComuniComboBox.getItems().setAll(FXCollections.observableArrayList("Si", "No"));
         siAffacciaSulMareModificaComuniComboBox.getItems().setAll(FXCollections.observableArrayList("Si", "No"));
-
         modificaTab.setDisable(true);
         datiTerritorialiTabPane.getSelectionModel().select(0);
         visualizzazioneTabPane.getSelectionModel().select(0);
         comuneNoDataSelectedLabel.setVisible(false);
         provinciaNoDataSelectedLabel.setVisible(false);
+    }
+
+    @FXML
+    private java.util.Date getDataDiIstituzioneModificaComuniDatePicker() throws ParseException {
+        LocalDate data = dataDiIstituzioneModificaComuniDatePicker.getValue();
+        String[] toParseData = data.toString().split("-");
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        return sdf.parse(toParseData[2] + "/" + toParseData[1] + "/" + toParseData[0]);
+    }
+
+    private void setDataDiIstituzioneModificaComuniDatePicker(String data) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDate localDate = LocalDate.parse(data, formatter);
+        dataDiIstituzioneModificaComuniDatePicker.setValue(localDate);
     }
 
     @FXML
@@ -270,20 +237,6 @@ public class DatiTerritorialiController implements Initializable {
         String[] toParseData = data.toString().split("-");
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         return sdf.parse(toParseData[2] + "/" + toParseData[1] + "/" + toParseData[0]);
-    }
-
-    @FXML
-    private java.util.Date getDataDiIstituzioneModificaComuniDatePicker() throws ParseException{
-        LocalDate data = dataDiIstituzioneModificaComuniDatePicker.getValue();
-        String[] toParseData = data.toString().split("-");
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-        return sdf.parse(toParseData[2] + "/" + toParseData[1] + "/" + toParseData[0]);
-    }
-
-    private void setDataDiIstituzioneModificaComuniDatePicker(String data){
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        LocalDate localDate = LocalDate.parse(data, formatter);
-        dataDiIstituzioneModificaComuniDatePicker.setValue(localDate);
     }
 
     @FXML
@@ -502,7 +455,6 @@ public class DatiTerritorialiController implements Initializable {
         st.setAutoReverse(true);
         st.play();
     }
-
 
 }
 

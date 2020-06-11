@@ -39,6 +39,8 @@ public class ComuneService {
         return comuneDao.findAll();
     }
 
-    public Integer countComuni(){return comuneDao.countComuni();}
+    public Integer countComuni() {
+        return comuneDao.countComuni();
+    }
 
 }

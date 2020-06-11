@@ -26,6 +26,11 @@ import java.util.ResourceBundle;
 
 public class AutorizzaComuniController implements Initializable {
 
+    private final UtenteService utenteService = new UtenteService();
+    private final ComuneService comuneService = new ComuneService();
+    private final List<Comune> allComuniList = comuneService.findAll();
+    private final ObservableList<Comune> allComuniObservableList = FXCollections.observableList(new LinkedList<>());
+    private final ObservableList<Comune> authorizedComuniObservableList = FXCollections.observableList(new LinkedList<>());
     @FXML
     private ListView<Comune> allComuniListView;
     @FXML
@@ -34,12 +39,6 @@ public class AutorizzaComuniController implements Initializable {
     private ComboBox<Utente> utenteComboBox;
     @FXML
     private Label savedLabel;
-
-    private final UtenteService utenteService = new UtenteService();
-    private final ComuneService comuneService = new ComuneService();
-    private final List<Comune> allComuniList = comuneService.findAll();
-    private final ObservableList<Comune> allComuniObservableList = FXCollections.observableList(new LinkedList<>());
-    private final ObservableList<Comune> authorizedComuniObservableList = FXCollections.observableList(new LinkedList<>());
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -85,9 +84,9 @@ public class AutorizzaComuniController implements Initializable {
     }
 
     @FXML
-    private void onSaveButtonClicked(){
+    private void onSaveButtonClicked() {
         Utente u = utenteComboBox.getValue();
-        if (u != null){
+        if (u != null) {
             List<Comune> toAuthorizeComuni = authorizedComuniListView.getItems();
             u.getComuni().clear();
             u.getComuni().addAll(toAuthorizeComuni);
@@ -103,11 +102,11 @@ public class AutorizzaComuniController implements Initializable {
     }
 
     @FXML
-    private void addComuni(){
+    private void addComuni() {
         // Devo usare una nuova lista non osservabile per contenere gli elementi selezionati perché altrimenti si scombina tutto.
         // Penso che sia perché la lista selected deriva da allComuniObservableList e poi quando cambi una roba si ripete a cascata o robe simili
         List<Comune> selected = new LinkedList<>(allComuniListView.getSelectionModel().getSelectedItems());
-        if (!selected.isEmpty()){
+        if (!selected.isEmpty()) {
             // Non devo aggiornare nulla, perché sono observable
             authorizedComuniObservableList.addAll(selected);
             authorizedComuniObservableList.sort(new ComuneComparator());
@@ -116,11 +115,11 @@ public class AutorizzaComuniController implements Initializable {
     }
 
     @FXML
-    private void removeComuni(){
+    private void removeComuni() {
         // Devo usare una nuova lista non osservabile per contenere gli elementi selezionati perché altrimenti si scombina tutto.
         // Penso che sia perché la lista selected deriva da allComuniObservableList e poi quando cambi una roba si ripete a cascata o robe simili
         List<Comune> selected = new LinkedList<>(authorizedComuniListView.getSelectionModel().getSelectedItems());
-        if (!selected.isEmpty()){
+        if (!selected.isEmpty()) {
             // Non devo aggiornare nulla, perché sono observable
             allComuniObservableList.addAll(selected);
             allComuniObservableList.sort(new ComuneComparator());
@@ -130,18 +129,19 @@ public class AutorizzaComuniController implements Initializable {
 
     // Classe interna che definisce la cella che visualizza i comuni nelle ListView.
     // Se si vorrà si potrà personalizzare ancora di più
-    private static class ComuneFormatCell extends ListCell<Comune>{
-        public ComuneFormatCell(){}
+    private static class ComuneFormatCell extends ListCell<Comune> {
+        public ComuneFormatCell() {
+        }
 
         @Override
-        protected void updateItem(Comune item, boolean empty){
-            super.updateItem(item,empty);
+        protected void updateItem(Comune item, boolean empty) {
+            super.updateItem(item, empty);
             setText(item == null ? "" : item.getNome());
         }
     }
 
     // Comparator per ordinare alfabeticamente i comuni
-    private static class ComuneComparator implements Comparator<Comune>{
+    private static class ComuneComparator implements Comparator<Comune> {
         @Override
         public int compare(Comune o1, Comune o2) {
             return o1.getNome().compareTo(o2.getNome());

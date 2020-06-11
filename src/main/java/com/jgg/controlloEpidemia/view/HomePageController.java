@@ -124,9 +124,21 @@ public class HomePageController implements Initializable {
                         break;
                     case 4:
                         // vai a pagina analisi dei dati ricercatore analista
+                        try {
+                            root = FXMLLoader.load(HomePageController.this.getClass().getResource("/fxml/analisiDati.fxml.fxml"));
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                        button.getScene().setRoot(root);
                         break;
                     case 5:
                         // vai a pagina visualizzazione dati decessi
+                        try {
+                            root = FXMLLoader.load(HomePageController.this.getClass().getResource("/fxml/visualizzaDecessi.fxml"));
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                        button.getScene().setRoot(root);
                         break;
                     default:
                 }
