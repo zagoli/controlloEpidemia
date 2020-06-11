@@ -16,10 +16,10 @@ public class ProvinciaServiceTest {
         RegioneService regioneService = new RegioneService();
         ProvinciaService provinciaService = new ProvinciaService();
         //Creo i model
-        Regione r = new Regione("BanditiziaTest", 1, 1006);
+        Regione r = new Regione("BanditiziaTest", 1, "001006");
         regioneService.save(r);
-        Provincia provincia = new Provincia(15, "Verona", 3, 1004, r);
-        Provincia provincia2 = new Provincia(14, "Mantova", 3, 1005, r);
+        Provincia provincia = new Provincia(15, "Verona", 3, "001004", r);
+        Provincia provincia2 = new Provincia(14, "Mantova", 3, "001005", r);
         //Salvo i model
         provinciaService.save(provincia);
         provinciaService.saveOrUpdate(provincia2);

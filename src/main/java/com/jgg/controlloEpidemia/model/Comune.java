@@ -2,6 +2,7 @@ package com.jgg.controlloEpidemia.model;
 
 import lombok.*;
 import org.hibernate.annotations.Type;
+import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
 import javax.validation.constraints.Min;
@@ -27,7 +28,8 @@ public class Comune {
     @Id
     @Getter
     @NotNull
-    private Integer codiceIstat;
+    @Length(min = 6,max = 6)
+    private String codiceIstat;
     @Getter
     @Setter
     @NotNull

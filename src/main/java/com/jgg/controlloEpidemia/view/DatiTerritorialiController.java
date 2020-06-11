@@ -330,7 +330,7 @@ public class DatiTerritorialiController implements Initializable {
         if (comuniListView.getSelectionModel().getSelectedIndex() != 0) {
             String comuni = comuniListView.getSelectionModel().getSelectedItem();
             String[] comuniEntry = comuni.split("\\|");
-            comuneService.deleteByCodiceIstat(Integer.parseInt(comuniEntry[0]));
+            comuneService.deleteByCodiceIstat(comuniEntry[0]);
             updateListComuni();
         } else {
             comuneNoDataSelectedLabel.setVisible(true);
@@ -391,7 +391,7 @@ public class DatiTerritorialiController implements Initializable {
     @FXML
     public void inserisciInserimentoComuniButtonOnClicked() throws ParseException {
         Comune comune = new Comune(
-                Integer.parseInt(codiceIstatInserimentoComuniTextField.getText()),
+                codiceIstatInserimentoComuniTextField.getText(),
                 nomeInserimentoComuniTextField.getText(),
                 Integer.parseInt(superficieInserimentoComuniTextField.getText()),
                 dataDiIstituzioneInserimentoComuniOnClicked(),
@@ -454,7 +454,7 @@ public class DatiTerritorialiController implements Initializable {
     @FXML
     private void modificaModificaComuneButtonOnClicked() {
         Comune comune = new Comune(
-                Integer.parseInt(codiceIstatModificaComuniTextField.getText()),
+                codiceIstatModificaComuniTextField.getText(),
                 nomeModificaComuniTextField.getText(),
                 Integer.parseInt(superficieModificaComuniTextField.getText()),
               //  dataDiIstituzioneModificaComuniDatePicker(),

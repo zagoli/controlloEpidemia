@@ -21,11 +21,11 @@ public class DecessiAnnualiServiceTest {
         //Creo i model
         TipoTerritorio tipoTerritorio = new TipoTerritorio("PianeggianteTest");
         tipoTerritorioService.save(tipoTerritorio);
-        Regione r = new Regione("Banditizia", 1, 1001);
+        Regione r = new Regione("Banditizia", 1, "001001");
         regioneService.save(r);
-        Provincia p = new Provincia(16, "CuneoTest", 3, 777777, r);
+        Provincia p = new Provincia(16, "CuneoTest", 3, "777777", r);
         provinciaService.save(p);
-        Comune comune = new Comune(333333, "Castelnuovo", 1, new Date(), true, tipoTerritorio, p);
+        Comune comune = new Comune("333333", "Castelnuovo", 1, new Date(), true, tipoTerritorio, p);
         DecessiAnnuali decessiAnnuali = new DecessiAnnuali(2019, 0, 0, 0, 0, p);
         DecessiAnnuali decessiAnnuali2 = new DecessiAnnuali(2020, 0, 0, 0, 0, p);
         //Salvo i model
@@ -46,7 +46,7 @@ public class DecessiAnnualiServiceTest {
         //Elimino i model
         decessiAnnualiService.deleteById(decessiAnnuali.getId());
         decessiAnnualiService.deleteById(decessiAnnuali2.getId());
-        comuneService.deleteByCodiceIstat(333333);
+        comuneService.deleteByCodiceIstat("333333");
         provinciaService.deleteById(p.getId());
         regioneService.deleteById(r.getId());
         tipoTerritorioService.deleteById(tipoTerritorio.getId());

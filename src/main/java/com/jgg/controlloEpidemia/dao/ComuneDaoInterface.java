@@ -8,13 +8,13 @@ public interface ComuneDaoInterface {
 
     void save(Comune comune);
 
-    void deleteByCodiceIstat(Integer codiceIstat);
+    void deleteByCodiceIstat(String codiceIstat);
 
     void update(Comune comune);
 
     void saveOrUpdate(Comune comune);
 
-    Comune findByCodiceIstat(Integer codiceIstat);
+    Comune findByCodiceIstat(String codiceIstat);
 
     Comune findByNome(String nome);
 
