@@ -15,7 +15,7 @@ public class EtlMalattieTest {
     @Test
     void testEtlMalattie() throws IOException {
         App.utenteCorrente = new UtenteService().findById(1);
-        new EtlMalattie().load("src\\test\\resources\\csvToLoadTest\\malattiesettimanali.csv");
+        new EtlMalattie().load("src\\test\\resources\\csvToLoadTest\\malattie.csv");
 
         List<MalattieSettimanali> malattieSettimanaliList = new MalattieSettimanaliService().findAll();
         assertEquals(malattieSettimanaliList.size(), 11);

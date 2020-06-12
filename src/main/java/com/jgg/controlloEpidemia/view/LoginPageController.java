@@ -51,7 +51,7 @@ public class LoginPageController implements Initializable {
             // utente non esiste
             if (errorLabel.isVisible()) {
                 errorLabel.setText("Utente non trovato");
-                errorAnimation();
+                errorAnimation(errorLabel);
             } else {
                 errorLabel.setText("Utente non trovato");
                 errorLabel.setVisible(true);
@@ -60,7 +60,7 @@ public class LoginPageController implements Initializable {
             // password errata
             if (errorLabel.isVisible()) {
                 errorLabel.setText("La password è errata");
-                errorAnimation();
+                errorAnimation(errorLabel);
             } else {
                 errorLabel.setText("La password è errata");
                 errorLabel.setVisible(true);
@@ -73,8 +73,8 @@ public class LoginPageController implements Initializable {
         }
     }
 
-    private void errorAnimation() {
-        ScaleTransition st = new ScaleTransition(Duration.millis(200), errorLabel);
+    private void errorAnimation(Label label) {
+        ScaleTransition st = new ScaleTransition(Duration.millis(200), label);
         st.setByX(0.2);
         st.setByY(0.2);
         st.setCycleCount(2);

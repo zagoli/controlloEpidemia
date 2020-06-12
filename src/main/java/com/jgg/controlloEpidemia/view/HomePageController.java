@@ -39,11 +39,11 @@ public class HomePageController implements Initializable {
             Button comunePersonaleContrattoButton = new Button("AUTORIZZA COMUNI PERSONALE A CONTRATTO");
             comunePersonaleContrattoButton.setUserData(1);
             prepareButton(comunePersonaleContrattoButton);
-            if (comuneService.countComuni() == 0){
+            if (comuneService.countComuni() == 0) {
                 comunePersonaleContrattoButton.setDisable(true);
             }
             mainPanel.getChildren().add(comunePersonaleContrattoButton);
-            Button decessiButton = new Button("GESTISCI DATI DECESSI ANNUALI");
+            Button decessiButton = new Button("GESTISCI DECESSI ANNUALI");
             decessiButton.setUserData(2);
             prepareButton(decessiButton);
             mainPanel.getChildren().add(decessiButton);
@@ -124,9 +124,21 @@ public class HomePageController implements Initializable {
                         break;
                     case 4:
                         // vai a pagina analisi dei dati ricercatore analista
+                        try {
+                            root = FXMLLoader.load(HomePageController.this.getClass().getResource("/fxml/analisiDati.fxml.fxml"));
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                        button.getScene().setRoot(root);
                         break;
                     case 5:
                         // vai a pagina visualizzazione dati decessi
+                        try {
+                            root = FXMLLoader.load(HomePageController.this.getClass().getResource("/fxml/visualizzaDecessi.fxml"));
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                        button.getScene().setRoot(root);
                         break;
                     default:
                 }

@@ -23,7 +23,7 @@ public class ComuneDao implements ComuneDaoInterface {
     }
 
     @Override
-    public void deleteByCodiceIstat(Integer codiceIstat) {
+    public void deleteByCodiceIstat(String codiceIstat) {
         session.openCurrentSessionWithTransaction();
         Comune comune = session.getCurrentSession().get(Comune.class, codiceIstat);
         session.getCurrentSession().delete(comune);
@@ -56,7 +56,7 @@ public class ComuneDao implements ComuneDaoInterface {
     }
 
     @Override
-    public Comune findByCodiceIstat(Integer codiceIstat) {
+    public Comune findByCodiceIstat(String codiceIstat) {
         session.openCurrentSession();
         Comune comune = session.getCurrentSession().get(Comune.class, codiceIstat);
         session.closeCurrentSession();

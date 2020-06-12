@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane layoutY="32.0" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.jgg.controlloEpidemia.view.AnalisiDatiController">
+    <TabPane fx:id="malattieSettimanaliTabPane" prefHeight="600.0" prefWidth="800.0" tabClosingPolicy="UNAVAILABLE">
+        <Tab fx:id="malattieSettimanaliVisualizzazioneTab" text="Visualizzazione malattie settimanali">
+            <Pane minHeight="0.0" minWidth="0.0" prefHeight="600.0" prefWidth="800.0">
+                <ListView fx:id="malattieSettimanaliListView" layoutX="25.0" layoutY="25.0" prefHeight="425.0" prefWidth="750.0" />
+            </Pane>
+        </Tab>
+        <Tab fx:id="decessiAnnualiTabPane" text="Visualizzazione decessi annuali">
+            <Pane minHeight="0.0" minWidth="0.0" prefHeight="600.0" prefWidth="800.0">
+                <ListView fx:id="decessiAnnualiListView" layoutX="25.0" layoutY="25.0" prefHeight="425.0" prefWidth="750.0" />
+            </Pane>
+        </Tab>
+    </TabPane>
+    <Button layoutX="12.0" layoutY="-29.0" mnemonicParsing="false" onAction="#homepageButtonOnClicked" text="Homepage" />
+</Pane>

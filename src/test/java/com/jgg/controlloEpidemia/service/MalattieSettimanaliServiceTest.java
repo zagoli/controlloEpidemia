@@ -21,11 +21,11 @@ class MalattieSettimanaliServiceTest {
         ProvinciaService provinciaService = new ProvinciaService();
         //Creo i model
         TipoTerritorio tipoTerritorio = new TipoTerritorio("PianeggianteTest");
-        Regione r = new Regione("BanditiziaTest", 1, 333333);
+        Regione r = new Regione("BanditiziaTest", 1, "333333");
         regioneService.save(r);
-        Provincia p = new Provincia(16, "CuneoTest", 3, 777777, r);
+        Provincia p = new Provincia(16, "CuneoTest", 3, "777777", r);
         provinciaService.save(p);
-        Comune comune = new Comune(333333, "Castelnuovo", 1, new Date(), true, tipoTerritorio, p);
+        Comune comune = new Comune("333333", "Castelnuovo", 1, new Date(), true, tipoTerritorio, p);
         MalattieSettimanali malattieSettimanali = new MalattieSettimanali(2019, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, comune);
         MalattieSettimanali malattieSettimanali2 = new MalattieSettimanali(2020, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, comune);
         //Salvo i model
@@ -47,7 +47,7 @@ class MalattieSettimanaliServiceTest {
         //Elimino i model
         malattieSettimanaliService.deleteById(malattieSettimanali.getId());
         malattieSettimanaliService.deleteById(malattieSettimanali2.getId());
-        comuneService.deleteByCodiceIstat(333333);
+        comuneService.deleteByCodiceIstat("333333");
         provinciaService.deleteById(p.getId());
         regioneService.deleteById(r.getId());
         tipoTerritorioService.deleteById(tipoTerritorio.getId());

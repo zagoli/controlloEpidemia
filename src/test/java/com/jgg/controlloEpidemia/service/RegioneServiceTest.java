@@ -17,8 +17,8 @@ public class RegioneServiceTest {
         RegioneService regioneService = new RegioneService();
         //Creo i model
         TipoTerritorio tipoTerritorio = new TipoTerritorio("PianeggianteTest");
-        Regione regione = new Regione("Banditizia", 1, 333333);
-        Regione regione2 = new Regione("Lombardia", 143, 123456);
+        Regione regione = new Regione("Banditizia", 1, "333333");
+        Regione regione2 = new Regione("Lombardia", 143, "123456");
         //Salvo i model
         tipoTerritorioService.save(tipoTerritorio);
         regioneService.save(regione);

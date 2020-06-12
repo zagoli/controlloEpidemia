@@ -23,10 +23,10 @@ class ComuneServiceTest {
         ProvinciaService provinciaService = new ProvinciaService();
         //Creo i model
         TipoTerritorio tipoTerritorio = new TipoTerritorio(4, "pianeggianteTest");
-        Regione r = new Regione("BanditiziaTest", 1, 1001);
-        Provincia p = new Provincia(13, "CuneoTest", 3, 1001, r);
-        Comune comune = new Comune(333333, "CastelnuovoTest", 1, new Date(), true, tipoTerritorio, p);
-        Comune comune2 = new Comune(444444, "GelateriaTest", 4, new Date(), true, tipoTerritorio, p);
+        Regione r = new Regione("BanditiziaTest", 1, "001001");
+        Provincia p = new Provincia(13, "CuneoTest", 3, "001001", r);
+        Comune comune = new Comune("333333", "CastelnuovoTest", 1, new Date(), true, tipoTerritorio, p);
+        Comune comune2 = new Comune("444444", "GelateriaTest", 4, new Date(), true, tipoTerritorio, p);
         //Salvo i model
         tipoTerritorioService.save(tipoTerritorio);
         regioneService.save(r);
@@ -34,7 +34,7 @@ class ComuneServiceTest {
         comuneService.save(comune);
         comuneService.saveOrUpdate(comune2);
         //Cerco i model
-        Comune findComune = comuneService.findByCodiceIstat(333333);
+        Comune findComune = comuneService.findByCodiceIstat("333333");
         assertEquals(comune, findComune);
         findComune = comuneService.findByNome("GelateriaTest");
         assertEquals(comune2, findComune);
@@ -44,16 +44,16 @@ class ComuneServiceTest {
         //Aggiorno i model
         comune.setSuperficie(158);
         comuneService.update(comune);
-        findComune = comuneService.findByCodiceIstat(333333);
+        findComune = comuneService.findByCodiceIstat("333333");
         assertEquals(comune, findComune);
         //Elimino i model
-        comuneService.deleteByCodiceIstat(333333);
-        comuneService.deleteByCodiceIstat(444444);
+        comuneService.deleteByCodiceIstat("333333");
+        comuneService.deleteByCodiceIstat("444444");
         provinciaService.deleteById(p.getId());
         regioneService.deleteById(r.getId());
         tipoTerritorioService.deleteById(tipoTerritorio.getId());
         //Assert dei model
-        comune = comuneService.findByCodiceIstat(333333);
+        comune = comuneService.findByCodiceIstat("333333");
         assertNull(comune);
     }
 }
