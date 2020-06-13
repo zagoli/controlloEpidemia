@@ -31,6 +31,14 @@ public class MalattieSettimanaliService {
         return malattieSettimanaliDao.findById(id);
     }
 
+    public List<MalattieSettimanali> findByAnno(Integer anno) {
+        return malattieSettimanaliDao.findByAnno(anno);
+    }
+
+    public List<Integer> findInsertedYears() {
+        return malattieSettimanaliDao.findInsertedYears();
+    }
+
     public List<MalattieSettimanali> findAll() {
         return malattieSettimanaliDao.findAll();
     }

@@ -3,6 +3,7 @@ package com.jgg.controlloEpidemia.service;
 import com.jgg.controlloEpidemia.model.*;
 import org.junit.jupiter.api.Test;
 
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
@@ -55,5 +56,15 @@ public class DecessiAnnualiServiceTest {
         assertNull(decessiAnnuali);
         decessiAnnualiList = decessiAnnualiService.findAll();
         assertEquals(decessiAnnualiList.size(), 5);
+    }
+
+    // Dopo aver fatto partire EtlDecessiTest
+    @Test
+    void findInsertedYears() {
+        DecessiAnnualiService decessiAnnualiService = new DecessiAnnualiService();
+        List<Integer> anni = decessiAnnualiService.findInsertedYears();
+        Collections.sort(anni);
+        assertEquals(2011, anni.get(0));
+        assertEquals(2019, anni.get(4));
     }
 }

@@ -170,7 +170,6 @@ public class MalattieSettimanaliController implements Initializable {
         );
 
 
-
     }
 
     @FXML

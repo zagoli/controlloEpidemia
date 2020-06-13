@@ -10,7 +10,7 @@ import java.util.List;
 @NoArgsConstructor
 public class RegioneDao implements RegioneDaoInterface {
 
-    private static Session session = new Session();
+    private static final Session session = new Session();
 
     final private String FROM_REGIONE_WHERE_NOME = "FROM Regione where nome = :nome";
 

@@ -20,4 +20,8 @@ public interface DecessiAnnualiDaoInterface {
     DecessiAnnuali findByAnnoProvincia(Integer anno, Provincia provincia);
 
     List<DecessiAnnuali> findAll();
+
+    List<DecessiAnnuali> findByAnno(Integer anno);
+
+    List<Integer> findInsertedYears();
 }

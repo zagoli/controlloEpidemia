@@ -206,9 +206,6 @@ public class DatiTerritorialiController implements Initializable {
         );
 
 
-
-
-
     }
 
     @FXML
@@ -243,7 +240,7 @@ public class DatiTerritorialiController implements Initializable {
             }
             comuniListView.getItems().add(
                     c.getCodiceIstat() + "  " +
-                            c.getNome() + "  "+
+                            c.getNome() + "  " +
                             c.getSuperficie() + "  " +
                             c.getDataIstituzione().toString().split(" ")[0] + "  " +
                             siAffacciaSulMare + "  " +

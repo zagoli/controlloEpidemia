@@ -1,7 +1,6 @@
 package com.jgg.controlloEpidemia.view;
 
 import com.jgg.controlloEpidemia.model.MalattieSettimanali;
-import com.jgg.controlloEpidemia.service.ComuneService;
 import com.jgg.controlloEpidemia.service.MalattieSettimanaliService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

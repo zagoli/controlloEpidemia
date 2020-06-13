@@ -28,7 +28,8 @@
                     <Insets/>
                 </VBox.margin>
             </PasswordField>
-            <Button fx:id="loginButton" mnemonicParsing="false" onAction="#onLoginButtonClicked" text="Login">
+            <Button fx:id="loginButton" defaultButton="true" mnemonicParsing="false" onAction="#onLoginButtonClicked"
+                    text="Login">
                 <VBox.margin>
                     <Insets top="5.0"/>
                 </VBox.margin>
@@ -45,7 +46,7 @@
         <Label alignment="TOP_CENTER" contentDisplay="CENTER" text="CONTROLLO EPIDEMIA" textAlignment="CENTER"
                BorderPane.alignment="CENTER">
             <font>
-                <Font name="Calibri Bold" size="23.0"/>
+                <Font name="System Bold" size="45.0"/>
             </font>
             <BorderPane.margin>
                 <Insets top="10.0"/>

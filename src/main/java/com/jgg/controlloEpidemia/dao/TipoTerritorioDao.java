@@ -8,7 +8,7 @@ import java.util.List;
 
 public class TipoTerritorioDao implements TipoTerritorioDaoInterface {
 
-    private static Session session = new Session();
+    private static final Session session = new Session();
 
     final private String FROM_TIPOTERRITORIO_WHERE_NOME = "FROM TipoTerritorio where nome = :nome";
 

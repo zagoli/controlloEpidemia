@@ -35,4 +35,12 @@ public class DecessiAnnualiService {
         return decessiAnnualiDao.findAll();
     }
 
+    public List<DecessiAnnuali> findByAnno(Integer anno) {
+        return decessiAnnualiDao.findByAnno(anno);
+    }
+
+    public List<Integer> findInsertedYears() {
+        return decessiAnnualiDao.findInsertedYears();
+    }
+
 }

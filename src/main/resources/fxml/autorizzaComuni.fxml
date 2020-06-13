@@ -79,8 +79,7 @@
                         </font>
                     </Label>
                 </HBox>
-                <ListView fx:id="authorizedComuniListView" prefHeight="200.0" prefWidth="200.0"
-                          VBox.vgrow="ALWAYS">
+                <ListView fx:id="authorizedComuniListView" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
                     <VBox.margin>
                         <Insets bottom="10.0"/>
                     </VBox.margin>
@@ -123,8 +122,8 @@
                     <Font size="15.0"/>
                 </font>
             </Button>
-            <ComboBox fx:id="utenteComboBox" promptText="Seleziona un utente" GridPane.halignment="CENTER"
-                      GridPane.valignment="CENTER"/>
+            <ComboBox fx:id="utenteComboBox" onAction="#utenteChanged" promptText="Seleziona un utente"
+                      GridPane.halignment="CENTER" GridPane.valignment="CENTER"/>
             <Label fx:id="savedLabel" opacity="0.0" text="Salvato!" textFill="#0dbf00" GridPane.columnIndex="1"
                    GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                 <font>

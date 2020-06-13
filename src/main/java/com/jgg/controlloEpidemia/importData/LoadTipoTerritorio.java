@@ -10,9 +10,9 @@ public class LoadTipoTerritorio {
     final TipoTerritorioService tipoTerritorioService = new TipoTerritorioService();
 
     public void load() {
-        TipoTerritorio montano = new TipoTerritorio(1,"Montano");
-        TipoTerritorio collinare = new TipoTerritorio(2,"Collinare");
-        TipoTerritorio pianeggiante = new TipoTerritorio(3,"Pianeggiante");
+        TipoTerritorio montano = new TipoTerritorio(1, "Montano");
+        TipoTerritorio collinare = new TipoTerritorio(2, "Collinare");
+        TipoTerritorio pianeggiante = new TipoTerritorio(3, "Pianeggiante");
 
         tipoTerritorioService.saveOrUpdate(montano);
         tipoTerritorioService.saveOrUpdate(collinare);

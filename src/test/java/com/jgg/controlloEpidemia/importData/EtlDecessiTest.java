@@ -18,6 +18,6 @@ public class EtlDecessiTest {
         new EtlDecessi().load("src\\test\\resources\\csvToLoadTest\\decessi.csv");
 
         List<DecessiAnnuali> decessiAnnualiList = new DecessiAnnualiService().findAll();
-        assertEquals(decessiAnnualiList.size(), 5);
+        assertEquals(5, decessiAnnualiList.size());
     }
 }

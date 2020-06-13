@@ -5,7 +5,6 @@ import com.jgg.controlloEpidemia.model.Utente;
 import com.jgg.controlloEpidemia.service.ComuneService;
 import com.jgg.controlloEpidemia.service.UtenteService;
 import javafx.animation.FadeTransition;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -29,8 +28,8 @@ public class AutorizzaComuniController implements Initializable {
     private final UtenteService utenteService = new UtenteService();
     private final ComuneService comuneService = new ComuneService();
     private final List<Comune> allComuniList = comuneService.findAll();
-    private final ObservableList<Comune> allComuniObservableList = FXCollections.observableList(new LinkedList<>());
-    private final ObservableList<Comune> authorizedComuniObservableList = FXCollections.observableList(new LinkedList<>());
+    private final ObservableList<Comune> allComuniObservableList = FXCollections.observableArrayList();
+    private final ObservableList<Comune> authorizedComuniObservableList = FXCollections.observableArrayList();
     @FXML
     private ListView<Comune> allComuniListView;
     @FXML
@@ -65,22 +64,20 @@ public class AutorizzaComuniController implements Initializable {
         });
         // Imposto gli utenti nella combobox
         utenteComboBox.setItems(FXCollections.observableList(utenteService.findAllPersonaleContratto()));
-        // Listener cambio utente
-        utenteComboBox.valueProperty().addListener(observable -> {
-            // Quando l'utente selezionato cambia, prendo il nuovo utente e i suoi comuni, li metto nella ListView a destra
-            // e in quella a sinistra metto tutti i comuni tranne quelli che ha l'utente
-            @SuppressWarnings("unchecked")
-            Utente user = ((ObservableValue<Utente>) observable).getValue();
-            authorizedComuniObservableList.setAll(user.getComuni());
-            allComuniObservableList.setAll(allComuniList);
-            allComuniObservableList.removeAll(authorizedComuniObservableList);
-        });
     }
 
     @FXML
     private void onHomePageButtonClicked(ActionEvent e) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/homePage.fxml"));
         ((Button) e.getSource()).getScene().setRoot(root);
+    }
+
+    @FXML
+    private void utenteChanged() {
+        Utente user = utenteComboBox.getValue();
+        authorizedComuniObservableList.setAll(user.getComuni());
+        allComuniObservableList.setAll(allComuniList);
+        allComuniObservableList.removeAll(authorizedComuniObservableList);
     }
 
     @FXML

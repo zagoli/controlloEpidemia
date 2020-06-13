@@ -10,7 +10,7 @@ import java.util.List;
 @NoArgsConstructor
 public class PermessoDao implements PermessoDaoInterface {
 
-    private static Session session = new Session();
+    private static final Session session = new Session();
 
     final private String FROM_PERMESSO_WHERE_NOME = "FROM Permesso where nome = :nome";
 

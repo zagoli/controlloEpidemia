@@ -11,9 +11,11 @@ import java.util.List;
 @NoArgsConstructor
 public class DecessiAnnualiDao implements DecessiAnnualiDaoInterface {
 
-    private static Session session = new Session();
+    private static final Session session = new Session();
 
-    final private String FROM_COMUNE_WHERE_ANNO_PROVINCIA = "FROM DecessiAnnuali where ANNO= :anno and PROVINCIA_ID= :provincia";
+    final private String FROM_DECESSI_WHERE_ANNO_PROVINCIA = "from DecessiAnnuali where anno= :anno and provincia_id= :provincia";
+    final private String SELECT_ALL_ANNI_DECESSI = "select distinct anno from DecessiAnnuali";
+    final private String FROM_DECESSI_WHERE_ANNO = "from DecessiAnnuali where anno=:anno";
 
     @Override
     public void save(DecessiAnnuali decessiAnnuali) {
@@ -66,13 +68,14 @@ public class DecessiAnnualiDao implements DecessiAnnualiDaoInterface {
     @Override
     public DecessiAnnuali findByAnnoProvincia(Integer anno, Provincia provincia) {
         session.openCurrentSession();
-        Query query = session.createQuery(FROM_COMUNE_WHERE_ANNO_PROVINCIA);
+        Query query = session.createQuery(FROM_DECESSI_WHERE_ANNO_PROVINCIA);
         query.setParameter("anno", anno);
         query.setParameter("provincia", provincia.getId());
-        DecessiAnnuali decessiAnnuali = null;
+        DecessiAnnuali decessiAnnuali;
         try {
             decessiAnnuali = (DecessiAnnuali) query.getSingleResult();
         } catch (NoResultException ignored) {
+            decessiAnnuali = null;
         }
         session.closeCurrentSession();
         return decessiAnnuali;
@@ -85,5 +88,23 @@ public class DecessiAnnualiDao implements DecessiAnnualiDaoInterface {
         List<DecessiAnnuali> decessiAnnuali = session.getCurrentSession().createQuery("from DecessiAnnuali").list();
         session.closeCurrentSession();
         return decessiAnnuali;
+    }
+
+    @Override
+    @SuppressWarnings("unchecked")
+    public List<DecessiAnnuali> findByAnno(Integer anno) {
+        session.openCurrentSession();
+        List<DecessiAnnuali> decessi = session.getCurrentSession().createQuery(FROM_DECESSI_WHERE_ANNO).setParameter("anno", anno).list();
+        session.closeCurrentSession();
+        return decessi;
+    }
+
+    @Override
+    @SuppressWarnings("unchecked")
+    public List<Integer> findInsertedYears() {
+        session.openCurrentSession();
+        List<Integer> anni = session.getCurrentSession().createQuery(SELECT_ALL_ANNI_DECESSI).list();
+        session.closeCurrentSession();
+        return anni;
     }
 }

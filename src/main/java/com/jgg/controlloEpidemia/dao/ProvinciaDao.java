@@ -10,7 +10,7 @@ import java.util.List;
 @NoArgsConstructor
 public class ProvinciaDao implements ProvinciaDaoInterface {
 
-    private static Session session = new Session();
+    private static final Session session = new Session();
 
     final private String FROM_PROVINCIA_WHERE_NOME = "FROM Provincia where nome = :nome";
 

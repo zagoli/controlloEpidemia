@@ -11,9 +11,11 @@ import java.util.List;
 @NoArgsConstructor
 public class MalattieSettimanaliDao implements MalattieSettimanaliDaoInterface {
 
-    private static Session session = new Session();
+    private static final Session session = new Session();
 
-    final private String FROM_COMUNE_WHERE_ANNO_SETTIMANA_COMUNE = "FROM MalattieSettimanali where ANNO= :anno and SETTIMANA= :settimana and COMUNE_CODICEISTAT= :comune";
+    final private String FROM_MALATTIE_WHERE_ANNO_SETTIMANA_COMUNE = "FROM MalattieSettimanali where ANNO= :anno and SETTIMANA= :settimana and COMUNE_CODICEISTAT= :comune";
+    final private String FROM_MALATTIE_WHERE_ANNO = "from MalattieSettimanali where anno=:anno";
+    final private String SELECT_ALL_ANNI_MALATTIE = "select distinct anno from MalattieSettimanali";
 
     @Override
     public void save(MalattieSettimanali malattieSettimanali) {
@@ -78,7 +80,7 @@ public class MalattieSettimanaliDao implements MalattieSettimanaliDaoInterface {
     @Override
     public MalattieSettimanali findByAnnoSettimanaComune(Integer anno, Integer settimana, Comune comune) {
         session.openCurrentSession();
-        Query query = session.createQuery(FROM_COMUNE_WHERE_ANNO_SETTIMANA_COMUNE);
+        Query query = session.createQuery(FROM_MALATTIE_WHERE_ANNO_SETTIMANA_COMUNE);
         query.setParameter("anno", anno);
         query.setParameter("settimana", settimana);
         query.setParameter("comune", comune.getCodiceIstat());
@@ -98,6 +100,24 @@ public class MalattieSettimanaliDao implements MalattieSettimanaliDaoInterface {
         List<MalattieSettimanali> malattieSettimanali = session.getCurrentSession().createQuery("from MalattieSettimanali").list();
         session.closeCurrentSession();
         return malattieSettimanali;
+    }
+
+    @Override
+    @SuppressWarnings("unchecked")
+    public List<MalattieSettimanali> findByAnno(Integer anno) {
+        session.openCurrentSession();
+        List<MalattieSettimanali> malattieSettimanali = session.getCurrentSession().createQuery(FROM_MALATTIE_WHERE_ANNO).setParameter("anno", anno).list();
+        session.closeCurrentSession();
+        return malattieSettimanali;
+    }
+
+    @Override
+    @SuppressWarnings("unchecked")
+    public List<Integer> findInsertedYears() {
+        session.openCurrentSession();
+        List<Integer> anni = session.getCurrentSession().createQuery(SELECT_ALL_ANNI_MALATTIE).list();
+        session.closeCurrentSession();
+        return anni;
     }
 
 }

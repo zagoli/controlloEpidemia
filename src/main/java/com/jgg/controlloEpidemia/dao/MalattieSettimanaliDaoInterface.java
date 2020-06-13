@@ -20,4 +20,8 @@ public interface MalattieSettimanaliDaoInterface {
     MalattieSettimanali findByAnnoSettimanaComune(Integer anno, Integer settimana, Comune comune);
 
     List<MalattieSettimanali> findAll();
+
+    List<MalattieSettimanali> findByAnno(Integer anno);
+
+    List<Integer> findInsertedYears();
 }

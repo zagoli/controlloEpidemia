@@ -10,7 +10,7 @@ import java.util.List;
 @NoArgsConstructor
 public class RuoloDao implements RuoloDaoInterface {
 
-    private static Session session = new Session();
+    private static final Session session = new Session();
 
     final private String FROM_RUOLO_WHERE_NOME = "FROM Ruolo where nome = :nome";
 

@@ -31,12 +31,11 @@ public class App extends Application {
         new LoadUtente().load();
         // --------------------------------------------------------------
 
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/loginPage.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/grafici.fxml"));
         Scene scene = new Scene(root);
         primaryStage.setScene(scene);
         primaryStage.setTitle("Controllo Epidemia");
         primaryStage.show();
-
     }
 
 }
