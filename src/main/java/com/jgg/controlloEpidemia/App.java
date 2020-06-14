@@ -31,7 +31,7 @@ public class App extends Application {
         new LoadUtente().load();
         // --------------------------------------------------------------
 
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/grafici.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/loginPage.fxml"));
         Scene scene = new Scene(root);
         primaryStage.setScene(scene);
         primaryStage.setTitle("Controllo Epidemia");

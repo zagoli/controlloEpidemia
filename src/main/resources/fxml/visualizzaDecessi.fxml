@@ -1,21 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ListView?>
-<?import javafx.scene.control.Tab?>
-<?import javafx.scene.control.TabPane?>
-<?import javafx.scene.layout.Pane?>
-<Pane xmlns:fx="http://javafx.com/fxml/1" layoutY="32.0" prefHeight="600.0" prefWidth="800.0"
-      xmlns="http://javafx.com/javafx/10.0.2-internal"
-      fx:controller="com.jgg.controlloEpidemia.view.VisualizzaDecessiController">
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane layoutY="32.0" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.jgg.controlloEpidemia.view.VisualizzaDecessiController">
     <TabPane fx:id="decessiAnnualiTabPane" prefHeight="600.0" prefWidth="800.0" tabClosingPolicy="UNAVAILABLE">
         <Tab fx:id="decessiAnnualiVisualizzazioneTab" text="Visualizzazione">
             <Pane minHeight="0.0" minWidth="0.0" prefHeight="600.0" prefWidth="800.0">
-                <ListView fx:id="visualizzaDecessiListView" layoutX="25.0" layoutY="25.0" prefHeight="425.0"
-                          prefWidth="750.0"/>
+                <TableView fx:id="decessiTableView" layoutX="14.0" layoutY="14.0" prefHeight="500.0" prefWidth="750.0">
+                    <columns>
+                        <TableColumn fx:id="decessiIdColumn" prefWidth="24.800004959106445" text="ID"/>
+                        <TableColumn fx:id="decessiProvinciaColumn" prefWidth="77.39999389648438" text="PROVINCIA"/>
+                        <TableColumn fx:id="decessiAnnoColumn" prefWidth="42.99999237060547" text="ANNO"/>
+                        <TableColumn fx:id="decessiIncidentiStradaliColumn" prefWidth="130.80001831054688"
+                                     text="INCIDENTI STRADALI"/>
+                        <TableColumn fx:id="decessiMalattieTumoraliColumn" minWidth="0.0" prefWidth="131.79998779296875"
+                                     text="MALATTIE TUMORALI"/>
+                        <TableColumn fx:id="decessiMalattieCardiovascolariColumn" prefWidth="186.60000610351562"
+                                     text="MALATTIE CARDIOVASCOLARI"/>
+                        <TableColumn fx:id="decessiMalattieContagioseColumn" minWidth="3.199951171875"
+                                     prefWidth="152.60003662109375" text="MALATTIE CONTAGIOSE"/>
+                    </columns>
+                </TableView>
             </Pane>
         </Tab>
 
     </TabPane>
-    <Button layoutX="10.0" layoutY="-28.0" mnemonicParsing="false" onAction="#homepageButtonOnClicked" text="Homepage"/>
+    <Button layoutX="10.0" layoutY="-28.0" mnemonicParsing="false" onAction="#homepageButtonOnClicked" text="Homepage" />
 </Pane>
