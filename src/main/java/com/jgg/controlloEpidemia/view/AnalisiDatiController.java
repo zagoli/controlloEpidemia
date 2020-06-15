@@ -38,7 +38,6 @@ public class AnalisiDatiController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        updateList();
         malattieSettimanaliListView.getSelectionModel().select(0);
     }
 
@@ -48,32 +47,5 @@ public class AnalisiDatiController implements Initializable {
         ((Button) event.getSource()).getScene().setRoot(root);
     }
 
-    private void updateList() {
-        malattieSettimanaliListView.getItems().clear();
-        List<MalattieSettimanali> malattieSettimanaliList = malattieSettimanaliService.findAll();
-        malattieSettimanaliListView.getItems().add("ID  COMUNE  ANNO  SETTIMANA  R.INFLUENZA  C.INFLUENZA  CP.RESPIRATORIE  R.POLMONITE  C.POLMONITE  R.MENINGITE  C.MENINGITE  R.EPATITE  C.EPATITE  R.MORBILLO  C.MORBILLO  R.TUBERCOLOSI  C.TUBERCOLOSI  R.GASTROENTERITE  C.GASTROENTERITE");
-        for (MalattieSettimanali m : malattieSettimanaliList) {
-            malattieSettimanaliListView.getItems().add(
-                    m.getId()
-                            + "  " + m.getComune().getNome()
-                            + "  " + m.getAnno()
-                            + "  " + m.getSettimana()
-                            + "  " + m.getRicoveratiInfluenza()
-                            + "  " + m.getInCuraInfluenza()
-                            + "  " + m.getComplicanzeRespiratorie()
-                            + "  " + m.getRicoveratiPolmonite()
-                            + "  " + m.getInCuraPolmonite()
-                            + "  " + m.getRicoveratiMeningite()
-                            + "  " + m.getInCuraMeningite()
-                            + "  " + m.getRicoveratiEpatite()
-                            + "  " + m.getInCuraEpatite()
-                            + "  " + m.getRicoveratiMorbillo()
-                            + "  " + m.getInCuraMorbillo()
-                            + "  " + m.getRicoveratiTubercolosi()
-                            + "  " + m.getInCuraTubercolosi()
-                            + "  " + m.getRicoveratiGastroenterite()
-                            + "  " + m.getInCuraGastroenterite());
-        }
-    }
 
 }
