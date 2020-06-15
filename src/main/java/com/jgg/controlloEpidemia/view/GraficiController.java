@@ -2,8 +2,10 @@ package com.jgg.controlloEpidemia.view;
 
 import com.jgg.controlloEpidemia.model.DecessiAnnuali;
 import com.jgg.controlloEpidemia.model.MalattieSettimanali;
+import com.jgg.controlloEpidemia.model.Regione;
 import com.jgg.controlloEpidemia.service.DecessiAnnualiService;
 import com.jgg.controlloEpidemia.service.MalattieSettimanaliService;
+import com.jgg.controlloEpidemia.service.RegioneService;
 import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -12,7 +14,9 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
+import javafx.scene.chart.BarChart;
 import javafx.scene.chart.PieChart;
+import javafx.scene.chart.XYChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -28,44 +32,53 @@ public class GraficiController implements Initializable {
 
     private final DecessiAnnualiService decessiAnnualiService = new DecessiAnnualiService();
     private final MalattieSettimanaliService malattieSettimanaliService = new MalattieSettimanaliService();
-    // Lista di supporto che contiene i dati del grafico dei decessi annuali
-    private final ObservableList<PieChart.Data> datiGraficoDecessiAnnuali = FXCollections.observableArrayList();
+    // Lista di supporto che contiene i dati del grafico dei decessi annuali per causa
+    private final ObservableList<PieChart.Data> datiGraficoDecessiCausa = FXCollections.observableArrayList();
+    // Lista di supporto che contiene i dati del grafico dei decessi annuali per regione
+    private final ObservableList<PieChart.Data> datiGraficoDecessiRegione = FXCollections.observableArrayList();
     // Lista di supporto che contiene i dati del grafico delle malattie settimanali
-    private final ObservableList<PieChart.Data> datiGraficoMalattieSettimanali = FXCollections.observableArrayList();
+    private final XYChart.Series<String, Number> datiGraficoMalattieSettimanali = new XYChart.Series<>();
     @FXML
-    private ComboBox<Integer> chooseAnnoDecessiCombobox;
+    private ComboBox<Integer> chooseAnnoDecessiCausaCombobox;
     @FXML
     private ComboBox<Integer> chooseAnnoMalattieCombobox;
     @FXML
-    private PieChart graficoDecessiAnnuali;
+    private ComboBox<Integer> chooseAnnoDecessiRegioneCombobox;
     @FXML
-    private PieChart graficoMalattieSettimanali;
+    private PieChart graficoDecessiCausa;
     @FXML
-    private Label labelGraficoDecessiAnnuali;
+    private PieChart graficoDecessiRegione;
     @FXML
-    private Label labelGraficoMalattieSettimanali;
+    private BarChart<String, Number> graficoMalattieSettimanali;
+    @FXML
+    private Label labelGraficoDecessiCausa;
+    @FXML
+    private Label labelGraficoDecessiRegione;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         // Visualizzazione anni per combobox
-        chooseAnnoDecessiCombobox.setConverter(new AnnoToStringConverter());
+        chooseAnnoDecessiCausaCombobox.setConverter(new AnnoToStringConverter());
         chooseAnnoMalattieCombobox.setConverter(new AnnoToStringConverter());
-        // Inserimento dati chooseAnnoDecessiCombobox
+        chooseAnnoDecessiRegioneCombobox.setConverter(new AnnoToStringConverter());
+        // Inserimento dati chooseAnnoDecessiCausaCombobox e chooseAnnoDecessiRegioneCombobox
         ObservableList<Integer> anniDecessiObsList = FXCollections.observableList(decessiAnnualiService.findInsertedYears());
         anniDecessiObsList.add(-1);
         Collections.sort(anniDecessiObsList);
-        chooseAnnoDecessiCombobox.setItems(anniDecessiObsList);
+        chooseAnnoDecessiCausaCombobox.setItems(anniDecessiObsList);
+        chooseAnnoDecessiRegioneCombobox.setItems(anniDecessiObsList);
         // Inserimento dati chooseAnnoMalattieCombobox
         ObservableList<Integer> anniMalattieObsList = FXCollections.observableList(malattieSettimanaliService.findInsertedYears());
         anniMalattieObsList.add(-1);
         Collections.sort(anniMalattieObsList);
         chooseAnnoMalattieCombobox.setItems(anniMalattieObsList);
         // Impostazione dati grafici
-        graficoDecessiAnnuali.setData(datiGraficoDecessiAnnuali);
-        graficoMalattieSettimanali.setData(datiGraficoMalattieSettimanali);
+        graficoDecessiCausa.setData(datiGraficoDecessiCausa);
+        graficoDecessiRegione.setData(datiGraficoDecessiRegione);
+        graficoMalattieSettimanali.getData().add(datiGraficoMalattieSettimanali);
         // Visualizzazione label di aiuto grafici
-        labelGraficoDecessiAnnuali.visibleProperty().bind(Bindings.isEmpty(datiGraficoDecessiAnnuali));
-        labelGraficoMalattieSettimanali.visibleProperty().bind(Bindings.isEmpty(datiGraficoMalattieSettimanali));
+        labelGraficoDecessiCausa.visibleProperty().bind(Bindings.isEmpty(datiGraficoDecessiCausa));
+        labelGraficoDecessiRegione.visibleProperty().bind(Bindings.isEmpty(datiGraficoDecessiRegione));
     }
 
     @FXML
@@ -75,8 +88,8 @@ public class GraficiController implements Initializable {
     }
 
     @FXML
-    private void annoDecessiSelected() {
-        Integer anno = chooseAnnoDecessiCombobox.getValue();
+    private void annoDecessiCausaSelected() {
+        Integer anno = chooseAnnoDecessiCausaCombobox.getValue();
         List<DecessiAnnuali> decessiAnnuali;
         if (anno == -1) {
             // Visualizza anni complessivi
@@ -86,11 +99,37 @@ public class GraficiController implements Initializable {
             decessiAnnuali = decessiAnnualiService.findByAnno(anno);
         }
         // Trasformo la lista nei dati del grafico
-        datiGraficoDecessiAnnuali.clear();
-        datiGraficoDecessiAnnuali.add(new PieChart.Data("Incidenti stradali", decessiAnnuali.stream().mapToInt(DecessiAnnuali::getIncidentiStradali).sum()));
-        datiGraficoDecessiAnnuali.add(new PieChart.Data("Malattie tumorali", decessiAnnuali.stream().mapToInt(DecessiAnnuali::getMalattieTumorali).sum()));
-        datiGraficoDecessiAnnuali.add(new PieChart.Data("Malattie cardiovascolari", decessiAnnuali.stream().mapToInt(DecessiAnnuali::getMalattieCardiovascolari).sum()));
-        datiGraficoDecessiAnnuali.add(new PieChart.Data("Malattie contagiose", decessiAnnuali.stream().mapToInt(DecessiAnnuali::getMalattieContagiose).sum()));
+        datiGraficoDecessiCausa.clear();
+        datiGraficoDecessiCausa.add(new PieChart.Data("Incidenti stradali", decessiAnnuali.stream().mapToInt(DecessiAnnuali::getIncidentiStradali).sum()));
+        datiGraficoDecessiCausa.add(new PieChart.Data("Malattie tumorali", decessiAnnuali.stream().mapToInt(DecessiAnnuali::getMalattieTumorali).sum()));
+        datiGraficoDecessiCausa.add(new PieChart.Data("Malattie cardiovascolari", decessiAnnuali.stream().mapToInt(DecessiAnnuali::getMalattieCardiovascolari).sum()));
+        datiGraficoDecessiCausa.add(new PieChart.Data("Malattie contagiose", decessiAnnuali.stream().mapToInt(DecessiAnnuali::getMalattieContagiose).sum()));
+    }
+
+    @FXML
+    private void annoDecessiRegioneSelected() {
+        RegioneService rs = new RegioneService();
+        List<Regione> regioni = rs.findAll();
+        Integer anno = chooseAnnoDecessiRegioneCombobox.getValue();
+        List<DecessiAnnuali> decessiAnnuali;
+        if (anno == -1) {
+            // Visualizza anni complessivi
+            decessiAnnuali = decessiAnnualiService.findAll();
+        } else {
+            // Visualizza anno selezionato
+            decessiAnnuali = decessiAnnualiService.findByAnno(anno);
+        }
+        // Trasformo la lista nei dati del grafico
+        datiGraficoDecessiRegione.clear();
+        for (Regione r : regioni) {
+            int decPerRegione = decessiAnnuali.stream().
+                    filter(d -> d.getProvincia().getRegione().equals(r)).
+                    mapToInt(d -> d.getIncidentiStradali() + d.getMalattieCardiovascolari() + d.getMalattieContagiose() + d.getMalattieTumorali())
+                    .sum();
+            if (decPerRegione > 0) {
+                datiGraficoDecessiRegione.add(new PieChart.Data(r.getNome(), decPerRegione));
+            }
+        }
     }
 
     @FXML
@@ -105,21 +144,21 @@ public class GraficiController implements Initializable {
             malattieSettimanali = malattieSettimanaliService.findByAnno(anno);
         }
         // Trasformo la lista nei dati del grafico
-        datiGraficoMalattieSettimanali.clear();
-        datiGraficoMalattieSettimanali.add(new PieChart.Data("ricoverati influenza", malattieSettimanali.stream().mapToInt(MalattieSettimanali::getRicoveratiInfluenza).sum()));
-        datiGraficoMalattieSettimanali.add(new PieChart.Data("in cura influenza", malattieSettimanali.stream().mapToInt(MalattieSettimanali::getInCuraInfluenza).sum()));
-        datiGraficoMalattieSettimanali.add(new PieChart.Data("ricoverati polmonite", malattieSettimanali.stream().mapToInt(MalattieSettimanali::getRicoveratiPolmonite).sum()));
-        datiGraficoMalattieSettimanali.add(new PieChart.Data("in cura polmonite", malattieSettimanali.stream().mapToInt(MalattieSettimanali::getInCuraPolmonite).sum()));
-        datiGraficoMalattieSettimanali.add(new PieChart.Data("ricoverati meningite", malattieSettimanali.stream().mapToInt(MalattieSettimanali::getRicoveratiMeningite).sum()));
-        datiGraficoMalattieSettimanali.add(new PieChart.Data("in cura meningite", malattieSettimanali.stream().mapToInt(MalattieSettimanali::getInCuraMeningite).sum()));
-        datiGraficoMalattieSettimanali.add(new PieChart.Data("ricoverati epatite", malattieSettimanali.stream().mapToInt(MalattieSettimanali::getRicoveratiEpatite).sum()));
-        datiGraficoMalattieSettimanali.add(new PieChart.Data("in cura epatite", malattieSettimanali.stream().mapToInt(MalattieSettimanali::getInCuraEpatite).sum()));
-        datiGraficoMalattieSettimanali.add(new PieChart.Data("ricoverati morbillo", malattieSettimanali.stream().mapToInt(MalattieSettimanali::getRicoveratiMorbillo).sum()));
-        datiGraficoMalattieSettimanali.add(new PieChart.Data("in cura morbillo", malattieSettimanali.stream().mapToInt(MalattieSettimanali::getInCuraMorbillo).sum()));
-        datiGraficoMalattieSettimanali.add(new PieChart.Data("ricoverati tubercolosi", malattieSettimanali.stream().mapToInt(MalattieSettimanali::getRicoveratiTubercolosi).sum()));
-        datiGraficoMalattieSettimanali.add(new PieChart.Data("in cura tubercolosi", malattieSettimanali.stream().mapToInt(MalattieSettimanali::getInCuraTubercolosi).sum()));
-        datiGraficoMalattieSettimanali.add(new PieChart.Data("ricoverati gastroenterite", malattieSettimanali.stream().mapToInt(MalattieSettimanali::getRicoveratiGastroenterite).sum()));
-        datiGraficoMalattieSettimanali.add(new PieChart.Data("in cura gastroenterite", malattieSettimanali.stream().mapToInt(MalattieSettimanali::getInCuraGastroenterite).sum()));
+        datiGraficoMalattieSettimanali.getData().clear();
+        datiGraficoMalattieSettimanali.getData().add(new XYChart.Data<>("ricoverati influenza", malattieSettimanali.stream().mapToInt(MalattieSettimanali::getRicoveratiInfluenza).sum()));
+        datiGraficoMalattieSettimanali.getData().add(new XYChart.Data<>("in cura influenza", malattieSettimanali.stream().mapToInt(MalattieSettimanali::getInCuraInfluenza).sum()));
+        datiGraficoMalattieSettimanali.getData().add(new XYChart.Data<>("ricoverati polmonite", malattieSettimanali.stream().mapToInt(MalattieSettimanali::getRicoveratiPolmonite).sum()));
+        datiGraficoMalattieSettimanali.getData().add(new XYChart.Data<>("in cura polmonite", malattieSettimanali.stream().mapToInt(MalattieSettimanali::getInCuraPolmonite).sum()));
+        datiGraficoMalattieSettimanali.getData().add(new XYChart.Data<>("ricoverati meningite", malattieSettimanali.stream().mapToInt(MalattieSettimanali::getRicoveratiMeningite).sum()));
+        datiGraficoMalattieSettimanali.getData().add(new XYChart.Data<>("in cura meningite", malattieSettimanali.stream().mapToInt(MalattieSettimanali::getInCuraMeningite).sum()));
+        datiGraficoMalattieSettimanali.getData().add(new XYChart.Data<>("ricoverati epatite", malattieSettimanali.stream().mapToInt(MalattieSettimanali::getRicoveratiEpatite).sum()));
+        datiGraficoMalattieSettimanali.getData().add(new XYChart.Data<>("in cura epatite", malattieSettimanali.stream().mapToInt(MalattieSettimanali::getInCuraEpatite).sum()));
+        datiGraficoMalattieSettimanali.getData().add(new XYChart.Data<>("ricoverati morbillo", malattieSettimanali.stream().mapToInt(MalattieSettimanali::getRicoveratiMorbillo).sum()));
+        datiGraficoMalattieSettimanali.getData().add(new XYChart.Data<>("in cura morbillo", malattieSettimanali.stream().mapToInt(MalattieSettimanali::getInCuraMorbillo).sum()));
+        datiGraficoMalattieSettimanali.getData().add(new XYChart.Data<>("ricoverati tubercolosi", malattieSettimanali.stream().mapToInt(MalattieSettimanali::getRicoveratiTubercolosi).sum()));
+        datiGraficoMalattieSettimanali.getData().add(new XYChart.Data<>("in cura tubercolosi", malattieSettimanali.stream().mapToInt(MalattieSettimanali::getInCuraTubercolosi).sum()));
+        datiGraficoMalattieSettimanali.getData().add(new XYChart.Data<>("ricoverati gastroenterite", malattieSettimanali.stream().mapToInt(MalattieSettimanali::getRicoveratiGastroenterite).sum()));
+        datiGraficoMalattieSettimanali.getData().add(new XYChart.Data<>("in cura gastroenterite", malattieSettimanali.stream().mapToInt(MalattieSettimanali::getInCuraGastroenterite).sum()));
     }
 
     // Convertitore anno in stringa per combobox

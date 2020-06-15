@@ -1,46 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.chart.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
 <BorderPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1"
             xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.jgg.controlloEpidemia.view.GraficiController">
-    <top>
-        <GridPane BorderPane.alignment="TOP_LEFT">
-            <BorderPane.margin>
-                <Insets left="5.0" top="5.0"/>
-            </BorderPane.margin>
-            <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="407.80003967285154" minWidth="10.0"
-                                   prefWidth="123.8000244140625"/>
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="712.7999816894531" minWidth="10.0"
-                                   prefWidth="671.1999755859375"/>
-            </columnConstraints>
-            <rowConstraints>
-                <RowConstraints minHeight="10.0" vgrow="SOMETIMES"/>
-            </rowConstraints>
-            <Button mnemonicParsing="false" onAction="#onHomePageButtonClicked" text="Homepage"/>
-            <Label text="Visualizzazione grafici sui dati acquisiti" GridPane.columnIndex="1">
-                <font>
-                    <Font size="23.0"/>
-                </font>
-            </Label>
-        </GridPane>
-    </top>
     <center>
-        <ScrollPane fitToWidth="true" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-            <BorderPane.margin>
-                <Insets left="50.0" right="50.0" top="10.0"/>
-            </BorderPane.margin>
-            <VBox alignment="TOP_CENTER">
-                <HBox alignment="CENTER" fillHeight="false" VBox.vgrow="ALWAYS">
-                    <ComboBox fx:id="chooseAnnoDecessiCombobox" onAction="#annoDecessiSelected" prefWidth="150.0"
-                              promptText="Anno da visualizzare"/>
+        <ScrollPane fitToWidth="true" prefHeight="490.0" prefWidth="699.0">
+            <VBox alignment="TOP_CENTER" spacing="10.0">
+                <Label text="Visualizzazione grafici" textFill="RED">
+                    <font>
+                        <Font size="20.0"/>
+                    </font>
+                    <VBox.margin>
+                        <Insets/>
+                    </VBox.margin>
+                </Label>
+                <Separator prefWidth="200.0"/>
+                <HBox alignment="CENTER" fillHeight="false">
+                    <ComboBox fx:id="chooseAnnoDecessiRegioneCombobox" onAction="#annoDecessiRegioneSelected"
+                              prefWidth="150.0" promptText="Anno da visualizzare"/>
                     <StackPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="500.0">
-                        <PieChart fx:id="graficoDecessiAnnuali" title="Grafico decessi annuali per anno"/>
-                        <Label fx:id="labelGraficoDecessiAnnuali" text="Seleziona un anno per visualizzare il grafico"
+                        <PieChart fx:id="graficoDecessiRegione" labelLineLength="25.0" legendVisible="false"
+                                  title="Grafico decessi annuali per regione"/>
+                        <Label fx:id="labelGraficoDecessiRegione"
+                               text="Seleziona un anno per visualizzare il grafico" textFill="RED">
+                            <font>
+                                <Font name="System Italic" size="15.0"/>
+                            </font>
+                        </Label>
+                    </StackPane>
+                </HBox>
+                <Separator prefWidth="200.0"/>
+                <HBox alignment="CENTER" fillHeight="false" VBox.vgrow="ALWAYS">
+                    <ComboBox fx:id="chooseAnnoDecessiCausaCombobox" onAction="#annoDecessiCausaSelected"
+                              prefWidth="150.0" promptText="Anno da visualizzare"/>
+                    <StackPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="500.0">
+                        <PieChart fx:id="graficoDecessiCausa" title="Grafico decessi annuali per causa"/>
+                        <Label fx:id="labelGraficoDecessiCausa" text="Seleziona un anno per visualizzare il grafico"
                                textFill="RED">
                             <font>
                                 <Font name="System Italic" size="15.0"/>
@@ -52,19 +51,28 @@
                 <HBox alignment="CENTER">
                     <ComboBox fx:id="chooseAnnoMalattieCombobox" onAction="#annoMalattieSelected" prefWidth="150.0"
                               promptText="Anno da visualizzare"/>
-                    <StackPane prefHeight="150.0" prefWidth="200.0">
-                        <PieChart fx:id="graficoMalattieSettimanali" legendVisible="false" minHeight="-Infinity"
-                                  minWidth="-Infinity" prefHeight="400.0" prefWidth="500.0"
-                                  title="Grafico malattie settimanali per anno"/>
-                        <Label fx:id="labelGraficoMalattieSettimanali"
-                               text="Seleziona un anno per visualizzare il grafico" textFill="RED">
-                            <font>
-                                <Font name="System Italic" size="15.0"/>
-                            </font>
-                        </Label>
-                    </StackPane>
+                    <BarChart fx:id="graficoMalattieSettimanali" legendVisible="false" minHeight="-Infinity"
+                              minWidth="-Infinity" prefHeight="400.0" prefWidth="500.0"
+                              title="Grafico malattie settimanali per anno">
+                        <xAxis>
+                            <CategoryAxis animated="false" side="BOTTOM"/>
+                        </xAxis>
+                        <yAxis>
+                            <NumberAxis side="LEFT"/>
+                        </yAxis>
+                    </BarChart>
                 </HBox>
+                <padding>
+                    <Insets top="5.0"/>
+                </padding>
             </VBox>
         </ScrollPane>
     </center>
+    <top>
+        <MenuBar BorderPane.alignment="CENTER">
+            <Menu mnemonicParsing="false" text="Naviga">
+                <MenuItem mnemonicParsing="false" onAction="#onHomePageButtonClicked" text="Homepage"/>
+            </Menu>
+        </MenuBar>
+    </top>
 </BorderPane>
