@@ -69,7 +69,6 @@ public class TipoTerritorioDao implements TipoTerritorioDaoInterface {
         return tipoTerritorio;
     }
 
-
     @Override
     @SuppressWarnings("unchecked")
     public List<TipoTerritorio> findAll() {
@@ -78,4 +77,5 @@ public class TipoTerritorioDao implements TipoTerritorioDaoInterface {
         session.closeCurrentSession();
         return tipoTerritorio;
     }
+
 }

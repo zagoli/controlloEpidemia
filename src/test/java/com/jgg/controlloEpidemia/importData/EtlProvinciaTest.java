@@ -19,7 +19,7 @@ public class EtlProvinciaTest {
         new EtlProvincia().load("src\\test\\resources\\csvToLoadTest\\provincia.csv");
 
         List<Provincia> provinciaList = new ProvinciaService().findAll();
-        assertEquals(provinciaList.size(), 8);
+        assertEquals(8,provinciaList.size());
     }
 
 }

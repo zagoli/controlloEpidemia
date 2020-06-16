@@ -28,7 +28,7 @@ public class ProvinciaServiceTest {
         assertEquals(provincia, findProvincia);
         //Cerco tutti  i model
         List<Provincia> provinciaList = provinciaService.findAll();
-        assertEquals(provinciaList.size(), 10);
+        assertEquals(10, provinciaList.size());
         //Aggiorno i model
         provincia.setSuperficie(198);
         provinciaService.update(provincia);
@@ -42,6 +42,6 @@ public class ProvinciaServiceTest {
         provincia = provinciaService.findById(provincia.getId());
         assertNull(provincia);
         provinciaList = provinciaService.findAll();
-        assertEquals(provinciaList.size(), 8);
+        assertEquals(8, provinciaList.size());
     }
 }

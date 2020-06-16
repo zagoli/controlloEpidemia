@@ -36,8 +36,7 @@ public class LoginPageController implements Initializable {
         loginButton.disableProperty().bind(
                 Bindings.or(
                         usernameField.textProperty().isEmpty(),
-                        passwordField.textProperty().isEmpty()
-                )
+                        passwordField.textProperty().isEmpty())
         );
     }
 
@@ -81,4 +80,5 @@ public class LoginPageController implements Initializable {
         st.setAutoReverse(true);
         st.play();
     }
+
 }

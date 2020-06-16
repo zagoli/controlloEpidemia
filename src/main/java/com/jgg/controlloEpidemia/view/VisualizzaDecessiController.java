@@ -10,7 +10,10 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.TableCell;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.io.IOException;
@@ -21,48 +24,25 @@ import java.util.ResourceBundle;
 
 public class VisualizzaDecessiController implements Initializable {
 
-
-    @FXML
-    private TabPane decessiAnnualiTabPane;
-
-    @FXML
-    private Tab decessiAnnualiVisualizzazioneTab;
+    private final DecessiAnnualiService decessiAnnualiService = new DecessiAnnualiService();
+    private final RegioneService regioneService = new RegioneService();
 
     @FXML
     private TableView<DecessiAnnuali> decessiTableView;
-
     @FXML
-    private TableColumn<DecessiAnnuali,Integer> decessiIdColumn;
-
+    private TableColumn<DecessiAnnuali, Integer> decessiIdColumn;
     @FXML
     private TableColumn<DecessiAnnuali, Provincia> decessiProvinciaColumn;
-
     @FXML
-    private TableColumn<DecessiAnnuali,Integer> decessiAnnoColumn;
-
+    private TableColumn<DecessiAnnuali, Integer> decessiAnnoColumn;
     @FXML
-    private TableColumn<DecessiAnnuali,Integer> decessiIncidentiStradaliColumn;
-
+    private TableColumn<DecessiAnnuali, Integer> decessiIncidentiStradaliColumn;
     @FXML
-    private TableColumn<DecessiAnnuali,Integer> decessiMalattieTumoraliColumn;
-
+    private TableColumn<DecessiAnnuali, Integer> decessiMalattieTumoraliColumn;
     @FXML
-    private TableColumn<DecessiAnnuali,Integer> decessiMalattieCardiovascolariColumn;
-
+    private TableColumn<DecessiAnnuali, Integer> decessiMalattieCardiovascolariColumn;
     @FXML
-    private TableColumn<DecessiAnnuali,Integer> decessiMalattieContagioseColumn;
-
-    @FXML
-    private Button visualizzaDecessiAggregaPerRegioneButton;
-
-    @FXML
-    private Button visualizzaDecessiVisualizzaDatiButton;
-
-    private final DecessiAnnualiService decessiAnnualiService = new DecessiAnnualiService();
-
-    private final RegioneService regioneService = new RegioneService();
-
-
+    private TableColumn<DecessiAnnuali, Integer> decessiMalattieContagioseColumn;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -75,24 +55,21 @@ public class VisualizzaDecessiController implements Initializable {
                 super.updateItem(provincia, empty);
                 if (empty || provincia == null) {
                     setText("");
-                }
-            else {
+                } else {
                     setText(provincia.getNome());
-                 }
                 }
-            });
+            }
+        });
         decessiIncidentiStradaliColumn.setCellValueFactory(new PropertyValueFactory<>("incidentiStradali"));
         decessiMalattieTumoraliColumn.setCellValueFactory(new PropertyValueFactory<>("malattieTumorali"));
         decessiMalattieContagioseColumn.setCellValueFactory(new PropertyValueFactory<>("malattieContagiose"));
         decessiMalattieCardiovascolariColumn.setCellValueFactory(new PropertyValueFactory<>("malattieCardiovascolari"));
         updateListVisualizzaDati();
-
     }
 
-
     @FXML
-    private void visualizzaDecessiAggregaPerRegioneButtonOnClicked(){
-
+    private void visualizzaDecessiAggregaPerRegioneButtonOnClicked() {
+        decessiProvinciaColumn.setText("REGIONE");
         decessiTableView.getItems().clear();
         decessiProvinciaColumn.setCellFactory(column -> new TableCell<>() {
             @Override
@@ -100,86 +77,73 @@ public class VisualizzaDecessiController implements Initializable {
                 super.updateItem(provincia, empty);
                 if (empty || provincia == null) {
                     setText("");
-                }
-                else {
+                } else {
                     setText(provincia.getRegione().getNome());
                 }
             }
         });
-
-
-        decessiProvinciaColumn.setText("REGIONE");
         List<Regione> regioniList = regioneService.findAll();
         List<DecessiAnnuali> decessiAnnualiList = decessiAnnualiService.findAll();
         List<Integer> anniList = new ArrayList<>();
-
-        Provincia p;
-        Integer incidenti;
-        Integer tumorali;
-        Integer cardiovascolari;
-        Integer contagiose;
-        Integer id=0;
-        Integer incidentiNazionale;
-        Integer tumoraliNazionale;
-        Integer cardiovascolariNazionale;
-        Integer contagioseNazionale;
-
-        Regione rF = new Regione(777,"Nazionale",0,"999999");
-        Provincia pF = new Provincia("Provincia",0,"999999", rF);
-
-
-        for(DecessiAnnuali d : decessiAnnualiList){
-            if(!anniList.contains(d.getAnno())){
-                anniList.add(d.getAnno());
+        Provincia provincia;
+        Integer incidenti,
+                tumorali,
+                cardiovascolari,
+                contagiose,
+                incidentiNazionale,
+                tumoraliNazionale,
+                cardiovascolariNazionale,
+                contagioseNazionale,
+                id = 0;
+        Regione regioneNazionale = new Regione(777, "Nazionale", 0, "999999");
+        Provincia provinciaNazionale = new Provincia("Provincia", 0, "999999", regioneNazionale);
+        for (DecessiAnnuali decessiAnnuali : decessiAnnualiList) {
+            if (!anniList.contains(decessiAnnuali.getAnno())) {
+                anniList.add(decessiAnnuali.getAnno());
             }
         }
-
-        for(Integer anno: anniList){
-            incidentiNazionale=0;
-            tumoraliNazionale=0;
-            cardiovascolariNazionale=0;
-            contagioseNazionale=0;
-            for (Regione r: regioniList){
-                incidenti=0;
-                tumorali=0;
-                cardiovascolari=0;
-                contagiose=0;
-                p=null;
+        for (Integer anno : anniList) {
+            incidentiNazionale = 0;
+            tumoraliNazionale = 0;
+            cardiovascolariNazionale = 0;
+            contagioseNazionale = 0;
+            for (Regione r : regioniList) {
+                incidenti = 0;
+                tumorali = 0;
+                cardiovascolari = 0;
+                contagiose = 0;
+                provincia = null;
                 id++;
-                for(DecessiAnnuali d: decessiAnnualiList){
-                    if(d.getProvincia().getRegione().getId().equals(r.getId()) && d.getAnno().equals(anno)){
-                        incidenti+=d.getIncidentiStradali();
-                        tumorali+=d.getMalattieTumorali();
-                        cardiovascolari+=d.getMalattieCardiovascolari();
-                        contagiose+=d.getMalattieContagiose();
-                        incidentiNazionale+=d.getIncidentiStradali();
-                        tumoraliNazionale+=d.getMalattieTumorali();
-                        cardiovascolariNazionale+=d.getMalattieCardiovascolari();
-                        contagioseNazionale+=d.getMalattieContagiose();
-                        p=d.getProvincia();
+                for (DecessiAnnuali decessiAnnuali : decessiAnnualiList) {
+                    if (decessiAnnuali.getProvincia().getRegione().getId().equals(r.getId()) && decessiAnnuali.getAnno().equals(anno)) {
+                        incidenti += decessiAnnuali.getIncidentiStradali();
+                        tumorali += decessiAnnuali.getMalattieTumorali();
+                        cardiovascolari += decessiAnnuali.getMalattieCardiovascolari();
+                        contagiose += decessiAnnuali.getMalattieContagiose();
+                        incidentiNazionale += decessiAnnuali.getIncidentiStradali();
+                        tumoraliNazionale += decessiAnnuali.getMalattieTumorali();
+                        cardiovascolariNazionale += decessiAnnuali.getMalattieCardiovascolari();
+                        contagioseNazionale += decessiAnnuali.getMalattieContagiose();
+                        provincia = decessiAnnuali.getProvincia();
                     }
                 }
-                if(p!=null){
-                    DecessiAnnuali decessiRegione = new DecessiAnnuali(id,anno,incidenti,tumorali,cardiovascolari,contagiose,p);
+                if (provincia != null) {
+                    DecessiAnnuali decessiRegione = new DecessiAnnuali(id, anno, incidenti, tumorali, cardiovascolari, contagiose, provincia);
                     decessiTableView.getItems().add(decessiRegione);
                 }
             }
             id++;
-            DecessiAnnuali decessiNazione = new DecessiAnnuali(id,anno,incidentiNazionale,tumoraliNazionale,cardiovascolariNazionale,contagioseNazionale,pF);
+            DecessiAnnuali decessiNazione = new DecessiAnnuali(id, anno, incidentiNazionale, tumoraliNazionale, cardiovascolariNazionale, contagioseNazionale, provinciaNazionale);
             decessiTableView.getItems().add(decessiNazione);
-
         }
-
-
-
     }
 
     @FXML
-    private void visualizzaDecessiVisualizzaDatiButtonOnClicked(){
-            updateListVisualizzaDati();
+    private void visualizzaDecessiVisualizzaDatiButtonOnClicked() {
+        updateListVisualizzaDati();
     }
 
-    private void updateListVisualizzaDati(){
+    private void updateListVisualizzaDati() {
         decessiProvinciaColumn.setText("PROVINCIA");
         decessiTableView.getItems().clear();
         decessiProvinciaColumn.setCellFactory(column -> new TableCell<>() {
@@ -188,25 +152,21 @@ public class VisualizzaDecessiController implements Initializable {
                 super.updateItem(provincia, empty);
                 if (empty || provincia == null) {
                     setText("");
-                }
-                else {
+                } else {
                     setText(provincia.getNome());
                 }
             }
         });
         List<DecessiAnnuali> decessiAnnualiList = decessiAnnualiService.findAll();
-        for(DecessiAnnuali d : decessiAnnualiList){
-            decessiTableView.getItems().add(d);
-
+        for (DecessiAnnuali decessiAnnuali : decessiAnnualiList) {
+            decessiTableView.getItems().add(decessiAnnuali);
         }
     }
-
 
     @FXML
     private void homepageButtonOnClicked(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/homePage.fxml"));
         ((Button) event.getSource()).getScene().setRoot(root);
     }
-
 
 }

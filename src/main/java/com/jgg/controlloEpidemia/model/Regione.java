@@ -45,4 +45,5 @@ public class Regione {
     @NotNull
     @NonNull
     private String capoluogo;
+
 }

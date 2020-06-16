@@ -33,4 +33,5 @@ public class EtlMalattie {
         }
         reader.close();
     }
+
 }

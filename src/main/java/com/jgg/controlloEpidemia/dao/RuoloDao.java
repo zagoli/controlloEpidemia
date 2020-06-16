@@ -79,4 +79,5 @@ public class RuoloDao implements RuoloDaoInterface {
         session.closeCurrentSession();
         return ruolo;
     }
+
 }

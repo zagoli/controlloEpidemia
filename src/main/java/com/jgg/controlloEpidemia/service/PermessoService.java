@@ -38,4 +38,5 @@ public class PermessoService {
     public List<Permesso> findAll() {
         return permessoDao.findAll();
     }
+
 }

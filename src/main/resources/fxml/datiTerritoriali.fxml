@@ -9,13 +9,13 @@
     <TabPane fx:id="datiTerritorialiTabPane" prefHeight="600.0" prefWidth="800.0" tabClosingPolicy="UNAVAILABLE">
         <Tab fx:id="visualizzazioneTab" text="Visualizzazione">
             <TabPane fx:id="visualizzazioneTabPane" prefHeight="800.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE">
-                <Tab fx:id="regioniTab" text="Regioni">
+                <Tab text="Regioni">
                     <Pane minHeight="0.0" minWidth="0.0" prefHeight="600.0" prefWidth="800.0">
                         <ListView fx:id="regioniListView" layoutX="25.0" layoutY="25.0" prefHeight="425.0"
                                   prefWidth="750.0"/>
                     </Pane>
                 </Tab>
-                <Tab fx:id="provinceVisualizzazioneTab" text="Province">
+                <Tab text="Province">
                     <Pane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                         <ListView fx:id="provinceListView" layoutX="25.0" layoutY="25.0" prefHeight="425.0"
                                   prefWidth="750.0"/>
@@ -41,7 +41,7 @@
                         </Label>
                     </Pane>
                 </Tab>
-                <Tab fx:id="comuniVisualizzazioneTab" text="Comuni">
+                <Tab text="Comuni">
                     <Pane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                         <ListView fx:id="comuniListView" layoutX="25.0" layoutY="25.0" prefHeight="425.0"
                                   prefWidth="750.0"/>
@@ -71,7 +71,7 @@
         </Tab>
         <Tab fx:id="inserimentoTab" text="Inserimento">
             <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE">
-                <Tab fx:id="provinciaInserimentoTab" text="Provincia">
+                <Tab text="Provincia">
                     <Pane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                         <TextField fx:id="idInserimentoProvinceTextField" layoutX="40.0" layoutY="60.0"
                                    prefHeight="30.0" prefWidth="100.0">
@@ -137,7 +137,7 @@
                                   prefHeight="25.0" prefWidth="200.0"/>
                     </Pane>
                 </Tab>
-                <Tab fx:id="comuneInserimentoTab" text="Comune">
+                <Tab text="Comune">
                     <Pane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                         <Label layoutX="40.0" layoutY="36.0" prefHeight="24.0" prefWidth="112.0" text="Codice Istat">
                             <font>

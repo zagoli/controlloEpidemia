@@ -19,4 +19,5 @@ public interface TipoTerritorioDaoInterface {
     TipoTerritorio findByNome(String nome);
 
     List<TipoTerritorio> findAll();
+
 }

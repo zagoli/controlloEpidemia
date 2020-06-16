@@ -93,4 +93,5 @@ public class UtenteDao implements UtenteDaoInterface {
         session.closeCurrentSession();
         return utenti;
     }
+
 }

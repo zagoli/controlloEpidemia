@@ -27,4 +27,5 @@ public class TipoTerritorio {
     @NonNull
     @Column(unique = true)
     private String nome;
+
 }

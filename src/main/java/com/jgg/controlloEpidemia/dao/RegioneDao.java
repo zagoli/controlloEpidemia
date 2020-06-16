@@ -81,4 +81,5 @@ public class RegioneDao implements RegioneDaoInterface {
         session.closeCurrentSession();
         return regione;
     }
+
 }

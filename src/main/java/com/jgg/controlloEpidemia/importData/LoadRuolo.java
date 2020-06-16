@@ -19,6 +19,6 @@ public class LoadRuolo {
         ruoloService.saveOrUpdate(r2);
         ruoloService.saveOrUpdate(r3);
         ruoloService.saveOrUpdate(r4);
-
     }
+
 }

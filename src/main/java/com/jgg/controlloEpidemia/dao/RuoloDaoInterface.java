@@ -19,4 +19,5 @@ public interface RuoloDaoInterface {
     Ruolo findByNome(String nome);
 
     List<Ruolo> findAll();
+
 }

@@ -19,4 +19,5 @@ public interface RegioneDaoInterface {
     Regione findByNome(String nome);
 
     List<Regione> findAll();
+
 }

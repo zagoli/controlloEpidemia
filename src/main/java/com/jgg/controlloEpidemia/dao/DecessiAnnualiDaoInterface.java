@@ -24,4 +24,5 @@ public interface DecessiAnnualiDaoInterface {
     List<DecessiAnnuali> findByAnno(Integer anno);
 
     List<Integer> findInsertedYears();
+
 }

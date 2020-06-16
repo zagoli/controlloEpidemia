@@ -93,5 +93,6 @@ public class ComuneDao implements ComuneDaoInterface {
         session.closeCurrentSession();
         return count;
     }
+
 }
 

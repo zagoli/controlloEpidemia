@@ -19,7 +19,7 @@ public class EtlRegioneTest {
         new EtlRegione().load("src\\test\\resources\\csvToLoadTest\\regione.csv");
 
         List<Regione> regioneList = new RegioneService().findAll();
-        assertEquals(regioneList.size(), 1);
+        assertEquals(1,regioneList.size());
     }
 
 }

@@ -19,4 +19,5 @@ public interface PermessoDaoInterface {
     Permesso findByNome(String nome);
 
     List<Permesso> findAll();
+
 }

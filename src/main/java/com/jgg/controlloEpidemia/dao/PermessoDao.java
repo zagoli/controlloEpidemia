@@ -80,4 +80,5 @@ public class PermessoDao implements PermessoDaoInterface {
         session.closeCurrentSession();
         return permesso;
     }
+
 }

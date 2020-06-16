@@ -21,4 +21,5 @@ public interface ComuneDaoInterface {
     List<Comune> findAll();
 
     Integer countComuni();
+
 }

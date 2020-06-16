@@ -30,6 +30,7 @@ public class AutorizzaComuniController implements Initializable {
     private final List<Comune> allComuniList = comuneService.findAll();
     private final ObservableList<Comune> allComuniObservableList = FXCollections.observableArrayList();
     private final ObservableList<Comune> authorizedComuniObservableList = FXCollections.observableArrayList();
+
     @FXML
     private ListView<Comune> allComuniListView;
     @FXML
@@ -82,13 +83,13 @@ public class AutorizzaComuniController implements Initializable {
 
     @FXML
     private void onSaveButtonClicked() {
-        Utente u = utenteComboBox.getValue();
-        if (u != null) {
+        Utente utente = utenteComboBox.getValue();
+        if (utente != null) {
             List<Comune> toAuthorizeComuni = authorizedComuniListView.getItems();
-            u.getComuni().clear();
-            u.getComuni().addAll(toAuthorizeComuni);
+            utente.getComuni().clear();
+            utente.getComuni().addAll(toAuthorizeComuni);
             UtenteService utenteService = new UtenteService();
-            utenteService.update(u);
+            utenteService.update(utente);
             FadeTransition transition = new FadeTransition(Duration.millis(500), savedLabel);
             transition.setFromValue(0);
             transition.setByValue(1);

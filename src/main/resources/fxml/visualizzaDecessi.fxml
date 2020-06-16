@@ -4,8 +4,8 @@
 <?import javafx.scene.layout.*?>
 
 <Pane layoutY="32.0" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.jgg.controlloEpidemia.view.VisualizzaDecessiController">
-    <TabPane fx:id="decessiAnnualiTabPane" prefHeight="600.0" prefWidth="800.0" tabClosingPolicy="UNAVAILABLE">
-        <Tab fx:id="decessiAnnualiVisualizzazioneTab" text="Visualizzazione">
+    <TabPane prefHeight="600.0" prefWidth="800.0" tabClosingPolicy="UNAVAILABLE">
+        <Tab text="Visualizzazione">
             <Pane minHeight="0.0" minWidth="0.0" prefHeight="600.0" prefWidth="800.0">
                 <TableView fx:id="decessiTableView" layoutX="14.0" layoutY="14.0" prefHeight="450.0" prefWidth="750.0">
                     <columns>
@@ -18,8 +18,8 @@
                         <TableColumn fx:id="decessiMalattieContagioseColumn" minWidth="3.199951171875" prefWidth="152.60003662109375" text="MALATTIE CONTAGIOSE" />
                     </columns>
                 </TableView>
-            <Button fx:id="visualizzaDecessiVisualizzaDatiButton" layoutX="189.0" layoutY="501.0" mnemonicParsing="false" onAction="#visualizzaDecessiVisualizzaDatiButtonOnClicked" text="VISUALIZZA DATI" />
-            <Button fx:id="visualizzaDecessiAggregaPerRegioneButton" layoutX="500.0" layoutY="501.0" mnemonicParsing="false" onAction="#visualizzaDecessiAggregaPerRegioneButtonOnClicked" text="AGGREGA PER REGIONE" />
+            <Button layoutX="189.0" layoutY="501.0" mnemonicParsing="false" onAction="#visualizzaDecessiVisualizzaDatiButtonOnClicked" text="VISUALIZZA DATI" />
+            <Button layoutX="500.0" layoutY="501.0" mnemonicParsing="false" onAction="#visualizzaDecessiAggregaPerRegioneButtonOnClicked" text="AGGREGA PER REGIONE" />
             </Pane>
         </Tab>
 

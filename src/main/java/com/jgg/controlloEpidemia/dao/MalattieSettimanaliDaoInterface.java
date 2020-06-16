@@ -24,4 +24,5 @@ public interface MalattieSettimanaliDaoInterface {
     List<MalattieSettimanali> findByAnno(Integer anno);
 
     List<Integer> findInsertedYears();
+
 }

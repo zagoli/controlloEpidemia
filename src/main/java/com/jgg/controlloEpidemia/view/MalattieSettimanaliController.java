@@ -26,6 +26,7 @@ public class MalattieSettimanaliController implements Initializable {
 
     private final ComuneService comuneService = new ComuneService();
     private final MalattieSettimanaliService malattieSettimanaliService = new MalattieSettimanaliService();
+
     @FXML
     private Label noDataSelectedLabel;
     @FXML
@@ -114,20 +115,20 @@ public class MalattieSettimanaliController implements Initializable {
     private Button malattieSettimanaliInserisciButton;
     @FXML
     private Button malattieSettimanaliModificaButton;
+
     private int selectedId;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         malattieSettimanaliModificaTab.setDisable(true);
         List<Comune> comuneList = comuneService.findAll();
-        for (Comune c : comuneList) {
-            comuneInserimentoComboBox.getItems().add(c.getNome());
-            comuneModificaComboBox.getItems().add(c.getNome());
+        for (Comune comune : comuneList) {
+            comuneInserimentoComboBox.getItems().add(comune.getNome());
+            comuneModificaComboBox.getItems().add(comune.getNome());
         }
         updateList();
         noDataSelectedLabel.setVisible(false);
         idMalattieSettimanaliListView.getSelectionModel().select(0);
-
         malattieSettimanaliInserisciButton.disableProperty().bind(
                 Bindings.isEmpty(annoInserimentoTextField.textProperty())
                         .or(Bindings.isEmpty(settimanaInserimentoTextField.textProperty()))
@@ -168,8 +169,6 @@ public class MalattieSettimanaliController implements Initializable {
                         .or(Bindings.isEmpty(inCuraConGastroenteriteModificaTextField.textProperty()))
                         .or(comuneModificaComboBox.valueProperty().isNull())
         );
-
-
     }
 
     @FXML
@@ -182,27 +181,27 @@ public class MalattieSettimanaliController implements Initializable {
         idMalattieSettimanaliListView.getItems().clear();
         List<MalattieSettimanali> malattieSettimanaliList = malattieSettimanaliService.findAll();
         idMalattieSettimanaliListView.getItems().add("ID  COMUNE  ANNO  SETTIMANA  R.INFLUENZA  C.INFLUENZA  CP.RESPIRATORIE  R.POLMONITE  C.POLMONITE  R.MENINGITE  C.MENINGITE  R.EPATITE  C.EPATITE  R.MORBILLO  C.MORBILLO  R.TUBERCOLOSI  C.TUBERCOLOSI  R.GASTROENTERITE  C.GASTROENTERITE");
-        for (MalattieSettimanali m : malattieSettimanaliList) {
+        for (MalattieSettimanali malattieSettimanali : malattieSettimanaliList) {
             idMalattieSettimanaliListView.getItems().add(
-                    m.getId()
-                            + "  " + m.getComune().getNome()
-                            + "  " + m.getAnno()
-                            + "  " + m.getSettimana()
-                            + "  " + m.getRicoveratiInfluenza()
-                            + "  " + m.getInCuraInfluenza()
-                            + "  " + m.getComplicanzeRespiratorie()
-                            + "  " + m.getRicoveratiPolmonite()
-                            + "  " + m.getInCuraPolmonite()
-                            + "  " + m.getRicoveratiMeningite()
-                            + "  " + m.getInCuraMeningite()
-                            + "  " + m.getRicoveratiEpatite()
-                            + "  " + m.getInCuraEpatite()
-                            + "  " + m.getRicoveratiMorbillo()
-                            + "  " + m.getInCuraMorbillo()
-                            + "  " + m.getRicoveratiTubercolosi()
-                            + "  " + m.getInCuraTubercolosi()
-                            + "  " + m.getRicoveratiGastroenterite()
-                            + "  " + m.getInCuraGastroenterite());
+                    malattieSettimanali.getId()
+                            + "  " + malattieSettimanali.getComune().getNome()
+                            + "  " + malattieSettimanali.getAnno()
+                            + "  " + malattieSettimanali.getSettimana()
+                            + "  " + malattieSettimanali.getRicoveratiInfluenza()
+                            + "  " + malattieSettimanali.getInCuraInfluenza()
+                            + "  " + malattieSettimanali.getComplicanzeRespiratorie()
+                            + "  " + malattieSettimanali.getRicoveratiPolmonite()
+                            + "  " + malattieSettimanali.getInCuraPolmonite()
+                            + "  " + malattieSettimanali.getRicoveratiMeningite()
+                            + "  " + malattieSettimanali.getInCuraMeningite()
+                            + "  " + malattieSettimanali.getRicoveratiEpatite()
+                            + "  " + malattieSettimanali.getInCuraEpatite()
+                            + "  " + malattieSettimanali.getRicoveratiMorbillo()
+                            + "  " + malattieSettimanali.getInCuraMorbillo()
+                            + "  " + malattieSettimanali.getRicoveratiTubercolosi()
+                            + "  " + malattieSettimanali.getInCuraTubercolosi()
+                            + "  " + malattieSettimanali.getRicoveratiGastroenterite()
+                            + "  " + malattieSettimanali.getInCuraGastroenterite());
         }
         noDataSelectedLabel.setVisible(false);
     }

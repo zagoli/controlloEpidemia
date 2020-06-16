@@ -66,8 +66,6 @@ public class HomePageController implements Initializable {
             prepareButton(vediDecessiButton);
             mainPanel.getChildren().add(vediDecessiButton);
         }
-
-
     }
 
     @FXML

@@ -19,7 +19,7 @@ public class EtlComuneTest {
         new EtlComune().load("src\\test\\resources\\csvToLoadTest\\comune.csv");
 
         List<Comune> comuneList = new ComuneService().findAll();
-        assertEquals(comuneList.size(), 50);
+        assertEquals(50, comuneList.size());
     }
 
 }

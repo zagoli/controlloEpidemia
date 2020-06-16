@@ -38,4 +38,5 @@ public class RegioneService {
     public List<Regione> findAll() {
         return regioneDao.findAll();
     }
+
 }

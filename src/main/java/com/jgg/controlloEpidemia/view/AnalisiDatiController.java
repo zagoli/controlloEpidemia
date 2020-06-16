@@ -1,6 +1,5 @@
 package com.jgg.controlloEpidemia.view;
 
-import com.jgg.controlloEpidemia.model.MalattieSettimanali;
 import com.jgg.controlloEpidemia.service.MalattieSettimanaliService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -14,7 +13,6 @@ import javafx.scene.control.TabPane;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.List;
 import java.util.ResourceBundle;
 
 public class AnalisiDatiController implements Initializable {
@@ -46,6 +44,5 @@ public class AnalisiDatiController implements Initializable {
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/homePage.fxml"));
         ((Button) event.getSource()).getScene().setRoot(root);
     }
-
 
 }

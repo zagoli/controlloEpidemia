@@ -26,6 +26,7 @@ public class DecessiAnnualiController implements Initializable {
 
     private final ProvinciaService provinciaService = new ProvinciaService();
     private final DecessiAnnualiService decessiAnnualiService = new DecessiAnnualiService();
+
     @FXML
     private Button decessiAnnualiInserisciButton;
     @FXML
@@ -66,15 +67,16 @@ public class DecessiAnnualiController implements Initializable {
     private TextField malattieContagioseModificaTextField;
     @FXML
     private ComboBox<String> provinciaModificaComboBox;
+
     private int selectedId;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         decessiAnnualiModificaTab.setDisable(true);
         List<Provincia> provinciaList = provinciaService.findAll();
-        for (Provincia p : provinciaList) {
-            provinciaInserimentoComboBox.getItems().add(p.getNome());
-            provinciaModificaComboBox.getItems().add(p.getNome());
+        for (Provincia provincia : provinciaList) {
+            provinciaInserimentoComboBox.getItems().add(provincia.getNome());
+            provinciaModificaComboBox.getItems().add(provincia.getNome());
         }
         updateList();
         noDataSelectedLabel.setVisible(false);
@@ -96,8 +98,6 @@ public class DecessiAnnualiController implements Initializable {
                         .or(Bindings.isEmpty(malattieContagioseModificaTextField.textProperty()))
                         .or(provinciaModificaComboBox.valueProperty().isNull())
         );
-
-
     }
 
     @FXML
@@ -110,15 +110,15 @@ public class DecessiAnnualiController implements Initializable {
         decessiAnnualiListView.getItems().clear();
         List<DecessiAnnuali> decessiAnnualiList = decessiAnnualiService.findAll();
         decessiAnnualiListView.getItems().add("ID ANNO INCIDENTI STRADALI MALATTIE TUMORALI MALATTIE CARDIOVSCOLARI MALATTIE CONTAGIOSE PROVINCIA");
-        for (DecessiAnnuali d : decessiAnnualiList) {
+        for (DecessiAnnuali decessiAnnuali : decessiAnnualiList) {
             decessiAnnualiListView.getItems().add(
-                    d.getId()
-                            + "  " + d.getAnno()
-                            + "  " + d.getIncidentiStradali()
-                            + "  " + d.getMalattieTumorali()
-                            + "  " + d.getMalattieCardiovascolari()
-                            + "  " + d.getMalattieContagiose()
-                            + "  " + d.getProvincia().getNome());
+                    decessiAnnuali.getId()
+                            + "  " + decessiAnnuali.getAnno()
+                            + "  " + decessiAnnuali.getIncidentiStradali()
+                            + "  " + decessiAnnuali.getMalattieTumorali()
+                            + "  " + decessiAnnuali.getMalattieCardiovascolari()
+                            + "  " + decessiAnnuali.getMalattieContagiose()
+                            + "  " + decessiAnnuali.getProvincia().getNome());
         }
         noDataSelectedLabel.setVisible(false);
     }

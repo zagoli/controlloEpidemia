@@ -24,7 +24,7 @@ public class PermessoServiceTest {
         assertEquals(permesso, findRuolo);
         //Cerco tutti  i model
         List<Permesso> permessoList = permessoService.findAll();
-        assertEquals(permessoList.size(), 3);
+        assertEquals(3, permessoList.size());
         //Aggiorno i model
         permesso.setNome("Aggiornamento utenti");
         permessoService.update(permesso);
@@ -39,6 +39,6 @@ public class PermessoServiceTest {
         permesso2 = permessoService.findByNome(permesso2.getNome());
         assertNull(permesso2);
         permessoList = permessoService.findAll();
-        assertEquals(permessoList.size(), 1);
+        assertEquals(1, permessoList.size());
     }
 }

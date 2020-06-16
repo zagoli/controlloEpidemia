@@ -25,7 +25,7 @@ public class RuoloServiceTest {
         assertEquals(ruolo, findRuolo);
         //Cerco tutti  i model
         List<Ruolo> ruoloList = ruoloService.findAll();
-        assertEquals(ruoloList.size(), 6);
+        assertEquals(6, ruoloList.size());
         //Aggiorno i model
         ruolo.setNome("Collinare");
         ruoloService.update(ruolo);
@@ -38,6 +38,6 @@ public class RuoloServiceTest {
         ruolo = ruoloService.findById(ruolo.getId());
         assertNull(ruolo);
         ruoloList = ruoloService.findAll();
-        assertEquals(ruoloList.size(), 4);
+        assertEquals(4, ruoloList.size());
     }
 }

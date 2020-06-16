@@ -15,5 +15,4 @@ public class LoadPermesso {
         permessoService.saveOrUpdate(p);
     }
 
-
 }

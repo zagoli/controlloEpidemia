@@ -38,4 +38,5 @@ public class RuoloService {
     public List<Ruolo> findAll() {
         return ruoloDao.findAll();
     }
+
 }

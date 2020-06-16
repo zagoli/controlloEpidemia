@@ -107,4 +107,5 @@ public class DecessiAnnualiDao implements DecessiAnnualiDaoInterface {
         session.closeCurrentSession();
         return anni;
     }
+
 }

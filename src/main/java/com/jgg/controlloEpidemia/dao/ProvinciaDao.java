@@ -82,4 +82,5 @@ public class ProvinciaDao implements ProvinciaDaoInterface {
         session.closeCurrentSession();
         return provincia;
     }
+
 }

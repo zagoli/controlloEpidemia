@@ -21,4 +21,5 @@ public interface UtenteDaoInterface {
     List<Utente> findAll();
 
     List<Utente> findAllPersonaleContratto();
+
 }

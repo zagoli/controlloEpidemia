@@ -38,7 +38,7 @@ class MalattieSettimanaliServiceTest {
         assertEquals(malattieSettimanali, findMalattieSettimanali);
         //Cerco tutti  i model
         List<MalattieSettimanali> malattieSettimanaliList = malattieSettimanaliService.findAll();
-        assertEquals(malattieSettimanaliList.size(), 13);
+        assertEquals(13, malattieSettimanaliList.size());
         //Aggiorno i model
         malattieSettimanali.setAnno(2021);
         malattieSettimanaliService.update(malattieSettimanali);
@@ -55,6 +55,6 @@ class MalattieSettimanaliServiceTest {
         malattieSettimanali = malattieSettimanaliService.findById(malattieSettimanali.getId());
         assertNull(malattieSettimanali);
         malattieSettimanaliList = malattieSettimanaliService.findAll();
-        assertEquals(malattieSettimanaliList.size(), 11);
+        assertEquals(11,malattieSettimanaliList.size());
     }
 }

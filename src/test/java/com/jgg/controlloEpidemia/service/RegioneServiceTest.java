@@ -28,7 +28,7 @@ public class RegioneServiceTest {
         assertEquals(regione, findRegione);
         //Cerco tutti i model
         List<Regione> regioneList = regioneService.findAll();
-        assertEquals(regioneList.size(), 3);
+        assertEquals(3,regioneList.size());
         //Aggiorno i model
         regione.setSuperficie(987);
         regioneService.update(regione);
@@ -42,6 +42,6 @@ public class RegioneServiceTest {
         regione = regioneService.findById(regione.getId());
         assertNull(regione);
         regioneList = regioneService.findAll();
-        assertEquals(regioneList.size(), 1);
+        assertEquals(1,regioneList.size());
     }
 }

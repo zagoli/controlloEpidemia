@@ -64,4 +64,5 @@ public class Comune {
     @NonNull
     @ManyToOne
     private Provincia provincia;
+
 }

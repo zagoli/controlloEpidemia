@@ -19,4 +19,5 @@ public interface ProvinciaDaoInterface {
     Provincia findByNome(String nome);
 
     List<Provincia> findAll();
+
 }

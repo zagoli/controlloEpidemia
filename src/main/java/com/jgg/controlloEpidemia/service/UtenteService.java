@@ -41,4 +41,5 @@ public class UtenteService {
     public List<Utente> findAllPersonaleContratto() {
         return utenteDao.findAllPersonaleContratto();
     }
+
 }

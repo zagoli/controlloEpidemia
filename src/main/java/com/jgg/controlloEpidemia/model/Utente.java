@@ -64,4 +64,5 @@ public class Utente {
     @NonNull
     @ManyToOne
     private Ruolo ruolo;
+
 }

@@ -31,7 +31,7 @@ public class UtenteServiceTest {
         assertEquals(utente, findUtente);
         //Cerco tutti i model
         List<Utente> utenteList = utenteService.findAll();
-        assertEquals(utenteList.size(), 6);
+        assertEquals(6, utenteList.size());
         //Aggiorno i model
         utente.setCognome("DOS");
         utenteService.update(utente);
@@ -45,7 +45,7 @@ public class UtenteServiceTest {
         utente = utenteService.findById(utente.getId());
         assertNull(utente);
         utenteList = utenteService.findAll();
-        assertEquals(utenteList.size(), 4);
+        assertEquals(4, utenteList.size());
     }
 
     @Test

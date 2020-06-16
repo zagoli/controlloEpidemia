@@ -38,4 +38,5 @@ public class TipoTerritorioService {
     public List<TipoTerritorio> findAll() {
         return tipoTerritorioDao.findAll();
     }
+
 }

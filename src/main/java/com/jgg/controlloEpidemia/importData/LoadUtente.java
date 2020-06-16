@@ -25,6 +25,6 @@ public class LoadUtente {
         utenteService.saveOrUpdate(u2);
         utenteService.saveOrUpdate(u3);
         utenteService.saveOrUpdate(u4);
-
     }
+
 }
