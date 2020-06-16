@@ -9,8 +9,17 @@
     <TabPane fx:id="decessiAnnualiTabPane" prefHeight="600.0" prefWidth="800.0" tabClosingPolicy="UNAVAILABLE">
         <Tab fx:id="decessiAnnualiVisualizzazioneTab" text="Visualizzazione">
             <Pane minHeight="0.0" minWidth="0.0" prefHeight="600.0" prefWidth="800.0">
-                <ListView fx:id="decessiAnnualiListView" layoutX="25.0" layoutY="25.0" prefHeight="425.0"
-                          prefWidth="750.0"/>
+                <TableView fx:id="decessiAnnualiTableView" layoutX="25.0" layoutY="25.0" prefHeight="425.0" prefWidth="750.0">
+                    <columns>
+                        <TableColumn fx:id="decessiAnnualiIdColumn" prefWidth="24.800004959106445" text="ID" />
+                        <TableColumn fx:id="decessiAnnualiProvinciaColumn" prefWidth="77.39999389648438" text="PROVINCIA" />
+                        <TableColumn fx:id="decessiAnnualiAnnoColumn" prefWidth="42.99999237060547" text="ANNO" />
+                        <TableColumn fx:id="decessiAnnualiIncidentiStradaliColumn" prefWidth="130.80001831054688" text="INCIDENTI STRADALI" />
+                        <TableColumn fx:id="decessiAnnualiMalattieTumoraliColumn" minWidth="0.0" prefWidth="131.79998779296875" text="MALATTIE TUMORALI" />
+                        <TableColumn fx:id="decessiAnnualiMalattieCardiovascolariColumn" prefWidth="186.60000610351562" text="MALATTIE CARDIOVASCOLARI" />
+                        <TableColumn fx:id="decessiAnnualiMalattieContagioseColumn" minWidth="3.199951171875" prefWidth="152.60003662109375" text="MALATTIE CONTAGIOSE" />
+                    </columns>
+                </TableView>
                 <Button layoutX="50.0" layoutY="460.0" mnemonicParsing="false"
                         onAction="#decessiAnnualiVisualizzazioneModificaButtonOnClicked" prefHeight="45.0"
                         prefWidth="150.0" text="Modifica">
