@@ -46,6 +46,7 @@ public class VisualizzaDecessiController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
         decessiAnnualiIdColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
         decessiAnnualiAnnoColumn.setCellValueFactory(new PropertyValueFactory<>("anno"));
         decessiAnnualiProvinciaColumn.setCellValueFactory(new PropertyValueFactory<>("provincia"));

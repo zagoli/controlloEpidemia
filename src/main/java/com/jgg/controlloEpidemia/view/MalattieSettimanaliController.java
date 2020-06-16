@@ -13,6 +13,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.FileChooser;
 import javafx.util.Duration;
 
@@ -38,7 +39,46 @@ public class MalattieSettimanaliController implements Initializable {
     @FXML
     private TabPane malattieSettimanaliTabPane;
     @FXML
-    private ListView<String> idMalattieSettimanaliListView;
+    private TableView<MalattieSettimanali> malattieSettimanaliTableView;
+    @FXML
+    private TableColumn<MalattieSettimanali, Integer> idColumn;
+    @FXML
+    private TableColumn<MalattieSettimanali, Integer> annoColumn;
+    @FXML
+    private TableColumn<MalattieSettimanali, Integer> settimanaColumn;
+    @FXML
+    private TableColumn<MalattieSettimanali, Integer> ricoveratiConInfluenzaColumn;
+    @FXML
+    private TableColumn<MalattieSettimanali, Integer> inCuraConInfluenzaColumn;
+    @FXML
+    private TableColumn<MalattieSettimanali, Integer> complicanzeRespiratorieColumn;
+    @FXML
+    private TableColumn<MalattieSettimanali, Integer> ricoveratiConPolmoniteColumn;
+    @FXML
+    private TableColumn<MalattieSettimanali, Integer> inCuraConPolmoniteColumn;
+    @FXML
+    private TableColumn<MalattieSettimanali, Integer> ricoveratiConMeningiteColumn;
+    @FXML
+    private TableColumn<MalattieSettimanali, Integer> inCuraConMeningiteColumn;
+    @FXML
+    private TableColumn<MalattieSettimanali, Integer> ricoveratiConEpatiteColumn;
+    @FXML
+    private TableColumn<MalattieSettimanali, Integer> inCuraConEpatiteColumn;
+    @FXML
+    private TableColumn<MalattieSettimanali, Integer> ricoveratiConMorbilloColumn;
+    @FXML
+    private TableColumn<MalattieSettimanali, Integer> inCuraConMorbilloColumn;
+    @FXML
+    private TableColumn<MalattieSettimanali, Integer> ricoveratiConTubercolosiColumn;
+    @FXML
+    private TableColumn<MalattieSettimanali, Integer> inCuraConTubercolosiColumn;
+    @FXML
+    private TableColumn<MalattieSettimanali, Integer> ricoveratiConGastroenteriteColumn;
+    @FXML
+    private TableColumn<MalattieSettimanali, Integer> inCuraConGastroenteriteColumn;
+    @FXML
+    private TableColumn<MalattieSettimanali, Comune> comuneColumn;
+
     @FXML
     private TextField annoInserimentoTextField;
     @FXML
@@ -126,9 +166,39 @@ public class MalattieSettimanaliController implements Initializable {
             comuneInserimentoComboBox.getItems().add(comune.getNome());
             comuneModificaComboBox.getItems().add(comune.getNome());
         }
-        updateList();
         noDataSelectedLabel.setVisible(false);
-        idMalattieSettimanaliListView.getSelectionModel().select(0);
+
+        idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
+        annoColumn.setCellValueFactory(new PropertyValueFactory<>("anno"));
+        settimanaColumn.setCellValueFactory(new PropertyValueFactory<>("settimana"));
+        ricoveratiConInfluenzaColumn.setCellValueFactory(new PropertyValueFactory<>("ricoveratiInfluenza"));
+        inCuraConInfluenzaColumn.setCellValueFactory(new PropertyValueFactory<>("inCuraInfluenza"));
+        complicanzeRespiratorieColumn.setCellValueFactory(new PropertyValueFactory<>("complicanzeRespiratorie"));
+        ricoveratiConPolmoniteColumn.setCellValueFactory(new PropertyValueFactory<>("ricoveratiPolmonite"));
+        inCuraConPolmoniteColumn.setCellValueFactory(new PropertyValueFactory<>("inCuraPolmonite"));
+        ricoveratiConMeningiteColumn.setCellValueFactory(new PropertyValueFactory<>("ricoveratiMeningite"));
+        inCuraConMeningiteColumn.setCellValueFactory(new PropertyValueFactory<>("inCuraMeningite"));
+        ricoveratiConEpatiteColumn.setCellValueFactory(new PropertyValueFactory<>("ricoveratiEpatite"));
+        inCuraConEpatiteColumn.setCellValueFactory(new PropertyValueFactory<>("inCuraEpatite"));
+        ricoveratiConMorbilloColumn.setCellValueFactory(new PropertyValueFactory<>("ricoveratiMorbillo"));
+        inCuraConMorbilloColumn.setCellValueFactory(new PropertyValueFactory<>("inCuraMorbillo"));
+        ricoveratiConTubercolosiColumn.setCellValueFactory(new PropertyValueFactory<>("ricoveratiTubercolosi"));
+        inCuraConTubercolosiColumn.setCellValueFactory(new PropertyValueFactory<>("inCuraTubercolosi"));
+        ricoveratiConGastroenteriteColumn.setCellValueFactory(new PropertyValueFactory<>("ricoveratiGastroenterite"));
+        inCuraConGastroenteriteColumn.setCellValueFactory(new PropertyValueFactory<>("inCuraGastroenterite"));
+        comuneColumn.setCellValueFactory(new PropertyValueFactory<>("comune"));
+        comuneColumn.setCellFactory(column -> new TableCell<>() {
+            @Override
+            protected void updateItem(Comune comune, boolean empty) {
+                super.updateItem(comune, empty);
+                if (empty || comune == null) {
+                    setText("");
+                } else {
+                    setText(comune.getNome());
+                }
+            }
+        });
+
         malattieSettimanaliInserisciButton.disableProperty().bind(
                 Bindings.isEmpty(annoInserimentoTextField.textProperty())
                         .or(Bindings.isEmpty(settimanaInserimentoTextField.textProperty()))
@@ -169,6 +239,7 @@ public class MalattieSettimanaliController implements Initializable {
                         .or(Bindings.isEmpty(inCuraConGastroenteriteModificaTextField.textProperty()))
                         .or(comuneModificaComboBox.valueProperty().isNull())
         );
+        updateList();
     }
 
     @FXML
@@ -178,42 +249,18 @@ public class MalattieSettimanaliController implements Initializable {
     }
 
     private void updateList() {
-        idMalattieSettimanaliListView.getItems().clear();
+        malattieSettimanaliTableView.getItems().clear();
         List<MalattieSettimanali> malattieSettimanaliList = malattieSettimanaliService.findAll();
-        idMalattieSettimanaliListView.getItems().add("ID  COMUNE  ANNO  SETTIMANA  R.INFLUENZA  C.INFLUENZA  CP.RESPIRATORIE  R.POLMONITE  C.POLMONITE  R.MENINGITE  C.MENINGITE  R.EPATITE  C.EPATITE  R.MORBILLO  C.MORBILLO  R.TUBERCOLOSI  C.TUBERCOLOSI  R.GASTROENTERITE  C.GASTROENTERITE");
         for (MalattieSettimanali malattieSettimanali : malattieSettimanaliList) {
-            idMalattieSettimanaliListView.getItems().add(
-                    malattieSettimanali.getId()
-                            + "  " + malattieSettimanali.getComune().getNome()
-                            + "  " + malattieSettimanali.getAnno()
-                            + "  " + malattieSettimanali.getSettimana()
-                            + "  " + malattieSettimanali.getRicoveratiInfluenza()
-                            + "  " + malattieSettimanali.getInCuraInfluenza()
-                            + "  " + malattieSettimanali.getComplicanzeRespiratorie()
-                            + "  " + malattieSettimanali.getRicoveratiPolmonite()
-                            + "  " + malattieSettimanali.getInCuraPolmonite()
-                            + "  " + malattieSettimanali.getRicoveratiMeningite()
-                            + "  " + malattieSettimanali.getInCuraMeningite()
-                            + "  " + malattieSettimanali.getRicoveratiEpatite()
-                            + "  " + malattieSettimanali.getInCuraEpatite()
-                            + "  " + malattieSettimanali.getRicoveratiMorbillo()
-                            + "  " + malattieSettimanali.getInCuraMorbillo()
-                            + "  " + malattieSettimanali.getRicoveratiTubercolosi()
-                            + "  " + malattieSettimanali.getInCuraTubercolosi()
-                            + "  " + malattieSettimanali.getRicoveratiGastroenterite()
-                            + "  " + malattieSettimanali.getInCuraGastroenterite());
+            malattieSettimanaliTableView.getItems().add(malattieSettimanali);
         }
         noDataSelectedLabel.setVisible(false);
     }
 
     @FXML
     private void malattieSettimanaliCancellaButtonOnClicked() {
-        if (idMalattieSettimanaliListView.getSelectionModel().getSelectedIndex() != 0) {
-            String malattie = idMalattieSettimanaliListView.getSelectionModel().getSelectedItem();
-            String[] malattieEntry;
-            malattieEntry = malattie.split("\\s{2}");
-            selectedId = Integer.parseInt(malattieEntry[0]);
-            malattieSettimanaliService.deleteById(selectedId);
+        if (malattieSettimanaliTableView.getSelectionModel().getSelectedItem() != null) {
+            malattieSettimanaliService.deleteById(malattieSettimanaliTableView.getSelectionModel().getSelectedItem().getId());
             updateList();
         } else {
             noDataSelectedLabel.setVisible(true);
@@ -223,33 +270,31 @@ public class MalattieSettimanaliController implements Initializable {
 
     @FXML
     private void malattieSettimanaliVisualizzazioneModificaButtonOnClicked() {
-        if (idMalattieSettimanaliListView.getSelectionModel().getSelectedIndex() != 0) {
+        if (malattieSettimanaliTableView.getSelectionModel().getSelectedItem() != null) {
             malattieSettimanaliModificaTab.setDisable(false);
             malattieSettimanaliVisualizzazioneTab.setDisable(true);
             malattieSettimanaliInserimentoTab.setDisable(true);
-            String malattie = idMalattieSettimanaliListView.getSelectionModel().getSelectedItem();
-            String[] malattieEntry;
-            malattieEntry = malattie.split("\\s{2}");
+            MalattieSettimanali malattie = malattieSettimanaliTableView.getSelectionModel().getSelectedItem();
             malattieSettimanaliTabPane.getSelectionModel().select(2);
-            selectedId = Integer.parseInt(malattieEntry[0]);
-            comuneModificaComboBox.getSelectionModel().select(malattieEntry[1]);
-            annoModificaTextField.setText(malattieEntry[2]);
-            settimanaModificaTextField.setText(malattieEntry[3]);
-            ricoveratiConInfluenzaModificaTextField.setText(malattieEntry[4]);
-            inCuraConInfluenzaModificaTextField.setText(malattieEntry[5]);
-            complicanzeRespiratorieModificaTextField.setText(malattieEntry[6]);
-            ricoveratiConPolmoniteModificaTextField.setText(malattieEntry[7]);
-            inCuraConPolmoniteModificaTextField.setText(malattieEntry[8]);
-            ricoveratiConMeningiteModificaTextField.setText(malattieEntry[9]);
-            inCuraConMeningiteModificaTextField.setText(malattieEntry[10]);
-            ricoveratiConEpatiteModificaTextField.setText(malattieEntry[11]);
-            inCuraConEpatiteModificaTextField.setText(malattieEntry[12]);
-            ricoveratiConMorbilloModificaTextField.setText(malattieEntry[13]);
-            inCuraConMorbilloModificaTextField.setText(malattieEntry[14]);
-            ricoveratiConTubercolosiModificaTextField.setText(malattieEntry[15]);
-            inCuraConTubercolosiModificaTextField.setText(malattieEntry[16]);
-            ricoveratiConGastroenteriteModificaTextField.setText(malattieEntry[17]);
-            inCuraConGastroenteriteModificaTextField.setText(malattieEntry[18]);
+            selectedId = malattie.getId();
+            annoModificaTextField.setText(String.valueOf(malattie.getAnno()));
+            settimanaModificaTextField.setText(String.valueOf(malattie.getSettimana()));
+            ricoveratiConInfluenzaModificaTextField.setText(String.valueOf(malattie.getRicoveratiInfluenza()));
+            inCuraConInfluenzaModificaTextField.setText(String.valueOf(malattie.getInCuraInfluenza()));
+            complicanzeRespiratorieModificaTextField.setText(String.valueOf(malattie.getComplicanzeRespiratorie()));
+            ricoveratiConPolmoniteModificaTextField.setText(String.valueOf(malattie.getRicoveratiPolmonite()));
+            inCuraConPolmoniteModificaTextField.setText(String.valueOf(malattie.getInCuraPolmonite()));
+            ricoveratiConMeningiteModificaTextField.setText(String.valueOf(malattie.getRicoveratiMeningite()));
+            inCuraConMeningiteModificaTextField.setText(String.valueOf(malattie.getInCuraMeningite()));
+            ricoveratiConEpatiteModificaTextField.setText(String.valueOf(malattie.getRicoveratiEpatite()));
+            inCuraConEpatiteModificaTextField.setText(String.valueOf(malattie.getInCuraEpatite()));
+            ricoveratiConMorbilloModificaTextField.setText(String.valueOf(malattie.getRicoveratiMorbillo()));
+            inCuraConMorbilloModificaTextField.setText(String.valueOf(malattie.getInCuraMorbillo()));
+            ricoveratiConTubercolosiModificaTextField.setText(String.valueOf(malattie.getRicoveratiTubercolosi()));
+            inCuraConTubercolosiModificaTextField.setText(String.valueOf(malattie.getInCuraTubercolosi()));
+            ricoveratiConGastroenteriteModificaTextField.setText(String.valueOf(malattie.getRicoveratiGastroenterite()));
+            inCuraConGastroenteriteModificaTextField.setText(String.valueOf(malattie.getInCuraGastroenterite()));
+            comuneModificaComboBox.getSelectionModel().select(malattie.getComune().getNome());
         } else {
             noDataSelectedLabel.setVisible(true);
             errorAnimation(noDataSelectedLabel);
@@ -300,7 +345,6 @@ public class MalattieSettimanaliController implements Initializable {
             inCuraConGastroenteriteInserimentoTextField.clear();
         }
         malattieSettimanaliTabPane.getSelectionModel().select(0);
-        idMalattieSettimanaliListView.getSelectionModel().select(0);
         updateList();
     }
 
@@ -315,7 +359,6 @@ public class MalattieSettimanaliController implements Initializable {
             System.out.println("ok");
             new EtlMalattie().load(selectedFile.getPath());
             malattieSettimanaliTabPane.getSelectionModel().select(0);
-            idMalattieSettimanaliListView.getSelectionModel().select(0);
             updateList();
         } else {
             System.out.println("non ho trovato il file");
@@ -367,7 +410,6 @@ public class MalattieSettimanaliController implements Initializable {
             inCuraConGastroenteriteModificaTextField.clear();
         }
         malattieSettimanaliTabPane.getSelectionModel().select(0);
-        idMalattieSettimanaliListView.getSelectionModel().select(0);
         malattieSettimanaliModificaTab.setDisable(true);
         malattieSettimanaliVisualizzazioneTab.setDisable(false);
         malattieSettimanaliInserimentoTab.setDisable(false);

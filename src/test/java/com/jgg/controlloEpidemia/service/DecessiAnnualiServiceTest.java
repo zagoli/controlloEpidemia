@@ -38,7 +38,7 @@ public class DecessiAnnualiServiceTest {
         assertEquals(decessiAnnuali, findDecessiAnnuali);
         //Cerco tutti  i model
         List<DecessiAnnuali> decessiAnnualiList = decessiAnnualiService.findAll();
-        assertEquals(7,decessiAnnualiList.size());
+        assertEquals(7, decessiAnnualiList.size());
         //Aggiorno i model
         decessiAnnuali.setAnno(2021);
         decessiAnnualiService.update(decessiAnnuali);
@@ -55,7 +55,7 @@ public class DecessiAnnualiServiceTest {
         decessiAnnuali = decessiAnnualiService.findById(decessiAnnuali.getId());
         assertNull(decessiAnnuali);
         decessiAnnualiList = decessiAnnualiService.findAll();
-        assertEquals(5,decessiAnnualiList.size());
+        assertEquals(5, decessiAnnualiList.size());
     }
 
     // Dopo aver fatto partire EtlDecessiTest

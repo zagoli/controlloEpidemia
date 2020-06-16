@@ -55,6 +55,6 @@ class MalattieSettimanaliServiceTest {
         malattieSettimanali = malattieSettimanaliService.findById(malattieSettimanali.getId());
         assertNull(malattieSettimanali);
         malattieSettimanaliList = malattieSettimanaliService.findAll();
-        assertEquals(11,malattieSettimanaliList.size());
+        assertEquals(11, malattieSettimanaliList.size());
     }
 }

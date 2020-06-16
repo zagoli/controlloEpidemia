@@ -83,9 +83,9 @@ public class GraficiController implements Initializable {
     }
 
     @FXML
-    private void onHomePageButtonClicked(ActionEvent e) throws IOException {
+    private void onHomePageButtonClicked(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/homePage.fxml"));
-        ((Button) e.getSource()).getScene().setRoot(root);
+        ((Button) event.getSource()).getScene().setRoot(root);
     }
 
     @FXML

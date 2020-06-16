@@ -6,7 +6,6 @@ import javax.persistence.*;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
 @Entity
@@ -23,7 +22,7 @@ public class Provincia {
     @EqualsAndHashCode.Exclude
     @ToString.Exclude
     @OneToMany(cascade = CascadeType.REMOVE)
-    private final List<Comune> comuni = new LinkedList<>();
+    private final List<Comune> comuni = new ArrayList<>();
     @Getter
     @NotNull
     @EqualsAndHashCode.Exclude

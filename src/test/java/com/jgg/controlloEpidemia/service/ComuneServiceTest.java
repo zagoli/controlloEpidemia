@@ -40,7 +40,7 @@ class ComuneServiceTest {
         assertEquals(comune2, findComune);
         //Cerco tutti  i model
         List<Comune> comuneList = comuneService.findAll();
-        assertEquals(52,comuneList.size());
+        assertEquals(52, comuneList.size());
         //Aggiorno i model
         comune.setSuperficie(158);
         comuneService.update(comune);

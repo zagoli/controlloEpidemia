@@ -14,6 +14,6 @@ public class LoadUtenteTest {
         new LoadUtente().load();
 
         List<Utente> utenteList = new UtenteService().findAll();
-        assertEquals(4,utenteList.size());
+        assertEquals(4, utenteList.size());
     }
 }

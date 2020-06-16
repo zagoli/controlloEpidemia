@@ -4,36 +4,51 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 <Pane xmlns:fx="http://javafx.com/fxml/1" layoutY="32.0" prefHeight="600.0" prefWidth="800.0"
-      xmlns="http://javafx.com/javafx/10.0.2-internal"
-      fx:controller="com.jgg.controlloEpidemia.view.DatiTerritorialiController">
+      xmlns="http://javafx.com/javafx/10.0.2-internal" fx:controller="com.jgg.controlloEpidemia.view.DatiTerritorialiController">
     <TabPane fx:id="datiTerritorialiTabPane" prefHeight="600.0" prefWidth="800.0" tabClosingPolicy="UNAVAILABLE">
         <Tab fx:id="visualizzazioneTab" text="Visualizzazione">
             <TabPane fx:id="visualizzazioneTabPane" prefHeight="800.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE">
                 <Tab text="Regioni">
                     <Pane minHeight="0.0" minWidth="0.0" prefHeight="600.0" prefWidth="800.0">
-                        <ListView fx:id="regioniListView" layoutX="25.0" layoutY="25.0" prefHeight="425.0"
-                                  prefWidth="750.0"/>
+                        <TableView fx:id="regioniTableView" layoutX="25.0" layoutY="25.0" prefHeight="400.0"
+                                   prefWidth="750.0">
+                            <columns>
+                                <TableColumn fx:id="regioniIdColumn" prefWidth="99.0" text="ID"/>
+                                <TableColumn fx:id="regioniNomeColumn" minWidth="4.0" prefWidth="136.0" text="NOME"/>
+                                <TableColumn fx:id="regioniSuperficieColumn" prefWidth="117.0" text="SUPERFICIE"/>
+                                <TableColumn fx:id="regioniCapoluogoColumn" prefWidth="141.0" text="CAPOLUOGO"/>
+                            </columns>
+                        </TableView>
                     </Pane>
                 </Tab>
                 <Tab text="Province">
                     <Pane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                        <ListView fx:id="provinceListView" layoutX="25.0" layoutY="25.0" prefHeight="425.0"
-                                  prefWidth="750.0"/>
-                        <Button layoutX="50.0" layoutY="460.0" mnemonicParsing="false"
+                        <TableView fx:id="provinceTableView" layoutX="25.0" layoutY="25.0" prefHeight="400.0"
+                                   prefWidth="750.0">
+                            <columns>
+                                <TableColumn fx:id="provinceIdColumn" prefWidth="24.800004959106445" text="ID"/>
+                                <TableColumn fx:id="provinceNomeColumn" prefWidth="77.39999389648438" text="NOME"/>
+                                <TableColumn fx:id="provinceSuperficieColumn" prefWidth="94.0" text="SUPERFICIE"/>
+                                <TableColumn fx:id="provinceCapoluogoColumn" prefWidth="111.0" text="CAPOLUOGO"/>
+                                <TableColumn fx:id="provinceRegioneColumn" minWidth="0.0" prefWidth="431.0"
+                                             text="REGIONE"/>
+                            </columns>
+                        </TableView>
+                        <Button layoutX="50.0" layoutY="435.0" mnemonicParsing="false"
                                 onAction="#provinciaModificaVisualizzazioneButtonOnClicked" prefHeight="45.0"
                                 prefWidth="150.0" text="Modifica">
                             <font>
                                 <Font name="Segoe UI Bold" size="12.0"/>
                             </font>
                         </Button>
-                        <Button layoutX="600.0" layoutY="460.0" mnemonicParsing="false"
+                        <Button layoutX="600.0" layoutY="435.0" mnemonicParsing="false"
                                 onAction="#provinciaEliminaVisualizzazioneButtonOnClicked" prefHeight="45.0"
                                 prefWidth="150.0" text="Elimina">
                             <font>
                                 <Font name="Segoe UI Bold" size="12.0"/>
                             </font>
                         </Button>
-                        <Label fx:id="provinciaNoDataSelectedLabel" layoutX="338.0" layoutY="475.0"
+                        <Label fx:id="provinciaNoDataSelectedLabel" layoutX="338.0" layoutY="450.0"
                                text="No valid data selected" textAlignment="CENTER" textFill="RED">
                             <font>
                                 <Font name="Segoe UI Bold" size="12.0"/>
@@ -43,23 +58,37 @@
                 </Tab>
                 <Tab text="Comuni">
                     <Pane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                        <ListView fx:id="comuniListView" layoutX="25.0" layoutY="25.0" prefHeight="425.0"
-                                  prefWidth="750.0"/>
-                        <Button layoutX="50.0" layoutY="460.0" mnemonicParsing="false"
+                        <TableView fx:id="comuniTableView" layoutX="25.0" layoutY="25.0" prefHeight="400.0"
+                                   prefWidth="750.0">
+                            <columns>
+                                <TableColumn fx:id="comuniCodiceIstatColumn" prefWidth="105.0" text="CODICE ISTAT"/>
+                                <TableColumn fx:id="comuniNomeColumn" prefWidth="62.0" text="NOME"/>
+                                <TableColumn fx:id="comuniSuperficieColumn" prefWidth="89.0" text="SUPERFICIE"/>
+                                <TableColumn fx:id="comuniDataIstituzioneColumn" prefWidth="138.0"
+                                             text="DATA DI ISTITUZIONE"/>
+                                <TableColumn fx:id="comuniSiAffacciaSulMareColumn" minWidth="0.0" prefWidth="155.0"
+                                             text="SI AFFACCIA SUL MARE"/>
+                                <TableColumn fx:id="comuniTipoTerritorioColumn" maxWidth="6000.0" minWidth="0.0"
+                                             prefWidth="116.0" text="TIPO TERRITORIO"/>
+                                <TableColumn fx:id="comuniProvinciaColumn" minWidth="0.0" prefWidth="84.0"
+                                             text="PROVINCIA"/>
+                            </columns>
+                        </TableView>
+                        <Button layoutX="50.0" layoutY="435.0" mnemonicParsing="false"
                                 onAction="#comuneModificaVisualizzazioneButtonOnClicked" prefHeight="45.0"
                                 prefWidth="150.0" text="Modifica">
                             <font>
                                 <Font name="Segoe UI Bold" size="12.0"/>
                             </font>
                         </Button>
-                        <Button layoutX="600.0" layoutY="460.0" mnemonicParsing="false"
+                        <Button layoutX="600.0" layoutY="435.0" mnemonicParsing="false"
                                 onAction="#comuneEliminaVisualizzazioneButtonOnClicked" prefHeight="45.0"
                                 prefWidth="150.0" text="Elimina">
                             <font>
                                 <Font name="Segoe UI Bold" size="12.0"/>
                             </font>
                         </Button>
-                        <Label fx:id="comuneNoDataSelectedLabel" layoutX="338.0" layoutY="475.0"
+                        <Label fx:id="comuneNoDataSelectedLabel" layoutX="338.0" layoutY="450.0"
                                text="No valid data selected" textAlignment="CENTER" textFill="RED">
                             <font>
                                 <Font name="Segoe UI Bold" size="12.0"/>

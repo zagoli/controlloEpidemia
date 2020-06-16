@@ -5,7 +5,7 @@ import lombok.*;
 import javax.persistence.*;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -22,7 +22,7 @@ public class Regione {
     @EqualsAndHashCode.Exclude
     @ToString.Exclude
     @OneToMany(cascade = CascadeType.REMOVE)
-    private final List<Provincia> province = new LinkedList<>();
+    private final List<Provincia> province = new ArrayList<>();
     @Id
     @Getter
     @NotNull

@@ -20,7 +20,6 @@ import javafx.util.Duration;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
-import java.util.List;
 import java.util.ResourceBundle;
 
 public class DecessiAnnualiController implements Initializable {
@@ -172,7 +171,7 @@ public class DecessiAnnualiController implements Initializable {
             malattieTumoraliModificaTextField.setText(String.valueOf(decessi.getMalattieTumorali()));
             malattieCardiovascolariModificaTextField.setText(String.valueOf(decessi.getMalattieCardiovascolari()));
             malattieContagioseModificaTextField.setText(String.valueOf(decessi.getMalattieContagiose()));
-            provinciaModificaComboBox.getSelectionModel().select(decessi.getProvincia().getId());
+            provinciaModificaComboBox.getSelectionModel().select(decessi.getProvincia().getNome());
         } else {
             noDataSelectedLabel.setVisible(true);
             errorAnimation(noDataSelectedLabel);

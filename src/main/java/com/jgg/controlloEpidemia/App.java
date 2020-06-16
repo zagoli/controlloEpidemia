@@ -9,6 +9,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -22,7 +23,7 @@ public class App extends Application {
     }
 
     @Override
-    public void start(Stage primaryStage) throws IOException {
+    public void start(Stage stage) throws IOException {
 
         // Inizializzazione dati per prototipo -------------------------
         new LoadRuolo().load();
@@ -33,9 +34,10 @@ public class App extends Application {
 
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/loginPage.fxml"));
         Scene scene = new Scene(root);
-        primaryStage.setScene(scene);
-        primaryStage.setTitle("Controllo Epidemia");
-        primaryStage.show();
+        stage.setScene(scene);
+        stage.setTitle("Controllo Epidemia");
+        stage.getIcons().add(new Image("icon.png"));
+        stage.show();
     }
 
 }

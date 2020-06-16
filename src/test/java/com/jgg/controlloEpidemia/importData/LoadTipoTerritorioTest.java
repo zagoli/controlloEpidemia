@@ -14,6 +14,6 @@ public class LoadTipoTerritorioTest {
         new LoadTipoTerritorio().load();
 
         List<TipoTerritorio> tipoTerritorioList = new TipoTerritorioService().findAll();
-        assertEquals(3,tipoTerritorioList.size());
+        assertEquals(3, tipoTerritorioList.size());
     }
 }

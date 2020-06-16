@@ -14,6 +14,6 @@ public class LoadRuoloTest {
         new LoadRuolo().load();
 
         List<Ruolo> ruoloList = new RuoloService().findAll();
-        assertEquals(4,ruoloList.size());
+        assertEquals(4, ruoloList.size());
     }
 }

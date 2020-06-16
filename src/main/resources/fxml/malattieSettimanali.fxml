@@ -9,8 +9,32 @@
     <TabPane fx:id="malattieSettimanaliTabPane" prefHeight="600.0" prefWidth="800.0" tabClosingPolicy="UNAVAILABLE">
         <Tab fx:id="malattieSettimanaliVisualizzazioneTab" text="Visualizzazione">
             <Pane minHeight="0.0" minWidth="0.0" prefHeight="600.0" prefWidth="800.0">
-                <ListView fx:id="idMalattieSettimanaliListView" layoutX="25.0" layoutY="25.0" prefHeight="425.0"
-                          prefWidth="750.0"/>
+                <TableView fx:id="malattieSettimanaliTableView" layoutX="25.0" layoutY="25.0" prefHeight="400.0"
+                           prefWidth="750.0">
+                    <columns>
+                        <TableColumn fx:id="idColumn" prefWidth="99.0" text="ID"/>
+                        <TableColumn fx:id="annoColumn" prefWidth="99.0" text="ANNO"/>
+                        <TableColumn fx:id="settimanaColumn" prefWidth="99.0" text="SETTIMANA"/>
+                        <TableColumn fx:id="ricoveratiConInfluenzaColumn" prefWidth="99.0" text="R.INFLUENZA"/>
+                        <TableColumn fx:id="inCuraConInfluenzaColumn" prefWidth="99.0" text="C.INFLUENZA"/>
+                        <TableColumn fx:id="complicanzeRespiratorieColumn" prefWidth="99.0" text="COMPL.RESPIR."/>
+                        <TableColumn fx:id="ricoveratiConPolmoniteColumn" prefWidth="99.0" text="R.POLMONITE"/>
+                        <TableColumn fx:id="inCuraConPolmoniteColumn" prefWidth="99.0" text="C.POLMONITE"/>
+                        <TableColumn fx:id="ricoveratiConMeningiteColumn" prefWidth="99.0" text="R.MENINGITE"/>
+                        <TableColumn fx:id="inCuraConMeningiteColumn" prefWidth="99.0" text="C.MENINGITE"/>
+                        <TableColumn fx:id="ricoveratiConEpatiteColumn" prefWidth="99.0" text="R.EPATITE"/>
+                        <TableColumn fx:id="inCuraConEpatiteColumn" prefWidth="99.0" text="C.EPATITE"/>
+                        <TableColumn fx:id="ricoveratiConMorbilloColumn" prefWidth="99.0" text="R.MORBILLO"/>
+                        <TableColumn fx:id="inCuraConMorbilloColumn" minWidth="4.0" prefWidth="136.0"
+                                     text="C.MORBILLO"/>
+                        <TableColumn fx:id="ricoveratiConTubercolosiColumn" prefWidth="99.0" text="R.TUBERCOLOSI"/>
+                        <TableColumn fx:id="inCuraConTubercolosiColumn" prefWidth="99.0" text="C.TUBERCOLOSI"/>
+                        <TableColumn fx:id="ricoveratiConGastroenteriteColumn" prefWidth="99.0"
+                                     text="R.GASTROENTERITE"/>
+                        <TableColumn fx:id="inCuraConGastroenteriteColumn" prefWidth="117.0" text="C.GASTROENTERITE"/>
+                        <TableColumn fx:id="comuneColumn" prefWidth="141.0" text="COMUNE"/>
+                    </columns>
+                </TableView>
                 <Button layoutX="50.0" layoutY="460.0" mnemonicParsing="false"
                         onAction="#malattieSettimanaliVisualizzazioneModificaButtonOnClicked" prefHeight="45.0"
                         prefWidth="150.0" text="Modifica">
@@ -46,7 +70,6 @@
                         <Font name="Segoe UI" size="15.0"/>
                     </font>
                 </TextField>
-
                 <Label layoutX="300.0" layoutY="16.0" prefHeight="20.0" prefWidth="96.0" text="Settimana">
                     <font>
                         <Font name="Segoe UI Bold" size="20.0"/>
@@ -58,7 +81,6 @@
                         <Font name="Segoe UI" size="15.0"/>
                     </font>
                 </TextField>
-
                 <Label layoutX="20.0" layoutY="76.0" prefHeight="20.0" prefWidth="226.0"
                        text="Ricoverati con influenza">
                     <font>
@@ -71,7 +93,6 @@
                         <Font name="Segoe UI" size="15.0"/>
                     </font>
                 </TextField>
-
                 <Label layoutX="300.0" layoutY="76.0" prefHeight="20.0" prefWidth="196.0" text="In cura con influenza">
                     <font>
                         <Font name="Segoe UI Bold" size="20.0"/>
@@ -83,7 +104,6 @@
                         <Font name="Segoe UI" size="15.0"/>
                     </font>
                 </TextField>
-
                 <Label layoutX="550.0" layoutY="76.0" prefHeight="20.0" prefWidth="236.0"
                        text="Complicanze respiratorie">
                     <font>
@@ -96,8 +116,18 @@
                         <Font name="Segoe UI" size="15.0"/>
                     </font>
                 </TextField>
-
-
+                <Label layoutX="20.0" layoutY="136.0" prefHeight="20.0" prefWidth="238.0"
+                       text="Ricoverati con polmonite">
+                    <font>
+                        <Font name="Segoe UI Bold" size="20.0"/>
+                    </font>
+                </Label>
+                <TextField fx:id="ricoveratiConPolmoniteInserimentoTextField" layoutX="20.0" layoutY="160.0"
+                           prefHeight="20.0" prefWidth="100.0">
+                    <font>
+                        <Font name="Segoe UI" size="15.0"/>
+                    </font>
+                </TextField>
                 <Label layoutX="300.0" layoutY="136.0" prefHeight="20.0" prefWidth="208.0" text="In cura con polmonite">
                     <font>
                         <Font name="Segoe UI Bold" size="20.0"/>
@@ -109,7 +139,6 @@
                         <Font name="Segoe UI" size="15.0"/>
                     </font>
                 </TextField>
-
                 <Label layoutX="20.0" layoutY="206.0" prefHeight="20.0" prefWidth="236.0"
                        text="Ricoverati con meningite">
                     <font>
@@ -122,13 +151,106 @@
                         <Font name="Segoe UI" size="15.0"/>
                     </font>
                 </TextField>
-                <TextField fx:id="ricoveratiConPolmoniteInserimentoTextField" layoutX="20.0" layoutY="160.0"
+                <Label layoutX="300.0" layoutY="206.0" prefHeight="20.0" prefWidth="206.0" text="In cura con meningite">
+                    <font>
+                        <Font name="Segoe UI Bold" size="20.0"/>
+                    </font>
+                </Label>
+                <TextField fx:id="inCuraConMeningiteInserimentoTextField" layoutX="300.0" layoutY="230.0"
                            prefHeight="20.0" prefWidth="100.0">
                     <font>
                         <Font name="Segoe UI" size="15.0"/>
                     </font>
                 </TextField>
+                <Label layoutX="20.0" layoutY="276.0" prefHeight="20.0" prefWidth="206.0" text="Ricoverati con epatite">
+                    <font>
+                        <Font name="Segoe UI Bold" size="20.0"/>
+                    </font>
+                </Label>
                 <TextField fx:id="ricoveratiConEpatiteInserimentoTextField" layoutX="20.0" layoutY="300.0"
+                           prefHeight="20.0" prefWidth="100.0">
+                    <font>
+                        <Font name="Segoe UI" size="15.0"/>
+                    </font>
+                </TextField>
+                <Label layoutX="300.0" layoutY="276.0" prefHeight="20.0" prefWidth="176.0" text="In cura con epatite">
+                    <font>
+                        <Font name="Segoe UI Bold" size="20.0"/>
+                    </font>
+                </Label>
+
+                <TextField fx:id="inCuraConEpatiteInserimentoTextField" layoutX="300.0" layoutY="300.0"
+                           prefHeight="20.0" prefWidth="100.0">
+                    <font>
+                        <Font name="Segoe UI" size="15.0"/>
+                    </font>
+                </TextField>
+                <Label layoutX="20.0" layoutY="346.0" prefHeight="20.0" prefWidth="220.0"
+                       text="Ricoverati con morbillo">
+                    <font>
+                        <Font name="Segoe UI Bold" size="20.0"/>
+                    </font>
+                </Label>
+                <TextField fx:id="ricoveratiConMorbilloInserimentoTextField" layoutX="20.0" layoutY="370.0"
+                           prefHeight="20.0" prefWidth="100.0">
+                    <font>
+                        <Font name="Segoe UI" size="15.0"/>
+                    </font>
+                </TextField>
+                <Label layoutX="300.0" layoutY="346.0" prefHeight="20.0" prefWidth="190.0" text="In cura con morbillo">
+                    <font>
+                        <Font name="Segoe UI Bold" size="20.0"/>
+                    </font>
+                </Label>
+                <TextField fx:id="inCuraConMorbilloInserimentoTextField" layoutX="300.0" layoutY="370.0"
+                           prefHeight="20.0" prefWidth="100.0">
+                    <font>
+                        <Font name="Segoe UI" size="15.0"/>
+                    </font>
+                </TextField>
+                <Label layoutX="20.0" layoutY="416.0" prefHeight="20.0" prefWidth="246.0"
+                       text="Ricoverati con tubercolosi">
+                    <font>
+                        <Font name="Segoe UI Bold" size="20.0"/>
+                    </font>
+                </Label>
+                <TextField fx:id="ricoveratiConTubercolosiInserimentoTextField" layoutX="20.0" layoutY="440.0"
+                           prefHeight="20.0" prefWidth="100.0">
+                    <font>
+                        <Font name="Segoe UI" size="15.0"/>
+                    </font>
+                </TextField>
+                <Label layoutX="300.0" layoutY="416.0" prefHeight="20.0" prefWidth="216.0"
+                       text="In cura con tubercolosi">
+                    <font>
+                        <Font name="Segoe UI Bold" size="20.0"/>
+                    </font>
+                </Label>
+                <TextField fx:id="inCuraConTubercolosiInserimentoTextField" layoutX="300.0" layoutY="440.0"
+                           prefHeight="20.0" prefWidth="100.0">
+                    <font>
+                        <Font name="Segoe UI" size="15.0"/>
+                    </font>
+                </TextField>
+                <Label layoutX="20.0" layoutY="476.0" prefHeight="20.0" prefWidth="274.0"
+                       text="Ricoverati con gastroenterite">
+                    <font>
+                        <Font name="Segoe UI Bold" size="20.0"/>
+                    </font>
+                </Label>
+                <TextField fx:id="ricoveratiConGastroenteriteInserimentoTextField" layoutX="20.0" layoutY="500.0"
+                           prefHeight="20.0" prefWidth="100.0">
+                    <font>
+                        <Font name="Segoe UI" size="15.0"/>
+                    </font>
+                </TextField>
+                <Label layoutX="300.0" layoutY="476.0" prefHeight="20.0" prefWidth="244.0"
+                       text="In cura con gastroenterite">
+                    <font>
+                        <Font name="Segoe UI Bold" size="20.0"/>
+                    </font>
+                </Label>
+                <TextField fx:id="inCuraConGastroenteriteInserimentoTextField" layoutX="300.0" layoutY="500.0"
                            prefHeight="20.0" prefWidth="100.0">
                     <font>
                         <Font name="Segoe UI" size="15.0"/>
@@ -139,6 +261,8 @@
                         <Font name="Segoe UI Bold" size="20.0"/>
                     </font>
                 </Label>
+                <ComboBox fx:id="comuneInserimentoComboBox" layoutX="580.0" layoutY="370.0" prefHeight="20.0"
+                          prefWidth="200.0"/>
                 <Button fx:id="malattieSettimanaliInserisciButton" layoutX="580.0" layoutY="410.0"
                         mnemonicParsing="false" onAction="#inserisciInserimentoOnClicked" prefHeight="40.0"
                         text="Inserisci">
@@ -152,114 +276,6 @@
                         <Font name="Segoe UI Bold" size="20.0"/>
                     </font>
                 </Button>
-                <TextField fx:id="ricoveratiConTubercolosiInserimentoTextField" layoutX="20.0" layoutY="440.0"
-                           prefHeight="20.0" prefWidth="100.0">
-                    <font>
-                        <Font name="Segoe UI" size="15.0"/>
-                    </font>
-                </TextField>
-                <TextField fx:id="ricoveratiConMorbilloInserimentoTextField" layoutX="20.0" layoutY="370.0"
-                           prefHeight="20.0" prefWidth="100.0">
-                    <font>
-                        <Font name="Segoe UI" size="15.0"/>
-                    </font>
-                </TextField>
-                <TextField fx:id="ricoveratiConGastroenteriteInserimentoTextField" layoutX="20.0" layoutY="500.0"
-                           prefHeight="20.0" prefWidth="100.0">
-                    <font>
-                        <Font name="Segoe UI" size="15.0"/>
-                    </font>
-                </TextField>
-                <TextField fx:id="inCuraConTubercolosiInserimentoTextField" layoutX="300.0" layoutY="440.0"
-                           prefHeight="20.0" prefWidth="100.0">
-                    <font>
-                        <Font name="Segoe UI" size="15.0"/>
-                    </font>
-                </TextField>
-                <TextField fx:id="inCuraConMeningiteInserimentoTextField" layoutX="300.0" layoutY="230.0"
-                           prefHeight="20.0" prefWidth="100.0">
-                    <font>
-                        <Font name="Segoe UI" size="15.0"/>
-                    </font>
-                </TextField>
-                <TextField fx:id="inCuraConEpatiteInserimentoTextField" layoutX="300.0" layoutY="300.0"
-                           prefHeight="20.0" prefWidth="100.0">
-                    <font>
-                        <Font name="Segoe UI" size="15.0"/>
-                    </font>
-                </TextField>
-                <TextField fx:id="inCuraConMorbilloInserimentoTextField" layoutX="300.0" layoutY="370.0"
-                           prefHeight="20.0" prefWidth="100.0">
-                    <font>
-                        <Font name="Segoe UI" size="15.0"/>
-                    </font>
-                </TextField>
-                <TextField fx:id="inCuraConGastroenteriteInserimentoTextField" layoutX="300.0" layoutY="500.0"
-                           prefHeight="20.0" prefWidth="100.0">
-                    <font>
-                        <Font name="Segoe UI" size="15.0"/>
-                    </font>
-                </TextField>
-                <Label layoutX="20.0" layoutY="136.0" prefHeight="20.0" prefWidth="238.0"
-                       text="Ricoverati con polmonite">
-                    <font>
-                        <Font name="Segoe UI Bold" size="20.0"/>
-                    </font>
-                </Label>
-
-
-                <Label layoutX="300.0" layoutY="206.0" prefHeight="20.0" prefWidth="206.0" text="In cura con meningite">
-                    <font>
-                        <Font name="Segoe UI Bold" size="20.0"/>
-                    </font>
-                </Label>
-                <Label layoutX="20.0" layoutY="276.0" prefHeight="20.0" prefWidth="206.0" text="Ricoverati con epatite">
-                    <font>
-                        <Font name="Segoe UI Bold" size="20.0"/>
-                    </font>
-                </Label>
-                <Label layoutX="300.0" layoutY="276.0" prefHeight="20.0" prefWidth="176.0" text="In cura con epatite">
-                    <font>
-                        <Font name="Segoe UI Bold" size="20.0"/>
-                    </font>
-                </Label>
-                <Label layoutX="20.0" layoutY="346.0" prefHeight="20.0" prefWidth="220.0"
-                       text="Ricoverati con morbillo">
-                    <font>
-                        <Font name="Segoe UI Bold" size="20.0"/>
-                    </font>
-                </Label>
-                <Label layoutX="300.0" layoutY="346.0" prefHeight="20.0" prefWidth="190.0" text="In cura con morbillo">
-                    <font>
-                        <Font name="Segoe UI Bold" size="20.0"/>
-                    </font>
-                </Label>
-                <Label layoutX="20.0" layoutY="416.0" prefHeight="20.0" prefWidth="246.0"
-                       text="Ricoverati con tubercolosi">
-                    <font>
-                        <Font name="Segoe UI Bold" size="20.0"/>
-                    </font>
-                </Label>
-                <Label layoutX="300.0" layoutY="416.0" prefHeight="20.0" prefWidth="216.0"
-                       text="In cura con tubercolosi">
-                    <font>
-                        <Font name="Segoe UI Bold" size="20.0"/>
-                    </font>
-                </Label>
-                <Label layoutX="20.0" layoutY="476.0" prefHeight="20.0" prefWidth="274.0"
-                       text="Ricoverati con gastroenterite">
-                    <font>
-                        <Font name="Segoe UI Bold" size="20.0"/>
-                    </font>
-                </Label>
-                <Label layoutX="300.0" layoutY="476.0" prefHeight="20.0" prefWidth="244.0"
-                       text="In cura con gastroenterite">
-                    <font>
-                        <Font name="Segoe UI Bold" size="20.0"/>
-                    </font>
-                </Label>
-                <ComboBox fx:id="comuneInserimentoComboBox" layoutX="580.0" layoutY="370.0" prefHeight="20.0"
-                          prefWidth="200.0"/>
             </Pane>
         </Tab>
         <Tab fx:id="malattieSettimanaliModificaTab" text="Modifica">
@@ -275,7 +291,6 @@
                         <Font name="Segoe UI" size="15.0"/>
                     </font>
                 </TextField>
-
                 <Label layoutX="300.0" layoutY="16.0" prefHeight="20.0" prefWidth="96.0" text="Settimana">
                     <font>
                         <Font name="Segoe UI Bold" size="20.0"/>
@@ -287,7 +302,6 @@
                         <Font name="Segoe UI" size="15.0"/>
                     </font>
                 </TextField>
-
                 <Label layoutX="20.0" layoutY="76.0" prefHeight="20.0" prefWidth="226.0"
                        text="Ricoverati con influenza">
                     <font>
@@ -300,19 +314,17 @@
                         <Font name="Segoe UI" size="15.0"/>
                     </font>
                 </TextField>
-
                 <Label layoutX="300.0" layoutY="76.0" prefHeight="20.0" prefWidth="196.0" text="In cura con influenza">
                     <font>
                         <Font name="Segoe UI Bold" size="20.0"/>
                     </font>
                 </Label>
-                <TextField fx:id="inCuraConInfluenzaModificaTextField" layoutX="300.0" layoutY="100.0" prefHeight="20.0"
-                           prefWidth="100.0">
+                <TextField fx:id="inCuraConInfluenzaModificaTextField" layoutX="300.0" layoutY="100.0"
+                           prefHeight="20.0" prefWidth="100.0">
                     <font>
                         <Font name="Segoe UI" size="15.0"/>
                     </font>
                 </TextField>
-
                 <Label layoutX="550.0" layoutY="76.0" prefHeight="20.0" prefWidth="236.0"
                        text="Complicanze respiratorie">
                     <font>
@@ -325,20 +337,29 @@
                         <Font name="Segoe UI" size="15.0"/>
                     </font>
                 </TextField>
-
-
+                <Label layoutX="20.0" layoutY="136.0" prefHeight="20.0" prefWidth="238.0"
+                       text="Ricoverati con polmonite">
+                    <font>
+                        <Font name="Segoe UI Bold" size="20.0"/>
+                    </font>
+                </Label>
+                <TextField fx:id="ricoveratiConPolmoniteModificaTextField" layoutX="20.0" layoutY="160.0"
+                           prefHeight="20.0" prefWidth="100.0">
+                    <font>
+                        <Font name="Segoe UI" size="15.0"/>
+                    </font>
+                </TextField>
                 <Label layoutX="300.0" layoutY="136.0" prefHeight="20.0" prefWidth="208.0" text="In cura con polmonite">
                     <font>
                         <Font name="Segoe UI Bold" size="20.0"/>
                     </font>
                 </Label>
-                <TextField fx:id="inCuraConPolmoniteModificaTextField" layoutX="300.0" layoutY="160.0" prefHeight="20.0"
-                           prefWidth="100.0">
+                <TextField fx:id="inCuraConPolmoniteModificaTextField" layoutX="300.0" layoutY="160.0"
+                           prefHeight="20.0" prefWidth="100.0">
                     <font>
                         <Font name="Segoe UI" size="15.0"/>
                     </font>
                 </TextField>
-
                 <Label layoutX="20.0" layoutY="206.0" prefHeight="20.0" prefWidth="236.0"
                        text="Ricoverati con meningite">
                     <font>
@@ -351,13 +372,106 @@
                         <Font name="Segoe UI" size="15.0"/>
                     </font>
                 </TextField>
-                <TextField fx:id="ricoveratiConPolmoniteModificaTextField" layoutX="20.0" layoutY="160.0"
+                <Label layoutX="300.0" layoutY="206.0" prefHeight="20.0" prefWidth="206.0" text="In cura con meningite">
+                    <font>
+                        <Font name="Segoe UI Bold" size="20.0"/>
+                    </font>
+                </Label>
+                <TextField fx:id="inCuraConMeningiteModificaTextField" layoutX="300.0" layoutY="230.0"
                            prefHeight="20.0" prefWidth="100.0">
                     <font>
                         <Font name="Segoe UI" size="15.0"/>
                     </font>
                 </TextField>
+                <Label layoutX="20.0" layoutY="276.0" prefHeight="20.0" prefWidth="206.0" text="Ricoverati con epatite">
+                    <font>
+                        <Font name="Segoe UI Bold" size="20.0"/>
+                    </font>
+                </Label>
                 <TextField fx:id="ricoveratiConEpatiteModificaTextField" layoutX="20.0" layoutY="300.0"
+                           prefHeight="20.0" prefWidth="100.0">
+                    <font>
+                        <Font name="Segoe UI" size="15.0"/>
+                    </font>
+                </TextField>
+                <Label layoutX="300.0" layoutY="276.0" prefHeight="20.0" prefWidth="176.0" text="In cura con epatite">
+                    <font>
+                        <Font name="Segoe UI Bold" size="20.0"/>
+                    </font>
+                </Label>
+
+                <TextField fx:id="inCuraConEpatiteModificaTextField" layoutX="300.0" layoutY="300.0"
+                           prefHeight="20.0" prefWidth="100.0">
+                    <font>
+                        <Font name="Segoe UI" size="15.0"/>
+                    </font>
+                </TextField>
+                <Label layoutX="20.0" layoutY="346.0" prefHeight="20.0" prefWidth="220.0"
+                       text="Ricoverati con morbillo">
+                    <font>
+                        <Font name="Segoe UI Bold" size="20.0"/>
+                    </font>
+                </Label>
+                <TextField fx:id="ricoveratiConMorbilloModificaTextField" layoutX="20.0" layoutY="370.0"
+                           prefHeight="20.0" prefWidth="100.0">
+                    <font>
+                        <Font name="Segoe UI" size="15.0"/>
+                    </font>
+                </TextField>
+                <Label layoutX="300.0" layoutY="346.0" prefHeight="20.0" prefWidth="190.0" text="In cura con morbillo">
+                    <font>
+                        <Font name="Segoe UI Bold" size="20.0"/>
+                    </font>
+                </Label>
+                <TextField fx:id="inCuraConMorbilloModificaTextField" layoutX="300.0" layoutY="370.0"
+                           prefHeight="20.0" prefWidth="100.0">
+                    <font>
+                        <Font name="Segoe UI" size="15.0"/>
+                    </font>
+                </TextField>
+                <Label layoutX="20.0" layoutY="416.0" prefHeight="20.0" prefWidth="246.0"
+                       text="Ricoverati con tubercolosi">
+                    <font>
+                        <Font name="Segoe UI Bold" size="20.0"/>
+                    </font>
+                </Label>
+                <TextField fx:id="ricoveratiConTubercolosiModificaTextField" layoutX="20.0" layoutY="440.0"
+                           prefHeight="20.0" prefWidth="100.0">
+                    <font>
+                        <Font name="Segoe UI" size="15.0"/>
+                    </font>
+                </TextField>
+                <Label layoutX="300.0" layoutY="416.0" prefHeight="20.0" prefWidth="216.0"
+                       text="In cura con tubercolosi">
+                    <font>
+                        <Font name="Segoe UI Bold" size="20.0"/>
+                    </font>
+                </Label>
+                <TextField fx:id="inCuraConTubercolosiModificaTextField" layoutX="300.0" layoutY="440.0"
+                           prefHeight="20.0" prefWidth="100.0">
+                    <font>
+                        <Font name="Segoe UI" size="15.0"/>
+                    </font>
+                </TextField>
+                <Label layoutX="20.0" layoutY="476.0" prefHeight="20.0" prefWidth="274.0"
+                       text="Ricoverati con gastroenterite">
+                    <font>
+                        <Font name="Segoe UI Bold" size="20.0"/>
+                    </font>
+                </Label>
+                <TextField fx:id="ricoveratiConGastroenteriteModificaTextField" layoutX="20.0" layoutY="500.0"
+                           prefHeight="20.0" prefWidth="100.0">
+                    <font>
+                        <Font name="Segoe UI" size="15.0"/>
+                    </font>
+                </TextField>
+                <Label layoutX="300.0" layoutY="476.0" prefHeight="20.0" prefWidth="244.0"
+                       text="In cura con gastroenterite">
+                    <font>
+                        <Font name="Segoe UI Bold" size="20.0"/>
+                    </font>
+                </Label>
+                <TextField fx:id="inCuraConGastroenteriteModificaTextField" layoutX="300.0" layoutY="500.0"
                            prefHeight="20.0" prefWidth="100.0">
                     <font>
                         <Font name="Segoe UI" size="15.0"/>
@@ -368,120 +482,15 @@
                         <Font name="Segoe UI Bold" size="20.0"/>
                     </font>
                 </Label>
+                <ComboBox fx:id="comuneModificaComboBox" layoutX="580.0" layoutY="370.0" prefHeight="20.0"
+                          prefWidth="200.0"/>
                 <Button fx:id="malattieSettimanaliModificaButton" layoutX="580.0" layoutY="410.0"
-                        mnemonicParsing="false" onAction="#modificaModificaOnClicked" prefHeight="40.0" text="Modifica">
+                        mnemonicParsing="false" onAction="#modificaModificaOnClicked" prefHeight="40.0"
+                        text="Modifica">
                     <font>
                         <Font name="Segoe UI Bold" size="20.0"/>
                     </font>
                 </Button>
-                <TextField fx:id="ricoveratiConTubercolosiModificaTextField" layoutX="20.0" layoutY="440.0"
-                           prefHeight="20.0" prefWidth="100.0">
-                    <font>
-                        <Font name="Segoe UI" size="15.0"/>
-                    </font>
-                </TextField>
-                <TextField fx:id="ricoveratiConMorbilloModificaTextField" layoutX="20.0" layoutY="370.0"
-                           prefHeight="20.0" prefWidth="100.0">
-                    <font>
-                        <Font name="Segoe UI" size="15.0"/>
-                    </font>
-                </TextField>
-                <TextField fx:id="ricoveratiConGastroenteriteModificaTextField" layoutX="20.0" layoutY="500.0"
-                           prefHeight="20.0" prefWidth="100.0">
-                    <font>
-                        <Font name="Segoe UI" size="15.0"/>
-                    </font>
-                </TextField>
-                <TextField fx:id="inCuraConTubercolosiModificaTextField" layoutX="300.0" layoutY="440.0"
-                           prefHeight="20.0" prefWidth="100.0">
-                    <font>
-                        <Font name="Segoe UI" size="15.0"/>
-                    </font>
-                </TextField>
-                <TextField fx:id="inCuraConMeningiteModificaTextField" layoutX="300.0" layoutY="230.0" prefHeight="20.0"
-                           prefWidth="100.0">
-                    <font>
-                        <Font name="Segoe UI" size="15.0"/>
-                    </font>
-                </TextField>
-                <TextField fx:id="inCuraConEpatiteModificaTextField" layoutX="300.0" layoutY="300.0" prefHeight="20.0"
-                           prefWidth="100.0">
-                    <font>
-                        <Font name="Segoe UI" size="15.0"/>
-                    </font>
-                </TextField>
-                <TextField fx:id="inCuraConMorbilloModificaTextField" layoutX="300.0" layoutY="370.0" prefHeight="20.0"
-                           prefWidth="100.0">
-                    <font>
-                        <Font name="Segoe UI" size="15.0"/>
-                    </font>
-                </TextField>
-                <TextField fx:id="inCuraConGastroenteriteModificaTextField" layoutX="300.0" layoutY="500.0"
-                           prefHeight="29.0" prefWidth="100.0">
-                    <font>
-                        <Font name="Segoe UI" size="15.0"/>
-                    </font>
-                </TextField>
-                <Label layoutX="20.0" layoutY="136.0" prefHeight="20.0" prefWidth="238.0"
-                       text="Ricoverati con polmonite">
-                    <font>
-                        <Font name="Segoe UI Bold" size="20.0"/>
-                    </font>
-                </Label>
-
-
-                <Label layoutX="300.0" layoutY="206.0" prefHeight="20.0" prefWidth="206.0" text="In cura con meningite">
-                    <font>
-                        <Font name="Segoe UI Bold" size="20.0"/>
-                    </font>
-                </Label>
-                <Label layoutX="20.0" layoutY="276.0" prefHeight="20.0" prefWidth="206.0" text="Ricoverati con epatite">
-                    <font>
-                        <Font name="Segoe UI Bold" size="20.0"/>
-                    </font>
-                </Label>
-                <Label layoutX="300.0" layoutY="276.0" prefHeight="20.0" prefWidth="176.0" text="In cura con epatite">
-                    <font>
-                        <Font name="Segoe UI Bold" size="20.0"/>
-                    </font>
-                </Label>
-                <Label layoutX="20.0" layoutY="346.0" prefHeight="20.0" prefWidth="220.0"
-                       text="Ricoverati con morbillo">
-                    <font>
-                        <Font name="Segoe UI Bold" size="20.0"/>
-                    </font>
-                </Label>
-                <Label layoutX="300.0" layoutY="346.0" prefHeight="20.0" prefWidth="190.0" text="In cura con morbillo">
-                    <font>
-                        <Font name="Segoe UI Bold" size="20.0"/>
-                    </font>
-                </Label>
-                <Label layoutX="20.0" layoutY="416.0" prefHeight="20.0" prefWidth="246.0"
-                       text="Ricoverati con tubercolosi">
-                    <font>
-                        <Font name="Segoe UI Bold" size="20.0"/>
-                    </font>
-                </Label>
-                <Label layoutX="300.0" layoutY="416.0" prefHeight="20.0" prefWidth="216.0"
-                       text="In cura con tubercolosi">
-                    <font>
-                        <Font name="Segoe UI Bold" size="20.0"/>
-                    </font>
-                </Label>
-                <Label layoutX="20.0" layoutY="476.0" prefHeight="20.0" prefWidth="274.0"
-                       text="Ricoverati con gastroenterite">
-                    <font>
-                        <Font name="Segoe UI Bold" size="20.0"/>
-                    </font>
-                </Label>
-                <Label layoutX="300.0" layoutY="476.0" prefHeight="20.0" prefWidth="244.0"
-                       text="In cura con gastroenterite">
-                    <font>
-                        <Font name="Segoe UI Bold" size="20.0"/>
-                    </font>
-                </Label>
-                <ComboBox fx:id="comuneModificaComboBox" layoutX="580.0" layoutY="370.0" prefHeight="20.0"
-                          prefWidth="200.0"/>
             </Pane>
         </Tab>
     </TabPane>
