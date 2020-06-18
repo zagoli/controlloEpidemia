@@ -17,6 +17,7 @@ import java.util.List;
 
 public class Regione {
 
+
     @Getter
     @NotNull
     @EqualsAndHashCode.Exclude

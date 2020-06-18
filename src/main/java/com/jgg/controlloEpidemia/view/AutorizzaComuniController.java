@@ -90,13 +90,17 @@ public class AutorizzaComuniController implements Initializable {
             utente.getComuni().addAll(toAuthorizeComuni);
             UtenteService utenteService = new UtenteService();
             utenteService.update(utente);
-            FadeTransition transition = new FadeTransition(Duration.millis(500), savedLabel);
-            transition.setFromValue(0);
-            transition.setByValue(1);
-            transition.setCycleCount(2);
-            transition.setAutoReverse(true);
-            transition.play();
+            fadeAnimation(savedLabel);
         }
+    }
+
+    private void fadeAnimation(Label label) {
+        FadeTransition transition = new FadeTransition(Duration.millis(500), label);
+        transition.setFromValue(0);
+        transition.setByValue(1);
+        transition.setCycleCount(2);
+        transition.setAutoReverse(true);
+        transition.play();
     }
 
     @FXML

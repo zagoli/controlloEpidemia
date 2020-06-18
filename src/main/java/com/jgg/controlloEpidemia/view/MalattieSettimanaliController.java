@@ -78,7 +78,6 @@ public class MalattieSettimanaliController implements Initializable {
     private TableColumn<MalattieSettimanali, Integer> inCuraConGastroenteriteColumn;
     @FXML
     private TableColumn<MalattieSettimanali, Comune> comuneColumn;
-
     @FXML
     private TextField annoInserimentoTextField;
     @FXML
@@ -170,6 +169,7 @@ public class MalattieSettimanaliController implements Initializable {
 
         idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
         annoColumn.setCellValueFactory(new PropertyValueFactory<>("anno"));
+        malattieSettimanaliTableView.getSortOrder().add(annoColumn);
         settimanaColumn.setCellValueFactory(new PropertyValueFactory<>("settimana"));
         ricoveratiConInfluenzaColumn.setCellValueFactory(new PropertyValueFactory<>("ricoveratiInfluenza"));
         inCuraConInfluenzaColumn.setCellValueFactory(new PropertyValueFactory<>("inCuraInfluenza"));
@@ -239,6 +239,7 @@ public class MalattieSettimanaliController implements Initializable {
                         .or(Bindings.isEmpty(inCuraConGastroenteriteModificaTextField.textProperty()))
                         .or(comuneModificaComboBox.valueProperty().isNull())
         );
+
         updateList();
     }
 
@@ -250,8 +251,7 @@ public class MalattieSettimanaliController implements Initializable {
 
     private void updateList() {
         malattieSettimanaliTableView.getItems().clear();
-        List<MalattieSettimanali> malattieSettimanaliList = malattieSettimanaliService.findAll();
-        for (MalattieSettimanali malattieSettimanali : malattieSettimanaliList) {
+        for (MalattieSettimanali malattieSettimanali : malattieSettimanaliService.findAll()) {
             malattieSettimanaliTableView.getItems().add(malattieSettimanali);
         }
         noDataSelectedLabel.setVisible(false);
@@ -271,11 +271,7 @@ public class MalattieSettimanaliController implements Initializable {
     @FXML
     private void malattieSettimanaliVisualizzazioneModificaButtonOnClicked() {
         if (malattieSettimanaliTableView.getSelectionModel().getSelectedItem() != null) {
-            malattieSettimanaliModificaTab.setDisable(false);
-            malattieSettimanaliVisualizzazioneTab.setDisable(true);
-            malattieSettimanaliInserimentoTab.setDisable(true);
             MalattieSettimanali malattie = malattieSettimanaliTableView.getSelectionModel().getSelectedItem();
-            malattieSettimanaliTabPane.getSelectionModel().select(2);
             selectedId = malattie.getId();
             annoModificaTextField.setText(String.valueOf(malattie.getAnno()));
             settimanaModificaTextField.setText(String.valueOf(malattie.getSettimana()));
@@ -295,6 +291,11 @@ public class MalattieSettimanaliController implements Initializable {
             ricoveratiConGastroenteriteModificaTextField.setText(String.valueOf(malattie.getRicoveratiGastroenterite()));
             inCuraConGastroenteriteModificaTextField.setText(String.valueOf(malattie.getInCuraGastroenterite()));
             comuneModificaComboBox.getSelectionModel().select(malattie.getComune().getNome());
+
+            malattieSettimanaliVisualizzazioneTab.setDisable(true);
+            malattieSettimanaliInserimentoTab.setDisable(true);
+            malattieSettimanaliModificaTab.setDisable(false);
+            malattieSettimanaliTabPane.getSelectionModel().select(2);
         } else {
             noDataSelectedLabel.setVisible(true);
             errorAnimation(noDataSelectedLabel);
@@ -352,7 +353,7 @@ public class MalattieSettimanaliController implements Initializable {
     void inserisciCsvInserimentoOnClicked() throws IOException {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Open Resource File");
-        FileChooser.ExtensionFilter extensionFilter = new FileChooser.ExtensionFilter("CSV files (*.csv)", "*.csv");
+        FileChooser.ExtensionFilter extensionFilter = new FileChooser.ExtensionFilter("Csv files (*.csv)", "*.csv");
         fileChooser.getExtensionFilters().add(extensionFilter);
         File selectedFile = fileChooser.showOpenDialog(null);
         if (selectedFile != null) {
