@@ -1,6 +1,7 @@
 package com.jgg.controlloEpidemia.importData;
 
 import com.jgg.controlloEpidemia.model.DecessiAnnuali;
+import com.jgg.controlloEpidemia.model.Provincia;
 import com.jgg.controlloEpidemia.service.DecessiAnnualiService;
 import com.jgg.controlloEpidemia.service.ProvinciaService;
 
@@ -8,29 +9,34 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class EtlDecessi {
 
-    final DecessiAnnualiService decessiAnnualiService = new DecessiAnnualiService();
-    final ProvinciaService provinciaService = new ProvinciaService();
-
-    private void caricaDecessi(String[] vett) {
-        DecessiAnnuali d = new DecessiAnnuali(Integer.parseInt(vett[0]), Integer.parseInt(vett[1]), Integer.parseInt(vett[2]), Integer.parseInt(vett[3]), Integer.parseInt(vett[4]), provinciaService.findById(Integer.parseInt(vett[5])));
-        decessiAnnualiService.save(d);
-    }
+    final List<Provincia> provinciaList = new ProvinciaService().findAll();
+    List<DecessiAnnuali> decessiAnnualiList = new ArrayList<>();
+    Provincia eProvincia = null;
 
     public void load(String path) throws IOException {
-        File fileDecessi = new File(path);
-        BufferedReader reader = new BufferedReader(new FileReader(fileDecessi));
+        BufferedReader reader = new BufferedReader(new FileReader(new File(path)));
         String riga = reader.readLine();
         String[] vettore;
         while (riga != null && !riga.equals("")) {
             vettore = riga.split(";");
             if (vettore.length == 6) {
-                caricaDecessi(vettore);
+                eProvincia = null;
+                for (Provincia provincia : provinciaList) {
+                    if (provincia.getId().equals(Integer.parseInt(vettore[5]))) {
+                        eProvincia = provincia;
+                        break;
+                    }
+                }
+                decessiAnnualiList.add(new DecessiAnnuali(Integer.parseInt(vettore[0]), Integer.parseInt(vettore[1]), Integer.parseInt(vettore[2]), Integer.parseInt(vettore[3]), Integer.parseInt(vettore[4]), eProvincia));
             }
             riga = reader.readLine();
         }
+        new DecessiAnnualiService().saveOrUpdate(decessiAnnualiList);
         reader.close();
     }
 

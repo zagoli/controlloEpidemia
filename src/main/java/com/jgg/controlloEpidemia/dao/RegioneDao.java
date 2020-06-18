@@ -1,7 +1,11 @@
 package com.jgg.controlloEpidemia.dao;
 
 import com.jgg.controlloEpidemia.model.Regione;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
 import org.hibernate.query.Query;
 
 import javax.persistence.NoResultException;
@@ -10,35 +14,58 @@ import java.util.List;
 @NoArgsConstructor
 public class RegioneDao implements RegioneDaoInterface {
 
-    private static final Session session = new Session();
-
     final private String FROM_REGIONE_WHERE_NOME = "FROM Regione where nome = :nome";
+    @Getter
+    @Setter
+    private org.hibernate.Session currentSession;
+    @Getter
+    @Setter
+    private org.hibernate.Transaction currentTransaction;
+
+    private static SessionFactory getSessionFactory() {
+        Configuration configuration = new Configuration().configure();
+        return configuration.buildSessionFactory();
+    }
+
+    public void openCurrentSession() {
+        currentSession = getSessionFactory().openSession();
+    }
+
+    public void openCurrentSessionWithTransaction() {
+        currentSession = getSessionFactory().openSession();
+        currentTransaction = currentSession.beginTransaction();
+    }
+
+    public void closeCurrentSession() {
+        currentSession.close();
+    }
+
+    public void closeCurrentSessionWithTransaction() {
+        currentTransaction.commit();
+        currentSession.close();
+    }
+
+    public org.hibernate.query.Query createQuery(String hql) {
+        return currentSession.createQuery(hql);
+    }
 
     @Override
     public void save(Regione regione) {
-        session.openCurrentSessionWithTransaction();
-        session.getCurrentSession().save(regione);
-        session.closeCurrentSessionWithTransaction();
+        currentSession.save(regione);
     }
 
     @Override
     public void deleteById(Integer id) {
-        session.openCurrentSessionWithTransaction();
-        Regione regione = session.getCurrentSession().get(Regione.class, id);
-        session.getCurrentSession().delete(regione);
-        session.closeCurrentSessionWithTransaction();
+        currentSession.delete(currentSession.get(Regione.class, id));
     }
 
     @Override
     public void update(Regione regione) {
-        session.openCurrentSessionWithTransaction();
-        session.getCurrentSession().update(regione);
-        session.closeCurrentSessionWithTransaction();
+        currentSession.update(regione);
     }
 
     @Override
     public void saveOrUpdate(Regione regione) {
-        session.openCurrentSession();
         Regione eRegione = findByNome(regione.getNome());
         if (eRegione == null) {
             save(regione);
@@ -48,38 +75,29 @@ public class RegioneDao implements RegioneDaoInterface {
             eRegione.setCapoluogo(regione.getCapoluogo());
             update(eRegione);
         }
-        session.closeCurrentSession();
     }
 
     @Override
     public Regione findById(Integer id) {
-        session.openCurrentSession();
-        Regione regione = session.getCurrentSession().get(Regione.class, id);
-        session.closeCurrentSession();
-        return regione;
+        return currentSession.get(Regione.class, id);
     }
 
     @Override
     public Regione findByNome(String nome) {
-        session.openCurrentSession();
-        Query query = session.createQuery(FROM_REGIONE_WHERE_NOME);
+        Query query = createQuery(FROM_REGIONE_WHERE_NOME);
         query.setParameter("nome", nome);
         Regione regione = null;
         try {
             regione = (Regione) query.getSingleResult();
         } catch (NoResultException ignored) {
         }
-        session.closeCurrentSession();
         return regione;
     }
 
     @Override
     @SuppressWarnings("unchecked")
     public List<Regione> findAll() {
-        session.openCurrentSession();
-        List<Regione> regione = session.getCurrentSession().createQuery("from Regione").list();
-        session.closeCurrentSession();
-        return regione;
+        return (List<Regione>) currentSession.createQuery("from Regione").list();
     }
 
 }

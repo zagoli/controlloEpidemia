@@ -1,7 +1,11 @@
 package com.jgg.controlloEpidemia.dao;
 
 import com.jgg.controlloEpidemia.model.Utente;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
 import org.hibernate.query.Query;
 
 import javax.persistence.NoResultException;
@@ -10,36 +14,59 @@ import java.util.List;
 @NoArgsConstructor
 public class UtenteDao implements UtenteDaoInterface {
 
-    private final Session session = new Session();
-
     final private String FIND_ALL_PERSONALE_CONTRATTO = "FROM Utente where ruolo.id = 2"; // Personale a contratto ha id ruolo = 2
     final private String FROM_UTENTE_WHERE_USERNAME = "FROM Utente where username = :username";
+    @Getter
+    @Setter
+    private org.hibernate.Session currentSession;
+    @Getter
+    @Setter
+    private org.hibernate.Transaction currentTransaction;
+
+    private static SessionFactory getSessionFactory() {
+        Configuration configuration = new Configuration().configure();
+        return configuration.buildSessionFactory();
+    }
+
+    public void openCurrentSession() {
+        currentSession = getSessionFactory().openSession();
+    }
+
+    public void openCurrentSessionWithTransaction() {
+        currentSession = getSessionFactory().openSession();
+        currentTransaction = currentSession.beginTransaction();
+    }
+
+    public void closeCurrentSession() {
+        currentSession.close();
+    }
+
+    public void closeCurrentSessionWithTransaction() {
+        currentTransaction.commit();
+        currentSession.close();
+    }
+
+    public org.hibernate.query.Query createQuery(String hql) {
+        return currentSession.createQuery(hql);
+    }
 
     @Override
     public void save(Utente utente) {
-        session.openCurrentSessionWithTransaction();
-        session.getCurrentSession().save(utente);
-        session.closeCurrentSessionWithTransaction();
+        currentSession.save(utente);
     }
 
     @Override
     public void deleteById(Integer id) {
-        session.openCurrentSessionWithTransaction();
-        Utente utente = session.getCurrentSession().get(Utente.class, id);
-        session.getCurrentSession().delete(utente);
-        session.closeCurrentSessionWithTransaction();
+        currentSession.delete(currentSession.get(Utente.class, id));
     }
 
     @Override
     public void update(Utente utente) {
-        session.openCurrentSessionWithTransaction();
-        session.getCurrentSession().update(utente);
-        session.closeCurrentSessionWithTransaction();
+        currentSession.update(utente);
     }
 
     @Override
     public void saveOrUpdate(Utente utente) {
-        session.openCurrentSession();
         Utente eUtente = findByUsername(utente.getUsername());
         if (eUtente == null) {
             save(utente);
@@ -51,47 +78,35 @@ public class UtenteDao implements UtenteDaoInterface {
             eUtente.setRuolo(utente.getRuolo());
             update(eUtente);
         }
-        session.closeCurrentSession();
     }
 
     @Override
     public Utente findById(Integer id) {
-        session.openCurrentSession();
-        Utente utente = session.getCurrentSession().get(Utente.class, id);
-        session.closeCurrentSession();
-        return utente;
+        return currentSession.get(Utente.class, id);
     }
 
     @Override
     public Utente findByUsername(String username) {
-        session.openCurrentSession();
-        Query query = session.createQuery(FROM_UTENTE_WHERE_USERNAME);
+        Query query = createQuery(FROM_UTENTE_WHERE_USERNAME);
         query.setParameter("username", username);
         Utente utente = null;
         try {
             utente = (Utente) query.getSingleResult();
         } catch (NoResultException ignored) {
         }
-        session.closeCurrentSession();
         return utente;
     }
 
     @Override
     @SuppressWarnings("unchecked")
     public List<Utente> findAll() {
-        session.openCurrentSession();
-        List<Utente> utente = session.getCurrentSession().createQuery("from Utente").list();
-        session.closeCurrentSession();
-        return utente;
+        return (List<Utente>) currentSession.createQuery("from Utente").list();
     }
 
     @Override
     @SuppressWarnings("unchecked")
     public List<Utente> findAllPersonaleContratto() {
-        session.openCurrentSession();
-        List<Utente> utenti = session.getCurrentSession().createQuery(FIND_ALL_PERSONALE_CONTRATTO).list();
-        session.closeCurrentSession();
-        return utenti;
+        return (List<Utente>) currentSession.createQuery(FIND_ALL_PERSONALE_CONTRATTO).list();
     }
 
 }

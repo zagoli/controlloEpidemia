@@ -2,7 +2,11 @@ package com.jgg.controlloEpidemia.dao;
 
 import com.jgg.controlloEpidemia.model.DecessiAnnuali;
 import com.jgg.controlloEpidemia.model.Provincia;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
 import org.hibernate.query.Query;
 
 import javax.persistence.NoResultException;
@@ -11,37 +15,62 @@ import java.util.List;
 @NoArgsConstructor
 public class DecessiAnnualiDao implements DecessiAnnualiDaoInterface {
 
-    private static final Session session = new Session();
-
     final private String FROM_DECESSI_WHERE_ANNO_PROVINCIA = "from DecessiAnnuali where anno= :anno and provincia_id= :provincia";
     final private String SELECT_ALL_ANNI_DECESSI = "select distinct anno from DecessiAnnuali";
     final private String FROM_DECESSI_WHERE_ANNO = "from DecessiAnnuali where anno=:anno";
+    @Getter
+    @Setter
+    private org.hibernate.Session currentSession;
+    @Getter
+    @Setter
+    private org.hibernate.Transaction currentTransaction;
+
+    private static SessionFactory getSessionFactory() {
+        Configuration configuration = new Configuration().configure();
+        return configuration.buildSessionFactory();
+    }
+
+    public void openCurrentSession() {
+        currentSession = getSessionFactory().openSession();
+    }
+
+    public void openCurrentSessionWithTransaction() {
+        currentSession = getSessionFactory().openSession();
+        currentTransaction = currentSession.beginTransaction();
+    }
+
+    public void closeCurrentSession() {
+        currentSession.close();
+    }
+
+    public void closeCurrentSessionWithTransaction() {
+        currentTransaction.commit();
+        currentSession.close();
+    }
+
+    public org.hibernate.query.Query createQuery(String hql) {
+        return currentSession.createQuery(hql);
+    }
 
     @Override
     public void save(DecessiAnnuali decessiAnnuali) {
-        session.openCurrentSessionWithTransaction();
-        session.getCurrentSession().save(decessiAnnuali);
-        session.closeCurrentSessionWithTransaction();
+
+        currentSession.save(decessiAnnuali);
+
     }
 
     @Override
     public void deleteById(Integer id) {
-        session.openCurrentSessionWithTransaction();
-        DecessiAnnuali decessiAnnuali = session.getCurrentSession().get(DecessiAnnuali.class, id);
-        session.getCurrentSession().delete(decessiAnnuali);
-        session.closeCurrentSessionWithTransaction();
+        currentSession.delete(currentSession.get(DecessiAnnuali.class, id));
     }
 
     @Override
     public void update(DecessiAnnuali decessiAnnuali) {
-        session.openCurrentSessionWithTransaction();
-        session.getCurrentSession().update(decessiAnnuali);
-        session.closeCurrentSessionWithTransaction();
+        currentSession.update(decessiAnnuali);
     }
 
     @Override
     public void saveOrUpdate(DecessiAnnuali decessiAnnuali) {
-        session.openCurrentSession();
         DecessiAnnuali eDecessiAnnuali = findByAnnoProvincia(decessiAnnuali.getAnno(), decessiAnnuali.getProvincia());
         if (eDecessiAnnuali == null) {
             save(decessiAnnuali);
@@ -54,21 +83,10 @@ public class DecessiAnnualiDao implements DecessiAnnualiDaoInterface {
             eDecessiAnnuali.setProvincia(decessiAnnuali.getProvincia());
             update(eDecessiAnnuali);
         }
-        session.closeCurrentSession();
     }
 
-    @Override
-    public DecessiAnnuali findById(Integer id) {
-        session.openCurrentSession();
-        DecessiAnnuali decessiAnnuali = session.getCurrentSession().get(DecessiAnnuali.class, id);
-        session.closeCurrentSession();
-        return decessiAnnuali;
-    }
-
-    @Override
-    public DecessiAnnuali findByAnnoProvincia(Integer anno, Provincia provincia) {
-        session.openCurrentSession();
-        Query query = session.createQuery(FROM_DECESSI_WHERE_ANNO_PROVINCIA);
+    private DecessiAnnuali findByAnnoProvincia(Integer anno, Provincia provincia) {
+        Query query = createQuery(FROM_DECESSI_WHERE_ANNO_PROVINCIA);
         query.setParameter("anno", anno);
         query.setParameter("provincia", provincia.getId());
         DecessiAnnuali decessiAnnuali;
@@ -77,35 +95,30 @@ public class DecessiAnnualiDao implements DecessiAnnualiDaoInterface {
         } catch (NoResultException ignored) {
             decessiAnnuali = null;
         }
-        session.closeCurrentSession();
         return decessiAnnuali;
+    }
+
+    @Override
+    public DecessiAnnuali findById(Integer id) {
+        return currentSession.get(DecessiAnnuali.class, id);
     }
 
     @Override
     @SuppressWarnings("unchecked")
     public List<DecessiAnnuali> findAll() {
-        session.openCurrentSession();
-        List<DecessiAnnuali> decessiAnnuali = session.getCurrentSession().createQuery("from DecessiAnnuali").list();
-        session.closeCurrentSession();
-        return decessiAnnuali;
+        return (List<DecessiAnnuali>) currentSession.createQuery("from DecessiAnnuali").list();
     }
 
     @Override
     @SuppressWarnings("unchecked")
     public List<DecessiAnnuali> findByAnno(Integer anno) {
-        session.openCurrentSession();
-        List<DecessiAnnuali> decessi = session.getCurrentSession().createQuery(FROM_DECESSI_WHERE_ANNO).setParameter("anno", anno).list();
-        session.closeCurrentSession();
-        return decessi;
+        return (List<DecessiAnnuali>) currentSession.createQuery(FROM_DECESSI_WHERE_ANNO).setParameter("anno", anno).list();
     }
 
     @Override
     @SuppressWarnings("unchecked")
     public List<Integer> findInsertedYears() {
-        session.openCurrentSession();
-        List<Integer> anni = session.getCurrentSession().createQuery(SELECT_ALL_ANNI_DECESSI).list();
-        session.closeCurrentSession();
-        return anni;
+        return (List<Integer>) currentSession.createQuery(SELECT_ALL_ANNI_DECESSI).list();
     }
 
 }

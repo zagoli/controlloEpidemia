@@ -1,7 +1,11 @@
 package com.jgg.controlloEpidemia.dao;
 
 import com.jgg.controlloEpidemia.model.Comune;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
 import org.hibernate.query.Query;
 
 import javax.persistence.NoResultException;
@@ -10,36 +14,59 @@ import java.util.List;
 @NoArgsConstructor
 public class ComuneDao implements ComuneDaoInterface {
 
-    private static final Session session = new Session();
-
     final private String FROM_COMUNE_WHERE_NOME = "FROM Comune where nome = :nome";
     final private String COUNT_COMUNE = "select count(*) FROM Comune";
+    @Getter
+    @Setter
+    private org.hibernate.Session currentSession;
+    @Getter
+    @Setter
+    private org.hibernate.Transaction currentTransaction;
+
+    private static SessionFactory getSessionFactory() {
+        Configuration configuration = new Configuration().configure();
+        return configuration.buildSessionFactory();
+    }
+
+    public void openCurrentSession() {
+        currentSession = getSessionFactory().openSession();
+    }
+
+    public void openCurrentSessionWithTransaction() {
+        currentSession = getSessionFactory().openSession();
+        currentTransaction = currentSession.beginTransaction();
+    }
+
+    public void closeCurrentSession() {
+        currentSession.close();
+    }
+
+    public void closeCurrentSessionWithTransaction() {
+        currentTransaction.commit();
+        currentSession.close();
+    }
+
+    public org.hibernate.query.Query createQuery(String hql) {
+        return currentSession.createQuery(hql);
+    }
 
     @Override
-    public void save(Comune c) {
-        session.openCurrentSessionWithTransaction();
-        session.getCurrentSession().save(c);
-        session.closeCurrentSessionWithTransaction();
+    public void save(Comune comune) {
+        currentSession.save(comune);
     }
 
     @Override
     public void deleteByCodiceIstat(String codiceIstat) {
-        session.openCurrentSessionWithTransaction();
-        Comune comune = session.getCurrentSession().get(Comune.class, codiceIstat);
-        session.getCurrentSession().delete(comune);
-        session.closeCurrentSessionWithTransaction();
+        currentSession.delete(currentSession.get(Comune.class, codiceIstat));
     }
 
     @Override
     public void update(Comune comune) {
-        session.openCurrentSessionWithTransaction();
-        session.getCurrentSession().update(comune);
-        session.closeCurrentSessionWithTransaction();
+        currentSession.update(comune);
     }
 
     @Override
     public void saveOrUpdate(Comune comune) {
-        session.openCurrentSession();
         Comune eComune = findByNome(comune.getNome());
         if (eComune == null) {
             save(comune);
@@ -52,46 +79,34 @@ public class ComuneDao implements ComuneDaoInterface {
             eComune.setProvincia(comune.getProvincia());
             update(eComune);
         }
-        session.closeCurrentSession();
     }
 
     @Override
     public Comune findByCodiceIstat(String codiceIstat) {
-        session.openCurrentSession();
-        Comune comune = session.getCurrentSession().get(Comune.class, codiceIstat);
-        session.closeCurrentSession();
-        return comune;
+        return currentSession.get(Comune.class, codiceIstat);
     }
 
     @Override
     public Comune findByNome(String nome) {
-        session.openCurrentSession();
-        Query query = session.createQuery(FROM_COMUNE_WHERE_NOME);
+        Query query = createQuery(FROM_COMUNE_WHERE_NOME);
         query.setParameter("nome", nome);
         Comune comune = null;
         try {
             comune = (Comune) query.getSingleResult();
         } catch (NoResultException ignored) {
         }
-        session.closeCurrentSession();
         return comune;
     }
 
     @Override
     @SuppressWarnings("unchecked")
     public List<Comune> findAll() {
-        session.openCurrentSession();
-        List<Comune> comune = session.getCurrentSession().createQuery("from Comune").list();
-        session.closeCurrentSession();
-        return comune;
+        return (List<Comune>) currentSession.createQuery("from Comune").list();
     }
 
     @Override
     public Integer countComuni() {
-        session.openCurrentSession();
-        Integer count = Math.toIntExact((Long) session.getCurrentSession().createQuery(COUNT_COMUNE).getSingleResult());
-        session.closeCurrentSession();
-        return count;
+        return Math.toIntExact((Long) currentSession.createQuery(COUNT_COMUNE).getSingleResult());
     }
 
 }

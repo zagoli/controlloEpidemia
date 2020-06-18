@@ -2,7 +2,11 @@ package com.jgg.controlloEpidemia.dao;
 
 import com.jgg.controlloEpidemia.model.Comune;
 import com.jgg.controlloEpidemia.model.MalattieSettimanali;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
 import org.hibernate.query.Query;
 
 import javax.persistence.NoResultException;
@@ -11,37 +15,60 @@ import java.util.List;
 @NoArgsConstructor
 public class MalattieSettimanaliDao implements MalattieSettimanaliDaoInterface {
 
-    private static final Session session = new Session();
-
     final private String FROM_MALATTIE_WHERE_ANNO_SETTIMANA_COMUNE = "FROM MalattieSettimanali where ANNO= :anno and SETTIMANA= :settimana and COMUNE_CODICEISTAT= :comune";
     final private String FROM_MALATTIE_WHERE_ANNO = "from MalattieSettimanali where anno=:anno";
     final private String SELECT_ALL_ANNI_MALATTIE = "select distinct anno from MalattieSettimanali";
+    @Getter
+    @Setter
+    private org.hibernate.Session currentSession;
+    @Getter
+    @Setter
+    private org.hibernate.Transaction currentTransaction;
+
+    private static SessionFactory getSessionFactory() {
+        Configuration configuration = new Configuration().configure();
+        return configuration.buildSessionFactory();
+    }
+
+    public void openCurrentSession() {
+        currentSession = getSessionFactory().openSession();
+    }
+
+    public void openCurrentSessionWithTransaction() {
+        currentSession = getSessionFactory().openSession();
+        currentTransaction = currentSession.beginTransaction();
+    }
+
+    public void closeCurrentSession() {
+        currentSession.close();
+    }
+
+    public void closeCurrentSessionWithTransaction() {
+        currentTransaction.commit();
+        currentSession.close();
+    }
+
+    public org.hibernate.query.Query createQuery(String hql) {
+        return currentSession.createQuery(hql);
+    }
 
     @Override
     public void save(MalattieSettimanali malattieSettimanali) {
-        session.openCurrentSessionWithTransaction();
-        session.getCurrentSession().save(malattieSettimanali);
-        session.closeCurrentSessionWithTransaction();
+        currentSession.save(malattieSettimanali);
     }
 
     @Override
     public void deleteById(Integer id) {
-        session.openCurrentSessionWithTransaction();
-        MalattieSettimanali malattieSettimanali = session.getCurrentSession().get(MalattieSettimanali.class, id);
-        session.getCurrentSession().delete(malattieSettimanali);
-        session.closeCurrentSessionWithTransaction();
+        currentSession.delete(currentSession.get(MalattieSettimanali.class, id));
     }
 
     @Override
     public void update(MalattieSettimanali malattieSettimanali) {
-        session.openCurrentSessionWithTransaction();
-        session.getCurrentSession().update(malattieSettimanali);
-        session.closeCurrentSessionWithTransaction();
+        currentSession.update(malattieSettimanali);
     }
 
     @Override
     public void saveOrUpdate(MalattieSettimanali malattieSettimanali) {
-        session.openCurrentSession();
         MalattieSettimanali eMalattieSettimanali = findByAnnoSettimanaComune(malattieSettimanali.getAnno(), malattieSettimanali.getSettimana(), malattieSettimanali.getComune());
         if (eMalattieSettimanali == null) {
             save(malattieSettimanali);
@@ -66,21 +93,15 @@ public class MalattieSettimanaliDao implements MalattieSettimanaliDaoInterface {
             eMalattieSettimanali.setComune(malattieSettimanali.getComune());
             update(eMalattieSettimanali);
         }
-        session.closeCurrentSession();
     }
 
     @Override
     public MalattieSettimanali findById(Integer id) {
-        session.openCurrentSession();
-        MalattieSettimanali malattieSettimanali = session.getCurrentSession().get(MalattieSettimanali.class, id);
-        session.closeCurrentSession();
-        return malattieSettimanali;
+        return currentSession.get(MalattieSettimanali.class, id);
     }
 
-    @Override
-    public MalattieSettimanali findByAnnoSettimanaComune(Integer anno, Integer settimana, Comune comune) {
-        session.openCurrentSession();
-        Query query = session.createQuery(FROM_MALATTIE_WHERE_ANNO_SETTIMANA_COMUNE);
+    private MalattieSettimanali findByAnnoSettimanaComune(Integer anno, Integer settimana, Comune comune) {
+        Query query = createQuery(FROM_MALATTIE_WHERE_ANNO_SETTIMANA_COMUNE);
         query.setParameter("anno", anno);
         query.setParameter("settimana", settimana);
         query.setParameter("comune", comune.getCodiceIstat());
@@ -89,35 +110,25 @@ public class MalattieSettimanaliDao implements MalattieSettimanaliDaoInterface {
             malattieSettimanali = (MalattieSettimanali) query.getSingleResult();
         } catch (NoResultException ignored) {
         }
-        session.closeCurrentSession();
         return malattieSettimanali;
     }
 
     @Override
     @SuppressWarnings("unchecked")
     public List<MalattieSettimanali> findAll() {
-        session.openCurrentSession();
-        List<MalattieSettimanali> malattieSettimanali = session.getCurrentSession().createQuery("from MalattieSettimanali").list();
-        session.closeCurrentSession();
-        return malattieSettimanali;
+        return (List<MalattieSettimanali>) currentSession.createQuery("from MalattieSettimanali").list();
     }
 
     @Override
     @SuppressWarnings("unchecked")
     public List<MalattieSettimanali> findByAnno(Integer anno) {
-        session.openCurrentSession();
-        List<MalattieSettimanali> malattieSettimanali = session.getCurrentSession().createQuery(FROM_MALATTIE_WHERE_ANNO).setParameter("anno", anno).list();
-        session.closeCurrentSession();
-        return malattieSettimanali;
+        return (List<MalattieSettimanali>) currentSession.createQuery(FROM_MALATTIE_WHERE_ANNO).setParameter("anno", anno).list();
     }
 
     @Override
     @SuppressWarnings("unchecked")
     public List<Integer> findInsertedYears() {
-        session.openCurrentSession();
-        List<Integer> anni = session.getCurrentSession().createQuery(SELECT_ALL_ANNI_MALATTIE).list();
-        session.closeCurrentSession();
-        return anni;
+        return (List<Integer>) currentSession.createQuery(SELECT_ALL_ANNI_MALATTIE).list();
     }
 
 }

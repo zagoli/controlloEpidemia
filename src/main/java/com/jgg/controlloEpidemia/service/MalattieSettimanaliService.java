@@ -12,35 +12,63 @@ public class MalattieSettimanaliService {
     private static final MalattieSettimanaliDao malattieSettimanaliDao = new MalattieSettimanaliDao();
 
     public void save(MalattieSettimanali malattieSettimanali) {
+        malattieSettimanaliDao.openCurrentSessionWithTransaction();
         malattieSettimanaliDao.save(malattieSettimanali);
+        malattieSettimanaliDao.closeCurrentSessionWithTransaction();
     }
 
     public void deleteById(Integer id) {
+        malattieSettimanaliDao.openCurrentSessionWithTransaction();
         malattieSettimanaliDao.deleteById(id);
+        malattieSettimanaliDao.closeCurrentSessionWithTransaction();
     }
 
     public void update(MalattieSettimanali malattieSettimanali) {
+        malattieSettimanaliDao.openCurrentSessionWithTransaction();
         malattieSettimanaliDao.update(malattieSettimanali);
+        malattieSettimanaliDao.closeCurrentSessionWithTransaction();
     }
 
     public void saveOrUpdate(MalattieSettimanali malattieSettimanali) {
+        malattieSettimanaliDao.openCurrentSession();
         malattieSettimanaliDao.saveOrUpdate(malattieSettimanali);
+        malattieSettimanaliDao.closeCurrentSession();
+    }
+
+    public void saveOrUpdate(List<MalattieSettimanali> malattieSettimanaliList) {
+        malattieSettimanaliDao.openCurrentSessionWithTransaction();
+        for (MalattieSettimanali malattieSettimanali : malattieSettimanaliList) {
+            malattieSettimanaliDao.saveOrUpdate(malattieSettimanali);
+        }
+        malattieSettimanaliDao.closeCurrentSessionWithTransaction();
     }
 
     public MalattieSettimanali findById(Integer id) {
-        return malattieSettimanaliDao.findById(id);
+        malattieSettimanaliDao.openCurrentSession();
+        MalattieSettimanali malattieSettimanaliById = malattieSettimanaliDao.findById(id);
+        malattieSettimanaliDao.closeCurrentSession();
+        return malattieSettimanaliById;
     }
 
     public List<MalattieSettimanali> findByAnno(Integer anno) {
-        return malattieSettimanaliDao.findByAnno(anno);
+        malattieSettimanaliDao.openCurrentSession();
+        List<MalattieSettimanali> malattieSettimanaliByAnno = malattieSettimanaliDao.findByAnno(anno);
+        malattieSettimanaliDao.closeCurrentSession();
+        return malattieSettimanaliByAnno;
     }
 
     public List<Integer> findInsertedYears() {
-        return malattieSettimanaliDao.findInsertedYears();
+        malattieSettimanaliDao.openCurrentSession();
+        List<Integer> malattieSettimanaliInsertedYears = malattieSettimanaliDao.findInsertedYears();
+        malattieSettimanaliDao.closeCurrentSession();
+        return malattieSettimanaliInsertedYears;
     }
 
     public List<MalattieSettimanali> findAll() {
-        return malattieSettimanaliDao.findAll();
+        malattieSettimanaliDao.openCurrentSession();
+        List<MalattieSettimanali> malattieSettimanaliAll = malattieSettimanaliDao.findAll();
+        malattieSettimanaliDao.closeCurrentSession();
+        return malattieSettimanaliAll;
     }
 
 }

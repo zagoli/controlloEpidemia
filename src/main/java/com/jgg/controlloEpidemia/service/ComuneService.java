@@ -12,35 +12,63 @@ public class ComuneService {
     private static final ComuneDao comuneDao = new ComuneDao();
 
     public void save(Comune comune) {
+        comuneDao.openCurrentSessionWithTransaction();
         comuneDao.save(comune);
+        comuneDao.closeCurrentSessionWithTransaction();
     }
 
     public void deleteByCodiceIstat(String codiceIstat) {
+        comuneDao.openCurrentSessionWithTransaction();
         comuneDao.deleteByCodiceIstat(codiceIstat);
+        comuneDao.closeCurrentSessionWithTransaction();
     }
 
     public void update(Comune comune) {
+        comuneDao.openCurrentSessionWithTransaction();
         comuneDao.update(comune);
+        comuneDao.closeCurrentSessionWithTransaction();
     }
 
     public void saveOrUpdate(Comune comune) {
+        comuneDao.openCurrentSession();
         comuneDao.saveOrUpdate(comune);
+        comuneDao.closeCurrentSession();
+    }
+
+    public void saveOrUpdate(List<Comune> comuneList) {
+        comuneDao.openCurrentSessionWithTransaction();
+        for (Comune comune : comuneList) {
+            comuneDao.saveOrUpdate(comune);
+        }
+        comuneDao.closeCurrentSessionWithTransaction();
     }
 
     public Comune findByCodiceIstat(String codiceIstat) {
-        return comuneDao.findByCodiceIstat(codiceIstat);
+        comuneDao.openCurrentSession();
+        Comune comuneByCodiceIstat = comuneDao.findByCodiceIstat(codiceIstat);
+        comuneDao.closeCurrentSession();
+        return comuneByCodiceIstat;
     }
 
     public Comune findByNome(String nome) {
-        return comuneDao.findByNome(nome);
+        comuneDao.openCurrentSession();
+        Comune comuneByNome = comuneDao.findByNome(nome);
+        comuneDao.closeCurrentSession();
+        return comuneByNome;
     }
 
     public List<Comune> findAll() {
-        return comuneDao.findAll();
+        comuneDao.openCurrentSession();
+        List<Comune> comuneAllList = comuneDao.findAll();
+        comuneDao.closeCurrentSession();
+        return comuneAllList;
     }
 
     public Integer countComuni() {
-        return comuneDao.countComuni();
+        comuneDao.openCurrentSession();
+        Integer comuneCount = comuneDao.countComuni();
+        comuneDao.closeCurrentSession();
+        return comuneCount;
     }
 
 }

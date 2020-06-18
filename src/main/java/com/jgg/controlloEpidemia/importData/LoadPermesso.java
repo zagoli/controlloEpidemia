@@ -4,15 +4,17 @@ import com.jgg.controlloEpidemia.model.Permesso;
 import com.jgg.controlloEpidemia.service.PermessoService;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @NoArgsConstructor
 public class LoadPermesso {
 
-    final PermessoService permessoService = new PermessoService();
+    List<Permesso> permessoList = new PermessoService().findAll();
 
     public void load() {
-        Permesso p = new Permesso("vediDecessi", "Visualizzazione dei dati annuali sui decessi");
+        permessoList.add(new Permesso("vediDecessi", "Visualizzazione dei dati annuali sui decessi"));
 
-        permessoService.saveOrUpdate(p);
+        new PermessoService().saveOrUpdate(permessoList);
     }
 
 }

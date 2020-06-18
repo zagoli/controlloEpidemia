@@ -1,7 +1,6 @@
 package com.jgg.controlloEpidemia.dao;
 
 import com.jgg.controlloEpidemia.model.DecessiAnnuali;
-import com.jgg.controlloEpidemia.model.Provincia;
 
 import java.util.List;
 
@@ -16,8 +15,6 @@ public interface DecessiAnnualiDaoInterface {
     void saveOrUpdate(DecessiAnnuali decessiAnnuali);
 
     DecessiAnnuali findById(Integer id);
-
-    DecessiAnnuali findByAnnoProvincia(Integer anno, Provincia provincia);
 
     List<DecessiAnnuali> findAll();
 

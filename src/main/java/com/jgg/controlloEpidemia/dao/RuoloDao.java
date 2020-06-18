@@ -1,7 +1,11 @@
 package com.jgg.controlloEpidemia.dao;
 
 import com.jgg.controlloEpidemia.model.Ruolo;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
 import org.hibernate.query.Query;
 
 import javax.persistence.NoResultException;
@@ -10,35 +14,58 @@ import java.util.List;
 @NoArgsConstructor
 public class RuoloDao implements RuoloDaoInterface {
 
-    private static final Session session = new Session();
-
     final private String FROM_RUOLO_WHERE_NOME = "FROM Ruolo where nome = :nome";
+    @Getter
+    @Setter
+    private org.hibernate.Session currentSession;
+    @Getter
+    @Setter
+    private org.hibernate.Transaction currentTransaction;
+
+    private static SessionFactory getSessionFactory() {
+        Configuration configuration = new Configuration().configure();
+        return configuration.buildSessionFactory();
+    }
+
+    public void openCurrentSession() {
+        currentSession = getSessionFactory().openSession();
+    }
+
+    public void openCurrentSessionWithTransaction() {
+        currentSession = getSessionFactory().openSession();
+        currentTransaction = currentSession.beginTransaction();
+    }
+
+    public void closeCurrentSession() {
+        currentSession.close();
+    }
+
+    public void closeCurrentSessionWithTransaction() {
+        currentTransaction.commit();
+        currentSession.close();
+    }
+
+    public org.hibernate.query.Query createQuery(String hql) {
+        return currentSession.createQuery(hql);
+    }
 
     @Override
     public void save(Ruolo ruolo) {
-        session.openCurrentSessionWithTransaction();
-        session.getCurrentSession().save(ruolo);
-        session.closeCurrentSessionWithTransaction();
+        currentSession.save(ruolo);
     }
 
     @Override
     public void deleteById(Integer id) {
-        session.openCurrentSessionWithTransaction();
-        Ruolo ruolo = session.getCurrentSession().get(Ruolo.class, id);
-        session.getCurrentSession().delete(ruolo);
-        session.closeCurrentSessionWithTransaction();
+        currentSession.delete(currentSession.get(Ruolo.class, id));
     }
 
     @Override
     public void update(Ruolo ruolo) {
-        session.openCurrentSessionWithTransaction();
-        session.getCurrentSession().update(ruolo);
-        session.closeCurrentSessionWithTransaction();
+        currentSession.update(ruolo);
     }
 
     @Override
     public void saveOrUpdate(Ruolo ruolo) {
-        session.openCurrentSession();
         Ruolo eRuolo = findByNome(ruolo.getNome());
         if (eRuolo == null) {
             save(ruolo);
@@ -46,38 +73,29 @@ public class RuoloDao implements RuoloDaoInterface {
             eRuolo.setNome(ruolo.getNome());
             update(eRuolo);
         }
-        session.closeCurrentSession();
     }
 
     @Override
     public Ruolo findById(Integer id) {
-        session.openCurrentSession();
-        Ruolo ruolo = session.getCurrentSession().get(Ruolo.class, id);
-        session.closeCurrentSession();
-        return ruolo;
+        return currentSession.get(Ruolo.class, id);
     }
 
     @Override
     public Ruolo findByNome(String nome) {
-        session.openCurrentSession();
-        Query query = session.createQuery(FROM_RUOLO_WHERE_NOME);
+        Query query = createQuery(FROM_RUOLO_WHERE_NOME);
         query.setParameter("nome", nome);
         Ruolo ruolo = null;
         try {
             ruolo = (Ruolo) query.getSingleResult();
         } catch (NoResultException ignored) {
         }
-        session.closeCurrentSession();
         return ruolo;
     }
 
     @Override
     @SuppressWarnings("unchecked")
     public List<Ruolo> findAll() {
-        session.openCurrentSession();
-        List<Ruolo> ruolo = session.getCurrentSession().createQuery("from Ruolo").list();
-        session.closeCurrentSession();
-        return ruolo;
+        return (List<Ruolo>) currentSession.createQuery("from Ruolo").list();
     }
 
 }
