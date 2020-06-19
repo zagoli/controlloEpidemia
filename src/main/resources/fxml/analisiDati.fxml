@@ -60,15 +60,11 @@
     </center>
     <top>
         <MenuBar BorderPane.alignment="CENTER">
-            <menus>
-                <Menu mnemonicParsing="false" text="Naviga">
-                    <items>
-                        <MenuItem mnemonicParsing="false" onAction="#homepageButtonOnClicked" text="Homepage"/>
-                        <MenuItem mnemonicParsing="false" onAction="#onVisualizzaGraficiClicked"
-                                  text="Visualizza grafici"/>
-                    </items>
-                </Menu>
-            </menus>
+            <Menu mnemonicParsing="false" text="Naviga">
+                <MenuItem mnemonicParsing="false" onAction="#homepageButtonOnClicked" text="Homepage"/>
+                <MenuItem mnemonicParsing="false" onAction="#onVisualizzaGraficiClicked"
+                          text="Visualizza grafici"/>
+            </Menu>
         </MenuBar>
     </top>
 </BorderPane>

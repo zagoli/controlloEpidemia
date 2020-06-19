@@ -16,7 +16,7 @@ import java.util.List;
 public class EtlProvincia {
 
     final List<Regione> regioneList = new RegioneService().findAll();
-    List<Provincia> provinciaList = new ArrayList<>();
+    final List<Provincia> provinciaList = new ArrayList<>();
     Regione eRegione = null;
 
     public void load(String path) throws IOException {

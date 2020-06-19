@@ -9,7 +9,7 @@ import java.util.List;
 @NoArgsConstructor
 public class LoadPermesso {
 
-    List<Permesso> permessoList = new PermessoService().findAll();
+    final List<Permesso> permessoList = new PermessoService().findAll();
 
     public void load() {
         permessoList.add(new Permesso("vediDecessi", "Visualizzazione dei dati annuali sui decessi"));

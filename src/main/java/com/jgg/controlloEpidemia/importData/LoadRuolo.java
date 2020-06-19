@@ -10,7 +10,7 @@ import java.util.List;
 @NoArgsConstructor
 public class LoadRuolo {
 
-    List<Ruolo> ruoloList = new ArrayList<>();
+    final List<Ruolo> ruoloList = new ArrayList<>();
 
     public void load() {
         ruoloList.add(new Ruolo(1, "Amministratore"));

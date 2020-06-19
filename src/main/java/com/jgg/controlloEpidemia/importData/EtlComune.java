@@ -22,7 +22,7 @@ public class EtlComune {
 
     final List<TipoTerritorio> tipoTerritorioList = new TipoTerritorioService().findAll();
     final List<Provincia> provinciaList = new ProvinciaService().findAll();
-    List<Comune> comuneList = new ArrayList<>();
+    final List<Comune> comuneList = new ArrayList<>();
     TipoTerritorio eTipoTerritorio = null;
     Provincia eProvincia = null;
 

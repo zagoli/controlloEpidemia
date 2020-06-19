@@ -16,7 +16,7 @@ import java.util.List;
 public class EtlMalattie {
 
     final List<Comune> comuneList = new ComuneService().findAll();
-    List<MalattieSettimanali> malattieSettimanaliList = new ArrayList<>();
+    final List<MalattieSettimanali> malattieSettimanaliList = new ArrayList<>();
     Comune eComune = null;
 
     public void load(String path) throws IOException {

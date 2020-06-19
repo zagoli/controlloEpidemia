@@ -16,7 +16,7 @@ import java.util.List;
 public class EtlDecessi {
 
     final List<Provincia> provinciaList = new ProvinciaService().findAll();
-    List<DecessiAnnuali> decessiAnnualiList = new ArrayList<>();
+    final List<DecessiAnnuali> decessiAnnualiList = new ArrayList<>();
     Provincia eProvincia = null;
 
     public void load(String path) throws IOException {

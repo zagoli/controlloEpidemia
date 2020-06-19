@@ -13,7 +13,7 @@ import java.util.List;
 
 public class EtlRegione {
 
-    List<Regione> regioneList = new ArrayList<>();
+    final List<Regione> regioneList = new ArrayList<>();
 
     public void load(String path) throws IOException {
         BufferedReader reader = new BufferedReader(new FileReader(new File(path), StandardCharsets.UTF_8));

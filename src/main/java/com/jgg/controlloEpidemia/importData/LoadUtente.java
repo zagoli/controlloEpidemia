@@ -14,9 +14,9 @@ import java.util.List;
 @NoArgsConstructor
 public class LoadUtente {
 
-    List<Utente> utenteList = new ArrayList<>();
-    List<Ruolo> ruoloList = new RuoloService().findAll();
-    List<Permesso> permessoList = new PermessoService().findAll();
+    final List<Utente> utenteList = new ArrayList<>();
+    final List<Ruolo> ruoloList = new RuoloService().findAll();
+    final List<Permesso> permessoList = new PermessoService().findAll();
 
     public void load() {
         Utente u = new Utente("Admin", "aa", "Gianni", "Bolla", ruoloList.get(0));

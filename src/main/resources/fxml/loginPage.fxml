@@ -2,11 +2,13 @@
 
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.effect.Bloom?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
-<BorderPane xmlns:fx="http://javafx.com/fxml/1" prefHeight="600.0" prefWidth="800.0"
-            xmlns="http://javafx.com/javafx/10.0.2-internal"
-            fx:controller="com.jgg.controlloEpidemia.view.LoginPageController">
+<BorderPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/10.0.2-internal"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.jgg.controlloEpidemia.view.LoginPageController">
     <center>
         <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="204.0" prefWidth="254.0"
               spacing="10.0" style="-fx-background-color: #fafafa;" BorderPane.alignment="CENTER">
@@ -43,14 +45,19 @@
         </VBox>
     </center>
     <top>
-        <Label alignment="TOP_CENTER" contentDisplay="CENTER" text="CONTROLLO EPIDEMIA" textAlignment="CENTER"
-               BorderPane.alignment="CENTER">
+        <Label contentDisplay="CENTER" text="CONTROLLO EPIDEMIA" textAlignment="CENTER" BorderPane.alignment="CENTER">
             <font>
                 <Font name="System Bold" size="45.0"/>
             </font>
-            <BorderPane.margin>
-                <Insets top="10.0"/>
-            </BorderPane.margin>
+            <graphic>
+                <ImageView fitHeight="89.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true"
+                           translateY="100.0">
+                    <effect>
+                        <Bloom threshold="0.28"/>
+                    </effect>
+                    <Image url="@../images/icon.png"/>
+                </ImageView>
+            </graphic>
         </Label>
     </top>
 </BorderPane>

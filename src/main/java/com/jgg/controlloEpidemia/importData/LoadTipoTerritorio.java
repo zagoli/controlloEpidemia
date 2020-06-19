@@ -10,7 +10,7 @@ import java.util.List;
 @NoArgsConstructor
 public class LoadTipoTerritorio {
 
-    List<TipoTerritorio> tipoTerritorioList = new ArrayList<>();
+    final List<TipoTerritorio> tipoTerritorioList = new ArrayList<>();
 
     public void load() {
         tipoTerritorioList.add(new TipoTerritorio(1, "Montano"));
