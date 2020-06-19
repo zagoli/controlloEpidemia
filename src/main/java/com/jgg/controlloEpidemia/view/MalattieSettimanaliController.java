@@ -6,7 +6,9 @@ import com.jgg.controlloEpidemia.model.MalattieSettimanali;
 import com.jgg.controlloEpidemia.service.ComuneService;
 import com.jgg.controlloEpidemia.service.MalattieSettimanaliService;
 import javafx.animation.ScaleTransition;
+import javafx.application.Platform;
 import javafx.beans.binding.Bindings;
+import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -14,6 +16,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.Pane;
 import javafx.stage.FileChooser;
 import javafx.util.Duration;
 
@@ -154,6 +157,10 @@ public class MalattieSettimanaliController implements Initializable {
     private Button malattieSettimanaliInserisciButton;
     @FXML
     private Button malattieSettimanaliModificaButton;
+    @FXML
+    private Pane mainPane;
+    @FXML
+    private ProgressBar loadingBar;
 
     private int selectedId;
 
@@ -350,7 +357,7 @@ public class MalattieSettimanaliController implements Initializable {
     }
 
     @FXML
-    void inserisciCsvInserimentoOnClicked() throws IOException {
+    void inserisciCsvInserimentoOnClicked() {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Open Resource File");
         FileChooser.ExtensionFilter extensionFilter = new FileChooser.ExtensionFilter("Csv files (*.csv)", "*.csv");
@@ -358,9 +365,23 @@ public class MalattieSettimanaliController implements Initializable {
         File selectedFile = fileChooser.showOpenDialog(null);
         if (selectedFile != null) {
             System.out.println("ok");
-            new EtlMalattie().load(selectedFile.getPath());
-            malattieSettimanaliTabPane.getSelectionModel().select(0);
-            updateList();
+            loadingBar.setVisible(true);
+            mainPane.setDisable(true);
+            Task<Void> task = new Task<>() {
+                @Override
+                protected Void call() throws Exception {
+                    new EtlMalattie().load(selectedFile.getPath());
+                    updateList();
+                    Platform.runLater(() -> {
+                        loadingBar.setVisible(false);
+                        mainPane.setDisable(false);
+                        malattieSettimanaliTabPane.getSelectionModel().select(0);
+                    });
+                    return null;
+                }
+            };
+            Thread th = new Thread(task);
+            th.start();
         } else {
             System.out.println("non ho trovato il file");
         }

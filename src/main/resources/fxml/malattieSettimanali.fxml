@@ -3,8 +3,8 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.*?>
-<Pane xmlns:fx="http://javafx.com/fxml/1" layoutY="32.0" prefHeight="600.0" prefWidth="800.0"
-      xmlns="http://javafx.com/javafx/10.0.2-internal"
+<Pane fx:id="mainPane" layoutY="32.0" prefHeight="600.0" prefWidth="800.0"
+      xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1"
       fx:controller="com.jgg.controlloEpidemia.view.MalattieSettimanaliController">
     <TabPane fx:id="malattieSettimanaliTabPane" prefHeight="600.0" prefWidth="800.0" tabClosingPolicy="UNAVAILABLE">
         <Tab fx:id="malattieSettimanaliVisualizzazioneTab" text="Visualizzazione">
@@ -261,21 +261,23 @@
                         <Font name="Segoe UI Bold" size="20.0"/>
                     </font>
                 </Label>
-                <ComboBox fx:id="comuneInserimentoComboBox" layoutX="580.0" layoutY="370.0" prefHeight="20.0"
-                          prefWidth="200.0"/>
+                <ComboBox fx:id="comuneInserimentoComboBox" layoutX="580.0" layoutY="370.0" prefHeight="25.0"
+                          prefWidth="178.0"/>
                 <Button fx:id="malattieSettimanaliInserisciButton" layoutX="580.0" layoutY="410.0"
                         mnemonicParsing="false" onAction="#inserisciInserimentoOnClicked" prefHeight="40.0"
-                        text="Inserisci">
+                        prefWidth="140.0" text="Inserisci">
                     <font>
                         <Font name="Segoe UI Bold" size="20.0"/>
                     </font>
                 </Button>
-                <Button layoutX="580.0" layoutY="470.0" mnemonicParsing="false"
+                <Button layoutX="581.0" layoutY="456.0" mnemonicParsing="false"
                         onAction="#inserisciCsvInserimentoOnClicked" prefHeight="40.0" text="Inserisci csv">
                     <font>
                         <Font name="Segoe UI Bold" size="20.0"/>
                     </font>
                 </Button>
+                <ProgressBar fx:id="loadingBar" layoutX="580.0" layoutY="506.0" prefHeight="18.0" prefWidth="139.0"
+                             visible="false"/>
             </Pane>
         </Tab>
         <Tab fx:id="malattieSettimanaliModificaTab" text="Modifica">

@@ -6,14 +6,16 @@ import com.jgg.controlloEpidemia.model.Provincia;
 import com.jgg.controlloEpidemia.service.DecessiAnnualiService;
 import com.jgg.controlloEpidemia.service.ProvinciaService;
 import javafx.animation.ScaleTransition;
+import javafx.application.Platform;
 import javafx.beans.binding.Bindings;
-import javafx.event.ActionEvent;
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.BorderPane;
 import javafx.stage.FileChooser;
 import javafx.util.Duration;
 
@@ -81,6 +83,10 @@ public class DecessiAnnualiController implements Initializable {
     private TextField malattieContagioseModificaTextField;
     @FXML
     private ComboBox<String> provinciaModificaComboBox;
+    @FXML
+    private BorderPane mainPane;
+    @FXML
+    private ProgressBar loadingBar;
 
     private int selectedId;
 
@@ -134,9 +140,9 @@ public class DecessiAnnualiController implements Initializable {
     }
 
     @FXML
-    private void homepageButtonOnClicked(ActionEvent event) throws IOException {
+    private void homepageButtonOnClicked() throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/homePage.fxml"));
-        ((Button) event.getSource()).getScene().setRoot(root);
+        decessiAnnualiTabPane.getScene().setRoot(root);
     }
 
     private void updateList() {
@@ -209,7 +215,7 @@ public class DecessiAnnualiController implements Initializable {
     }
 
     @FXML
-    private void inserisciCsvInserimentoButtonOnClicked() throws IOException {
+    private void inserisciCsvInserimentoButtonOnClicked() {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Open Resource File");
         FileChooser.ExtensionFilter extensionFilter = new FileChooser.ExtensionFilter("Csv files (*.csv)", "*.csv");
@@ -217,9 +223,23 @@ public class DecessiAnnualiController implements Initializable {
         File selectedFile = fileChooser.showOpenDialog(null);
         if (selectedFile != null) {
             System.out.println("ok");
-            new EtlDecessi().load(selectedFile.getPath());
-            updateList();
-            decessiAnnualiTabPane.getSelectionModel().select(0);
+            loadingBar.setVisible(true);
+            mainPane.setDisable(true);
+            Task<Void> task = new Task<>() {
+                @Override
+                protected Void call() throws Exception {
+                    new EtlDecessi().load(selectedFile.getPath());
+                    updateList();
+                    Platform.runLater(() -> {
+                        loadingBar.setVisible(false);
+                        mainPane.setDisable(false);
+                        decessiAnnualiTabPane.getSelectionModel().select(0);
+                    });
+                    return null;
+                }
+            };
+            Thread th = new Thread(task);
+            th.start();
         } else {
             System.out.println("non ho trovato il file");
         }

@@ -9,7 +9,6 @@ import com.jgg.controlloEpidemia.service.RegioneService;
 import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -17,7 +16,6 @@ import javafx.scene.Parent;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.PieChart;
 import javafx.scene.chart.XYChart;
-import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.util.StringConverter;
@@ -83,9 +81,9 @@ public class GraficiController implements Initializable {
     }
 
     @FXML
-    private void onHomePageButtonClicked(ActionEvent event) throws IOException {
+    private void onHomePageButtonClicked() throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/homePage.fxml"));
-        ((Button) event.getSource()).getScene().setRoot(root);
+        graficoDecessiCausa.getScene().setRoot(root);
     }
 
     @FXML

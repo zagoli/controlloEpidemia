@@ -11,8 +11,10 @@ import com.jgg.controlloEpidemia.service.ProvinciaService;
 import com.jgg.controlloEpidemia.service.RegioneService;
 import com.jgg.controlloEpidemia.service.TipoTerritorioService;
 import javafx.animation.ScaleTransition;
+import javafx.application.Platform;
 import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
+import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -20,6 +22,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.Pane;
 import javafx.stage.FileChooser;
 import javafx.util.Duration;
 
@@ -154,6 +157,12 @@ public class DatiTerritorialiController implements Initializable {
     private Button provinciaModificaButton;
     @FXML
     private Button comuneModificaButton;
+    @FXML
+    private ProgressBar loadingBarComuni;
+    @FXML
+    private ProgressBar loadingBarProvince;
+    @FXML
+    private Pane mainPane;
 
     public void initialize(URL location, ResourceBundle resources) {
         for (Provincia provincia : provinciaService.findAll()) {
@@ -437,7 +446,7 @@ public class DatiTerritorialiController implements Initializable {
     }
 
     @FXML
-    public void inserisciCsvInserimentoProvinceButtonOnClicked() throws IOException {
+    public void inserisciCsvInserimentoProvinceButtonOnClicked() {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Open Resource File");
         FileChooser.ExtensionFilter extensionFilter = new FileChooser.ExtensionFilter("CSV files (*.csv)", "*.csv");
@@ -445,11 +454,26 @@ public class DatiTerritorialiController implements Initializable {
         File selectedFile = fileChooser.showOpenDialog(null);
         if (selectedFile != null) {
             System.out.println("ok");
-            new EtlProvincia().load(selectedFile.getPath());
+            loadingBarProvince.setVisible(true);
+            mainPane.setDisable(true);
+
+            Task<Void> task = new Task<>() {
+                @Override
+                protected Void call() throws Exception {
+                    new EtlProvincia().load(selectedFile.getPath());
+                    updateListProvince();
+                    Platform.runLater(() -> {
+                        loadingBarProvince.setVisible(false);
+                        mainPane.setDisable(false);
+                    });
+                    return null;
+                }
+            };
+            Thread th = new Thread(task);
+            th.start();
         } else {
             System.out.println("non ho trovato il file");
         }
-        updateListProvince();
     }
 
     @FXML
@@ -478,7 +502,7 @@ public class DatiTerritorialiController implements Initializable {
     }
 
     @FXML
-    public void inserisciCsvInserimentoComuniButtonOnClicked() throws IOException {
+    public void inserisciCsvInserimentoComuniButtonOnClicked() {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Open Resource File");
         FileChooser.ExtensionFilter extensionFilter = new FileChooser.ExtensionFilter("CSV files (*.csv)", "*.csv");
@@ -486,11 +510,26 @@ public class DatiTerritorialiController implements Initializable {
         File selectedFile = fileChooser.showOpenDialog(null);
         if (selectedFile != null) {
             System.out.println("ok");
-            new EtlComune().load(selectedFile.getPath());
+            loadingBarComuni.setVisible(true);
+            mainPane.setDisable(true);
+
+            Task<Void> task = new Task<>() {
+                @Override
+                protected Void call() throws Exception {
+                    new EtlComune().load(selectedFile.getPath());
+                    updateListComuni();
+                    Platform.runLater(() -> {
+                        loadingBarComuni.setVisible(false);
+                        mainPane.setDisable(false);
+                    });
+                    return null;
+                }
+            };
+            Thread th = new Thread(task);
+            th.start();
         } else {
             System.out.println("non ho trovato il file");
         }
-        updateListComuni();
     }
 
     @FXML

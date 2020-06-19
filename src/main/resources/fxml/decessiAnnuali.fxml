@@ -1,219 +1,267 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
-<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
-<Pane xmlns:fx="http://javafx.com/fxml/1" layoutY="32.0" prefHeight="600.0" prefWidth="800.0"
-      xmlns="http://javafx.com/javafx/10.0.2-internal"
-      fx:controller="com.jgg.controlloEpidemia.view.DecessiAnnualiController">
-    <TabPane fx:id="decessiAnnualiTabPane" prefHeight="600.0" prefWidth="800.0" tabClosingPolicy="UNAVAILABLE">
-        <Tab fx:id="decessiAnnualiVisualizzazioneTab" text="Visualizzazione">
-            <Pane minHeight="0.0" minWidth="0.0" prefHeight="600.0" prefWidth="800.0">
-                <TableView fx:id="decessiAnnualiTableView" layoutX="25.0" layoutY="25.0" prefHeight="425.0"
-                           prefWidth="750.0">
-                    <columns>
-                        <TableColumn fx:id="decessiAnnualiIdColumn" prefWidth="24.800004959106445" text="ID"/>
-                        <TableColumn fx:id="decessiAnnualiProvinciaColumn" prefWidth="77.39999389648438"
-                                     text="PROVINCIA"/>
-                        <TableColumn fx:id="decessiAnnualiAnnoColumn" prefWidth="42.99999237060547" text="ANNO"/>
-                        <TableColumn fx:id="decessiAnnualiIncidentiStradaliColumn" prefWidth="130.80001831054688"
-                                     text="INCIDENTI STRADALI"/>
-                        <TableColumn fx:id="decessiAnnualiMalattieTumoraliColumn" minWidth="0.0"
-                                     prefWidth="131.79998779296875" text="MALATTIE TUMORALI"/>
-                        <TableColumn fx:id="decessiAnnualiMalattieCardiovascolariColumn" prefWidth="186.60000610351562"
-                                     text="MALATTIE CARDIOVASCOLARI"/>
-                        <TableColumn fx:id="decessiAnnualiMalattieContagioseColumn" minWidth="3.199951171875"
-                                     prefWidth="152.60003662109375" text="MALATTIE CONTAGIOSE"/>
-                    </columns>
-                </TableView>
-                <Button layoutX="50.0" layoutY="460.0" mnemonicParsing="false"
-                        onAction="#decessiAnnualiVisualizzazioneModificaButtonOnClicked" prefHeight="45.0"
-                        prefWidth="150.0" text="Modifica">
-                    <font>
-                        <Font name="Segoe UI Bold" size="20.0"/>
-                    </font>
-                </Button>
-                <Label fx:id="noDataSelectedLabel" layoutX="335.0" layoutY="474.0" prefHeight="17.0" prefWidth="130.0"
-                       text="No valid data selected" textAlignment="CENTER" textFill="RED">
-                    <font>
-                        <Font name="Segoe UI Bold" size="12.0"/>
-                    </font>
-                </Label>
-                <Button layoutX="600.0" layoutY="460.0" mnemonicParsing="false"
-                        onAction="#decessiAnnualiCancellaButtonOnClicked" prefHeight="45.0" prefWidth="150.0"
-                        text="Cancella">
-                    <font>
-                        <Font name="Segoe UI Bold" size="20.0"/>
-                    </font>
-                </Button>
-            </Pane>
-        </Tab>
-        <Tab fx:id="decessiAnnualiInserimentoTab" text="Inserimento">
-            <Pane minHeight="0.0" minWidth="0.0" prefHeight="600.0" prefWidth="800.0">
-                <Label layoutX="60.0" layoutY="36.0" prefHeight="30.0" prefWidth="52.0" text="Anno">
-                    <font>
-                        <Font name="Segoe UI Bold" size="20.0"/>
-                    </font>
-                </Label>
-                <TextField fx:id="annoInserimentoTextField" layoutX="60" layoutY="60" prefHeight="30.0"
-                           prefWidth="100.0">
-                    <font>
-                        <Font name="Segoe UI" size="15.0"/>
-                    </font>
-                </TextField>
+<BorderPane fx:id="mainPane" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/10.0.2-internal"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.jgg.controlloEpidemia.view.DecessiAnnualiController">
+    <center>
+        <TabPane fx:id="decessiAnnualiTabPane" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
+            <Tab fx:id="decessiAnnualiVisualizzazioneTab" text="Visualizzazione">
+                <BorderPane prefHeight="200.0" prefWidth="200.0">
+                    <center>
+                        <TableView fx:id="decessiAnnualiTableView" prefHeight="425.0" prefWidth="750.0"
+                                   BorderPane.alignment="CENTER">
+                            <columns>
+                                <TableColumn fx:id="decessiAnnualiIdColumn" editable="false"
+                                             prefWidth="36.799989342689514" text="ID"/>
+                                <TableColumn fx:id="decessiAnnualiProvinciaColumn" prefWidth="84.79998779296875"
+                                             text="PROVINCIA"/>
+                                <TableColumn fx:id="decessiAnnualiAnnoColumn" prefWidth="57.599998474121094"
+                                             text="ANNO"/>
+                                <TableColumn fx:id="decessiAnnualiIncidentiStradaliColumn"
+                                             prefWidth="142.39999389648438" text="INCIDENTI STRADALI"/>
+                                <TableColumn fx:id="decessiAnnualiMalattieTumoraliColumn" minWidth="0.0"
+                                             prefWidth="142.39996337890625" text="MALATTIE TUMORALI"/>
+                                <TableColumn fx:id="decessiAnnualiMalattieCardiovascolariColumn" minWidth="0.0"
+                                             prefWidth="184.00003051757812" text="MALATTIE CARDIOVASCOLARI"/>
+                                <TableColumn fx:id="decessiAnnualiMalattieContagioseColumn" minWidth="3.199951171875"
+                                             prefWidth="163.199951171875" text="MALATTIE CONTAGIOSE"/>
+                            </columns>
+                            <columnResizePolicy>
+                                <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
+                            </columnResizePolicy>
+                        </TableView>
+                    </center>
+                    <bottom>
+                        <GridPane alignment="CENTER" nodeOrientation="LEFT_TO_RIGHT" BorderPane.alignment="CENTER">
+                            <columnConstraints>
+                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0"/>
+                            </columnConstraints>
+                            <rowConstraints>
+                                <RowConstraints minHeight="10.0" vgrow="SOMETIMES"/>
+                            </rowConstraints>
+                            <children>
+                                <Button mnemonicParsing="false"
+                                        onAction="#decessiAnnualiVisualizzazioneModificaButtonOnClicked"
+                                        prefHeight="45.0" prefWidth="150.0" text="Modifica" GridPane.halignment="CENTER"
+                                        GridPane.valignment="CENTER">
+                                    <font>
+                                        <Font name="Segoe UI Bold" size="20.0"/>
+                                    </font>
+                                </Button>
+                                <Label fx:id="noDataSelectedLabel" prefHeight="17.0" prefWidth="130.0"
+                                       text="No valid data selected" textAlignment="CENTER" textFill="RED"
+                                       GridPane.columnIndex="1" GridPane.halignment="CENTER"
+                                       GridPane.valignment="CENTER">
+                                    <font>
+                                        <Font name="Segoe UI Bold" size="12.0"/>
+                                    </font>
+                                </Label>
+                                <Button mnemonicParsing="false" onAction="#decessiAnnualiCancellaButtonOnClicked"
+                                        prefHeight="45.0" prefWidth="150.0" text="Cancella" GridPane.columnIndex="2"
+                                        GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                                    <font>
+                                        <Font name="Segoe UI Bold" size="20.0"/>
+                                    </font>
+                                </Button>
+                            </children>
+                            <padding>
+                                <Insets bottom="5.0" top="5.0"/>
+                            </padding>
+                        </GridPane>
+                    </bottom>
+                </BorderPane>
+            </Tab>
+            <Tab fx:id="decessiAnnualiInserimentoTab" text="Inserimento">
+                <Pane minHeight="0.0" minWidth="0.0" prefHeight="600.0" prefWidth="800.0">
+                    <Label layoutX="60.0" layoutY="36.0" prefHeight="30.0" prefWidth="52.0" text="Anno">
+                        <font>
+                            <Font name="Segoe UI Bold" size="20.0"/>
+                        </font>
+                    </Label>
+                    <TextField fx:id="annoInserimentoTextField" layoutX="60" layoutY="60" prefHeight="30.0"
+                               prefWidth="100.0">
+                        <font>
+                            <Font name="Segoe UI" size="15.0"/>
+                        </font>
+                    </TextField>
 
-                <Label layoutX="60.0" layoutY="96.0" prefHeight="30.0" prefWidth="162.0" text="Incidenti stradali">
-                    <font>
-                        <Font name="Segoe UI Bold" size="20.0"/>
-                    </font>
-                </Label>
-                <TextField fx:id="incidentiStradaliInserimentoTextField" layoutX="60.0" layoutY="120.0"
-                           prefHeight="30.0" prefWidth="100.0">
-                    <font>
-                        <Font name="Segoe UI" size="15.0"/>
-                    </font>
-                </TextField>
+                    <Label layoutX="60.0" layoutY="96.0" prefHeight="30.0" prefWidth="162.0" text="Incidenti stradali">
+                        <font>
+                            <Font name="Segoe UI Bold" size="20.0"/>
+                        </font>
+                    </Label>
+                    <TextField fx:id="incidentiStradaliInserimentoTextField" layoutX="60.0" layoutY="120.0"
+                               prefHeight="30.0" prefWidth="100.0">
+                        <font>
+                            <Font name="Segoe UI" size="15.0"/>
+                        </font>
+                    </TextField>
 
-                <Label layoutX="60.0" layoutY="156.0" prefHeight="30.0" prefWidth="170.0" text="Malattie tumorali">
-                    <font>
-                        <Font name="Segoe UI Bold" size="20.0"/>
-                    </font>
-                </Label>
-                <TextField fx:id="malattieTumoraliInserimentoTextField" layoutX="60.0" layoutY="180.0" prefHeight="30.0"
-                           prefWidth="100.0">
-                    <font>
-                        <Font name="Segoe UI" size="15.0"/>
-                    </font>
-                </TextField>
+                    <Label layoutX="60.0" layoutY="156.0" prefHeight="30.0" prefWidth="170.0" text="Malattie tumorali">
+                        <font>
+                            <Font name="Segoe UI Bold" size="20.0"/>
+                        </font>
+                    </Label>
+                    <TextField fx:id="malattieTumoraliInserimentoTextField" layoutX="60.0" layoutY="180.0"
+                               prefHeight="30.0" prefWidth="100.0">
+                        <font>
+                            <Font name="Segoe UI" size="15.0"/>
+                        </font>
+                    </TextField>
 
-                <Label layoutX="60.0" layoutY="216.0" prefHeight="30.0" prefWidth="226.0"
-                       text="Malattie cardiovascolari">
-                    <font>
-                        <Font name="Segoe UI Bold" size="20.0"/>
-                    </font>
-                </Label>
-                <TextField fx:id="malattieCardiovascolariInserimentoTextField" layoutX="60.0" layoutY="240.0"
-                           prefHeight="30.0" prefWidth="100.0">
-                    <font>
-                        <Font name="Segoe UI" size="15.0"/>
-                    </font>
-                </TextField>
+                    <Label layoutX="60.0" layoutY="216.0" prefHeight="30.0" prefWidth="226.0"
+                           text="Malattie cardiovascolari">
+                        <font>
+                            <Font name="Segoe UI Bold" size="20.0"/>
+                        </font>
+                    </Label>
+                    <TextField fx:id="malattieCardiovascolariInserimentoTextField" layoutX="60.0" layoutY="240.0"
+                               prefHeight="30.0" prefWidth="100.0">
+                        <font>
+                            <Font name="Segoe UI" size="15.0"/>
+                        </font>
+                    </TextField>
 
-                <Label layoutX="60.0" layoutY="272.0" prefHeight="30.0" prefWidth="188.0" text="Malattie contagiose">
-                    <font>
-                        <Font name="Segoe UI Bold" size="20.0"/>
-                    </font>
-                </Label>
-                <TextField fx:id="malattieContagioseInserimentoTextField" layoutX="60.0" layoutY="300.0"
-                           prefHeight="30.0" prefWidth="100.0">
-                    <font>
-                        <Font name="Segoe UI" size="15.0"/>
-                    </font>
-                </TextField>
+                    <Label layoutX="60.0" layoutY="272.0" prefHeight="30.0" prefWidth="188.0"
+                           text="Malattie contagiose">
+                        <font>
+                            <Font name="Segoe UI Bold" size="20.0"/>
+                        </font>
+                    </Label>
+                    <TextField fx:id="malattieContagioseInserimentoTextField" layoutX="60.0" layoutY="300.0"
+                               prefHeight="30.0" prefWidth="100.0">
+                        <font>
+                            <Font name="Segoe UI" size="15.0"/>
+                        </font>
+                    </TextField>
 
-                <Label layoutX="60.0" layoutY="336.0" prefHeight="30.0" prefWidth="88.0" text="Provincia">
-                    <font>
-                        <Font name="Segoe UI Bold" size="20.0"/>
-                    </font>
-                </Label>
-                <ComboBox fx:id="provinciaInserimentoComboBox" layoutX="60.0" layoutY="360.0" prefHeight="30.0"
-                          prefWidth="200.0"/>
+                    <Label layoutX="60.0" layoutY="336.0" prefHeight="30.0" prefWidth="88.0" text="Provincia">
+                        <font>
+                            <Font name="Segoe UI Bold" size="20.0"/>
+                        </font>
+                    </Label>
+                    <ComboBox fx:id="provinciaInserimentoComboBox" layoutX="60.0" layoutY="360.0" prefHeight="30.0"
+                              prefWidth="200.0"/>
 
-                <Button fx:id="decessiAnnualiInserisciButton" layoutX="440.0" layoutY="120.0" mnemonicParsing="false"
-                        onAction="#inserisciInserimentoButtonOnClicked" prefHeight="50.0" prefWidth="150.0"
-                        text="Inserisci">
-                    <font>
-                        <Font name="Segoe UI Bold" size="20.0"/>
-                    </font>
-                </Button>
-                <Button layoutX="440.0" layoutY="180.0" mnemonicParsing="false"
-                        onAction="#inserisciCsvInserimentoButtonOnClicked" prefHeight="50.0" prefWidth="150.0"
-                        text="Inserisci csv">
-                    <font>
-                        <Font name="Segoe UI Bold" size="20.0"/>
-                    </font>
-                </Button>
-            </Pane>
-        </Tab>
-        <Tab fx:id="decessiAnnualiModificaTab" text="Modifica">
-            <Pane minHeight="0.0" minWidth="0.0" prefHeight="600.0" prefWidth="800.0">
-                <Label layoutX="60.0" layoutY="36.0" prefHeight="30.0" prefWidth="52.0" text="Anno">
-                    <font>
-                        <Font name="Segoe UI Bold" size="20.0"/>
-                    </font>
-                </Label>
-                <TextField fx:id="annoModificaTextField" layoutX="60" layoutY="60" prefHeight="30.0" prefWidth="100.0">
-                    <font>
-                        <Font name="Segoe UI" size="15.0"/>
-                    </font>
-                </TextField>
+                    <Button fx:id="decessiAnnualiInserisciButton" layoutX="440.0" layoutY="120.0"
+                            mnemonicParsing="false" onAction="#inserisciInserimentoButtonOnClicked" prefHeight="50.0"
+                            prefWidth="150.0" text="Inserisci">
+                        <font>
+                            <Font name="Segoe UI Bold" size="20.0"/>
+                        </font>
+                    </Button>
+                    <Button layoutX="440.0" layoutY="180.0" mnemonicParsing="false"
+                            onAction="#inserisciCsvInserimentoButtonOnClicked" prefHeight="50.0" prefWidth="150.0"
+                            text="Inserisci csv">
+                        <font>
+                            <Font name="Segoe UI Bold" size="20.0"/>
+                        </font>
+                    </Button>
+                    <ProgressBar fx:id="loadingBar" layoutX="440.0" layoutY="237.0" prefHeight="18.0" prefWidth="150.0"
+                                 visible="false"/>
+                </Pane>
+            </Tab>
+            <Tab fx:id="decessiAnnualiModificaTab" text="Modifica">
+                <Pane minHeight="0.0" minWidth="0.0" prefHeight="600.0" prefWidth="800.0">
+                    <Label layoutX="60.0" layoutY="36.0" prefHeight="30.0" prefWidth="52.0" text="Anno">
+                        <font>
+                            <Font name="Segoe UI Bold" size="20.0"/>
+                        </font>
+                    </Label>
+                    <TextField fx:id="annoModificaTextField" layoutX="60" layoutY="60" prefHeight="30.0"
+                               prefWidth="100.0">
+                        <font>
+                            <Font name="Segoe UI" size="15.0"/>
+                        </font>
+                    </TextField>
 
-                <Label layoutX="60.0" layoutY="96.0" prefHeight="30.0" prefWidth="162.0" text="Incidenti stradali">
-                    <font>
-                        <Font name="Segoe UI Bold" size="20.0"/>
-                    </font>
-                </Label>
-                <TextField fx:id="incidentiStradaliModificaTextField" layoutX="60.0" layoutY="120.0" prefHeight="30.0"
-                           prefWidth="100.0">
-                    <font>
-                        <Font name="Segoe UI" size="15.0"/>
-                    </font>
-                </TextField>
+                    <Label layoutX="60.0" layoutY="96.0" prefHeight="30.0" prefWidth="162.0" text="Incidenti stradali">
+                        <font>
+                            <Font name="Segoe UI Bold" size="20.0"/>
+                        </font>
+                    </Label>
+                    <TextField fx:id="incidentiStradaliModificaTextField" layoutX="60.0" layoutY="120.0"
+                               prefHeight="30.0" prefWidth="100.0">
+                        <font>
+                            <Font name="Segoe UI" size="15.0"/>
+                        </font>
+                    </TextField>
 
-                <Label layoutX="60.0" layoutY="156.0" prefHeight="30.0" prefWidth="170.0" text="Malattie tumorali">
-                    <font>
-                        <Font name="Segoe UI Bold" size="20.0"/>
-                    </font>
-                </Label>
-                <TextField fx:id="malattieTumoraliModificaTextField" layoutX="60.0" layoutY="180.0" prefHeight="30.0"
-                           prefWidth="100.0">
-                    <font>
-                        <Font name="Segoe UI" size="15.0"/>
-                    </font>
-                </TextField>
+                    <Label layoutX="60.0" layoutY="156.0" prefHeight="30.0" prefWidth="170.0" text="Malattie tumorali">
+                        <font>
+                            <Font name="Segoe UI Bold" size="20.0"/>
+                        </font>
+                    </Label>
+                    <TextField fx:id="malattieTumoraliModificaTextField" layoutX="60.0" layoutY="180.0"
+                               prefHeight="30.0" prefWidth="100.0">
+                        <font>
+                            <Font name="Segoe UI" size="15.0"/>
+                        </font>
+                    </TextField>
 
-                <Label layoutX="60.0" layoutY="216.0" prefHeight="30.0" prefWidth="226.0"
-                       text="Malattie cardiovascolari">
-                    <font>
-                        <Font name="Segoe UI Bold" size="20.0"/>
-                    </font>
-                </Label>
-                <TextField fx:id="malattieCardiovascolariModificaTextField" layoutX="60.0" layoutY="240.0"
-                           prefHeight="30.0" prefWidth="100.0">
-                    <font>
-                        <Font name="Segoe UI" size="15.0"/>
-                    </font>
-                </TextField>
+                    <Label layoutX="60.0" layoutY="216.0" prefHeight="30.0" prefWidth="226.0"
+                           text="Malattie cardiovascolari">
+                        <font>
+                            <Font name="Segoe UI Bold" size="20.0"/>
+                        </font>
+                    </Label>
+                    <TextField fx:id="malattieCardiovascolariModificaTextField" layoutX="60.0" layoutY="240.0"
+                               prefHeight="30.0" prefWidth="100.0">
+                        <font>
+                            <Font name="Segoe UI" size="15.0"/>
+                        </font>
+                    </TextField>
 
-                <Label layoutX="60.0" layoutY="272.0" prefHeight="30.0" prefWidth="188.0" text="Malattie contagiose">
-                    <font>
-                        <Font name="Segoe UI Bold" size="20.0"/>
-                    </font>
-                </Label>
-                <TextField fx:id="malattieContagioseModificaTextField" layoutX="60.0" layoutY="300.0" prefHeight="30.0"
-                           prefWidth="100.0">
-                    <font>
-                        <Font name="Segoe UI" size="15.0"/>
-                    </font>
-                </TextField>
+                    <Label layoutX="60.0" layoutY="272.0" prefHeight="30.0" prefWidth="188.0"
+                           text="Malattie contagiose">
+                        <font>
+                            <Font name="Segoe UI Bold" size="20.0"/>
+                        </font>
+                    </Label>
+                    <TextField fx:id="malattieContagioseModificaTextField" layoutX="60.0" layoutY="300.0"
+                               prefHeight="30.0" prefWidth="100.0">
+                        <font>
+                            <Font name="Segoe UI" size="15.0"/>
+                        </font>
+                    </TextField>
 
-                <Label layoutX="60.0" layoutY="336.0" prefHeight="30.0" prefWidth="88.0" text="Provincia">
-                    <font>
-                        <Font name="Segoe UI Bold" size="20.0"/>
-                    </font>
-                </Label>
-                <ComboBox fx:id="provinciaModificaComboBox" layoutX="60.0" layoutY="360.0" prefHeight="30.0"
-                          prefWidth="200.0"/>
+                    <Label layoutX="60.0" layoutY="336.0" prefHeight="30.0" prefWidth="88.0" text="Provincia">
+                        <font>
+                            <Font name="Segoe UI Bold" size="20.0"/>
+                        </font>
+                    </Label>
+                    <ComboBox fx:id="provinciaModificaComboBox" layoutX="60.0" layoutY="360.0" prefHeight="30.0"
+                              prefWidth="200.0"/>
 
-                <Button fx:id="decessiAnnualiModificaButton" layoutX="440.0" layoutY="120.0" mnemonicParsing="false"
-                        onAction="#modificaModificaButtonOnClicked" prefHeight="50.0" prefWidth="150.0" text="Modifica">
-                    <font>
-                        <Font name="Segoe UI Bold" size="20.0"/>
-                    </font>
-                </Button>
-            </Pane>
-        </Tab>
+                    <Button fx:id="decessiAnnualiModificaButton" layoutX="400.0" layoutY="350.0" mnemonicParsing="false"
+                            onAction="#modificaModificaButtonOnClicked" prefHeight="50.0" prefWidth="150.0"
+                            text="Modifica">
+                        <font>
+                            <Font name="Segoe UI Bold" size="20.0"/>
+                        </font>
+                    </Button>
+                </Pane>
+            </Tab>
+            <BorderPane.margin>
+                <Insets/>
+            </BorderPane.margin>
 
-    </TabPane>
-    <Button layoutX="10.0" layoutY="-28.0" mnemonicParsing="false" onAction="#homepageButtonOnClicked" text="Homepage"/>
-</Pane>
+        </TabPane>
+    </center>
+    <top>
+        <MenuBar BorderPane.alignment="CENTER">
+            <menus>
+                <Menu mnemonicParsing="false" text="Naviga">
+                    <items>
+                        <MenuItem mnemonicParsing="false" onAction="#homepageButtonOnClicked" text="Homepage"/>
+                    </items>
+                </Menu>
+            </menus>
+        </MenuBar>
+    </top>
+</BorderPane>

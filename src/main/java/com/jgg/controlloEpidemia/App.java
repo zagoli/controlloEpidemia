@@ -42,7 +42,7 @@ public class App extends Application {
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.setTitle("Controllo Epidemia");
-        stage.getIcons().add(new Image("icon.png"));
+        stage.getIcons().add(new Image("images/icon.png"));
         stage.show();
     }
 

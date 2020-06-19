@@ -7,7 +7,6 @@ import com.jgg.controlloEpidemia.service.UtenteService;
 import javafx.animation.FadeTransition;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -68,9 +67,9 @@ public class AutorizzaComuniController implements Initializable {
     }
 
     @FXML
-    private void onHomePageButtonClicked(ActionEvent e) throws IOException {
+    private void onHomePageButtonClicked() throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/homePage.fxml"));
-        ((Button) e.getSource()).getScene().setRoot(root);
+        utenteComboBox.getScene().setRoot(root);
     }
 
     @FXML
