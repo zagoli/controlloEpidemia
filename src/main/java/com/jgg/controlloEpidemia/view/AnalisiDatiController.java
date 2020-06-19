@@ -5,7 +5,6 @@ import com.jgg.controlloEpidemia.model.Provincia;
 import com.jgg.controlloEpidemia.service.DecessiAnnualiService;
 import com.jgg.controlloEpidemia.service.MalattieSettimanaliService;
 import javafx.animation.ScaleTransition;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -74,9 +73,15 @@ public class AnalisiDatiController implements Initializable {
     }
 
     @FXML
-    void homepageButtonOnClicked(ActionEvent event) throws IOException {
+    void homepageButtonOnClicked() throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/homePage.fxml"));
-        ((Button) event.getSource()).getScene().setRoot(root);
+        malattieSettimanaliTabPane.getScene().setRoot(root);
+    }
+
+    @FXML
+    void onVisualizzaGraficiClicked() throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/grafici.fxml"));
+        malattieSettimanaliTabPane.getScene().setRoot(root);
     }
 
     private void updateList() {
