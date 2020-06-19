@@ -74,7 +74,7 @@
                 </BorderPane>
             </Tab>
             <Tab fx:id="decessiAnnualiInserimentoTab" text="Inserimento">
-                <GridPane alignment="CENTER" maxHeight="600.0">
+                <GridPane alignment="CENTER" maxHeight="400.0">
                     <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="40.0"/>
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="40.0"/>
@@ -146,8 +146,7 @@
                                 <Font name="Segoe UI Bold" size="20.0"/>
                             </font>
                         </Label>
-                        <TextField fx:id="malattieContagioseInserimentoTextField" prefHeight="30.0"
-                                   prefWidth="100.0">
+                        <TextField fx:id="malattieContagioseInserimentoTextField" prefHeight="30.0" prefWidth="100.0">
                             <font>
                                 <Font name="Segoe UI" size="15.0"/>
                             </font>
@@ -181,7 +180,7 @@
                 </GridPane>
             </Tab>
             <Tab fx:id="decessiAnnualiModificaTab" text="Modifica">
-                <GridPane alignment="CENTER" maxHeight="600.0">
+                <GridPane alignment="CENTER" maxHeight="400.0">
                     <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="40.0"/>
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="40.0"/>
@@ -239,8 +238,7 @@
                                 <Font name="Segoe UI Bold" size="20.0"/>
                             </font>
                         </Label>
-                        <TextField fx:id="malattieCardiovascolariModificaTextField" prefHeight="30.0"
-                                   prefWidth="100.0">
+                        <TextField fx:id="malattieCardiovascolariModificaTextField" prefHeight="30.0" prefWidth="100.0">
                             <font>
                                 <Font name="Segoe UI" size="15.0"/>
                             </font>

@@ -15,7 +15,6 @@ import javafx.application.Platform;
 import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
 import javafx.concurrent.Task;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -330,9 +329,9 @@ public class DatiTerritorialiController implements Initializable {
     }
 
     @FXML
-    private void onHomepageButtonClicked(ActionEvent event) throws IOException {
+    private void onHomepageButtonClicked() throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/homePage.fxml"));
-        ((Button) event.getSource()).getScene().setRoot(root);
+        datiTerritorialiTabPane.getScene().setRoot(root);
     }
 
     private void updateListComuni() {
