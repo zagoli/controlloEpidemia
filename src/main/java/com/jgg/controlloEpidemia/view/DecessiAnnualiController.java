@@ -238,8 +238,7 @@ public class DecessiAnnualiController implements Initializable {
                     return null;
                 }
             };
-            Thread th = new Thread(task);
-            th.start();
+            new Thread(task).start();
         } else {
             System.out.println("non ho trovato il file");
         }
