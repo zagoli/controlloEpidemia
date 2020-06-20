@@ -246,6 +246,7 @@ public class MalattieSettimanaliController implements Initializable {
                         .or(comuneModificaComboBox.valueProperty().isNull())
         );
 
+
         updateList();
     }
 
