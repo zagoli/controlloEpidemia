@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
-<BorderPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1"
+<BorderPane fx:id="mainPane" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/10.0.2-internal"
             xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="com.jgg.controlloEpidemia.view.DatiTerritorialiController">
     <center>
@@ -72,8 +71,8 @@
                                         </font>
                                     </Label>
                                     <Button mnemonicParsing="false"
-                                            onAction="#provinciaEliminaVisualizzazioneButtonOnClicked"
-                                            prefHeight="45.0" prefWidth="150.0" text="Elimina" GridPane.columnIndex="2">
+                                            onAction="#provinciaEliminaVisualizzazioneButtonOnClicked" prefHeight="45.0"
+                                            prefWidth="150.0" text="Elimina" GridPane.columnIndex="2">
                                         <font>
                                             <Font name="Segoe UI Bold" size="12.0"/>
                                         </font>
@@ -120,8 +119,8 @@
                                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
                                     </rowConstraints>
                                     <Button mnemonicParsing="false"
-                                            onAction="#comuneModificaVisualizzazioneButtonOnClicked"
-                                            prefHeight="45.0" prefWidth="150.0" text="Modifica">
+                                            onAction="#comuneModificaVisualizzazioneButtonOnClicked" prefHeight="45.0"
+                                            prefWidth="150.0" text="Modifica">
                                         <font>
                                             <Font name="Segoe UI Bold" size="12.0"/>
                                         </font>
@@ -133,8 +132,8 @@
                                         </font>
                                     </Label>
                                     <Button mnemonicParsing="false"
-                                            onAction="#comuneEliminaVisualizzazioneButtonOnClicked"
-                                            prefHeight="45.0" prefWidth="150.0" text="Elimina" GridPane.columnIndex="2">
+                                            onAction="#comuneEliminaVisualizzazioneButtonOnClicked" prefHeight="45.0"
+                                            prefWidth="150.0" text="Elimina" GridPane.columnIndex="2">
                                         <font>
                                             <Font name="Segoe UI Bold" size="12.0"/>
                                         </font>
@@ -171,8 +170,7 @@
                                         <Font name="Segoe UI Bold" size="20.0"/>
                                     </font>
                                 </Label>
-                                <TextField fx:id="idInserimentoProvinceTextField" prefHeight="30.0"
-                                           prefWidth="100.0">
+                                <TextField fx:id="idInserimentoProvinceTextField" prefHeight="30.0" prefWidth="100.0">
                                     <font>
                                         <Font name="Segoe UI" size="15.0"/>
                                     </font>
@@ -184,8 +182,7 @@
                                         <Font name="Segoe UI Bold" size="20.0"/>
                                     </font>
                                 </Label>
-                                <TextField fx:id="nomeInserimentoProvinceTextField" prefHeight="29.0"
-                                           prefWidth="150.0">
+                                <TextField fx:id="nomeInserimentoProvinceTextField" prefHeight="29.0" prefWidth="150.0">
                                     <font>
                                         <Font name="Segoe UI" size="15.0"/>
                                     </font>
@@ -284,8 +281,7 @@
                                         <Font name="Segoe UI Bold" size="20.0"/>
                                     </font>
                                 </Label>
-                                <TextField fx:id="nomeInserimentoComuniTextField" prefHeight="29.0"
-                                           prefWidth="150.0">
+                                <TextField fx:id="nomeInserimentoComuniTextField" prefHeight="29.0" prefWidth="150.0">
                                     <font>
                                         <Font name="Segoe UI" size="15.0"/>
                                     </font>
@@ -347,10 +343,9 @@
                                     <Font name="Segoe UI Bold" size="20.0"/>
                                 </font>
                             </Button>
-                            <VBox alignment="CENTER_RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="6">
-                                <Button mnemonicParsing="false"
-                                        onAction="#inserisciCsvInserimentoComuniButtonOnClicked" prefHeight="40.0"
-                                        prefWidth="140.0" text="Inserisci csv">
+                            <VBox alignment="CENTER_RIGHT" spacing="5.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                                <Button mnemonicParsing="false" onAction="#inserisciCsvInserimentoComuniButtonOnClicked"
+                                        prefHeight="40.0" prefWidth="140.0" text="Inserisci csv">
                                     <font>
                                         <Font name="Segoe UI Bold" size="20.0"/>
                                     </font>
@@ -540,8 +535,7 @@
                             </VBox>
                             <Button fx:id="comuneModificaButton" mnemonicParsing="false"
                                     onAction="#modificaModificaComuneButtonOnClicked" prefHeight="40.0"
-                                    prefWidth="112.0"
-                                    text="Modifica" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                                    prefWidth="112.0" text="Modifica" GridPane.columnIndex="1" GridPane.rowIndex="6">
                                 <font>
                                     <Font name="Segoe UI Bold" size="20.0"/>
                                 </font>

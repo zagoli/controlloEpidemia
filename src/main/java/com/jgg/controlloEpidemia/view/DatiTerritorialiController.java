@@ -21,7 +21,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.Pane;
+import javafx.scene.layout.BorderPane;
 import javafx.stage.FileChooser;
 import javafx.util.Duration;
 
@@ -161,7 +161,7 @@ public class DatiTerritorialiController implements Initializable {
     @FXML
     private ProgressBar loadingBarProvince;
     @FXML
-    private Pane mainPane;
+    private BorderPane mainPane;
 
     public void initialize(URL location, ResourceBundle resources) {
         for (Provincia provincia : provinciaService.findAll()) {
