@@ -447,6 +447,7 @@ public class DatiTerritorialiController implements Initializable {
     @FXML
     public void inserisciCsvInserimentoProvinceButtonOnClicked() {
         FileChooser fileChooser = new FileChooser();
+        fileChooser.setInitialDirectory(javax.swing.filechooser.FileSystemView.getFileSystemView().getHomeDirectory());
         fileChooser.setTitle("Open Resource File");
         FileChooser.ExtensionFilter extensionFilter = new FileChooser.ExtensionFilter("CSV files (*.csv)", "*.csv");
         fileChooser.getExtensionFilters().add(extensionFilter);
@@ -502,6 +503,7 @@ public class DatiTerritorialiController implements Initializable {
     @FXML
     public void inserisciCsvInserimentoComuniButtonOnClicked() {
         FileChooser fileChooser = new FileChooser();
+        fileChooser.setInitialDirectory(javax.swing.filechooser.FileSystemView.getFileSystemView().getHomeDirectory());
         fileChooser.setTitle("Open Resource File");
         FileChooser.ExtensionFilter extensionFilter = new FileChooser.ExtensionFilter("CSV files (*.csv)", "*.csv");
         fileChooser.getExtensionFilters().add(extensionFilter);

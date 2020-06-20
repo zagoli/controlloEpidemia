@@ -9,7 +9,7 @@
             <Pane minHeight="0.0" minWidth="0.0" prefHeight="600.0" prefWidth="800.0">
                 <TableView fx:id="decessiAnnualiTableView" layoutX="25.0" layoutY="25.0" prefHeight="425.0" prefWidth="750.0">
                     <columns>
-                        <TableColumn fx:id="decessiAnnualiIdColumn" prefWidth="30.0" text="ID" />
+                        <TableColumn fx:id="decessiAnnualiIdColumn" prefWidth="30.0" text="ID" visible="false" />
                         <TableColumn fx:id="decessiAnnualiProvinciaColumn" prefWidth="73.0" text="PROVINCIA" />
                         <TableColumn fx:id="decessiAnnualiAnnoColumn" prefWidth="42.99999237060547" text="ANNO" />
                         <TableColumn fx:id="decessiAnnualiIncidentiStradaliColumn" prefWidth="130.80001831054688" text="INCIDENTI STRADALI" />
@@ -18,16 +18,21 @@
                         <TableColumn fx:id="decessiAnnualiMalattieContagioseColumn" minWidth="3.199951171875" prefWidth="152.60003662109375" text="MALATTIE CONTAGIOSE" />
                     </columns>
                 </TableView>
-            <Button fx:id="analisiDatiVisualizzaDecessiVisualizzaDatiButton" layoutX="69.0" layoutY="473.0" mnemonicParsing="false" onAction="#analisiDatiVisualizzaDecessiVisualizzaDatiButtonOnClicked" text="Visualizza dati" />
-            <Button fx:id="analisiDatiVisualizzaDecessiAggregaPerRegioneButton" layoutX="313.0" layoutY="479.0" mnemonicParsing="false" onAction="#analisiDatiVisualizzaDecessiAggregaPerRegioneButtonOnClicked" text="Aggrega per regione" />
-            <Button fx:id="analisiDatiVisualizzaDecessiConfrontaConMalattieButton" layoutX="564.0" layoutY="479.0" mnemonicParsing="false" onAction="#analisiDatiVisualizzaDecessiConfrontaConMalattieButtonOnClicked" text="Confronta con malattie" />
+            <ButtonBar layoutX="100.0" layoutY="476.0" prefHeight="40.0" prefWidth="573.0">
+               <buttons>
+                  <Button fx:id="analisiDatiVisualizzaDecessiVisualizzaDatiButton" mnemonicParsing="false" onAction="#analisiDatiVisualizzaDecessiVisualizzaDatiButtonOnClicked" text="Visualizza dati" />
+                  <Button fx:id="analisiDatiVisualizzaDecessiAggregaPerRegioneButton" mnemonicParsing="false" onAction="#analisiDatiVisualizzaDecessiAggregaPerRegioneButtonOnClicked" text="Aggrega per regione" />
+                  <Button fx:id="analisiDatiVisualizzaDecessiConfrontaConMalattieButton" mnemonicParsing="false" onAction="#analisiDatiVisualizzaDecessiConfrontaConMalattieButtonOnClicked" text="Confronta con malattie" />
+                  <Button mnemonicParsing="false" onAction="#analisiDatiDecessiAnnualiEsportaDatiButtonOnClicked" text="Esporta dati csv" />
+               </buttons>
+            </ButtonBar>
             </Pane>
         </Tab>
         <Tab fx:id="malattieSettimanaliTab" text="Visualizza Malattie Settimanali">
             <Pane minHeight="0.0" minWidth="0.0" prefHeight="600.0" prefWidth="800.0">
                 <TableView fx:id="malattieSettimanaliTableView" layoutX="25.0" layoutY="25.0" prefHeight="400.0" prefWidth="750.0">
                     <columns>
-                        <TableColumn fx:id="idColumn" prefWidth="46.0" text="ID" />
+                        <TableColumn fx:id="idColumn" prefWidth="46.0" text="ID" visible="false" />
                         <TableColumn fx:id="comuneColumn" prefWidth="141.0" text="COMUNE" />
                         <TableColumn fx:id="annoColumn" prefWidth="67.0" text="ANNO" />
                         <TableColumn fx:id="settimanaColumn" prefWidth="88.0" text="SETTIMANA" />
@@ -48,16 +53,21 @@
                         <TableColumn fx:id="inCuraConGastroenteriteColumn" prefWidth="117.0" text="C.GASTROENTERITE" />
                     </columns>
                 </TableView>
-            <Button fx:id="analisiDatiVisualizzaMalattieVisualizzaDatiButton" layoutX="148.0" layoutY="479.0" mnemonicParsing="false" onAction="#analisiDatiVisualizzaMalattieVisualizzaDatiButtonOnClicked" text="Visualizza Dati" />
-            <Button fx:id="analisiDatiVisualizzaMalattieAggregaPerRegioneButton" layoutX="281.0" layoutY="479.0" mnemonicParsing="false" onAction="#analisiDatiVisualizzaMalattieAggregaPerRegioneButtonOnClicked" text="Aggrega per regione" />
-            <Button fx:id="analisiDatiVisualizzaMalattieAggregaPerProvinciaButton" layoutX="512.0" layoutY="479.0" mnemonicParsing="false" onAction="#analisiDatiVisualizzaMalattieAggregaPerProvinciaButtonOnClicked" text="Aggrega per provincia" />
+            <ButtonBar layoutX="89.0" layoutY="445.0" prefHeight="40.0" prefWidth="596.0">
+              <buttons>
+                  <Button fx:id="analisiDatiVisualizzaMalattieVisualizzaDatiButton" mnemonicParsing="false" onAction="#analisiDatiVisualizzaMalattieVisualizzaDatiButtonOnClicked" text="Visualizza Dati" />
+                  <Button fx:id="analisiDatiVisualizzaMalattieAggregaPerRegioneButton" mnemonicParsing="false" onAction="#analisiDatiVisualizzaMalattieAggregaPerRegioneButtonOnClicked" text="Aggrega per regione" />
+                  <Button fx:id="analisiDatiVisualizzaMalattieAggregaPerProvinciaButton" mnemonicParsing="false" onAction="#analisiDatiVisualizzaMalattieAggregaPerProvinciaButtonOnClicked" text="Aggrega per provincia" />
+                  <Button mnemonicParsing="false" onAction="#analisiDatiMalattieSettimanaliEsportaDatiButtonOnClicked" text="Esporta dati csv" />
+              </buttons>
+            </ButtonBar>
             </Pane>
         </Tab>
         <Tab fx:id="confrontaTab" text="Confronta Decessi Provincia - Malattie Comuni">
             <Pane minHeight="0.0" minWidth="0.0" prefHeight="600.0" prefWidth="800.0">
                 <TableView fx:id="decessiAnnualiConfrontaTableView" layoutX="25.0" layoutY="25.0" prefHeight="80.0" prefWidth="750.0">
                     <columns>
-                        <TableColumn fx:id="decessiAnnualiIdConfrontaColumn" prefWidth="19.4000244140625" text="ID" />
+                        <TableColumn fx:id="decessiAnnualiIdConfrontaColumn" prefWidth="19.4000244140625" text="ID" visible="false" />
                         <TableColumn fx:id="decessiAnnualiProvinciaConfrontaColumn" prefWidth="72.79998397827148" text="PROVINCIA" />
                         <TableColumn fx:id="decessiAnnualiAnnoConfrontaColumn" prefWidth="47.999969482421875" text="ANNO" />
                         <TableColumn fx:id="decessiAnnualiIncidentiStradaliConfrontaColumn" prefWidth="128.1999969482422" text="INCIDENTI STRADALI" />
@@ -68,7 +78,7 @@
                 </TableView>
                 <TableView fx:id="malattieSettimanaliConfrontaTableView" layoutX="25.0" layoutY="123.0" prefHeight="324.0" prefWidth="750.0">
                     <columns>
-                        <TableColumn fx:id="idConfrontaColumn" prefWidth="46.0" text="ID" />
+                        <TableColumn fx:id="idConfrontaColumn" prefWidth="46.0" text="ID" visible="false" />
                         <TableColumn fx:id="annoConfrontaColumn" prefWidth="67.0" text="ANNO" />
                         <TableColumn fx:id="settimanaConfrontaColumn" prefWidth="88.0" text="SETTIMANA" />
                         <TableColumn fx:id="ricoveratiConInfluenzaConfrontaColumn" prefWidth="95.0" text="R.INFLUENZA" />

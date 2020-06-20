@@ -12,10 +12,22 @@ import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Pane;
+import javafx.stage.FileChooser;
 import javafx.util.Duration;
+import lombok.Getter;
+import lombok.Setter;
+import org.apache.derby.iapi.sql.PreparedStatement;
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
+import org.hibernate.jdbc.Work;
+import org.hibernate.query.Query;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.CallableStatement;
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -688,6 +700,48 @@ public class AnalisiDatiController implements Initializable {
                     malattieSettimanaliTableView.getItems().add(malattieProvincia);
                 }
             }
+        }
+    }
+
+    @FXML
+    private void analisiDatiDecessiAnnualiEsportaDatiButtonOnClicked() {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setInitialFileName("decessi");
+        fileChooser.setInitialDirectory(javax.swing.filechooser.FileSystemView.getFileSystemView().getHomeDirectory());
+        fileChooser.setTitle("Open Resource File");
+        FileChooser.ExtensionFilter extensionFilter = new FileChooser.ExtensionFilter("CSV files (*.csv)", "*.csv");
+        fileChooser.getExtensionFilters().add(extensionFilter);
+        File selectedFile = fileChooser.showSaveDialog(null);
+        if (selectedFile != null) {
+            Configuration configuration = new Configuration().configure();
+            org.hibernate.Session currentSession = configuration.buildSessionFactory().openSession();
+            currentSession.doWork(connection -> {
+                CallableStatement cs = connection.prepareCall("CALL SYSCS_UTIL.SYSCS_EXPORT_TABLE (null,'DECESSIANNUALI',?,';',null,'UTF-8')");
+                cs.setString(1, selectedFile.getAbsolutePath());
+                cs.execute();
+            });
+            currentSession.close();
+        }
+    }
+
+    @FXML
+    private void analisiDatiMalattieSettimanaliEsportaDatiButtonOnClicked() {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setInitialFileName("malattie");
+        fileChooser.setInitialDirectory(javax.swing.filechooser.FileSystemView.getFileSystemView().getHomeDirectory());
+        fileChooser.setTitle("Open Resource File");
+        FileChooser.ExtensionFilter extensionFilter = new FileChooser.ExtensionFilter("CSV files (*.csv)", "*.csv");
+        fileChooser.getExtensionFilters().add(extensionFilter);
+        File selectedFile = fileChooser.showSaveDialog(null);
+        if(selectedFile!=null) {
+            Configuration configuration = new Configuration().configure();
+            org.hibernate.Session currentSession = configuration.buildSessionFactory().openSession();
+            currentSession.doWork(connection -> {
+                CallableStatement cs = connection.prepareCall("CALL SYSCS_UTIL.SYSCS_EXPORT_TABLE (null,'MALATTIESETTIMANALI',?,';',null,'UTF-8')");
+                cs.setString(1, selectedFile.getAbsolutePath());
+                cs.execute();
+            });
+            currentSession.close();
         }
     }
 

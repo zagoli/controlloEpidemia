@@ -359,6 +359,7 @@ public class MalattieSettimanaliController implements Initializable {
     @FXML
     void inserisciCsvInserimentoOnClicked() {
         FileChooser fileChooser = new FileChooser();
+        fileChooser.setInitialDirectory(javax.swing.filechooser.FileSystemView.getFileSystemView().getHomeDirectory());
         fileChooser.setTitle("Open Resource File");
         FileChooser.ExtensionFilter extensionFilter = new FileChooser.ExtensionFilter("Csv files (*.csv)", "*.csv");
         fileChooser.getExtensionFilters().add(extensionFilter);

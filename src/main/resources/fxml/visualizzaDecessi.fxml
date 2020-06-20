@@ -1,44 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.*?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.text.Font?>
-<Pane xmlns:fx="http://javafx.com/fxml/1" layoutY="32.0" prefHeight="600.0" prefWidth="800.0"
-      xmlns="http://javafx.com/javafx/10.0.2-internal"
-      fx:controller="com.jgg.controlloEpidemia.view.VisualizzaDecessiController">
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<Pane layoutY="32.0" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.jgg.controlloEpidemia.view.VisualizzaDecessiController">
 
     <Pane minHeight="0.0" minWidth="0.0" prefHeight="600.0" prefWidth="800.0">
-        <TableView fx:id="decessiAnnualiTableView" layoutX="25.0" layoutY="25.0" prefHeight="425.0"
-                   prefWidth="750.0">
+        <TableView fx:id="decessiAnnualiTableView" layoutX="25.0" layoutY="25.0" prefHeight="425.0" prefWidth="750.0">
             <columns>
-                <TableColumn fx:id="decessiAnnualiIdColumn" prefWidth="24.800004959106445" text="ID"/>
-                <TableColumn fx:id="decessiAnnualiProvinciaColumn" prefWidth="77.39999389648438"
-                             text="PROVINCIA"/>
-                <TableColumn fx:id="decessiAnnualiAnnoColumn" prefWidth="42.99999237060547" text="ANNO"/>
-                <TableColumn fx:id="decessiAnnualiIncidentiStradaliColumn" prefWidth="130.80001831054688"
-                             text="INCIDENTI STRADALI"/>
-                <TableColumn fx:id="decessiAnnualiMalattieTumoraliColumn" minWidth="0.0"
-                             prefWidth="131.79998779296875" text="MALATTIE TUMORALI"/>
-                <TableColumn fx:id="decessiAnnualiMalattieCardiovascolariColumn" prefWidth="186.60000610351562"
-                             text="MALATTIE CARDIOVASCOLARI"/>
-                <TableColumn fx:id="decessiAnnualiMalattieContagioseColumn" minWidth="3.199951171875"
-                             prefWidth="152.60003662109375" text="MALATTIE CONTAGIOSE"/>
+                <TableColumn fx:id="decessiAnnualiIdColumn" prefWidth="24.800004959106445" text="ID" visible="false" />
+                <TableColumn fx:id="decessiAnnualiProvinciaColumn" prefWidth="77.39999389648438" text="PROVINCIA" />
+                <TableColumn fx:id="decessiAnnualiAnnoColumn" prefWidth="42.99999237060547" text="ANNO" />
+                <TableColumn fx:id="decessiAnnualiIncidentiStradaliColumn" prefWidth="130.80001831054688" text="INCIDENTI STRADALI" />
+                <TableColumn fx:id="decessiAnnualiMalattieTumoraliColumn" minWidth="0.0" prefWidth="131.79998779296875" text="MALATTIE TUMORALI" />
+                <TableColumn fx:id="decessiAnnualiMalattieCardiovascolariColumn" prefWidth="186.60000610351562" text="MALATTIE CARDIOVASCOLARI" />
+                <TableColumn fx:id="decessiAnnualiMalattieContagioseColumn" minWidth="3.199951171875" prefWidth="152.60003662109375" text="MALATTIE CONTAGIOSE" />
             </columns>
         </TableView>
-        <Button layoutX="50.0" layoutY="460.0" mnemonicParsing="false"
-                onAction="#visualizzaDecessiVisualizzaDatiButtonOnClicked" prefHeight="45.0" prefWidth="170.0"
-                text="Visualizza dati">
-            <font>
-                <Font name="Segoe UI Bold" size="20.0"/>
-            </font>
-        </Button>
-        <Button layoutX="520.0" layoutY="460.0" mnemonicParsing="false"
-                onAction="#visualizzaDecessiAggregaPerRegioneButtonOnClicked" prefHeight="45.0"
-                prefWidth="230.0" text="Aggrega per regione">
-            <font>
-                <Font name="Segoe UI Bold" size="20.0"/>
-            </font>
-        </Button>
+      <ButtonBar layoutX="145.0" layoutY="464.0" prefHeight="77.0" prefWidth="511.0">
+        <buttons>
+            <Button mnemonicParsing="false" onAction="#visualizzaDecessiVisualizzaDatiButtonOnClicked" prefHeight="45.0" prefWidth="230.0" text="Visualizza dati">
+                <font>
+                    <Font name="Segoe UI Bold" size="20.0" />
+                </font>
+            </Button>
+              <Button mnemonicParsing="false" onAction="#visualizzaDecessiAggregaPerRegioneButtonOnClicked" prefHeight="45.0" prefWidth="230.0" text="Aggrega per regione">
+                  <font>
+                      <Font name="Segoe UI Bold" size="20.0" />
+                  </font>
+              </Button>
+        </buttons>
+      </ButtonBar>
     </Pane>
-    <Button layoutX="10.0" layoutY="-28.0" mnemonicParsing="false" onAction="#homepageButtonOnClicked" text="Homepage"/>
+    <Button layoutX="10.0" layoutY="-28.0" mnemonicParsing="false" onAction="#homepageButtonOnClicked" text="Homepage" />
 </Pane>
