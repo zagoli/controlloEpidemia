@@ -9,14 +9,13 @@ import javafx.animation.ScaleTransition;
 import javafx.application.Platform;
 import javafx.beans.binding.Bindings;
 import javafx.concurrent.Task;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.Pane;
+import javafx.scene.layout.BorderPane;
 import javafx.stage.FileChooser;
 import javafx.util.Duration;
 
@@ -158,7 +157,7 @@ public class MalattieSettimanaliController implements Initializable {
     @FXML
     private Button malattieSettimanaliModificaButton;
     @FXML
-    private Pane mainPane;
+    private BorderPane mainPane;
     @FXML
     private ProgressBar loadingBar;
 
@@ -251,9 +250,9 @@ public class MalattieSettimanaliController implements Initializable {
     }
 
     @FXML
-    void homepageButtonOnClicked(ActionEvent event) throws IOException {
+    void homepageButtonOnClicked() throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/homePage.fxml"));
-        ((Button) event.getSource()).getScene().setRoot(root);
+        malattieSettimanaliTabPane.getScene().setRoot(root);
     }
 
     private void updateList() {
