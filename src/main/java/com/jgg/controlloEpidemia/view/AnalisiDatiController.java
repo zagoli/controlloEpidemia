@@ -1,7 +1,10 @@
 package com.jgg.controlloEpidemia.view;
 
 import com.jgg.controlloEpidemia.model.*;
-import com.jgg.controlloEpidemia.service.*;
+import com.jgg.controlloEpidemia.service.DecessiAnnualiService;
+import com.jgg.controlloEpidemia.service.MalattieSettimanaliService;
+import com.jgg.controlloEpidemia.service.ProvinciaService;
+import com.jgg.controlloEpidemia.service.RegioneService;
 import javafx.beans.binding.Bindings;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -28,21 +31,10 @@ public class AnalisiDatiController implements Initializable {
     private final DecessiAnnualiService decessiAnnualiService = new DecessiAnnualiService();
     private final RegioneService regioneService = new RegioneService();
     private final ProvinciaService provinciaService = new ProvinciaService();
-    private final ComuneService comuneService = new ComuneService();
     private final List<MalattieSettimanali> malattieSettimanaliList = malattieSettimanaliService.findAll();
 
     @FXML
-    private Tab malattieSettimanaliVisualizzazioneTab;
-    @FXML
     private TabPane analisiDatiTabPane;
-    @FXML
-    private Tab decessiAnnualiTab;
-    @FXML
-    private Tab confrontaTab;
-    @FXML
-    private Tab malattieSettimanaliTab;
-    @FXML
-    private TabPane malattieSettimanaliTabPane;
     @FXML
     private BorderPane analisiDatiBorderPane;
 
@@ -160,26 +152,8 @@ public class AnalisiDatiController implements Initializable {
     private TableColumn<MalattieSettimanali, Integer> inCuraConGastroenteriteColumn;
     @FXML
     private TableColumn<MalattieSettimanali, Comune> comuneColumn;
-
-
-
     @FXML
     private Button analisiDatiVisualizzaDecessiConfrontaConMalattieButton;
-
-    @FXML
-    private Button analisiDatiVisualizzaDecessiAggregaPerRegioneButton;
-
-    @FXML
-    private Button analisiDatiVisualizzaDecessiVisualizzaDatiButton;
-
-    @FXML
-    private Button analisiDatiVisualizzaMalattieAggregaPerProvinciaButton;
-
-    @FXML
-    private Button analisiDatiVisualizzaMalattieAggregaPerRegioneButton;
-
-    @FXML
-    private Button analisiDatiVisualizzaMalattieVisualizzaDatiButton;
 
 
     @Override

@@ -1,139 +1,212 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
-
-<BorderPane fx:id="analisiDatiBorderPane" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.jgg.controlloEpidemia.view.AnalisiDatiController">
+<BorderPane fx:id="analisiDatiBorderPane" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.jgg.controlloEpidemia.view.AnalisiDatiController">
     <center>
         <TabPane fx:id="analisiDatiTabPane" prefHeight="600.0" prefWidth="800.0" tabClosingPolicy="UNAVAILABLE">
-            <Tab fx:id="decessiAnnualiTab" text="Visualizzazione Decessi Annuali">
-                <Pane minHeight="0.0" minWidth="0.0" prefHeight="600.0" prefWidth="800.0">
-                    <TableView fx:id="decessiAnnualiTableView" layoutX="25.0" layoutY="25.0" prefHeight="425.0" prefWidth="750.0">
-                        <columns>
-                            <TableColumn fx:id="decessiAnnualiIdColumn" prefWidth="30.0" text="ID" visible="false" />
-                            <TableColumn fx:id="decessiAnnualiProvinciaColumn" prefWidth="73.0" text="PROVINCIA" />
-                            <TableColumn fx:id="decessiAnnualiAnnoColumn" prefWidth="42.99999237060547" text="ANNO" />
-                            <TableColumn fx:id="decessiAnnualiIncidentiStradaliColumn" prefWidth="130.80001831054688" text="INCIDENTI STRADALI" />
-                            <TableColumn fx:id="decessiAnnualiMalattieTumoraliColumn" minWidth="0.0" prefWidth="131.79998779296875" text="MALATTIE TUMORALI" />
-                            <TableColumn fx:id="decessiAnnualiMalattieCardiovascolariColumn" prefWidth="186.60000610351562" text="MALATTIE CARDIOVASCOLARI" />
-                            <TableColumn fx:id="decessiAnnualiMalattieContagioseColumn" minWidth="3.199951171875" prefWidth="152.60003662109375" text="MALATTIE CONTAGIOSE" />
-                        </columns>
-                    </TableView>
-                    <ButtonBar layoutX="25.0" layoutY="460.0" prefHeight="70.0" prefWidth="750.0">
-                        <buttons>
-                            <Button fx:id="analisiDatiVisualizzaDecessiVisualizzaDatiButton" mnemonicParsing="false" onAction="#analisiDatiVisualizzaDecessiVisualizzaDatiButtonOnClicked" text="Visualizza dati" ButtonBar.buttonData="LEFT">
-                                <font>
-                                    <Font name="Segoe UI Bold" size="14.0" />
-                                </font>
-                            </Button>
-                            <Button fx:id="analisiDatiVisualizzaDecessiAggregaPerRegioneButton" mnemonicParsing="false" onAction="#analisiDatiVisualizzaDecessiAggregaPerRegioneButtonOnClicked" text="Aggrega per regione" ButtonBar.buttonData="LEFT">
-                                <font>
-                                    <Font name="Segoe UI Bold" size="14.0" />
-                                </font>
-                            </Button>
-                            <Button fx:id="analisiDatiVisualizzaDecessiConfrontaConMalattieButton" mnemonicParsing="false" onAction="#analisiDatiVisualizzaDecessiConfrontaConMalattieButtonOnClicked" text="Confronta con malattie" ButtonBar.buttonData="LEFT">
-                                <font>
-                                    <Font name="Segoe UI Bold" size="14.0" />
-                                </font>
-                            </Button>
-                            <Button mnemonicParsing="false" onAction="#analisiDatiDecessiAnnualiEsportaDatiButtonOnClicked" text="Esporta dati csv" ButtonBar.buttonData="RIGHT">
-                                <font>
-                                    <Font name="Segoe UI Bold" size="14.0" />
-                                </font>
-                            </Button>
-                        </buttons>
-                    </ButtonBar>
-                </Pane>
+            <Tab text="Visualizzazione Decessi Annuali">
+                <BorderPane>
+                    <center>
+                        <TableView fx:id="decessiAnnualiTableView" prefHeight="425.0" prefWidth="750.0">
+                            <columns>
+                                <TableColumn fx:id="decessiAnnualiIdColumn" prefWidth="30.0" text="ID" visible="false"/>
+                                <TableColumn fx:id="decessiAnnualiProvinciaColumn" prefWidth="73.0" text="PROVINCIA"/>
+                                <TableColumn fx:id="decessiAnnualiAnnoColumn" prefWidth="42.99999237060547"
+                                             text="ANNO"/>
+                                <TableColumn fx:id="decessiAnnualiIncidentiStradaliColumn"
+                                             prefWidth="130.80001831054688" text="INCIDENTI STRADALI"/>
+                                <TableColumn fx:id="decessiAnnualiMalattieTumoraliColumn" minWidth="0.0"
+                                             prefWidth="131.79998779296875" text="MALATTIE TUMORALI"/>
+                                <TableColumn fx:id="decessiAnnualiMalattieCardiovascolariColumn"
+                                             prefWidth="186.60000610351562" text="MALATTIE CARDIOVASCOLARI"/>
+                                <TableColumn fx:id="decessiAnnualiMalattieContagioseColumn" minWidth="3.199951171875"
+                                             prefWidth="152.60003662109375" text="MALATTIE CONTAGIOSE"/>
+                            </columns>
+                            <columnResizePolicy>
+                                <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
+                            </columnResizePolicy>
+                        </TableView>
+                    </center>
+                    <bottom>
+                        <ButtonBar prefHeight="70.0" BorderPane.alignment="CENTER">
+                            <buttons>
+                                <Button mnemonicParsing="false"
+                                        onAction="#analisiDatiVisualizzaDecessiVisualizzaDatiButtonOnClicked"
+                                        text="Aggrega per provincia" ButtonBar.buttonData="LEFT">
+                                    <font>
+                                        <Font name="Segoe UI Bold" size="14.0"/>
+                                    </font>
+                                </Button>
+                                <Button mnemonicParsing="false"
+                                        onAction="#analisiDatiVisualizzaDecessiAggregaPerRegioneButtonOnClicked"
+                                        text="Aggrega per regione" ButtonBar.buttonData="LEFT">
+                                    <font>
+                                        <Font name="Segoe UI Bold" size="14.0"/>
+                                    </font>
+                                </Button>
+                                <Button fx:id="analisiDatiVisualizzaDecessiConfrontaConMalattieButton"
+                                        mnemonicParsing="false"
+                                        onAction="#analisiDatiVisualizzaDecessiConfrontaConMalattieButtonOnClicked"
+                                        text="Confronta con malattie" ButtonBar.buttonData="LEFT">
+                                    <font>
+                                        <Font name="Segoe UI Bold" size="14.0"/>
+                                    </font>
+                                </Button>
+                                <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false"
+                                        onAction="#analisiDatiDecessiAnnualiEsportaDatiButtonOnClicked"
+                                        text="Esporta dati csv" ButtonBar.buttonData="RIGHT">
+                                    <font>
+                                        <Font name="Segoe UI Bold" size="14.0"/>
+                                    </font>
+                                </Button>
+                            </buttons>
+                            <BorderPane.margin>
+                                <Insets left="10.0" right="10.0"/>
+                            </BorderPane.margin>
+                        </ButtonBar>
+                    </bottom>
+                </BorderPane>
             </Tab>
-            <Tab fx:id="malattieSettimanaliTab" text="Visualizza Malattie Settimanali">
-                <Pane minHeight="0.0" minWidth="0.0" prefHeight="600.0" prefWidth="800.0">
-                    <TableView fx:id="malattieSettimanaliTableView" layoutX="25.0" layoutY="25.0" prefHeight="425.0" prefWidth="750.0">
-                        <columns>
-                            <TableColumn fx:id="idColumn" prefWidth="46.0" text="ID" visible="false" />
-                            <TableColumn fx:id="comuneColumn" prefWidth="141.0" text="COMUNE" />
-                            <TableColumn fx:id="annoColumn" prefWidth="67.0" text="ANNO" />
-                            <TableColumn fx:id="settimanaColumn" prefWidth="88.0" text="SETTIMANA" />
-                            <TableColumn fx:id="ricoveratiConInfluenzaColumn" prefWidth="95.0" text="R.INFLUENZA" />
-                            <TableColumn fx:id="inCuraConInfluenzaColumn" prefWidth="93.0" text="C.INFLUENZA" />
-                            <TableColumn fx:id="complicanzeRespiratorieColumn" prefWidth="99.0" text="COMPL.RESPIR." />
-                            <TableColumn fx:id="ricoveratiConPolmoniteColumn" prefWidth="88.0" text="R.POLMONITE" />
-                            <TableColumn fx:id="inCuraConPolmoniteColumn" prefWidth="216.0" text="C.POLMONITE" />
-                            <TableColumn fx:id="ricoveratiConMeningiteColumn" prefWidth="99.0" text="R.MENINGITE" />
-                            <TableColumn fx:id="inCuraConMeningiteColumn" prefWidth="99.0" text="C.MENINGITE" />
-                            <TableColumn fx:id="ricoveratiConEpatiteColumn" prefWidth="99.0" text="R.EPATITE" />
-                            <TableColumn fx:id="inCuraConEpatiteColumn" prefWidth="99.0" text="C.EPATITE" />
-                            <TableColumn fx:id="ricoveratiConMorbilloColumn" prefWidth="99.0" text="R.MORBILLO" />
-                            <TableColumn fx:id="inCuraConMorbilloColumn" minWidth="4.0" prefWidth="136.0" text="C.MORBILLO" />
-                            <TableColumn fx:id="ricoveratiConTubercolosiColumn" prefWidth="99.0" text="R.TUBERCOLOSI" />
-                            <TableColumn fx:id="inCuraConTubercolosiColumn" prefWidth="99.0" text="C.TUBERCOLOSI" />
-                            <TableColumn fx:id="ricoveratiConGastroenteriteColumn" prefWidth="99.0" text="R.GASTROENTERITE" />
-                            <TableColumn fx:id="inCuraConGastroenteriteColumn" prefWidth="117.0" text="C.GASTROENTERITE" />
-                        </columns>
-                    </TableView>
-                    <ButtonBar layoutX="25.0" layoutY="460.0" prefHeight="70.0" prefWidth="750.0">
-                        <buttons>
-                            <Button fx:id="analisiDatiVisualizzaMalattieVisualizzaDatiButton" mnemonicParsing="false" onAction="#analisiDatiVisualizzaMalattieVisualizzaDatiButtonOnClicked" text="Visualizza Dati" ButtonBar.buttonData="LEFT">
-                                <font>
-                                    <Font name="Segoe UI Bold" size="14.0" />
-                                </font>
-                            </Button>
-                            <Button fx:id="analisiDatiVisualizzaMalattieAggregaPerRegioneButton" mnemonicParsing="false" onAction="#analisiDatiVisualizzaMalattieAggregaPerRegioneButtonOnClicked" text="Aggrega per regione" ButtonBar.buttonData="LEFT">
-                                <font>
-                                    <Font name="Segoe UI Bold" size="14.0" />
-                                </font>
-                            </Button>
-                            <Button fx:id="analisiDatiVisualizzaMalattieAggregaPerProvinciaButton" mnemonicParsing="false" onAction="#analisiDatiVisualizzaMalattieAggregaPerProvinciaButtonOnClicked" text="Aggrega per provincia" ButtonBar.buttonData="LEFT">
-                                <font>
-                                    <Font name="Segoe UI Bold" size="14.0" />
-                                </font>
-                            </Button>
-                            <Button mnemonicParsing="false" onAction="#analisiDatiMalattieSettimanaliEsportaDatiButtonOnClicked" text="Esporta dati csv" ButtonBar.buttonData="RIGHT">
-                                <font>
-                                    <Font name="Segoe UI Bold" size="14.0" />
-                                </font>
-                            </Button>
-                        </buttons>
-                    </ButtonBar>
-                </Pane>
+            <Tab text="Visualizza Malattie Settimanali">
+                <BorderPane>
+                    <center>
+                        <TableView fx:id="malattieSettimanaliTableView" prefHeight="425.0" prefWidth="750.0">
+                            <columns>
+                                <TableColumn fx:id="idColumn" prefWidth="46.0" text="ID" visible="false"/>
+                                <TableColumn fx:id="comuneColumn" prefWidth="141.0" text="COMUNE"/>
+                                <TableColumn fx:id="annoColumn" prefWidth="67.0" text="ANNO"/>
+                                <TableColumn fx:id="settimanaColumn" prefWidth="88.0" text="SETTIMANA"/>
+                                <TableColumn fx:id="ricoveratiConInfluenzaColumn" prefWidth="95.0" text="R.INFLUENZA"/>
+                                <TableColumn fx:id="inCuraConInfluenzaColumn" prefWidth="93.0" text="C.INFLUENZA"/>
+                                <TableColumn fx:id="complicanzeRespiratorieColumn" prefWidth="99.0"
+                                             text="COMPL.RESPIR."/>
+                                <TableColumn fx:id="ricoveratiConPolmoniteColumn" prefWidth="88.0" text="R.POLMONITE"/>
+                                <TableColumn fx:id="inCuraConPolmoniteColumn" prefWidth="216.0" text="C.POLMONITE"/>
+                                <TableColumn fx:id="ricoveratiConMeningiteColumn" prefWidth="99.0" text="R.MENINGITE"/>
+                                <TableColumn fx:id="inCuraConMeningiteColumn" prefWidth="99.0" text="C.MENINGITE"/>
+                                <TableColumn fx:id="ricoveratiConEpatiteColumn" prefWidth="99.0" text="R.EPATITE"/>
+                                <TableColumn fx:id="inCuraConEpatiteColumn" prefWidth="99.0" text="C.EPATITE"/>
+                                <TableColumn fx:id="ricoveratiConMorbilloColumn" prefWidth="99.0" text="R.MORBILLO"/>
+                                <TableColumn fx:id="inCuraConMorbilloColumn" minWidth="4.0" prefWidth="136.0"
+                                             text="C.MORBILLO"/>
+                                <TableColumn fx:id="ricoveratiConTubercolosiColumn" prefWidth="99.0"
+                                             text="R.TUBERCOLOSI"/>
+                                <TableColumn fx:id="inCuraConTubercolosiColumn" prefWidth="99.0" text="C.TUBERCOLOSI"/>
+                                <TableColumn fx:id="ricoveratiConGastroenteriteColumn" prefWidth="99.0"
+                                             text="R.GASTROENTERITE"/>
+                                <TableColumn fx:id="inCuraConGastroenteriteColumn" prefWidth="117.0"
+                                             text="C.GASTROENTERITE"/>
+                            </columns>
+                            <columnResizePolicy>
+                                <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
+                            </columnResizePolicy>
+                        </TableView>
+                    </center>
+                    <bottom>
+                        <ButtonBar prefHeight="70.0" prefWidth="750.0" BorderPane.alignment="CENTER">
+                            <buttons>
+                                <Button mnemonicParsing="false"
+                                        onAction="#analisiDatiVisualizzaMalattieVisualizzaDatiButtonOnClicked"
+                                        text="Aggrega per comune" ButtonBar.buttonData="LEFT">
+                                    <font>
+                                        <Font name="Segoe UI Bold" size="14.0"/>
+                                    </font>
+                                </Button>
+                                <Button mnemonicParsing="false"
+                                        onAction="#analisiDatiVisualizzaMalattieAggregaPerProvinciaButtonOnClicked"
+                                        text="Aggrega per provincia" ButtonBar.buttonData="LEFT">
+                                    <font>
+                                        <Font name="Segoe UI Bold" size="14.0"/>
+                                    </font>
+                                </Button>
+                                <Button mnemonicParsing="false"
+                                        onAction="#analisiDatiVisualizzaMalattieAggregaPerRegioneButtonOnClicked"
+                                        text="Aggrega per regione" ButtonBar.buttonData="LEFT">
+                                    <font>
+                                        <Font name="Segoe UI Bold" size="14.0"/>
+                                    </font>
+                                </Button>
+                                <Button mnemonicParsing="false"
+                                        onAction="#analisiDatiMalattieSettimanaliEsportaDatiButtonOnClicked"
+                                        text="Esporta dati csv" ButtonBar.buttonData="RIGHT">
+                                    <font>
+                                        <Font name="Segoe UI Bold" size="14.0"/>
+                                    </font>
+                                </Button>
+                            </buttons>
+                            <BorderPane.margin>
+                                <Insets left="10.0" right="10.0"/>
+                            </BorderPane.margin>
+                        </ButtonBar>
+                    </bottom>
+                </BorderPane>
             </Tab>
-            <Tab fx:id="confrontaTab" text="Confronta Decessi Provincia - Malattie Comuni">
-                <Pane minHeight="0.0" minWidth="0.0" prefHeight="600.0" prefWidth="800.0">
-                    <TableView fx:id="decessiAnnualiConfrontaTableView" layoutX="25.0" layoutY="25.0" prefHeight="80.0" prefWidth="750.0">
+            <Tab text="Confronta Decessi Provincia - Malattie Comuni">
+                <VBox alignment="TOP_CENTER">
+                    <TableView fx:id="decessiAnnualiConfrontaTableView" prefHeight="80.0" prefWidth="750.0">
                         <columns>
-                            <TableColumn fx:id="decessiAnnualiIdConfrontaColumn" prefWidth="19.4000244140625" text="ID" visible="false" />
-                            <TableColumn fx:id="decessiAnnualiProvinciaConfrontaColumn" prefWidth="72.79998397827148" text="PROVINCIA" />
-                            <TableColumn fx:id="decessiAnnualiAnnoConfrontaColumn" prefWidth="47.999969482421875" text="ANNO" />
-                            <TableColumn fx:id="decessiAnnualiIncidentiStradaliConfrontaColumn" prefWidth="128.1999969482422" text="INCIDENTI STRADALI" />
-                            <TableColumn fx:id="decessiAnnualiMalattieTumoraliConfrontaColumn" minWidth="0.0" prefWidth="135.20001220703125" text="MALATTIE TUMORALI" />
-                            <TableColumn fx:id="decessiAnnualiMalattieCardiovascolariConfrontaColumn" prefWidth="178.00003051757812" text="MALATTIE CARDIOVASCOLARI" />
-                            <TableColumn fx:id="decessiAnnualiMalattieContagioseConfrontaColumn" minWidth="3.199951171875" prefWidth="170.79998779296875" text="MALATTIE CONTAGIOSE" />
+                            <TableColumn fx:id="decessiAnnualiIdConfrontaColumn" prefWidth="19.4000244140625" text="ID"
+                                         visible="false"/>
+                            <TableColumn fx:id="decessiAnnualiProvinciaConfrontaColumn" prefWidth="72.79998397827148"
+                                         text="PROVINCIA"/>
+                            <TableColumn fx:id="decessiAnnualiAnnoConfrontaColumn" prefWidth="47.999969482421875"
+                                         text="ANNO"/>
+                            <TableColumn fx:id="decessiAnnualiIncidentiStradaliConfrontaColumn"
+                                         prefWidth="128.1999969482422" text="INCIDENTI STRADALI"/>
+                            <TableColumn fx:id="decessiAnnualiMalattieTumoraliConfrontaColumn" minWidth="0.0"
+                                         prefWidth="135.20001220703125" text="MALATTIE TUMORALI"/>
+                            <TableColumn fx:id="decessiAnnualiMalattieCardiovascolariConfrontaColumn"
+                                         prefWidth="178.00003051757812" text="MALATTIE CARDIOVASCOLARI"/>
+                            <TableColumn fx:id="decessiAnnualiMalattieContagioseConfrontaColumn"
+                                         minWidth="3.199951171875" prefWidth="170.79998779296875"
+                                         text="MALATTIE CONTAGIOSE"/>
                         </columns>
+                        <columnResizePolicy>
+                            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
+                        </columnResizePolicy>
                     </TableView>
-                    <TableView fx:id="malattieSettimanaliConfrontaTableView" layoutX="25.0" layoutY="123.0" prefHeight="350.0" prefWidth="750.0">
+                    <TableView fx:id="malattieSettimanaliConfrontaTableView" VBox.vgrow="ALWAYS">
                         <columns>
-                            <TableColumn fx:id="idConfrontaColumn" prefWidth="46.0" text="ID" visible="false" />
-                            <TableColumn fx:id="annoConfrontaColumn" prefWidth="67.0" text="ANNO" />
-                            <TableColumn fx:id="settimanaConfrontaColumn" prefWidth="88.0" text="SETTIMANA" />
-                            <TableColumn fx:id="ricoveratiConInfluenzaConfrontaColumn" prefWidth="95.0" text="R.INFLUENZA" />
-                            <TableColumn fx:id="inCuraConInfluenzaConfrontaColumn" prefWidth="93.0" text="C.INFLUENZA" />
-                            <TableColumn fx:id="complicanzeRespiratorieConfrontaColumn" prefWidth="99.0" text="COMPL.RESPIR." />
-                            <TableColumn fx:id="ricoveratiConPolmoniteConfrontaColumn" prefWidth="88.0" text="R.POLMONITE" />
-                            <TableColumn fx:id="inCuraConPolmoniteConfrontaColumn" prefWidth="216.0" text="C.POLMONITE" />
-                            <TableColumn fx:id="ricoveratiConMeningiteConfrontaColumn" prefWidth="99.0" text="R.MENINGITE" />
-                            <TableColumn fx:id="inCuraConMeningiteConfrontaColumn" prefWidth="99.0" text="C.MENINGITE" />
-                            <TableColumn fx:id="ricoveratiConEpatiteConfrontaColumn" prefWidth="99.0" text="R.EPATITE" />
-                            <TableColumn fx:id="inCuraConEpatiteConfrontaColumn" prefWidth="99.0" text="C.EPATITE" />
-                            <TableColumn fx:id="ricoveratiConMorbilloConfrontaColumn" prefWidth="99.0" text="R.MORBILLO" />
-                            <TableColumn fx:id="inCuraConMorbilloConfrontaColumn" minWidth="4.0" prefWidth="136.0" text="C.MORBILLO" />
-                            <TableColumn fx:id="ricoveratiConTubercolosiConfrontaColumn" prefWidth="99.0" text="R.TUBERCOLOSI" />
-                            <TableColumn fx:id="inCuraConTubercolosiConfrontaColumn" prefWidth="99.0" text="C.TUBERCOLOSI" />
-                            <TableColumn fx:id="ricoveratiConGastroenteriteConfrontaColumn" prefWidth="99.0" text="R.GASTROENTERITE" />
-                            <TableColumn fx:id="inCuraConGastroenteriteConfrontaColumn" prefWidth="117.0" text="C.GASTROENTERITE" />
-                            <TableColumn fx:id="comuneConfrontaColumn" prefWidth="141.0" text="COMUNE" />
+                            <TableColumn fx:id="idConfrontaColumn" prefWidth="46.0" text="ID" visible="false"/>
+                            <TableColumn fx:id="annoConfrontaColumn" prefWidth="67.0" text="ANNO"/>
+                            <TableColumn fx:id="settimanaConfrontaColumn" prefWidth="88.0" text="SETTIMANA"/>
+                            <TableColumn fx:id="ricoveratiConInfluenzaConfrontaColumn" prefWidth="95.0"
+                                         text="R.INFLUENZA"/>
+                            <TableColumn fx:id="inCuraConInfluenzaConfrontaColumn" prefWidth="93.0" text="C.INFLUENZA"/>
+                            <TableColumn fx:id="complicanzeRespiratorieConfrontaColumn" prefWidth="99.0"
+                                         text="COMPL.RESPIR."/>
+                            <TableColumn fx:id="ricoveratiConPolmoniteConfrontaColumn" prefWidth="88.0"
+                                         text="R.POLMONITE"/>
+                            <TableColumn fx:id="inCuraConPolmoniteConfrontaColumn" prefWidth="216.0"
+                                         text="C.POLMONITE"/>
+                            <TableColumn fx:id="ricoveratiConMeningiteConfrontaColumn" prefWidth="99.0"
+                                         text="R.MENINGITE"/>
+                            <TableColumn fx:id="inCuraConMeningiteConfrontaColumn" prefWidth="99.0" text="C.MENINGITE"/>
+                            <TableColumn fx:id="ricoveratiConEpatiteConfrontaColumn" prefWidth="99.0" text="R.EPATITE"/>
+                            <TableColumn fx:id="inCuraConEpatiteConfrontaColumn" prefWidth="99.0" text="C.EPATITE"/>
+                            <TableColumn fx:id="ricoveratiConMorbilloConfrontaColumn" prefWidth="99.0"
+                                         text="R.MORBILLO"/>
+                            <TableColumn fx:id="inCuraConMorbilloConfrontaColumn" minWidth="4.0" prefWidth="136.0"
+                                         text="C.MORBILLO"/>
+                            <TableColumn fx:id="ricoveratiConTubercolosiConfrontaColumn" prefWidth="99.0"
+                                         text="R.TUBERCOLOSI"/>
+                            <TableColumn fx:id="inCuraConTubercolosiConfrontaColumn" prefWidth="99.0"
+                                         text="C.TUBERCOLOSI"/>
+                            <TableColumn fx:id="ricoveratiConGastroenteriteConfrontaColumn" prefWidth="99.0"
+                                         text="R.GASTROENTERITE"/>
+                            <TableColumn fx:id="inCuraConGastroenteriteConfrontaColumn" prefWidth="117.0"
+                                         text="C.GASTROENTERITE"/>
+                            <TableColumn fx:id="comuneConfrontaColumn" prefWidth="141.0" text="COMUNE"/>
                         </columns>
+                        <columnResizePolicy>
+                            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
+                        </columnResizePolicy>
                     </TableView>
-                </Pane>
+                </VBox>
             </Tab>
         </TabPane>
     </center>

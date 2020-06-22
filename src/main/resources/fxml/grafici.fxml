@@ -5,28 +5,19 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
-<BorderPane xmlns:fx="http://javafx.com/fxml/1" prefHeight="600.0" prefWidth="800.0"
-            xmlns="http://javafx.com/javafx/11.0.1" fx:controller="com.jgg.controlloEpidemia.view.GraficiController">
+<BorderPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/10.0.2-internal"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.jgg.controlloEpidemia.view.GraficiController">
     <center>
         <ScrollPane fitToWidth="true" prefHeight="490.0" prefWidth="699.0">
             <VBox alignment="TOP_CENTER" spacing="10.0">
-                <Label text="Visualizzazione grafici" textFill="RED">
-                    <font>
-                        <Font size="20.0"/>
-                    </font>
-                    <VBox.margin>
-                        <Insets/>
-                    </VBox.margin>
-                </Label>
-                <Separator prefWidth="200.0"/>
                 <HBox alignment="CENTER" fillHeight="false">
                     <ComboBox fx:id="chooseAnnoDecessiRegioneCombobox" onAction="#annoDecessiRegioneSelected"
                               prefWidth="150.0" promptText="Anno da visualizzare"/>
                     <StackPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="500.0">
                         <PieChart fx:id="graficoDecessiRegione" labelLineLength="25.0" legendVisible="false"
                                   title="Grafico decessi annuali per regione"/>
-                        <Label fx:id="labelGraficoDecessiRegione"
-                               text="Seleziona un anno per visualizzare il grafico" textFill="RED">
+                        <Label fx:id="labelGraficoDecessiRegione" text="Seleziona un anno per visualizzare il grafico"
+                               textFill="RED">
                             <font>
                                 <Font name="System Italic" size="15.0"/>
                             </font>
