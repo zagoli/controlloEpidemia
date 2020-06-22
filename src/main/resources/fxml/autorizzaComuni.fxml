@@ -5,33 +5,10 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.shape.Polygon?>
-<?import javafx.scene.text.*?>
-<BorderPane xmlns:fx="http://javafx.com/fxml/1" prefHeight="600.0" prefWidth="800.0"
-            xmlns="http://javafx.com/javafx/10.0.2-internal"
+<?import javafx.scene.text.Font?>
+<BorderPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/10.0.2-internal"
+            xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="com.jgg.controlloEpidemia.view.AutorizzaComuniController">
-    <top>
-        <GridPane alignment="CENTER">
-            <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="331.7999755859375" minWidth="10.0"
-                                   prefWidth="121.20001220703125"/>
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="678.7999877929688" minWidth="10.0"
-                                   prefWidth="674.7999877929688"/>
-            </columnConstraints>
-            <rowConstraints>
-                <RowConstraints minHeight="10.0" vgrow="SOMETIMES"/>
-            </rowConstraints>
-            <BorderPane.margin>
-                <Insets left="5.0" top="5.0"/>
-            </BorderPane.margin>
-            <Button mnemonicParsing="false" onAction="#onHomePageButtonClicked" text="Homepage"/>
-            <Label alignment="CENTER" text="Gestione dei comuni autorizzati per il personale a contratto"
-                   textAlignment="CENTER" GridPane.columnIndex="1">
-                <font>
-                    <Font size="23.0"/>
-                </font>
-            </Label>
-        </GridPane>
-    </top>
     <center>
         <GridPane alignment="CENTER" BorderPane.alignment="CENTER">
             <columnConstraints>
@@ -132,4 +109,11 @@
             </Label>
         </GridPane>
     </center>
+    <top>
+        <MenuBar BorderPane.alignment="CENTER">
+            <Menu mnemonicParsing="false" text="Naviga">
+                <MenuItem mnemonicParsing="false" onAction="#onHomepageButtonClicked" text="Homepage"/>
+            </Menu>
+        </MenuBar>
+    </top>
 </BorderPane>

@@ -19,7 +19,10 @@ import org.apache.log4j.PropertyConfigurator;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.*;
+import java.util.Comparator;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.ResourceBundle;
 
 public class AutorizzaComuniController implements Initializable {
 
@@ -69,7 +72,7 @@ public class AutorizzaComuniController implements Initializable {
     }
 
     @FXML
-    private void onHomePageButtonClicked() throws IOException {
+    private void onHomepageButtonClicked() throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/homePage.fxml"));
         utenteComboBox.getScene().setRoot(root);
     }
