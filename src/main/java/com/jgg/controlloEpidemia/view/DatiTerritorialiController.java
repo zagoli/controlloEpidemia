@@ -24,6 +24,8 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.FileChooser;
 import javafx.util.Duration;
+import org.apache.log4j.Logger;
+import org.apache.log4j.PropertyConfigurator;
 
 import java.io.File;
 import java.io.IOException;
@@ -37,6 +39,7 @@ import java.util.ResourceBundle;
 
 public class DatiTerritorialiController implements Initializable {
 
+    static Logger logger = Logger.getLogger(DatiTerritorialiController.class);
     private final ProvinciaService provinciaService = new ProvinciaService();
     private final ComuneService comuneService = new ComuneService();
     private final TipoTerritorioService tipoTerritorioService = new TipoTerritorioService();
@@ -164,6 +167,7 @@ public class DatiTerritorialiController implements Initializable {
     private BorderPane mainPane;
 
     public void initialize(URL location, ResourceBundle resources) {
+        PropertyConfigurator.configure("src\\main\\resources\\log4j.properties");
         for (Provincia provincia : provinciaService.findAll()) {
             provinciaInserimentoComuniComboBox.getItems().add(provincia.getNome());
             provinciaModificaComuniComboBox.getItems().add(provincia.getNome());
@@ -402,6 +406,7 @@ public class DatiTerritorialiController implements Initializable {
     @FXML
     private void comuneEliminaVisualizzazioneButtonOnClicked() {
         if (comuniTableView.getSelectionModel().getSelectedItem() != null) {
+            logger.info("Cancellato record comune: "+comuniTableView.getSelectionModel().getSelectedItem());
             Comune comuni = comuniTableView.getSelectionModel().getSelectedItem();
             comuneService.deleteByCodiceIstat(comuni.getCodiceIstat());
             updateListComuni();
@@ -414,6 +419,7 @@ public class DatiTerritorialiController implements Initializable {
     @FXML
     private void provinciaEliminaVisualizzazioneButtonOnClicked() {
         if (provinceTableView.getSelectionModel().getSelectedItem() != null) {
+            logger.info("Cancellato record provincia: "+provinceTableView.getSelectionModel().getSelectedItem());
             Provincia provincia = provinceTableView.getSelectionModel().getSelectedItem();
             provinciaService.deleteById(provincia.getId());
             updateListProvince();
@@ -434,7 +440,7 @@ public class DatiTerritorialiController implements Initializable {
         );
         provinciaService.save(provincia);
         if (provinciaService.findById(provincia.getId()) != null) {
-            System.out.println("ok");
+            logger.info("Inserito record provincia: "+provincia);
             idInserimentoProvinceTextField.clear();
             nomeInserimentoProvinceTextField.clear();
             superficieInserimentoProvinceTextField.clear();
@@ -453,7 +459,6 @@ public class DatiTerritorialiController implements Initializable {
         fileChooser.getExtensionFilters().add(extensionFilter);
         File selectedFile = fileChooser.showOpenDialog(null);
         if (selectedFile != null) {
-            System.out.println("ok");
             loadingBarProvince.setVisible(true);
             mainPane.setDisable(true);
 
@@ -470,8 +475,9 @@ public class DatiTerritorialiController implements Initializable {
                 }
             };
             new Thread(task).start();
+            logger.info("Inserito csv province");
         } else {
-            System.out.println("non ho trovato il file");
+            logger.error("File non selezionato");
         }
     }
 
@@ -488,7 +494,7 @@ public class DatiTerritorialiController implements Initializable {
         );
         comuneService.save(comune);
         if (comuneService.findByCodiceIstat(comune.getCodiceIstat()) != null) {
-            System.out.println("ok");
+            logger.info("Inserito record comune: "+comune);
             codiceIstatInserimentoComuniTextField.clear();
             nomeInserimentoComuniTextField.clear();
             superficieInserimentoComuniTextField.clear();
@@ -509,7 +515,6 @@ public class DatiTerritorialiController implements Initializable {
         fileChooser.getExtensionFilters().add(extensionFilter);
         File selectedFile = fileChooser.showOpenDialog(null);
         if (selectedFile != null) {
-            System.out.println("ok");
             loadingBarComuni.setVisible(true);
             mainPane.setDisable(true);
 
@@ -526,8 +531,9 @@ public class DatiTerritorialiController implements Initializable {
                 }
             };
             new Thread(task).start();
+            logger.info("Inserito csv comuni");
         } else {
-            System.out.println("non ho trovato il file");
+            logger.error("File non selezionato");
         }
     }
 
@@ -542,7 +548,7 @@ public class DatiTerritorialiController implements Initializable {
         );
         provinciaService.update(provincia);
         if (provinciaService.findById(provincia.getId()) != null) {
-            System.out.println("ok");
+            logger.info("Modificato record provincia: "+provincia);
             idInserimentoProvinceTextField.clear();
             nomeInserimentoProvinceTextField.clear();
             superficieInserimentoProvinceTextField.clear();
@@ -569,7 +575,7 @@ public class DatiTerritorialiController implements Initializable {
         );
         comuneService.update(comune);
         if (comuneService.findByCodiceIstat(comune.getCodiceIstat()) != null) {
-            System.out.println("ok");
+            logger.info("Inserito record comune: "+comune);
             codiceIstatInserimentoComuniTextField.clear();
             nomeInserimentoComuniTextField.clear();
             superficieInserimentoComuniTextField.clear();

@@ -14,15 +14,16 @@ import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.util.Duration;
 import javafx.util.StringConverter;
+import org.apache.log4j.Logger;
+import org.apache.log4j.PropertyConfigurator;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.Comparator;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.ResourceBundle;
+import java.util.*;
 
 public class AutorizzaComuniController implements Initializable {
+
+    static Logger logger = Logger.getLogger(AutorizzaComuniController.class);
 
     private final UtenteService utenteService = new UtenteService();
     private final ComuneService comuneService = new ComuneService();
@@ -41,6 +42,7 @@ public class AutorizzaComuniController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        PropertyConfigurator.configure("src\\main\\resources\\log4j.properties");
         // Come visualizzare i comuni
         allComuniListView.setCellFactory(comuneListView -> new ComuneFormatCell());
         authorizedComuniListView.setCellFactory(comuneListView -> new ComuneFormatCell());
@@ -89,6 +91,7 @@ public class AutorizzaComuniController implements Initializable {
             utente.getComuni().addAll(toAuthorizeComuni);
             UtenteService utenteService = new UtenteService();
             utenteService.update(utente);
+            logger.info("Aggiunti comuni: "+toAuthorizeComuni+" all'utente: "+utente);
             fadeAnimation(savedLabel);
         }
     }

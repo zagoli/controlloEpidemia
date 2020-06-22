@@ -18,6 +18,8 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.FileChooser;
 import javafx.util.Duration;
+import org.apache.log4j.Logger;
+import org.apache.log4j.PropertyConfigurator;
 
 import java.io.File;
 import java.io.IOException;
@@ -25,6 +27,8 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class DecessiAnnualiController implements Initializable {
+
+    static Logger logger = Logger.getLogger(DecessiAnnualiController.class);
 
     private final ProvinciaService provinciaService = new ProvinciaService();
     private final DecessiAnnualiService decessiAnnualiService = new DecessiAnnualiService();
@@ -92,6 +96,8 @@ public class DecessiAnnualiController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        PropertyConfigurator.configure("src\\main\\resources\\log4j.properties");
+
         decessiAnnualiModificaTab.setDisable(true);
 
         decessiAnnualiIdColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
@@ -146,7 +152,6 @@ public class DecessiAnnualiController implements Initializable {
     }
 
     private void updateList() {
-        System.out.println("ok");
         decessiAnnualiTableView.getItems().clear();
         for (DecessiAnnuali decessiAnnuali : decessiAnnualiService.findAll()) {
             decessiAnnualiTableView.getItems().add(decessiAnnuali);
@@ -157,7 +162,7 @@ public class DecessiAnnualiController implements Initializable {
     @FXML
     private void decessiAnnualiCancellaButtonOnClicked() {
         if (decessiAnnualiTableView.getSelectionModel().getSelectedItem() != null) {
-            System.out.println("ok");
+            logger.info("Cancellato record decessi annuali: "+decessiAnnualiTableView.getSelectionModel().getSelectedItem());
             decessiAnnualiService.deleteById(decessiAnnualiTableView.getSelectionModel().getSelectedItem().getId());
             updateList();
         } else {
@@ -169,7 +174,6 @@ public class DecessiAnnualiController implements Initializable {
     @FXML
     private void decessiAnnualiVisualizzazioneModificaButtonOnClicked() {
         if (decessiAnnualiTableView.getSelectionModel().getSelectedItem() != null) {
-            System.out.println("ok");
 
             DecessiAnnuali decessi = decessiAnnualiTableView.getSelectionModel().getSelectedItem();
             selectedId = Integer.parseInt(String.valueOf(decessi.getId()));
@@ -203,7 +207,7 @@ public class DecessiAnnualiController implements Initializable {
         decessiAnnualiService.save(decessiAnnuali);
 
         if (decessiAnnualiService.findById(decessiAnnuali.getId()) != null) {
-            System.out.println("ok");
+            logger.info("Inserito record decessi annuali: "+decessiAnnuali);
             annoInserimentoTextField.clear();
             incidentiStradaliInserimentoTextField.clear();
             malattieTumoraliInserimentoTextField.clear();
@@ -223,7 +227,6 @@ public class DecessiAnnualiController implements Initializable {
         fileChooser.getExtensionFilters().add(extensionFilter);
         File selectedFile = fileChooser.showOpenDialog(null);
         if (selectedFile != null) {
-            System.out.println("ok");
             loadingBar.setVisible(true);
             mainPane.setDisable(true);
             Task<Void> task = new Task<>() {
@@ -240,8 +243,9 @@ public class DecessiAnnualiController implements Initializable {
                 }
             };
             new Thread(task).start();
+            logger.info("Inserito csv decessi annuali");
         } else {
-            System.out.println("non ho trovato il file");
+            logger.error("File non selezionato");
         }
     }
 
@@ -259,7 +263,7 @@ public class DecessiAnnualiController implements Initializable {
         decessiAnnualiService.update(decessiAnnuali);
 
         if (decessiAnnualiService.findById(decessiAnnuali.getId()) != null) {
-            System.out.println("ok");
+            logger.info("Modificato record decessi annuali: "+decessiAnnuali);
             annoModificaTextField.clear();
             incidentiStradaliModificaTextField.clear();
             malattieTumoraliModificaTextField.clear();

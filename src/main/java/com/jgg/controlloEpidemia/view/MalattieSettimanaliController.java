@@ -18,6 +18,8 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.FileChooser;
 import javafx.util.Duration;
+import org.apache.log4j.Logger;
+import org.apache.log4j.PropertyConfigurator;
 
 import java.io.File;
 import java.io.IOException;
@@ -27,6 +29,7 @@ import java.util.ResourceBundle;
 
 public class MalattieSettimanaliController implements Initializable {
 
+    static Logger logger = Logger.getLogger(MalattieSettimanaliController.class);
     private final ComuneService comuneService = new ComuneService();
     private final MalattieSettimanaliService malattieSettimanaliService = new MalattieSettimanaliService();
 
@@ -165,6 +168,7 @@ public class MalattieSettimanaliController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        PropertyConfigurator.configure("src\\main\\resources\\log4j.properties");
         malattieSettimanaliModificaTab.setDisable(true);
         List<Comune> comuneList = comuneService.findAll();
         for (Comune comune : comuneList) {
@@ -267,6 +271,7 @@ public class MalattieSettimanaliController implements Initializable {
     @FXML
     private void malattieSettimanaliCancellaButtonOnClicked() {
         if (malattieSettimanaliTableView.getSelectionModel().getSelectedItem() != null) {
+            logger.info("Cancellato record malattie settimanali: "+malattieSettimanaliTableView.getSelectionModel().getSelectedItem());
             malattieSettimanaliService.deleteById(malattieSettimanaliTableView.getSelectionModel().getSelectedItem().getId());
             updateList();
         } else {
@@ -333,7 +338,7 @@ public class MalattieSettimanaliController implements Initializable {
         );
         malattieSettimanaliService.save(malattieSettimanali);
         if (malattieSettimanaliService.findById(malattieSettimanali.getId()) != null) {
-            System.out.println("ok");
+            logger.info("Inserito record malattie settimanali: "+malattieSettimanali);
             annoInserimentoTextField.clear();
             settimanaInserimentoTextField.clear();
             ricoveratiConInfluenzaInserimentoTextField.clear();
@@ -365,7 +370,6 @@ public class MalattieSettimanaliController implements Initializable {
         fileChooser.getExtensionFilters().add(extensionFilter);
         File selectedFile = fileChooser.showOpenDialog(null);
         if (selectedFile != null) {
-            System.out.println("ok");
             loadingBar.setVisible(true);
             mainPane.setDisable(true);
             Task<Void> task = new Task<>() {
@@ -382,8 +386,9 @@ public class MalattieSettimanaliController implements Initializable {
                 }
             };
             new Thread(task).start();
+            logger.info("Inserito csv malattie settimanali");
         } else {
-            System.out.println("non ho trovato il file");
+            logger.error("File non selezionato");
         }
     }
 
@@ -412,7 +417,7 @@ public class MalattieSettimanaliController implements Initializable {
         );
         malattieSettimanaliService.update(malattieSettimanali);
         if (malattieSettimanaliService.findById(malattieSettimanali.getId()) != null) {
-            System.out.println("ok");
+            logger.info("Modificato record malattie settimanali: "+malattieSettimanali);
             annoModificaTextField.clear();
             settimanaModificaTextField.clear();
             ricoveratiConInfluenzaModificaTextField.clear();

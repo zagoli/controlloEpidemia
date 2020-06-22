@@ -5,18 +5,15 @@ import com.jgg.controlloEpidemia.model.Provincia;
 import com.jgg.controlloEpidemia.model.Regione;
 import com.jgg.controlloEpidemia.service.DecessiAnnualiService;
 import com.jgg.controlloEpidemia.service.RegioneService;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
-import javafx.scene.control.Button;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
-
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -24,6 +21,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 public class VisualizzaDecessiController implements Initializable {
+
 
     private final DecessiAnnualiService decessiAnnualiService = new DecessiAnnualiService();
     private final RegioneService regioneService = new RegioneService();
