@@ -15,6 +15,7 @@ import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.BorderPane;
 
 import java.io.IOException;
 import java.net.URL;
@@ -26,6 +27,9 @@ public class VisualizzaDecessiController implements Initializable {
 
     private final DecessiAnnualiService decessiAnnualiService = new DecessiAnnualiService();
     private final RegioneService regioneService = new RegioneService();
+
+    @FXML
+    private BorderPane mainPane;
 
     @FXML
     private TableView<DecessiAnnuali> decessiAnnualiTableView;
@@ -173,9 +177,9 @@ public class VisualizzaDecessiController implements Initializable {
     }
 
     @FXML
-    private void homepageButtonOnClicked(ActionEvent event) throws IOException {
+    private void homepageButtonOnClicked() throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/homePage.fxml"));
-        ((Button) event.getSource()).getScene().setRoot(root);
+        mainPane.getScene().setRoot(root);
     }
 
 }

@@ -11,6 +11,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.FileChooser;
 import javafx.util.Duration;
@@ -55,7 +56,7 @@ public class AnalisiDatiController implements Initializable {
     @FXML
     private TabPane malattieSettimanaliTabPane;
     @FXML
-    private Pane analisiDatiPane;
+    private BorderPane analisiDatiBorderPane;
 
 
     @FXML
@@ -173,8 +174,6 @@ public class AnalisiDatiController implements Initializable {
     private TableColumn<MalattieSettimanali, Comune> comuneColumn;
 
 
-    @FXML
-    private Button analisiDatiVisualizzaGraficiButton;
 
     @FXML
     private Button analisiDatiVisualizzaDecessiConfrontaConMalattieButton;
@@ -309,13 +308,13 @@ public class AnalisiDatiController implements Initializable {
     @FXML
     void homepageButtonOnClicked() throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/homePage.fxml"));
-        analisiDatiPane.getScene().setRoot(root);
+        analisiDatiBorderPane.getScene().setRoot(root);
     }
 
     @FXML
     void analisiDatiVisualizzaGraficiButtonOnClicked() throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/grafici.fxml"));
-        analisiDatiPane.getScene().setRoot(root);
+        analisiDatiBorderPane.getScene().setRoot(root);
     }
 
 

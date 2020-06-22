@@ -72,6 +72,7 @@
         <MenuBar BorderPane.alignment="CENTER">
             <Menu mnemonicParsing="false" text="Naviga">
                 <MenuItem mnemonicParsing="false" onAction="#onHomePageButtonClicked" text="Homepage"/>
+                <MenuItem mnemonicParsing="false" onAction="#onIndietroButtonClicked" text="Indietro"/>
             </Menu>
         </MenuBar>
     </top>

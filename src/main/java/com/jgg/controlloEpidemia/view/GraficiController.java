@@ -87,6 +87,12 @@ public class GraficiController implements Initializable {
     }
 
     @FXML
+    private void onIndietroButtonClicked() throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/analisiDati.fxml"));
+        graficoDecessiCausa.getScene().setRoot(root);
+    }
+
+    @FXML
     private void annoDecessiCausaSelected() {
         Integer anno = chooseAnnoDecessiCausaCombobox.getValue();
         List<DecessiAnnuali> decessiAnnuali;
