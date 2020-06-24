@@ -1,5 +1,6 @@
 package com.jgg.controlloEpidemia.view;
 
+import com.jgg.controlloEpidemia.App;
 import com.jgg.controlloEpidemia.importData.EtlMalattie;
 import com.jgg.controlloEpidemia.model.Comune;
 import com.jgg.controlloEpidemia.model.MalattieSettimanali;
@@ -17,6 +18,8 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.FileChooser;
+import javafx.stage.Popup;
+import javafx.stage.Window;
 import javafx.util.Duration;
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
@@ -165,6 +168,7 @@ public class MalattieSettimanaliController implements Initializable {
     private ProgressBar loadingBar;
 
     private int selectedId;
+    private final Alert alert = new Alert(Alert.AlertType.WARNING);
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -250,6 +254,9 @@ public class MalattieSettimanaliController implements Initializable {
                         .or(comuneModificaComboBox.valueProperty().isNull())
         );
 
+        alert.setTitle("Autorizzazioni comuni");
+        alert.setHeaderText(null);
+        alert.setContentText("Non sei autorizzato a gestire questo comune!");
 
         updateList();
     }
@@ -267,13 +274,18 @@ public class MalattieSettimanaliController implements Initializable {
         }
         noDataSelectedLabel.setVisible(false);
     }
-
     @FXML
     private void malattieSettimanaliCancellaButtonOnClicked() {
-        if (malattieSettimanaliTableView.getSelectionModel().getSelectedItem() != null) {
-            logger.info("Cancellato record malattie settimanali: "+malattieSettimanaliTableView.getSelectionModel().getSelectedItem());
-            malattieSettimanaliService.deleteById(malattieSettimanaliTableView.getSelectionModel().getSelectedItem().getId());
-            updateList();
+        MalattieSettimanali malattieSettimanali=malattieSettimanaliTableView.getSelectionModel().getSelectedItem();
+        if (malattieSettimanali != null) {
+            if(App.utenteCorrente.getComuni().contains(malattieSettimanali.getComune())) {
+                logger.info("Cancellato record malattie settimanali: " + malattieSettimanaliTableView.getSelectionModel().getSelectedItem());
+                malattieSettimanaliService.deleteById(malattieSettimanali.getId());
+                updateList();
+            }
+            else{
+                alert.showAndWait();
+            }
         } else {
             noDataSelectedLabel.setVisible(true);
             errorAnimation(noDataSelectedLabel);
@@ -284,30 +296,35 @@ public class MalattieSettimanaliController implements Initializable {
     private void malattieSettimanaliVisualizzazioneModificaButtonOnClicked() {
         if (malattieSettimanaliTableView.getSelectionModel().getSelectedItem() != null) {
             MalattieSettimanali malattie = malattieSettimanaliTableView.getSelectionModel().getSelectedItem();
-            selectedId = malattie.getId();
-            annoModificaTextField.setText(String.valueOf(malattie.getAnno()));
-            settimanaModificaTextField.setText(String.valueOf(malattie.getSettimana()));
-            ricoveratiConInfluenzaModificaTextField.setText(String.valueOf(malattie.getRicoveratiInfluenza()));
-            inCuraConInfluenzaModificaTextField.setText(String.valueOf(malattie.getInCuraInfluenza()));
-            complicanzeRespiratorieModificaTextField.setText(String.valueOf(malattie.getComplicanzeRespiratorie()));
-            ricoveratiConPolmoniteModificaTextField.setText(String.valueOf(malattie.getRicoveratiPolmonite()));
-            inCuraConPolmoniteModificaTextField.setText(String.valueOf(malattie.getInCuraPolmonite()));
-            ricoveratiConMeningiteModificaTextField.setText(String.valueOf(malattie.getRicoveratiMeningite()));
-            inCuraConMeningiteModificaTextField.setText(String.valueOf(malattie.getInCuraMeningite()));
-            ricoveratiConEpatiteModificaTextField.setText(String.valueOf(malattie.getRicoveratiEpatite()));
-            inCuraConEpatiteModificaTextField.setText(String.valueOf(malattie.getInCuraEpatite()));
-            ricoveratiConMorbilloModificaTextField.setText(String.valueOf(malattie.getRicoveratiMorbillo()));
-            inCuraConMorbilloModificaTextField.setText(String.valueOf(malattie.getInCuraMorbillo()));
-            ricoveratiConTubercolosiModificaTextField.setText(String.valueOf(malattie.getRicoveratiTubercolosi()));
-            inCuraConTubercolosiModificaTextField.setText(String.valueOf(malattie.getInCuraTubercolosi()));
-            ricoveratiConGastroenteriteModificaTextField.setText(String.valueOf(malattie.getRicoveratiGastroenterite()));
-            inCuraConGastroenteriteModificaTextField.setText(String.valueOf(malattie.getInCuraGastroenterite()));
-            comuneModificaComboBox.getSelectionModel().select(malattie.getComune().getNome());
+            if(App.utenteCorrente.getComuni().contains(malattie.getComune())) {
+                selectedId = malattie.getId();
+                annoModificaTextField.setText(String.valueOf(malattie.getAnno()));
+                settimanaModificaTextField.setText(String.valueOf(malattie.getSettimana()));
+                ricoveratiConInfluenzaModificaTextField.setText(String.valueOf(malattie.getRicoveratiInfluenza()));
+                inCuraConInfluenzaModificaTextField.setText(String.valueOf(malattie.getInCuraInfluenza()));
+                complicanzeRespiratorieModificaTextField.setText(String.valueOf(malattie.getComplicanzeRespiratorie()));
+                ricoveratiConPolmoniteModificaTextField.setText(String.valueOf(malattie.getRicoveratiPolmonite()));
+                inCuraConPolmoniteModificaTextField.setText(String.valueOf(malattie.getInCuraPolmonite()));
+                ricoveratiConMeningiteModificaTextField.setText(String.valueOf(malattie.getRicoveratiMeningite()));
+                inCuraConMeningiteModificaTextField.setText(String.valueOf(malattie.getInCuraMeningite()));
+                ricoveratiConEpatiteModificaTextField.setText(String.valueOf(malattie.getRicoveratiEpatite()));
+                inCuraConEpatiteModificaTextField.setText(String.valueOf(malattie.getInCuraEpatite()));
+                ricoveratiConMorbilloModificaTextField.setText(String.valueOf(malattie.getRicoveratiMorbillo()));
+                inCuraConMorbilloModificaTextField.setText(String.valueOf(malattie.getInCuraMorbillo()));
+                ricoveratiConTubercolosiModificaTextField.setText(String.valueOf(malattie.getRicoveratiTubercolosi()));
+                inCuraConTubercolosiModificaTextField.setText(String.valueOf(malattie.getInCuraTubercolosi()));
+                ricoveratiConGastroenteriteModificaTextField.setText(String.valueOf(malattie.getRicoveratiGastroenterite()));
+                inCuraConGastroenteriteModificaTextField.setText(String.valueOf(malattie.getInCuraGastroenterite()));
+                comuneModificaComboBox.getSelectionModel().select(malattie.getComune().getNome());
 
-            malattieSettimanaliVisualizzazioneTab.setDisable(true);
-            malattieSettimanaliInserimentoTab.setDisable(true);
-            malattieSettimanaliModificaTab.setDisable(false);
-            malattieSettimanaliTabPane.getSelectionModel().select(2);
+                malattieSettimanaliVisualizzazioneTab.setDisable(true);
+                malattieSettimanaliInserimentoTab.setDisable(true);
+                malattieSettimanaliModificaTab.setDisable(false);
+                malattieSettimanaliTabPane.getSelectionModel().select(2);
+            }
+            else{
+                alert.showAndWait();
+            }
         } else {
             noDataSelectedLabel.setVisible(true);
             errorAnimation(noDataSelectedLabel);
@@ -336,29 +353,35 @@ public class MalattieSettimanaliController implements Initializable {
                 Integer.parseInt(inCuraConGastroenteriteInserimentoTextField.getText()),
                 comuneService.findByNome(comuneInserimentoComboBox.getValue())
         );
-        malattieSettimanaliService.save(malattieSettimanali);
-        if (malattieSettimanaliService.findById(malattieSettimanali.getId()) != null) {
-            logger.info("Inserito record malattie settimanali: "+malattieSettimanali);
-            annoInserimentoTextField.clear();
-            settimanaInserimentoTextField.clear();
-            ricoveratiConInfluenzaInserimentoTextField.clear();
-            inCuraConInfluenzaInserimentoTextField.clear();
-            complicanzeRespiratorieInserimentoTextField.clear();
-            inCuraConPolmoniteInserimentoTextField.clear();
-            ricoveratiConMeningiteInserimentoTextField.clear();
-            ricoveratiConPolmoniteInserimentoTextField.clear();
-            ricoveratiConEpatiteInserimentoTextField.clear();
-            ricoveratiConTubercolosiInserimentoTextField.clear();
-            ricoveratiConMorbilloInserimentoTextField.clear();
-            ricoveratiConGastroenteriteInserimentoTextField.clear();
-            inCuraConTubercolosiInserimentoTextField.clear();
-            inCuraConMeningiteInserimentoTextField.clear();
-            inCuraConEpatiteInserimentoTextField.clear();
-            inCuraConMorbilloInserimentoTextField.clear();
-            inCuraConGastroenteriteInserimentoTextField.clear();
+        if(App.utenteCorrente.getComuni().contains(malattieSettimanali.getComune())) {
+            malattieSettimanaliService.save(malattieSettimanali);
+            if (malattieSettimanaliService.findById(malattieSettimanali.getId()) != null) {
+                logger.info("Inserito record malattie settimanali: "+malattieSettimanali);
+                annoInserimentoTextField.clear();
+                settimanaInserimentoTextField.clear();
+                ricoveratiConInfluenzaInserimentoTextField.clear();
+                inCuraConInfluenzaInserimentoTextField.clear();
+                complicanzeRespiratorieInserimentoTextField.clear();
+                inCuraConPolmoniteInserimentoTextField.clear();
+                ricoveratiConMeningiteInserimentoTextField.clear();
+                ricoveratiConPolmoniteInserimentoTextField.clear();
+                ricoveratiConEpatiteInserimentoTextField.clear();
+                ricoveratiConTubercolosiInserimentoTextField.clear();
+                ricoveratiConMorbilloInserimentoTextField.clear();
+                ricoveratiConGastroenteriteInserimentoTextField.clear();
+                inCuraConTubercolosiInserimentoTextField.clear();
+                inCuraConMeningiteInserimentoTextField.clear();
+                inCuraConEpatiteInserimentoTextField.clear();
+                inCuraConMorbilloInserimentoTextField.clear();
+                inCuraConGastroenteriteInserimentoTextField.clear();
+            }
+            malattieSettimanaliTabPane.getSelectionModel().select(0);
+            updateList();
         }
-        malattieSettimanaliTabPane.getSelectionModel().select(0);
-        updateList();
+        else{
+            alert.showAndWait();
+        }
+
     }
 
     @FXML

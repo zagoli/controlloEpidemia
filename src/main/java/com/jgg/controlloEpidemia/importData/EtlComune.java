@@ -1,5 +1,6 @@
 package com.jgg.controlloEpidemia.importData;
 
+import com.jgg.controlloEpidemia.App;
 import com.jgg.controlloEpidemia.model.Comune;
 import com.jgg.controlloEpidemia.model.Provincia;
 import com.jgg.controlloEpidemia.model.TipoTerritorio;
