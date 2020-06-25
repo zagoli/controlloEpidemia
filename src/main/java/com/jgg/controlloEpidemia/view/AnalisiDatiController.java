@@ -694,7 +694,7 @@ public class AnalisiDatiController implements Initializable {
         FileChooser.ExtensionFilter extensionFilter = new FileChooser.ExtensionFilter("CSV files (*.csv)", "*.csv");
         fileChooser.getExtensionFilters().add(extensionFilter);
         File selectedFile = fileChooser.showSaveDialog(null);
-        if(selectedFile!=null) {
+        if (selectedFile != null) {
             Configuration configuration = new Configuration().configure();
             org.hibernate.Session currentSession = configuration.buildSessionFactory().openSession();
             currentSession.doWork(connection -> {

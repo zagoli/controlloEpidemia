@@ -406,7 +406,7 @@ public class DatiTerritorialiController implements Initializable {
     @FXML
     private void comuneEliminaVisualizzazioneButtonOnClicked() {
         if (comuniTableView.getSelectionModel().getSelectedItem() != null) {
-            logger.info("Cancellato record comune: "+comuniTableView.getSelectionModel().getSelectedItem());
+            logger.info("Cancellato record comune: " + comuniTableView.getSelectionModel().getSelectedItem());
             Comune comuni = comuniTableView.getSelectionModel().getSelectedItem();
             comuneService.deleteByCodiceIstat(comuni.getCodiceIstat());
             updateListComuni();
@@ -419,7 +419,7 @@ public class DatiTerritorialiController implements Initializable {
     @FXML
     private void provinciaEliminaVisualizzazioneButtonOnClicked() {
         if (provinceTableView.getSelectionModel().getSelectedItem() != null) {
-            logger.info("Cancellato record provincia: "+provinceTableView.getSelectionModel().getSelectedItem());
+            logger.info("Cancellato record provincia: " + provinceTableView.getSelectionModel().getSelectedItem());
             Provincia provincia = provinceTableView.getSelectionModel().getSelectedItem();
             provinciaService.deleteById(provincia.getId());
             updateListProvince();
@@ -440,7 +440,7 @@ public class DatiTerritorialiController implements Initializable {
         );
         provinciaService.save(provincia);
         if (provinciaService.findById(provincia.getId()) != null) {
-            logger.info("Inserito record provincia: "+provincia);
+            logger.info("Inserito record provincia: " + provincia);
             idInserimentoProvinceTextField.clear();
             nomeInserimentoProvinceTextField.clear();
             superficieInserimentoProvinceTextField.clear();
@@ -494,7 +494,7 @@ public class DatiTerritorialiController implements Initializable {
         );
         comuneService.save(comune);
         if (comuneService.findByCodiceIstat(comune.getCodiceIstat()) != null) {
-            logger.info("Inserito record comune: "+comune);
+            logger.info("Inserito record comune: " + comune);
             codiceIstatInserimentoComuniTextField.clear();
             nomeInserimentoComuniTextField.clear();
             superficieInserimentoComuniTextField.clear();
@@ -548,7 +548,7 @@ public class DatiTerritorialiController implements Initializable {
         );
         provinciaService.update(provincia);
         if (provinciaService.findById(provincia.getId()) != null) {
-            logger.info("Modificato record provincia: "+provincia);
+            logger.info("Modificato record provincia: " + provincia);
             idInserimentoProvinceTextField.clear();
             nomeInserimentoProvinceTextField.clear();
             superficieInserimentoProvinceTextField.clear();
@@ -575,7 +575,7 @@ public class DatiTerritorialiController implements Initializable {
         );
         comuneService.update(comune);
         if (comuneService.findByCodiceIstat(comune.getCodiceIstat()) != null) {
-            logger.info("Inserito record comune: "+comune);
+            logger.info("Inserito record comune: " + comune);
             codiceIstatInserimentoComuniTextField.clear();
             nomeInserimentoComuniTextField.clear();
             superficieInserimentoComuniTextField.clear();

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
-
-<BorderPane fx:id="mainPane" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.jgg.controlloEpidemia.view.MalattieSettimanaliController">
+<BorderPane xmlns:fx="http://javafx.com/fxml/1" fx:id="mainPane" xmlns="http://javafx.com/javafx/10.0.2-internal"
+            fx:controller="com.jgg.controlloEpidemia.view.MalattieSettimanaliController">
     <center>
         <TabPane fx:id="malattieSettimanaliTabPane" prefHeight="600.0" prefWidth="800.0" tabClosingPolicy="UNAVAILABLE">
             <Tab fx:id="malattieSettimanaliVisualizzazioneTab" text="Visualizzazione">
@@ -13,54 +13,66 @@
                     <center>
                         <TableView fx:id="malattieSettimanaliTableView" prefHeight="400.0" prefWidth="750.0">
                             <columns>
-                                <TableColumn fx:id="idColumn" prefWidth="46.0" text="ID" visible="false" />
-                                <TableColumn fx:id="comuneColumn" prefWidth="141.0" text="COMUNE" />
-                                <TableColumn fx:id="annoColumn" prefWidth="67.0" text="ANNO" />
-                                <TableColumn fx:id="settimanaColumn" prefWidth="88.0" text="SETTIMANA" />
-                                <TableColumn fx:id="ricoveratiConInfluenzaColumn" prefWidth="95.0" text="R.INFLUENZA" />
-                                <TableColumn fx:id="inCuraConInfluenzaColumn" prefWidth="93.0" text="C.INFLUENZA" />
-                                <TableColumn fx:id="complicanzeRespiratorieColumn" prefWidth="99.0" text="COMPL.RESPIR." />
-                                <TableColumn fx:id="ricoveratiConPolmoniteColumn" prefWidth="88.0" text="R.POLMONITE" />
-                                <TableColumn fx:id="inCuraConPolmoniteColumn" prefWidth="216.0" text="C.POLMONITE" />
-                                <TableColumn fx:id="ricoveratiConMeningiteColumn" prefWidth="99.0" text="R.MENINGITE" />
-                                <TableColumn fx:id="inCuraConMeningiteColumn" prefWidth="99.0" text="C.MENINGITE" />
-                                <TableColumn fx:id="ricoveratiConEpatiteColumn" prefWidth="99.0" text="R.EPATITE" />
-                                <TableColumn fx:id="inCuraConEpatiteColumn" prefWidth="99.0" text="C.EPATITE" />
-                                <TableColumn fx:id="ricoveratiConMorbilloColumn" prefWidth="99.0" text="R.MORBILLO" />
-                                <TableColumn fx:id="inCuraConMorbilloColumn" minWidth="4.0" prefWidth="136.0" text="C.MORBILLO" />
-                                <TableColumn fx:id="ricoveratiConTubercolosiColumn" prefWidth="99.0" text="R.TUBERCOLOSI" />
-                                <TableColumn fx:id="inCuraConTubercolosiColumn" prefWidth="99.0" text="C.TUBERCOLOSI" />
-                                <TableColumn fx:id="ricoveratiConGastroenteriteColumn" prefWidth="99.0" text="R.GASTROENTERITE" />
-                                <TableColumn fx:id="inCuraConGastroenteriteColumn" prefWidth="117.0" text="C.GASTROENTERITE" />
+                                <TableColumn fx:id="idColumn" prefWidth="46.0" text="ID" visible="false"/>
+                                <TableColumn fx:id="comuneColumn" prefWidth="141.0" text="COMUNE"/>
+                                <TableColumn fx:id="annoColumn" prefWidth="67.0" text="ANNO"/>
+                                <TableColumn fx:id="settimanaColumn" prefWidth="88.0" text="SETTIMANA"/>
+                                <TableColumn fx:id="ricoveratiConInfluenzaColumn" prefWidth="95.0" text="R.INFLUENZA"/>
+                                <TableColumn fx:id="inCuraConInfluenzaColumn" prefWidth="93.0" text="C.INFLUENZA"/>
+                                <TableColumn fx:id="complicanzeRespiratorieColumn" prefWidth="99.0"
+                                             text="COMPL.RESPIR."/>
+                                <TableColumn fx:id="ricoveratiConPolmoniteColumn" prefWidth="88.0" text="R.POLMONITE"/>
+                                <TableColumn fx:id="inCuraConPolmoniteColumn" prefWidth="216.0" text="C.POLMONITE"/>
+                                <TableColumn fx:id="ricoveratiConMeningiteColumn" prefWidth="99.0" text="R.MENINGITE"/>
+                                <TableColumn fx:id="inCuraConMeningiteColumn" prefWidth="99.0" text="C.MENINGITE"/>
+                                <TableColumn fx:id="ricoveratiConEpatiteColumn" prefWidth="99.0" text="R.EPATITE"/>
+                                <TableColumn fx:id="inCuraConEpatiteColumn" prefWidth="99.0" text="C.EPATITE"/>
+                                <TableColumn fx:id="ricoveratiConMorbilloColumn" prefWidth="99.0" text="R.MORBILLO"/>
+                                <TableColumn fx:id="inCuraConMorbilloColumn" minWidth="4.0" prefWidth="136.0"
+                                             text="C.MORBILLO"/>
+                                <TableColumn fx:id="ricoveratiConTubercolosiColumn" prefWidth="99.0"
+                                             text="R.TUBERCOLOSI"/>
+                                <TableColumn fx:id="inCuraConTubercolosiColumn" prefWidth="99.0" text="C.TUBERCOLOSI"/>
+                                <TableColumn fx:id="ricoveratiConGastroenteriteColumn" prefWidth="99.0"
+                                             text="R.GASTROENTERITE"/>
+                                <TableColumn fx:id="inCuraConGastroenteriteColumn" prefWidth="117.0"
+                                             text="C.GASTROENTERITE"/>
                             </columns>
                             <columnResizePolicy>
-                                <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                                <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
                             </columnResizePolicy>
                         </TableView>
                     </center>
                     <bottom>
                         <GridPane minHeight="-Infinity" prefHeight="60.0" BorderPane.alignment="CENTER">
                             <columnConstraints>
-                                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" />
-                                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0"
+                                                   prefWidth="100.0"/>
+                                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0"/>
+                                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0"
+                                                   prefWidth="100.0"/>
                             </columnConstraints>
                             <rowConstraints>
-                                <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                                <RowConstraints minHeight="10.0" vgrow="SOMETIMES"/>
                             </rowConstraints>
-                            <Button mnemonicParsing="false" onAction="#malattieSettimanaliVisualizzazioneModificaButtonOnClicked" prefHeight="45.0" prefWidth="150.0" text="Modifica">
+                            <Button mnemonicParsing="false"
+                                    onAction="#malattieSettimanaliVisualizzazioneModificaButtonOnClicked"
+                                    prefHeight="45.0" prefWidth="150.0" text="Modifica">
                                 <font>
-                                    <Font name="Segoe UI" size="20.0" />
+                                    <Font name="Segoe UI" size="20.0"/>
                                 </font>
                             </Button>
-                            <Label fx:id="noDataSelectedLabel" prefHeight="17.0" prefWidth="130.0" text="No valid data selected" textAlignment="CENTER" textFill="RED" GridPane.columnIndex="1">
+                            <Label fx:id="noDataSelectedLabel" prefHeight="17.0" prefWidth="130.0"
+                                   text="No valid data selected" textAlignment="CENTER" textFill="RED"
+                                   GridPane.columnIndex="1">
                                 <font>
-                                    <Font name="Segoe UI" size="12.0" />
+                                    <Font name="Segoe UI" size="12.0"/>
                                 </font>
                             </Label>
-                            <Button mnemonicParsing="false" onAction="#malattieSettimanaliCancellaButtonOnClicked" prefHeight="45.0" prefWidth="150.0" text="Cancella" GridPane.columnIndex="2">
+                            <Button mnemonicParsing="false" onAction="#malattieSettimanaliCancellaButtonOnClicked"
+                                    prefHeight="45.0" prefWidth="150.0" text="Cancella" GridPane.columnIndex="2">
                                 <font>
-                                    <Font name="Segoe UI" size="20.0" />
+                                    <Font name="Segoe UI" size="20.0"/>
                                 </font>
                             </Button>
                         </GridPane>
@@ -70,486 +82,501 @@
             <Tab fx:id="malattieSettimanaliInserimentoTab" text="Inserimento">
                 <GridPane alignment="CENTER" hgap="5.0">
                     <columnConstraints>
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="35.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="35.0" prefWidth="100.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="35.0"/>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="35.0" prefWidth="100.0"/>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
                     </columnConstraints>
                     <rowConstraints>
-                        <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" vgrow="SOMETIMES"/>
+                        <RowConstraints minHeight="10.0" vgrow="SOMETIMES"/>
+                        <RowConstraints minHeight="10.0" vgrow="SOMETIMES"/>
+                        <RowConstraints minHeight="10.0" vgrow="SOMETIMES"/>
+                        <RowConstraints minHeight="10.0" vgrow="SOMETIMES"/>
+                        <RowConstraints minHeight="10.0" vgrow="SOMETIMES"/>
+                        <RowConstraints minHeight="10.0" vgrow="SOMETIMES"/>
+                        <RowConstraints minHeight="10.0" vgrow="SOMETIMES"/>
                     </rowConstraints>
                     <padding>
-                        <Insets left="5.0" right="5.0" top="10.0" />
+                        <Insets left="5.0" right="5.0" top="10.0"/>
                     </padding>
                     <VBox>
                         <Label prefHeight="20.0" prefWidth="52.0" text="Anno">
                             <font>
-                                <Font name="Segoe UI" size="17.0" />
+                                <Font name="Segoe UI" size="17.0"/>
                             </font>
                         </Label>
                         <TextField fx:id="annoInserimentoTextField" prefHeight="20.0" prefWidth="100.0">
                             <font>
-                                <Font name="Segoe UI" size="15.0" />
+                                <Font name="Segoe UI" size="15.0"/>
                             </font>
                         </TextField>
                     </VBox>
                     <VBox GridPane.columnIndex="1">
                         <Label prefHeight="20.0" prefWidth="96.0" text="Settimana">
                             <font>
-                                <Font name="Segoe UI" size="17.0" />
+                                <Font name="Segoe UI" size="17.0"/>
                             </font>
                         </Label>
                         <TextField fx:id="settimanaInserimentoTextField" prefHeight="20.0" prefWidth="100.0">
                             <font>
-                                <Font name="Segoe UI" size="15.0" />
+                                <Font name="Segoe UI" size="15.0"/>
                             </font>
                         </TextField>
                     </VBox>
                     <VBox GridPane.rowIndex="1">
                         <Label prefHeight="20.0" prefWidth="226.0" text="Ricoverati con influenza">
                             <font>
-                                <Font name="Segoe UI" size="17.0" />
+                                <Font name="Segoe UI" size="17.0"/>
                             </font>
                         </Label>
-                        <TextField fx:id="ricoveratiConInfluenzaInserimentoTextField" prefHeight="20.0" prefWidth="100.0">
+                        <TextField fx:id="ricoveratiConInfluenzaInserimentoTextField" prefHeight="20.0"
+                                   prefWidth="100.0">
                             <font>
-                                <Font name="Segoe UI" size="15.0" />
+                                <Font name="Segoe UI" size="15.0"/>
                             </font>
                         </TextField>
                     </VBox>
                     <VBox GridPane.rowIndex="2">
                         <Label prefHeight="20.0" prefWidth="238.0" text="Ricoverati con polmonite">
                             <font>
-                                <Font name="Segoe UI" size="17.0" />
+                                <Font name="Segoe UI" size="17.0"/>
                             </font>
                         </Label>
-                        <TextField fx:id="ricoveratiConPolmoniteInserimentoTextField" prefHeight="20.0" prefWidth="100.0">
+                        <TextField fx:id="ricoveratiConPolmoniteInserimentoTextField" prefHeight="20.0"
+                                   prefWidth="100.0">
                             <font>
-                                <Font name="Segoe UI" size="15.0" />
+                                <Font name="Segoe UI" size="15.0"/>
                             </font>
                         </TextField>
                     </VBox>
                     <VBox GridPane.rowIndex="3">
                         <Label prefHeight="20.0" prefWidth="236.0" text="Ricoverati con meningite">
                             <font>
-                                <Font name="Segoe UI" size="17.0" />
+                                <Font name="Segoe UI" size="17.0"/>
                             </font>
                         </Label>
-                        <TextField fx:id="ricoveratiConMeningiteInserimentoTextField" prefHeight="20.0" prefWidth="100.0">
+                        <TextField fx:id="ricoveratiConMeningiteInserimentoTextField" prefHeight="20.0"
+                                   prefWidth="100.0">
                             <font>
-                                <Font name="Segoe UI" size="15.0" />
+                                <Font name="Segoe UI" size="15.0"/>
                             </font>
                         </TextField>
                     </VBox>
                     <VBox GridPane.rowIndex="4">
                         <Label prefHeight="20.0" prefWidth="206.0" text="Ricoverati con epatite">
                             <font>
-                                <Font name="Segoe UI" size="17.0" />
+                                <Font name="Segoe UI" size="17.0"/>
                             </font>
                         </Label>
                         <TextField fx:id="ricoveratiConEpatiteInserimentoTextField" prefHeight="20.0" prefWidth="100.0">
                             <font>
-                                <Font name="Segoe UI" size="15.0" />
+                                <Font name="Segoe UI" size="15.0"/>
                             </font>
                         </TextField>
                     </VBox>
                     <VBox GridPane.rowIndex="5">
                         <Label prefHeight="20.0" prefWidth="220.0" text="Ricoverati con morbillo">
                             <font>
-                                <Font name="Segoe UI" size="17.0" />
+                                <Font name="Segoe UI" size="17.0"/>
                             </font>
                         </Label>
-                        <TextField fx:id="ricoveratiConMorbilloInserimentoTextField" prefHeight="20.0" prefWidth="100.0">
+                        <TextField fx:id="ricoveratiConMorbilloInserimentoTextField" prefHeight="20.0"
+                                   prefWidth="100.0">
                             <font>
-                                <Font name="Segoe UI" size="15.0" />
+                                <Font name="Segoe UI" size="15.0"/>
                             </font>
                         </TextField>
                     </VBox>
                     <VBox GridPane.rowIndex="6">
                         <Label prefHeight="20.0" prefWidth="246.0" text="Ricoverati con tubercolosi">
                             <font>
-                                <Font name="Segoe UI" size="17.0" />
+                                <Font name="Segoe UI" size="17.0"/>
                             </font>
                         </Label>
-                        <TextField fx:id="ricoveratiConTubercolosiInserimentoTextField" prefHeight="20.0" prefWidth="100.0">
+                        <TextField fx:id="ricoveratiConTubercolosiInserimentoTextField" prefHeight="20.0"
+                                   prefWidth="100.0">
                             <font>
-                                <Font name="Segoe UI" size="15.0" />
+                                <Font name="Segoe UI" size="15.0"/>
                             </font>
                         </TextField>
                     </VBox>
                     <VBox GridPane.rowIndex="7">
                         <Label prefHeight="20.0" prefWidth="274.0" text="Ricoverati con gastroenterite">
                             <font>
-                                <Font name="Segoe UI" size="17.0" />
+                                <Font name="Segoe UI" size="17.0"/>
                             </font>
                         </Label>
-                        <TextField fx:id="ricoveratiConGastroenteriteInserimentoTextField" prefHeight="20.0" prefWidth="100.0">
+                        <TextField fx:id="ricoveratiConGastroenteriteInserimentoTextField" prefHeight="20.0"
+                                   prefWidth="100.0">
                             <font>
-                                <Font name="Segoe UI" size="15.0" />
+                                <Font name="Segoe UI" size="15.0"/>
                             </font>
                         </TextField>
                     </VBox>
                     <VBox GridPane.columnIndex="1" GridPane.rowIndex="1">
                         <Label prefHeight="20.0" prefWidth="196.0" text="In cura con influenza">
                             <font>
-                                <Font name="Segoe UI" size="17.0" />
+                                <Font name="Segoe UI" size="17.0"/>
                             </font>
                         </Label>
                         <TextField fx:id="inCuraConInfluenzaInserimentoTextField" prefHeight="20.0" prefWidth="100.0">
                             <font>
-                                <Font name="Segoe UI" size="15.0" />
+                                <Font name="Segoe UI" size="15.0"/>
                             </font>
                         </TextField>
                     </VBox>
                     <VBox GridPane.columnIndex="1" GridPane.rowIndex="2">
                         <Label prefHeight="20.0" prefWidth="208.0" text="In cura con polmonite">
                             <font>
-                                <Font name="Segoe UI" size="17.0" />
+                                <Font name="Segoe UI" size="17.0"/>
                             </font>
                         </Label>
                         <TextField fx:id="inCuraConPolmoniteInserimentoTextField" prefHeight="20.0" prefWidth="100.0">
                             <font>
-                                <Font name="Segoe UI" size="15.0" />
+                                <Font name="Segoe UI" size="15.0"/>
                             </font>
                         </TextField>
                     </VBox>
                     <VBox GridPane.columnIndex="1" GridPane.rowIndex="3">
                         <Label prefHeight="20.0" prefWidth="206.0" text="In cura con meningite">
                             <font>
-                                <Font name="Segoe UI" size="17.0" />
+                                <Font name="Segoe UI" size="17.0"/>
                             </font>
                         </Label>
                         <TextField fx:id="inCuraConMeningiteInserimentoTextField" prefHeight="20.0" prefWidth="100.0">
                             <font>
-                                <Font name="Segoe UI" size="15.0" />
+                                <Font name="Segoe UI" size="15.0"/>
                             </font>
                         </TextField>
                     </VBox>
                     <VBox GridPane.columnIndex="1" GridPane.rowIndex="4">
                         <Label prefHeight="20.0" prefWidth="176.0" text="In cura con epatite">
                             <font>
-                                <Font name="Segoe UI" size="17.0" />
+                                <Font name="Segoe UI" size="17.0"/>
                             </font>
                         </Label>
 
                         <TextField fx:id="inCuraConEpatiteInserimentoTextField" prefHeight="20.0" prefWidth="100.0">
                             <font>
-                                <Font name="Segoe UI" size="15.0" />
+                                <Font name="Segoe UI" size="15.0"/>
                             </font>
                         </TextField>
                     </VBox>
                     <VBox GridPane.columnIndex="1" GridPane.rowIndex="5">
                         <Label prefHeight="20.0" prefWidth="190.0" text="In cura con morbillo">
                             <font>
-                                <Font name="Segoe UI" size="17.0" />
+                                <Font name="Segoe UI" size="17.0"/>
                             </font>
                         </Label>
                         <TextField fx:id="inCuraConMorbilloInserimentoTextField" prefHeight="20.0" prefWidth="100.0">
                             <font>
-                                <Font name="Segoe UI" size="15.0" />
+                                <Font name="Segoe UI" size="15.0"/>
                             </font>
                         </TextField>
                     </VBox>
                     <VBox GridPane.columnIndex="1" GridPane.rowIndex="6">
                         <Label prefHeight="20.0" prefWidth="216.0" text="In cura con tubercolosi">
                             <font>
-                                <Font name="Segoe UI" size="17.0" />
+                                <Font name="Segoe UI" size="17.0"/>
                             </font>
                         </Label>
                         <TextField fx:id="inCuraConTubercolosiInserimentoTextField" prefHeight="20.0" prefWidth="100.0">
                             <font>
-                                <Font name="Segoe UI" size="15.0" />
+                                <Font name="Segoe UI" size="15.0"/>
                             </font>
                         </TextField>
                     </VBox>
                     <VBox GridPane.columnIndex="1" GridPane.rowIndex="7">
                         <Label prefHeight="20.0" prefWidth="244.0" text="In cura con gastroenterite">
                             <font>
-                                <Font name="Segoe UI" size="17.0" />
+                                <Font name="Segoe UI" size="17.0"/>
                             </font>
                         </Label>
-                        <TextField fx:id="inCuraConGastroenteriteInserimentoTextField" prefHeight="20.0" prefWidth="100.0">
+                        <TextField fx:id="inCuraConGastroenteriteInserimentoTextField" prefHeight="20.0"
+                                   prefWidth="100.0">
                             <font>
-                                <Font name="Segoe UI" size="15.0" />
+                                <Font name="Segoe UI" size="15.0"/>
                             </font>
                         </TextField>
                     </VBox>
                     <VBox GridPane.columnIndex="2" GridPane.rowIndex="1">
                         <Label prefHeight="20.0" prefWidth="236.0" text="Complicanze respiratorie">
                             <font>
-                                <Font name="Segoe UI" size="17.0" />
+                                <Font name="Segoe UI" size="17.0"/>
                             </font>
                         </Label>
-                        <TextField fx:id="complicanzeRespiratorieInserimentoTextField" prefHeight="20.0" prefWidth="100.0">
+                        <TextField fx:id="complicanzeRespiratorieInserimentoTextField" prefHeight="20.0"
+                                   prefWidth="100.0">
                             <font>
-                                <Font name="Segoe UI" size="15.0" />
+                                <Font name="Segoe UI" size="15.0"/>
                             </font>
                         </TextField>
                     </VBox>
                     <VBox GridPane.columnIndex="2" GridPane.rowIndex="5">
                         <Label prefHeight="20.0" text="Comune">
                             <font>
-                                <Font name="Segoe UI" size="17.0" />
+                                <Font name="Segoe UI" size="17.0"/>
                             </font>
                         </Label>
-                        <ComboBox fx:id="comuneInserimentoComboBox" prefHeight="29.0" prefWidth="226.0" />
+                        <ComboBox fx:id="comuneInserimentoComboBox" prefHeight="29.0" prefWidth="226.0"/>
                     </VBox>
-                    <Button fx:id="malattieSettimanaliInserisciButton" mnemonicParsing="false" onAction="#inserisciInserimentoOnClicked" prefHeight="40.0" prefWidth="140.0" text="Inserisci" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="6">
+                    <Button fx:id="malattieSettimanaliInserisciButton" mnemonicParsing="false"
+                            onAction="#inserisciInserimentoOnClicked" prefHeight="40.0" prefWidth="140.0"
+                            text="Inserisci" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="6">
                         <font>
-                            <Font name="Segoe UI" size="20.0" />
+                            <Font name="Segoe UI" size="20.0"/>
                         </font>
                     </Button>
                     <VBox alignment="CENTER_RIGHT" spacing="5.0" GridPane.columnIndex="2" GridPane.rowIndex="7">
-                        <Button mnemonicParsing="false" onAction="#inserisciCsvInserimentoOnClicked" prefHeight="40.0" text="Inserisci csv">
+                        <Button mnemonicParsing="false" onAction="#inserisciCsvInserimentoOnClicked" prefHeight="40.0"
+                                text="Inserisci csv">
                             <font>
-                                <Font name="Segoe UI" size="20.0" />
+                                <Font name="Segoe UI" size="20.0"/>
                             </font>
                         </Button>
-                        <ProgressBar fx:id="loadingBar" prefHeight="18.0" prefWidth="139.0" visible="false" />
+                        <ProgressBar fx:id="loadingBar" prefHeight="18.0" prefWidth="139.0" visible="false"/>
                     </VBox>
                 </GridPane>
             </Tab>
             <Tab fx:id="malattieSettimanaliModificaTab" text="Modifica">
                 <GridPane hgap="5.0">
                     <columnConstraints>
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="35.0" prefWidth="100.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="35.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="35.0" prefWidth="100.0"/>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="35.0"/>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
                     </columnConstraints>
                     <rowConstraints>
-                        <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" vgrow="SOMETIMES"/>
+                        <RowConstraints minHeight="10.0" vgrow="SOMETIMES"/>
+                        <RowConstraints minHeight="10.0" vgrow="SOMETIMES"/>
+                        <RowConstraints minHeight="10.0" vgrow="SOMETIMES"/>
+                        <RowConstraints minHeight="10.0" vgrow="SOMETIMES"/>
+                        <RowConstraints minHeight="10.0" vgrow="SOMETIMES"/>
+                        <RowConstraints minHeight="10.0" vgrow="SOMETIMES"/>
+                        <RowConstraints minHeight="10.0" vgrow="SOMETIMES"/>
                     </rowConstraints>
                     <padding>
-                        <Insets left="5.0" right="5.0" top="10.0" />
+                        <Insets left="5.0" right="5.0" top="10.0"/>
                     </padding>
                     <VBox GridPane.columnIndex="1">
                         <Label prefHeight="20.0" prefWidth="96.0" text="Settimana">
                             <font>
-                                <Font name="Segoe UI" size="17.0" />
+                                <Font name="Segoe UI" size="17.0"/>
                             </font>
                         </Label>
                         <TextField fx:id="settimanaModificaTextField" prefHeight="20.0" prefWidth="100.0">
                             <font>
-                                <Font name="Segoe UI" size="15.0" />
+                                <Font name="Segoe UI" size="15.0"/>
                             </font>
                         </TextField>
                     </VBox>
                     <VBox GridPane.columnIndex="2" GridPane.rowIndex="6">
                         <Label prefHeight="20.0" text="Comune">
                             <font>
-                                <Font name="Segoe UI" size="17.0" />
+                                <Font name="Segoe UI" size="17.0"/>
                             </font>
                         </Label>
-                        <ComboBox fx:id="comuneModificaComboBox" prefHeight="20.0" prefWidth="200.0" />
+                        <ComboBox fx:id="comuneModificaComboBox" prefHeight="20.0" prefWidth="200.0"/>
                     </VBox>
-                    <Button fx:id="malattieSettimanaliModificaButton" mnemonicParsing="false" onAction="#modificaModificaOnClicked" prefHeight="40.0" text="Modifica" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="7">
+                    <Button fx:id="malattieSettimanaliModificaButton" mnemonicParsing="false"
+                            onAction="#modificaModificaOnClicked" prefHeight="40.0" text="Modifica"
+                            GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="7">
                         <font>
-                            <Font name="Segoe UI" size="20.0" />
+                            <Font name="Segoe UI" size="20.0"/>
                         </font>
                     </Button>
                     <VBox>
                         <Label prefHeight="20.0" prefWidth="52.0" text="Anno">
                             <font>
-                                <Font name="Segoe UI" size="17.0" />
+                                <Font name="Segoe UI" size="17.0"/>
                             </font>
                         </Label>
                         <TextField fx:id="annoModificaTextField" prefHeight="20.0" prefWidth="100.0">
                             <font>
-                                <Font name="Segoe UI" size="15.0" />
+                                <Font name="Segoe UI" size="15.0"/>
                             </font>
                         </TextField>
                     </VBox>
                     <VBox GridPane.rowIndex="1">
                         <Label prefHeight="20.0" prefWidth="226.0" text="Ricoverati con influenza">
                             <font>
-                                <Font name="Segoe UI" size="17.0" />
+                                <Font name="Segoe UI" size="17.0"/>
                             </font>
                         </Label>
                         <TextField fx:id="ricoveratiConInfluenzaModificaTextField" prefHeight="20.0" prefWidth="100.0">
                             <font>
-                                <Font name="Segoe UI" size="15.0" />
+                                <Font name="Segoe UI" size="15.0"/>
                             </font>
                         </TextField>
                     </VBox>
                     <VBox GridPane.rowIndex="2">
                         <Label prefHeight="20.0" prefWidth="238.0" text="Ricoverati con polmonite">
                             <font>
-                                <Font name="Segoe UI" size="17.0" />
+                                <Font name="Segoe UI" size="17.0"/>
                             </font>
                         </Label>
                         <TextField fx:id="ricoveratiConPolmoniteModificaTextField" prefHeight="20.0" prefWidth="100.0">
                             <font>
-                                <Font name="Segoe UI" size="15.0" />
+                                <Font name="Segoe UI" size="15.0"/>
                             </font>
                         </TextField>
                     </VBox>
                     <VBox GridPane.rowIndex="3">
                         <Label prefHeight="20.0" prefWidth="236.0" text="Ricoverati con meningite">
                             <font>
-                                <Font name="Segoe UI" size="17.0" />
+                                <Font name="Segoe UI" size="17.0"/>
                             </font>
                         </Label>
                         <TextField fx:id="ricoveratiConMeningiteModificaTextField" prefHeight="20.0" prefWidth="100.0">
                             <font>
-                                <Font name="Segoe UI" size="15.0" />
+                                <Font name="Segoe UI" size="15.0"/>
                             </font>
                         </TextField>
                     </VBox>
                     <VBox GridPane.rowIndex="4">
                         <Label prefHeight="20.0" prefWidth="206.0" text="Ricoverati con epatite">
                             <font>
-                                <Font name="Segoe UI" size="17.0" />
+                                <Font name="Segoe UI" size="17.0"/>
                             </font>
                         </Label>
                         <TextField fx:id="ricoveratiConEpatiteModificaTextField" prefHeight="20.0" prefWidth="100.0">
                             <font>
-                                <Font name="Segoe UI" size="15.0" />
+                                <Font name="Segoe UI" size="15.0"/>
                             </font>
                         </TextField>
                     </VBox>
                     <VBox GridPane.rowIndex="5">
                         <Label prefHeight="20.0" prefWidth="220.0" text="Ricoverati con morbillo">
                             <font>
-                                <Font name="Segoe UI" size="17.0" />
+                                <Font name="Segoe UI" size="17.0"/>
                             </font>
                         </Label>
                         <TextField fx:id="ricoveratiConMorbilloModificaTextField" prefHeight="20.0" prefWidth="100.0">
                             <font>
-                                <Font name="Segoe UI" size="15.0" />
+                                <Font name="Segoe UI" size="15.0"/>
                             </font>
                         </TextField>
                     </VBox>
                     <VBox GridPane.rowIndex="6">
                         <Label prefHeight="20.0" prefWidth="246.0" text="Ricoverati con tubercolosi">
                             <font>
-                                <Font name="Segoe UI" size="17.0" />
+                                <Font name="Segoe UI" size="17.0"/>
                             </font>
                         </Label>
-                        <TextField fx:id="ricoveratiConTubercolosiModificaTextField" prefHeight="20.0" prefWidth="100.0">
+                        <TextField fx:id="ricoveratiConTubercolosiModificaTextField" prefHeight="20.0"
+                                   prefWidth="100.0">
                             <font>
-                                <Font name="Segoe UI" size="15.0" />
+                                <Font name="Segoe UI" size="15.0"/>
                             </font>
                         </TextField>
                     </VBox>
                     <VBox GridPane.rowIndex="7">
                         <Label prefHeight="20.0" prefWidth="274.0" text="Ricoverati con gastroenterite">
                             <font>
-                                <Font name="Segoe UI" size="17.0" />
+                                <Font name="Segoe UI" size="17.0"/>
                             </font>
                         </Label>
-                        <TextField fx:id="ricoveratiConGastroenteriteModificaTextField" prefHeight="20.0" prefWidth="100.0">
+                        <TextField fx:id="ricoveratiConGastroenteriteModificaTextField" prefHeight="20.0"
+                                   prefWidth="100.0">
                             <font>
-                                <Font name="Segoe UI" size="15.0" />
+                                <Font name="Segoe UI" size="15.0"/>
                             </font>
                         </TextField>
                     </VBox>
                     <VBox GridPane.columnIndex="1" GridPane.rowIndex="1">
                         <Label prefHeight="20.0" prefWidth="196.0" text="In cura con influenza">
                             <font>
-                                <Font name="Segoe UI" size="17.0" />
+                                <Font name="Segoe UI" size="17.0"/>
                             </font>
                         </Label>
                         <TextField fx:id="inCuraConInfluenzaModificaTextField" prefHeight="20.0" prefWidth="100.0">
                             <font>
-                                <Font name="Segoe UI" size="15.0" />
+                                <Font name="Segoe UI" size="15.0"/>
                             </font>
                         </TextField>
                     </VBox>
                     <VBox GridPane.columnIndex="1" GridPane.rowIndex="2">
                         <Label prefHeight="20.0" prefWidth="208.0" text="In cura con polmonite">
                             <font>
-                                <Font name="Segoe UI" size="17.0" />
+                                <Font name="Segoe UI" size="17.0"/>
                             </font>
                         </Label>
                         <TextField fx:id="inCuraConPolmoniteModificaTextField" prefHeight="20.0" prefWidth="100.0">
                             <font>
-                                <Font name="Segoe UI" size="15.0" />
+                                <Font name="Segoe UI" size="15.0"/>
                             </font>
                         </TextField>
                     </VBox>
                     <VBox GridPane.columnIndex="1" GridPane.rowIndex="3">
                         <Label prefHeight="20.0" prefWidth="206.0" text="In cura con meningite">
                             <font>
-                                <Font name="Segoe UI" size="17.0" />
+                                <Font name="Segoe UI" size="17.0"/>
                             </font>
                         </Label>
                         <TextField fx:id="inCuraConMeningiteModificaTextField" prefHeight="20.0" prefWidth="100.0">
                             <font>
-                                <Font name="Segoe UI" size="15.0" />
+                                <Font name="Segoe UI" size="15.0"/>
                             </font>
                         </TextField>
                     </VBox>
                     <VBox GridPane.columnIndex="1" GridPane.rowIndex="4">
                         <Label prefHeight="20.0" prefWidth="176.0" text="In cura con epatite">
                             <font>
-                                <Font name="Segoe UI" size="17.0" />
+                                <Font name="Segoe UI" size="17.0"/>
                             </font>
                         </Label>
 
                         <TextField fx:id="inCuraConEpatiteModificaTextField" prefHeight="20.0" prefWidth="100.0">
                             <font>
-                                <Font name="Segoe UI" size="15.0" />
+                                <Font name="Segoe UI" size="15.0"/>
                             </font>
                         </TextField>
                     </VBox>
                     <VBox GridPane.columnIndex="1" GridPane.rowIndex="5">
                         <Label prefHeight="20.0" prefWidth="190.0" text="In cura con morbillo">
                             <font>
-                                <Font name="Segoe UI" size="17.0" />
+                                <Font name="Segoe UI" size="17.0"/>
                             </font>
                         </Label>
                         <TextField fx:id="inCuraConMorbilloModificaTextField" prefHeight="20.0" prefWidth="100.0">
                             <font>
-                                <Font name="Segoe UI" size="15.0" />
+                                <Font name="Segoe UI" size="15.0"/>
                             </font>
                         </TextField>
                     </VBox>
                     <VBox GridPane.columnIndex="1" GridPane.rowIndex="6">
                         <Label prefHeight="20.0" prefWidth="216.0" text="In cura con tubercolosi">
                             <font>
-                                <Font name="Segoe UI" size="17.0" />
+                                <Font name="Segoe UI" size="17.0"/>
                             </font>
                         </Label>
                         <TextField fx:id="inCuraConTubercolosiModificaTextField" prefHeight="20.0" prefWidth="100.0">
                             <font>
-                                <Font name="Segoe UI" size="15.0" />
+                                <Font name="Segoe UI" size="15.0"/>
                             </font>
                         </TextField>
                     </VBox>
                     <VBox GridPane.columnIndex="1" GridPane.rowIndex="7">
                         <Label prefHeight="20.0" prefWidth="244.0" text="In cura con gastroenterite">
                             <font>
-                                <Font name="Segoe UI" size="17.0" />
+                                <Font name="Segoe UI" size="17.0"/>
                             </font>
                         </Label>
                         <TextField fx:id="inCuraConGastroenteriteModificaTextField" prefHeight="20.0" prefWidth="100.0">
                             <font>
-                                <Font name="Segoe UI" size="15.0" />
+                                <Font name="Segoe UI" size="15.0"/>
                             </font>
                         </TextField>
                     </VBox>
                     <VBox GridPane.columnIndex="2" GridPane.rowIndex="1">
                         <Label prefHeight="20.0" prefWidth="236.0" text="Complicanze respiratorie">
                             <font>
-                                <Font name="Segoe UI" size="17.0" />
+                                <Font name="Segoe UI" size="17.0"/>
                             </font>
                         </Label>
                         <TextField fx:id="complicanzeRespiratorieModificaTextField" prefHeight="20.0" prefWidth="100.0">
                             <font>
-                                <Font name="Segoe UI" size="15.0" />
+                                <Font name="Segoe UI" size="15.0"/>
                             </font>
                         </TextField>
                     </VBox>
@@ -560,7 +587,7 @@
     <top>
         <MenuBar BorderPane.alignment="CENTER">
             <Menu mnemonicParsing="false" text="Naviga">
-                <MenuItem mnemonicParsing="false" onAction="#homepageButtonOnClicked" text="Homepage" />
+                <MenuItem mnemonicParsing="false" onAction="#homepageButtonOnClicked" text="Homepage"/>
             </Menu>
         </MenuBar>
     </top>

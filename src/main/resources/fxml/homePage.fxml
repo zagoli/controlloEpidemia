@@ -8,8 +8,8 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
-<BorderPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/10.0.2-internal"
-            xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.jgg.controlloEpidemia.view.HomePageController">
+<BorderPane xmlns:fx="http://javafx.com/fxml/1" prefHeight="600.0" prefWidth="800.0"
+            xmlns="http://javafx.com/javafx/10.0.2-internal" fx:controller="com.jgg.controlloEpidemia.view.HomePageController">
     <padding>
         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
     </padding>
@@ -60,8 +60,6 @@
         </GridPane>
     </top>
     <center>
-        <VBox fx:id="mainPanel" alignment="CENTER" spacing="20.0" BorderPane.alignment="CENTER">
-
-        </VBox>
+        <VBox fx:id="mainPanel" alignment="CENTER" spacing="20.0" BorderPane.alignment="CENTER"/>
     </center>
 </BorderPane>

@@ -4,8 +4,8 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
-<BorderPane fx:id="analisiDatiBorderPane" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1"
-            xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.jgg.controlloEpidemia.view.AnalisiDatiController">
+<BorderPane xmlns:fx="http://javafx.com/fxml/1" fx:id="analisiDatiBorderPane" prefHeight="600.0" prefWidth="800.0"
+            xmlns="http://javafx.com/javafx/11.0.1" fx:controller="com.jgg.controlloEpidemia.view.AnalisiDatiController">
     <center>
         <TabPane fx:id="analisiDatiTabPane" prefHeight="600.0" prefWidth="800.0" tabClosingPolicy="UNAVAILABLE">
             <Tab text="Visualizzazione Decessi Annuali">
@@ -213,8 +213,9 @@
     <top>
         <MenuBar BorderPane.alignment="CENTER">
             <Menu mnemonicParsing="false" text="Naviga">
-                <MenuItem mnemonicParsing="false" onAction="#homepageButtonOnClicked" text="Homepage" />
-                <MenuItem mnemonicParsing="false" onAction="#analisiDatiVisualizzaGraficiButtonOnClicked" text="Visualizza Grafici" />
+                <MenuItem mnemonicParsing="false" onAction="#homepageButtonOnClicked" text="Homepage"/>
+                <MenuItem mnemonicParsing="false" onAction="#analisiDatiVisualizzaGraficiButtonOnClicked"
+                          text="Visualizza Grafici"/>
             </Menu>
         </MenuBar>
     </top>

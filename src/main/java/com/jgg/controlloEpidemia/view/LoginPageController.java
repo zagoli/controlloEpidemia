@@ -47,7 +47,6 @@ public class LoginPageController implements Initializable {
         final UtenteService utenteService = new UtenteService();
         Utente u = utenteService.findByUsername(user);
         if (u == null) {
-            // utente non esiste
             if (errorLabel.isVisible()) {
                 errorLabel.setText("Utente non trovato");
                 errorAnimation(errorLabel);
@@ -56,7 +55,6 @@ public class LoginPageController implements Initializable {
                 errorLabel.setVisible(true);
             }
         } else if (!u.getPassword().equals(password)) {
-            // password errata
             if (errorLabel.isVisible()) {
                 errorLabel.setText("La password è errata");
                 errorAnimation(errorLabel);
@@ -66,7 +64,6 @@ public class LoginPageController implements Initializable {
             }
         } else {
             App.utenteCorrente = u;
-            // vai alla pagina principale
             Parent root = FXMLLoader.load(getClass().getResource("/fxml/homePage.fxml"));
             ((Button) event.getSource()).getScene().setRoot(root);
         }

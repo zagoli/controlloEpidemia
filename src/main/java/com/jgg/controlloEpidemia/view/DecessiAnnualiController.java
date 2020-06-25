@@ -162,7 +162,7 @@ public class DecessiAnnualiController implements Initializable {
     @FXML
     private void decessiAnnualiCancellaButtonOnClicked() {
         if (decessiAnnualiTableView.getSelectionModel().getSelectedItem() != null) {
-            logger.info("Cancellato record decessi annuali: "+decessiAnnualiTableView.getSelectionModel().getSelectedItem());
+            logger.info("Cancellato record decessi annuali: " + decessiAnnualiTableView.getSelectionModel().getSelectedItem());
             decessiAnnualiService.deleteById(decessiAnnualiTableView.getSelectionModel().getSelectedItem().getId());
             updateList();
         } else {
@@ -207,7 +207,7 @@ public class DecessiAnnualiController implements Initializable {
         decessiAnnualiService.save(decessiAnnuali);
 
         if (decessiAnnualiService.findById(decessiAnnuali.getId()) != null) {
-            logger.info("Inserito record decessi annuali: "+decessiAnnuali);
+            logger.info("Inserito record decessi annuali: " + decessiAnnuali);
             annoInserimentoTextField.clear();
             incidentiStradaliInserimentoTextField.clear();
             malattieTumoraliInserimentoTextField.clear();
@@ -263,7 +263,7 @@ public class DecessiAnnualiController implements Initializable {
         decessiAnnualiService.update(decessiAnnuali);
 
         if (decessiAnnualiService.findById(decessiAnnuali.getId()) != null) {
-            logger.info("Modificato record decessi annuali: "+decessiAnnuali);
+            logger.info("Modificato record decessi annuali: " + decessiAnnuali);
             annoModificaTextField.clear();
             incidentiStradaliModificaTextField.clear();
             malattieTumoraliModificaTextField.clear();

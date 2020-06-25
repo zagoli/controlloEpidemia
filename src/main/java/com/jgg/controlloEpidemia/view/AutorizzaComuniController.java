@@ -94,7 +94,7 @@ public class AutorizzaComuniController implements Initializable {
             utente.getComuni().addAll(toAuthorizeComuni);
             UtenteService utenteService = new UtenteService();
             utenteService.update(utente);
-            logger.info("Aggiunti comuni: "+toAuthorizeComuni+" all'utente: "+utente);
+            logger.info("Aggiunti comuni: " + toAuthorizeComuni + " all'utente: " + utente);
             fadeAnimation(savedLabel);
         }
     }

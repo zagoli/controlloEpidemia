@@ -18,8 +18,6 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.FileChooser;
-import javafx.stage.Popup;
-import javafx.stage.Window;
 import javafx.util.Duration;
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
@@ -35,7 +33,7 @@ public class MalattieSettimanaliController implements Initializable {
     static Logger logger = Logger.getLogger(MalattieSettimanaliController.class);
     private final ComuneService comuneService = new ComuneService();
     private final MalattieSettimanaliService malattieSettimanaliService = new MalattieSettimanaliService();
-
+    private final Alert alert = new Alert(Alert.AlertType.WARNING);
     @FXML
     private Label noDataSelectedLabel;
     @FXML
@@ -166,9 +164,7 @@ public class MalattieSettimanaliController implements Initializable {
     private BorderPane mainPane;
     @FXML
     private ProgressBar loadingBar;
-
     private int selectedId;
-    private final Alert alert = new Alert(Alert.AlertType.WARNING);
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -274,16 +270,16 @@ public class MalattieSettimanaliController implements Initializable {
         }
         noDataSelectedLabel.setVisible(false);
     }
+
     @FXML
     private void malattieSettimanaliCancellaButtonOnClicked() {
-        MalattieSettimanali malattieSettimanali=malattieSettimanaliTableView.getSelectionModel().getSelectedItem();
+        MalattieSettimanali malattieSettimanali = malattieSettimanaliTableView.getSelectionModel().getSelectedItem();
         if (malattieSettimanali != null) {
-            if(App.utenteCorrente.getComuni().contains(malattieSettimanali.getComune())) {
+            if (App.utenteCorrente.getComuni().contains(malattieSettimanali.getComune())) {
                 logger.info("Cancellato record malattie settimanali: " + malattieSettimanaliTableView.getSelectionModel().getSelectedItem());
                 malattieSettimanaliService.deleteById(malattieSettimanali.getId());
                 updateList();
-            }
-            else{
+            } else {
                 alert.showAndWait();
             }
         } else {
@@ -296,7 +292,7 @@ public class MalattieSettimanaliController implements Initializable {
     private void malattieSettimanaliVisualizzazioneModificaButtonOnClicked() {
         if (malattieSettimanaliTableView.getSelectionModel().getSelectedItem() != null) {
             MalattieSettimanali malattie = malattieSettimanaliTableView.getSelectionModel().getSelectedItem();
-            if(App.utenteCorrente.getComuni().contains(malattie.getComune())) {
+            if (App.utenteCorrente.getComuni().contains(malattie.getComune())) {
                 selectedId = malattie.getId();
                 annoModificaTextField.setText(String.valueOf(malattie.getAnno()));
                 settimanaModificaTextField.setText(String.valueOf(malattie.getSettimana()));
@@ -321,8 +317,7 @@ public class MalattieSettimanaliController implements Initializable {
                 malattieSettimanaliInserimentoTab.setDisable(true);
                 malattieSettimanaliModificaTab.setDisable(false);
                 malattieSettimanaliTabPane.getSelectionModel().select(2);
-            }
-            else{
+            } else {
                 alert.showAndWait();
             }
         } else {
@@ -353,10 +348,10 @@ public class MalattieSettimanaliController implements Initializable {
                 Integer.parseInt(inCuraConGastroenteriteInserimentoTextField.getText()),
                 comuneService.findByNome(comuneInserimentoComboBox.getValue())
         );
-        if(App.utenteCorrente.getComuni().contains(malattieSettimanali.getComune())) {
+        if (App.utenteCorrente.getComuni().contains(malattieSettimanali.getComune())) {
             malattieSettimanaliService.save(malattieSettimanali);
             if (malattieSettimanaliService.findById(malattieSettimanali.getId()) != null) {
-                logger.info("Inserito record malattie settimanali: "+malattieSettimanali);
+                logger.info("Inserito record malattie settimanali: " + malattieSettimanali);
                 annoInserimentoTextField.clear();
                 settimanaInserimentoTextField.clear();
                 ricoveratiConInfluenzaInserimentoTextField.clear();
@@ -377,8 +372,7 @@ public class MalattieSettimanaliController implements Initializable {
             }
             malattieSettimanaliTabPane.getSelectionModel().select(0);
             updateList();
-        }
-        else{
+        } else {
             alert.showAndWait();
         }
 
@@ -440,7 +434,7 @@ public class MalattieSettimanaliController implements Initializable {
         );
         malattieSettimanaliService.update(malattieSettimanali);
         if (malattieSettimanaliService.findById(malattieSettimanali.getId()) != null) {
-            logger.info("Modificato record malattie settimanali: "+malattieSettimanali);
+            logger.info("Modificato record malattie settimanali: " + malattieSettimanali);
             annoModificaTextField.clear();
             settimanaModificaTextField.clear();
             ricoveratiConInfluenzaModificaTextField.clear();

@@ -5,8 +5,8 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
-<BorderPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/10.0.2-internal"
-            xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.jgg.controlloEpidemia.view.GraficiController">
+<BorderPane xmlns:fx="http://javafx.com/fxml/1" prefHeight="600.0" prefWidth="800.0"
+            xmlns="http://javafx.com/javafx/10.0.2-internal" fx:controller="com.jgg.controlloEpidemia.view.GraficiController">
     <center>
         <ScrollPane fitToWidth="true" prefHeight="490.0" prefWidth="699.0">
             <VBox alignment="TOP_CENTER" spacing="10.0">

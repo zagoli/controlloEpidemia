@@ -71,7 +71,6 @@ public class HomePageController implements Initializable {
     @FXML
     private void onLogoutButtonClicked(ActionEvent event) throws IOException {
         App.utenteCorrente = null;
-        // vai alla pagina di login
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/loginPage.fxml"));
         ((Button) event.getSource()).getScene().setRoot(root);
     }
@@ -85,7 +84,6 @@ public class HomePageController implements Initializable {
             public void handle(ActionEvent actionEvent) {
                 switch ((Integer) ((Button) actionEvent.getSource()).getUserData()) {
                     case 0:
-                        // vai a pagina gestione dati territorio
                         try {
                             root = FXMLLoader.load(HomePageController.this.getClass().getResource("/fxml/datiTerritoriali.fxml"));
                         } catch (IOException e) {
@@ -94,7 +92,6 @@ public class HomePageController implements Initializable {
                         button.getScene().setRoot(root);
                         break;
                     case 1:
-                        // vai a pagina autorizzazione comuni per il personale contratto
                         try {
                             root = FXMLLoader.load(HomePageController.this.getClass().getResource("/fxml/autorizzaComuni.fxml"));
                         } catch (IOException e) {
@@ -103,7 +100,6 @@ public class HomePageController implements Initializable {
                         button.getScene().setRoot(root);
                         break;
                     case 2:
-                        // vai a pagina gestione decessi annuali
                         try {
                             root = FXMLLoader.load(HomePageController.this.getClass().getResource("/fxml/decessiAnnuali.fxml"));
                         } catch (IOException e) {
@@ -112,7 +108,6 @@ public class HomePageController implements Initializable {
                         button.getScene().setRoot(root);
                         break;
                     case 3:
-                        // vai a pagina inserimento e gestione malattie settimanali
                         try {
                             root = FXMLLoader.load(HomePageController.this.getClass().getResource("/fxml/malattieSettimanali.fxml"));
                         } catch (IOException e) {
@@ -121,7 +116,6 @@ public class HomePageController implements Initializable {
                         button.getScene().setRoot(root);
                         break;
                     case 4:
-                        // vai a pagina analisi dei dati ricercatore analista
                         try {
                             root = FXMLLoader.load(HomePageController.this.getClass().getResource("/fxml/analisiDati.fxml"));
                         } catch (IOException e) {
@@ -130,7 +124,6 @@ public class HomePageController implements Initializable {
                         button.getScene().setRoot(root);
                         break;
                     case 5:
-                        // vai a pagina visualizzazione dati decessi
                         try {
                             root = FXMLLoader.load(HomePageController.this.getClass().getResource("/fxml/visualizzaDecessi.fxml"));
                         } catch (IOException e) {
