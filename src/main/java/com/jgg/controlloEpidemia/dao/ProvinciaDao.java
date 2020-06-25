@@ -15,6 +15,7 @@ import java.util.List;
 public class ProvinciaDao implements ProvinciaDaoInterface {
 
     final private String FROM_PROVINCIA_WHERE_NOME = "FROM Provincia where nome = :nome";
+
     @Getter
     @Setter
     private org.hibernate.Session currentSession;

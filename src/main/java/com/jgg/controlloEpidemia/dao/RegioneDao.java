@@ -15,6 +15,7 @@ import java.util.List;
 public class RegioneDao implements RegioneDaoInterface {
 
     final private String FROM_REGIONE_WHERE_NOME = "FROM Regione where nome = :nome";
+
     @Getter
     @Setter
     private org.hibernate.Session currentSession;

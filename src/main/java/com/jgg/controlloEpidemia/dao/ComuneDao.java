@@ -16,6 +16,7 @@ public class ComuneDao implements ComuneDaoInterface {
 
     final private String FROM_COMUNE_WHERE_NOME = "FROM Comune where nome = :nome";
     final private String COUNT_COMUNE = "select count(*) FROM Comune";
+
     @Getter
     @Setter
     private org.hibernate.Session currentSession;

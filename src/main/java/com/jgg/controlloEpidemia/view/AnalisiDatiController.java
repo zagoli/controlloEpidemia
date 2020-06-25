@@ -34,10 +34,9 @@ public class AnalisiDatiController implements Initializable {
     private final List<MalattieSettimanali> malattieSettimanaliList = malattieSettimanaliService.findAll();
 
     @FXML
-    private TabPane analisiDatiTabPane;
-    @FXML
     private BorderPane analisiDatiBorderPane;
-
+    @FXML
+    private TabPane analisiDatiTabPane;
 
     @FXML
     private TableView<DecessiAnnuali> decessiAnnualiTableView;
@@ -72,6 +71,7 @@ public class AnalisiDatiController implements Initializable {
     private TableColumn<DecessiAnnuali, Integer> decessiAnnualiMalattieCardiovascolariConfrontaColumn;
     @FXML
     private TableColumn<DecessiAnnuali, Integer> decessiAnnualiMalattieContagioseConfrontaColumn;
+
     @FXML
     private TableView<MalattieSettimanali> malattieSettimanaliConfrontaTableView;
     @FXML
@@ -112,6 +112,7 @@ public class AnalisiDatiController implements Initializable {
     private TableColumn<MalattieSettimanali, Integer> inCuraConGastroenteriteConfrontaColumn;
     @FXML
     private TableColumn<MalattieSettimanali, Comune> comuneConfrontaColumn;
+
     @FXML
     private TableView<MalattieSettimanali> malattieSettimanaliTableView;
     @FXML
@@ -154,7 +155,6 @@ public class AnalisiDatiController implements Initializable {
     private TableColumn<MalattieSettimanali, Comune> comuneColumn;
     @FXML
     private Button analisiDatiVisualizzaDecessiConfrontaConMalattieButton;
-
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {

@@ -15,6 +15,7 @@ import java.util.List;
 public class RuoloDao implements RuoloDaoInterface {
 
     final private String FROM_RUOLO_WHERE_NOME = "FROM Ruolo where nome = :nome";
+
     @Getter
     @Setter
     private org.hibernate.Session currentSession;

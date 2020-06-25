@@ -18,6 +18,7 @@ public class DecessiAnnualiDao implements DecessiAnnualiDaoInterface {
     final private String FROM_DECESSI_WHERE_ANNO_PROVINCIA = "from DecessiAnnuali where anno= :anno and provincia_id= :provincia";
     final private String SELECT_ALL_ANNI_DECESSI = "select distinct anno from DecessiAnnuali";
     final private String FROM_DECESSI_WHERE_ANNO = "from DecessiAnnuali where anno=:anno";
+
     @Getter
     @Setter
     private org.hibernate.Session currentSession;
@@ -54,9 +55,7 @@ public class DecessiAnnualiDao implements DecessiAnnualiDaoInterface {
 
     @Override
     public void save(DecessiAnnuali decessiAnnuali) {
-
         currentSession.save(decessiAnnuali);
-
     }
 
     @Override

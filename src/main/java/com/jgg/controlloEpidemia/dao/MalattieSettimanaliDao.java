@@ -18,6 +18,7 @@ public class MalattieSettimanaliDao implements MalattieSettimanaliDaoInterface {
     final private String FROM_MALATTIE_WHERE_ANNO_SETTIMANA_COMUNE = "FROM MalattieSettimanali where ANNO= :anno and SETTIMANA= :settimana and COMUNE_CODICEISTAT= :comune";
     final private String FROM_MALATTIE_WHERE_ANNO = "from MalattieSettimanali where anno=:anno";
     final private String SELECT_ALL_ANNI_MALATTIE = "select distinct anno from MalattieSettimanali";
+
     @Getter
     @Setter
     private org.hibernate.Session currentSession;

@@ -24,33 +24,39 @@ public class Provincia {
     @ToString.Exclude
     @OneToMany(cascade = CascadeType.REMOVE)
     private final List<Comune> comuni = new ArrayList<>();
+
     @Getter
     @NotNull
     @EqualsAndHashCode.Exclude
     @ToString.Exclude
     @OneToMany(cascade = CascadeType.REMOVE)
     final private List<DecessiAnnuali> decessiAnnuali = new ArrayList<>();
+
     @Id
     @Getter
     @NotNull
     private Integer id;
+
     @Getter
     @Setter
     @NotNull
     @NonNull
     @Column(unique = true)
     private String nome;
+
     @Getter
     @Setter
     @NotNull
     @NonNull
     @Min(0)
     private Integer superficie;
+
     @Getter
     @Setter
     @NotNull
     @NonNull
     private String capoluogo;
+
     @Getter
     @Setter
     @NotNull

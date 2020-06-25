@@ -15,6 +15,7 @@ import java.util.List;
 public class PermessoDao implements PermessoDaoInterface {
 
     final private String FROM_PERMESSO_WHERE_NOME = "FROM Permesso where nome = :nome";
+
     @Getter
     @Setter
     private org.hibernate.Session currentSession;

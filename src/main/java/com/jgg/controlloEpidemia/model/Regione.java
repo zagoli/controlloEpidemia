@@ -24,23 +24,27 @@ public class Regione {
     @ToString.Exclude
     @OneToMany(cascade = CascadeType.REMOVE)
     private final List<Provincia> province = new ArrayList<>();
+
     @Id
     @Getter
     @NotNull
     @GeneratedValue(generator = "increment")
     private Integer id;
+
     @Getter
     @Setter
     @NotNull
     @NonNull
     @Column(unique = true)
     private String nome;
+
     @Getter
     @Setter
     @NotNull
     @NonNull
     @Min(0)
     private Integer superficie;
+
     @Getter
     @Setter
     @NotNull

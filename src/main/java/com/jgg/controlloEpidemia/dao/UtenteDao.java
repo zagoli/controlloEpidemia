@@ -16,6 +16,7 @@ public class UtenteDao implements UtenteDaoInterface {
 
     final private String FIND_ALL_PERSONALE_CONTRATTO = "FROM Utente where ruolo.id = 2"; // Personale a contratto ha id ruolo = 2
     final private String FROM_UTENTE_WHERE_USERNAME = "FROM Utente where username = :username";
+
     @Getter
     @Setter
     private org.hibernate.Session currentSession;

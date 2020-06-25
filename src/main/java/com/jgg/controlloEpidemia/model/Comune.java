@@ -24,40 +24,47 @@ public class Comune {
     @ToString.Exclude
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "comune", cascade = CascadeType.REMOVE)
     final private List<MalattieSettimanali> malattieSettimanali = new ArrayList<>();
+
     @Id
     @Getter
     @NotNull
     @Column(length = 6)
     private String codiceIstat;
+
     @Getter
     @Setter
     @NotNull
     @NonNull
     @Column(unique = true)
     private String nome;
+
     @Getter
     @Setter
     @NotNull
     @NonNull
     @Min(0)
     private Integer superficie;
+
     @Getter
     @Setter
     @NotNull
     @NonNull
     private Date dataIstituzione;
+
     @Getter
     @Setter
     @NotNull
     @NonNull
     @Type(type = "true_false")
     private Boolean siAffacciaSulMare;
+
     @Getter
     @Setter
     @NotNull
     @NonNull
     @ManyToOne
     private TipoTerritorio tipoTerritorio;
+
     @Getter
     @Setter
     @NotNull

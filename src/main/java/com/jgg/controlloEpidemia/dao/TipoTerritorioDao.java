@@ -13,6 +13,7 @@ import java.util.List;
 public class TipoTerritorioDao implements TipoTerritorioDaoInterface {
 
     final private String FROM_TIPOTERRITORIO_WHERE_NOME = "FROM TipoTerritorio where nome = :nome";
+
     @Getter
     @Setter
     private org.hibernate.Session currentSession;

@@ -25,6 +25,7 @@ public class Utente {
     @ManyToMany(cascade = CascadeType.REMOVE)
     @LazyCollection(LazyCollectionOption.FALSE)
     private final List<Permesso> permesso = new ArrayList<>();
+
     @Getter
     @NotNull
     @EqualsAndHashCode.Exclude
@@ -32,32 +33,38 @@ public class Utente {
     @OneToMany(cascade = CascadeType.REMOVE)
     @LazyCollection(LazyCollectionOption.FALSE)
     private final List<Comune> comuni = new ArrayList<>();
+
     @Id
     @Getter
     @NotNull
     @GeneratedValue(generator = "increment")
     private Integer id;
+
     @Getter
     @Setter
     @NotNull
     @NonNull
     @Column(unique = true)
     private String username;
+
     @Getter
     @Setter
     @NotNull
     @NonNull
     private String password;
+
     @Getter
     @Setter
     @NotNull
     @NonNull
     private String nome;
+
     @Getter
     @Setter
     @NotNull
     @NonNull
     private String cognome;
+
     @Getter
     @Setter
     @NotNull

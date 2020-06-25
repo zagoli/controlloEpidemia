@@ -9,14 +9,13 @@
         <property name="hibernate.connection.driver_class">org.apache.derby.jdbc.EmbeddedDriver</property>
         <property name="hibernate.connection.url">jdbc:derby:controlloEpidemiaDb;create=true</property>
 
-        <!-- Enable Hibernate's automatic session context management -->
-        <property name="current_session_context_class">thread</property>
         <!-- DB schema will be updated if needed -->
         <property name="hibernate.hbm2ddl.auto">update</property>
         <property name="hibernate.dialect">org.hibernate.dialect.DerbyTenSevenDialect</property>
         <property name="hibernate.show_sql">false</property>
         <property name="hibernate.connection.autocommit">false</property>
         <property name="hibernate.jdbc.batch_size">50</property>
+        <property name="current_session_context_class">thread</property>
 
         <mapping class="com.jgg.controlloEpidemia.model.Comune"/>
         <mapping class="com.jgg.controlloEpidemia.model.DecessiAnnuali"/>
