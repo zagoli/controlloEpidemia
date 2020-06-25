@@ -38,14 +38,21 @@
                                         onAction="#analisiDatiVisualizzaDecessiVisualizzaDatiButtonOnClicked"
                                         text="Aggrega per provincia" ButtonBar.buttonData="LEFT">
                                     <font>
-                                        <Font name="Segoe UI Bold" size="14.0"/>
+                                        <Font name="Segoe UI Bold" size="11.0"/>
                                     </font>
                                 </Button>
                                 <Button mnemonicParsing="false"
                                         onAction="#analisiDatiVisualizzaDecessiAggregaPerRegioneButtonOnClicked"
                                         text="Aggrega per regione" ButtonBar.buttonData="LEFT">
                                     <font>
-                                        <Font name="Segoe UI Bold" size="14.0"/>
+                                        <Font name="Segoe UI Bold" size="11.0"/>
+                                    </font>
+                                </Button>
+                                <Button mnemonicParsing="false"
+                                        onAction="#analisiDatiVisualizzaDecessiAggregaPerNazioneButtonOnClicked"
+                                        text="Aggrega per nazione" ButtonBar.buttonData="LEFT">
+                                    <font>
+                                        <Font name="Segoe UI Bold" size="11.0"/>
                                     </font>
                                 </Button>
                                 <Button fx:id="analisiDatiVisualizzaDecessiConfrontaConMalattieButton"
@@ -53,14 +60,14 @@
                                         onAction="#analisiDatiVisualizzaDecessiConfrontaConMalattieButtonOnClicked"
                                         text="Confronta con malattie" ButtonBar.buttonData="LEFT">
                                     <font>
-                                        <Font name="Segoe UI Bold" size="14.0"/>
+                                        <Font name="Segoe UI Bold" size="11.0"/>
                                     </font>
                                 </Button>
                                 <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false"
                                         onAction="#analisiDatiDecessiAnnualiEsportaDatiButtonOnClicked"
                                         text="Esporta dati csv" ButtonBar.buttonData="RIGHT">
                                     <font>
-                                        <Font name="Segoe UI Bold" size="14.0"/>
+                                        <Font name="Segoe UI Bold" size="11.0"/>
                                     </font>
                                 </Button>
                             </buttons>
@@ -113,28 +120,35 @@
                                         onAction="#analisiDatiVisualizzaMalattieVisualizzaDatiButtonOnClicked"
                                         text="Aggrega per comune" ButtonBar.buttonData="LEFT">
                                     <font>
-                                        <Font name="Segoe UI Bold" size="14.0"/>
+                                        <Font name="Segoe UI Bold" size="11.0"/>
                                     </font>
                                 </Button>
                                 <Button mnemonicParsing="false"
                                         onAction="#analisiDatiVisualizzaMalattieAggregaPerProvinciaButtonOnClicked"
                                         text="Aggrega per provincia" ButtonBar.buttonData="LEFT">
                                     <font>
-                                        <Font name="Segoe UI Bold" size="14.0"/>
+                                        <Font name="Segoe UI Bold" size="11.0"/>
                                     </font>
                                 </Button>
                                 <Button mnemonicParsing="false"
                                         onAction="#analisiDatiVisualizzaMalattieAggregaPerRegioneButtonOnClicked"
                                         text="Aggrega per regione" ButtonBar.buttonData="LEFT">
                                     <font>
-                                        <Font name="Segoe UI Bold" size="14.0"/>
+                                        <Font name="Segoe UI Bold" size="11.0"/>
+                                    </font>
+                                </Button>
+                                <Button mnemonicParsing="false"
+                                        onAction="#analisiDatiVisualizzaMalattieAggregaPerNazioneButtonOnClicked"
+                                        text="Aggrega per nazione" ButtonBar.buttonData="LEFT">
+                                    <font>
+                                        <Font name="Segoe UI Bold" size="11.0"/>
                                     </font>
                                 </Button>
                                 <Button mnemonicParsing="false"
                                         onAction="#analisiDatiMalattieSettimanaliEsportaDatiButtonOnClicked"
                                         text="Esporta dati csv" ButtonBar.buttonData="RIGHT">
                                     <font>
-                                        <Font name="Segoe UI Bold" size="14.0"/>
+                                        <Font name="Segoe UI Bold" size="11.0"/>
                                     </font>
                                 </Button>
                             </buttons>

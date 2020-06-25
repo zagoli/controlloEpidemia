@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.text.Font?>
-<BorderPane xmlns:fx="http://javafx.com/fxml/1" fx:id="mainPane" prefHeight="600.0" prefWidth="800.0"
-            xmlns="http://javafx.com/javafx/10.0.2-internal"
-            fx:controller="com.jgg.controlloEpidemia.view.VisualizzaDecessiController">
+<?import javafx.scene.text.*?>
+
+<BorderPane fx:id="mainPane" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.jgg.controlloEpidemia.view.VisualizzaDecessiController">
     <top>
         <MenuBar BorderPane.alignment="CENTER">
             <Menu mnemonicParsing="false" text="Naviga">
-                <MenuItem mnemonicParsing="false" onAction="#homepageButtonOnClicked" text="Homepage"/>
+                <MenuItem mnemonicParsing="false" onAction="#homepageButtonOnClicked" text="Homepage" />
             </Menu>
         </MenuBar>
     </top>
@@ -19,48 +18,45 @@
             <center>
                 <TableView fx:id="decessiAnnualiTableView" prefHeight="425.0" prefWidth="750.0">
                     <columns>
-                        <TableColumn fx:id="decessiAnnualiIdColumn" prefWidth="24.800004959106445" text="ID"
-                                     visible="false"/>
-                        <TableColumn fx:id="decessiAnnualiProvinciaColumn" prefWidth="77.39999389648438"
-                                     text="PROVINCIA"/>
-                        <TableColumn fx:id="decessiAnnualiAnnoColumn" prefWidth="42.99999237060547" text="ANNO"/>
-                        <TableColumn fx:id="decessiAnnualiIncidentiStradaliColumn" prefWidth="130.80001831054688"
-                                     text="INCIDENTI STRADALI"/>
-                        <TableColumn fx:id="decessiAnnualiMalattieTumoraliColumn" minWidth="0.0"
-                                     prefWidth="131.79998779296875" text="MALATTIE TUMORALI"/>
-                        <TableColumn fx:id="decessiAnnualiMalattieCardiovascolariColumn" prefWidth="186.60000610351562"
-                                     text="MALATTIE CARDIOVASCOLARI"/>
-                        <TableColumn fx:id="decessiAnnualiMalattieContagioseColumn" minWidth="3.199951171875"
-                                     prefWidth="152.60003662109375" text="MALATTIE CONTAGIOSE"/>
+                        <TableColumn fx:id="decessiAnnualiIdColumn" prefWidth="24.800004959106445" text="ID" visible="false" />
+                        <TableColumn fx:id="decessiAnnualiProvinciaColumn" prefWidth="77.39999389648438" text="PROVINCIA" />
+                        <TableColumn fx:id="decessiAnnualiAnnoColumn" prefWidth="42.99999237060547" text="ANNO" />
+                        <TableColumn fx:id="decessiAnnualiIncidentiStradaliColumn" prefWidth="130.80001831054688" text="INCIDENTI STRADALI" />
+                        <TableColumn fx:id="decessiAnnualiMalattieTumoraliColumn" minWidth="0.0" prefWidth="131.79998779296875" text="MALATTIE TUMORALI" />
+                        <TableColumn fx:id="decessiAnnualiMalattieCardiovascolariColumn" prefWidth="186.60000610351562" text="MALATTIE CARDIOVASCOLARI" />
+                        <TableColumn fx:id="decessiAnnualiMalattieContagioseColumn" minWidth="3.199951171875" prefWidth="152.60003662109375" text="MALATTIE CONTAGIOSE" />
                     </columns>
                     <columnResizePolicy>
-                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
+                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                     </columnResizePolicy>
                 </TableView>
             </center>
             <bottom>
                 <ButtonBar buttonMinWidth="60.0" prefHeight="60.0" prefWidth="750.0" BorderPane.alignment="CENTER">
                     <buttons>
-                        <Button mnemonicParsing="false" onAction="#visualizzaDecessiVisualizzaDatiButtonOnClicked"
-                                prefHeight="40.0" text="Visualizza dati" ButtonBar.buttonData="LEFT">
+                        <Button mnemonicParsing="false" onAction="#visualizzaDecessiVisualizzaDatiButtonOnClicked" prefHeight="40.0" text="Aggrega per provincia" ButtonBar.buttonData="LEFT">
                             <font>
-                                <Font name="Segoe UI Bold" size="15.0"/>
+                                <Font name="Segoe UI Bold" size="15.0" />
                             </font>
                         </Button>
-                        <Button mnemonicParsing="false" onAction="#visualizzaDecessiAggregaPerRegioneButtonOnClicked"
-                                prefHeight="40.0" text="Aggrega per regione" ButtonBar.buttonData="RIGHT">
+                        <Button mnemonicParsing="false" onAction="#visualizzaDecessiAggregaPerRegioneButtonOnClicked" prefHeight="40.0" text="Aggrega per regione" ButtonBar.buttonData="LEFT">
                             <font>
-                                <Font name="Segoe UI Bold" size="15.0"/>
+                                <Font name="Segoe UI Bold" size="15.0" />
                             </font>
                         </Button>
+                  <Button mnemonicParsing="false" onAction="#visualizzaDecessiAggregaPerNazioneButtonOnClicked" prefHeight="40.0" text="Aggrega per nazione" ButtonBar.buttonData="LEFT">
+                     <font>
+                        <Font name="Segoe UI Bold" size="15.0" />
+                     </font>
+                  </Button>
                     </buttons>
                     <BorderPane.margin>
-                        <Insets left="10.0" right="10.0"/>
+                        <Insets left="10.0" right="10.0" />
                     </BorderPane.margin>
                 </ButtonBar>
             </bottom>
             <BorderPane.margin>
-                <Insets/>
+                <Insets />
             </BorderPane.margin>
         </BorderPane>
     </center>
