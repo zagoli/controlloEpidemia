@@ -96,7 +96,6 @@ public class DecessiAnnualiController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        PropertyConfigurator.configure("src\\main\\resources\\log4j.properties");
 
         decessiAnnualiModificaTab.setDisable(true);
 

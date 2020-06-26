@@ -168,7 +168,6 @@ public class MalattieSettimanaliController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        PropertyConfigurator.configure("src\\main\\resources\\log4j.properties");
         malattieSettimanaliModificaTab.setDisable(true);
         List<Comune> comuneList = comuneService.findAll();
         for (Comune comune : comuneList) {

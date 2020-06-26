@@ -23,7 +23,6 @@ import java.util.ResourceBundle;
 
 public class VisualizzaDecessiController implements Initializable {
 
-
     private final DecessiAnnualiService decessiAnnualiService = new DecessiAnnualiService();
     private final RegioneService regioneService = new RegioneService();
 

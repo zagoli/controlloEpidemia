@@ -73,8 +73,8 @@ public class HomePageController implements Initializable {
         Parent root = null;
         try {
             root = FXMLLoader.load(getClass().getResource("/fxml/loginPage.fxml"));
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (IOException exception) {
+            exception.printStackTrace();
         }
         ((Button) event.getSource()).getScene().setRoot(root);
     }

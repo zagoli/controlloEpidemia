@@ -15,7 +15,6 @@ import javafx.scene.control.*;
 import javafx.util.Duration;
 import javafx.util.StringConverter;
 import org.apache.log4j.Logger;
-import org.apache.log4j.PropertyConfigurator;
 
 import java.io.IOException;
 import java.net.URL;
@@ -34,7 +33,7 @@ public class AutorizzaComuniController implements Initializable {
     @FXML
     private ListView<Comune> allComuniListView;
     @FXML
-    private ListView<Comune> authorizedComuniListView;
+    private ListView<Comune> comuniAutorizzatiListView;
     @FXML
     private ComboBox<Utente> utenteComboBox;
     @FXML
@@ -42,13 +41,12 @@ public class AutorizzaComuniController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        PropertyConfigurator.configure("src\\main\\resources\\log4j.properties");
         allComuniListView.setCellFactory(comuneListView -> new ComuneFormatCell());
-        authorizedComuniListView.setCellFactory(comuneListView -> new ComuneFormatCell());
+        comuniAutorizzatiListView.setCellFactory(comuneListView -> new ComuneFormatCell());
         allComuniListView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
-        authorizedComuniListView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+        comuniAutorizzatiListView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
         allComuniListView.setItems(allComuniObservableList);
-        authorizedComuniListView.setItems(authorizedComuniObservableList);
+        comuniAutorizzatiListView.setItems(authorizedComuniObservableList);
         utenteComboBox.setConverter(new StringConverter<>() {
             @Override
             public String toString(Utente utente) {
@@ -75,18 +73,10 @@ public class AutorizzaComuniController implements Initializable {
     }
 
     @FXML
-    private void utenteChanged() {
-        Utente user = utenteComboBox.getValue();
-        authorizedComuniObservableList.setAll(user.getComuni());
-        allComuniObservableList.setAll(new ComuneService().findAll());
-        allComuniObservableList.removeAll(authorizedComuniObservableList);
-    }
-
-    @FXML
-    private void onSaveButtonClicked() {
+    private void onSalvaButtonClicked() {
         Utente utente = utenteComboBox.getValue();
         if (utente != null) {
-            List<Comune> toAuthorizeComuni = authorizedComuniListView.getItems();
+            List<Comune> toAuthorizeComuni = comuniAutorizzatiListView.getItems();
             utente.getComuni().clear();
             utente.getComuni().addAll(toAuthorizeComuni);
             UtenteService utenteService = new UtenteService();
@@ -97,7 +87,15 @@ public class AutorizzaComuniController implements Initializable {
     }
 
     @FXML
-    private void addComuni() {
+    private void cambioUtente() {
+        Utente user = utenteComboBox.getValue();
+        authorizedComuniObservableList.setAll(user.getComuni());
+        allComuniObservableList.setAll(new ComuneService().findAll());
+        allComuniObservableList.removeAll(authorizedComuniObservableList);
+    }
+
+    @FXML
+    private void aggiungiComuni() {
         List<Comune> selected = new LinkedList<>(allComuniListView.getSelectionModel().getSelectedItems());
         if (!selected.isEmpty()) {
             authorizedComuniObservableList.addAll(selected);
@@ -107,8 +105,8 @@ public class AutorizzaComuniController implements Initializable {
     }
 
     @FXML
-    private void removeComuni() {
-        List<Comune> selected = new LinkedList<>(authorizedComuniListView.getSelectionModel().getSelectedItems());
+    private void rimuoviComuni() {
+        List<Comune> selected = new LinkedList<>(comuniAutorizzatiListView.getSelectionModel().getSelectedItems());
         if (!selected.isEmpty()) {
             allComuniObservableList.addAll(selected);
             allComuniObservableList.sort(new ComuneComparator());

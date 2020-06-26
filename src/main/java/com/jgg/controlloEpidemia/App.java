@@ -2,6 +2,7 @@ package com.jgg.controlloEpidemia;
 
 import com.jgg.controlloEpidemia.importData.*;
 import com.jgg.controlloEpidemia.model.Utente;
+import com.jgg.controlloEpidemia.view.AutorizzaComuniController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -9,12 +10,14 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import org.apache.log4j.Logger;
+import org.apache.log4j.PropertyConfigurator;
 
 import java.io.IOException;
 
 public class App extends Application {
 
     public static Utente utenteCorrente;
+    public static Logger logger = Logger.getLogger(App.class);
 
     public static void main(String[] args) {
         launch(args);
@@ -30,7 +33,9 @@ public class App extends Application {
     @Override
     public void start(Stage stage) throws IOException {
 
-        // Inizializzazione dati per prototipo -------------------------
+        PropertyConfigurator.configure("src\\main\\resources\\log4j.properties");
+        logger.info("Logger inizializzato");
+
         new LoadRuolo().load();
         new LoadTipoTerritorio().load();
         new LoadPermesso().load();
@@ -38,7 +43,6 @@ public class App extends Application {
         new EtlRegione().load("src\\main\\resources\\csvToLoad\\regione.csv");
         //initLoad();
 
-        // --------------------------------------------------------------
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/loginPage.fxml"));
         Scene scene = new Scene(root);
         stage.setScene(scene);

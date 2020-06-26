@@ -168,7 +168,6 @@ public class DatiTerritorialiController implements Initializable {
     private BorderPane mainPane;
 
     public void initialize(URL location, ResourceBundle resources) {
-        PropertyConfigurator.configure("src\\main\\resources\\log4j.properties");
         for (Provincia provincia : provinciaService.findAll()) {
             provinciaInserimentoComuniComboBox.getItems().add(provincia.getNome());
             provinciaModificaComuniComboBox.getItems().add(provincia.getNome());
