@@ -40,6 +40,7 @@ import java.util.ResourceBundle;
 public class DatiTerritorialiController implements Initializable {
 
     static Logger logger = Logger.getLogger(DatiTerritorialiController.class);
+
     private final ProvinciaService provinciaService = new ProvinciaService();
     private final ComuneService comuneService = new ComuneService();
     private final TipoTerritorioService tipoTerritorioService = new TipoTerritorioService();

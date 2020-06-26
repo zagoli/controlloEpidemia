@@ -8,7 +8,8 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
 <BorderPane xmlns:fx="http://javafx.com/fxml/1" prefHeight="600.0" prefWidth="800.0"
-            xmlns="http://javafx.com/javafx/10.0.2-internal" fx:controller="com.jgg.controlloEpidemia.view.LoginPageController">
+            xmlns="http://javafx.com/javafx/10.0.2-internal"
+            fx:controller="com.jgg.controlloEpidemia.view.LoginPageController">
     <center>
         <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="204.0" prefWidth="254.0"
               spacing="10.0" style="-fx-background-color: #fafafa;" BorderPane.alignment="CENTER">

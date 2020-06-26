@@ -334,7 +334,7 @@ public class AnalisiDatiController implements Initializable {
     }
 
     @FXML
-    private void analisiDatiVisualizzaDecessiAggregaPerNazioneButtonOnClicked(){
+    private void analisiDatiVisualizzaDecessiAggregaPerNazioneButtonOnClicked() {
         decessiAnnualiTableView.getItems().clear();
         if (!analisiDatiVisualizzaDecessiConfrontaConMalattieButton.isDisabled()) {
             analisiDatiVisualizzaDecessiConfrontaConMalattieButton.setDisable(true);
@@ -469,7 +469,7 @@ public class AnalisiDatiController implements Initializable {
     }
 
     @FXML
-    private void analisiDatiVisualizzaMalattieAggregaPerNazioneButtonOnClicked(){
+    private void analisiDatiVisualizzaMalattieAggregaPerNazioneButtonOnClicked() {
         malattieSettimanaliTableView.getItems().clear();
 
         comuneColumn.setText("NAZIONALE");
@@ -529,26 +529,26 @@ public class AnalisiDatiController implements Initializable {
             cGastroenteriteNazionale = 0;
 
 
-                for (MalattieSettimanali malattieSettimanali : malattieSettimanaliList) {
-                    if (malattieSettimanali.getAnno().equals(anno)) {
-                        rInfluenzaNazionale += malattieSettimanali.getRicoveratiInfluenza();
-                        cInfluenzaNazionale += malattieSettimanali.getInCuraInfluenza();
-                        cRespiratorieNazionale += malattieSettimanali.getComplicanzeRespiratorie();
-                        rPolmoniteNazionale += malattieSettimanali.getRicoveratiPolmonite();
-                        cPolmoniteNazionale += malattieSettimanali.getInCuraPolmonite();
-                        rMeningiteNazionale += malattieSettimanali.getRicoveratiMeningite();
-                        cMeningiteNazionale += malattieSettimanali.getInCuraMeningite();
-                        rEpatiteNazionale += malattieSettimanali.getRicoveratiEpatite();
-                        cEpatiteNazionale += malattieSettimanali.getInCuraEpatite();
-                        rMorbilloNazionale += malattieSettimanali.getRicoveratiMorbillo();
-                        cMorbilloNazionale += malattieSettimanali.getInCuraMorbillo();
-                        rTubercolosiNazionale += malattieSettimanali.getRicoveratiTubercolosi();
-                        cTubercolosiNazionale += malattieSettimanali.getInCuraTubercolosi();
-                        rGastroenteriteNazionale += malattieSettimanali.getRicoveratiGastroenterite();
-                        cGastroenteriteNazionale += malattieSettimanali.getInCuraGastroenterite();
+            for (MalattieSettimanali malattieSettimanali : malattieSettimanaliList) {
+                if (malattieSettimanali.getAnno().equals(anno)) {
+                    rInfluenzaNazionale += malattieSettimanali.getRicoveratiInfluenza();
+                    cInfluenzaNazionale += malattieSettimanali.getInCuraInfluenza();
+                    cRespiratorieNazionale += malattieSettimanali.getComplicanzeRespiratorie();
+                    rPolmoniteNazionale += malattieSettimanali.getRicoveratiPolmonite();
+                    cPolmoniteNazionale += malattieSettimanali.getInCuraPolmonite();
+                    rMeningiteNazionale += malattieSettimanali.getRicoveratiMeningite();
+                    cMeningiteNazionale += malattieSettimanali.getInCuraMeningite();
+                    rEpatiteNazionale += malattieSettimanali.getRicoveratiEpatite();
+                    cEpatiteNazionale += malattieSettimanali.getInCuraEpatite();
+                    rMorbilloNazionale += malattieSettimanali.getRicoveratiMorbillo();
+                    cMorbilloNazionale += malattieSettimanali.getInCuraMorbillo();
+                    rTubercolosiNazionale += malattieSettimanali.getRicoveratiTubercolosi();
+                    cTubercolosiNazionale += malattieSettimanali.getInCuraTubercolosi();
+                    rGastroenteriteNazionale += malattieSettimanali.getRicoveratiGastroenterite();
+                    cGastroenteriteNazionale += malattieSettimanali.getInCuraGastroenterite();
 
-                    }
                 }
+            }
 
             id++;
             MalattieSettimanali malattieNazione = new MalattieSettimanali(id, anno, 0, rInfluenzaNazionale, cInfluenzaNazionale, cRespiratorieNazionale, rPolmoniteNazionale, cPolmoniteNazionale, rMeningiteNazionale, cMeningiteNazionale, rEpatiteNazionale, cEpatiteNazionale, rMorbilloNazionale, cMorbilloNazionale, rTubercolosiNazionale, cTubercolosiNazionale, rGastroenteriteNazionale, cGastroenteriteNazionale, comuneNazionale);

@@ -37,7 +37,6 @@ public class App extends Application {
         new EtlRegione().load("src\\main\\resources\\csvToLoad\\regione.csv");
         //initLoad();
         // --------------------------------------------------------------
-
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/loginPage.fxml"));
         Scene scene = new Scene(root);
         stage.setScene(scene);

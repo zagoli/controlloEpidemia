@@ -5,7 +5,8 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 <BorderPane xmlns:fx="http://javafx.com/fxml/1" fx:id="mainPane" prefHeight="600.0" prefWidth="800.0"
-            xmlns="http://javafx.com/javafx/10.0.2-internal" fx:controller="com.jgg.controlloEpidemia.view.DecessiAnnualiController">
+            xmlns="http://javafx.com/javafx/10.0.2-internal"
+            fx:controller="com.jgg.controlloEpidemia.view.DecessiAnnualiController">
     <center>
         <TabPane fx:id="decessiAnnualiTabPane" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
             <Tab fx:id="decessiAnnualiVisualizzazioneTab" text="Visualizzazione">

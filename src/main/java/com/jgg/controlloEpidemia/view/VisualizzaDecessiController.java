@@ -71,8 +71,9 @@ public class VisualizzaDecessiController implements Initializable {
 
         updateListVisualizzaDati();
     }
+
     @FXML
-    private void visualizzaDecessiAggregaPerNazioneButtonOnClicked(){
+    private void visualizzaDecessiAggregaPerNazioneButtonOnClicked() {
         decessiAnnualiTableView.getItems().clear();
 
         decessiAnnualiProvinciaColumn.setText("NAZIONALE");
@@ -109,14 +110,14 @@ public class VisualizzaDecessiController implements Initializable {
             tumoraliNazionale = 0;
             cardiovascolariNazionale = 0;
             contagioseNazionale = 0;
-                for (DecessiAnnuali decessiAnnuali : decessiAnnualiList) {
-                    if (decessiAnnuali.getAnno().equals(anno)) {
-                        incidentiNazionale += decessiAnnuali.getIncidentiStradali();
-                        tumoraliNazionale += decessiAnnuali.getMalattieTumorali();
-                        cardiovascolariNazionale += decessiAnnuali.getMalattieCardiovascolari();
-                        contagioseNazionale += decessiAnnuali.getMalattieContagiose();
-                    }
+            for (DecessiAnnuali decessiAnnuali : decessiAnnualiList) {
+                if (decessiAnnuali.getAnno().equals(anno)) {
+                    incidentiNazionale += decessiAnnuali.getIncidentiStradali();
+                    tumoraliNazionale += decessiAnnuali.getMalattieTumorali();
+                    cardiovascolariNazionale += decessiAnnuali.getMalattieCardiovascolari();
+                    contagioseNazionale += decessiAnnuali.getMalattieContagiose();
                 }
+            }
             id++;
             DecessiAnnuali decessiNazione = new DecessiAnnuali(id, anno, incidentiNazionale, tumoraliNazionale, cardiovascolariNazionale, contagioseNazionale, provinciaNazionale);
             decessiAnnualiTableView.getItems().add(decessiNazione);
