@@ -35,11 +35,10 @@ public class HomePageController implements Initializable {
             mainPanel.getChildren().add(territorioButton);
         }
         if (ruolo.equals("Personale dell'ente") || ruolo.equals("Amministratore")) {
-            ComuneService comuneService = new ComuneService();
             Button comunePersonaleContrattoButton = new Button("AUTORIZZA COMUNI PERSONALE A CONTRATTO");
             comunePersonaleContrattoButton.setUserData(1);
             prepareButton(comunePersonaleContrattoButton);
-            if (comuneService.countComuni() == 0) {
+            if (new ComuneService().countComuni() == 0) {
                 comunePersonaleContrattoButton.setDisable(true);
             }
             mainPanel.getChildren().add(comunePersonaleContrattoButton);
@@ -69,9 +68,14 @@ public class HomePageController implements Initializable {
     }
 
     @FXML
-    private void onLogoutButtonClicked(ActionEvent event) throws IOException {
+    private void onLogoutButtonClicked(ActionEvent event) {
         App.utenteCorrente = null;
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/loginPage.fxml"));
+        Parent root = null;
+        try {
+            root = FXMLLoader.load(getClass().getResource("/fxml/loginPage.fxml"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         ((Button) event.getSource()).getScene().setRoot(root);
     }
 

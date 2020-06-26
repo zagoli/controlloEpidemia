@@ -6,6 +6,13 @@
 <?import javafx.scene.text.*?>
 <BorderPane xmlns:fx="http://javafx.com/fxml/1" fx:id="mainPane" xmlns="http://javafx.com/javafx/10.0.2-internal"
             fx:controller="com.jgg.controlloEpidemia.view.MalattieSettimanaliController">
+    <top>
+        <MenuBar BorderPane.alignment="CENTER">
+            <Menu mnemonicParsing="false" text="Naviga">
+                <MenuItem mnemonicParsing="false" onAction="#homepageButtonOnClicked" text="Homepage"/>
+            </Menu>
+        </MenuBar>
+    </top>
     <center>
         <TabPane fx:id="malattieSettimanaliTabPane" prefHeight="600.0" prefWidth="800.0" tabClosingPolicy="UNAVAILABLE">
             <Tab fx:id="malattieSettimanaliVisualizzazioneTab" text="Visualizzazione">
@@ -584,11 +591,4 @@
             </Tab>
         </TabPane>
     </center>
-    <top>
-        <MenuBar BorderPane.alignment="CENTER">
-            <Menu mnemonicParsing="false" text="Naviga">
-                <MenuItem mnemonicParsing="false" onAction="#homepageButtonOnClicked" text="Homepage"/>
-            </Menu>
-        </MenuBar>
-    </top>
 </BorderPane>

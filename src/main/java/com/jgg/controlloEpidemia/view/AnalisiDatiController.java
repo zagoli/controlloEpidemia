@@ -264,18 +264,27 @@ public class AnalisiDatiController implements Initializable {
         });
 
         analisiDatiVisualizzaDecessiConfrontaConMalattieButton.disableProperty().bind(Bindings.isEmpty(decessiAnnualiTableView.getSelectionModel().getSelectedItems()).or(decessiAnnualiProvinciaColumn.textProperty().isEqualTo("REGIONE")));
-
     }
 
     @FXML
-    void homepageButtonOnClicked() throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/homePage.fxml"));
+    void homepageButtonOnClicked(){
+        Parent root = null;
+        try {
+            root = FXMLLoader.load(getClass().getResource("/fxml/homePage.fxml"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         analisiDatiBorderPane.getScene().setRoot(root);
     }
 
     @FXML
-    void analisiDatiVisualizzaGraficiButtonOnClicked() throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/grafici.fxml"));
+    void analisiDatiVisualizzaGraficiButtonOnClicked(){
+        Parent root = null;
+        try {
+            root = FXMLLoader.load(getClass().getResource("/fxml/grafici.fxml"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         analisiDatiBorderPane.getScene().setRoot(root);
     }
 

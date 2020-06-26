@@ -9,6 +9,13 @@
 <BorderPane xmlns:fx="http://javafx.com/fxml/1" prefHeight="600.0" prefWidth="800.0"
             xmlns="http://javafx.com/javafx/10.0.2-internal"
             fx:controller="com.jgg.controlloEpidemia.view.AutorizzaComuniController">
+    <top>
+        <MenuBar BorderPane.alignment="CENTER">
+            <Menu mnemonicParsing="false" text="Naviga">
+                <MenuItem mnemonicParsing="false" onAction="#onHomepageButtonClicked" text="Homepage"/>
+            </Menu>
+        </MenuBar>
+    </top>
     <center>
         <GridPane alignment="CENTER" BorderPane.alignment="CENTER">
             <columnConstraints>
@@ -109,11 +116,4 @@
             </Label>
         </GridPane>
     </center>
-    <top>
-        <MenuBar BorderPane.alignment="CENTER">
-            <Menu mnemonicParsing="false" text="Naviga">
-                <MenuItem mnemonicParsing="false" onAction="#onHomepageButtonClicked" text="Homepage"/>
-            </Menu>
-        </MenuBar>
-    </top>
 </BorderPane>

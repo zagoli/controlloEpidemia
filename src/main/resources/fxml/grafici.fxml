@@ -8,6 +8,14 @@
 <BorderPane xmlns:fx="http://javafx.com/fxml/1" prefHeight="600.0" prefWidth="800.0"
             xmlns="http://javafx.com/javafx/10.0.2-internal"
             fx:controller="com.jgg.controlloEpidemia.view.GraficiController">
+    <top>
+        <MenuBar BorderPane.alignment="CENTER">
+            <Menu mnemonicParsing="false" text="Naviga">
+                <MenuItem mnemonicParsing="false" onAction="#onHomePageButtonClicked" text="Homepage"/>
+                <MenuItem mnemonicParsing="false" onAction="#onIndietroButtonClicked" text="Indietro"/>
+            </Menu>
+        </MenuBar>
+    </top>
     <center>
         <ScrollPane fitToWidth="true" prefHeight="490.0" prefWidth="699.0">
             <VBox alignment="TOP_CENTER" spacing="10.0">
@@ -60,12 +68,4 @@
             </VBox>
         </ScrollPane>
     </center>
-    <top>
-        <MenuBar BorderPane.alignment="CENTER">
-            <Menu mnemonicParsing="false" text="Naviga">
-                <MenuItem mnemonicParsing="false" onAction="#onHomePageButtonClicked" text="Homepage"/>
-                <MenuItem mnemonicParsing="false" onAction="#onIndietroButtonClicked" text="Indietro"/>
-            </Menu>
-        </MenuBar>
-    </top>
 </BorderPane>

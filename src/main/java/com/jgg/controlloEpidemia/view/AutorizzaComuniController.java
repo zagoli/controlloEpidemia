@@ -28,9 +28,6 @@ public class AutorizzaComuniController implements Initializable {
 
     static Logger logger = Logger.getLogger(AutorizzaComuniController.class);
 
-    private final UtenteService utenteService = new UtenteService();
-    private final ComuneService comuneService = new ComuneService();
-    private final List<Comune> allComuniList = comuneService.findAll();
     private final ObservableList<Comune> allComuniObservableList = FXCollections.observableArrayList();
     private final ObservableList<Comune> authorizedComuniObservableList = FXCollections.observableArrayList();
 
@@ -46,16 +43,12 @@ public class AutorizzaComuniController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         PropertyConfigurator.configure("src\\main\\resources\\log4j.properties");
-        // Come visualizzare i comuni
         allComuniListView.setCellFactory(comuneListView -> new ComuneFormatCell());
         authorizedComuniListView.setCellFactory(comuneListView -> new ComuneFormatCell());
-        // Selezione multipla
         allComuniListView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
         authorizedComuniListView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
-        // Imposto comuni vuoti inizialmente nelle ListView
         allComuniListView.setItems(allComuniObservableList);
         authorizedComuniListView.setItems(authorizedComuniObservableList);
-        // Come visualizzare gli utenti
         utenteComboBox.setConverter(new StringConverter<>() {
             @Override
             public String toString(Utente utente) {
@@ -67,13 +60,17 @@ public class AutorizzaComuniController implements Initializable {
                 return utenteComboBox.getValue();
             }
         });
-        // Imposto gli utenti nella combobox
-        utenteComboBox.setItems(FXCollections.observableList(utenteService.findAllPersonaleContratto()));
+        utenteComboBox.setItems(FXCollections.observableList(new UtenteService().findAllPersonaleContratto()));
     }
 
     @FXML
-    private void onHomepageButtonClicked() throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/homePage.fxml"));
+    private void onHomepageButtonClicked() {
+        Parent root = null;
+        try {
+            root = FXMLLoader.load(getClass().getResource("/fxml/homePage.fxml"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         utenteComboBox.getScene().setRoot(root);
     }
 
@@ -81,7 +78,7 @@ public class AutorizzaComuniController implements Initializable {
     private void utenteChanged() {
         Utente user = utenteComboBox.getValue();
         authorizedComuniObservableList.setAll(user.getComuni());
-        allComuniObservableList.setAll(allComuniList);
+        allComuniObservableList.setAll(new ComuneService().findAll());
         allComuniObservableList.removeAll(authorizedComuniObservableList);
     }
 
@@ -99,22 +96,10 @@ public class AutorizzaComuniController implements Initializable {
         }
     }
 
-    private void fadeAnimation(Label label) {
-        FadeTransition transition = new FadeTransition(Duration.millis(500), label);
-        transition.setFromValue(0);
-        transition.setByValue(1);
-        transition.setCycleCount(2);
-        transition.setAutoReverse(true);
-        transition.play();
-    }
-
     @FXML
     private void addComuni() {
-        // Devo usare una nuova lista non osservabile per contenere gli elementi selezionati perché altrimenti si scombina tutto.
-        // Penso che sia perché la lista selected deriva da allComuniObservableList e poi quando cambi una roba si ripete a cascata o robe simili
         List<Comune> selected = new LinkedList<>(allComuniListView.getSelectionModel().getSelectedItems());
         if (!selected.isEmpty()) {
-            // Non devo aggiornare nulla, perché sono observable
             authorizedComuniObservableList.addAll(selected);
             authorizedComuniObservableList.sort(new ComuneComparator());
             allComuniObservableList.removeAll(selected);
@@ -123,19 +108,14 @@ public class AutorizzaComuniController implements Initializable {
 
     @FXML
     private void removeComuni() {
-        // Devo usare una nuova lista non osservabile per contenere gli elementi selezionati perché altrimenti si scombina tutto.
-        // Penso che sia perché la lista selected deriva da allComuniObservableList e poi quando cambi una roba si ripete a cascata o robe simili
         List<Comune> selected = new LinkedList<>(authorizedComuniListView.getSelectionModel().getSelectedItems());
         if (!selected.isEmpty()) {
-            // Non devo aggiornare nulla, perché sono observable
             allComuniObservableList.addAll(selected);
             allComuniObservableList.sort(new ComuneComparator());
             authorizedComuniObservableList.removeAll(selected);
         }
     }
 
-    // Classe interna che definisce la cella che visualizza i comuni nelle ListView.
-    // Se si vorrà si potrà personalizzare ancora di più
     private static class ComuneFormatCell extends ListCell<Comune> {
         public ComuneFormatCell() {
         }
@@ -147,11 +127,20 @@ public class AutorizzaComuniController implements Initializable {
         }
     }
 
-    // Comparator per ordinare alfabeticamente i comuni
     private static class ComuneComparator implements Comparator<Comune> {
         @Override
         public int compare(Comune o1, Comune o2) {
             return o1.getNome().compareTo(o2.getNome());
         }
     }
+
+    private void fadeAnimation(Label label) {
+        FadeTransition transition = new FadeTransition(Duration.millis(500), label);
+        transition.setFromValue(0);
+        transition.setByValue(1);
+        transition.setCycleCount(2);
+        transition.setAutoReverse(true);
+        transition.play();
+    }
+
 }

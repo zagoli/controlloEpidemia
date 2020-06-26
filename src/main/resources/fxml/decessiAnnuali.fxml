@@ -7,6 +7,13 @@
 <BorderPane xmlns:fx="http://javafx.com/fxml/1" fx:id="mainPane" prefHeight="600.0" prefWidth="800.0"
             xmlns="http://javafx.com/javafx/10.0.2-internal"
             fx:controller="com.jgg.controlloEpidemia.view.DecessiAnnualiController">
+    <top>
+        <MenuBar BorderPane.alignment="CENTER">
+            <Menu mnemonicParsing="false" text="Naviga">
+                <MenuItem mnemonicParsing="false" onAction="#homepageButtonOnClicked" text="Homepage"/>
+            </Menu>
+        </MenuBar>
+    </top>
     <center>
         <TabPane fx:id="decessiAnnualiTabPane" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
             <Tab fx:id="decessiAnnualiVisualizzazioneTab" text="Visualizzazione">
@@ -278,14 +285,6 @@
             <BorderPane.margin>
                 <Insets/>
             </BorderPane.margin>
-
         </TabPane>
     </center>
-    <top>
-        <MenuBar BorderPane.alignment="CENTER">
-            <Menu mnemonicParsing="false" text="Naviga">
-                <MenuItem mnemonicParsing="false" onAction="#homepageButtonOnClicked" text="Homepage"/>
-            </Menu>
-        </MenuBar>
-    </top>
 </BorderPane>
