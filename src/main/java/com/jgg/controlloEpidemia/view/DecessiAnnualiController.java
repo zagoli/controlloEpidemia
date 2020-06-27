@@ -33,11 +33,7 @@ public class DecessiAnnualiController implements Initializable {
     private final DecessiAnnualiService decessiAnnualiService = new DecessiAnnualiService();
 
     @FXML
-    private Button decessiAnnualiInserisciButton;
-    @FXML
-    private Button decessiAnnualiModificaButton;
-    @FXML
-    private Label noDataSelectedLabel;
+    private BorderPane decessiAnnualiBorderPane;
     @FXML
     private TabPane decessiAnnualiTabPane;
     @FXML
@@ -46,6 +42,7 @@ public class DecessiAnnualiController implements Initializable {
     private Tab decessiAnnualiInserimentoTab;
     @FXML
     private Tab decessiAnnualiModificaTab;
+
     @FXML
     private TableView<DecessiAnnuali> decessiAnnualiTableView;
     @FXML
@@ -62,6 +59,7 @@ public class DecessiAnnualiController implements Initializable {
     private TableColumn<DecessiAnnuali, Integer> decessiAnnualiMalattieCardiovascolariColumn;
     @FXML
     private TableColumn<DecessiAnnuali, Integer> decessiAnnualiMalattieContagioseColumn;
+
     @FXML
     private TextField annoInserimentoTextField;
     @FXML
@@ -74,6 +72,7 @@ public class DecessiAnnualiController implements Initializable {
     private TextField malattieContagioseInserimentoTextField;
     @FXML
     private ComboBox<String> provinciaInserimentoComboBox;
+
     @FXML
     private TextField annoModificaTextField;
     @FXML
@@ -86,10 +85,15 @@ public class DecessiAnnualiController implements Initializable {
     private TextField malattieContagioseModificaTextField;
     @FXML
     private ComboBox<String> provinciaModificaComboBox;
+
     @FXML
-    private BorderPane mainPane;
+    private Button decessiAnnualiInserisciButton;
+    @FXML
+    private Button decessiAnnualiModificaButton;
     @FXML
     private ProgressBar loadingBar;
+    @FXML
+    private Label noDataSelectedLabel;
 
     private int selectedId;
 
@@ -146,7 +150,7 @@ public class DecessiAnnualiController implements Initializable {
     @FXML
     private void homepageButtonOnClicked() throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/homePage.fxml"));
-        decessiAnnualiTabPane.getScene().setRoot(root);
+        decessiAnnualiBorderPane.getScene().setRoot(root);
     }
 
     private void updateList() {
@@ -155,18 +159,6 @@ public class DecessiAnnualiController implements Initializable {
             decessiAnnualiTableView.getItems().add(decessiAnnuali);
         }
         noDataSelectedLabel.setVisible(false);
-    }
-
-    @FXML
-    private void decessiAnnualiCancellaButtonOnClicked() {
-        if (decessiAnnualiTableView.getSelectionModel().getSelectedItem() != null) {
-            logger.info("Cancellato record decessi annuali: " + decessiAnnualiTableView.getSelectionModel().getSelectedItem());
-            decessiAnnualiService.deleteById(decessiAnnualiTableView.getSelectionModel().getSelectedItem().getId());
-            updateList();
-        } else {
-            noDataSelectedLabel.setVisible(true);
-            errorAnimation(noDataSelectedLabel);
-        }
     }
 
     @FXML
@@ -186,6 +178,18 @@ public class DecessiAnnualiController implements Initializable {
             decessiAnnualiInserimentoTab.setDisable(true);
             decessiAnnualiModificaTab.setDisable(false);
             decessiAnnualiTabPane.getSelectionModel().select(2);
+        } else {
+            noDataSelectedLabel.setVisible(true);
+            errorAnimation(noDataSelectedLabel);
+        }
+    }
+
+    @FXML
+    private void decessiAnnualiCancellaButtonOnClicked() {
+        if (decessiAnnualiTableView.getSelectionModel().getSelectedItem() != null) {
+            logger.info("Cancellato record decessi annuali: " + decessiAnnualiTableView.getSelectionModel().getSelectedItem());
+            decessiAnnualiService.deleteById(decessiAnnualiTableView.getSelectionModel().getSelectedItem().getId());
+            updateList();
         } else {
             noDataSelectedLabel.setVisible(true);
             errorAnimation(noDataSelectedLabel);
@@ -226,7 +230,7 @@ public class DecessiAnnualiController implements Initializable {
         File selectedFile = fileChooser.showOpenDialog(null);
         if (selectedFile != null) {
             loadingBar.setVisible(true);
-            mainPane.setDisable(true);
+            decessiAnnualiBorderPane.setDisable(true);
             Task<Void> task = new Task<>() {
                 @Override
                 protected Void call() throws Exception {
@@ -234,7 +238,7 @@ public class DecessiAnnualiController implements Initializable {
                     updateList();
                     Platform.runLater(() -> {
                         loadingBar.setVisible(false);
-                        mainPane.setDisable(false);
+                        decessiAnnualiBorderPane.setDisable(false);
                         decessiAnnualiTabPane.getSelectionModel().select(0);
                     });
                     return null;

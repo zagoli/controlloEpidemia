@@ -4,7 +4,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
-<BorderPane xmlns:fx="http://javafx.com/fxml/1" fx:id="mainPane" xmlns="http://javafx.com/javafx/10.0.2-internal"
+<BorderPane xmlns:fx="http://javafx.com/fxml/1" fx:id="malattieSettimanaliBorderPane" xmlns="http://javafx.com/javafx/10.0.2-internal"
             fx:controller="com.jgg.controlloEpidemia.view.MalattieSettimanaliController">
     <top>
         <MenuBar BorderPane.alignment="CENTER">

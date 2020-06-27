@@ -11,8 +11,8 @@
     <top>
         <MenuBar BorderPane.alignment="CENTER">
             <Menu mnemonicParsing="false" text="Naviga">
-                <MenuItem mnemonicParsing="false" onAction="#onHomePageButtonClicked" text="Homepage"/>
-                <MenuItem mnemonicParsing="false" onAction="#onIndietroButtonClicked" text="Indietro"/>
+                <MenuItem mnemonicParsing="false" onAction="#homePageButtonClicked" text="Homepage"/>
+                <MenuItem mnemonicParsing="false" onAction="#indietroButtonClicked" text="Indietro"/>
             </Menu>
         </MenuBar>
     </top>

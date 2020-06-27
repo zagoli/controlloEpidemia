@@ -10,6 +10,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 
@@ -19,6 +20,8 @@ import java.util.ResourceBundle;
 
 public class HomePageController implements Initializable {
 
+    @FXML
+    private BorderPane homePageBorderPane;
     @FXML
     private Label welcomeLabel;
     @FXML
@@ -68,7 +71,7 @@ public class HomePageController implements Initializable {
     }
 
     @FXML
-    private void onLogoutButtonClicked(ActionEvent event) {
+    private void logoutButtonClicked() {
         App.utenteCorrente = null;
         Parent root = null;
         try {
@@ -76,7 +79,7 @@ public class HomePageController implements Initializable {
         } catch (IOException exception) {
             exception.printStackTrace();
         }
-        ((Button) event.getSource()).getScene().setRoot(root);
+        homePageBorderPane.getScene().setRoot(root);
     }
 
     private void prepareButton(Button button) {

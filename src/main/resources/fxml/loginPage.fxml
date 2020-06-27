@@ -7,7 +7,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
-<BorderPane xmlns:fx="http://javafx.com/fxml/1" prefHeight="600.0" prefWidth="800.0"
+<BorderPane xmlns:fx="http://javafx.com/fxml/1" fx:id="loginPageBorderPane" prefHeight="600.0" prefWidth="800.0"
             xmlns="http://javafx.com/javafx/10.0.2-internal"
             fx:controller="com.jgg.controlloEpidemia.view.LoginPageController">
     <top>
@@ -47,7 +47,7 @@
                     <Insets/>
                 </VBox.margin>
             </PasswordField>
-            <Button fx:id="loginButton" defaultButton="true" mnemonicParsing="false" onAction="#onLoginButtonClicked"
+            <Button fx:id="loginButton" defaultButton="true" mnemonicParsing="false" onAction="#loginButtonClicked"
                     text="Login">
                 <VBox.margin>
                     <Insets top="5.0"/>

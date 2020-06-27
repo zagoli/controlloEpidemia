@@ -265,7 +265,7 @@ public class AnalisiDatiController implements Initializable {
     }
 
     @FXML
-    void onHomepageButtonOnClicked() {
+    void homepageButtonOnClicked() {
         Parent root = null;
         try {
             root = FXMLLoader.load(getClass().getResource("/fxml/homePage.fxml"));
@@ -276,7 +276,7 @@ public class AnalisiDatiController implements Initializable {
     }
 
     @FXML
-    void onAnalisiDatiVisualizzaGraficiButtonOnClicked() {
+    void analisiDatiVisualizzaGraficiButtonOnClicked() {
         Parent root = null;
         try {
             root = FXMLLoader.load(getClass().getResource("/fxml/grafici.fxml"));
@@ -285,6 +285,7 @@ public class AnalisiDatiController implements Initializable {
         }
         analisiDatiBorderPane.getScene().setRoot(root);
     }
+
 
     private void updateListVisualizzaDatiDecessi() {
         decessiAnnualiTableView.getItems().clear();
@@ -330,12 +331,12 @@ public class AnalisiDatiController implements Initializable {
 
 
     @FXML
-    private void onAnalisiDatiVisualizzaDecessiVisualizzaDatiButtonOnClicked() {
+    private void analisiDatiVisualizzaDecessiVisualizzaDatiButtonOnClicked() {
         updateListVisualizzaDatiDecessi();
     }
 
     @FXML
-    private void onAnalisiDatiVisualizzaDecessiAggregaPerRegioneButtonOnClicked() {
+    private void analisiDatiVisualizzaDecessiAggregaPerRegioneButtonOnClicked() {
         if (!analisiDatiVisualizzaDecessiConfrontaConMalattieButton.isDisabled()) {
             analisiDatiVisualizzaDecessiConfrontaConMalattieButton.setDisable(true);
         }
@@ -397,7 +398,7 @@ public class AnalisiDatiController implements Initializable {
     }
 
     @FXML
-    private void onAnalisiDatiVisualizzaDecessiAggregaPerNazioneButtonOnClicked() {
+    private void analisiDatiVisualizzaDecessiAggregaPerNazioneButtonOnClicked() {
         if (!analisiDatiVisualizzaDecessiConfrontaConMalattieButton.isDisabled()) {
             analisiDatiVisualizzaDecessiConfrontaConMalattieButton.setDisable(true);
         }
@@ -452,7 +453,7 @@ public class AnalisiDatiController implements Initializable {
     }
 
     @FXML
-    private void onAnalisiDatiVisualizzaDecessiConfrontaConMalattieButtonOnClicked() {
+    private void analisiDatiVisualizzaDecessiConfrontaConMalattieButtonOnClicked() {
         analisiDatiTabPane.getSelectionModel().select(2);
         malattieSettimanaliConfrontaTableView.getItems().clear();
         decessiAnnualiConfrontaTableView.getItems().clear();
@@ -468,7 +469,7 @@ public class AnalisiDatiController implements Initializable {
     }
 
     @FXML
-    private void onAnalisiDatiDecessiAnnualiEsportaDatiButtonOnClicked() {
+    private void analisiDatiDecessiAnnualiEsportaDatiButtonOnClicked() {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setInitialFileName("decessi");
         fileChooser.setInitialDirectory(javax.swing.filechooser.FileSystemView.getFileSystemView().getHomeDirectory());
@@ -490,12 +491,12 @@ public class AnalisiDatiController implements Initializable {
 
 
     @FXML
-    private void onAnalisiDatiVisualizzaMalattieVisualizzaDatiButtonOnClicked() {
+    private void analisiDatiVisualizzaMalattieVisualizzaDatiButtonOnClicked() {
         updateListVisualizzaDatiMalattie();
     }
 
     @FXML
-    private void onAnalisiDatiVisualizzaMalattieAggregaPerProvinciaButtonOnClicked() {
+    private void analisiDatiVisualizzaMalattieAggregaPerProvinciaButtonOnClicked() {
         malattieSettimanaliTableView.getItems().clear();
 
         comuneColumn.setText("PROVINCIA");
@@ -585,7 +586,7 @@ public class AnalisiDatiController implements Initializable {
     }
 
     @FXML
-    private void onAnalisiDatiVisualizzaMalattieAggregaPerRegioneButtonOnClicked() {
+    private void analisiDatiVisualizzaMalattieAggregaPerRegioneButtonOnClicked() {
         malattieSettimanaliTableView.getItems().clear();
 
         comuneColumn.setText("REGIONE");
@@ -676,7 +677,7 @@ public class AnalisiDatiController implements Initializable {
     }
 
     @FXML
-    private void onAnalisiDatiVisualizzaMalattieAggregaPerNazioneButtonOnClicked() {
+    private void analisiDatiVisualizzaMalattieAggregaPerNazioneButtonOnClicked() {
         malattieSettimanaliTableView.getItems().clear();
 
         comuneColumn.setText("NAZIONALE");
@@ -762,7 +763,7 @@ public class AnalisiDatiController implements Initializable {
     }
 
     @FXML
-    private void onAnalisiDatiMalattieSettimanaliEsportaDatiButtonOnClicked() {
+    private void analisiDatiMalattieSettimanaliEsportaDatiButtonOnClicked() {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setInitialFileName("malattie");
         fileChooser.setInitialDirectory(javax.swing.filechooser.FileSystemView.getFileSystemView().getHomeDirectory());

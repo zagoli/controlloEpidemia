@@ -7,11 +7,13 @@ import com.jgg.controlloEpidemia.service.UtenteService;
 import javafx.animation.FadeTransition;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.*;
+import javafx.scene.layout.BorderPane;
 import javafx.util.Duration;
 import javafx.util.StringConverter;
 import org.apache.log4j.Logger;
@@ -27,26 +29,30 @@ public class AutorizzaComuniController implements Initializable {
 
     static Logger logger = Logger.getLogger(AutorizzaComuniController.class);
 
-    private final ObservableList<Comune> allComuniObservableList = FXCollections.observableArrayList();
-    private final ObservableList<Comune> authorizedComuniObservableList = FXCollections.observableArrayList();
+    private final ComuneService comuneService = new ComuneService();
+    private final UtenteService utenteService = new UtenteService();
+    private final ObservableList<Comune> comuniAllObservableList = FXCollections.observableArrayList();
+    private final ObservableList<Comune> comuniAutorizzatiObservableList = FXCollections.observableArrayList();
 
     @FXML
-    private ListView<Comune> allComuniListView;
+    private  BorderPane autorizzaComuniBorderPane;
+    @FXML
+    private ListView<Comune> comuniAllListView;
     @FXML
     private ListView<Comune> comuniAutorizzatiListView;
     @FXML
     private ComboBox<Utente> utenteComboBox;
     @FXML
-    private Label savedLabel;
+    private Label salvaLabel;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        allComuniListView.setCellFactory(comuneListView -> new ComuneFormatCell());
+        comuniAllListView.setCellFactory(comuneListView -> new ComuneFormatCell());
         comuniAutorizzatiListView.setCellFactory(comuneListView -> new ComuneFormatCell());
-        allComuniListView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+        comuniAllListView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
         comuniAutorizzatiListView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
-        allComuniListView.setItems(allComuniObservableList);
-        comuniAutorizzatiListView.setItems(authorizedComuniObservableList);
+        comuniAllListView.setItems(comuniAllObservableList);
+        comuniAutorizzatiListView.setItems(comuniAutorizzatiObservableList);
         utenteComboBox.setConverter(new StringConverter<>() {
             @Override
             public String toString(Utente utente) {
@@ -58,35 +64,35 @@ public class AutorizzaComuniController implements Initializable {
                 return utenteComboBox.getValue();
             }
         });
-        utenteComboBox.setItems(FXCollections.observableList(new UtenteService().findAllPersonaleContratto()));
+        utenteComboBox.setItems(FXCollections.observableList(utenteService.findAllPersonaleContratto()));
     }
 
     @FXML
-    private void onHomepageButtonClicked() {
+    private void homepageButtonClicked() {
         Parent root = null;
         try {
             root = FXMLLoader.load(getClass().getResource("/fxml/homePage.fxml"));
         } catch (IOException e) {
             e.printStackTrace();
         }
-        utenteComboBox.getScene().setRoot(root);
+        autorizzaComuniBorderPane.getScene().setRoot(root);
     }
 
     @FXML
     private void cambioUtente() {
         Utente user = utenteComboBox.getValue();
-        authorizedComuniObservableList.setAll(user.getComuni());
-        allComuniObservableList.setAll(new ComuneService().findAll());
-        allComuniObservableList.removeAll(authorizedComuniObservableList);
+        comuniAutorizzatiObservableList.setAll(user.getComuni());
+        comuniAllObservableList.setAll(comuneService.findAll());
+        comuniAllObservableList.removeAll(comuniAutorizzatiObservableList);
     }
 
     @FXML
     private void aggiungiComuni() {
-        List<Comune> selected = new LinkedList<>(allComuniListView.getSelectionModel().getSelectedItems());
+        List<Comune> selected = new LinkedList<>(comuniAllListView.getSelectionModel().getSelectedItems());
         if (!selected.isEmpty()) {
-            authorizedComuniObservableList.addAll(selected);
-            authorizedComuniObservableList.sort(new ComuneComparator());
-            allComuniObservableList.removeAll(selected);
+            comuniAutorizzatiObservableList.addAll(selected);
+            comuniAutorizzatiObservableList.sort(new ComuneComparator());
+            comuniAllObservableList.removeAll(selected);
         }
     }
 
@@ -94,23 +100,22 @@ public class AutorizzaComuniController implements Initializable {
     private void rimuoviComuni() {
         List<Comune> selected = new LinkedList<>(comuniAutorizzatiListView.getSelectionModel().getSelectedItems());
         if (!selected.isEmpty()) {
-            allComuniObservableList.addAll(selected);
-            allComuniObservableList.sort(new ComuneComparator());
-            authorizedComuniObservableList.removeAll(selected);
+            comuniAllObservableList.addAll(selected);
+            comuniAllObservableList.sort(new ComuneComparator());
+            comuniAutorizzatiObservableList.removeAll(selected);
         }
     }
 
     @FXML
-    private void onSalvaButtonClicked() {
+    private void salvaButtonClicked() {
         Utente utente = utenteComboBox.getValue();
         if (utente != null) {
-            List<Comune> toAuthorizeComuni = comuniAutorizzatiListView.getItems();
+            List<Comune> toComuniAutorizzati = comuniAutorizzatiListView.getItems();
             utente.getComuni().clear();
-            utente.getComuni().addAll(toAuthorizeComuni);
-            UtenteService utenteService = new UtenteService();
+            utente.getComuni().addAll(toComuniAutorizzati);
             utenteService.update(utente);
-            logger.info("Aggiunti comuni: " + toAuthorizeComuni + " all'utente: " + utente);
-            fadeAnimation(savedLabel);
+            logger.info("Aggiunti comuni: " + toComuniAutorizzati + " all'utente: " + utente);
+            fadeAnimation(salvaLabel);
         }
     }
 

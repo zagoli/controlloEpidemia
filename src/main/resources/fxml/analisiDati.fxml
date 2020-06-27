@@ -10,8 +10,8 @@
     <top>
         <MenuBar BorderPane.alignment="CENTER">
             <Menu mnemonicParsing="false" text="Naviga">
-                <MenuItem mnemonicParsing="false" onAction="#onHomepageButtonOnClicked" text="Homepage"/>
-                <MenuItem mnemonicParsing="false" onAction="#onAnalisiDatiVisualizzaGraficiButtonOnClicked"
+                <MenuItem mnemonicParsing="false" onAction="#homepageButtonOnClicked" text="Homepage"/>
+                <MenuItem mnemonicParsing="false" onAction="#analisiDatiVisualizzaGraficiButtonOnClicked"
                           text="Visualizza Grafici"/>
             </Menu>
         </MenuBar>
@@ -45,21 +45,21 @@
                         <ButtonBar prefHeight="70.0" BorderPane.alignment="CENTER">
                             <buttons>
                                 <Button mnemonicParsing="false"
-                                        onAction="#onAnalisiDatiVisualizzaDecessiVisualizzaDatiButtonOnClicked"
+                                        onAction="#analisiDatiVisualizzaDecessiVisualizzaDatiButtonOnClicked"
                                         text="Aggrega per provincia" ButtonBar.buttonData="LEFT">
                                     <font>
                                         <Font name="Segoe UI Bold" size="11.0"/>
                                     </font>
                                 </Button>
                                 <Button mnemonicParsing="false"
-                                        onAction="#onAnalisiDatiVisualizzaDecessiAggregaPerRegioneButtonOnClicked"
+                                        onAction="#analisiDatiVisualizzaDecessiAggregaPerRegioneButtonOnClicked"
                                         text="Aggrega per regione" ButtonBar.buttonData="LEFT">
                                     <font>
                                         <Font name="Segoe UI Bold" size="11.0"/>
                                     </font>
                                 </Button>
                                 <Button mnemonicParsing="false"
-                                        onAction="#onAnalisiDatiVisualizzaDecessiAggregaPerNazioneButtonOnClicked"
+                                        onAction="#analisiDatiVisualizzaDecessiAggregaPerNazioneButtonOnClicked"
                                         text="Aggrega per nazione" ButtonBar.buttonData="LEFT">
                                     <font>
                                         <Font name="Segoe UI Bold" size="11.0"/>
@@ -67,14 +67,14 @@
                                 </Button>
                                 <Button fx:id="analisiDatiVisualizzaDecessiConfrontaConMalattieButton"
                                         mnemonicParsing="false"
-                                        onAction="#onAnalisiDatiVisualizzaDecessiConfrontaConMalattieButtonOnClicked"
+                                        onAction="#analisiDatiVisualizzaDecessiConfrontaConMalattieButtonOnClicked"
                                         text="Confronta con malattie" ButtonBar.buttonData="LEFT">
                                     <font>
                                         <Font name="Segoe UI Bold" size="11.0"/>
                                     </font>
                                 </Button>
                                 <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false"
-                                        onAction="#onAnalisiDatiDecessiAnnualiEsportaDatiButtonOnClicked"
+                                        onAction="#analisiDatiDecessiAnnualiEsportaDatiButtonOnClicked"
                                         text="Esporta dati csv" ButtonBar.buttonData="RIGHT">
                                     <font>
                                         <Font name="Segoe UI Bold" size="11.0"/>
@@ -127,35 +127,35 @@
                         <ButtonBar prefHeight="70.0" prefWidth="750.0" BorderPane.alignment="CENTER">
                             <buttons>
                                 <Button mnemonicParsing="false"
-                                        onAction="#onAnalisiDatiVisualizzaMalattieVisualizzaDatiButtonOnClicked"
+                                        onAction="#analisiDatiVisualizzaMalattieVisualizzaDatiButtonOnClicked"
                                         text="Aggrega per comune" ButtonBar.buttonData="LEFT">
                                     <font>
                                         <Font name="Segoe UI Bold" size="11.0"/>
                                     </font>
                                 </Button>
                                 <Button mnemonicParsing="false"
-                                        onAction="#onAnalisiDatiVisualizzaMalattieAggregaPerProvinciaButtonOnClicked"
+                                        onAction="#analisiDatiVisualizzaMalattieAggregaPerProvinciaButtonOnClicked"
                                         text="Aggrega per provincia" ButtonBar.buttonData="LEFT">
                                     <font>
                                         <Font name="Segoe UI Bold" size="11.0"/>
                                     </font>
                                 </Button>
                                 <Button mnemonicParsing="false"
-                                        onAction="#onAnalisiDatiVisualizzaMalattieAggregaPerRegioneButtonOnClicked"
+                                        onAction="#analisiDatiVisualizzaMalattieAggregaPerRegioneButtonOnClicked"
                                         text="Aggrega per regione" ButtonBar.buttonData="LEFT">
                                     <font>
                                         <Font name="Segoe UI Bold" size="11.0"/>
                                     </font>
                                 </Button>
                                 <Button mnemonicParsing="false"
-                                        onAction="#onAnalisiDatiVisualizzaMalattieAggregaPerNazioneButtonOnClicked"
+                                        onAction="#analisiDatiVisualizzaMalattieAggregaPerNazioneButtonOnClicked"
                                         text="Aggrega per nazione" ButtonBar.buttonData="LEFT">
                                     <font>
                                         <Font name="Segoe UI Bold" size="11.0"/>
                                     </font>
                                 </Button>
                                 <Button mnemonicParsing="false"
-                                        onAction="#onAnalisiDatiMalattieSettimanaliEsportaDatiButtonOnClicked"
+                                        onAction="#analisiDatiMalattieSettimanaliEsportaDatiButtonOnClicked"
                                         text="Esporta dati csv" ButtonBar.buttonData="RIGHT">
                                     <font>
                                         <Font name="Segoe UI Bold" size="11.0"/>

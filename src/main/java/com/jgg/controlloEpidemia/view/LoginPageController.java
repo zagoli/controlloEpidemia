@@ -14,6 +14,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.BorderPane;
 import javafx.util.Duration;
 
 import java.io.IOException;
@@ -22,6 +23,10 @@ import java.util.ResourceBundle;
 
 public class LoginPageController implements Initializable {
 
+    static final UtenteService utenteService = new UtenteService();
+
+    @FXML
+    private BorderPane loginPageBorderPane;
     @FXML
     private Button loginButton;
     @FXML
@@ -41,10 +46,9 @@ public class LoginPageController implements Initializable {
     }
 
     @FXML
-    private void onLoginButtonClicked(ActionEvent event) throws IOException {
+    private void loginButtonClicked() throws IOException {
         String user = usernameField.getText();
         String password = passwordField.getText();
-        final UtenteService utenteService = new UtenteService();
         Utente u = utenteService.findByUsername(user);
         if (u == null) {
             if (errorLabel.isVisible()) {
@@ -65,7 +69,7 @@ public class LoginPageController implements Initializable {
         } else {
             App.utenteCorrente = u;
             Parent root = FXMLLoader.load(getClass().getResource("/fxml/homePage.fxml"));
-            ((Button) event.getSource()).getScene().setRoot(root);
+            loginPageBorderPane.getScene().setRoot(root);
         }
     }
 

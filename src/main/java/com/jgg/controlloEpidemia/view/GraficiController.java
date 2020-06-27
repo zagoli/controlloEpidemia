@@ -31,11 +31,8 @@ public class GraficiController implements Initializable {
     private final DecessiAnnualiService decessiAnnualiService = new DecessiAnnualiService();
     private final RegioneService regioneService = new RegioneService();
     private final MalattieSettimanaliService malattieSettimanaliService = new MalattieSettimanaliService();
-    // Lista di supporto che contiene i dati del grafico dei decessi annuali per causa
     private final ObservableList<PieChart.Data> datiGraficoDecessiCausa = FXCollections.observableArrayList();
-    // Lista di supporto che contiene i dati del grafico dei decessi annuali per regione
     private final ObservableList<PieChart.Data> datiGraficoDecessiRegione = FXCollections.observableArrayList();
-    // Lista di supporto che contiene i dati del grafico delle malattie settimanali
     private final XYChart.Series<String, Number> datiGraficoMalattieSettimanali = new XYChart.Series<>();
     @FXML
     private ComboBox<Integer> chooseAnnoDecessiCausaCombobox;
@@ -56,38 +53,33 @@ public class GraficiController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        // Visualizzazione anni per combobox
         chooseAnnoDecessiCausaCombobox.setConverter(new AnnoToStringConverter());
         chooseAnnoMalattieCombobox.setConverter(new AnnoToStringConverter());
         chooseAnnoDecessiRegioneCombobox.setConverter(new AnnoToStringConverter());
-        // Inserimento dati chooseAnnoDecessiCausaCombobox e chooseAnnoDecessiRegioneCombobox
         ObservableList<Integer> anniDecessiObsList = FXCollections.observableList(decessiAnnualiService.findInsertedYears());
         anniDecessiObsList.add(-1);
         Collections.sort(anniDecessiObsList);
         chooseAnnoDecessiCausaCombobox.setItems(anniDecessiObsList);
         chooseAnnoDecessiRegioneCombobox.setItems(anniDecessiObsList);
-        // Inserimento dati chooseAnnoMalattieCombobox
         ObservableList<Integer> anniMalattieObsList = FXCollections.observableList(malattieSettimanaliService.findInsertedYears());
         anniMalattieObsList.add(-1);
         Collections.sort(anniMalattieObsList);
         chooseAnnoMalattieCombobox.setItems(anniMalattieObsList);
-        // Impostazione dati grafici
         graficoDecessiCausa.setData(datiGraficoDecessiCausa);
         graficoDecessiRegione.setData(datiGraficoDecessiRegione);
         graficoMalattieSettimanali.getData().add(datiGraficoMalattieSettimanali);
-        // Visualizzazione label di aiuto grafici
         labelGraficoDecessiCausa.visibleProperty().bind(Bindings.isEmpty(datiGraficoDecessiCausa));
         labelGraficoDecessiRegione.visibleProperty().bind(Bindings.isEmpty(datiGraficoDecessiRegione));
     }
 
     @FXML
-    private void onHomePageButtonClicked() throws IOException {
+    private void homePageButtonClicked() throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/homePage.fxml"));
         graficoDecessiCausa.getScene().setRoot(root);
     }
 
     @FXML
-    private void onIndietroButtonClicked() throws IOException {
+    private void indietroButtonClicked() throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/analisiDati.fxml"));
         graficoDecessiCausa.getScene().setRoot(root);
     }
@@ -97,13 +89,10 @@ public class GraficiController implements Initializable {
         Integer anno = chooseAnnoDecessiCausaCombobox.getValue();
         List<DecessiAnnuali> decessiAnnuali;
         if (anno == -1) {
-            // Visualizza anni complessivi
             decessiAnnuali = decessiAnnualiService.findAll();
         } else {
-            // Visualizza anno selezionato
             decessiAnnuali = decessiAnnualiService.findByAnno(anno);
         }
-        // Trasformo la lista nei dati del grafico
         datiGraficoDecessiCausa.clear();
         datiGraficoDecessiCausa.add(new PieChart.Data("Incidenti stradali", decessiAnnuali.stream().mapToInt(DecessiAnnuali::getIncidentiStradali).sum()));
         datiGraficoDecessiCausa.add(new PieChart.Data("Malattie tumorali", decessiAnnuali.stream().mapToInt(DecessiAnnuali::getMalattieTumorali).sum()));
@@ -116,13 +105,10 @@ public class GraficiController implements Initializable {
         Integer anno = chooseAnnoDecessiRegioneCombobox.getValue();
         List<DecessiAnnuali> decessiAnnuali;
         if (anno == -1) {
-            // Visualizza anni complessivi
             decessiAnnuali = decessiAnnualiService.findAll();
         } else {
-            // Visualizza anno selezionato
             decessiAnnuali = decessiAnnualiService.findByAnno(anno);
         }
-        // Trasformo la lista nei dati del grafico
         datiGraficoDecessiRegione.clear();
         for (Regione r : regioneService.findAll()) {
             int decPerRegione = decessiAnnuali.stream().
@@ -140,13 +126,10 @@ public class GraficiController implements Initializable {
         Integer anno = chooseAnnoMalattieCombobox.getValue();
         List<MalattieSettimanali> malattieSettimanali;
         if (anno == -1) {
-            // Visualizza per tutti gli anni
             malattieSettimanali = malattieSettimanaliService.findAll();
         } else {
-            // Visualizza solo l'anno selezionato
             malattieSettimanali = malattieSettimanaliService.findByAnno(anno);
         }
-        // Trasformo la lista nei dati del grafico
         datiGraficoMalattieSettimanali.getData().clear();
         datiGraficoMalattieSettimanali.getData().add(new XYChart.Data<>("Ricoverati influenza", malattieSettimanali.stream().mapToInt(MalattieSettimanali::getRicoveratiInfluenza).sum()));
         datiGraficoMalattieSettimanali.getData().add(new XYChart.Data<>("In cura influenza", malattieSettimanali.stream().mapToInt(MalattieSettimanali::getInCuraInfluenza).sum()));
@@ -164,7 +147,6 @@ public class GraficiController implements Initializable {
         datiGraficoMalattieSettimanali.getData().add(new XYChart.Data<>("In cura gastroenterite", malattieSettimanali.stream().mapToInt(MalattieSettimanali::getInCuraGastroenterite).sum()));
     }
 
-    // Convertitore anno in stringa per combobox
     private static class AnnoToStringConverter extends StringConverter<Integer> {
         @Override
         public String toString(Integer integer) {

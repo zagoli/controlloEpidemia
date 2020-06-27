@@ -46,9 +46,7 @@ public class DatiTerritorialiController implements Initializable {
     private final RegioneService regioneService = new RegioneService();
 
     @FXML
-    private Label comuneNoDataSelectedLabel;
-    @FXML
-    private Label provinciaNoDataSelectedLabel;
+    private BorderPane datiTerritorialiBorderPane;
     @FXML
     private TabPane datiTerritorialiTabPane;
     @FXML
@@ -65,6 +63,7 @@ public class DatiTerritorialiController implements Initializable {
     private Tab provinciaModificaTab;
     @FXML
     private Tab comuneModificaTab;
+
     @FXML
     private TableView<Regione> regioniTableView;
     @FXML
@@ -75,6 +74,7 @@ public class DatiTerritorialiController implements Initializable {
     private TableColumn<Regione, Integer> regioniSuperficieColumn;
     @FXML
     private TableColumn<Regione, String> regioniCapoluogoColumn;
+
     @FXML
     private TableView<Provincia> provinceTableView;
     @FXML
@@ -87,6 +87,7 @@ public class DatiTerritorialiController implements Initializable {
     private TableColumn<Provincia, String> provinceCapoluogoColumn;
     @FXML
     private TableColumn<Provincia, Regione> provinceRegioneColumn;
+
     @FXML
     private TableView<Comune> comuniTableView;
     @FXML
@@ -103,6 +104,7 @@ public class DatiTerritorialiController implements Initializable {
     private TableColumn<Comune, TipoTerritorio> comuniTipoTerritorioColumn;
     @FXML
     private TableColumn<Comune, Provincia> comuniProvinciaColumn;
+
     @FXML
     private TextField idInserimentoProvinceTextField;
     @FXML
@@ -113,6 +115,7 @@ public class DatiTerritorialiController implements Initializable {
     private ComboBox<String> regioneInserimentoProvinceComboBox;
     @FXML
     private ComboBox<String> comuneDiCapoluogoInserimentoProvinceComboBox;
+
     @FXML
     private TextField codiceIstatInserimentoComuniTextField;
     @FXML
@@ -127,6 +130,7 @@ public class DatiTerritorialiController implements Initializable {
     private ComboBox<String> provinciaInserimentoComuniComboBox;
     @FXML
     private DatePicker dataDiIstituzioneInserimentoComuniDatePicker;
+
     @FXML
     private TextField idModificaProvinceTextField;
     @FXML
@@ -137,6 +141,7 @@ public class DatiTerritorialiController implements Initializable {
     private ComboBox<String> regioneModificaProvinceComboBox;
     @FXML
     private ComboBox<String> comuneDiCapoluogoModificaProvinceComboBox;
+
     @FXML
     private TextField codiceIstatModificaComuniTextField;
     @FXML
@@ -151,6 +156,7 @@ public class DatiTerritorialiController implements Initializable {
     private ComboBox<String> provinciaModificaComuniComboBox;
     @FXML
     private DatePicker dataDiIstituzioneModificaComuniDatePicker;
+
     @FXML
     private Button provinciaInserisciButton;
     @FXML
@@ -164,7 +170,9 @@ public class DatiTerritorialiController implements Initializable {
     @FXML
     private ProgressBar loadingBarProvince;
     @FXML
-    private BorderPane mainPane;
+    private Label comuneNoDataSelectedLabel;
+    @FXML
+    private Label provinciaNoDataSelectedLabel;
 
     public void initialize(URL location, ResourceBundle resources) {
         for (Provincia provincia : provinciaService.findAll()) {
@@ -332,7 +340,7 @@ public class DatiTerritorialiController implements Initializable {
     }
 
     @FXML
-    private void onHomepageButtonClicked() throws IOException {
+    private void homepageButtonClicked() throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/homePage.fxml"));
         datiTerritorialiTabPane.getScene().setRoot(root);
     }
@@ -382,6 +390,19 @@ public class DatiTerritorialiController implements Initializable {
     }
 
     @FXML
+    private void comuneEliminaVisualizzazioneButtonOnClicked() {
+        if (comuniTableView.getSelectionModel().getSelectedItem() != null) {
+            logger.info("Cancellato record comune: " + comuniTableView.getSelectionModel().getSelectedItem());
+            Comune comuni = comuniTableView.getSelectionModel().getSelectedItem();
+            comuneService.deleteByCodiceIstat(comuni.getCodiceIstat());
+            updateListComuni();
+        } else {
+            comuneNoDataSelectedLabel.setVisible(true);
+            errorAnimation(comuneNoDataSelectedLabel);
+        }
+    }
+
+    @FXML
     private void provinciaModificaVisualizzazioneButtonOnClicked() {
         if (provinceTableView.getSelectionModel().getSelectedItem() != null) {
             modificaTab.setDisable(false);
@@ -399,19 +420,6 @@ public class DatiTerritorialiController implements Initializable {
         } else {
             provinciaNoDataSelectedLabel.setVisible(true);
             errorAnimation(provinciaNoDataSelectedLabel);
-        }
-    }
-
-    @FXML
-    private void comuneEliminaVisualizzazioneButtonOnClicked() {
-        if (comuniTableView.getSelectionModel().getSelectedItem() != null) {
-            logger.info("Cancellato record comune: " + comuniTableView.getSelectionModel().getSelectedItem());
-            Comune comuni = comuniTableView.getSelectionModel().getSelectedItem();
-            comuneService.deleteByCodiceIstat(comuni.getCodiceIstat());
-            updateListComuni();
-        } else {
-            comuneNoDataSelectedLabel.setVisible(true);
-            errorAnimation(comuneNoDataSelectedLabel);
         }
     }
 
@@ -459,7 +467,7 @@ public class DatiTerritorialiController implements Initializable {
         File selectedFile = fileChooser.showOpenDialog(null);
         if (selectedFile != null) {
             loadingBarProvince.setVisible(true);
-            mainPane.setDisable(true);
+            datiTerritorialiBorderPane.setDisable(true);
 
             Task<Void> task = new Task<>() {
                 @Override
@@ -468,7 +476,7 @@ public class DatiTerritorialiController implements Initializable {
                     updateListProvince();
                     Platform.runLater(() -> {
                         loadingBarProvince.setVisible(false);
-                        mainPane.setDisable(false);
+                        datiTerritorialiBorderPane.setDisable(false);
                     });
                     return null;
                 }
@@ -515,7 +523,7 @@ public class DatiTerritorialiController implements Initializable {
         File selectedFile = fileChooser.showOpenDialog(null);
         if (selectedFile != null) {
             loadingBarComuni.setVisible(true);
-            mainPane.setDisable(true);
+            datiTerritorialiBorderPane.setDisable(true);
 
             Task<Void> task = new Task<>() {
                 @Override
@@ -524,7 +532,7 @@ public class DatiTerritorialiController implements Initializable {
                     updateListComuni();
                     Platform.runLater(() -> {
                         loadingBarComuni.setVisible(false);
-                        mainPane.setDisable(false);
+                        datiTerritorialiBorderPane.setDisable(false);
                     });
                     return null;
                 }

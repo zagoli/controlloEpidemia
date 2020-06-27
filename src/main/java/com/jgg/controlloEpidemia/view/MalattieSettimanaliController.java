@@ -33,16 +33,18 @@ public class MalattieSettimanaliController implements Initializable {
     private final ComuneService comuneService = new ComuneService();
     private final MalattieSettimanaliService malattieSettimanaliService = new MalattieSettimanaliService();
     private final Alert alert = new Alert(Alert.AlertType.WARNING);
+
     @FXML
-    private Label noDataSelectedLabel;
+    private BorderPane malattieSettimanaliBorderPane;
+    @FXML
+    private TabPane malattieSettimanaliTabPane;
     @FXML
     private Tab malattieSettimanaliVisualizzazioneTab;
     @FXML
     private Tab malattieSettimanaliInserimentoTab;
     @FXML
     private Tab malattieSettimanaliModificaTab;
-    @FXML
-    private TabPane malattieSettimanaliTabPane;
+
     @FXML
     private TableView<MalattieSettimanali> malattieSettimanaliTableView;
     @FXML
@@ -83,6 +85,7 @@ public class MalattieSettimanaliController implements Initializable {
     private TableColumn<MalattieSettimanali, Integer> inCuraConGastroenteriteColumn;
     @FXML
     private TableColumn<MalattieSettimanali, Comune> comuneColumn;
+
     @FXML
     private TextField annoInserimentoTextField;
     @FXML
@@ -119,6 +122,7 @@ public class MalattieSettimanaliController implements Initializable {
     private TextField inCuraConGastroenteriteInserimentoTextField;
     @FXML
     private ComboBox<String> comuneInserimentoComboBox;
+
     @FXML
     private TextField annoModificaTextField;
     @FXML
@@ -155,14 +159,16 @@ public class MalattieSettimanaliController implements Initializable {
     private TextField inCuraConGastroenteriteModificaTextField;
     @FXML
     private ComboBox<String> comuneModificaComboBox;
+
     @FXML
     private Button malattieSettimanaliInserisciButton;
     @FXML
     private Button malattieSettimanaliModificaButton;
     @FXML
-    private BorderPane mainPane;
-    @FXML
     private ProgressBar loadingBar;
+    @FXML
+    private Label noDataSelectedLabel;
+
     private int selectedId;
 
     @Override
@@ -386,7 +392,7 @@ public class MalattieSettimanaliController implements Initializable {
         File selectedFile = fileChooser.showOpenDialog(null);
         if (selectedFile != null) {
             loadingBar.setVisible(true);
-            mainPane.setDisable(true);
+            malattieSettimanaliBorderPane.setDisable(true);
             Task<Void> task = new Task<>() {
                 @Override
                 protected Void call() throws Exception {
@@ -394,7 +400,7 @@ public class MalattieSettimanaliController implements Initializable {
                     updateList();
                     Platform.runLater(() -> {
                         loadingBar.setVisible(false);
-                        mainPane.setDisable(false);
+                        malattieSettimanaliBorderPane.setDisable(false);
                         malattieSettimanaliTabPane.getSelectionModel().select(0);
                     });
                     return null;

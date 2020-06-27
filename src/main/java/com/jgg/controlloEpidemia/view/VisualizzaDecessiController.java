@@ -27,7 +27,7 @@ public class VisualizzaDecessiController implements Initializable {
     private final RegioneService regioneService = new RegioneService();
 
     @FXML
-    private BorderPane mainPane;
+    private BorderPane visualizzaDecessiBorderPane;
 
     @FXML
     private TableView<DecessiAnnuali> decessiAnnualiTableView;
@@ -69,6 +69,12 @@ public class VisualizzaDecessiController implements Initializable {
         decessiAnnualiMalattieCardiovascolariColumn.setCellValueFactory(new PropertyValueFactory<>("malattieCardiovascolari"));
 
         updateListVisualizzaDati();
+    }
+
+    @FXML
+    private void homepageButtonOnClicked() throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/homePage.fxml"));
+        visualizzaDecessiBorderPane.getScene().setRoot(root);
     }
 
     @FXML
@@ -210,10 +216,5 @@ public class VisualizzaDecessiController implements Initializable {
         }
     }
 
-    @FXML
-    private void homepageButtonOnClicked() throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/homePage.fxml"));
-        mainPane.getScene().setRoot(root);
-    }
 
 }
