@@ -27,11 +27,9 @@ import java.util.ResourceBundle;
 
 public class AnalisiDatiController implements Initializable {
 
-    private final MalattieSettimanaliService malattieSettimanaliService = new MalattieSettimanaliService();
     private final DecessiAnnualiService decessiAnnualiService = new DecessiAnnualiService();
     private final RegioneService regioneService = new RegioneService();
-    private final ProvinciaService provinciaService = new ProvinciaService();
-    private final List<MalattieSettimanali> malattieSettimanaliList = malattieSettimanaliService.findAll();
+    private final List<MalattieSettimanali> malattieSettimanaliList = new MalattieSettimanaliService().findAll();
 
     @FXML
     private BorderPane analisiDatiBorderPane;
@@ -54,6 +52,47 @@ public class AnalisiDatiController implements Initializable {
     private TableColumn<DecessiAnnuali, Integer> decessiAnnualiMalattieCardiovascolariColumn;
     @FXML
     private TableColumn<DecessiAnnuali, Integer> decessiAnnualiMalattieContagioseColumn;
+
+    @FXML
+    private TableView<MalattieSettimanali> malattieSettimanaliTableView;
+    @FXML
+    private TableColumn<MalattieSettimanali, Integer> idColumn;
+    @FXML
+    private TableColumn<MalattieSettimanali, Integer> annoColumn;
+    @FXML
+    private TableColumn<MalattieSettimanali, Integer> settimanaColumn;
+    @FXML
+    private TableColumn<MalattieSettimanali, Integer> ricoveratiConInfluenzaColumn;
+    @FXML
+    private TableColumn<MalattieSettimanali, Integer> inCuraConInfluenzaColumn;
+    @FXML
+    private TableColumn<MalattieSettimanali, Integer> complicanzeRespiratorieColumn;
+    @FXML
+    private TableColumn<MalattieSettimanali, Integer> ricoveratiConPolmoniteColumn;
+    @FXML
+    private TableColumn<MalattieSettimanali, Integer> inCuraConPolmoniteColumn;
+    @FXML
+    private TableColumn<MalattieSettimanali, Integer> ricoveratiConMeningiteColumn;
+    @FXML
+    private TableColumn<MalattieSettimanali, Integer> inCuraConMeningiteColumn;
+    @FXML
+    private TableColumn<MalattieSettimanali, Integer> ricoveratiConEpatiteColumn;
+    @FXML
+    private TableColumn<MalattieSettimanali, Integer> inCuraConEpatiteColumn;
+    @FXML
+    private TableColumn<MalattieSettimanali, Integer> ricoveratiConMorbilloColumn;
+    @FXML
+    private TableColumn<MalattieSettimanali, Integer> inCuraConMorbilloColumn;
+    @FXML
+    private TableColumn<MalattieSettimanali, Integer> ricoveratiConTubercolosiColumn;
+    @FXML
+    private TableColumn<MalattieSettimanali, Integer> inCuraConTubercolosiColumn;
+    @FXML
+    private TableColumn<MalattieSettimanali, Integer> ricoveratiConGastroenteriteColumn;
+    @FXML
+    private TableColumn<MalattieSettimanali, Integer> inCuraConGastroenteriteColumn;
+    @FXML
+    private TableColumn<MalattieSettimanali, Comune> comuneColumn;
 
     @FXML
     private TableView<DecessiAnnuali> decessiAnnualiConfrontaTableView;
@@ -114,46 +153,6 @@ public class AnalisiDatiController implements Initializable {
     private TableColumn<MalattieSettimanali, Comune> comuneConfrontaColumn;
 
     @FXML
-    private TableView<MalattieSettimanali> malattieSettimanaliTableView;
-    @FXML
-    private TableColumn<MalattieSettimanali, Integer> idColumn;
-    @FXML
-    private TableColumn<MalattieSettimanali, Integer> annoColumn;
-    @FXML
-    private TableColumn<MalattieSettimanali, Integer> settimanaColumn;
-    @FXML
-    private TableColumn<MalattieSettimanali, Integer> ricoveratiConInfluenzaColumn;
-    @FXML
-    private TableColumn<MalattieSettimanali, Integer> inCuraConInfluenzaColumn;
-    @FXML
-    private TableColumn<MalattieSettimanali, Integer> complicanzeRespiratorieColumn;
-    @FXML
-    private TableColumn<MalattieSettimanali, Integer> ricoveratiConPolmoniteColumn;
-    @FXML
-    private TableColumn<MalattieSettimanali, Integer> inCuraConPolmoniteColumn;
-    @FXML
-    private TableColumn<MalattieSettimanali, Integer> ricoveratiConMeningiteColumn;
-    @FXML
-    private TableColumn<MalattieSettimanali, Integer> inCuraConMeningiteColumn;
-    @FXML
-    private TableColumn<MalattieSettimanali, Integer> ricoveratiConEpatiteColumn;
-    @FXML
-    private TableColumn<MalattieSettimanali, Integer> inCuraConEpatiteColumn;
-    @FXML
-    private TableColumn<MalattieSettimanali, Integer> ricoveratiConMorbilloColumn;
-    @FXML
-    private TableColumn<MalattieSettimanali, Integer> inCuraConMorbilloColumn;
-    @FXML
-    private TableColumn<MalattieSettimanali, Integer> ricoveratiConTubercolosiColumn;
-    @FXML
-    private TableColumn<MalattieSettimanali, Integer> inCuraConTubercolosiColumn;
-    @FXML
-    private TableColumn<MalattieSettimanali, Integer> ricoveratiConGastroenteriteColumn;
-    @FXML
-    private TableColumn<MalattieSettimanali, Integer> inCuraConGastroenteriteColumn;
-    @FXML
-    private TableColumn<MalattieSettimanali, Comune> comuneColumn;
-    @FXML
     private Button analisiDatiVisualizzaDecessiConfrontaConMalattieButton;
 
     @Override
@@ -176,26 +175,6 @@ public class AnalisiDatiController implements Initializable {
         decessiAnnualiMalattieTumoraliColumn.setCellValueFactory(new PropertyValueFactory<>("malattieTumorali"));
         decessiAnnualiMalattieContagioseColumn.setCellValueFactory(new PropertyValueFactory<>("malattieContagiose"));
         decessiAnnualiMalattieCardiovascolariColumn.setCellValueFactory(new PropertyValueFactory<>("malattieCardiovascolari"));
-        updateListVisualizzaDatiDecessi();
-
-        decessiAnnualiIdConfrontaColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
-        decessiAnnualiAnnoConfrontaColumn.setCellValueFactory(new PropertyValueFactory<>("anno"));
-        decessiAnnualiProvinciaConfrontaColumn.setCellValueFactory(new PropertyValueFactory<>("provincia"));
-        decessiAnnualiProvinciaConfrontaColumn.setCellFactory(column -> new TableCell<>() {
-            @Override
-            protected void updateItem(Provincia provincia, boolean empty) {
-                super.updateItem(provincia, empty);
-                if (empty || provincia == null) {
-                    setText("");
-                } else {
-                    setText(provincia.getNome());
-                }
-            }
-        });
-        decessiAnnualiIncidentiStradaliConfrontaColumn.setCellValueFactory(new PropertyValueFactory<>("incidentiStradali"));
-        decessiAnnualiMalattieTumoraliConfrontaColumn.setCellValueFactory(new PropertyValueFactory<>("malattieTumorali"));
-        decessiAnnualiMalattieContagioseConfrontaColumn.setCellValueFactory(new PropertyValueFactory<>("malattieContagiose"));
-        decessiAnnualiMalattieCardiovascolariConfrontaColumn.setCellValueFactory(new PropertyValueFactory<>("malattieCardiovascolari"));
 
         idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
         annoColumn.setCellValueFactory(new PropertyValueFactory<>("anno"));
@@ -228,8 +207,25 @@ public class AnalisiDatiController implements Initializable {
                 }
             }
         });
-        updateListVisualizzaDatiMalattie();
 
+        decessiAnnualiIdConfrontaColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
+        decessiAnnualiAnnoConfrontaColumn.setCellValueFactory(new PropertyValueFactory<>("anno"));
+        decessiAnnualiProvinciaConfrontaColumn.setCellValueFactory(new PropertyValueFactory<>("provincia"));
+        decessiAnnualiProvinciaConfrontaColumn.setCellFactory(column -> new TableCell<>() {
+            @Override
+            protected void updateItem(Provincia provincia, boolean empty) {
+                super.updateItem(provincia, empty);
+                if (empty || provincia == null) {
+                    setText("");
+                } else {
+                    setText(provincia.getNome());
+                }
+            }
+        });
+        decessiAnnualiIncidentiStradaliConfrontaColumn.setCellValueFactory(new PropertyValueFactory<>("incidentiStradali"));
+        decessiAnnualiMalattieTumoraliConfrontaColumn.setCellValueFactory(new PropertyValueFactory<>("malattieTumorali"));
+        decessiAnnualiMalattieContagioseConfrontaColumn.setCellValueFactory(new PropertyValueFactory<>("malattieContagiose"));
+        decessiAnnualiMalattieCardiovascolariConfrontaColumn.setCellValueFactory(new PropertyValueFactory<>("malattieCardiovascolari"));
 
         idConfrontaColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
         annoConfrontaColumn.setCellValueFactory(new PropertyValueFactory<>("anno"));
@@ -264,10 +260,12 @@ public class AnalisiDatiController implements Initializable {
         });
 
         analisiDatiVisualizzaDecessiConfrontaConMalattieButton.disableProperty().bind(Bindings.isEmpty(decessiAnnualiTableView.getSelectionModel().getSelectedItems()).or(decessiAnnualiProvinciaColumn.textProperty().isEqualTo("REGIONE")));
+        updateListVisualizzaDatiDecessi();
+        updateListVisualizzaDatiMalattie();
     }
 
     @FXML
-    void homepageButtonOnClicked(){
+    void onHomepageButtonOnClicked() {
         Parent root = null;
         try {
             root = FXMLLoader.load(getClass().getResource("/fxml/homePage.fxml"));
@@ -278,7 +276,7 @@ public class AnalisiDatiController implements Initializable {
     }
 
     @FXML
-    void analisiDatiVisualizzaGraficiButtonOnClicked(){
+    void onAnalisiDatiVisualizzaGraficiButtonOnClicked() {
         Parent root = null;
         try {
             root = FXMLLoader.load(getClass().getResource("/fxml/grafici.fxml"));
@@ -287,18 +285,6 @@ public class AnalisiDatiController implements Initializable {
         }
         analisiDatiBorderPane.getScene().setRoot(root);
     }
-
-
-    @FXML
-    private void analisiDatiVisualizzaDecessiVisualizzaDatiButtonOnClicked() {
-        updateListVisualizzaDatiDecessi();
-    }
-
-    @FXML
-    private void analisiDatiVisualizzaMalattieVisualizzaDatiButtonOnClicked() {
-        updateListVisualizzaDatiMalattie();
-    }
-
 
     private void updateListVisualizzaDatiDecessi() {
         decessiAnnualiTableView.getItems().clear();
@@ -342,13 +328,81 @@ public class AnalisiDatiController implements Initializable {
         }
     }
 
+
     @FXML
-    private void analisiDatiVisualizzaDecessiAggregaPerNazioneButtonOnClicked() {
-        decessiAnnualiTableView.getItems().clear();
+    private void onAnalisiDatiVisualizzaDecessiVisualizzaDatiButtonOnClicked() {
+        updateListVisualizzaDatiDecessi();
+    }
+
+    @FXML
+    private void onAnalisiDatiVisualizzaDecessiAggregaPerRegioneButtonOnClicked() {
         if (!analisiDatiVisualizzaDecessiConfrontaConMalattieButton.isDisabled()) {
             analisiDatiVisualizzaDecessiConfrontaConMalattieButton.setDisable(true);
         }
 
+        decessiAnnualiTableView.getItems().clear();
+        decessiAnnualiProvinciaColumn.setText("REGIONE");
+
+        decessiAnnualiProvinciaColumn.setCellFactory(column -> new TableCell<>() {
+            @Override
+            protected void updateItem(Provincia provincia, boolean empty) {
+                super.updateItem(provincia, empty);
+                if (empty || provincia == null) {
+                    setText("");
+                } else {
+                    setText(provincia.getRegione().getNome());
+                }
+            }
+        });
+
+        ArrayList<Integer> anniList = new ArrayList<>();
+        List<DecessiAnnuali> decessiAnnualiList = decessiAnnualiService.findAll();
+        Provincia provincia;
+        Integer incidenti,
+                tumorali,
+                cardiovascolari,
+                contagiose,
+                id = 0;
+
+        for (DecessiAnnuali decessiAnnuali : decessiAnnualiList) {
+            if (!anniList.contains(decessiAnnuali.getAnno())) {
+                anniList.add(decessiAnnuali.getAnno());
+            }
+        }
+
+        for (Integer anno : anniList) {
+            for (Regione r : regioneService.findAll()) {
+                incidenti = 0;
+                tumorali = 0;
+                cardiovascolari = 0;
+                contagiose = 0;
+                provincia = null;
+                id++;
+
+                for (DecessiAnnuali decessiAnnuali : decessiAnnualiList) {
+                    if (decessiAnnuali.getProvincia().getRegione().getId().equals(r.getId()) && decessiAnnuali.getAnno().equals(anno)) {
+                        incidenti += decessiAnnuali.getIncidentiStradali();
+                        tumorali += decessiAnnuali.getMalattieTumorali();
+                        cardiovascolari += decessiAnnuali.getMalattieCardiovascolari();
+                        contagiose += decessiAnnuali.getMalattieContagiose();
+                        provincia = decessiAnnuali.getProvincia();
+                    }
+                }
+                if (provincia != null) {
+                    DecessiAnnuali decessiRegione = new DecessiAnnuali(id, anno, incidenti, tumorali, cardiovascolari, contagiose, provincia);
+                    decessiAnnualiTableView.getItems().add(decessiRegione);
+                }
+            }
+        }
+    }
+
+    @FXML
+    private void onAnalisiDatiVisualizzaDecessiAggregaPerNazioneButtonOnClicked() {
+        if (!analisiDatiVisualizzaDecessiConfrontaConMalattieButton.isDisabled()) {
+            analisiDatiVisualizzaDecessiConfrontaConMalattieButton.setDisable(true);
+        }
+
+        decessiAnnualiTableView.getItems().clear();
         decessiAnnualiProvinciaColumn.setText("NAZIONALE");
         decessiAnnualiProvinciaColumn.setCellFactory(column -> new TableCell<>() {
             @Override
@@ -398,71 +452,7 @@ public class AnalisiDatiController implements Initializable {
     }
 
     @FXML
-    private void analisiDatiVisualizzaDecessiAggregaPerRegioneButtonOnClicked() {
-        decessiAnnualiTableView.getItems().clear();
-        if (!analisiDatiVisualizzaDecessiConfrontaConMalattieButton.isDisabled()) {
-            analisiDatiVisualizzaDecessiConfrontaConMalattieButton.setDisable(true);
-        }
-
-        decessiAnnualiProvinciaColumn.setText("REGIONE");
-
-        decessiAnnualiProvinciaColumn.setCellFactory(column -> new TableCell<>() {
-            @Override
-            protected void updateItem(Provincia provincia, boolean empty) {
-                super.updateItem(provincia, empty);
-                if (empty || provincia == null) {
-                    setText("");
-                } else {
-                    setText(provincia.getRegione().getNome());
-                }
-            }
-        });
-
-        ArrayList<Integer> anniList = new ArrayList<>();
-        List<DecessiAnnuali> decessiAnnualiList = decessiAnnualiService.findAll();
-        Provincia provincia;
-        Integer incidenti,
-                tumorali,
-                cardiovascolari,
-                contagiose,
-                id = 0;
-
-
-        for (DecessiAnnuali decessiAnnuali : decessiAnnualiList) {
-            if (!anniList.contains(decessiAnnuali.getAnno())) {
-                anniList.add(decessiAnnuali.getAnno());
-            }
-        }
-
-        for (Integer anno : anniList) {
-
-            for (Regione r : regioneService.findAll()) {
-                incidenti = 0;
-                tumorali = 0;
-                cardiovascolari = 0;
-                contagiose = 0;
-                provincia = null;
-                id++;
-
-                for (DecessiAnnuali decessiAnnuali : decessiAnnualiList) {
-                    if (decessiAnnuali.getProvincia().getRegione().getId().equals(r.getId()) && decessiAnnuali.getAnno().equals(anno)) {
-                        incidenti += decessiAnnuali.getIncidentiStradali();
-                        tumorali += decessiAnnuali.getMalattieTumorali();
-                        cardiovascolari += decessiAnnuali.getMalattieCardiovascolari();
-                        contagiose += decessiAnnuali.getMalattieContagiose();
-                        provincia = decessiAnnuali.getProvincia();
-                    }
-                }
-                if (provincia != null) {
-                    DecessiAnnuali decessiRegione = new DecessiAnnuali(id, anno, incidenti, tumorali, cardiovascolari, contagiose, provincia);
-                    decessiAnnualiTableView.getItems().add(decessiRegione);
-                }
-            }
-        }
-    }
-
-    @FXML
-    private void analisiDatiVisualizzaDecessiConfrontaConMalattieButtonOnClicked() {
+    private void onAnalisiDatiVisualizzaDecessiConfrontaConMalattieButtonOnClicked() {
         analisiDatiTabPane.getSelectionModel().select(2);
         malattieSettimanaliConfrontaTableView.getItems().clear();
         decessiAnnualiConfrontaTableView.getItems().clear();
@@ -478,7 +468,215 @@ public class AnalisiDatiController implements Initializable {
     }
 
     @FXML
-    private void analisiDatiVisualizzaMalattieAggregaPerNazioneButtonOnClicked() {
+    private void onAnalisiDatiDecessiAnnualiEsportaDatiButtonOnClicked() {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setInitialFileName("decessi");
+        fileChooser.setInitialDirectory(javax.swing.filechooser.FileSystemView.getFileSystemView().getHomeDirectory());
+        fileChooser.setTitle("Open Resource File");
+        FileChooser.ExtensionFilter extensionFilter = new FileChooser.ExtensionFilter("CSV files (*.csv)", "*.csv");
+        fileChooser.getExtensionFilters().add(extensionFilter);
+        File selectedFile = fileChooser.showSaveDialog(null);
+        if (selectedFile != null) {
+            Configuration configuration = new Configuration().configure();
+            org.hibernate.Session currentSession = configuration.buildSessionFactory().openSession();
+            currentSession.doWork(connection -> {
+                CallableStatement cs = connection.prepareCall("CALL SYSCS_UTIL.SYSCS_EXPORT_TABLE (null,'DECESSIANNUALI',?,';',null,'UTF-8')");
+                cs.setString(1, selectedFile.getAbsolutePath());
+                cs.execute();
+            });
+            currentSession.close();
+        }
+    }
+
+
+    @FXML
+    private void onAnalisiDatiVisualizzaMalattieVisualizzaDatiButtonOnClicked() {
+        updateListVisualizzaDatiMalattie();
+    }
+
+    @FXML
+    private void onAnalisiDatiVisualizzaMalattieAggregaPerProvinciaButtonOnClicked() {
+        malattieSettimanaliTableView.getItems().clear();
+
+        comuneColumn.setText("PROVINCIA");
+        comuneColumn.setCellFactory(column -> new TableCell<>() {
+            @Override
+            protected void updateItem(Comune comune, boolean empty) {
+                super.updateItem(comune, empty);
+                if (empty || comune == null) {
+                    setText("");
+                } else {
+                    setText(comune.getProvincia().getNome());
+                }
+            }
+        });
+
+        ArrayList<Integer> anniList = new ArrayList<>();
+        Comune comune;
+        Integer rInfluenza,
+                cInfluenza,
+                cRespiratorie,
+                rPolmonite,
+                cPolmonite,
+                rMeningite,
+                cMeningite,
+                rEpatite,
+                cEpatite,
+                rMorbillo,
+                cMorbillo,
+                rTubercolosi,
+                cTubercolosi,
+                rGastroenterite,
+                cGastroenterite,
+                id = 0;
+
+        for (MalattieSettimanali malattieSettimanali : malattieSettimanaliList) {
+            if (!anniList.contains(malattieSettimanali.getAnno())) {
+                anniList.add(malattieSettimanali.getAnno());
+            }
+        }
+
+        for (Integer anno : anniList) {
+            for (Provincia p : new ProvinciaService().findAll()) {
+                rInfluenza = 0;
+                cInfluenza = 0;
+                cRespiratorie = 0;
+                rPolmonite = 0;
+                cPolmonite = 0;
+                rMeningite = 0;
+                cMeningite = 0;
+                rEpatite = 0;
+                cEpatite = 0;
+                rMorbillo = 0;
+                cMorbillo = 0;
+                rTubercolosi = 0;
+                cTubercolosi = 0;
+                rGastroenterite = 0;
+                cGastroenterite = 0;
+                comune = null;
+                id++;
+
+                for (MalattieSettimanali malattieSettimanali : malattieSettimanaliList) {
+                    if (malattieSettimanali.getComune().getProvincia().getId().equals(p.getId()) && malattieSettimanali.getAnno().equals(anno)) {
+                        rInfluenza += malattieSettimanali.getRicoveratiInfluenza();
+                        cInfluenza += malattieSettimanali.getInCuraInfluenza();
+                        cRespiratorie += malattieSettimanali.getComplicanzeRespiratorie();
+                        rPolmonite += malattieSettimanali.getRicoveratiPolmonite();
+                        cPolmonite += malattieSettimanali.getInCuraPolmonite();
+                        rMeningite += malattieSettimanali.getRicoveratiMeningite();
+                        cMeningite += malattieSettimanali.getInCuraMeningite();
+                        rEpatite += malattieSettimanali.getRicoveratiEpatite();
+                        cEpatite += malattieSettimanali.getInCuraEpatite();
+                        rMorbillo += malattieSettimanali.getRicoveratiMorbillo();
+                        cMorbillo += malattieSettimanali.getInCuraMorbillo();
+                        rTubercolosi += malattieSettimanali.getRicoveratiTubercolosi();
+                        cTubercolosi += malattieSettimanali.getInCuraTubercolosi();
+                        rGastroenterite += malattieSettimanali.getRicoveratiGastroenterite();
+                        cGastroenterite += malattieSettimanali.getInCuraGastroenterite();
+                        comune = malattieSettimanali.getComune();
+                    }
+                }
+                if (comune != null) {
+                    MalattieSettimanali malattieProvincia = new MalattieSettimanali(id, anno, 0, rInfluenza, cInfluenza, cRespiratorie, rPolmonite, cPolmonite, rMeningite, cMeningite, rEpatite, cEpatite, rMorbillo, cMorbillo, rTubercolosi, cTubercolosi, rGastroenterite, cGastroenterite, comune);
+                    malattieSettimanaliTableView.getItems().add(malattieProvincia);
+                }
+            }
+        }
+    }
+
+    @FXML
+    private void onAnalisiDatiVisualizzaMalattieAggregaPerRegioneButtonOnClicked() {
+        malattieSettimanaliTableView.getItems().clear();
+
+        comuneColumn.setText("REGIONE");
+
+        comuneColumn.setCellFactory(column -> new TableCell<>() {
+            @Override
+            protected void updateItem(Comune comune, boolean empty) {
+                super.updateItem(comune, empty);
+                if (empty || comune == null) {
+                    setText("");
+                } else {
+                    setText(comune.getProvincia().getRegione().getNome());
+                }
+            }
+        });
+
+        ArrayList<Integer> anniList = new ArrayList<>();
+        Comune comune;
+        Integer rInfluenza,
+                cInfluenza,
+                cRespiratorie,
+                rPolmonite,
+                cPolmonite,
+                rMeningite,
+                cMeningite,
+                rEpatite,
+                cEpatite,
+                rMorbillo,
+                cMorbillo,
+                rTubercolosi,
+                cTubercolosi,
+                rGastroenterite,
+                cGastroenterite,
+                id = 0;
+
+        for (MalattieSettimanali malattieSettimanali : malattieSettimanaliList) {
+            if (!anniList.contains(malattieSettimanali.getAnno())) {
+                anniList.add(malattieSettimanali.getAnno());
+            }
+        }
+
+        for (Integer anno : anniList) {
+            for (Regione r : regioneService.findAll()) {
+                rInfluenza = 0;
+                cInfluenza = 0;
+                cRespiratorie = 0;
+                rPolmonite = 0;
+                cPolmonite = 0;
+                rMeningite = 0;
+                cMeningite = 0;
+                rEpatite = 0;
+                cEpatite = 0;
+                rMorbillo = 0;
+                cMorbillo = 0;
+                rTubercolosi = 0;
+                cTubercolosi = 0;
+                rGastroenterite = 0;
+                cGastroenterite = 0;
+                comune = null;
+                id++;
+
+                for (MalattieSettimanali malattieSettimanali : malattieSettimanaliList) {
+                    if (malattieSettimanali.getComune().getProvincia().getRegione().getId().equals(r.getId()) && malattieSettimanali.getAnno().equals(anno)) {
+                        rInfluenza += malattieSettimanali.getRicoveratiInfluenza();
+                        cInfluenza += malattieSettimanali.getInCuraInfluenza();
+                        cRespiratorie += malattieSettimanali.getComplicanzeRespiratorie();
+                        rPolmonite += malattieSettimanali.getRicoveratiPolmonite();
+                        cPolmonite += malattieSettimanali.getInCuraPolmonite();
+                        rMeningite += malattieSettimanali.getRicoveratiMeningite();
+                        cMeningite += malattieSettimanali.getInCuraMeningite();
+                        rEpatite += malattieSettimanali.getRicoveratiEpatite();
+                        cEpatite += malattieSettimanali.getInCuraEpatite();
+                        rMorbillo += malattieSettimanali.getRicoveratiMorbillo();
+                        cMorbillo += malattieSettimanali.getInCuraMorbillo();
+                        rTubercolosi += malattieSettimanali.getRicoveratiTubercolosi();
+                        cTubercolosi += malattieSettimanali.getInCuraTubercolosi();
+                        rGastroenterite += malattieSettimanali.getRicoveratiGastroenterite();
+                        cGastroenterite += malattieSettimanali.getInCuraGastroenterite();
+                        comune = malattieSettimanali.getComune();
+                    }
+                }
+                if (comune != null) {
+                    MalattieSettimanali malattieRegione = new MalattieSettimanali(id, anno, 0, rInfluenza, cInfluenza, cRespiratorie, rPolmonite, cPolmonite, rMeningite, cMeningite, rEpatite, cEpatite, rMorbillo, cMorbillo, rTubercolosi, cTubercolosi, rGastroenterite, cGastroenterite, comune);
+                    malattieSettimanaliTableView.getItems().add(malattieRegione);
+                }
+            }
+        }
+    }
+
+    @FXML
+    private void onAnalisiDatiVisualizzaMalattieAggregaPerNazioneButtonOnClicked() {
         malattieSettimanaliTableView.getItems().clear();
 
         comuneColumn.setText("NAZIONALE");
@@ -537,7 +735,6 @@ public class AnalisiDatiController implements Initializable {
             rGastroenteriteNazionale = 0;
             cGastroenteriteNazionale = 0;
 
-
             for (MalattieSettimanali malattieSettimanali : malattieSettimanaliList) {
                 if (malattieSettimanali.getAnno().equals(anno)) {
                     rInfluenzaNazionale += malattieSettimanali.getRicoveratiInfluenza();
@@ -558,222 +755,14 @@ public class AnalisiDatiController implements Initializable {
 
                 }
             }
-
             id++;
             MalattieSettimanali malattieNazione = new MalattieSettimanali(id, anno, 0, rInfluenzaNazionale, cInfluenzaNazionale, cRespiratorieNazionale, rPolmoniteNazionale, cPolmoniteNazionale, rMeningiteNazionale, cMeningiteNazionale, rEpatiteNazionale, cEpatiteNazionale, rMorbilloNazionale, cMorbilloNazionale, rTubercolosiNazionale, cTubercolosiNazionale, rGastroenteriteNazionale, cGastroenteriteNazionale, comuneNazionale);
             malattieSettimanaliTableView.getItems().add(malattieNazione);
         }
-
     }
 
     @FXML
-    private void analisiDatiVisualizzaMalattieAggregaPerRegioneButtonOnClicked() {
-        malattieSettimanaliTableView.getItems().clear();
-
-        comuneColumn.setText("REGIONE");
-
-        comuneColumn.setCellFactory(column -> new TableCell<>() {
-            @Override
-            protected void updateItem(Comune comune, boolean empty) {
-                super.updateItem(comune, empty);
-                if (empty || comune == null) {
-                    setText("");
-                } else {
-                    setText(comune.getProvincia().getRegione().getNome());
-                }
-            }
-        });
-
-        ArrayList<Integer> anniList = new ArrayList<>();
-        Comune comune;
-        Integer rInfluenza,
-                cInfluenza,
-                cRespiratorie,
-                rPolmonite,
-                cPolmonite,
-                rMeningite,
-                cMeningite,
-                rEpatite,
-                cEpatite,
-                rMorbillo,
-                cMorbillo,
-                rTubercolosi,
-                cTubercolosi,
-                rGastroenterite,
-                cGastroenterite,
-                id = 0;
-
-
-        for (MalattieSettimanali malattieSettimanali : malattieSettimanaliList) {
-            if (!anniList.contains(malattieSettimanali.getAnno())) {
-                anniList.add(malattieSettimanali.getAnno());
-            }
-        }
-
-        for (Integer anno : anniList) {
-
-
-            for (Regione r : regioneService.findAll()) {
-                rInfluenza = 0;
-                cInfluenza = 0;
-                cRespiratorie = 0;
-                rPolmonite = 0;
-                cPolmonite = 0;
-                rMeningite = 0;
-                cMeningite = 0;
-                rEpatite = 0;
-                cEpatite = 0;
-                rMorbillo = 0;
-                cMorbillo = 0;
-                rTubercolosi = 0;
-                cTubercolosi = 0;
-                rGastroenterite = 0;
-                cGastroenterite = 0;
-                comune = null;
-                id++;
-
-                for (MalattieSettimanali malattieSettimanali : malattieSettimanaliList) {
-                    if (malattieSettimanali.getComune().getProvincia().getRegione().getId().equals(r.getId()) && malattieSettimanali.getAnno().equals(anno)) {
-                        rInfluenza += malattieSettimanali.getRicoveratiInfluenza();
-                        cInfluenza += malattieSettimanali.getInCuraInfluenza();
-                        cRespiratorie += malattieSettimanali.getComplicanzeRespiratorie();
-                        rPolmonite += malattieSettimanali.getRicoveratiPolmonite();
-                        cPolmonite += malattieSettimanali.getInCuraPolmonite();
-                        rMeningite += malattieSettimanali.getRicoveratiMeningite();
-                        cMeningite += malattieSettimanali.getInCuraMeningite();
-                        rEpatite += malattieSettimanali.getRicoveratiEpatite();
-                        cEpatite += malattieSettimanali.getInCuraEpatite();
-                        rMorbillo += malattieSettimanali.getRicoveratiMorbillo();
-                        cMorbillo += malattieSettimanali.getInCuraMorbillo();
-                        rTubercolosi += malattieSettimanali.getRicoveratiTubercolosi();
-                        cTubercolosi += malattieSettimanali.getInCuraTubercolosi();
-                        rGastroenterite += malattieSettimanali.getRicoveratiGastroenterite();
-                        cGastroenterite += malattieSettimanali.getInCuraGastroenterite();
-                        comune = malattieSettimanali.getComune();
-                    }
-                }
-                if (comune != null) {
-                    MalattieSettimanali malattieRegione = new MalattieSettimanali(id, anno, 0, rInfluenza, cInfluenza, cRespiratorie, rPolmonite, cPolmonite, rMeningite, cMeningite, rEpatite, cEpatite, rMorbillo, cMorbillo, rTubercolosi, cTubercolosi, rGastroenterite, cGastroenterite, comune);
-                    malattieSettimanaliTableView.getItems().add(malattieRegione);
-                }
-            }
-        }
-    }
-
-    @FXML
-    private void analisiDatiVisualizzaMalattieAggregaPerProvinciaButtonOnClicked() {
-        malattieSettimanaliTableView.getItems().clear();
-
-        comuneColumn.setText("PROVINCIA");
-
-        comuneColumn.setCellFactory(column -> new TableCell<>() {
-            @Override
-            protected void updateItem(Comune comune, boolean empty) {
-                super.updateItem(comune, empty);
-                if (empty || comune == null) {
-                    setText("");
-                } else {
-                    setText(comune.getProvincia().getNome());
-                }
-            }
-        });
-
-        ArrayList<Integer> anniList = new ArrayList<>();
-        Comune comune;
-        Integer rInfluenza,
-                cInfluenza,
-                cRespiratorie,
-                rPolmonite,
-                cPolmonite,
-                rMeningite,
-                cMeningite,
-                rEpatite,
-                cEpatite,
-                rMorbillo,
-                cMorbillo,
-                rTubercolosi,
-                cTubercolosi,
-                rGastroenterite,
-                cGastroenterite,
-                id = 0;
-
-        for (MalattieSettimanali malattieSettimanali : malattieSettimanaliList) {
-            if (!anniList.contains(malattieSettimanali.getAnno())) {
-                anniList.add(malattieSettimanali.getAnno());
-            }
-        }
-
-        for (Integer anno : anniList) {
-            for (Provincia p : provinciaService.findAll()) {
-                rInfluenza = 0;
-                cInfluenza = 0;
-                cRespiratorie = 0;
-                rPolmonite = 0;
-                cPolmonite = 0;
-                rMeningite = 0;
-                cMeningite = 0;
-                rEpatite = 0;
-                cEpatite = 0;
-                rMorbillo = 0;
-                cMorbillo = 0;
-                rTubercolosi = 0;
-                cTubercolosi = 0;
-                rGastroenterite = 0;
-                cGastroenterite = 0;
-                comune = null;
-                id++;
-
-                for (MalattieSettimanali malattieSettimanali : malattieSettimanaliList) {
-                    if (malattieSettimanali.getComune().getProvincia().getId().equals(p.getId()) && malattieSettimanali.getAnno().equals(anno)) {
-                        rInfluenza += malattieSettimanali.getRicoveratiInfluenza();
-                        cInfluenza += malattieSettimanali.getInCuraInfluenza();
-                        cRespiratorie += malattieSettimanali.getComplicanzeRespiratorie();
-                        rPolmonite += malattieSettimanali.getRicoveratiPolmonite();
-                        cPolmonite += malattieSettimanali.getInCuraPolmonite();
-                        rMeningite += malattieSettimanali.getRicoveratiMeningite();
-                        cMeningite += malattieSettimanali.getInCuraMeningite();
-                        rEpatite += malattieSettimanali.getRicoveratiEpatite();
-                        cEpatite += malattieSettimanali.getInCuraEpatite();
-                        rMorbillo += malattieSettimanali.getRicoveratiMorbillo();
-                        cMorbillo += malattieSettimanali.getInCuraMorbillo();
-                        rTubercolosi += malattieSettimanali.getRicoveratiTubercolosi();
-                        cTubercolosi += malattieSettimanali.getInCuraTubercolosi();
-                        rGastroenterite += malattieSettimanali.getRicoveratiGastroenterite();
-                        cGastroenterite += malattieSettimanali.getInCuraGastroenterite();
-                        comune = malattieSettimanali.getComune();
-                    }
-                }
-                if (comune != null) {
-                    MalattieSettimanali malattieProvincia = new MalattieSettimanali(id, anno, 0, rInfluenza, cInfluenza, cRespiratorie, rPolmonite, cPolmonite, rMeningite, cMeningite, rEpatite, cEpatite, rMorbillo, cMorbillo, rTubercolosi, cTubercolosi, rGastroenterite, cGastroenterite, comune);
-                    malattieSettimanaliTableView.getItems().add(malattieProvincia);
-                }
-            }
-        }
-    }
-
-    @FXML
-    private void analisiDatiDecessiAnnualiEsportaDatiButtonOnClicked() {
-        FileChooser fileChooser = new FileChooser();
-        fileChooser.setInitialFileName("decessi");
-        fileChooser.setInitialDirectory(javax.swing.filechooser.FileSystemView.getFileSystemView().getHomeDirectory());
-        fileChooser.setTitle("Open Resource File");
-        FileChooser.ExtensionFilter extensionFilter = new FileChooser.ExtensionFilter("CSV files (*.csv)", "*.csv");
-        fileChooser.getExtensionFilters().add(extensionFilter);
-        File selectedFile = fileChooser.showSaveDialog(null);
-        if (selectedFile != null) {
-            Configuration configuration = new Configuration().configure();
-            org.hibernate.Session currentSession = configuration.buildSessionFactory().openSession();
-            currentSession.doWork(connection -> {
-                CallableStatement cs = connection.prepareCall("CALL SYSCS_UTIL.SYSCS_EXPORT_TABLE (null,'DECESSIANNUALI',?,';',null,'UTF-8')");
-                cs.setString(1, selectedFile.getAbsolutePath());
-                cs.execute();
-            });
-            currentSession.close();
-        }
-    }
-
-    @FXML
-    private void analisiDatiMalattieSettimanaliEsportaDatiButtonOnClicked() {
+    private void onAnalisiDatiMalattieSettimanaliEsportaDatiButtonOnClicked() {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setInitialFileName("malattie");
         fileChooser.setInitialDirectory(javax.swing.filechooser.FileSystemView.getFileSystemView().getHomeDirectory());
@@ -792,6 +781,5 @@ public class AnalisiDatiController implements Initializable {
             currentSession.close();
         }
     }
-
 
 }

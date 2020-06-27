@@ -1,6 +1,5 @@
 package com.jgg.controlloEpidemia.importData;
 
-import com.jgg.controlloEpidemia.App;
 import com.jgg.controlloEpidemia.model.Comune;
 import com.jgg.controlloEpidemia.model.MalattieSettimanali;
 import com.jgg.controlloEpidemia.service.ComuneService;
@@ -34,8 +33,8 @@ public class EtlMalattie {
                         break;
                     }
                 }
-                    malattieSettimanaliList.add(new MalattieSettimanali(Integer.parseInt(vettore[0]), Integer.parseInt(vettore[1]), Integer.parseInt(vettore[2]), Integer.parseInt(vettore[3]), Integer.parseInt(vettore[4]), Integer.parseInt(vettore[5]), Integer.parseInt(vettore[6]), Integer.parseInt(vettore[7]), Integer.parseInt(vettore[8]), Integer.parseInt(vettore[9]), Integer.parseInt(vettore[10]), Integer.parseInt(vettore[11]), Integer.parseInt(vettore[12]), Integer.parseInt(vettore[13]), Integer.parseInt(vettore[14]), Integer.parseInt(vettore[15]), Integer.parseInt(vettore[16]), eComune));
-                }
+                malattieSettimanaliList.add(new MalattieSettimanali(Integer.parseInt(vettore[0]), Integer.parseInt(vettore[1]), Integer.parseInt(vettore[2]), Integer.parseInt(vettore[3]), Integer.parseInt(vettore[4]), Integer.parseInt(vettore[5]), Integer.parseInt(vettore[6]), Integer.parseInt(vettore[7]), Integer.parseInt(vettore[8]), Integer.parseInt(vettore[9]), Integer.parseInt(vettore[10]), Integer.parseInt(vettore[11]), Integer.parseInt(vettore[12]), Integer.parseInt(vettore[13]), Integer.parseInt(vettore[14]), Integer.parseInt(vettore[15]), Integer.parseInt(vettore[16]), eComune));
+            }
             riga = reader.readLine();
         }
         new MalattieSettimanaliService().saveOrUpdate(malattieSettimanaliList);

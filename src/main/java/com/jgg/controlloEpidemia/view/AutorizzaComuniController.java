@@ -73,20 +73,6 @@ public class AutorizzaComuniController implements Initializable {
     }
 
     @FXML
-    private void onSalvaButtonClicked() {
-        Utente utente = utenteComboBox.getValue();
-        if (utente != null) {
-            List<Comune> toAuthorizeComuni = comuniAutorizzatiListView.getItems();
-            utente.getComuni().clear();
-            utente.getComuni().addAll(toAuthorizeComuni);
-            UtenteService utenteService = new UtenteService();
-            utenteService.update(utente);
-            logger.info("Aggiunti comuni: " + toAuthorizeComuni + " all'utente: " + utente);
-            fadeAnimation(savedLabel);
-        }
-    }
-
-    @FXML
     private void cambioUtente() {
         Utente user = utenteComboBox.getValue();
         authorizedComuniObservableList.setAll(user.getComuni());
@@ -114,21 +100,17 @@ public class AutorizzaComuniController implements Initializable {
         }
     }
 
-    private static class ComuneFormatCell extends ListCell<Comune> {
-        public ComuneFormatCell() {
-        }
-
-        @Override
-        protected void updateItem(Comune item, boolean empty) {
-            super.updateItem(item, empty);
-            setText(item == null ? "" : item.getNome());
-        }
-    }
-
-    private static class ComuneComparator implements Comparator<Comune> {
-        @Override
-        public int compare(Comune o1, Comune o2) {
-            return o1.getNome().compareTo(o2.getNome());
+    @FXML
+    private void onSalvaButtonClicked() {
+        Utente utente = utenteComboBox.getValue();
+        if (utente != null) {
+            List<Comune> toAuthorizeComuni = comuniAutorizzatiListView.getItems();
+            utente.getComuni().clear();
+            utente.getComuni().addAll(toAuthorizeComuni);
+            UtenteService utenteService = new UtenteService();
+            utenteService.update(utente);
+            logger.info("Aggiunti comuni: " + toAuthorizeComuni + " all'utente: " + utente);
+            fadeAnimation(savedLabel);
         }
     }
 
@@ -139,6 +121,24 @@ public class AutorizzaComuniController implements Initializable {
         transition.setCycleCount(2);
         transition.setAutoReverse(true);
         transition.play();
+    }
+
+    private static class ComuneComparator implements Comparator<Comune> {
+        @Override
+        public int compare(Comune o1, Comune o2) {
+            return o1.getNome().compareTo(o2.getNome());
+        }
+    }
+
+    private static class ComuneFormatCell extends ListCell<Comune> {
+        public ComuneFormatCell() {
+        }
+
+        @Override
+        protected void updateItem(Comune item, boolean empty) {
+            super.updateItem(item, empty);
+            setText(item == null ? "" : item.getNome());
+        }
     }
 
 }

@@ -2,7 +2,6 @@ package com.jgg.controlloEpidemia;
 
 import com.jgg.controlloEpidemia.importData.*;
 import com.jgg.controlloEpidemia.model.Utente;
-import com.jgg.controlloEpidemia.view.AutorizzaComuniController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
