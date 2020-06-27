@@ -19,6 +19,7 @@ public class RegioneDao implements RegioneDaoInterface {
     @Getter
     @Setter
     private org.hibernate.Session currentSession;
+
     @Getter
     @Setter
     private org.hibernate.Transaction currentTransaction;

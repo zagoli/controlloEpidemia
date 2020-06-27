@@ -19,6 +19,7 @@ public class PermessoDao implements PermessoDaoInterface {
     @Getter
     @Setter
     private org.hibernate.Session currentSession;
+
     @Getter
     @Setter
     private org.hibernate.Transaction currentTransaction;

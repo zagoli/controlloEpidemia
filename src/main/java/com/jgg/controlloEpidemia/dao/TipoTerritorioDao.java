@@ -17,6 +17,7 @@ public class TipoTerritorioDao implements TipoTerritorioDaoInterface {
     @Getter
     @Setter
     private org.hibernate.Session currentSession;
+
     @Getter
     @Setter
     private org.hibernate.Transaction currentTransaction;

@@ -19,6 +19,7 @@ public class RuoloDao implements RuoloDaoInterface {
     @Getter
     @Setter
     private org.hibernate.Session currentSession;
+
     @Getter
     @Setter
     private org.hibernate.Transaction currentTransaction;

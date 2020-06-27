@@ -22,6 +22,7 @@ public class DecessiAnnualiDao implements DecessiAnnualiDaoInterface {
     @Getter
     @Setter
     private org.hibernate.Session currentSession;
+
     @Getter
     @Setter
     private org.hibernate.Transaction currentTransaction;
