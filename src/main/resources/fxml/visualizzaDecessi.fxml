@@ -19,18 +19,18 @@
             <center>
                 <TableView fx:id="decessiAnnualiTableView" prefHeight="425.0" prefWidth="750.0">
                     <columns>
-                        <TableColumn fx:id="decessiAnnualiIdColumn" prefWidth="24.800004959106445" text="ID"
+                        <TableColumn fx:id="idColumn" prefWidth="24.800004959106445" text="ID"
                                      visible="false"/>
-                        <TableColumn fx:id="decessiAnnualiProvinciaColumn" prefWidth="77.39999389648438"
+                        <TableColumn fx:id="provinciaColumn" prefWidth="77.39999389648438"
                                      text="PROVINCIA"/>
-                        <TableColumn fx:id="decessiAnnualiAnnoColumn" prefWidth="42.99999237060547" text="ANNO"/>
-                        <TableColumn fx:id="decessiAnnualiIncidentiStradaliColumn" prefWidth="130.80001831054688"
+                        <TableColumn fx:id="annoColumn" prefWidth="42.99999237060547" text="ANNO"/>
+                        <TableColumn fx:id="incidentiStradaliColumn" prefWidth="130.80001831054688"
                                      text="INCIDENTI STRADALI"/>
-                        <TableColumn fx:id="decessiAnnualiMalattieTumoraliColumn" minWidth="0.0"
+                        <TableColumn fx:id="malattieTumoraliColumn" minWidth="0.0"
                                      prefWidth="131.79998779296875" text="MALATTIE TUMORALI"/>
-                        <TableColumn fx:id="decessiAnnualiMalattieCardiovascolariColumn" prefWidth="186.60000610351562"
+                        <TableColumn fx:id="malattieCardiovascolariColumn" prefWidth="186.60000610351562"
                                      text="MALATTIE CARDIOVASCOLARI"/>
-                        <TableColumn fx:id="decessiAnnualiMalattieContagioseColumn" minWidth="3.199951171875"
+                        <TableColumn fx:id="malattieContagioseColumn" minWidth="3.199951171875"
                                      prefWidth="152.60003662109375" text="MALATTIE CONTAGIOSE"/>
                     </columns>
                     <columnResizePolicy>

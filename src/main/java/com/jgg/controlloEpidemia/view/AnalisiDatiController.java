@@ -57,43 +57,43 @@ public class AnalisiDatiController implements Initializable {
     @FXML
     private TableView<MalattieSettimanali> malattieSettimanaliTableView;
     @FXML
-    private TableColumn<MalattieSettimanali, Integer> idColumn;
+    private TableColumn<MalattieSettimanali, Integer> malattieSettimanaliIdColumn;
     @FXML
-    private TableColumn<MalattieSettimanali, Integer> annoColumn;
+    private TableColumn<MalattieSettimanali, Integer> malattieSettimanaliAnnoColumn;
     @FXML
-    private TableColumn<MalattieSettimanali, Integer> settimanaColumn;
+    private TableColumn<MalattieSettimanali, Integer> malattieSettimanaliSettimanaColumn;
     @FXML
-    private TableColumn<MalattieSettimanali, Integer> ricoveratiConInfluenzaColumn;
+    private TableColumn<MalattieSettimanali, Integer> malattieSettimanaliRicoveratiConInfluenzaColumn;
     @FXML
-    private TableColumn<MalattieSettimanali, Integer> inCuraConInfluenzaColumn;
+    private TableColumn<MalattieSettimanali, Integer> malattieSettimanaliInCuraConInfluenzaColumn;
     @FXML
-    private TableColumn<MalattieSettimanali, Integer> complicanzeRespiratorieColumn;
+    private TableColumn<MalattieSettimanali, Integer> malattieSettimanaliComplicanzeRespiratorieColumn;
     @FXML
-    private TableColumn<MalattieSettimanali, Integer> ricoveratiConPolmoniteColumn;
+    private TableColumn<MalattieSettimanali, Integer> malattieSettimanaliRicoveratiConPolmoniteColumn;
     @FXML
-    private TableColumn<MalattieSettimanali, Integer> inCuraConPolmoniteColumn;
+    private TableColumn<MalattieSettimanali, Integer> malattieSettimanaliInCuraConPolmoniteColumn;
     @FXML
-    private TableColumn<MalattieSettimanali, Integer> ricoveratiConMeningiteColumn;
+    private TableColumn<MalattieSettimanali, Integer> malattieSettimanaliRicoveratiConMeningiteColumn;
     @FXML
-    private TableColumn<MalattieSettimanali, Integer> inCuraConMeningiteColumn;
+    private TableColumn<MalattieSettimanali, Integer> malattieSettimanaliInCuraConMeningiteColumn;
     @FXML
-    private TableColumn<MalattieSettimanali, Integer> ricoveratiConEpatiteColumn;
+    private TableColumn<MalattieSettimanali, Integer> malattieSettimanaliRicoveratiConEpatiteColumn;
     @FXML
-    private TableColumn<MalattieSettimanali, Integer> inCuraConEpatiteColumn;
+    private TableColumn<MalattieSettimanali, Integer> malattieSettimanaliInCuraConEpatiteColumn;
     @FXML
-    private TableColumn<MalattieSettimanali, Integer> ricoveratiConMorbilloColumn;
+    private TableColumn<MalattieSettimanali, Integer> malattieSettimanaliRicoveratiConMorbilloColumn;
     @FXML
-    private TableColumn<MalattieSettimanali, Integer> inCuraConMorbilloColumn;
+    private TableColumn<MalattieSettimanali, Integer> malattieSettimanaliInCuraConMorbilloColumn;
     @FXML
-    private TableColumn<MalattieSettimanali, Integer> ricoveratiConTubercolosiColumn;
+    private TableColumn<MalattieSettimanali, Integer> malattieSettimanaliRicoveratiConTubercolosiColumn;
     @FXML
-    private TableColumn<MalattieSettimanali, Integer> inCuraConTubercolosiColumn;
+    private TableColumn<MalattieSettimanali, Integer> malattieSettimanaliInCuraConTubercolosiColumn;
     @FXML
-    private TableColumn<MalattieSettimanali, Integer> ricoveratiConGastroenteriteColumn;
+    private TableColumn<MalattieSettimanali, Integer> malattieSettimanaliRicoveratiConGastroenteriteColumn;
     @FXML
-    private TableColumn<MalattieSettimanali, Integer> inCuraConGastroenteriteColumn;
+    private TableColumn<MalattieSettimanali, Integer> malattieSettimanaliInCuraConGastroenteriteColumn;
     @FXML
-    private TableColumn<MalattieSettimanali, Comune> comuneColumn;
+    private TableColumn<MalattieSettimanali, Comune> malattieSettimanaliComuneColumn;
 
     @FXML
     private TableView<DecessiAnnuali> decessiAnnualiConfrontaTableView;
@@ -115,43 +115,43 @@ public class AnalisiDatiController implements Initializable {
     @FXML
     private TableView<MalattieSettimanali> malattieSettimanaliConfrontaTableView;
     @FXML
-    private TableColumn<MalattieSettimanali, Integer> idConfrontaColumn;
+    private TableColumn<MalattieSettimanali, Integer> malattieSettimanaliIdConfrontaColumn;
     @FXML
-    private TableColumn<MalattieSettimanali, Integer> annoConfrontaColumn;
+    private TableColumn<MalattieSettimanali, Integer> malattieSettimanaliAnnoConfrontaColumn;
     @FXML
-    private TableColumn<MalattieSettimanali, Integer> settimanaConfrontaColumn;
+    private TableColumn<MalattieSettimanali, Integer> malattieSettimanaliSettimanaConfrontaColumn;
     @FXML
-    private TableColumn<MalattieSettimanali, Integer> ricoveratiConInfluenzaConfrontaColumn;
+    private TableColumn<MalattieSettimanali, Integer> malattieSettimanaliRicoveratiConInfluenzaConfrontaColumn;
     @FXML
-    private TableColumn<MalattieSettimanali, Integer> inCuraConInfluenzaConfrontaColumn;
+    private TableColumn<MalattieSettimanali, Integer> malattieSettimanaliInCuraConInfluenzaConfrontaColumn;
     @FXML
-    private TableColumn<MalattieSettimanali, Integer> complicanzeRespiratorieConfrontaColumn;
+    private TableColumn<MalattieSettimanali, Integer> malattieSettimanaliComplicanzeRespiratorieConfrontaColumn;
     @FXML
-    private TableColumn<MalattieSettimanali, Integer> ricoveratiConPolmoniteConfrontaColumn;
+    private TableColumn<MalattieSettimanali, Integer> malattieSettimanaliRicoveratiConPolmoniteConfrontaColumn;
     @FXML
-    private TableColumn<MalattieSettimanali, Integer> inCuraConPolmoniteConfrontaColumn;
+    private TableColumn<MalattieSettimanali, Integer> malattieSettimanaliInCuraConPolmoniteConfrontaColumn;
     @FXML
-    private TableColumn<MalattieSettimanali, Integer> ricoveratiConMeningiteConfrontaColumn;
+    private TableColumn<MalattieSettimanali, Integer> malattieSettimanaliRicoveratiConMeningiteConfrontaColumn;
     @FXML
-    private TableColumn<MalattieSettimanali, Integer> inCuraConMeningiteConfrontaColumn;
+    private TableColumn<MalattieSettimanali, Integer> malattieSettimanaliInCuraConMeningiteConfrontaColumn;
     @FXML
-    private TableColumn<MalattieSettimanali, Integer> ricoveratiConEpatiteConfrontaColumn;
+    private TableColumn<MalattieSettimanali, Integer> malattieSettimanaliRicoveratiConEpatiteConfrontaColumn;
     @FXML
-    private TableColumn<MalattieSettimanali, Integer> inCuraConEpatiteConfrontaColumn;
+    private TableColumn<MalattieSettimanali, Integer> malattieSettimanaliInCuraConEpatiteConfrontaColumn;
     @FXML
-    private TableColumn<MalattieSettimanali, Integer> ricoveratiConMorbilloConfrontaColumn;
+    private TableColumn<MalattieSettimanali, Integer> malattieSettimanaliRicoveratiConMorbilloConfrontaColumn;
     @FXML
-    private TableColumn<MalattieSettimanali, Integer> inCuraConMorbilloConfrontaColumn;
+    private TableColumn<MalattieSettimanali, Integer> malattieSettimanaliInCuraConMorbilloConfrontaColumn;
     @FXML
-    private TableColumn<MalattieSettimanali, Integer> ricoveratiConTubercolosiConfrontaColumn;
+    private TableColumn<MalattieSettimanali, Integer> malattieSettimanaliRicoveratiConTubercolosiConfrontaColumn;
     @FXML
-    private TableColumn<MalattieSettimanali, Integer> inCuraConTubercolosiConfrontaColumn;
+    private TableColumn<MalattieSettimanali, Integer> malattieSettimanaliInCuraConTubercolosiConfrontaColumn;
     @FXML
-    private TableColumn<MalattieSettimanali, Integer> ricoveratiConGastroenteriteConfrontaColumn;
+    private TableColumn<MalattieSettimanali, Integer> malattieSettimanaliRicoveratiConGastroenteriteConfrontaColumn;
     @FXML
-    private TableColumn<MalattieSettimanali, Integer> inCuraConGastroenteriteConfrontaColumn;
+    private TableColumn<MalattieSettimanali, Integer> malattieSettimanaliInCuraConGastroenteriteConfrontaColumn;
     @FXML
-    private TableColumn<MalattieSettimanali, Comune> comuneConfrontaColumn;
+    private TableColumn<MalattieSettimanali, Comune> malattieSettimanaliComuneConfrontaColumn;
 
     @FXML
     private Button analisiDatiVisualizzaDecessiConfrontaConMalattieButton;
@@ -177,27 +177,27 @@ public class AnalisiDatiController implements Initializable {
         decessiAnnualiMalattieContagioseColumn.setCellValueFactory(new PropertyValueFactory<>("malattieContagiose"));
         decessiAnnualiMalattieCardiovascolariColumn.setCellValueFactory(new PropertyValueFactory<>("malattieCardiovascolari"));
 
-        idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
-        annoColumn.setCellValueFactory(new PropertyValueFactory<>("anno"));
-        malattieSettimanaliTableView.getSortOrder().add(annoColumn);
-        settimanaColumn.setCellValueFactory(new PropertyValueFactory<>("settimana"));
-        ricoveratiConInfluenzaColumn.setCellValueFactory(new PropertyValueFactory<>("ricoveratiInfluenza"));
-        inCuraConInfluenzaColumn.setCellValueFactory(new PropertyValueFactory<>("inCuraInfluenza"));
-        complicanzeRespiratorieColumn.setCellValueFactory(new PropertyValueFactory<>("complicanzeRespiratorie"));
-        ricoveratiConPolmoniteColumn.setCellValueFactory(new PropertyValueFactory<>("ricoveratiPolmonite"));
-        inCuraConPolmoniteColumn.setCellValueFactory(new PropertyValueFactory<>("inCuraPolmonite"));
-        ricoveratiConMeningiteColumn.setCellValueFactory(new PropertyValueFactory<>("ricoveratiMeningite"));
-        inCuraConMeningiteColumn.setCellValueFactory(new PropertyValueFactory<>("inCuraMeningite"));
-        ricoveratiConEpatiteColumn.setCellValueFactory(new PropertyValueFactory<>("ricoveratiEpatite"));
-        inCuraConEpatiteColumn.setCellValueFactory(new PropertyValueFactory<>("inCuraEpatite"));
-        ricoveratiConMorbilloColumn.setCellValueFactory(new PropertyValueFactory<>("ricoveratiMorbillo"));
-        inCuraConMorbilloColumn.setCellValueFactory(new PropertyValueFactory<>("inCuraMorbillo"));
-        ricoveratiConTubercolosiColumn.setCellValueFactory(new PropertyValueFactory<>("ricoveratiTubercolosi"));
-        inCuraConTubercolosiColumn.setCellValueFactory(new PropertyValueFactory<>("inCuraTubercolosi"));
-        ricoveratiConGastroenteriteColumn.setCellValueFactory(new PropertyValueFactory<>("ricoveratiGastroenterite"));
-        inCuraConGastroenteriteColumn.setCellValueFactory(new PropertyValueFactory<>("inCuraGastroenterite"));
-        comuneColumn.setCellValueFactory(new PropertyValueFactory<>("comune"));
-        comuneColumn.setCellFactory(column -> new TableCell<>() {
+        malattieSettimanaliIdColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
+        malattieSettimanaliAnnoColumn.setCellValueFactory(new PropertyValueFactory<>("anno"));
+        malattieSettimanaliTableView.getSortOrder().add(malattieSettimanaliAnnoColumn);
+        malattieSettimanaliSettimanaColumn.setCellValueFactory(new PropertyValueFactory<>("settimana"));
+        malattieSettimanaliRicoveratiConInfluenzaColumn.setCellValueFactory(new PropertyValueFactory<>("ricoveratiInfluenza"));
+        malattieSettimanaliInCuraConInfluenzaColumn.setCellValueFactory(new PropertyValueFactory<>("inCuraInfluenza"));
+        malattieSettimanaliComplicanzeRespiratorieColumn.setCellValueFactory(new PropertyValueFactory<>("complicanzeRespiratorie"));
+        malattieSettimanaliRicoveratiConPolmoniteColumn.setCellValueFactory(new PropertyValueFactory<>("ricoveratiPolmonite"));
+        malattieSettimanaliInCuraConPolmoniteColumn.setCellValueFactory(new PropertyValueFactory<>("inCuraPolmonite"));
+        malattieSettimanaliRicoveratiConMeningiteColumn.setCellValueFactory(new PropertyValueFactory<>("ricoveratiMeningite"));
+        malattieSettimanaliInCuraConMeningiteColumn.setCellValueFactory(new PropertyValueFactory<>("inCuraMeningite"));
+        malattieSettimanaliRicoveratiConEpatiteColumn.setCellValueFactory(new PropertyValueFactory<>("ricoveratiEpatite"));
+        malattieSettimanaliInCuraConEpatiteColumn.setCellValueFactory(new PropertyValueFactory<>("inCuraEpatite"));
+        malattieSettimanaliRicoveratiConMorbilloColumn.setCellValueFactory(new PropertyValueFactory<>("ricoveratiMorbillo"));
+        malattieSettimanaliInCuraConMorbilloColumn.setCellValueFactory(new PropertyValueFactory<>("inCuraMorbillo"));
+        malattieSettimanaliRicoveratiConTubercolosiColumn.setCellValueFactory(new PropertyValueFactory<>("ricoveratiTubercolosi"));
+        malattieSettimanaliInCuraConTubercolosiColumn.setCellValueFactory(new PropertyValueFactory<>("inCuraTubercolosi"));
+        malattieSettimanaliRicoveratiConGastroenteriteColumn.setCellValueFactory(new PropertyValueFactory<>("ricoveratiGastroenterite"));
+        malattieSettimanaliInCuraConGastroenteriteColumn.setCellValueFactory(new PropertyValueFactory<>("inCuraGastroenterite"));
+        malattieSettimanaliComuneColumn.setCellValueFactory(new PropertyValueFactory<>("comune"));
+        malattieSettimanaliComuneColumn.setCellFactory(column -> new TableCell<>() {
             @Override
             protected void updateItem(Comune comune, boolean empty) {
                 super.updateItem(comune, empty);
@@ -228,27 +228,27 @@ public class AnalisiDatiController implements Initializable {
         decessiAnnualiMalattieContagioseConfrontaColumn.setCellValueFactory(new PropertyValueFactory<>("malattieContagiose"));
         decessiAnnualiMalattieCardiovascolariConfrontaColumn.setCellValueFactory(new PropertyValueFactory<>("malattieCardiovascolari"));
 
-        idConfrontaColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
-        annoConfrontaColumn.setCellValueFactory(new PropertyValueFactory<>("anno"));
-        malattieSettimanaliConfrontaTableView.getSortOrder().add(annoConfrontaColumn);
-        settimanaConfrontaColumn.setCellValueFactory(new PropertyValueFactory<>("settimana"));
-        ricoveratiConInfluenzaConfrontaColumn.setCellValueFactory(new PropertyValueFactory<>("ricoveratiInfluenza"));
-        inCuraConInfluenzaConfrontaColumn.setCellValueFactory(new PropertyValueFactory<>("inCuraInfluenza"));
-        complicanzeRespiratorieConfrontaColumn.setCellValueFactory(new PropertyValueFactory<>("complicanzeRespiratorie"));
-        ricoveratiConPolmoniteConfrontaColumn.setCellValueFactory(new PropertyValueFactory<>("ricoveratiPolmonite"));
-        inCuraConPolmoniteConfrontaColumn.setCellValueFactory(new PropertyValueFactory<>("inCuraPolmonite"));
-        ricoveratiConMeningiteConfrontaColumn.setCellValueFactory(new PropertyValueFactory<>("ricoveratiMeningite"));
-        inCuraConMeningiteConfrontaColumn.setCellValueFactory(new PropertyValueFactory<>("inCuraMeningite"));
-        ricoveratiConEpatiteConfrontaColumn.setCellValueFactory(new PropertyValueFactory<>("ricoveratiEpatite"));
-        inCuraConEpatiteConfrontaColumn.setCellValueFactory(new PropertyValueFactory<>("inCuraEpatite"));
-        ricoveratiConMorbilloConfrontaColumn.setCellValueFactory(new PropertyValueFactory<>("ricoveratiMorbillo"));
-        inCuraConMorbilloConfrontaColumn.setCellValueFactory(new PropertyValueFactory<>("inCuraMorbillo"));
-        ricoveratiConTubercolosiConfrontaColumn.setCellValueFactory(new PropertyValueFactory<>("ricoveratiTubercolosi"));
-        inCuraConTubercolosiConfrontaColumn.setCellValueFactory(new PropertyValueFactory<>("inCuraTubercolosi"));
-        ricoveratiConGastroenteriteConfrontaColumn.setCellValueFactory(new PropertyValueFactory<>("ricoveratiGastroenterite"));
-        inCuraConGastroenteriteConfrontaColumn.setCellValueFactory(new PropertyValueFactory<>("inCuraGastroenterite"));
-        comuneConfrontaColumn.setCellValueFactory(new PropertyValueFactory<>("comune"));
-        comuneConfrontaColumn.setCellFactory(column -> new TableCell<>() {
+        malattieSettimanaliIdConfrontaColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
+        malattieSettimanaliAnnoConfrontaColumn.setCellValueFactory(new PropertyValueFactory<>("anno"));
+        malattieSettimanaliConfrontaTableView.getSortOrder().add(malattieSettimanaliAnnoConfrontaColumn);
+        malattieSettimanaliSettimanaConfrontaColumn.setCellValueFactory(new PropertyValueFactory<>("settimana"));
+        malattieSettimanaliRicoveratiConInfluenzaConfrontaColumn.setCellValueFactory(new PropertyValueFactory<>("ricoveratiInfluenza"));
+        malattieSettimanaliInCuraConInfluenzaConfrontaColumn.setCellValueFactory(new PropertyValueFactory<>("inCuraInfluenza"));
+        malattieSettimanaliComplicanzeRespiratorieConfrontaColumn.setCellValueFactory(new PropertyValueFactory<>("complicanzeRespiratorie"));
+        malattieSettimanaliRicoveratiConPolmoniteConfrontaColumn.setCellValueFactory(new PropertyValueFactory<>("ricoveratiPolmonite"));
+        malattieSettimanaliInCuraConPolmoniteConfrontaColumn.setCellValueFactory(new PropertyValueFactory<>("inCuraPolmonite"));
+        malattieSettimanaliRicoveratiConMeningiteConfrontaColumn.setCellValueFactory(new PropertyValueFactory<>("ricoveratiMeningite"));
+        malattieSettimanaliInCuraConMeningiteConfrontaColumn.setCellValueFactory(new PropertyValueFactory<>("inCuraMeningite"));
+        malattieSettimanaliRicoveratiConEpatiteConfrontaColumn.setCellValueFactory(new PropertyValueFactory<>("ricoveratiEpatite"));
+        malattieSettimanaliInCuraConEpatiteConfrontaColumn.setCellValueFactory(new PropertyValueFactory<>("inCuraEpatite"));
+        malattieSettimanaliRicoveratiConMorbilloConfrontaColumn.setCellValueFactory(new PropertyValueFactory<>("ricoveratiMorbillo"));
+        malattieSettimanaliInCuraConMorbilloConfrontaColumn.setCellValueFactory(new PropertyValueFactory<>("inCuraMorbillo"));
+        malattieSettimanaliRicoveratiConTubercolosiConfrontaColumn.setCellValueFactory(new PropertyValueFactory<>("ricoveratiTubercolosi"));
+        malattieSettimanaliInCuraConTubercolosiConfrontaColumn.setCellValueFactory(new PropertyValueFactory<>("inCuraTubercolosi"));
+        malattieSettimanaliRicoveratiConGastroenteriteConfrontaColumn.setCellValueFactory(new PropertyValueFactory<>("ricoveratiGastroenterite"));
+        malattieSettimanaliInCuraConGastroenteriteConfrontaColumn.setCellValueFactory(new PropertyValueFactory<>("inCuraGastroenterite"));
+        malattieSettimanaliComuneConfrontaColumn.setCellValueFactory(new PropertyValueFactory<>("comune"));
+        malattieSettimanaliComuneConfrontaColumn.setCellFactory(column -> new TableCell<>() {
             @Override
             protected void updateItem(Comune comune, boolean empty) {
                 super.updateItem(comune, empty);
@@ -310,9 +310,9 @@ public class AnalisiDatiController implements Initializable {
 
     private void updateListVisualizzaDatiMalattie() {
         malattieSettimanaliTableView.getItems().clear();
-        comuneColumn.setText("COMUNE");
+        malattieSettimanaliComuneColumn.setText("COMUNE");
 
-        comuneColumn.setCellFactory(column -> new TableCell<>() {
+        malattieSettimanaliComuneColumn.setCellFactory(column -> new TableCell<>() {
             @Override
             protected void updateItem(Comune comune, boolean empty) {
                 super.updateItem(comune, empty);
@@ -499,8 +499,8 @@ public class AnalisiDatiController implements Initializable {
     private void analisiDatiVisualizzaMalattieAggregaPerProvinciaButtonOnClicked() {
         malattieSettimanaliTableView.getItems().clear();
 
-        comuneColumn.setText("PROVINCIA");
-        comuneColumn.setCellFactory(column -> new TableCell<>() {
+        malattieSettimanaliComuneColumn.setText("PROVINCIA");
+        malattieSettimanaliComuneColumn.setCellFactory(column -> new TableCell<>() {
             @Override
             protected void updateItem(Comune comune, boolean empty) {
                 super.updateItem(comune, empty);
@@ -589,9 +589,9 @@ public class AnalisiDatiController implements Initializable {
     private void analisiDatiVisualizzaMalattieAggregaPerRegioneButtonOnClicked() {
         malattieSettimanaliTableView.getItems().clear();
 
-        comuneColumn.setText("REGIONE");
+        malattieSettimanaliComuneColumn.setText("REGIONE");
 
-        comuneColumn.setCellFactory(column -> new TableCell<>() {
+        malattieSettimanaliComuneColumn.setCellFactory(column -> new TableCell<>() {
             @Override
             protected void updateItem(Comune comune, boolean empty) {
                 super.updateItem(comune, empty);
@@ -680,8 +680,8 @@ public class AnalisiDatiController implements Initializable {
     private void analisiDatiVisualizzaMalattieAggregaPerNazioneButtonOnClicked() {
         malattieSettimanaliTableView.getItems().clear();
 
-        comuneColumn.setText("NAZIONALE");
-        comuneColumn.setCellFactory(column -> new TableCell<>() {
+        malattieSettimanaliComuneColumn.setText("NAZIONALE");
+        malattieSettimanaliComuneColumn.setCellFactory(column -> new TableCell<>() {
             @Override
             protected void updateItem(Comune comune, boolean empty) {
                 super.updateItem(comune, empty);

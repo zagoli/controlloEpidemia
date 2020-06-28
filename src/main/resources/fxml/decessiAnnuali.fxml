@@ -22,19 +22,19 @@
                         <TableView fx:id="decessiAnnualiTableView" prefHeight="425.0" prefWidth="750.0"
                                    BorderPane.alignment="CENTER">
                             <columns>
-                                <TableColumn fx:id="decessiAnnualiIdColumn" editable="false"
+                                <TableColumn fx:id="idColumn" editable="false"
                                              prefWidth="36.799989342689514" text="ID" visible="false"/>
-                                <TableColumn fx:id="decessiAnnualiProvinciaColumn" prefWidth="84.79998779296875"
+                                <TableColumn fx:id="provinciaColumn" prefWidth="84.79998779296875"
                                              text="PROVINCIA"/>
-                                <TableColumn fx:id="decessiAnnualiAnnoColumn" prefWidth="57.599998474121094"
+                                <TableColumn fx:id="annoColumn" prefWidth="57.599998474121094"
                                              text="ANNO"/>
-                                <TableColumn fx:id="decessiAnnualiIncidentiStradaliColumn"
+                                <TableColumn fx:id="incidentiStradaliColumn"
                                              prefWidth="142.39999389648438" text="INCIDENTI STRADALI"/>
-                                <TableColumn fx:id="decessiAnnualiMalattieTumoraliColumn" minWidth="0.0"
+                                <TableColumn fx:id="malattieTumoraliColumn" minWidth="0.0"
                                              prefWidth="142.39996337890625" text="MALATTIE TUMORALI"/>
-                                <TableColumn fx:id="decessiAnnualiMalattieCardiovascolariColumn" minWidth="0.0"
+                                <TableColumn fx:id="malattieCardiovascolariColumn" minWidth="0.0"
                                              prefWidth="184.00003051757812" text="MALATTIE CARDIOVASCOLARI"/>
-                                <TableColumn fx:id="decessiAnnualiMalattieContagioseColumn" minWidth="3.199951171875"
+                                <TableColumn fx:id="malattieContagioseColumn" minWidth="3.199951171875"
                                              prefWidth="163.199951171875" text="MALATTIE CONTAGIOSE"/>
                             </columns>
                             <columnResizePolicy>

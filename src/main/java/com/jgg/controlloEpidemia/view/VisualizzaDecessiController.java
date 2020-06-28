@@ -32,27 +32,27 @@ public class VisualizzaDecessiController implements Initializable {
     @FXML
     private TableView<DecessiAnnuali> decessiAnnualiTableView;
     @FXML
-    private TableColumn<DecessiAnnuali, Integer> decessiAnnualiIdColumn;
+    private TableColumn<DecessiAnnuali, Integer> idColumn;
     @FXML
-    private TableColumn<DecessiAnnuali, Provincia> decessiAnnualiProvinciaColumn;
+    private TableColumn<DecessiAnnuali, Provincia> provinciaColumn;
     @FXML
-    private TableColumn<DecessiAnnuali, Integer> decessiAnnualiAnnoColumn;
+    private TableColumn<DecessiAnnuali, Integer> annoColumn;
     @FXML
-    private TableColumn<DecessiAnnuali, Integer> decessiAnnualiIncidentiStradaliColumn;
+    private TableColumn<DecessiAnnuali, Integer> incidentiStradaliColumn;
     @FXML
-    private TableColumn<DecessiAnnuali, Integer> decessiAnnualiMalattieTumoraliColumn;
+    private TableColumn<DecessiAnnuali, Integer> malattieTumoraliColumn;
     @FXML
-    private TableColumn<DecessiAnnuali, Integer> decessiAnnualiMalattieCardiovascolariColumn;
+    private TableColumn<DecessiAnnuali, Integer> malattieCardiovascolariColumn;
     @FXML
-    private TableColumn<DecessiAnnuali, Integer> decessiAnnualiMalattieContagioseColumn;
+    private TableColumn<DecessiAnnuali, Integer> malattieContagioseColumn;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        decessiAnnualiIdColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
-        decessiAnnualiAnnoColumn.setCellValueFactory(new PropertyValueFactory<>("anno"));
-        decessiAnnualiTableView.getSortOrder().add(decessiAnnualiAnnoColumn);
-        decessiAnnualiProvinciaColumn.setCellValueFactory(new PropertyValueFactory<>("provincia"));
-        decessiAnnualiProvinciaColumn.setCellFactory(column -> new TableCell<>() {
+        idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
+        annoColumn.setCellValueFactory(new PropertyValueFactory<>("anno"));
+        decessiAnnualiTableView.getSortOrder().add(annoColumn);
+        provinciaColumn.setCellValueFactory(new PropertyValueFactory<>("provincia"));
+        provinciaColumn.setCellFactory(column -> new TableCell<>() {
             @Override
             protected void updateItem(Provincia provincia, boolean empty) {
                 super.updateItem(provincia, empty);
@@ -63,10 +63,10 @@ public class VisualizzaDecessiController implements Initializable {
                 }
             }
         });
-        decessiAnnualiIncidentiStradaliColumn.setCellValueFactory(new PropertyValueFactory<>("incidentiStradali"));
-        decessiAnnualiMalattieTumoraliColumn.setCellValueFactory(new PropertyValueFactory<>("malattieTumorali"));
-        decessiAnnualiMalattieContagioseColumn.setCellValueFactory(new PropertyValueFactory<>("malattieContagiose"));
-        decessiAnnualiMalattieCardiovascolariColumn.setCellValueFactory(new PropertyValueFactory<>("malattieCardiovascolari"));
+        incidentiStradaliColumn.setCellValueFactory(new PropertyValueFactory<>("incidentiStradali"));
+        malattieTumoraliColumn.setCellValueFactory(new PropertyValueFactory<>("malattieTumorali"));
+        malattieContagioseColumn.setCellValueFactory(new PropertyValueFactory<>("malattieContagiose"));
+        malattieCardiovascolariColumn.setCellValueFactory(new PropertyValueFactory<>("malattieCardiovascolari"));
 
         updateListVisualizzaDati();
     }
@@ -85,8 +85,8 @@ public class VisualizzaDecessiController implements Initializable {
     private void updateListVisualizzaDati() {
         decessiAnnualiTableView.getItems().clear();
 
-        decessiAnnualiProvinciaColumn.setText("PROVINCIA");
-        decessiAnnualiProvinciaColumn.setCellFactory(column -> new TableCell<>() {
+        provinciaColumn.setText("PROVINCIA");
+        provinciaColumn.setCellFactory(column -> new TableCell<>() {
             @Override
             protected void updateItem(Provincia provincia, boolean empty) {
                 super.updateItem(provincia, empty);
@@ -112,8 +112,8 @@ public class VisualizzaDecessiController implements Initializable {
     private void visualizzaDecessiAggregaPerNazioneButtonOnClicked() {
         decessiAnnualiTableView.getItems().clear();
 
-        decessiAnnualiProvinciaColumn.setText("NAZIONALE");
-        decessiAnnualiProvinciaColumn.setCellFactory(column -> new TableCell<>() {
+        provinciaColumn.setText("NAZIONALE");
+        provinciaColumn.setCellFactory(column -> new TableCell<>() {
             @Override
             protected void updateItem(Provincia provincia, boolean empty) {
                 super.updateItem(provincia, empty);
@@ -163,8 +163,8 @@ public class VisualizzaDecessiController implements Initializable {
     private void visualizzaDecessiAggregaPerRegioneButtonOnClicked() {
         decessiAnnualiTableView.getItems().clear();
 
-        decessiAnnualiProvinciaColumn.setText("REGIONE");
-        decessiAnnualiProvinciaColumn.setCellFactory(column -> new TableCell<>() {
+        provinciaColumn.setText("REGIONE");
+        provinciaColumn.setCellFactory(column -> new TableCell<>() {
             @Override
             protected void updateItem(Provincia provincia, boolean empty) {
                 super.updateItem(provincia, empty);
