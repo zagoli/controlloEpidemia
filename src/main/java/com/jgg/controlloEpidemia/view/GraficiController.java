@@ -73,10 +73,11 @@ public class GraficiController implements Initializable {
     }
 
     @FXML
-    private void homePageButtonClicked() throws IOException {
+    private void homePageButtonOnClicked() throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/homePage.fxml"));
         graficoDecessiCausa.getScene().setRoot(root);
     }
+
 
     @FXML
     private void indietroButtonClicked() throws IOException {
@@ -85,7 +86,7 @@ public class GraficiController implements Initializable {
     }
 
     @FXML
-    private void annoDecessiCausaSelected() {
+    private void annoDecessiSelezionaCausa() {
         Integer anno = chooseAnnoDecessiCausaCombobox.getValue();
         List<DecessiAnnuali> decessiAnnuali;
         if (anno == -1) {
@@ -101,7 +102,7 @@ public class GraficiController implements Initializable {
     }
 
     @FXML
-    private void annoDecessiRegioneSelected() {
+    private void annoDecessiSelezionaRegione() {
         Integer anno = chooseAnnoDecessiRegioneCombobox.getValue();
         List<DecessiAnnuali> decessiAnnuali;
         if (anno == -1) {
@@ -122,7 +123,7 @@ public class GraficiController implements Initializable {
     }
 
     @FXML
-    private void annoMalattieSelected() {
+    private void annoMalattieSelezione() {
         Integer anno = chooseAnnoMalattieCombobox.getValue();
         List<MalattieSettimanali> malattieSettimanali;
         if (anno == -1) {

@@ -77,6 +77,33 @@ public class VisualizzaDecessiController implements Initializable {
         visualizzaDecessiBorderPane.getScene().setRoot(root);
     }
 
+    private void updateListVisualizzaDati() {
+        decessiAnnualiTableView.getItems().clear();
+        decessiAnnualiProvinciaColumn.setText("PROVINCIA");
+
+        decessiAnnualiProvinciaColumn.setCellFactory(column -> new TableCell<>() {
+            @Override
+            protected void updateItem(Provincia provincia, boolean empty) {
+                super.updateItem(provincia, empty);
+                if (empty || provincia == null) {
+                    setText("");
+                } else {
+                    setText(provincia.getNome());
+                }
+            }
+        });
+
+        for (DecessiAnnuali decessiAnnuali : decessiAnnualiService.findAll()) {
+            decessiAnnualiTableView.getItems().add(decessiAnnuali);
+        }
+    }
+
+
+    @FXML
+    private void visualizzaDecessiVisualizzaDatiButtonOnClicked() {
+        updateListVisualizzaDati();
+    }
+
     @FXML
     private void visualizzaDecessiAggregaPerNazioneButtonOnClicked() {
         decessiAnnualiTableView.getItems().clear();
@@ -190,31 +217,7 @@ public class VisualizzaDecessiController implements Initializable {
         }
     }
 
-    @FXML
-    private void visualizzaDecessiVisualizzaDatiButtonOnClicked() {
-        updateListVisualizzaDati();
-    }
 
-    private void updateListVisualizzaDati() {
-        decessiAnnualiTableView.getItems().clear();
-        decessiAnnualiProvinciaColumn.setText("PROVINCIA");
-
-        decessiAnnualiProvinciaColumn.setCellFactory(column -> new TableCell<>() {
-            @Override
-            protected void updateItem(Provincia provincia, boolean empty) {
-                super.updateItem(provincia, empty);
-                if (empty || provincia == null) {
-                    setText("");
-                } else {
-                    setText(provincia.getNome());
-                }
-            }
-        });
-
-        for (DecessiAnnuali decessiAnnuali : decessiAnnualiService.findAll()) {
-            decessiAnnualiTableView.getItems().add(decessiAnnuali);
-        }
-    }
 
 
 }

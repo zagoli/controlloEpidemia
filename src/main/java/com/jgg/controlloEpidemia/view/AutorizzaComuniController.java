@@ -7,7 +7,6 @@ import com.jgg.controlloEpidemia.service.UtenteService;
 import javafx.animation.FadeTransition;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -35,7 +34,7 @@ public class AutorizzaComuniController implements Initializable {
     private final ObservableList<Comune> comuniAutorizzatiObservableList = FXCollections.observableArrayList();
 
     @FXML
-    private  BorderPane autorizzaComuniBorderPane;
+    private BorderPane autorizzaComuniBorderPane;
     @FXML
     private ListView<Comune> comuniAllListView;
     @FXML
@@ -68,7 +67,7 @@ public class AutorizzaComuniController implements Initializable {
     }
 
     @FXML
-    private void homepageButtonClicked() {
+    private void homepageButtonOnClicked() {
         Parent root = null;
         try {
             root = FXMLLoader.load(getClass().getResource("/fxml/homePage.fxml"));
@@ -77,6 +76,7 @@ public class AutorizzaComuniController implements Initializable {
         }
         autorizzaComuniBorderPane.getScene().setRoot(root);
     }
+
 
     @FXML
     private void cambioUtente() {

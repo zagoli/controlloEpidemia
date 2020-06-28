@@ -12,7 +12,7 @@
     <top>
         <MenuBar BorderPane.alignment="CENTER">
             <Menu mnemonicParsing="false" text="Naviga">
-                <MenuItem mnemonicParsing="false" onAction="#homepageButtonClicked" text="Homepage"/>
+                <MenuItem mnemonicParsing="false" onAction="#homepageButtonOnClicked" text="Homepage"/>
             </Menu>
         </MenuBar>
     </top>

@@ -340,7 +340,7 @@ public class DatiTerritorialiController implements Initializable {
     }
 
     @FXML
-    private void homepageButtonClicked() throws IOException {
+    private void homepageButtonOnClicked() throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/homePage.fxml"));
         datiTerritorialiTabPane.getScene().setRoot(root);
     }
@@ -436,6 +436,7 @@ public class DatiTerritorialiController implements Initializable {
         }
     }
 
+
     @FXML
     public void inserisciInserimentoProvinceButtonOnClicked() {
         Provincia provincia = new Provincia(
@@ -487,6 +488,32 @@ public class DatiTerritorialiController implements Initializable {
             logger.error("File non selezionato");
         }
     }
+
+    @FXML
+    private void modificaModificaProvinciaButtonOnClicked() {
+        Provincia provincia = new Provincia(
+                Integer.parseInt(idModificaProvinceTextField.getText()),
+                nomeModificaProvinceTextField.getText(),
+                Integer.parseInt(superficieModificaProvinceTextField.getText()),
+                comuneService.findByNome(comuneDiCapoluogoModificaProvinceComboBox.getValue()).getCodiceIstat(),
+                regioneService.findByNome(regioneModificaProvinceComboBox.getValue())
+        );
+        provinciaService.update(provincia);
+        if (provinciaService.findById(provincia.getId()) != null) {
+            logger.info("Modificato record provincia: " + provincia);
+            idInserimentoProvinceTextField.clear();
+            nomeInserimentoProvinceTextField.clear();
+            superficieInserimentoProvinceTextField.clear();
+            comuneDiCapoluogoInserimentoProvinceComboBox.getValue();
+            regioneInserimentoProvinceComboBox.getSelectionModel().clearSelection();
+        }
+        datiTerritorialiTabPane.getSelectionModel().select(0);
+        modificaTab.setDisable(true);
+        visualizzazioneTab.setDisable(false);
+        inserimentoTab.setDisable(false);
+        updateListProvince();
+    }
+
 
     @FXML
     public void inserisciInserimentoComuniButtonOnClicked() throws ParseException {
@@ -542,31 +569,6 @@ public class DatiTerritorialiController implements Initializable {
         } else {
             logger.error("File non selezionato");
         }
-    }
-
-    @FXML
-    private void modificaModificaProvinciaButtonOnClicked() {
-        Provincia provincia = new Provincia(
-                Integer.parseInt(idModificaProvinceTextField.getText()),
-                nomeModificaProvinceTextField.getText(),
-                Integer.parseInt(superficieModificaProvinceTextField.getText()),
-                comuneService.findByNome(comuneDiCapoluogoModificaProvinceComboBox.getValue()).getCodiceIstat(),
-                regioneService.findByNome(regioneModificaProvinceComboBox.getValue())
-        );
-        provinciaService.update(provincia);
-        if (provinciaService.findById(provincia.getId()) != null) {
-            logger.info("Modificato record provincia: " + provincia);
-            idInserimentoProvinceTextField.clear();
-            nomeInserimentoProvinceTextField.clear();
-            superficieInserimentoProvinceTextField.clear();
-            comuneDiCapoluogoInserimentoProvinceComboBox.getValue();
-            regioneInserimentoProvinceComboBox.getSelectionModel().clearSelection();
-        }
-        datiTerritorialiTabPane.getSelectionModel().select(0);
-        modificaTab.setDisable(true);
-        visualizzazioneTab.setDisable(false);
-        inserimentoTab.setDisable(false);
-        updateListProvince();
     }
 
     @FXML

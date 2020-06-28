@@ -11,7 +11,7 @@
     <top>
         <MenuBar BorderPane.alignment="CENTER">
             <Menu mnemonicParsing="false" text="Naviga">
-                <MenuItem mnemonicParsing="false" onAction="#homePageButtonClicked" text="Homepage"/>
+                <MenuItem mnemonicParsing="false" onAction="#homePageButtonOnClicked" text="Homepage"/>
                 <MenuItem mnemonicParsing="false" onAction="#indietroButtonClicked" text="Indietro"/>
             </Menu>
         </MenuBar>
@@ -20,7 +20,7 @@
         <ScrollPane fitToWidth="true" prefHeight="490.0" prefWidth="699.0">
             <VBox alignment="TOP_CENTER" spacing="10.0">
                 <HBox alignment="CENTER" fillHeight="false">
-                    <ComboBox fx:id="chooseAnnoDecessiRegioneCombobox" onAction="#annoDecessiRegioneSelected"
+                    <ComboBox fx:id="chooseAnnoDecessiRegioneCombobox" onAction="#annoDecessiSelezionaRegione"
                               prefWidth="150.0" promptText="Anno da visualizzare"/>
                     <StackPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="500.0">
                         <PieChart fx:id="graficoDecessiRegione" labelLineLength="25.0" legendVisible="false"
@@ -35,7 +35,7 @@
                 </HBox>
                 <Separator prefWidth="200.0"/>
                 <HBox alignment="CENTER" fillHeight="false" VBox.vgrow="ALWAYS">
-                    <ComboBox fx:id="chooseAnnoDecessiCausaCombobox" onAction="#annoDecessiCausaSelected"
+                    <ComboBox fx:id="chooseAnnoDecessiCausaCombobox" onAction="#annoDecessiSelezionaCausa"
                               prefWidth="150.0" promptText="Anno da visualizzare"/>
                     <StackPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="500.0">
                         <PieChart fx:id="graficoDecessiCausa" title="Grafico decessi annuali per causa"/>
@@ -49,7 +49,7 @@
                 </HBox>
                 <Separator prefWidth="200.0"/>
                 <HBox alignment="CENTER">
-                    <ComboBox fx:id="chooseAnnoMalattieCombobox" onAction="#annoMalattieSelected" prefWidth="150.0"
+                    <ComboBox fx:id="chooseAnnoMalattieCombobox" onAction="#annoMalattieSelezione" prefWidth="150.0"
                               promptText="Anno da visualizzare"/>
                     <BarChart fx:id="graficoMalattieSettimanali" legendVisible="false" minHeight="-Infinity"
                               minWidth="-Infinity" prefHeight="400.0" prefWidth="500.0"

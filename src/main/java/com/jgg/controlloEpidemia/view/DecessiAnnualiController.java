@@ -161,6 +161,7 @@ public class DecessiAnnualiController implements Initializable {
         noDataSelectedLabel.setVisible(false);
     }
 
+
     @FXML
     private void decessiAnnualiVisualizzazioneModificaButtonOnClicked() {
         if (decessiAnnualiTableView.getSelectionModel().getSelectedItem() != null) {
@@ -195,6 +196,7 @@ public class DecessiAnnualiController implements Initializable {
             errorAnimation(noDataSelectedLabel);
         }
     }
+
 
     @FXML
     private void inserisciInserimentoButtonOnClicked() {

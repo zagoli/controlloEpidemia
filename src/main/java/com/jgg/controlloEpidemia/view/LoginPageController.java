@@ -5,7 +5,6 @@ import com.jgg.controlloEpidemia.model.Utente;
 import com.jgg.controlloEpidemia.service.UtenteService;
 import javafx.animation.ScaleTransition;
 import javafx.beans.binding.Bindings;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;

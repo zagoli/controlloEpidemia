@@ -275,6 +275,7 @@ public class MalattieSettimanaliController implements Initializable {
         noDataSelectedLabel.setVisible(false);
     }
 
+
     @FXML
     private void malattieSettimanaliCancellaButtonOnClicked() {
         MalattieSettimanali malattieSettimanali = malattieSettimanaliTableView.getSelectionModel().getSelectedItem();
@@ -329,6 +330,7 @@ public class MalattieSettimanaliController implements Initializable {
             errorAnimation(noDataSelectedLabel);
         }
     }
+
 
     @FXML
     void inserisciInserimentoOnClicked() {

@@ -286,7 +286,6 @@ public class AnalisiDatiController implements Initializable {
         analisiDatiBorderPane.getScene().setRoot(root);
     }
 
-
     private void updateListVisualizzaDatiDecessi() {
         decessiAnnualiTableView.getItems().clear();
         decessiAnnualiProvinciaColumn.setText("PROVINCIA");
