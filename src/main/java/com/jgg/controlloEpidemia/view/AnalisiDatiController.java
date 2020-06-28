@@ -29,6 +29,7 @@ public class AnalisiDatiController implements Initializable {
 
     private final DecessiAnnualiService decessiAnnualiService = new DecessiAnnualiService();
     private final RegioneService regioneService = new RegioneService();
+    private final ProvinciaService provinciaService = new ProvinciaService();
     private final List<MalattieSettimanali> malattieSettimanaliList = new MalattieSettimanaliService().findAll();
 
     @FXML
@@ -537,7 +538,7 @@ public class AnalisiDatiController implements Initializable {
         }
 
         for (Integer anno : anniList) {
-            for (Provincia p : new ProvinciaService().findAll()) {
+            for (Provincia p : provinciaService.findAll()) {
                 rInfluenza = 0;
                 cInfluenza = 0;
                 cRespiratorie = 0;

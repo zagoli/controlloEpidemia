@@ -148,8 +148,13 @@ public class DecessiAnnualiController implements Initializable {
     }
 
     @FXML
-    private void homepageButtonOnClicked() throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/homePage.fxml"));
+    private void homepageButtonOnClicked() {
+        Parent root = null;
+        try {
+            root = FXMLLoader.load(getClass().getResource("/fxml/homePage.fxml"));
+        } catch (IOException exception) {
+            exception.printStackTrace();
+        }
         decessiAnnualiBorderPane.getScene().setRoot(root);
     }
 

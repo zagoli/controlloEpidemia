@@ -72,15 +72,20 @@ public class VisualizzaDecessiController implements Initializable {
     }
 
     @FXML
-    private void homepageButtonOnClicked() throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/homePage.fxml"));
+    private void homepageButtonOnClicked() {
+        Parent root = null;
+        try {
+            root = FXMLLoader.load(getClass().getResource("/fxml/homePage.fxml"));
+        } catch (IOException exception) {
+            exception.printStackTrace();
+        }
         visualizzaDecessiBorderPane.getScene().setRoot(root);
     }
 
     private void updateListVisualizzaDati() {
         decessiAnnualiTableView.getItems().clear();
-        decessiAnnualiProvinciaColumn.setText("PROVINCIA");
 
+        decessiAnnualiProvinciaColumn.setText("PROVINCIA");
         decessiAnnualiProvinciaColumn.setCellFactory(column -> new TableCell<>() {
             @Override
             protected void updateItem(Provincia provincia, boolean empty) {
@@ -92,7 +97,6 @@ public class VisualizzaDecessiController implements Initializable {
                 }
             }
         });
-
         for (DecessiAnnuali decessiAnnuali : decessiAnnualiService.findAll()) {
             decessiAnnualiTableView.getItems().add(decessiAnnuali);
         }
@@ -130,7 +134,6 @@ public class VisualizzaDecessiController implements Initializable {
                 id = 0;
         Regione regioneNazionale = new Regione(777, "Nazionale", 0, "999999");
         Provincia provinciaNazionale = new Provincia("Provincia", 0, "999999", regioneNazionale);
-
         for (DecessiAnnuali decessiAnnuali : decessiAnnualiList) {
             if (!anniList.contains(decessiAnnuali.getAnno())) {
                 anniList.add(decessiAnnuali.getAnno());
@@ -161,7 +164,6 @@ public class VisualizzaDecessiController implements Initializable {
         decessiAnnualiTableView.getItems().clear();
 
         decessiAnnualiProvinciaColumn.setText("REGIONE");
-
         decessiAnnualiProvinciaColumn.setCellFactory(column -> new TableCell<>() {
             @Override
             protected void updateItem(Provincia provincia, boolean empty) {
@@ -182,8 +184,6 @@ public class VisualizzaDecessiController implements Initializable {
                 cardiovascolari,
                 contagiose,
                 id = 0;
-
-
         for (DecessiAnnuali decessiAnnuali : decessiAnnualiList) {
             if (!anniList.contains(decessiAnnuali.getAnno())) {
                 anniList.add(decessiAnnuali.getAnno());
@@ -191,17 +191,15 @@ public class VisualizzaDecessiController implements Initializable {
         }
 
         for (Integer anno : anniList) {
-
-            for (Regione r : regioneService.findAll()) {
+            for (Regione regione : regioneService.findAll()) {
                 incidenti = 0;
                 tumorali = 0;
                 cardiovascolari = 0;
                 contagiose = 0;
                 provincia = null;
                 id++;
-
                 for (DecessiAnnuali decessiAnnuali : decessiAnnualiList) {
-                    if (decessiAnnuali.getProvincia().getRegione().getId().equals(r.getId()) && decessiAnnuali.getAnno().equals(anno)) {
+                    if (decessiAnnuali.getProvincia().getRegione().getId().equals(regione.getId()) && decessiAnnuali.getAnno().equals(anno)) {
                         incidenti += decessiAnnuali.getIncidentiStradali();
                         tumorali += decessiAnnuali.getMalattieTumorali();
                         cardiovascolari += decessiAnnuali.getMalattieCardiovascolari();
@@ -216,8 +214,5 @@ public class VisualizzaDecessiController implements Initializable {
             }
         }
     }
-
-
-
 
 }

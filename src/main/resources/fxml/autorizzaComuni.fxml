@@ -49,6 +49,13 @@
                     </VBox.margin>
                 </ListView>
             </VBox>
+
+            <Button mnemonicParsing="false" onAction="#salvaButtonClicked" text="Salva le modifiche"
+                    GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                <font>
+                    <Font name="Segoe UI" size="15.0"/>
+                </font>
+            </Button>
             <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
                 <GridPane.margin>
                     <Insets right="5.0"/>
@@ -100,12 +107,6 @@
                     </Polygon>
                 </HBox>
             </VBox>
-            <Button mnemonicParsing="false" onAction="#salvaButtonClicked" text="Salva le modifiche"
-                    GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
-                <font>
-                    <Font name="Segoe UI" size="15.0"/>
-                </font>
-            </Button>
             <ComboBox fx:id="utenteComboBox" onAction="#cambioUtente" promptText="Seleziona un utente"
                       GridPane.halignment="CENTER" GridPane.valignment="CENTER"/>
             <Label fx:id="salvaLabel" opacity="0.0" text="Salvato!" textFill="#0dbf00" GridPane.columnIndex="1"

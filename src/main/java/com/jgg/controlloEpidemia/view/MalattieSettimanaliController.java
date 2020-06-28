@@ -30,10 +30,10 @@ import java.util.ResourceBundle;
 public class MalattieSettimanaliController implements Initializable {
 
     static Logger logger = Logger.getLogger(MalattieSettimanaliController.class);
+
     private final ComuneService comuneService = new ComuneService();
     private final MalattieSettimanaliService malattieSettimanaliService = new MalattieSettimanaliService();
     private final Alert alert = new Alert(Alert.AlertType.WARNING);
-
     @FXML
     private BorderPane malattieSettimanaliBorderPane;
     @FXML
@@ -44,7 +44,6 @@ public class MalattieSettimanaliController implements Initializable {
     private Tab malattieSettimanaliInserimentoTab;
     @FXML
     private Tab malattieSettimanaliModificaTab;
-
     @FXML
     private TableView<MalattieSettimanali> malattieSettimanaliTableView;
     @FXML
@@ -85,7 +84,6 @@ public class MalattieSettimanaliController implements Initializable {
     private TableColumn<MalattieSettimanali, Integer> inCuraConGastroenteriteColumn;
     @FXML
     private TableColumn<MalattieSettimanali, Comune> comuneColumn;
-
     @FXML
     private TextField annoInserimentoTextField;
     @FXML
@@ -122,7 +120,6 @@ public class MalattieSettimanaliController implements Initializable {
     private TextField inCuraConGastroenteriteInserimentoTextField;
     @FXML
     private ComboBox<String> comuneInserimentoComboBox;
-
     @FXML
     private TextField annoModificaTextField;
     @FXML
@@ -159,7 +156,6 @@ public class MalattieSettimanaliController implements Initializable {
     private TextField inCuraConGastroenteriteModificaTextField;
     @FXML
     private ComboBox<String> comuneModificaComboBox;
-
     @FXML
     private Button malattieSettimanaliInserisciButton;
     @FXML
@@ -168,7 +164,6 @@ public class MalattieSettimanaliController implements Initializable {
     private ProgressBar loadingBar;
     @FXML
     private Label noDataSelectedLabel;
-
     private int selectedId;
 
     @Override
@@ -253,7 +248,6 @@ public class MalattieSettimanaliController implements Initializable {
                         .or(Bindings.isEmpty(inCuraConGastroenteriteModificaTextField.textProperty()))
                         .or(comuneModificaComboBox.valueProperty().isNull())
         );
-
         alert.setTitle("Autorizzazioni comuni");
         alert.setHeaderText(null);
         alert.setContentText("Non sei autorizzato a gestire questo comune!");
@@ -262,8 +256,13 @@ public class MalattieSettimanaliController implements Initializable {
     }
 
     @FXML
-    void homepageButtonOnClicked() throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/homePage.fxml"));
+    void homepageButtonOnClicked() {
+        Parent root = null;
+        try {
+            root = FXMLLoader.load(getClass().getResource("/fxml/homePage.fxml"));
+        } catch (IOException exception) {
+            exception.printStackTrace();
+        }
         malattieSettimanaliTabPane.getScene().setRoot(root);
     }
 

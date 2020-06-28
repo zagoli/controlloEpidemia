@@ -318,11 +318,17 @@ public class DatiTerritorialiController implements Initializable {
     }
 
     @FXML
-    private java.util.Date getDataDiIstituzioneModificaComuniDatePicker() throws ParseException {
+    private java.util.Date getDataDiIstituzioneModificaComuniDatePicker() {
         LocalDate data = dataDiIstituzioneModificaComuniDatePicker.getValue();
         String[] toParseData = data.toString().split("-");
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-        return sdf.parse(toParseData[2] + "/" + toParseData[1] + "/" + toParseData[0]);
+        Date date = null;
+        try {
+            date = sdf.parse(toParseData[2] + "/" + toParseData[1] + "/" + toParseData[0]);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return date;
     }
 
     private void setDataDiIstituzioneModificaComuniDatePicker(String data) {
@@ -332,16 +338,27 @@ public class DatiTerritorialiController implements Initializable {
     }
 
     @FXML
-    private java.util.Date dataDiIstituzioneInserimentoComuniOnClicked() throws ParseException {
+    private java.util.Date dataDiIstituzioneInserimentoComuniOnClicked() {
         LocalDate data = dataDiIstituzioneInserimentoComuniDatePicker.getValue();
         String[] toParseData = data.toString().split("-");
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-        return sdf.parse(toParseData[2] + "/" + toParseData[1] + "/" + toParseData[0]);
+        Date date = null;
+        try {
+            date = sdf.parse(toParseData[2] + "/" + toParseData[1] + "/" + toParseData[0]);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return date;
     }
 
     @FXML
-    private void homepageButtonOnClicked() throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/homePage.fxml"));
+    private void homepageButtonOnClicked() {
+        Parent root = null;
+        try {
+            root = FXMLLoader.load(getClass().getResource("/fxml/homePage.fxml"));
+        } catch (IOException exception) {
+            exception.printStackTrace();
+        }
         datiTerritorialiTabPane.getScene().setRoot(root);
     }
 
@@ -516,7 +533,7 @@ public class DatiTerritorialiController implements Initializable {
 
 
     @FXML
-    public void inserisciInserimentoComuniButtonOnClicked() throws ParseException {
+    public void inserisciInserimentoComuniButtonOnClicked() {
         Comune comune = new Comune(
                 codiceIstatInserimentoComuniTextField.getText(),
                 nomeInserimentoComuniTextField.getText(),
@@ -572,7 +589,7 @@ public class DatiTerritorialiController implements Initializable {
     }
 
     @FXML
-    private void modificaModificaComuneButtonOnClicked() throws ParseException {
+    private void modificaModificaComuneButtonOnClicked() {
         Comune comune = new Comune(
                 codiceIstatModificaComuniTextField.getText(),
                 nomeModificaComuniTextField.getText(),

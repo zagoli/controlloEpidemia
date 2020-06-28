@@ -45,7 +45,7 @@ public class LoginPageController implements Initializable {
     }
 
     @FXML
-    private void loginButtonClicked() throws IOException {
+    private void loginButtonClicked() {
         String user = usernameField.getText();
         String password = passwordField.getText();
         Utente u = utenteService.findByUsername(user);
@@ -67,7 +67,12 @@ public class LoginPageController implements Initializable {
             }
         } else {
             App.utenteCorrente = u;
-            Parent root = FXMLLoader.load(getClass().getResource("/fxml/homePage.fxml"));
+            Parent root = null;
+            try {
+                root = FXMLLoader.load(getClass().getResource("/fxml/homePage.fxml"));
+            } catch (IOException exception) {
+                exception.printStackTrace();
+            }
             loginPageBorderPane.getScene().setRoot(root);
         }
     }

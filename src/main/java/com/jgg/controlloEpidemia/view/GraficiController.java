@@ -73,15 +73,25 @@ public class GraficiController implements Initializable {
     }
 
     @FXML
-    private void homePageButtonOnClicked() throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/homePage.fxml"));
+    private void homePageButtonOnClicked() {
+        Parent root = null;
+        try {
+            root = FXMLLoader.load(getClass().getResource("/fxml/homePage.fxml"));
+        } catch (IOException exception) {
+            exception.printStackTrace();
+        }
         graficoDecessiCausa.getScene().setRoot(root);
     }
 
 
     @FXML
-    private void indietroButtonClicked() throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/analisiDati.fxml"));
+    private void indietroButtonClicked() {
+        Parent root = null;
+        try {
+            root = FXMLLoader.load(getClass().getResource("/fxml/analisiDati.fxml"));
+        } catch (IOException exception) {
+            exception.printStackTrace();
+        }
         graficoDecessiCausa.getScene().setRoot(root);
     }
 
