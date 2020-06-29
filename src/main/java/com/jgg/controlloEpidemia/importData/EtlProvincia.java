@@ -19,7 +19,7 @@ public class EtlProvincia {
     final List<Provincia> provinciaList = new ArrayList<>();
     Regione eRegione = null;
 
-    public void load(String path){
+    public void load(String path) {
         BufferedReader reader = null;
         try {
             reader = new BufferedReader(new FileReader(new File(path), StandardCharsets.UTF_8));

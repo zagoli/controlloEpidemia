@@ -4,8 +4,8 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
-<BorderPane fx:id="malattieSettimanaliBorderPane" disable="true" xmlns="http://javafx.com/javafx/11.0.1"
-            xmlns:fx="http://javafx.com/fxml/1"
+<BorderPane xmlns:fx="http://javafx.com/fxml/1" fx:id="malattieSettimanaliBorderPane" disable="true"
+            xmlns="http://javafx.com/javafx/11.0.1"
             fx:controller="com.jgg.controlloEpidemia.view.MalattieSettimanaliController">
     <top>
         <MenuBar BorderPane.alignment="CENTER">

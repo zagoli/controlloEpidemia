@@ -22,15 +22,19 @@ public class App extends Application {
         launch(args);
     }
 
-    private void initLoad() throws IOException {
+    private void initLoad() {
         new EtlProvincia().load("src\\main\\resources\\csvToLoad\\provincia.csv");
+        logger.info("Caricate province");
         new EtlComune().load("src\\main\\resources\\csvToLoad\\comune.csv");
+        logger.info("Caricati comuni");
         new EtlDecessi().load("src\\main\\resources\\csvToLoad\\decessi.csv");
+        logger.info("Caricati decessi");
         new EtlMalattie().load("src\\main\\resources\\csvToLoad\\malattie.csv");
+        logger.info("Caricate malattie");
     }
 
     @Override
-    public void start(Stage stage) throws IOException {
+    public void start(Stage stage) {
 
         PropertyConfigurator.configure("src\\main\\resources\\log4j.properties");
         logger.info("Logger inizializzato");
@@ -47,7 +51,12 @@ public class App extends Application {
         logger.info("Caricate regioni");
         //initLoad();
 
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/loginPage.fxml"));
+        Parent root = null;
+        try {
+            root = FXMLLoader.load(getClass().getResource("/fxml/loginPage.fxml"));
+        } catch (IOException exception) {
+            exception.printStackTrace();
+        }
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.setTitle("Controllo Epidemia");

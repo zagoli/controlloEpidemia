@@ -19,7 +19,7 @@ public class EtlMalattie {
     final List<MalattieSettimanali> malattieSettimanaliList = new ArrayList<>();
     Comune eComune = null;
 
-    public void load(String path){
+    public void load(String path) {
         BufferedReader reader = null;
         try {
             reader = new BufferedReader(new FileReader(new File(path), StandardCharsets.UTF_8));

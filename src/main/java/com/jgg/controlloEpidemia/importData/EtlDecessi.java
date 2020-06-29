@@ -19,7 +19,7 @@ public class EtlDecessi {
     final List<DecessiAnnuali> decessiAnnualiList = new ArrayList<>();
     Provincia eProvincia = null;
 
-    public void load(String path){
+    public void load(String path) {
         BufferedReader reader = null;
         try {
             reader = new BufferedReader(new FileReader(new File(path), StandardCharsets.UTF_8));
