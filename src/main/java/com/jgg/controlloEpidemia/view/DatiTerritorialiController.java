@@ -189,90 +189,90 @@ public class DatiTerritorialiController implements Initializable {
                 }
                 siAffacciaSulMareInserimentoComuniComboBox.getItems().setAll(FXCollections.observableArrayList("Si", "No"));
                 siAffacciaSulMareModificaComuniComboBox.getItems().setAll(FXCollections.observableArrayList("Si", "No"));
-                regioniIdColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
-                regioniNomeColumn.setCellValueFactory(new PropertyValueFactory<>("nome"));
-                regioniSuperficieColumn.setCellValueFactory(new PropertyValueFactory<>("superficie"));
-                regioniCapoluogoColumn.setCellValueFactory(new PropertyValueFactory<>("capoluogo"));
-
-                provinceIdColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
-                provinceNomeColumn.setCellValueFactory(new PropertyValueFactory<>("nome"));
-                provinceSuperficieColumn.setCellValueFactory(new PropertyValueFactory<>("superficie"));
-                provinceCapoluogoColumn.setCellValueFactory(new PropertyValueFactory<>("capoluogo"));
-                provinceRegioneColumn.setCellValueFactory(new PropertyValueFactory<>("regione"));
-                provinceRegioneColumn.setCellFactory(column -> new TableCell<>() {
-                    @Override
-                    protected void updateItem(Regione regione, boolean empty) {
-                        super.updateItem(regione, empty);
-                        if (empty || regione == null) {
-                            setText("");
-                        } else {
-                            setText(regione.getNome());
-                        }
-                    }
-                });
-
-                comuniCodiceIstatColumn.setCellValueFactory(new PropertyValueFactory<>("codiceIstat"));
-                comuniNomeColumn.setCellValueFactory(new PropertyValueFactory<>("nome"));
-                comuniSuperficieColumn.setCellValueFactory(new PropertyValueFactory<>("superficie"));
-                comuniDataIstituzioneColumn.setCellValueFactory(new PropertyValueFactory<>("dataIstituzione"));
-                comuniDataIstituzioneColumn.setCellFactory(column -> new TableCell<>() {
-                    @Override
-                    protected void updateItem(Date date, boolean empty) {
-                        super.updateItem(date, empty);
-                        if (empty || date == null) {
-                            setText("");
-                        } else {
-                            String[] toParseData = date.toString().split(" ")[0].split("-");
-                            setText(toParseData[2] + "/" + toParseData[1] + "/" + toParseData[0]);
-                        }
-                    }
-                });
-                comuniSiAffacciaSulMareColumn.setCellValueFactory(new PropertyValueFactory<>("siAffacciaSulMare"));
-                comuniSiAffacciaSulMareColumn.setCellFactory(column -> new TableCell<>() {
-                    @Override
-                    protected void updateItem(Boolean bool, boolean empty) {
-                        super.updateItem(bool, empty);
-                        if (empty || bool == null) {
-                            setText("");
-                        } else {
-                            if (bool) {
-                                setText("Si");
-                            } else {
-                                setText("No");
-                            }
-                        }
-                    }
-                });
-                comuniTipoTerritorioColumn.setCellValueFactory(new PropertyValueFactory<>("tipoTerritorio"));
-                comuniTipoTerritorioColumn.setCellFactory(column -> new TableCell<>() {
-                    @Override
-                    protected void updateItem(TipoTerritorio tipoTerritorio, boolean empty) {
-                        super.updateItem(tipoTerritorio, empty);
-                        if (empty || tipoTerritorio == null) {
-                            setText("");
-                        } else {
-                            setText(tipoTerritorio.getNome());
-                        }
-                    }
-                });
-                comuniProvinciaColumn.setCellValueFactory(new PropertyValueFactory<>("provincia"));
-                comuniProvinciaColumn.setCellFactory(column -> new TableCell<>() {
-                    @Override
-                    protected void updateItem(Provincia provincia, boolean empty) {
-                        super.updateItem(provincia, empty);
-                        if (empty || provincia == null) {
-                            setText("");
-                        } else {
-                            setText(provincia.getNome());
-                        }
-                    }
-                });
                 updateListProvince();
                 updateListComuni();
                 Platform.runLater(() -> datiTerritorialiBorderPane.setDisable(false));
                 return null;
             }
         };
+
+        regioniIdColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
+        regioniNomeColumn.setCellValueFactory(new PropertyValueFactory<>("nome"));
+        regioniSuperficieColumn.setCellValueFactory(new PropertyValueFactory<>("superficie"));
+        regioniCapoluogoColumn.setCellValueFactory(new PropertyValueFactory<>("capoluogo"));
+        provinceIdColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
+        provinceNomeColumn.setCellValueFactory(new PropertyValueFactory<>("nome"));
+        provinceSuperficieColumn.setCellValueFactory(new PropertyValueFactory<>("superficie"));
+        provinceCapoluogoColumn.setCellValueFactory(new PropertyValueFactory<>("capoluogo"));
+        provinceRegioneColumn.setCellValueFactory(new PropertyValueFactory<>("regione"));
+        provinceRegioneColumn.setCellFactory(column -> new TableCell<>() {
+            @Override
+            protected void updateItem(Regione regione, boolean empty) {
+                super.updateItem(regione, empty);
+                if (empty || regione == null) {
+                    setText("");
+                } else {
+                    setText(regione.getNome());
+                }
+            }
+        });
+
+        comuniCodiceIstatColumn.setCellValueFactory(new PropertyValueFactory<>("codiceIstat"));
+        comuniNomeColumn.setCellValueFactory(new PropertyValueFactory<>("nome"));
+        comuniSuperficieColumn.setCellValueFactory(new PropertyValueFactory<>("superficie"));
+        comuniDataIstituzioneColumn.setCellValueFactory(new PropertyValueFactory<>("dataIstituzione"));
+        comuniDataIstituzioneColumn.setCellFactory(column -> new TableCell<>() {
+            @Override
+            protected void updateItem(Date date, boolean empty) {
+                super.updateItem(date, empty);
+                if (empty || date == null) {
+                    setText("");
+                } else {
+                    String[] toParseData = date.toString().split(" ")[0].split("-");
+                    setText(toParseData[2] + "/" + toParseData[1] + "/" + toParseData[0]);
+                }
+            }
+        });
+        comuniSiAffacciaSulMareColumn.setCellValueFactory(new PropertyValueFactory<>("siAffacciaSulMare"));
+        comuniSiAffacciaSulMareColumn.setCellFactory(column -> new TableCell<>() {
+            @Override
+            protected void updateItem(Boolean bool, boolean empty) {
+                super.updateItem(bool, empty);
+                if (empty || bool == null) {
+                    setText("");
+                } else {
+                    if (bool) {
+                        setText("Si");
+                    } else {
+                        setText("No");
+                    }
+                }
+            }
+        });
+        comuniTipoTerritorioColumn.setCellValueFactory(new PropertyValueFactory<>("tipoTerritorio"));
+        comuniTipoTerritorioColumn.setCellFactory(column -> new TableCell<>() {
+            @Override
+            protected void updateItem(TipoTerritorio tipoTerritorio, boolean empty) {
+                super.updateItem(tipoTerritorio, empty);
+                if (empty || tipoTerritorio == null) {
+                    setText("");
+                } else {
+                    setText(tipoTerritorio.getNome());
+                }
+            }
+        });
+        comuniProvinciaColumn.setCellValueFactory(new PropertyValueFactory<>("provincia"));
+        comuniProvinciaColumn.setCellFactory(column -> new TableCell<>() {
+            @Override
+            protected void updateItem(Provincia provincia, boolean empty) {
+                super.updateItem(provincia, empty);
+                if (empty || provincia == null) {
+                    setText("");
+                } else {
+                    setText(provincia.getNome());
+                }
+            }
+        });
 
         provinciaInserisciButton.disableProperty().bind(
                 Bindings.isEmpty(idInserimentoProvinceTextField.textProperty())

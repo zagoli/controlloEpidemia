@@ -5,7 +5,9 @@ import com.jgg.controlloEpidemia.service.DecessiAnnualiService;
 import com.jgg.controlloEpidemia.service.MalattieSettimanaliService;
 import com.jgg.controlloEpidemia.service.ProvinciaService;
 import com.jgg.controlloEpidemia.service.RegioneService;
+import javafx.application.Platform;
 import javafx.beans.binding.Bindings;
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -261,8 +263,16 @@ public class AnalisiDatiController implements Initializable {
         });
 
         analisiDatiVisualizzaDecessiConfrontaConMalattieButton.disableProperty().bind(Bindings.isEmpty(decessiAnnualiTableView.getSelectionModel().getSelectedItems()).or(decessiAnnualiProvinciaColumn.textProperty().isEqualTo("REGIONE")));
-        updateListVisualizzaDatiDecessi();
-        updateListVisualizzaDatiMalattie();
+        Task<Void> task = new Task<>() {
+            @Override
+            protected Void call() {
+                updateListVisualizzaDatiDecessi();
+                updateListVisualizzaDatiMalattie();
+                Platform.runLater(() -> analisiDatiBorderPane.setDisable(false));
+                return null;
+            }
+        };
+        new Thread(task).start();
     }
 
     @FXML
@@ -603,7 +613,6 @@ public class AnalisiDatiController implements Initializable {
             }
         });
 
-        ArrayList<Integer> anniList = new ArrayList<>();
         Comune comune;
         Integer rInfluenza,
                 cInfluenza,
@@ -622,11 +631,7 @@ public class AnalisiDatiController implements Initializable {
                 cGastroenterite,
                 id = 0;
 
-        for (MalattieSettimanali malattieSettimanali : malattieSettimanaliList) {
-            if (!anniList.contains(malattieSettimanali.getAnno())) {
-                anniList.add(malattieSettimanali.getAnno());
-            }
-        }
+        ArrayList<Integer> anniList = new ArrayList<>(malattieSettimanaliList.stream().mapToInt(MalattieSettimanali::getAnno).distinct().collect(ArrayList::new, ArrayList::add, ArrayList::addAll));
 
         for (Integer anno : anniList) {
             for (Regione r : regioneService.findAll()) {

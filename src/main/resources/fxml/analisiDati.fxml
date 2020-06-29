@@ -4,8 +4,8 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
-<BorderPane xmlns:fx="http://javafx.com/fxml/1" fx:id="analisiDatiBorderPane" prefHeight="600.0" prefWidth="800.0"
-            xmlns="http://javafx.com/javafx/11.0.1"
+<BorderPane fx:id="analisiDatiBorderPane" disable="true" prefHeight="600.0" prefWidth="800.0"
+            xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="com.jgg.controlloEpidemia.view.AnalisiDatiController">
     <top>
         <MenuBar BorderPane.alignment="CENTER">
@@ -93,28 +93,40 @@
                     <center>
                         <TableView fx:id="malattieSettimanaliTableView" prefHeight="425.0" prefWidth="750.0">
                             <columns>
-                                <TableColumn fx:id="malattieSettimanaliIdColumn" prefWidth="46.0" text="ID" visible="false"/>
+                                <TableColumn fx:id="malattieSettimanaliIdColumn" prefWidth="46.0" text="ID"
+                                             visible="false"/>
                                 <TableColumn fx:id="malattieSettimanaliComuneColumn" prefWidth="141.0" text="COMUNE"/>
                                 <TableColumn fx:id="malattieSettimanaliAnnoColumn" prefWidth="67.0" text="ANNO"/>
-                                <TableColumn fx:id="malattieSettimanaliSettimanaColumn" prefWidth="88.0" text="SETTIMANA"/>
-                                <TableColumn fx:id="malattieSettimanaliRicoveratiConInfluenzaColumn" prefWidth="95.0" text="R.INFLUENZA"/>
-                                <TableColumn fx:id="malattieSettimanaliInCuraConInfluenzaColumn" prefWidth="93.0" text="C.INFLUENZA"/>
+                                <TableColumn fx:id="malattieSettimanaliSettimanaColumn" prefWidth="88.0"
+                                             text="SETTIMANA"/>
+                                <TableColumn fx:id="malattieSettimanaliRicoveratiConInfluenzaColumn" prefWidth="95.0"
+                                             text="R.INFLUENZA"/>
+                                <TableColumn fx:id="malattieSettimanaliInCuraConInfluenzaColumn" prefWidth="93.0"
+                                             text="C.INFLUENZA"/>
                                 <TableColumn fx:id="malattieSettimanaliComplicanzeRespiratorieColumn" prefWidth="99.0"
                                              text="COMPL.RESPIR."/>
-                                <TableColumn fx:id="malattieSettimanaliRicoveratiConPolmoniteColumn" prefWidth="88.0" text="R.POLMONITE"/>
-                                <TableColumn fx:id="malattieSettimanaliInCuraConPolmoniteColumn" prefWidth="216.0" text="C.POLMONITE"/>
-                                <TableColumn fx:id="malattieSettimanaliRicoveratiConMeningiteColumn" prefWidth="99.0" text="R.MENINGITE"/>
-                                <TableColumn fx:id="malattieSettimanaliInCuraConMeningiteColumn" prefWidth="99.0" text="C.MENINGITE"/>
-                                <TableColumn fx:id="malattieSettimanaliRicoveratiConEpatiteColumn" prefWidth="99.0" text="R.EPATITE"/>
-                                <TableColumn fx:id="malattieSettimanaliInCuraConEpatiteColumn" prefWidth="99.0" text="C.EPATITE"/>
-                                <TableColumn fx:id="malattieSettimanaliRicoveratiConMorbilloColumn" prefWidth="99.0" text="R.MORBILLO"/>
-                                <TableColumn fx:id="malattieSettimanaliInCuraConMorbilloColumn" minWidth="4.0" prefWidth="136.0"
-                                             text="C.MORBILLO"/>
+                                <TableColumn fx:id="malattieSettimanaliRicoveratiConPolmoniteColumn" prefWidth="88.0"
+                                             text="R.POLMONITE"/>
+                                <TableColumn fx:id="malattieSettimanaliInCuraConPolmoniteColumn" prefWidth="216.0"
+                                             text="C.POLMONITE"/>
+                                <TableColumn fx:id="malattieSettimanaliRicoveratiConMeningiteColumn" prefWidth="99.0"
+                                             text="R.MENINGITE"/>
+                                <TableColumn fx:id="malattieSettimanaliInCuraConMeningiteColumn" prefWidth="99.0"
+                                             text="C.MENINGITE"/>
+                                <TableColumn fx:id="malattieSettimanaliRicoveratiConEpatiteColumn" prefWidth="99.0"
+                                             text="R.EPATITE"/>
+                                <TableColumn fx:id="malattieSettimanaliInCuraConEpatiteColumn" prefWidth="99.0"
+                                             text="C.EPATITE"/>
+                                <TableColumn fx:id="malattieSettimanaliRicoveratiConMorbilloColumn" prefWidth="99.0"
+                                             text="R.MORBILLO"/>
+                                <TableColumn fx:id="malattieSettimanaliInCuraConMorbilloColumn" minWidth="4.0"
+                                             prefWidth="136.0" text="C.MORBILLO"/>
                                 <TableColumn fx:id="malattieSettimanaliRicoveratiConTubercolosiColumn" prefWidth="99.0"
                                              text="R.TUBERCOLOSI"/>
-                                <TableColumn fx:id="malattieSettimanaliInCuraConTubercolosiColumn" prefWidth="99.0" text="C.TUBERCOLOSI"/>
-                                <TableColumn fx:id="malattieSettimanaliRicoveratiConGastroenteriteColumn" prefWidth="99.0"
-                                             text="R.GASTROENTERITE"/>
+                                <TableColumn fx:id="malattieSettimanaliInCuraConTubercolosiColumn" prefWidth="99.0"
+                                             text="C.TUBERCOLOSI"/>
+                                <TableColumn fx:id="malattieSettimanaliRicoveratiConGastroenteriteColumn"
+                                             prefWidth="99.0" text="R.GASTROENTERITE"/>
                                 <TableColumn fx:id="malattieSettimanaliInCuraConGastroenteriteColumn" prefWidth="117.0"
                                              text="C.GASTROENTERITE"/>
                             </columns>
@@ -195,36 +207,43 @@
                     </TableView>
                     <TableView fx:id="malattieSettimanaliConfrontaTableView" VBox.vgrow="ALWAYS">
                         <columns>
-                            <TableColumn fx:id="malattieSettimanaliIdConfrontaColumn" prefWidth="46.0" text="ID" visible="false"/>
+                            <TableColumn fx:id="malattieSettimanaliIdConfrontaColumn" prefWidth="46.0" text="ID"
+                                         visible="false"/>
                             <TableColumn fx:id="malattieSettimanaliAnnoConfrontaColumn" prefWidth="67.0" text="ANNO"/>
-                            <TableColumn fx:id="malattieSettimanaliSettimanaConfrontaColumn" prefWidth="88.0" text="SETTIMANA"/>
-                            <TableColumn fx:id="malattieSettimanaliRicoveratiConInfluenzaConfrontaColumn" prefWidth="95.0"
-                                         text="R.INFLUENZA"/>
-                            <TableColumn fx:id="malattieSettimanaliInCuraConInfluenzaConfrontaColumn" prefWidth="93.0" text="C.INFLUENZA"/>
-                            <TableColumn fx:id="malattieSettimanaliComplicanzeRespiratorieConfrontaColumn" prefWidth="99.0"
-                                         text="COMPL.RESPIR."/>
-                            <TableColumn fx:id="malattieSettimanaliRicoveratiConPolmoniteConfrontaColumn" prefWidth="88.0"
-                                         text="R.POLMONITE"/>
+                            <TableColumn fx:id="malattieSettimanaliSettimanaConfrontaColumn" prefWidth="88.0"
+                                         text="SETTIMANA"/>
+                            <TableColumn fx:id="malattieSettimanaliRicoveratiConInfluenzaConfrontaColumn"
+                                         prefWidth="95.0" text="R.INFLUENZA"/>
+                            <TableColumn fx:id="malattieSettimanaliInCuraConInfluenzaConfrontaColumn" prefWidth="93.0"
+                                         text="C.INFLUENZA"/>
+                            <TableColumn fx:id="malattieSettimanaliComplicanzeRespiratorieConfrontaColumn"
+                                         prefWidth="99.0" text="COMPL.RESPIR."/>
+                            <TableColumn fx:id="malattieSettimanaliRicoveratiConPolmoniteConfrontaColumn"
+                                         prefWidth="88.0" text="R.POLMONITE"/>
                             <TableColumn fx:id="malattieSettimanaliInCuraConPolmoniteConfrontaColumn" prefWidth="216.0"
                                          text="C.POLMONITE"/>
-                            <TableColumn fx:id="malattieSettimanaliRicoveratiConMeningiteConfrontaColumn" prefWidth="99.0"
-                                         text="R.MENINGITE"/>
-                            <TableColumn fx:id="malattieSettimanaliInCuraConMeningiteConfrontaColumn" prefWidth="99.0" text="C.MENINGITE"/>
-                            <TableColumn fx:id="malattieSettimanaliRicoveratiConEpatiteConfrontaColumn" prefWidth="99.0" text="R.EPATITE"/>
-                            <TableColumn fx:id="malattieSettimanaliInCuraConEpatiteConfrontaColumn" prefWidth="99.0" text="C.EPATITE"/>
-                            <TableColumn fx:id="malattieSettimanaliRicoveratiConMorbilloConfrontaColumn" prefWidth="99.0"
-                                         text="R.MORBILLO"/>
-                            <TableColumn fx:id="malattieSettimanaliInCuraConMorbilloConfrontaColumn" minWidth="4.0" prefWidth="136.0"
-                                         text="C.MORBILLO"/>
-                            <TableColumn fx:id="malattieSettimanaliRicoveratiConTubercolosiConfrontaColumn" prefWidth="99.0"
-                                         text="R.TUBERCOLOSI"/>
+                            <TableColumn fx:id="malattieSettimanaliRicoveratiConMeningiteConfrontaColumn"
+                                         prefWidth="99.0" text="R.MENINGITE"/>
+                            <TableColumn fx:id="malattieSettimanaliInCuraConMeningiteConfrontaColumn" prefWidth="99.0"
+                                         text="C.MENINGITE"/>
+                            <TableColumn fx:id="malattieSettimanaliRicoveratiConEpatiteConfrontaColumn" prefWidth="99.0"
+                                         text="R.EPATITE"/>
+                            <TableColumn fx:id="malattieSettimanaliInCuraConEpatiteConfrontaColumn" prefWidth="99.0"
+                                         text="C.EPATITE"/>
+                            <TableColumn fx:id="malattieSettimanaliRicoveratiConMorbilloConfrontaColumn"
+                                         prefWidth="99.0" text="R.MORBILLO"/>
+                            <TableColumn fx:id="malattieSettimanaliInCuraConMorbilloConfrontaColumn" minWidth="4.0"
+                                         prefWidth="136.0" text="C.MORBILLO"/>
+                            <TableColumn fx:id="malattieSettimanaliRicoveratiConTubercolosiConfrontaColumn"
+                                         prefWidth="99.0" text="R.TUBERCOLOSI"/>
                             <TableColumn fx:id="malattieSettimanaliInCuraConTubercolosiConfrontaColumn" prefWidth="99.0"
                                          text="C.TUBERCOLOSI"/>
-                            <TableColumn fx:id="malattieSettimanaliRicoveratiConGastroenteriteConfrontaColumn" prefWidth="99.0"
-                                         text="R.GASTROENTERITE"/>
-                            <TableColumn fx:id="malattieSettimanaliInCuraConGastroenteriteConfrontaColumn" prefWidth="117.0"
-                                         text="C.GASTROENTERITE"/>
-                            <TableColumn fx:id="malattieSettimanaliComuneConfrontaColumn" prefWidth="141.0" text="COMUNE"/>
+                            <TableColumn fx:id="malattieSettimanaliRicoveratiConGastroenteriteConfrontaColumn"
+                                         prefWidth="99.0" text="R.GASTROENTERITE"/>
+                            <TableColumn fx:id="malattieSettimanaliInCuraConGastroenteriteConfrontaColumn"
+                                         prefWidth="117.0" text="C.GASTROENTERITE"/>
+                            <TableColumn fx:id="malattieSettimanaliComuneConfrontaColumn" prefWidth="141.0"
+                                         text="COMUNE"/>
                         </columns>
                         <columnResizePolicy>
                             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
