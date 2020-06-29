@@ -243,7 +243,7 @@ public class MalattieSettimanaliController implements Initializable {
         alert.setHeaderText(null);
         alert.setContentText("Non sei autorizzato a gestire questo comune!");
 
-        Task<Void> task = new Task<>() {
+        new Thread(new Task<>() {
             @Override
             protected Void call() {
                 for (Comune comune : comuneService.findAll()) {
@@ -254,8 +254,7 @@ public class MalattieSettimanaliController implements Initializable {
                 Platform.runLater(() -> malattieSettimanaliBorderPane.setDisable(false));
                 return null;
             }
-        };
-        new Thread(task).start();
+        }).start();
     }
 
     @FXML
@@ -397,7 +396,7 @@ public class MalattieSettimanaliController implements Initializable {
         if (selectedFile != null) {
             loadingBar.setVisible(true);
             malattieSettimanaliBorderPane.setDisable(true);
-            Task<Void> task = new Task<>() {
+            new Thread(new Task<>() {
                 @Override
                 protected Void call() throws Exception {
                     new EtlMalattie().load(selectedFile.getPath());
@@ -409,8 +408,7 @@ public class MalattieSettimanaliController implements Initializable {
                     });
                     return null;
                 }
-            };
-            new Thread(task).start();
+            }).start();
             logger.info("Inserito csv malattie settimanali");
         } else {
             logger.error("File non selezionato");

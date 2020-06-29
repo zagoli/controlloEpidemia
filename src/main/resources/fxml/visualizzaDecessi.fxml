@@ -4,8 +4,8 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
-<BorderPane xmlns:fx="http://javafx.com/fxml/1" fx:id="visualizzaDecessiBorderPane" prefHeight="600.0" prefWidth="800.0"
-            xmlns="http://javafx.com/javafx/10.0.2-internal"
+<BorderPane fx:id="visualizzaDecessiBorderPane" disable="true" prefHeight="600.0" prefWidth="800.0"
+            xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="com.jgg.controlloEpidemia.view.VisualizzaDecessiController">
     <top>
         <MenuBar BorderPane.alignment="CENTER">
@@ -19,15 +19,13 @@
             <center>
                 <TableView fx:id="decessiAnnualiTableView" prefHeight="425.0" prefWidth="750.0">
                     <columns>
-                        <TableColumn fx:id="idColumn" prefWidth="24.800004959106445" text="ID"
-                                     visible="false"/>
-                        <TableColumn fx:id="provinciaColumn" prefWidth="77.39999389648438"
-                                     text="PROVINCIA"/>
+                        <TableColumn fx:id="idColumn" prefWidth="24.800004959106445" text="ID" visible="false"/>
+                        <TableColumn fx:id="provinciaColumn" prefWidth="77.39999389648438" text="PROVINCIA"/>
                         <TableColumn fx:id="annoColumn" prefWidth="42.99999237060547" text="ANNO"/>
                         <TableColumn fx:id="incidentiStradaliColumn" prefWidth="130.80001831054688"
                                      text="INCIDENTI STRADALI"/>
-                        <TableColumn fx:id="malattieTumoraliColumn" minWidth="0.0"
-                                     prefWidth="131.79998779296875" text="MALATTIE TUMORALI"/>
+                        <TableColumn fx:id="malattieTumoraliColumn" minWidth="0.0" prefWidth="131.79998779296875"
+                                     text="MALATTIE TUMORALI"/>
                         <TableColumn fx:id="malattieCardiovascolariColumn" prefWidth="186.60000610351562"
                                      text="MALATTIE CARDIOVASCOLARI"/>
                         <TableColumn fx:id="malattieContagioseColumn" minWidth="3.199951171875"

@@ -263,7 +263,7 @@ public class AnalisiDatiController implements Initializable {
         });
 
         analisiDatiVisualizzaDecessiConfrontaConMalattieButton.disableProperty().bind(Bindings.isEmpty(decessiAnnualiTableView.getSelectionModel().getSelectedItems()).or(decessiAnnualiProvinciaColumn.textProperty().isEqualTo("REGIONE")));
-        Task<Void> task = new Task<>() {
+        new Thread(new Task<>() {
             @Override
             protected Void call() {
                 updateListVisualizzaDatiDecessi();
@@ -271,8 +271,7 @@ public class AnalisiDatiController implements Initializable {
                 Platform.runLater(() -> analisiDatiBorderPane.setDisable(false));
                 return null;
             }
-        };
-        new Thread(task).start();
+        }).start();
     }
 
     @FXML

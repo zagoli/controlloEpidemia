@@ -167,35 +167,6 @@ public class DatiTerritorialiController implements Initializable {
     private Label provinciaNoDataSelectedLabel;
 
     public void initialize(URL location, ResourceBundle resources) {
-        Task<Void> task = new Task<>() {
-            @Override
-            protected Void call() {
-                for (Provincia provincia : provinciaService.findAll()) {
-                    provinciaInserimentoComuniComboBox.getItems().add(provincia.getNome());
-                    provinciaModificaComuniComboBox.getItems().add(provincia.getNome());
-                }
-                for (Comune comune : comuneService.findAll()) {
-                    comuneDiCapoluogoInserimentoProvinceComboBox.getItems().add(comune.getNome());
-                    comuneDiCapoluogoModificaProvinceComboBox.getItems().add(comune.getNome());
-                }
-                for (TipoTerritorio tipoTerritorio : tipoTerritorioService.findAll()) {
-                    tipoTerritorioInserimentoComuniComboBox.getItems().add(tipoTerritorio.getNome());
-                    tipoTerritorioModificaComuniComboBox.getItems().add(tipoTerritorio.getNome());
-                }
-                for (Regione regione : regioneService.findAll()) {
-                    regioneInserimentoProvinceComboBox.getItems().add(regione.getNome());
-                    regioneModificaProvinceComboBox.getItems().add(regione.getNome());
-                    regioniTableView.getItems().add(regione);
-                }
-                siAffacciaSulMareInserimentoComuniComboBox.getItems().setAll(FXCollections.observableArrayList("Si", "No"));
-                siAffacciaSulMareModificaComuniComboBox.getItems().setAll(FXCollections.observableArrayList("Si", "No"));
-                updateListProvince();
-                updateListComuni();
-                Platform.runLater(() -> datiTerritorialiBorderPane.setDisable(false));
-                return null;
-            }
-        };
-
         regioniIdColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
         regioniNomeColumn.setCellValueFactory(new PropertyValueFactory<>("nome"));
         regioniSuperficieColumn.setCellValueFactory(new PropertyValueFactory<>("superficie"));
@@ -306,7 +277,34 @@ public class DatiTerritorialiController implements Initializable {
                         .or(provinciaModificaComuniComboBox.valueProperty().isNull())
                         .or(dataDiIstituzioneModificaComuniDatePicker.valueProperty().isNull())
         );
-        new Thread(task).start();
+        new Thread(new Task<>() {
+            @Override
+            protected Void call() {
+                for (Provincia provincia : provinciaService.findAll()) {
+                    provinciaInserimentoComuniComboBox.getItems().add(provincia.getNome());
+                    provinciaModificaComuniComboBox.getItems().add(provincia.getNome());
+                }
+                for (Comune comune : comuneService.findAll()) {
+                    comuneDiCapoluogoInserimentoProvinceComboBox.getItems().add(comune.getNome());
+                    comuneDiCapoluogoModificaProvinceComboBox.getItems().add(comune.getNome());
+                }
+                for (TipoTerritorio tipoTerritorio : tipoTerritorioService.findAll()) {
+                    tipoTerritorioInserimentoComuniComboBox.getItems().add(tipoTerritorio.getNome());
+                    tipoTerritorioModificaComuniComboBox.getItems().add(tipoTerritorio.getNome());
+                }
+                for (Regione regione : regioneService.findAll()) {
+                    regioneInserimentoProvinceComboBox.getItems().add(regione.getNome());
+                    regioneModificaProvinceComboBox.getItems().add(regione.getNome());
+                    regioniTableView.getItems().add(regione);
+                }
+                siAffacciaSulMareInserimentoComuniComboBox.getItems().setAll(FXCollections.observableArrayList("Si", "No"));
+                siAffacciaSulMareModificaComuniComboBox.getItems().setAll(FXCollections.observableArrayList("Si", "No"));
+                updateListProvince();
+                updateListComuni();
+                Platform.runLater(() -> datiTerritorialiBorderPane.setDisable(false));
+                return null;
+            }
+        }).start();
     }
 
     @FXML
@@ -477,7 +475,7 @@ public class DatiTerritorialiController implements Initializable {
             loadingBarProvince.setVisible(true);
             datiTerritorialiBorderPane.setDisable(true);
 
-            Task<Void> task = new Task<>() {
+            new Thread(new Task<>() {
                 @Override
                 protected Void call() throws Exception {
                     new EtlProvincia().load(selectedFile.getPath());
@@ -488,8 +486,7 @@ public class DatiTerritorialiController implements Initializable {
                     });
                     return null;
                 }
-            };
-            new Thread(task).start();
+            }).start();
             logger.info("Inserito csv province");
         } else {
             logger.error("File non selezionato");
@@ -558,7 +555,7 @@ public class DatiTerritorialiController implements Initializable {
             loadingBarComuni.setVisible(true);
             datiTerritorialiBorderPane.setDisable(true);
 
-            Task<Void> task = new Task<>() {
+            new Thread(new Task<>() {
                 @Override
                 protected Void call() throws Exception {
                     new EtlComune().load(selectedFile.getPath());
@@ -569,8 +566,7 @@ public class DatiTerritorialiController implements Initializable {
                     });
                     return null;
                 }
-            };
-            new Thread(task).start();
+            }).start();
             logger.info("Inserito csv comuni");
         } else {
             logger.error("File non selezionato");

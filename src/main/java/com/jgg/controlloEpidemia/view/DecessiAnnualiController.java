@@ -137,7 +137,7 @@ public class DecessiAnnualiController implements Initializable {
                         .or(provinciaModificaComboBox.valueProperty().isNull())
         );
 
-        Task<Void> task = new Task<>() {
+        new Thread(new Task<>() {
             @Override
             protected Void call() {
                 for (Provincia provincia : provinciaService.findAll()) {
@@ -148,8 +148,7 @@ public class DecessiAnnualiController implements Initializable {
                 Platform.runLater(() -> decessiAnnualiBorderPane.setDisable(false));
                 return null;
             }
-        };
-        new Thread(task).start();
+        }).start();
     }
 
     @FXML
@@ -243,7 +242,7 @@ public class DecessiAnnualiController implements Initializable {
         if (selectedFile != null) {
             loadingBar.setVisible(true);
             decessiAnnualiBorderPane.setDisable(true);
-            Task<Void> task = new Task<>() {
+            new Thread(new Task<>() {
                 @Override
                 protected Void call() throws Exception {
                     new EtlDecessi().load(selectedFile.getPath());
@@ -255,8 +254,7 @@ public class DecessiAnnualiController implements Initializable {
                     });
                     return null;
                 }
-            };
-            new Thread(task).start();
+            }).start();
             logger.info("Inserito csv decessi annuali");
         } else {
             logger.error("File non selezionato");

@@ -5,6 +5,8 @@ import com.jgg.controlloEpidemia.model.Provincia;
 import com.jgg.controlloEpidemia.model.Regione;
 import com.jgg.controlloEpidemia.service.DecessiAnnualiService;
 import com.jgg.controlloEpidemia.service.RegioneService;
+import javafx.application.Platform;
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -68,7 +70,14 @@ public class VisualizzaDecessiController implements Initializable {
         malattieContagioseColumn.setCellValueFactory(new PropertyValueFactory<>("malattieContagiose"));
         malattieCardiovascolariColumn.setCellValueFactory(new PropertyValueFactory<>("malattieCardiovascolari"));
 
-        updateListVisualizzaDati();
+        new Thread(new Task<Void>() {
+            @Override
+            protected Void call() {
+                updateListVisualizzaDati();
+                Platform.runLater(() -> visualizzaDecessiBorderPane.setDisable(false));
+                return null;
+            }
+        }).start();
     }
 
     @FXML
