@@ -15,19 +15,37 @@ public class EtlRegione {
 
     final List<Regione> regioneList = new ArrayList<>();
 
-    public void load(String path) throws IOException {
-        BufferedReader reader = new BufferedReader(new FileReader(new File(path), StandardCharsets.UTF_8));
-        String riga = reader.readLine();
+    public void load(String path) {
+        BufferedReader reader = null;
+        try {
+            reader = new BufferedReader(new FileReader(new File(path), StandardCharsets.UTF_8));
+        } catch (IOException exception) {
+            exception.printStackTrace();
+        }
+        String riga = null;
+        try {
+            riga = reader.readLine();
+        } catch (IOException exception) {
+            exception.printStackTrace();
+        }
         String[] vettore;
         while (riga != null && !riga.equals("")) {
             vettore = riga.split(";");
             if (vettore.length == 3) {
                 regioneList.add(new Regione(vettore[0], Integer.parseInt(vettore[1]), vettore[2]));
             }
-            riga = reader.readLine();
+            try {
+                riga = reader.readLine();
+            } catch (IOException exception) {
+                exception.printStackTrace();
+            }
         }
         new RegioneService().saveOrUpdate(regioneList);
-        reader.close();
+        try {
+            reader.close();
+        } catch (IOException exception) {
+            exception.printStackTrace();
+        }
     }
 
 }

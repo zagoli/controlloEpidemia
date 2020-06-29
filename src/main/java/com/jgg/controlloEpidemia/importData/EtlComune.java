@@ -26,9 +26,19 @@ public class EtlComune {
     TipoTerritorio eTipoTerritorio = null;
     Provincia eProvincia = null;
 
-    public void load(String path) throws IOException {
-        BufferedReader reader = new BufferedReader(new FileReader(new File(path), StandardCharsets.UTF_8));
-        String riga = reader.readLine();
+    public void load(String path) {
+        BufferedReader reader = null;
+        try {
+            reader = new BufferedReader(new FileReader(new File(path), StandardCharsets.UTF_8));
+        } catch (IOException exception) {
+            exception.printStackTrace();
+        }
+        String riga = null;
+        try {
+            riga = reader.readLine();
+        } catch (IOException exception) {
+            exception.printStackTrace();
+        }
         String[] vettore;
         while (riga != null && !riga.equals("")) {
             vettore = riga.split(";");
@@ -38,7 +48,7 @@ public class EtlComune {
                 try {
                     data = sdf.parse(vettore[3]);
                 } catch (ParseException e) {
-                    // Errore
+                    e.printStackTrace();
                 }
                 boolean siAffacciaSulMare = false;
                 if (Integer.parseInt(vettore[4]) == 1) {
@@ -60,10 +70,18 @@ public class EtlComune {
                 }
                 comuneList.add(new Comune(vettore[0], vettore[1], Integer.parseInt(vettore[2]), data, siAffacciaSulMare, eTipoTerritorio, eProvincia));
             }
-            riga = reader.readLine();
+            try {
+                riga = reader.readLine();
+            } catch (IOException exception) {
+                exception.printStackTrace();
+            }
         }
         new ComuneService().saveOrUpdate(comuneList);
-        reader.close();
+        try {
+            reader.close();
+        } catch (IOException exception) {
+            exception.printStackTrace();
+        }
     }
 
 }

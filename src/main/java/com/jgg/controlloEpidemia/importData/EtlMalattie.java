@@ -19,9 +19,19 @@ public class EtlMalattie {
     final List<MalattieSettimanali> malattieSettimanaliList = new ArrayList<>();
     Comune eComune = null;
 
-    public void load(String path) throws IOException {
-        BufferedReader reader = new BufferedReader(new FileReader(new File(path), StandardCharsets.UTF_8));
-        String riga = reader.readLine();
+    public void load(String path){
+        BufferedReader reader = null;
+        try {
+            reader = new BufferedReader(new FileReader(new File(path), StandardCharsets.UTF_8));
+        } catch (IOException exception) {
+            exception.printStackTrace();
+        }
+        String riga = null;
+        try {
+            riga = reader.readLine();
+        } catch (IOException exception) {
+            exception.printStackTrace();
+        }
         String[] vettore;
         while (riga != null && !riga.equals("")) {
             vettore = riga.split(";");
@@ -35,10 +45,18 @@ public class EtlMalattie {
                 }
                 malattieSettimanaliList.add(new MalattieSettimanali(Integer.parseInt(vettore[0]), Integer.parseInt(vettore[1]), Integer.parseInt(vettore[2]), Integer.parseInt(vettore[3]), Integer.parseInt(vettore[4]), Integer.parseInt(vettore[5]), Integer.parseInt(vettore[6]), Integer.parseInt(vettore[7]), Integer.parseInt(vettore[8]), Integer.parseInt(vettore[9]), Integer.parseInt(vettore[10]), Integer.parseInt(vettore[11]), Integer.parseInt(vettore[12]), Integer.parseInt(vettore[13]), Integer.parseInt(vettore[14]), Integer.parseInt(vettore[15]), Integer.parseInt(vettore[16]), eComune));
             }
-            riga = reader.readLine();
+            try {
+                riga = reader.readLine();
+            } catch (IOException exception) {
+                exception.printStackTrace();
+            }
         }
         new MalattieSettimanaliService().saveOrUpdate(malattieSettimanaliList);
-        reader.close();
+        try {
+            reader.close();
+        } catch (IOException exception) {
+            exception.printStackTrace();
+        }
     }
 
 }

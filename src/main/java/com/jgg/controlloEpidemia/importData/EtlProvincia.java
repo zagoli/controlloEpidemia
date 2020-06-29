@@ -19,9 +19,19 @@ public class EtlProvincia {
     final List<Provincia> provinciaList = new ArrayList<>();
     Regione eRegione = null;
 
-    public void load(String path) throws IOException {
-        BufferedReader reader = new BufferedReader(new FileReader(new File(path), StandardCharsets.UTF_8));
-        String riga = reader.readLine();
+    public void load(String path){
+        BufferedReader reader = null;
+        try {
+            reader = new BufferedReader(new FileReader(new File(path), StandardCharsets.UTF_8));
+        } catch (IOException exception) {
+            exception.printStackTrace();
+        }
+        String riga = null;
+        try {
+            riga = reader.readLine();
+        } catch (IOException exception) {
+            exception.printStackTrace();
+        }
         String[] vettore;
         while (riga != null && !riga.equals("")) {
             vettore = riga.split(";");
@@ -35,10 +45,18 @@ public class EtlProvincia {
                 }
                 provinciaList.add(new Provincia(Integer.parseInt(vettore[0]), vettore[1], Integer.parseInt(vettore[2]), vettore[3], eRegione));
             }
-            riga = reader.readLine();
+            try {
+                riga = reader.readLine();
+            } catch (IOException exception) {
+                exception.printStackTrace();
+            }
         }
         new ProvinciaService().saveOrUpdate(provinciaList);
-        reader.close();
+        try {
+            reader.close();
+        } catch (IOException exception) {
+            exception.printStackTrace();
+        }
     }
 
 }

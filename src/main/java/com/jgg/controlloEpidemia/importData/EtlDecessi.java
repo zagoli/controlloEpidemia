@@ -19,9 +19,19 @@ public class EtlDecessi {
     final List<DecessiAnnuali> decessiAnnualiList = new ArrayList<>();
     Provincia eProvincia = null;
 
-    public void load(String path) throws IOException {
-        BufferedReader reader = new BufferedReader(new FileReader(new File(path), StandardCharsets.UTF_8));
-        String riga = reader.readLine();
+    public void load(String path){
+        BufferedReader reader = null;
+        try {
+            reader = new BufferedReader(new FileReader(new File(path), StandardCharsets.UTF_8));
+        } catch (IOException exception) {
+            exception.printStackTrace();
+        }
+        String riga = null;
+        try {
+            riga = reader.readLine();
+        } catch (IOException exception) {
+            exception.printStackTrace();
+        }
         String[] vettore;
         while (riga != null && !riga.equals("")) {
             vettore = riga.split(";");
@@ -35,10 +45,18 @@ public class EtlDecessi {
                 }
                 decessiAnnualiList.add(new DecessiAnnuali(Integer.parseInt(vettore[0]), Integer.parseInt(vettore[1]), Integer.parseInt(vettore[2]), Integer.parseInt(vettore[3]), Integer.parseInt(vettore[4]), eProvincia));
             }
-            riga = reader.readLine();
+            try {
+                riga = reader.readLine();
+            } catch (IOException exception) {
+                exception.printStackTrace();
+            }
         }
         new DecessiAnnualiService().saveOrUpdate(decessiAnnualiList);
-        reader.close();
+        try {
+            reader.close();
+        } catch (IOException exception) {
+            exception.printStackTrace();
+        }
     }
 
 }
