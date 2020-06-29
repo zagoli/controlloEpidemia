@@ -4,8 +4,8 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
-<BorderPane xmlns:fx="http://javafx.com/fxml/1" fx:id="decessiAnnualiBorderPane" prefHeight="600.0" prefWidth="800.0"
-            xmlns="http://javafx.com/javafx/10.0.2-internal"
+<BorderPane fx:id="decessiAnnualiBorderPane" disable="true" prefHeight="600.0" prefWidth="800.0"
+            xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="com.jgg.controlloEpidemia.view.DecessiAnnualiController">
     <top>
         <MenuBar BorderPane.alignment="CENTER">
@@ -22,14 +22,12 @@
                         <TableView fx:id="decessiAnnualiTableView" prefHeight="425.0" prefWidth="750.0"
                                    BorderPane.alignment="CENTER">
                             <columns>
-                                <TableColumn fx:id="idColumn" editable="false"
-                                             prefWidth="36.799989342689514" text="ID" visible="false"/>
-                                <TableColumn fx:id="provinciaColumn" prefWidth="84.79998779296875"
-                                             text="PROVINCIA"/>
-                                <TableColumn fx:id="annoColumn" prefWidth="57.599998474121094"
-                                             text="ANNO"/>
-                                <TableColumn fx:id="incidentiStradaliColumn"
-                                             prefWidth="142.39999389648438" text="INCIDENTI STRADALI"/>
+                                <TableColumn fx:id="idColumn" editable="false" prefWidth="36.799989342689514" text="ID"
+                                             visible="false"/>
+                                <TableColumn fx:id="provinciaColumn" prefWidth="84.79998779296875" text="PROVINCIA"/>
+                                <TableColumn fx:id="annoColumn" prefWidth="57.599998474121094" text="ANNO"/>
+                                <TableColumn fx:id="incidentiStradaliColumn" prefWidth="142.39999389648438"
+                                             text="INCIDENTI STRADALI"/>
                                 <TableColumn fx:id="malattieTumoraliColumn" minWidth="0.0"
                                              prefWidth="142.39996337890625" text="MALATTIE TUMORALI"/>
                                 <TableColumn fx:id="malattieCardiovascolariColumn" minWidth="0.0"
@@ -64,7 +62,7 @@
                                 </font>
                             </Button>
                             <Label fx:id="noDataSelectedLabel" prefHeight="17.0" prefWidth="130.0"
-                                   text="No valid data selected" textAlignment="CENTER" textFill="RED"
+                                   text="No valid data selected" textAlignment="CENTER" textFill="RED" visible="false"
                                    GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                                 <font>
                                     <Font name="Segoe UI Bold" size="12.0"/>
@@ -187,7 +185,7 @@
                     </VBox>
                 </GridPane>
             </Tab>
-            <Tab fx:id="decessiAnnualiModificaTab" text="Modifica">
+            <Tab fx:id="decessiAnnualiModificaTab" disable="true" text="Modifica">
                 <GridPane alignment="CENTER" maxHeight="400.0">
                     <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="40.0"/>

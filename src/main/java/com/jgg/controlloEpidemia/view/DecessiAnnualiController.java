@@ -100,8 +100,6 @@ public class DecessiAnnualiController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-        decessiAnnualiModificaTab.setDisable(true);
-
         idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
         annoColumn.setCellValueFactory(new PropertyValueFactory<>("anno"));
         decessiAnnualiTableView.getSortOrder().add(annoColumn);
@@ -122,11 +120,6 @@ public class DecessiAnnualiController implements Initializable {
         malattieContagioseColumn.setCellValueFactory(new PropertyValueFactory<>("malattieContagiose"));
         malattieCardiovascolariColumn.setCellValueFactory(new PropertyValueFactory<>("malattieCardiovascolari"));
 
-        for (Provincia provincia : provinciaService.findAll()) {
-            provinciaInserimentoComboBox.getItems().add(provincia.getNome());
-            provinciaModificaComboBox.getItems().add(provincia.getNome());
-        }
-
         decessiAnnualiInserisciButton.disableProperty().bind(
                 Bindings.isEmpty(incidentiStradaliInserimentoTextField.textProperty())
                         .or(Bindings.isEmpty(annoInserimentoTextField.textProperty()))
@@ -144,7 +137,19 @@ public class DecessiAnnualiController implements Initializable {
                         .or(provinciaModificaComboBox.valueProperty().isNull())
         );
 
-        updateList();
+        Task<Void> task = new Task<>() {
+            @Override
+            protected Void call() {
+                for (Provincia provincia : provinciaService.findAll()) {
+                    provinciaInserimentoComboBox.getItems().add(provincia.getNome());
+                    provinciaModificaComboBox.getItems().add(provincia.getNome());
+                }
+                updateList();
+                Platform.runLater(() -> decessiAnnualiBorderPane.setDisable(false));
+                return null;
+            }
+        };
+        new Thread(task).start();
     }
 
     @FXML
