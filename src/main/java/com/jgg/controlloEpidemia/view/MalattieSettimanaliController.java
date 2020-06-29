@@ -4,6 +4,7 @@ import com.jgg.controlloEpidemia.App;
 import com.jgg.controlloEpidemia.importData.EtlMalattie;
 import com.jgg.controlloEpidemia.model.Comune;
 import com.jgg.controlloEpidemia.model.MalattieSettimanali;
+import com.jgg.controlloEpidemia.model.Provincia;
 import com.jgg.controlloEpidemia.service.ComuneService;
 import com.jgg.controlloEpidemia.service.MalattieSettimanaliService;
 import javafx.animation.ScaleTransition;
@@ -24,6 +25,9 @@ import org.apache.log4j.Logger;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class MalattieSettimanaliController implements Initializable {
@@ -246,7 +250,9 @@ public class MalattieSettimanaliController implements Initializable {
         new Thread(new Task<>() {
             @Override
             protected Void call() {
-                for (Comune comune : comuneService.findAll()) {
+                List<Comune> comuniOrdinati = new ArrayList<>(comuneService.findAll());
+                comuniOrdinati.sort(Comparator.comparing(Comune::getNome));
+                for (Comune comune : comuniOrdinati) {
                     comuneInserimentoComboBox.getItems().add(comune.getNome());
                     comuneModificaComboBox.getItems().add(comune.getNome());
                 }
@@ -398,7 +404,7 @@ public class MalattieSettimanaliController implements Initializable {
             malattieSettimanaliBorderPane.setDisable(true);
             new Thread(new Task<>() {
                 @Override
-                protected Void call() throws Exception {
+                protected Void call() {
                     new EtlMalattie().load(selectedFile.getPath());
                     updateList();
                     Platform.runLater(() -> {

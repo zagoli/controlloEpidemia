@@ -33,8 +33,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.Date;
-import java.util.ResourceBundle;
+import java.util.*;
 
 public class DatiTerritorialiController implements Initializable {
 
@@ -280,19 +279,27 @@ public class DatiTerritorialiController implements Initializable {
         new Thread(new Task<>() {
             @Override
             protected Void call() {
-                for (Provincia provincia : provinciaService.findAll()) {
+                List<Provincia> provinceOrdinate = new ArrayList<>(provinciaService.findAll());
+                provinceOrdinate.sort(Comparator.comparing(Provincia::getNome));
+                for (Provincia provincia : provinceOrdinate) {
                     provinciaInserimentoComuniComboBox.getItems().add(provincia.getNome());
                     provinciaModificaComuniComboBox.getItems().add(provincia.getNome());
                 }
-                for (Comune comune : comuneService.findAll()) {
+                List<Comune> comuniOrdinati = new ArrayList<>(comuneService.findAll());
+                comuniOrdinati.sort(Comparator.comparing(Comune::getNome));
+                for (Comune comune : comuniOrdinati) {
                     comuneDiCapoluogoInserimentoProvinceComboBox.getItems().add(comune.getNome());
                     comuneDiCapoluogoModificaProvinceComboBox.getItems().add(comune.getNome());
                 }
-                for (TipoTerritorio tipoTerritorio : tipoTerritorioService.findAll()) {
+                List<TipoTerritorio> tipoTerritorioOrdinati = new ArrayList<>(tipoTerritorioService.findAll());
+                tipoTerritorioOrdinati.sort(Comparator.comparing(TipoTerritorio::getNome));
+                for (TipoTerritorio tipoTerritorio : tipoTerritorioOrdinati) {
                     tipoTerritorioInserimentoComuniComboBox.getItems().add(tipoTerritorio.getNome());
                     tipoTerritorioModificaComuniComboBox.getItems().add(tipoTerritorio.getNome());
                 }
-                for (Regione regione : regioneService.findAll()) {
+                List<Regione> regioniOrdinate = new ArrayList<>(regioneService.findAll());
+                regioniOrdinate.sort(Comparator.comparing(Regione::getNome));
+                for (Regione regione : regioniOrdinate) {
                     regioneInserimentoProvinceComboBox.getItems().add(regione.getNome());
                     regioneModificaProvinceComboBox.getItems().add(regione.getNome());
                     regioniTableView.getItems().add(regione);
@@ -477,7 +484,7 @@ public class DatiTerritorialiController implements Initializable {
 
             new Thread(new Task<>() {
                 @Override
-                protected Void call() throws Exception {
+                protected Void call() {
                     new EtlProvincia().load(selectedFile.getPath());
                     updateListProvince();
                     Platform.runLater(() -> {
@@ -557,7 +564,7 @@ public class DatiTerritorialiController implements Initializable {
 
             new Thread(new Task<>() {
                 @Override
-                protected Void call() throws Exception {
+                protected Void call() {
                     new EtlComune().load(selectedFile.getPath());
                     updateListComuni();
                     Platform.runLater(() -> {

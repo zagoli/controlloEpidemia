@@ -23,7 +23,7 @@ import org.apache.log4j.Logger;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
-import java.util.ResourceBundle;
+import java.util.*;
 
 public class DecessiAnnualiController implements Initializable {
 
@@ -140,7 +140,10 @@ public class DecessiAnnualiController implements Initializable {
         new Thread(new Task<>() {
             @Override
             protected Void call() {
-                for (Provincia provincia : provinciaService.findAll()) {
+
+                List<Provincia> provinceOrdinate = new ArrayList<>(provinciaService.findAll());
+                provinceOrdinate.sort(Comparator.comparing(Provincia::getNome));
+                for (Provincia provincia: provinceOrdinate){
                     provinciaInserimentoComboBox.getItems().add(provincia.getNome());
                     provinciaModificaComboBox.getItems().add(provincia.getNome());
                 }
@@ -244,7 +247,7 @@ public class DecessiAnnualiController implements Initializable {
             decessiAnnualiBorderPane.setDisable(true);
             new Thread(new Task<>() {
                 @Override
-                protected Void call() throws Exception {
+                protected Void call() {
                     new EtlDecessi().load(selectedFile.getPath());
                     updateList();
                     Platform.runLater(() -> {
