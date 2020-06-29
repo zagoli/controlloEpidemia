@@ -24,7 +24,6 @@ import org.apache.log4j.Logger;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
-import java.util.List;
 import java.util.ResourceBundle;
 
 public class MalattieSettimanaliController implements Initializable {
@@ -168,14 +167,6 @@ public class MalattieSettimanaliController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        malattieSettimanaliModificaTab.setDisable(true);
-        List<Comune> comuneList = comuneService.findAll();
-        for (Comune comune : comuneList) {
-            comuneInserimentoComboBox.getItems().add(comune.getNome());
-            comuneModificaComboBox.getItems().add(comune.getNome());
-        }
-        noDataSelectedLabel.setVisible(false);
-
         idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
         annoColumn.setCellValueFactory(new PropertyValueFactory<>("anno"));
         malattieSettimanaliTableView.getSortOrder().add(annoColumn);
@@ -252,7 +243,19 @@ public class MalattieSettimanaliController implements Initializable {
         alert.setHeaderText(null);
         alert.setContentText("Non sei autorizzato a gestire questo comune!");
 
-        updateList();
+        Task<Void> task = new Task<>() {
+            @Override
+            protected Void call() {
+                for (Comune comune : comuneService.findAll()) {
+                    comuneInserimentoComboBox.getItems().add(comune.getNome());
+                    comuneModificaComboBox.getItems().add(comune.getNome());
+                }
+                updateList();
+                Platform.runLater(() -> malattieSettimanaliBorderPane.setDisable(false));
+                return null;
+            }
+        };
+        new Thread(task).start();
     }
 
     @FXML
