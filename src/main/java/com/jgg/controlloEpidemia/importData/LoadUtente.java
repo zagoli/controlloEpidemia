@@ -21,16 +21,19 @@ public class LoadUtente {
     public void load() {
         Utente u = new Utente("Admin", "aa", "Gianni", "Bolla", ruoloList.get(0));
         Utente u2 = new Utente("Contratto", "cc", "Costante", "Napolitani", ruoloList.get(1));
+        Utente u5 = new Utente("Contratto2", "cc", "Santiago", "Compostela", ruoloList.get(1));
         Utente u3 = new Utente("Personale", "pp", "Ignazio", "Romano", ruoloList.get(2));
         Utente u4 = new Utente("Ricercatore", "rr", "Dalila", "Ferri", ruoloList.get(3));
 
         u.getPermesso().add(permessoList.get(0));
         u4.getPermesso().add(permessoList.get(0));
+        u5.getPermesso().add(permessoList.get(0));
 
         utenteList.add(u);
         utenteList.add(u2);
         utenteList.add(u3);
         utenteList.add(u4);
+        utenteList.add(u5);
 
         new UtenteService().saveOrUpdate(utenteList);
     }

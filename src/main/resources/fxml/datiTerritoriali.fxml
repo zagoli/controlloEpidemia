@@ -4,8 +4,8 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
-<BorderPane xmlns:fx="http://javafx.com/fxml/1" fx:id="datiTerritorialiBorderPane" prefHeight="600.0" prefWidth="800.0"
-            xmlns="http://javafx.com/javafx/10.0.2-internal"
+<BorderPane fx:id="datiTerritorialiBorderPane" disable="true" prefHeight="600.0" prefWidth="800.0"
+            xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="com.jgg.controlloEpidemia.view.DatiTerritorialiController">
     <top>
         <MenuBar BorderPane.alignment="CENTER">
@@ -72,7 +72,8 @@
                                         </font>
                                     </Button>
                                     <Label fx:id="provinciaNoDataSelectedLabel" text="No valid data selected"
-                                           textAlignment="CENTER" textFill="RED" GridPane.columnIndex="1">
+                                           textAlignment="CENTER" textFill="RED" visible="false"
+                                           GridPane.columnIndex="1">
                                         <font>
                                             <Font name="Segoe UI Bold" size="12.0"/>
                                         </font>
@@ -133,7 +134,8 @@
                                         </font>
                                     </Button>
                                     <Label fx:id="comuneNoDataSelectedLabel" text="No valid data selected"
-                                           textAlignment="CENTER" textFill="RED" GridPane.columnIndex="1">
+                                           textAlignment="CENTER" textFill="RED" visible="false"
+                                           GridPane.columnIndex="1">
                                         <font>
                                             <Font name="Segoe UI Bold" size="12.0"/>
                                         </font>
@@ -364,7 +366,7 @@
                     </Tab>
                 </TabPane>
             </Tab>
-            <Tab fx:id="modificaTab" text="Modifica">
+            <Tab fx:id="modificaTab" disable="true" text="Modifica">
                 <TabPane fx:id="modificaTabPane" prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE">
                     <Tab fx:id="provinciaModificaTab" text="Provincia">
                         <GridPane alignment="CENTER" maxHeight="-Infinity" prefHeight="400.0">

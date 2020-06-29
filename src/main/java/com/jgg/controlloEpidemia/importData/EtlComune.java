@@ -38,7 +38,7 @@ public class EtlComune {
                 try {
                     data = sdf.parse(vettore[3]);
                 } catch (ParseException e) {
-                    System.out.println("Errore");
+                    // Errore
                 }
                 boolean siAffacciaSulMare = false;
                 if (Integer.parseInt(vettore[4]) == 1) {

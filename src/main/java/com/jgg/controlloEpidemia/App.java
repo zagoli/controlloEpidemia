@@ -36,10 +36,15 @@ public class App extends Application {
         logger.info("Logger inizializzato");
 
         new LoadRuolo().load();
+        logger.info("Caricati ruoli");
         new LoadTipoTerritorio().load();
+        logger.info("Caricati territori");
         new LoadPermesso().load();
+        logger.info("Caricati permessi");
         new LoadUtente().load();
+        logger.info("Caricati utenti");
         new EtlRegione().load("src\\main\\resources\\csvToLoad\\regione.csv");
+        logger.info("Caricate regioni");
         //initLoad();
 
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/loginPage.fxml"));
