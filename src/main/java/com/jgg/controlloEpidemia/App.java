@@ -22,7 +22,7 @@ public class App extends Application {
         launch(args);
     }
 
-    private void initLoad() {
+    private void initLoad(Logger logger) {
         new EtlProvincia().load("src\\main\\resources\\csvToLoad\\provincia.csv");
         logger.info("Caricate province");
         new EtlComune().load("src\\main\\resources\\csvToLoad\\comune.csv");
@@ -49,7 +49,7 @@ public class App extends Application {
         logger.info("Caricati utenti");
         new EtlRegione().load("src\\main\\resources\\csvToLoad\\regione.csv");
         logger.info("Caricate regioni");
-        //initLoad();
+        //initLoad(logger);
 
         Parent root = null;
         try {
@@ -62,6 +62,7 @@ public class App extends Application {
         stage.setTitle("Controllo Epidemia");
         stage.getIcons().add(new Image("images/icon.png"));
         stage.show();
+        logger.info("Caricata grafica");
     }
 
 }
