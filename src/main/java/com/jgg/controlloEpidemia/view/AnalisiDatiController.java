@@ -157,9 +157,25 @@ public class AnalisiDatiController implements Initializable {
 
     @FXML
     private Button analisiDatiVisualizzaDecessiConfrontaConMalattieButton;
+    @FXML
+    private Button analisiDatiVisualizzaMalattieAggregaPerRegioneButton;
+    @FXML
+    private Button analisiDatiVisualizzaMalattieAggregaPerNazioneButton;
+    @FXML
+    private Button analisiDatiVisualizzaMalattieAggregaPerProvinciaButton;
+    @FXML
+    private Button analisiDatiVisualizzaMalattieVisualizzaDatiButton;
+    @FXML
+    private Button analisiDatiVisualizzaDecessiAggregaPerNazioneButton;
+    @FXML
+    private Button analisiDatiVisualizzaDecessiAggregaPerRegioneButton;
+    @FXML
+    private Button analisiDatiVisualizzaDecessiVisualizzaDatiButton;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        analisiDatiVisualizzaMalattieVisualizzaDatiButton.setDisable(true);
+        analisiDatiVisualizzaDecessiVisualizzaDatiButton.setDisable(true);
         decessiAnnualiIdColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
         decessiAnnualiAnnoColumn.setCellValueFactory(new PropertyValueFactory<>("anno"));
         decessiAnnualiProvinciaColumn.setCellValueFactory(new PropertyValueFactory<>("provincia"));
@@ -262,7 +278,7 @@ public class AnalisiDatiController implements Initializable {
             }
         });
 
-        analisiDatiVisualizzaDecessiConfrontaConMalattieButton.disableProperty().bind(Bindings.isEmpty(decessiAnnualiTableView.getSelectionModel().getSelectedItems()).or(decessiAnnualiProvinciaColumn.textProperty().isEqualTo("REGIONE")));
+        analisiDatiVisualizzaDecessiConfrontaConMalattieButton.disableProperty().bind(Bindings.isEmpty(decessiAnnualiTableView.getSelectionModel().getSelectedItems()).or(decessiAnnualiProvinciaColumn.textProperty().isEqualTo("REGIONE")).or(decessiAnnualiProvinciaColumn.textProperty().isEqualTo("NAZIONALE")));
         new Thread(new Task<>() {
             @Override
             protected Void call() {
@@ -341,15 +357,17 @@ public class AnalisiDatiController implements Initializable {
 
     @FXML
     private void analisiDatiVisualizzaDecessiVisualizzaDatiButtonOnClicked() {
+        analisiDatiVisualizzaDecessiVisualizzaDatiButton.setDisable(true);
+        analisiDatiVisualizzaDecessiAggregaPerRegioneButton.setDisable(false);
+        analisiDatiVisualizzaDecessiAggregaPerNazioneButton.setDisable(false);
         updateListVisualizzaDatiDecessi();
     }
 
     @FXML
     private void analisiDatiVisualizzaDecessiAggregaPerRegioneButtonOnClicked() {
-        if (!analisiDatiVisualizzaDecessiConfrontaConMalattieButton.isDisabled()) {
-            analisiDatiVisualizzaDecessiConfrontaConMalattieButton.setDisable(true);
-        }
-
+        analisiDatiVisualizzaDecessiVisualizzaDatiButton.setDisable(false);
+        analisiDatiVisualizzaDecessiAggregaPerRegioneButton.setDisable(true);
+        analisiDatiVisualizzaDecessiAggregaPerNazioneButton.setDisable(false);
         decessiAnnualiTableView.getItems().clear();
         decessiAnnualiProvinciaColumn.setText("REGIONE");
 
@@ -408,9 +426,9 @@ public class AnalisiDatiController implements Initializable {
 
     @FXML
     private void analisiDatiVisualizzaDecessiAggregaPerNazioneButtonOnClicked() {
-        if (!analisiDatiVisualizzaDecessiConfrontaConMalattieButton.isDisabled()) {
-            analisiDatiVisualizzaDecessiConfrontaConMalattieButton.setDisable(true);
-        }
+        analisiDatiVisualizzaDecessiVisualizzaDatiButton.setDisable(false);
+        analisiDatiVisualizzaDecessiAggregaPerRegioneButton.setDisable(false);
+        analisiDatiVisualizzaDecessiAggregaPerNazioneButton.setDisable(true);
 
         decessiAnnualiTableView.getItems().clear();
         decessiAnnualiProvinciaColumn.setText("NAZIONALE");
@@ -501,11 +519,19 @@ public class AnalisiDatiController implements Initializable {
 
     @FXML
     private void analisiDatiVisualizzaMalattieVisualizzaDatiButtonOnClicked() {
+        analisiDatiVisualizzaMalattieVisualizzaDatiButton.setDisable(true);
+        analisiDatiVisualizzaMalattieAggregaPerNazioneButton.setDisable(false);
+        analisiDatiVisualizzaMalattieAggregaPerRegioneButton.setDisable(false);
+        analisiDatiVisualizzaMalattieAggregaPerProvinciaButton.setDisable(false);
         updateListVisualizzaDatiMalattie();
     }
 
     @FXML
     private void analisiDatiVisualizzaMalattieAggregaPerProvinciaButtonOnClicked() {
+        analisiDatiVisualizzaMalattieVisualizzaDatiButton.setDisable(false);
+        analisiDatiVisualizzaMalattieAggregaPerNazioneButton.setDisable(false);
+        analisiDatiVisualizzaMalattieAggregaPerRegioneButton.setDisable(false);
+        analisiDatiVisualizzaMalattieAggregaPerProvinciaButton.setDisable(true);
         malattieSettimanaliTableView.getItems().clear();
 
         malattieSettimanaliComuneColumn.setText("PROVINCIA");
@@ -596,6 +622,10 @@ public class AnalisiDatiController implements Initializable {
 
     @FXML
     private void analisiDatiVisualizzaMalattieAggregaPerRegioneButtonOnClicked() {
+        analisiDatiVisualizzaMalattieVisualizzaDatiButton.setDisable(false);
+        analisiDatiVisualizzaMalattieAggregaPerNazioneButton.setDisable(false);
+        analisiDatiVisualizzaMalattieAggregaPerRegioneButton.setDisable(true);
+        analisiDatiVisualizzaMalattieAggregaPerProvinciaButton.setDisable(false);
         malattieSettimanaliTableView.getItems().clear();
 
         malattieSettimanaliComuneColumn.setText("REGIONE");
@@ -682,6 +712,10 @@ public class AnalisiDatiController implements Initializable {
 
     @FXML
     private void analisiDatiVisualizzaMalattieAggregaPerNazioneButtonOnClicked() {
+        analisiDatiVisualizzaMalattieVisualizzaDatiButton.setDisable(false);
+        analisiDatiVisualizzaMalattieAggregaPerNazioneButton.setDisable(true);
+        analisiDatiVisualizzaMalattieAggregaPerRegioneButton.setDisable(false);
+        analisiDatiVisualizzaMalattieAggregaPerProvinciaButton.setDisable(false);
         malattieSettimanaliTableView.getItems().clear();
 
         malattieSettimanaliComuneColumn.setText("NAZIONALE");

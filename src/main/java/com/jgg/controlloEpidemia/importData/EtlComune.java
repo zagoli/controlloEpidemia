@@ -35,6 +35,7 @@ public class EtlComune {
         }
         String riga = null;
         try {
+            assert reader != null;
             riga = reader.readLine();
         } catch (IOException exception) {
             exception.printStackTrace();

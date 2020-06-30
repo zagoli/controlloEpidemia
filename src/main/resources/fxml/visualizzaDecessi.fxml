@@ -39,19 +39,19 @@
             <bottom>
                 <ButtonBar buttonMinWidth="60.0" prefHeight="60.0" prefWidth="750.0" BorderPane.alignment="CENTER">
                     <buttons>
-                        <Button mnemonicParsing="false" onAction="#visualizzaDecessiVisualizzaDatiButtonOnClicked"
+                        <Button fx:id="visualizzaDecessiVisualizzaDatiButton" mnemonicParsing="false" onAction="#visualizzaDecessiVisualizzaDatiButtonOnClicked"
                                 prefHeight="40.0" text="Aggrega per provincia" ButtonBar.buttonData="LEFT">
                             <font>
                                 <Font name="Segoe UI Bold" size="15.0"/>
                             </font>
                         </Button>
-                        <Button mnemonicParsing="false" onAction="#visualizzaDecessiAggregaPerRegioneButtonOnClicked"
+                        <Button fx:id="visualizzaDecessiAggregaPerRegioneButton" mnemonicParsing="false" onAction="#visualizzaDecessiAggregaPerRegioneButtonOnClicked"
                                 prefHeight="40.0" text="Aggrega per regione" ButtonBar.buttonData="LEFT">
                             <font>
                                 <Font name="Segoe UI Bold" size="15.0"/>
                             </font>
                         </Button>
-                        <Button mnemonicParsing="false" onAction="#visualizzaDecessiAggregaPerNazioneButtonOnClicked"
+                        <Button fx:id="visualizzaDecessiAggregaPerNazioneButton" mnemonicParsing="false" onAction="#visualizzaDecessiAggregaPerNazioneButtonOnClicked"
                                 prefHeight="40.0" text="Aggrega per nazione" ButtonBar.buttonData="LEFT">
                             <font>
                                 <Font name="Segoe UI Bold" size="15.0"/>

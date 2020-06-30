@@ -11,6 +11,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -48,8 +49,18 @@ public class VisualizzaDecessiController implements Initializable {
     @FXML
     private TableColumn<DecessiAnnuali, Integer> malattieContagioseColumn;
 
+    @FXML
+    private Button visualizzaDecessiAggregaPerRegioneButton;
+    @FXML
+    private Button visualizzaDecessiAggregaPerNazioneButton;
+    @FXML
+    private Button visualizzaDecessiVisualizzaDatiButton;
+
+
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        visualizzaDecessiVisualizzaDatiButton.setDisable(true);
         idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
         annoColumn.setCellValueFactory(new PropertyValueFactory<>("anno"));
         decessiAnnualiTableView.getSortOrder().add(annoColumn);
@@ -114,11 +125,19 @@ public class VisualizzaDecessiController implements Initializable {
 
     @FXML
     private void visualizzaDecessiVisualizzaDatiButtonOnClicked() {
+        visualizzaDecessiVisualizzaDatiButton.setDisable(true);
+        visualizzaDecessiAggregaPerNazioneButton.setDisable(false);
+        visualizzaDecessiAggregaPerRegioneButton.setDisable(false);
+
         updateListVisualizzaDati();
     }
 
     @FXML
     private void visualizzaDecessiAggregaPerNazioneButtonOnClicked() {
+        visualizzaDecessiVisualizzaDatiButton.setDisable(false);
+        visualizzaDecessiAggregaPerNazioneButton.setDisable(true);
+        visualizzaDecessiAggregaPerRegioneButton.setDisable(false);
+
         decessiAnnualiTableView.getItems().clear();
 
         provinciaColumn.setText("NAZIONALE");
@@ -170,6 +189,10 @@ public class VisualizzaDecessiController implements Initializable {
 
     @FXML
     private void visualizzaDecessiAggregaPerRegioneButtonOnClicked() {
+        visualizzaDecessiVisualizzaDatiButton.setDisable(false);
+        visualizzaDecessiAggregaPerNazioneButton.setDisable(false);
+        visualizzaDecessiAggregaPerRegioneButton.setDisable(true);
+
         decessiAnnualiTableView.getItems().clear();
 
         provinciaColumn.setText("REGIONE");
