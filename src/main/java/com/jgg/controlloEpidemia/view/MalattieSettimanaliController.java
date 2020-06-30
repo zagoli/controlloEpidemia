@@ -253,8 +253,10 @@ public class MalattieSettimanaliController implements Initializable {
                 List<Comune> comuniOrdinati = new ArrayList<>(comuneService.findAll());
                 comuniOrdinati.sort(Comparator.comparing(Comune::getNome));
                 for (Comune comune : comuniOrdinati) {
-                    comuneInserimentoComboBox.getItems().add(comune.getNome());
-                    comuneModificaComboBox.getItems().add(comune.getNome());
+                    if(App.utenteCorrente.getRuolo().getId()==1 || App.utenteCorrente.getComuni().contains(comune)) {
+                        comuneInserimentoComboBox.getItems().add(comune.getNome());
+                        comuneModificaComboBox.getItems().add(comune.getNome());
+                    }
                 }
                 updateList();
                 Platform.runLater(() -> malattieSettimanaliBorderPane.setDisable(false));
