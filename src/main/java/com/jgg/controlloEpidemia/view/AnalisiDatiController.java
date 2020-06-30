@@ -179,17 +179,8 @@ public class AnalisiDatiController implements Initializable {
         decessiAnnualiIdColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
         decessiAnnualiAnnoColumn.setCellValueFactory(new PropertyValueFactory<>("anno"));
         decessiAnnualiProvinciaColumn.setCellValueFactory(new PropertyValueFactory<>("provincia"));
-        decessiAnnualiProvinciaColumn.setCellFactory(column -> new TableCell<>() {
-            @Override
-            protected void updateItem(Provincia provincia, boolean empty) {
-                super.updateItem(provincia, empty);
-                if (empty || provincia == null) {
-                    setText("");
-                } else {
-                    setText(provincia.getNome());
-                }
-            }
-        });
+        decessiAnnualiProvinciaColumn.setCellFactory(decessiAnnualiTableView -> new ProvinciaFormatCell());
+
         decessiAnnualiIncidentiStradaliColumn.setCellValueFactory(new PropertyValueFactory<>("incidentiStradali"));
         decessiAnnualiMalattieTumoraliColumn.setCellValueFactory(new PropertyValueFactory<>("malattieTumorali"));
         decessiAnnualiMalattieContagioseColumn.setCellValueFactory(new PropertyValueFactory<>("malattieContagiose"));
@@ -215,32 +206,12 @@ public class AnalisiDatiController implements Initializable {
         malattieSettimanaliRicoveratiConGastroenteriteColumn.setCellValueFactory(new PropertyValueFactory<>("ricoveratiGastroenterite"));
         malattieSettimanaliInCuraConGastroenteriteColumn.setCellValueFactory(new PropertyValueFactory<>("inCuraGastroenterite"));
         malattieSettimanaliComuneColumn.setCellValueFactory(new PropertyValueFactory<>("comune"));
-        malattieSettimanaliComuneColumn.setCellFactory(column -> new TableCell<>() {
-            @Override
-            protected void updateItem(Comune comune, boolean empty) {
-                super.updateItem(comune, empty);
-                if (empty || comune == null) {
-                    setText("");
-                } else {
-                    setText(comune.getNome());
-                }
-            }
-        });
+        malattieSettimanaliComuneColumn.setCellFactory(malattieSettimanaliTableView -> new ComuneFormatCell());
 
         decessiAnnualiIdConfrontaColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
         decessiAnnualiAnnoConfrontaColumn.setCellValueFactory(new PropertyValueFactory<>("anno"));
         decessiAnnualiProvinciaConfrontaColumn.setCellValueFactory(new PropertyValueFactory<>("provincia"));
-        decessiAnnualiProvinciaConfrontaColumn.setCellFactory(column -> new TableCell<>() {
-            @Override
-            protected void updateItem(Provincia provincia, boolean empty) {
-                super.updateItem(provincia, empty);
-                if (empty || provincia == null) {
-                    setText("");
-                } else {
-                    setText(provincia.getNome());
-                }
-            }
-        });
+        decessiAnnualiProvinciaConfrontaColumn.setCellFactory(decessiAnnualiConfrontaTableView -> new ProvinciaFormatCell());
         decessiAnnualiIncidentiStradaliConfrontaColumn.setCellValueFactory(new PropertyValueFactory<>("incidentiStradali"));
         decessiAnnualiMalattieTumoraliConfrontaColumn.setCellValueFactory(new PropertyValueFactory<>("malattieTumorali"));
         decessiAnnualiMalattieContagioseConfrontaColumn.setCellValueFactory(new PropertyValueFactory<>("malattieContagiose"));
@@ -266,17 +237,7 @@ public class AnalisiDatiController implements Initializable {
         malattieSettimanaliRicoveratiConGastroenteriteConfrontaColumn.setCellValueFactory(new PropertyValueFactory<>("ricoveratiGastroenterite"));
         malattieSettimanaliInCuraConGastroenteriteConfrontaColumn.setCellValueFactory(new PropertyValueFactory<>("inCuraGastroenterite"));
         malattieSettimanaliComuneConfrontaColumn.setCellValueFactory(new PropertyValueFactory<>("comune"));
-        malattieSettimanaliComuneConfrontaColumn.setCellFactory(column -> new TableCell<>() {
-            @Override
-            protected void updateItem(Comune comune, boolean empty) {
-                super.updateItem(comune, empty);
-                if (empty || comune == null) {
-                    setText("");
-                } else {
-                    setText(comune.getNome());
-                }
-            }
-        });
+        malattieSettimanaliComuneConfrontaColumn.setCellFactory(malattieSettimanaliConfrontaTableView -> new ComuneFormatCell());
 
         analisiDatiVisualizzaDecessiConfrontaConMalattieButton.disableProperty().bind(Bindings.isEmpty(decessiAnnualiTableView.getSelectionModel().getSelectedItems()).or(decessiAnnualiProvinciaColumn.textProperty().isEqualTo("REGIONE")).or(decessiAnnualiProvinciaColumn.textProperty().isEqualTo("NAZIONALE")));
         new Thread(new Task<>() {
@@ -819,6 +780,38 @@ public class AnalisiDatiController implements Initializable {
             });
             currentSession.close();
         }
+    }
+
+    private static class ProvinciaFormatCell extends TableCell<DecessiAnnuali, Provincia> {
+        public ProvinciaFormatCell() {
+        }
+
+        @Override
+        protected void updateItem(Provincia item, boolean empty) {
+            super.updateItem(item, empty);
+            if (empty || item == null) {
+                setText("");
+            } else {
+                setText(item.getNome());
+            }
+        }
+
+    }
+
+    private static class ComuneFormatCell extends TableCell<MalattieSettimanali, Comune> {
+        public ComuneFormatCell() {
+        }
+
+        @Override
+        protected void updateItem(Comune item, boolean empty) {
+            super.updateItem(item, empty);
+            if (empty || item == null) {
+                setText("");
+            } else {
+                setText(item.getNome());
+            }
+        }
+
     }
 
 }
