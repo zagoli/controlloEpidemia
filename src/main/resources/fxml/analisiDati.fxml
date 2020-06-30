@@ -209,6 +209,8 @@
                         <columns>
                             <TableColumn fx:id="malattieSettimanaliIdConfrontaColumn" prefWidth="46.0" text="ID"
                                          visible="false"/>
+                            <TableColumn fx:id="malattieSettimanaliComuneConfrontaColumn" prefWidth="141.0"
+                                         text="COMUNE"/>
                             <TableColumn fx:id="malattieSettimanaliAnnoConfrontaColumn" prefWidth="67.0" text="ANNO"/>
                             <TableColumn fx:id="malattieSettimanaliSettimanaConfrontaColumn" prefWidth="88.0"
                                          text="SETTIMANA"/>
@@ -242,8 +244,6 @@
                                          prefWidth="99.0" text="R.GASTROENTERITE"/>
                             <TableColumn fx:id="malattieSettimanaliInCuraConGastroenteriteConfrontaColumn"
                                          prefWidth="117.0" text="C.GASTROENTERITE"/>
-                            <TableColumn fx:id="malattieSettimanaliComuneConfrontaColumn" prefWidth="141.0"
-                                         text="COMUNE"/>
                         </columns>
                         <columnResizePolicy>
                             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
