@@ -562,18 +562,28 @@ public class DatiTerritorialiController implements Initializable {
             loadingBarComuni.setVisible(true);
             datiTerritorialiBorderPane.setDisable(true);
 
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Errori inserimento CSV comuni");
+            alert.setHeaderText(null);
+
             new Thread(new Task<>() {
                 @Override
                 protected Void call() {
-                    new EtlComune().load(selectedFile.getPath());
+                    int[] ritornoErrori = new EtlComune().load(selectedFile.getPath());
                     updateListComuni();
+
                     Platform.runLater(() -> {
+                        alert.setContentText("Righe con errore: "+ritornoErrori[0]+"\n"+"Righe non lette: "+ritornoErrori[1]);
+                        if(ritornoErrori[0]>0 || ritornoErrori[1]>0){
+                            alert.showAndWait();
+                        }
                         loadingBarComuni.setVisible(false);
                         datiTerritorialiBorderPane.setDisable(false);
                     });
                     return null;
                 }
             }).start();
+
             logger.info("Inserito csv comuni");
         } else {
             logger.error("File non selezionato");

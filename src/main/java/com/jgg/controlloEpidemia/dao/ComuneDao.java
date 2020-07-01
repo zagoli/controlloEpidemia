@@ -11,6 +11,7 @@ import org.hibernate.query.Query;
 import javax.persistence.NoResultException;
 import java.util.List;
 
+@SuppressWarnings("rawtypes")
 @NoArgsConstructor
 public class ComuneDao implements ComuneDaoInterface {
 
@@ -69,7 +70,7 @@ public class ComuneDao implements ComuneDaoInterface {
 
     @Override
     public void saveOrUpdate(Comune comune) {
-        Comune eComune = findByNome(comune.getNome());
+        Comune eComune = findByCodiceIstat(comune.getCodiceIstat());
         if (eComune == null) {
             save(comune);
         } else {
