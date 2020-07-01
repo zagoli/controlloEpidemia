@@ -57,7 +57,6 @@ public class VisualizzaDecessiController implements Initializable {
     private Button visualizzaDecessiVisualizzaDatiButton;
 
 
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         visualizzaDecessiVisualizzaDatiButton.setDisable(true);

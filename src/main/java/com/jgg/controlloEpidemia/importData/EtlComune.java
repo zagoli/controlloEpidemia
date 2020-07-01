@@ -6,7 +6,6 @@ import com.jgg.controlloEpidemia.model.TipoTerritorio;
 import com.jgg.controlloEpidemia.service.ComuneService;
 import com.jgg.controlloEpidemia.service.ProvinciaService;
 import com.jgg.controlloEpidemia.service.TipoTerritorioService;
-import javafx.scene.control.Alert;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -41,43 +40,42 @@ public class EtlComune {
         } catch (IOException exception) {
             exception.printStackTrace();
         }
-        int righeNonLette=0;
-        int righeConErrore=0;
+        int righeNonLette = 0;
+        int righeConErrore = 0;
         String[] vettore;
         boolean errori;
 
 
-
         while (riga != null) {
-            errori=false;
+            errori = false;
             vettore = riga.split(";");
             if (vettore.length == 7) {
 
                 //Codice istat
-                if (vettore[0].length()!=6 || !vettore[0].matches("[0-9]+")){
-                    errori=true;
+                if (vettore[0].length() != 6 || !vettore[0].matches("[0-9]+")) {
+                    errori = true;
                 }
 
                 //Nome
-                if ((vettore[1].equals("") || !vettore[1].matches("[a-zA-Z]+(\\s+[a-zA-Z]+)*")) && !errori){
-                    errori=true;
+                if ((vettore[1].equals("") || !vettore[1].matches("[a-zA-Z]+(\\s+[a-zA-Z]+)*")) && !errori) {
+                    errori = true;
                 }
 
                 //Superficie
-                if((Integer.parseInt(vettore[2])<1 || vettore[2].equals("")|| !vettore[0].matches("[0-9]+"))&& !errori){
-                    errori=true;
+                if ((Integer.parseInt(vettore[2]) < 1 || vettore[2].equals("") || !vettore[0].matches("[0-9]+")) && !errori) {
+                    errori = true;
                 }
 
                 //Data
                 Date data = null;
-                if(!errori) {
+                if (!errori) {
                     SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
                     try {
                         data = sdf.parse(vettore[3]);
                         Calendar myCalendar = new GregorianCalendar(1500, Calendar.JANUARY, 1);
                         Date dataMin = myCalendar.getTime();
-                        if(data.before(dataMin) || data.after(new Date())){
-                            errori=true;
+                        if (data.before(dataMin) || data.after(new Date())) {
+                            errori = true;
                         }
                     } catch (ParseException e) {
                         errori = true;
@@ -87,17 +85,16 @@ public class EtlComune {
 
                 //Si affaccia sul mare
                 boolean siAffacciaSulMare = false;
-                if(!vettore[4].matches("[01]") && !errori) {
-                    errori=true;
-                }
-                else{
+                if (!vettore[4].matches("[01]") && !errori) {
+                    errori = true;
+                } else {
                     if (Integer.parseInt(vettore[4]) == 1) {
                         siAffacciaSulMare = true;
                     }
                 }
 
                 //Tipo territorio
-                if(!errori) {
+                if (!errori) {
                     eTipoTerritorio = null;
                     for (TipoTerritorio tipoTerritorio : tipoTerritorioList) {
                         if (tipoTerritorio.getId().equals(Integer.parseInt(vettore[5]))) {
@@ -105,13 +102,13 @@ public class EtlComune {
                             break;
                         }
                     }
-                    if(eTipoTerritorio==null){
-                        errori=true;
+                    if (eTipoTerritorio == null) {
+                        errori = true;
                     }
                 }
 
                 //Provincia
-                if(!errori) {
+                if (!errori) {
                     eProvincia = null;
                     for (Provincia provincia : provinciaList) {
                         if (provincia.getId().equals(Integer.parseInt(vettore[6]))) {
@@ -119,20 +116,18 @@ public class EtlComune {
                             break;
                         }
                     }
-                    if(eProvincia==null){
-                        errori=true;
+                    if (eProvincia == null) {
+                        errori = true;
                     }
                 }
 
                 //Aggiungo comune se non ha errori
-                if(!errori){
+                if (!errori) {
                     comuneList.add(new Comune(vettore[0], vettore[1], Integer.parseInt(vettore[2]), data, siAffacciaSulMare, eTipoTerritorio, eProvincia));
-                }
-                else{
+                } else {
                     righeConErrore++;
                 }
-            }
-            else{
+            } else {
                 righeNonLette++;
             }
             try {
@@ -151,7 +146,7 @@ public class EtlComune {
         }
 
 
-        return new int[]{righeConErrore,righeNonLette};
+        return new int[]{righeConErrore, righeNonLette};
     }
 
 

@@ -4,7 +4,6 @@ import com.jgg.controlloEpidemia.App;
 import com.jgg.controlloEpidemia.importData.EtlMalattie;
 import com.jgg.controlloEpidemia.model.Comune;
 import com.jgg.controlloEpidemia.model.MalattieSettimanali;
-import com.jgg.controlloEpidemia.model.Provincia;
 import com.jgg.controlloEpidemia.service.ComuneService;
 import com.jgg.controlloEpidemia.service.MalattieSettimanaliService;
 import javafx.animation.ScaleTransition;
@@ -253,7 +252,7 @@ public class MalattieSettimanaliController implements Initializable {
                 List<Comune> comuniOrdinati = new ArrayList<>(comuneService.findAll());
                 comuniOrdinati.sort(Comparator.comparing(Comune::getNome));
                 for (Comune comune : comuniOrdinati) {
-                    if(App.utenteCorrente.getRuolo().getId()==1 || App.utenteCorrente.getComuni().contains(comune)) {
+                    if (App.utenteCorrente.getRuolo().getId() == 1 || App.utenteCorrente.getComuni().contains(comune)) {
                         comuneInserimentoComboBox.getItems().add(comune.getNome());
                         comuneModificaComboBox.getItems().add(comune.getNome());
                     }
@@ -363,7 +362,7 @@ public class MalattieSettimanaliController implements Initializable {
                 Integer.parseInt(inCuraConGastroenteriteInserimentoTextField.getText()),
                 comuneService.findByNome(comuneInserimentoComboBox.getValue())
         );
-        if (App.utenteCorrente.getComuni().contains(malattieSettimanali.getComune()) || App.utenteCorrente.getRuolo().getId()==1) {
+        if (App.utenteCorrente.getComuni().contains(malattieSettimanali.getComune()) || App.utenteCorrente.getRuolo().getId() == 1) {
             malattieSettimanaliService.save(malattieSettimanali);
             if (malattieSettimanaliService.findById(malattieSettimanali.getId()) != null) {
                 logger.info("Inserito record malattie settimanali: " + malattieSettimanali);

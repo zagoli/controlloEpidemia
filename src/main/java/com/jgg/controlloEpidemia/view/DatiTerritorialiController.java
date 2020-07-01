@@ -573,8 +573,8 @@ public class DatiTerritorialiController implements Initializable {
                     updateListComuni();
 
                     Platform.runLater(() -> {
-                        alert.setContentText("Righe con errore: "+ritornoErrori[0]+"\n"+"Righe non lette: "+ritornoErrori[1]);
-                        if(ritornoErrori[0]>0 || ritornoErrori[1]>0){
+                        alert.setContentText("Righe con errore: " + ritornoErrori[0] + "\n" + "Righe non lette: " + ritornoErrori[1]);
+                        if (ritornoErrori[0] > 0 || ritornoErrori[1] > 0) {
                             alert.showAndWait();
                         }
                         loadingBarComuni.setVisible(false);
