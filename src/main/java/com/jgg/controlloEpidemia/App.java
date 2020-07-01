@@ -29,7 +29,7 @@ public class App extends Application {
         logger.info("Caricati comuni");
         new EtlDecessi().load("src\\main\\resources\\csvToLoad\\decessi.csv");
         logger.info("Caricati decessi");
-        new EtlMalattie().load("src\\main\\resources\\csvToLoad\\malattie.csv");
+        new EtlMalattie().loadInit("src\\main\\resources\\csvToLoad\\malattie.csv");
         logger.info("Caricate malattie");
     }
 
@@ -49,7 +49,8 @@ public class App extends Application {
         logger.info("Caricati utenti");
         new EtlRegione().load("src\\main\\resources\\csvToLoad\\regione.csv");
         logger.info("Caricate regioni");
-        //initLoad(logger);
+
+        initLoad(logger);
 
         Parent root = null;
         try {
@@ -57,6 +58,7 @@ public class App extends Application {
         } catch (IOException exception) {
             exception.printStackTrace();
         }
+        assert root != null;
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.setTitle("Controllo Epidemia");
