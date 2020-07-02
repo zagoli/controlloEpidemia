@@ -11,7 +11,7 @@ import org.hibernate.query.Query;
 import javax.persistence.NoResultException;
 import java.util.List;
 
-@SuppressWarnings("rawtypes")
+@SuppressWarnings("ALL")
 @NoArgsConstructor
 public class ProvinciaDao implements ProvinciaDaoInterface {
 
@@ -48,7 +48,7 @@ public class ProvinciaDao implements ProvinciaDaoInterface {
         currentSession.close();
     }
 
-    public org.hibernate.query.Query createQuery(String hql) {
+    public Query createQuery(String hql) {
         return currentSession.createQuery(hql);
     }
 

@@ -29,7 +29,7 @@ public class App extends Application {
         logger.info("Caricati comuni");
         new EtlDecessi().load("src\\main\\resources\\csvToLoad\\decessi.csv");
         logger.info("Caricati decessi");
-        new EtlMalattie().loadInit("src\\main\\resources\\csvToLoad\\malattie.csv");
+        new EtlMalattie().initLoad("src\\main\\resources\\csvToLoad\\malattie.csv");
         logger.info("Caricate malattie");
     }
 
