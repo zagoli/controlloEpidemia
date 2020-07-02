@@ -280,6 +280,10 @@ public class MalattieSettimanaliController implements Initializable {
         for (MalattieSettimanali malattieSettimanali : malattieSettimanaliService.findAll()) {
             malattieSettimanaliTableView.getItems().add(malattieSettimanali);
         }
+        Platform.runLater(() -> {
+            malattieSettimanaliTableView.getSortOrder().remove(annoColumn);
+            malattieSettimanaliTableView.getSortOrder().add(annoColumn);
+        });
         noDataSelectedLabel.setVisible(false);
     }
 

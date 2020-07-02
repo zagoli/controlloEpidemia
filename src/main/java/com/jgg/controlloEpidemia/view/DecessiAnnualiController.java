@@ -173,6 +173,10 @@ public class DecessiAnnualiController implements Initializable {
         for (DecessiAnnuali decessiAnnuali : decessiAnnualiService.findAll()) {
             decessiAnnualiTableView.getItems().add(decessiAnnuali);
         }
+        Platform.runLater(() -> {
+            decessiAnnualiTableView.getSortOrder().remove(annoColumn);
+            decessiAnnualiTableView.getSortOrder().add(annoColumn);
+        });
         noDataSelectedLabel.setVisible(false);
     }
 

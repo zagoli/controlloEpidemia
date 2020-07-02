@@ -24,7 +24,6 @@ public class EtlComune {
     TipoTerritorio eTipoTerritorio = null;
     Provincia eProvincia = null;
 
-
     public int[] load(String path) {
         BufferedReader reader = null;
         try {

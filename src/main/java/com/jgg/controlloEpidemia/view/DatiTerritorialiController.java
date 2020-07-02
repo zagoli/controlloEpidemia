@@ -168,10 +168,13 @@ public class DatiTerritorialiController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         regioniIdColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
         regioniNomeColumn.setCellValueFactory(new PropertyValueFactory<>("nome"));
+        regioniTableView.getSortOrder().add(regioniNomeColumn);
         regioniSuperficieColumn.setCellValueFactory(new PropertyValueFactory<>("superficie"));
         regioniCapoluogoColumn.setCellValueFactory(new PropertyValueFactory<>("capoluogo"));
+
         provinceIdColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
         provinceNomeColumn.setCellValueFactory(new PropertyValueFactory<>("nome"));
+        provinceTableView.getSortOrder().add(provinceNomeColumn);
         provinceSuperficieColumn.setCellValueFactory(new PropertyValueFactory<>("superficie"));
         provinceCapoluogoColumn.setCellValueFactory(new PropertyValueFactory<>("capoluogo"));
         provinceRegioneColumn.setCellValueFactory(new PropertyValueFactory<>("regione"));
@@ -189,6 +192,7 @@ public class DatiTerritorialiController implements Initializable {
 
         comuniCodiceIstatColumn.setCellValueFactory(new PropertyValueFactory<>("codiceIstat"));
         comuniNomeColumn.setCellValueFactory(new PropertyValueFactory<>("nome"));
+        comuniTableView.getSortOrder().add(comuniNomeColumn);
         comuniSuperficieColumn.setCellValueFactory(new PropertyValueFactory<>("superficie"));
         comuniDataIstituzioneColumn.setCellValueFactory(new PropertyValueFactory<>("dataIstituzione"));
         comuniDataIstituzioneColumn.setCellFactory(column -> new TableCell<>() {
@@ -359,25 +363,35 @@ public class DatiTerritorialiController implements Initializable {
         datiTerritorialiTabPane.getScene().setRoot(root);
     }
 
-    private void updateListComuni() {
-        comuniTableView.getItems().clear();
-        for (Comune comune : comuneService.findAll()) {
-            comuniTableView.getItems().add(comune);
-        }
-        datiTerritorialiTabPane.getSelectionModel().select(0);
-        visualizzazioneTabPane.getSelectionModel().select(2);
-        comuneNoDataSelectedLabel.setVisible(false);
-    }
 
     private void updateListProvince() {
         provinceTableView.getItems().clear();
         for (Provincia provincia : provinciaService.findAll()) {
             provinceTableView.getItems().add(provincia);
         }
+        Platform.runLater(() -> {
+            provinceTableView.getSortOrder().remove(provinceNomeColumn);
+            provinceTableView.getSortOrder().add(provinceNomeColumn);
+        });
         datiTerritorialiTabPane.getSelectionModel().select(0);
         visualizzazioneTabPane.getSelectionModel().select(1);
         provinciaNoDataSelectedLabel.setVisible(false);
     }
+
+    private void updateListComuni() {
+        comuniTableView.getItems().clear();
+        for (Comune comune : comuneService.findAll()) {
+            comuniTableView.getItems().add(comune);
+        }
+        Platform.runLater(() -> {
+            comuniTableView.getSortOrder().remove(comuniNomeColumn);
+            comuniTableView.getSortOrder().add(comuniNomeColumn);
+        });
+        datiTerritorialiTabPane.getSelectionModel().select(0);
+        visualizzazioneTabPane.getSelectionModel().select(2);
+        comuneNoDataSelectedLabel.setVisible(false);
+    }
+
 
     @FXML
     private void comuneModificaVisualizzazioneButtonOnClicked() {
