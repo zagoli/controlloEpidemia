@@ -5,13 +5,14 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.SessionFactory;
+import org.hibernate.annotations.NamedNativeQuery;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.query.Query;
 
 import javax.persistence.NoResultException;
 import java.util.List;
 
-@SuppressWarnings("rawtypes")
+@SuppressWarnings("ALL")
 @NoArgsConstructor
 public class ComuneDao implements ComuneDaoInterface {
 
@@ -49,7 +50,7 @@ public class ComuneDao implements ComuneDaoInterface {
         currentSession.close();
     }
 
-    public org.hibernate.query.Query createQuery(String hql) {
+    public Query createQuery(String hql) {
         return currentSession.createQuery(hql);
     }
 

@@ -102,7 +102,7 @@ public class EtlMalattie {
         return new int[]{righeConErrore, righeNonLette};
     }
 
-    public void loadInit(String path) {
+    public void initLoad(String path) {
         BufferedReader reader = null;
         try {
             reader = new BufferedReader(new FileReader(new File(path), StandardCharsets.UTF_8));
