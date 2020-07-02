@@ -25,11 +25,11 @@ public class App extends Application {
     private void initLoad(Logger logger) {
         new EtlProvincia().load("src\\main\\resources\\csvToLoad\\provincia.csv");
         logger.info("Caricate province");
-        new EtlComune().initLoad("src\\main\\resources\\csvToLoad\\comune.csv");
+        new EtlComune().load("src\\main\\resources\\csvToLoad\\comune.csv");
         logger.info("Caricati comuni");
         new EtlDecessi().load("src\\main\\resources\\csvToLoad\\decessi.csv");
         logger.info("Caricati decessi");
-        new EtlMalattie().initLoad("src\\main\\resources\\csvToLoad\\malattie.csv");
+        new EtlMalattie().load("src\\main\\resources\\csvToLoad\\malattie.csv", true);
         logger.info("Caricate malattie");
     }
 

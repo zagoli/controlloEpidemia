@@ -13,9 +13,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class EtlMalattieTest {
     @Test
-    void testEtlMalattie() throws IOException {
+    void testEtlMalattie(){
         App.utenteCorrente = new UtenteService().findById(1);
-        new EtlMalattie().load("src\\test\\resources\\csvToLoadTest\\malattie.csv");
+        new EtlMalattie().load("src\\test\\resources\\csvToLoadTest\\malattie.csv",true);
 
         List<MalattieSettimanali> malattieSettimanaliList = new MalattieSettimanaliService().findAll();
         assertEquals(11, malattieSettimanaliList.size());

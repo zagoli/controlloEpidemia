@@ -52,7 +52,7 @@ public class EtlComune {
                     errori = true;
                 }
                 //Nome
-                if ((vettore[1].equals("") || !vettore[1].matches("[-. a-zA-Z'àâßèéêìö/òôóçüù]+")) && !errori) {
+                if ((vettore[1].equals("") || !vettore[1].matches("[-. ()a-zA-Z'àâßèéêìö/òôóçüù]+")) && !errori) {
                     errori = true;
                 }
                 //Superficie
@@ -159,7 +159,7 @@ public class EtlComune {
                     errori = true;
                 }
                 //Nome
-                if ((vettore[1].equals("") || !vettore[1].matches("[-. a-zA-Z'àâßèéêìö/òôóçüù]+")) && !errori) {
+                if ((vettore[1].equals("") || !vettore[1].matches("[-. ()a-zA-Z'àâßèéêìö/òôóçüù]+")) && !errori) {
                     errori = true;
                 }
                 //Superficie
@@ -216,6 +216,9 @@ public class EtlComune {
                 }
                 //Aggiungo comune se non ha errori
                 if (!errori) {
+                    if (vettore[1].equals("Livo")) {
+                        System.out.println("ciao");
+                    }
                     comuneList.add(new Comune(vettore[0], vettore[1], Integer.parseInt(vettore[2]), data, siAffacciaSulMare, eTipoTerritorio, eProvincia));
                 }
             }
@@ -225,7 +228,7 @@ public class EtlComune {
                 exception.printStackTrace();
             }
         }
-        new ComuneService().initSaveOrUpdate(comuneList);
+        new ComuneService().saveOrUpdate(comuneList);
         try {
             reader.close();
         } catch (

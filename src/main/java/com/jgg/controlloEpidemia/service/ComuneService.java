@@ -43,14 +43,6 @@ public class ComuneService {
         comuneDao.closeCurrentSessionWithTransaction();
     }
 
-    public void initSaveOrUpdate(List<Comune> comuneList) {
-        comuneDao.openCurrentSessionWithTransaction();
-        for (Comune comune : comuneList) {
-            comuneDao.initSaveOrUpdate(comune);
-        }
-        comuneDao.closeCurrentSessionWithTransaction();
-    }
-
     public Comune findByCodiceIstat(String codiceIstat) {
         comuneDao.openCurrentSession();
         Comune comuneByCodiceIstat = comuneDao.findByCodiceIstat(codiceIstat);

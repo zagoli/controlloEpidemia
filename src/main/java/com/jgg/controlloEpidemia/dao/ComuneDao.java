@@ -85,22 +85,6 @@ public class ComuneDao implements ComuneDaoInterface {
     }
 
     @Override
-    public void initSaveOrUpdate(Comune comune) {
-        Comune eComune = findByNome(comune.getNome());
-        if (eComune == null) {
-            save(comune);
-        } else {
-            eComune.setNome(comune.getNome());
-            eComune.setSuperficie(comune.getSuperficie());
-            eComune.setDataIstituzione(comune.getDataIstituzione());
-            eComune.setSiAffacciaSulMare(comune.getSiAffacciaSulMare());
-            eComune.setTipoTerritorio(comune.getTipoTerritorio());
-            eComune.setProvincia(comune.getProvincia());
-            update(eComune);
-        }
-    }
-
-    @Override
     public Comune findByCodiceIstat(String codiceIstat) {
         return currentSession.get(Comune.class, codiceIstat);
     }

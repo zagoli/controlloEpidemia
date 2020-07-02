@@ -411,7 +411,7 @@ public class MalattieSettimanaliController implements Initializable {
             new Thread(new Task<>() {
                 @Override
                 protected Void call() {
-                    int[] ritornoErrori = new EtlMalattie().load(selectedFile.getPath());
+                    int[] ritornoErrori = new EtlMalattie().load(selectedFile.getPath(),false);
                     updateList();
                     Platform.runLater(() -> {
                         alert.setContentText("Righe con errore: " + ritornoErrori[0] + "\n" + "Righe non lette: " + ritornoErrori[1]);
