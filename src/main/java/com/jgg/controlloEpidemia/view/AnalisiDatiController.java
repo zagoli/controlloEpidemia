@@ -344,20 +344,15 @@ public class AnalisiDatiController implements Initializable {
             }
         });
 
-        ArrayList<Integer> anniList = new ArrayList<>();
+
         List<DecessiAnnuali> decessiAnnualiList = decessiAnnualiService.findAll();
+        ArrayList<Integer> anniList = new ArrayList<>(decessiAnnualiList.parallelStream().mapToInt(DecessiAnnuali::getAnno).distinct().collect(ArrayList::new, ArrayList::add, ArrayList::addAll));
         Provincia provincia;
         Integer incidenti,
                 tumorali,
                 cardiovascolari,
                 contagiose,
                 id = 0;
-
-        for (DecessiAnnuali decessiAnnuali : decessiAnnualiList) {
-            if (!anniList.contains(decessiAnnuali.getAnno())) {
-                anniList.add(decessiAnnuali.getAnno());
-            }
-        }
 
         for (Integer anno : anniList) {
             for (Regione r : regioneService.findAll()) {
@@ -405,8 +400,8 @@ public class AnalisiDatiController implements Initializable {
             }
         });
 
-        ArrayList<Integer> anniList = new ArrayList<>();
         List<DecessiAnnuali> decessiAnnualiList = decessiAnnualiService.findAll();
+        ArrayList<Integer> anniList = new ArrayList<>(malattieSettimanaliList.parallelStream().mapToInt(MalattieSettimanali::getAnno).distinct().collect(ArrayList::new, ArrayList::add, ArrayList::addAll));
         Integer incidentiNazionale,
                 tumoraliNazionale,
                 cardiovascolariNazionale,
@@ -414,12 +409,6 @@ public class AnalisiDatiController implements Initializable {
                 id = 0;
         Regione regioneNazionale = new Regione(777, "Nazionale", 0, "999999");
         Provincia provinciaNazionale = new Provincia("Provincia", 0, "999999", regioneNazionale);
-
-        for (DecessiAnnuali decessiAnnuali : decessiAnnualiList) {
-            if (!anniList.contains(decessiAnnuali.getAnno())) {
-                anniList.add(decessiAnnuali.getAnno());
-            }
-        }
 
         for (Integer anno : anniList) {
             incidentiNazionale = 0;
@@ -508,7 +497,7 @@ public class AnalisiDatiController implements Initializable {
             }
         });
 
-        ArrayList<Integer> anniList = new ArrayList<>();
+        ArrayList<Integer> anniList = new ArrayList<>(malattieSettimanaliList.parallelStream().mapToInt(MalattieSettimanali::getAnno).distinct().collect(ArrayList::new, ArrayList::add, ArrayList::addAll));
         Comune comune;
         Integer rInfluenza,
                 cInfluenza,
@@ -526,12 +515,6 @@ public class AnalisiDatiController implements Initializable {
                 rGastroenterite,
                 cGastroenterite,
                 id = 0;
-
-        for (MalattieSettimanali malattieSettimanali : malattieSettimanaliList) {
-            if (!anniList.contains(malattieSettimanali.getAnno())) {
-                anniList.add(malattieSettimanali.getAnno());
-            }
-        }
 
         for (Integer anno : anniList) {
             for (Provincia p : provinciaService.findAll()) {
@@ -621,7 +604,7 @@ public class AnalisiDatiController implements Initializable {
                 cGastroenterite,
                 id = 0;
 
-        ArrayList<Integer> anniList = new ArrayList<>(malattieSettimanaliList.stream().mapToInt(MalattieSettimanali::getAnno).distinct().collect(ArrayList::new, ArrayList::add, ArrayList::addAll));
+        ArrayList<Integer> anniList = new ArrayList<>(malattieSettimanaliList.parallelStream().mapToInt(MalattieSettimanali::getAnno).distinct().collect(ArrayList::new, ArrayList::add, ArrayList::addAll));
 
         for (Integer anno : anniList) {
             for (Regione r : regioneService.findAll()) {
@@ -691,7 +674,7 @@ public class AnalisiDatiController implements Initializable {
                 }
             }
         });
-        ArrayList<Integer> anniList = new ArrayList<>();
+        ArrayList<Integer> anniList = new ArrayList<>(malattieSettimanaliList.parallelStream().mapToInt(MalattieSettimanali::getAnno).distinct().collect(ArrayList::new, ArrayList::add, ArrayList::addAll));
         Integer rInfluenzaNazionale,
                 cInfluenzaNazionale,
                 cRespiratorieNazionale,
@@ -711,12 +694,6 @@ public class AnalisiDatiController implements Initializable {
         Regione regioneNazionale = new Regione(777, "Nazionale", 0, "999999");
         Provincia provinciaNazionale = new Provincia("Provincia", 0, "999999", regioneNazionale);
         Comune comuneNazionale = new Comune("999999", "Comune", 0, new Date(), true, new TipoTerritorio("TipoTerritorio"), provinciaNazionale);
-
-        for (MalattieSettimanali malattieSettimanali : malattieSettimanaliList) {
-            if (!anniList.contains(malattieSettimanali.getAnno())) {
-                anniList.add(malattieSettimanali.getAnno());
-            }
-        }
 
         for (Integer anno : anniList) {
             rInfluenzaNazionale = 0;

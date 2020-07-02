@@ -62,7 +62,7 @@ public class HomePageController implements Initializable {
             prepareButton(vediMalattieButton);
             mainPanel.getChildren().add(vediMalattieButton);
         }
-        if (App.utenteCorrente.getPermesso().stream().anyMatch(o -> o.getNome().equals("vediDecessi"))) {
+        if (App.utenteCorrente.getPermesso().parallelStream().anyMatch(o -> o.getNome().equals("vediDecessi"))) {
             Button vediDecessiButton = new Button("VISUALIZZA DATI DECESSI");
             vediDecessiButton.setUserData(5);
             prepareButton(vediDecessiButton);
@@ -84,6 +84,7 @@ public class HomePageController implements Initializable {
 
     private void prepareButton(Button button) {
         button.setFont(new Font("Segoe UI", 22));
+        button.setPrefWidth(600);
         button.setOnAction(new EventHandler<>() {
             private Parent root;
 

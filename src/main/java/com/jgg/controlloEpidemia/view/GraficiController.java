@@ -105,10 +105,10 @@ public class GraficiController implements Initializable {
             decessiAnnuali = decessiAnnualiService.findByAnno(anno);
         }
         datiGraficoDecessiCausa.clear();
-        datiGraficoDecessiCausa.add(new PieChart.Data("Incidenti stradali", decessiAnnuali.stream().mapToInt(DecessiAnnuali::getIncidentiStradali).sum()));
-        datiGraficoDecessiCausa.add(new PieChart.Data("Malattie tumorali", decessiAnnuali.stream().mapToInt(DecessiAnnuali::getMalattieTumorali).sum()));
-        datiGraficoDecessiCausa.add(new PieChart.Data("Malattie cardiovascolari", decessiAnnuali.stream().mapToInt(DecessiAnnuali::getMalattieCardiovascolari).sum()));
-        datiGraficoDecessiCausa.add(new PieChart.Data("Malattie contagiose", decessiAnnuali.stream().mapToInt(DecessiAnnuali::getMalattieContagiose).sum()));
+        datiGraficoDecessiCausa.add(new PieChart.Data("Incidenti stradali", decessiAnnuali.parallelStream().mapToInt(DecessiAnnuali::getIncidentiStradali).sum()));
+        datiGraficoDecessiCausa.add(new PieChart.Data("Malattie tumorali", decessiAnnuali.parallelStream().mapToInt(DecessiAnnuali::getMalattieTumorali).sum()));
+        datiGraficoDecessiCausa.add(new PieChart.Data("Malattie cardiovascolari", decessiAnnuali.parallelStream().mapToInt(DecessiAnnuali::getMalattieCardiovascolari).sum()));
+        datiGraficoDecessiCausa.add(new PieChart.Data("Malattie contagiose", decessiAnnuali.parallelStream().mapToInt(DecessiAnnuali::getMalattieContagiose).sum()));
     }
 
     @FXML
@@ -122,7 +122,7 @@ public class GraficiController implements Initializable {
         }
         datiGraficoDecessiRegione.clear();
         for (Regione r : regioneService.findAll()) {
-            int decPerRegione = decessiAnnuali.stream().
+            int decPerRegione = decessiAnnuali.parallelStream().
                     filter(d -> d.getProvincia().getRegione().equals(r)).
                     mapToInt(d -> d.getIncidentiStradali() + d.getMalattieCardiovascolari() + d.getMalattieContagiose() + d.getMalattieTumorali())
                     .sum();
@@ -142,20 +142,20 @@ public class GraficiController implements Initializable {
             malattieSettimanali = malattieSettimanaliService.findByAnno(anno);
         }
         datiGraficoMalattieSettimanali.getData().clear();
-        datiGraficoMalattieSettimanali.getData().add(new XYChart.Data<>("Ricoverati influenza", malattieSettimanali.stream().mapToInt(MalattieSettimanali::getRicoveratiInfluenza).sum()));
-        datiGraficoMalattieSettimanali.getData().add(new XYChart.Data<>("In cura influenza", malattieSettimanali.stream().mapToInt(MalattieSettimanali::getInCuraInfluenza).sum()));
-        datiGraficoMalattieSettimanali.getData().add(new XYChart.Data<>("Ricoverati polmonite", malattieSettimanali.stream().mapToInt(MalattieSettimanali::getRicoveratiPolmonite).sum()));
-        datiGraficoMalattieSettimanali.getData().add(new XYChart.Data<>("In cura polmonite", malattieSettimanali.stream().mapToInt(MalattieSettimanali::getInCuraPolmonite).sum()));
-        datiGraficoMalattieSettimanali.getData().add(new XYChart.Data<>("Ricoverati meningite", malattieSettimanali.stream().mapToInt(MalattieSettimanali::getRicoveratiMeningite).sum()));
-        datiGraficoMalattieSettimanali.getData().add(new XYChart.Data<>("In cura meningite", malattieSettimanali.stream().mapToInt(MalattieSettimanali::getInCuraMeningite).sum()));
-        datiGraficoMalattieSettimanali.getData().add(new XYChart.Data<>("Ricoverati epatite", malattieSettimanali.stream().mapToInt(MalattieSettimanali::getRicoveratiEpatite).sum()));
-        datiGraficoMalattieSettimanali.getData().add(new XYChart.Data<>("In cura epatite", malattieSettimanali.stream().mapToInt(MalattieSettimanali::getInCuraEpatite).sum()));
-        datiGraficoMalattieSettimanali.getData().add(new XYChart.Data<>("Ricoverati morbillo", malattieSettimanali.stream().mapToInt(MalattieSettimanali::getRicoveratiMorbillo).sum()));
-        datiGraficoMalattieSettimanali.getData().add(new XYChart.Data<>("In cura morbillo", malattieSettimanali.stream().mapToInt(MalattieSettimanali::getInCuraMorbillo).sum()));
-        datiGraficoMalattieSettimanali.getData().add(new XYChart.Data<>("Ricoverati tubercolosi", malattieSettimanali.stream().mapToInt(MalattieSettimanali::getRicoveratiTubercolosi).sum()));
-        datiGraficoMalattieSettimanali.getData().add(new XYChart.Data<>("In cura tubercolosi", malattieSettimanali.stream().mapToInt(MalattieSettimanali::getInCuraTubercolosi).sum()));
-        datiGraficoMalattieSettimanali.getData().add(new XYChart.Data<>("Ricoverati gastroenterite", malattieSettimanali.stream().mapToInt(MalattieSettimanali::getRicoveratiGastroenterite).sum()));
-        datiGraficoMalattieSettimanali.getData().add(new XYChart.Data<>("In cura gastroenterite", malattieSettimanali.stream().mapToInt(MalattieSettimanali::getInCuraGastroenterite).sum()));
+        datiGraficoMalattieSettimanali.getData().add(new XYChart.Data<>("Ricoverati influenza", malattieSettimanali.parallelStream().mapToInt(MalattieSettimanali::getRicoveratiInfluenza).sum()));
+        datiGraficoMalattieSettimanali.getData().add(new XYChart.Data<>("In cura influenza", malattieSettimanali.parallelStream().mapToInt(MalattieSettimanali::getInCuraInfluenza).sum()));
+        datiGraficoMalattieSettimanali.getData().add(new XYChart.Data<>("Ricoverati polmonite", malattieSettimanali.parallelStream().mapToInt(MalattieSettimanali::getRicoveratiPolmonite).sum()));
+        datiGraficoMalattieSettimanali.getData().add(new XYChart.Data<>("In cura polmonite", malattieSettimanali.parallelStream().mapToInt(MalattieSettimanali::getInCuraPolmonite).sum()));
+        datiGraficoMalattieSettimanali.getData().add(new XYChart.Data<>("Ricoverati meningite", malattieSettimanali.parallelStream().mapToInt(MalattieSettimanali::getRicoveratiMeningite).sum()));
+        datiGraficoMalattieSettimanali.getData().add(new XYChart.Data<>("In cura meningite", malattieSettimanali.parallelStream().mapToInt(MalattieSettimanali::getInCuraMeningite).sum()));
+        datiGraficoMalattieSettimanali.getData().add(new XYChart.Data<>("Ricoverati epatite", malattieSettimanali.parallelStream().mapToInt(MalattieSettimanali::getRicoveratiEpatite).sum()));
+        datiGraficoMalattieSettimanali.getData().add(new XYChart.Data<>("In cura epatite", malattieSettimanali.parallelStream().mapToInt(MalattieSettimanali::getInCuraEpatite).sum()));
+        datiGraficoMalattieSettimanali.getData().add(new XYChart.Data<>("Ricoverati morbillo", malattieSettimanali.parallelStream().mapToInt(MalattieSettimanali::getRicoveratiMorbillo).sum()));
+        datiGraficoMalattieSettimanali.getData().add(new XYChart.Data<>("In cura morbillo", malattieSettimanali.parallelStream().mapToInt(MalattieSettimanali::getInCuraMorbillo).sum()));
+        datiGraficoMalattieSettimanali.getData().add(new XYChart.Data<>("Ricoverati tubercolosi", malattieSettimanali.parallelStream().mapToInt(MalattieSettimanali::getRicoveratiTubercolosi).sum()));
+        datiGraficoMalattieSettimanali.getData().add(new XYChart.Data<>("In cura tubercolosi", malattieSettimanali.parallelStream().mapToInt(MalattieSettimanali::getInCuraTubercolosi).sum()));
+        datiGraficoMalattieSettimanali.getData().add(new XYChart.Data<>("Ricoverati gastroenterite", malattieSettimanali.parallelStream().mapToInt(MalattieSettimanali::getRicoveratiGastroenterite).sum()));
+        datiGraficoMalattieSettimanali.getData().add(new XYChart.Data<>("In cura gastroenterite", malattieSettimanali.parallelStream().mapToInt(MalattieSettimanali::getInCuraGastroenterite).sum()));
     }
 
     private static class AnnoToStringConverter extends StringConverter<Integer> {

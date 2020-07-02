@@ -50,19 +50,17 @@ public class LoginPageController implements Initializable {
         String password = passwordField.getText();
         Utente u = utenteService.findByUsername(user);
         if (u == null) {
+            errorLabel.setText("Utente non trovato");
             if (errorLabel.isVisible()) {
-                errorLabel.setText("Utente non trovato");
                 errorAnimation(errorLabel);
             } else {
-                errorLabel.setText("Utente non trovato");
                 errorLabel.setVisible(true);
             }
         } else if (!u.getPassword().equals(password)) {
+            errorLabel.setText("La password è errata");
             if (errorLabel.isVisible()) {
-                errorLabel.setText("La password è errata");
                 errorAnimation(errorLabel);
             } else {
-                errorLabel.setText("La password è errata");
                 errorLabel.setVisible(true);
             }
         } else {
