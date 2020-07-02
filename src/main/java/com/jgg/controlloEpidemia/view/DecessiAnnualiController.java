@@ -248,12 +248,21 @@ public class DecessiAnnualiController implements Initializable {
         if (selectedFile != null) {
             loadingBar.setVisible(true);
             decessiAnnualiBorderPane.setDisable(true);
+
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Errori inserimento CSV decessi annuali");
+            alert.setHeaderText(null);
+
             new Thread(new Task<>() {
                 @Override
                 protected Void call() {
-                    new EtlDecessi().load(selectedFile.getPath());
+                    int[] ritornoErrori = new EtlDecessi().load(selectedFile.getPath());
                     updateList();
                     Platform.runLater(() -> {
+                        alert.setContentText("Righe con errore: " + ritornoErrori[0] + "\n" + "Righe non lette: " + ritornoErrori[1]);
+                        if (ritornoErrori[0] > 0 || ritornoErrori[1] > 0) {
+                            alert.showAndWait();
+                        }
                         loadingBar.setVisible(false);
                         decessiAnnualiBorderPane.setDisable(false);
                         decessiAnnualiTabPane.getSelectionModel().select(0);

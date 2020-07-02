@@ -403,12 +403,21 @@ public class MalattieSettimanaliController implements Initializable {
         if (selectedFile != null) {
             loadingBar.setVisible(true);
             malattieSettimanaliBorderPane.setDisable(true);
+
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Errori inserimento CSV malattie settimanali");
+            alert.setHeaderText(null);
+
             new Thread(new Task<>() {
                 @Override
                 protected Void call() {
-                    new EtlMalattie().load(selectedFile.getPath());
+                    int[] ritornoErrori = new EtlMalattie().load(selectedFile.getPath());
                     updateList();
                     Platform.runLater(() -> {
+                        alert.setContentText("Righe con errore: " + ritornoErrori[0] + "\n" + "Righe non lette: " + ritornoErrori[1]);
+                        if (ritornoErrori[0] > 0 || ritornoErrori[1] > 0) {
+                            alert.showAndWait();
+                        }
                         loadingBar.setVisible(false);
                         malattieSettimanaliBorderPane.setDisable(false);
                         malattieSettimanaliTabPane.getSelectionModel().select(0);

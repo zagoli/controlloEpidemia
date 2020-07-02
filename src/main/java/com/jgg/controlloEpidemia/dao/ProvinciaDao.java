@@ -11,6 +11,7 @@ import org.hibernate.query.Query;
 import javax.persistence.NoResultException;
 import java.util.List;
 
+@SuppressWarnings("rawtypes")
 @NoArgsConstructor
 public class ProvinciaDao implements ProvinciaDaoInterface {
 
@@ -68,7 +69,7 @@ public class ProvinciaDao implements ProvinciaDaoInterface {
 
     @Override
     public void saveOrUpdate(Provincia provincia) {
-        Provincia eProvincia = findByNome(provincia.getNome());
+        Provincia eProvincia = findById(provincia.getId());
         if (eProvincia == null) {
             save(provincia);
         } else {

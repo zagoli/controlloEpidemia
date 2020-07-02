@@ -50,7 +50,7 @@ public class App extends Application {
         new EtlRegione().load("src\\main\\resources\\csvToLoad\\regione.csv");
         logger.info("Caricate regioni");
 
-        initLoad(logger);
+        //initLoad(logger);
 
         Parent root = null;
         try {

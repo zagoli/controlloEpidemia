@@ -482,12 +482,20 @@ public class DatiTerritorialiController implements Initializable {
             loadingBarProvince.setVisible(true);
             datiTerritorialiBorderPane.setDisable(true);
 
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Errori inserimento CSV province");
+            alert.setHeaderText(null);
+
             new Thread(new Task<>() {
                 @Override
                 protected Void call() {
-                    new EtlProvincia().load(selectedFile.getPath());
+                    int[] ritornoErrori = new EtlProvincia().load(selectedFile.getPath());
                     updateListProvince();
                     Platform.runLater(() -> {
+                        alert.setContentText("Righe con errore: " + ritornoErrori[0] + "\n" + "Righe non lette: " + ritornoErrori[1]);
+                        if (ritornoErrori[0] > 0 || ritornoErrori[1] > 0) {
+                            alert.showAndWait();
+                        }
                         loadingBarProvince.setVisible(false);
                         datiTerritorialiBorderPane.setDisable(false);
                     });
