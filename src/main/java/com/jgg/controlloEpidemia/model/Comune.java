@@ -22,7 +22,7 @@ public class Comune {
     @NotNull
     @EqualsAndHashCode.Exclude
     @ToString.Exclude
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "comune", cascade = CascadeType.REMOVE)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "comune", cascade = CascadeType.ALL)
     final private List<MalattieSettimanali> malattieSettimanali = new ArrayList<>();
 
     @Id

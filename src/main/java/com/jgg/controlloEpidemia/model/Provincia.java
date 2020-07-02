@@ -1,6 +1,8 @@
 package com.jgg.controlloEpidemia.model;
 
 import lombok.*;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 import javax.persistence.*;
 import javax.validation.constraints.Min;
@@ -21,14 +23,14 @@ public class Provincia {
     @NotNull
     @EqualsAndHashCode.Exclude
     @ToString.Exclude
-    @OneToMany(cascade = CascadeType.REMOVE)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "provincia", cascade = CascadeType.ALL)
     private final List<Comune> comuni = new ArrayList<>();
 
     @Getter
     @NotNull
     @EqualsAndHashCode.Exclude
     @ToString.Exclude
-    @OneToMany(cascade = CascadeType.REMOVE)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "provincia", cascade = CascadeType.ALL)
     final private List<DecessiAnnuali> decessiAnnuali = new ArrayList<>();
 
     @Id

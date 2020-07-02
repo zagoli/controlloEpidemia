@@ -288,7 +288,7 @@ public class MalattieSettimanaliController implements Initializable {
     private void malattieSettimanaliCancellaButtonOnClicked() {
         MalattieSettimanali malattieSettimanali = malattieSettimanaliTableView.getSelectionModel().getSelectedItem();
         if (malattieSettimanali != null) {
-            if (App.utenteCorrente.getComuni().contains(malattieSettimanali.getComune())) {
+            if (App.utenteCorrente.getComuni().contains(malattieSettimanali.getComune()) || App.utenteCorrente.getRuolo().getId() == 1) {
                 logger.info("Cancellato record malattie settimanali: " + malattieSettimanaliTableView.getSelectionModel().getSelectedItem());
                 malattieSettimanaliService.deleteById(malattieSettimanali.getId());
                 updateList();
@@ -305,7 +305,7 @@ public class MalattieSettimanaliController implements Initializable {
     private void malattieSettimanaliVisualizzazioneModificaButtonOnClicked() {
         if (malattieSettimanaliTableView.getSelectionModel().getSelectedItem() != null) {
             MalattieSettimanali malattie = malattieSettimanaliTableView.getSelectionModel().getSelectedItem();
-            if (App.utenteCorrente.getComuni().contains(malattie.getComune())) {
+            if (App.utenteCorrente.getComuni().contains(malattie.getComune()) || App.utenteCorrente.getRuolo().getId() == 1) {
                 selectedId = malattie.getId();
                 annoModificaTextField.setText(String.valueOf(malattie.getAnno()));
                 settimanaModificaTextField.setText(String.valueOf(malattie.getSettimana()));
