@@ -25,7 +25,7 @@ public class App extends Application {
     private void initLoad(Logger logger) {
         new EtlProvincia().load("src\\main\\resources\\csvToLoad\\provincia.csv");
         logger.info("Caricate province");
-        new EtlComune().load("src\\main\\resources\\csvToLoad\\comune.csv");
+        new EtlComune().initLoad("src\\main\\resources\\csvToLoad\\comune.csv");
         logger.info("Caricati comuni");
         new EtlDecessi().load("src\\main\\resources\\csvToLoad\\decessi.csv");
         logger.info("Caricati decessi");
@@ -35,7 +35,6 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) {
-
         PropertyConfigurator.configure("src\\main\\resources\\log4j.properties");
         logger.info("Logger inizializzato");
 
@@ -50,7 +49,7 @@ public class App extends Application {
         new EtlRegione().load("src\\main\\resources\\csvToLoad\\regione.csv");
         logger.info("Caricate regioni");
 
-        //initLoad(logger);
+        initLoad(logger);
 
         Parent root = null;
         try {

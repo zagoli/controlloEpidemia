@@ -47,9 +47,8 @@ public class EtlProvincia {
                 } else if (vettore[0].matches("[0-9]+") && Integer.parseInt(vettore[0]) < 1) {
                     errori = true;
                 }
-
                 //Nome
-                if ((vettore[1].equals("") || !vettore[1].matches("[a-zA-Z]+(\\s+[a-zA-Z]+)*")) && !errori) {
+                if ((vettore[1].equals("") || !vettore[1].matches("[- a-zA-Z'àèéìòóù]+")) && !errori) {
                     errori = true;
                 }
                 //Superficie
@@ -82,7 +81,6 @@ public class EtlProvincia {
             } else {
                 righeNonLette++;
             }
-
             try {
                 riga = reader.readLine();
             } catch (IOException exception) {
@@ -95,7 +93,6 @@ public class EtlProvincia {
         } catch (IOException exception) {
             exception.printStackTrace();
         }
-
         return new int[]{righeConErrore, righeNonLette};
     }
 

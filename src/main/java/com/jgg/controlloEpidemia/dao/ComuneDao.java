@@ -5,7 +5,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.SessionFactory;
-import org.hibernate.annotations.NamedNativeQuery;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.query.Query;
 
@@ -72,6 +71,22 @@ public class ComuneDao implements ComuneDaoInterface {
     @Override
     public void saveOrUpdate(Comune comune) {
         Comune eComune = findByCodiceIstat(comune.getCodiceIstat());
+        if (eComune == null) {
+            save(comune);
+        } else {
+            eComune.setNome(comune.getNome());
+            eComune.setSuperficie(comune.getSuperficie());
+            eComune.setDataIstituzione(comune.getDataIstituzione());
+            eComune.setSiAffacciaSulMare(comune.getSiAffacciaSulMare());
+            eComune.setTipoTerritorio(comune.getTipoTerritorio());
+            eComune.setProvincia(comune.getProvincia());
+            update(eComune);
+        }
+    }
+
+    @Override
+    public void initSaveOrUpdate(Comune comune) {
+        Comune eComune = findByNome(comune.getNome());
         if (eComune == null) {
             save(comune);
         } else {

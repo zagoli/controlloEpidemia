@@ -14,6 +14,8 @@ public interface ComuneDaoInterface {
 
     void saveOrUpdate(Comune comune);
 
+    void initSaveOrUpdate(Comune comune);
+
     Comune findByCodiceIstat(String codiceIstat);
 
     Comune findByNome(String nome);
