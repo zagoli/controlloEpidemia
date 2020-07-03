@@ -11,10 +11,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableCell;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
 
@@ -30,8 +27,9 @@ public class VisualizzaDecessiController implements Initializable {
     private final RegioneService regioneService = new RegioneService();
 
     @FXML
+    private ProgressIndicator loadingAggregazione;
+    @FXML
     private BorderPane visualizzaDecessiBorderPane;
-
     @FXML
     private TableView<DecessiAnnuali> decessiAnnualiTableView;
     @FXML
@@ -48,7 +46,6 @@ public class VisualizzaDecessiController implements Initializable {
     private TableColumn<DecessiAnnuali, Integer> malattieCardiovascolariColumn;
     @FXML
     private TableColumn<DecessiAnnuali, Integer> malattieContagioseColumn;
-
     @FXML
     private Button visualizzaDecessiAggregaPerRegioneButton;
     @FXML
@@ -59,7 +56,6 @@ public class VisualizzaDecessiController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        visualizzaDecessiVisualizzaDatiButton.setDisable(true);
         idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
         annoColumn.setCellValueFactory(new PropertyValueFactory<>("anno"));
         decessiAnnualiTableView.getSortOrder().add(annoColumn);
@@ -79,15 +75,7 @@ public class VisualizzaDecessiController implements Initializable {
         malattieTumoraliColumn.setCellValueFactory(new PropertyValueFactory<>("malattieTumorali"));
         malattieContagioseColumn.setCellValueFactory(new PropertyValueFactory<>("malattieContagiose"));
         malattieCardiovascolariColumn.setCellValueFactory(new PropertyValueFactory<>("malattieCardiovascolari"));
-
-        new Thread(new Task<Void>() {
-            @Override
-            protected Void call() {
-                updateListVisualizzaDati();
-                Platform.runLater(() -> visualizzaDecessiBorderPane.setDisable(false));
-                return null;
-            }
-        }).start();
+        updateListVisualizzaDati();
     }
 
     @FXML
@@ -102,8 +90,9 @@ public class VisualizzaDecessiController implements Initializable {
     }
 
     private void updateListVisualizzaDati() {
+        visualizzaDecessiBorderPane.setDisable(true);
+        loadingAggregazione.setVisible(true);
         decessiAnnualiTableView.getItems().clear();
-
         provinciaColumn.setText("PROVINCIA");
         provinciaColumn.setCellFactory(column -> new TableCell<>() {
             @Override
@@ -116,9 +105,20 @@ public class VisualizzaDecessiController implements Initializable {
                 }
             }
         });
-        for (DecessiAnnuali decessiAnnuali : decessiAnnualiService.findAll()) {
-            decessiAnnualiTableView.getItems().add(decessiAnnuali);
-        }
+        new Thread(
+                new Task<Void>() {
+                    @Override
+                    protected Void call() {
+                        for (DecessiAnnuali decessiAnnuali : decessiAnnualiService.findAll())
+                            decessiAnnualiTableView.getItems().add(decessiAnnuali);
+                        Platform.runLater(() -> {
+                            loadingAggregazione.setVisible(false);
+                            visualizzaDecessiBorderPane.setDisable(false);
+                        });
+                        return null;
+                    }
+                }
+        ).start();
         Platform.runLater(() -> {
             decessiAnnualiTableView.getSortOrder().remove(annoColumn);
             decessiAnnualiTableView.getSortOrder().add(annoColumn);
@@ -137,6 +137,8 @@ public class VisualizzaDecessiController implements Initializable {
 
     @FXML
     private void visualizzaDecessiAggregaPerNazioneButtonOnClicked() {
+        visualizzaDecessiBorderPane.setDisable(true);
+        loadingAggregazione.setVisible(true);
         visualizzaDecessiVisualizzaDatiButton.setDisable(false);
         visualizzaDecessiAggregaPerNazioneButton.setDisable(true);
         visualizzaDecessiAggregaPerRegioneButton.setDisable(false);
@@ -156,38 +158,45 @@ public class VisualizzaDecessiController implements Initializable {
             }
         });
 
-        ArrayList<Integer> anniList = new ArrayList<>();
-        List<DecessiAnnuali> decessiAnnualiList = decessiAnnualiService.findAll();
-        Integer incidentiNazionale,
-                tumoraliNazionale,
-                cardiovascolariNazionale,
-                contagioseNazionale,
-                id = 0;
-        Regione regioneNazionale = new Regione(777, "Nazionale", 0, "999999");
-        Provincia provinciaNazionale = new Provincia("Provincia", 0, "999999", regioneNazionale);
-        for (DecessiAnnuali decessiAnnuali : decessiAnnualiList) {
-            if (!anniList.contains(decessiAnnuali.getAnno())) {
-                anniList.add(decessiAnnuali.getAnno());
-            }
-        }
+        new Thread(
+                new Task<Void>() {
+                    @Override
+                    protected Void call() {
+                        List<DecessiAnnuali> decessiAnnualiList = decessiAnnualiService.findAll();
+                        Integer incidentiNazionale,
+                                tumoraliNazionale,
+                                cardiovascolariNazionale,
+                                contagioseNazionale,
+                                id = 0;
+                        Regione regioneNazionale = new Regione(777, "Nazionale", 0, "999999");
+                        Provincia provinciaNazionale = new Provincia("Provincia", 0, "999999", regioneNazionale);
+                        ArrayList<Integer> anniList = new ArrayList<>(decessiAnnualiList.parallelStream().mapToInt(DecessiAnnuali::getAnno).distinct().collect(ArrayList::new, ArrayList::add, ArrayList::addAll));
 
-        for (Integer anno : anniList) {
-            incidentiNazionale = 0;
-            tumoraliNazionale = 0;
-            cardiovascolariNazionale = 0;
-            contagioseNazionale = 0;
-            for (DecessiAnnuali decessiAnnuali : decessiAnnualiList) {
-                if (decessiAnnuali.getAnno().equals(anno)) {
-                    incidentiNazionale += decessiAnnuali.getIncidentiStradali();
-                    tumoraliNazionale += decessiAnnuali.getMalattieTumorali();
-                    cardiovascolariNazionale += decessiAnnuali.getMalattieCardiovascolari();
-                    contagioseNazionale += decessiAnnuali.getMalattieContagiose();
+                        for (Integer anno : anniList) {
+                            incidentiNazionale = 0;
+                            tumoraliNazionale = 0;
+                            cardiovascolariNazionale = 0;
+                            contagioseNazionale = 0;
+                            for (DecessiAnnuali decessiAnnuali : decessiAnnualiList) {
+                                if (decessiAnnuali.getAnno().equals(anno)) {
+                                    incidentiNazionale += decessiAnnuali.getIncidentiStradali();
+                                    tumoraliNazionale += decessiAnnuali.getMalattieTumorali();
+                                    cardiovascolariNazionale += decessiAnnuali.getMalattieCardiovascolari();
+                                    contagioseNazionale += decessiAnnuali.getMalattieContagiose();
+                                }
+                            }
+                            id++;
+                            DecessiAnnuali decessiNazione = new DecessiAnnuali(id, anno, incidentiNazionale, tumoraliNazionale, cardiovascolariNazionale, contagioseNazionale, provinciaNazionale);
+                            decessiAnnualiTableView.getItems().add(decessiNazione);
+                        }
+                        Platform.runLater(() -> {
+                            visualizzaDecessiBorderPane.setDisable(false);
+                            loadingAggregazione.setVisible(false);
+                        });
+                        return null;
+                    }
                 }
-            }
-            id++;
-            DecessiAnnuali decessiNazione = new DecessiAnnuali(id, anno, incidentiNazionale, tumoraliNazionale, cardiovascolariNazionale, contagioseNazionale, provinciaNazionale);
-            decessiAnnualiTableView.getItems().add(decessiNazione);
-        }
+        ).start();
         Platform.runLater(() -> {
             decessiAnnualiTableView.getSortOrder().remove(annoColumn);
             decessiAnnualiTableView.getSortOrder().add(annoColumn);
@@ -196,6 +205,8 @@ public class VisualizzaDecessiController implements Initializable {
 
     @FXML
     private void visualizzaDecessiAggregaPerRegioneButtonOnClicked() {
+        visualizzaDecessiBorderPane.setDisable(true);
+        loadingAggregazione.setVisible(true);
         visualizzaDecessiVisualizzaDatiButton.setDisable(false);
         visualizzaDecessiAggregaPerNazioneButton.setDisable(false);
         visualizzaDecessiAggregaPerRegioneButton.setDisable(true);
@@ -215,43 +226,49 @@ public class VisualizzaDecessiController implements Initializable {
             }
         });
 
-        ArrayList<Integer> anniList = new ArrayList<>();
-        List<DecessiAnnuali> decessiAnnualiList = decessiAnnualiService.findAll();
-        Provincia provincia;
-        Integer incidenti,
-                tumorali,
-                cardiovascolari,
-                contagiose,
-                id = 0;
-        for (DecessiAnnuali decessiAnnuali : decessiAnnualiList) {
-            if (!anniList.contains(decessiAnnuali.getAnno())) {
-                anniList.add(decessiAnnuali.getAnno());
-            }
-        }
-
-        for (Integer anno : anniList) {
-            for (Regione regione : regioneService.findAll()) {
-                incidenti = 0;
-                tumorali = 0;
-                cardiovascolari = 0;
-                contagiose = 0;
-                provincia = null;
-                id++;
-                for (DecessiAnnuali decessiAnnuali : decessiAnnualiList) {
-                    if (decessiAnnuali.getProvincia().getRegione().getId().equals(regione.getId()) && decessiAnnuali.getAnno().equals(anno)) {
-                        incidenti += decessiAnnuali.getIncidentiStradali();
-                        tumorali += decessiAnnuali.getMalattieTumorali();
-                        cardiovascolari += decessiAnnuali.getMalattieCardiovascolari();
-                        contagiose += decessiAnnuali.getMalattieContagiose();
-                        provincia = decessiAnnuali.getProvincia();
+        new Thread(
+                new Task<Void>() {
+                    @Override
+                    protected Void call() {
+                        List<DecessiAnnuali> decessiAnnualiList = decessiAnnualiService.findAll();
+                        Provincia provincia;
+                        Integer incidenti,
+                                tumorali,
+                                cardiovascolari,
+                                contagiose,
+                                id = 0;
+                        ArrayList<Integer> anniList = new ArrayList<>(decessiAnnualiList.parallelStream().mapToInt(DecessiAnnuali::getAnno).distinct().collect(ArrayList::new, ArrayList::add, ArrayList::addAll));
+                        for (Integer anno : anniList) {
+                            for (Regione regione : regioneService.findAll()) {
+                                incidenti = 0;
+                                tumorali = 0;
+                                cardiovascolari = 0;
+                                contagiose = 0;
+                                provincia = null;
+                                id++;
+                                for (DecessiAnnuali decessiAnnuali : decessiAnnualiList) {
+                                    if (decessiAnnuali.getProvincia().getRegione().getId().equals(regione.getId()) && decessiAnnuali.getAnno().equals(anno)) {
+                                        incidenti += decessiAnnuali.getIncidentiStradali();
+                                        tumorali += decessiAnnuali.getMalattieTumorali();
+                                        cardiovascolari += decessiAnnuali.getMalattieCardiovascolari();
+                                        contagiose += decessiAnnuali.getMalattieContagiose();
+                                        provincia = decessiAnnuali.getProvincia();
+                                    }
+                                }
+                                if (provincia != null) {
+                                    DecessiAnnuali decessiRegione = new DecessiAnnuali(id, anno, incidenti, tumorali, cardiovascolari, contagiose, provincia);
+                                    decessiAnnualiTableView.getItems().add(decessiRegione);
+                                }
+                            }
+                        }
+                        Platform.runLater(() -> {
+                            visualizzaDecessiBorderPane.setDisable(false);
+                            loadingAggregazione.setVisible(false);
+                        });
+                        return null;
                     }
                 }
-                if (provincia != null) {
-                    DecessiAnnuali decessiRegione = new DecessiAnnuali(id, anno, incidenti, tumorali, cardiovascolari, contagiose, provincia);
-                    decessiAnnualiTableView.getItems().add(decessiRegione);
-                }
-            }
-        }
+        ).start();
         Platform.runLater(() -> {
             decessiAnnualiTableView.getSortOrder().remove(annoColumn);
             decessiAnnualiTableView.getSortOrder().add(annoColumn);
