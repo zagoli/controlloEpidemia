@@ -106,6 +106,7 @@ public class DecessiAnnualiController implements Initializable {
         idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
         annoColumn.setCellValueFactory(new PropertyValueFactory<>("anno"));
         decessiAnnualiTableView.getSortOrder().add(annoColumn);
+
         provinciaColumn.setCellValueFactory(new PropertyValueFactory<>("provincia"));
         provinciaColumn.setCellFactory(column -> new TableCell<>() {
             @Override
@@ -143,7 +144,6 @@ public class DecessiAnnualiController implements Initializable {
         new Thread(new Task<>() {
             @Override
             protected Void call() {
-
                 List<Provincia> provinceOrdinate = new ArrayList<>(provinciaService.findAll());
                 provinceOrdinate.sort(Comparator.comparing(Provincia::getNome));
                 for (Provincia provincia : provinceOrdinate) {

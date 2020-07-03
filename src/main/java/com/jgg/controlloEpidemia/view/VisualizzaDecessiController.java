@@ -119,6 +119,10 @@ public class VisualizzaDecessiController implements Initializable {
         for (DecessiAnnuali decessiAnnuali : decessiAnnualiService.findAll()) {
             decessiAnnualiTableView.getItems().add(decessiAnnuali);
         }
+        Platform.runLater(() -> {
+            decessiAnnualiTableView.getSortOrder().remove(annoColumn);
+            decessiAnnualiTableView.getSortOrder().add(annoColumn);
+        });
     }
 
 
@@ -184,6 +188,10 @@ public class VisualizzaDecessiController implements Initializable {
             DecessiAnnuali decessiNazione = new DecessiAnnuali(id, anno, incidentiNazionale, tumoraliNazionale, cardiovascolariNazionale, contagioseNazionale, provinciaNazionale);
             decessiAnnualiTableView.getItems().add(decessiNazione);
         }
+        Platform.runLater(() -> {
+            decessiAnnualiTableView.getSortOrder().remove(annoColumn);
+            decessiAnnualiTableView.getSortOrder().add(annoColumn);
+        });
     }
 
     @FXML
@@ -244,6 +252,10 @@ public class VisualizzaDecessiController implements Initializable {
                 }
             }
         }
+        Platform.runLater(() -> {
+            decessiAnnualiTableView.getSortOrder().remove(annoColumn);
+            decessiAnnualiTableView.getSortOrder().add(annoColumn);
+        });
     }
 
 }

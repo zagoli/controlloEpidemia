@@ -176,11 +176,12 @@ public class AnalisiDatiController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         analisiDatiVisualizzaMalattieVisualizzaDatiButton.setDisable(true);
         analisiDatiVisualizzaDecessiVisualizzaDatiButton.setDisable(true);
+
         decessiAnnualiIdColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
         decessiAnnualiAnnoColumn.setCellValueFactory(new PropertyValueFactory<>("anno"));
+        decessiAnnualiTableView.getSortOrder().add(decessiAnnualiAnnoColumn);
         decessiAnnualiProvinciaColumn.setCellValueFactory(new PropertyValueFactory<>("provincia"));
         decessiAnnualiProvinciaColumn.setCellFactory(decessiAnnualiTableView -> new ProvinciaFormatCell());
-
         decessiAnnualiIncidentiStradaliColumn.setCellValueFactory(new PropertyValueFactory<>("incidentiStradali"));
         decessiAnnualiMalattieTumoraliColumn.setCellValueFactory(new PropertyValueFactory<>("malattieTumorali"));
         decessiAnnualiMalattieContagioseColumn.setCellValueFactory(new PropertyValueFactory<>("malattieContagiose"));
@@ -210,6 +211,7 @@ public class AnalisiDatiController implements Initializable {
 
         decessiAnnualiIdConfrontaColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
         decessiAnnualiAnnoConfrontaColumn.setCellValueFactory(new PropertyValueFactory<>("anno"));
+        decessiAnnualiConfrontaTableView.getSortOrder().add(decessiAnnualiAnnoConfrontaColumn);
         decessiAnnualiProvinciaConfrontaColumn.setCellValueFactory(new PropertyValueFactory<>("provincia"));
         decessiAnnualiProvinciaConfrontaColumn.setCellFactory(decessiAnnualiConfrontaTableView -> new ProvinciaFormatCell());
         decessiAnnualiIncidentiStradaliConfrontaColumn.setCellValueFactory(new PropertyValueFactory<>("incidentiStradali"));
@@ -292,6 +294,10 @@ public class AnalisiDatiController implements Initializable {
         for (DecessiAnnuali decessiAnnuali : decessiAnnualiService.findAll()) {
             decessiAnnualiTableView.getItems().add(decessiAnnuali);
         }
+        Platform.runLater(() -> {
+            decessiAnnualiTableView.getSortOrder().remove(decessiAnnualiAnnoColumn);
+            decessiAnnualiTableView.getSortOrder().add(decessiAnnualiAnnoColumn);
+        });
     }
 
     private void updateListVisualizzaDatiMalattie() {
@@ -313,6 +319,10 @@ public class AnalisiDatiController implements Initializable {
         for (MalattieSettimanali malattieSettimanali : malattieSettimanaliList) {
             malattieSettimanaliTableView.getItems().add(malattieSettimanali);
         }
+        Platform.runLater(() -> {
+            malattieSettimanaliTableView.getSortOrder().remove(malattieSettimanaliAnnoColumn);
+            malattieSettimanaliTableView.getSortOrder().add(malattieSettimanaliAnnoColumn);
+        });
     }
 
 
@@ -378,6 +388,10 @@ public class AnalisiDatiController implements Initializable {
                 }
             }
         }
+        Platform.runLater(() -> {
+            decessiAnnualiTableView.getSortOrder().remove(decessiAnnualiAnnoColumn);
+            decessiAnnualiTableView.getSortOrder().add(decessiAnnualiAnnoColumn);
+        });
     }
 
     @FXML
@@ -427,6 +441,10 @@ public class AnalisiDatiController implements Initializable {
             DecessiAnnuali decessiNazione = new DecessiAnnuali(id, anno, incidentiNazionale, tumoraliNazionale, cardiovascolariNazionale, contagioseNazionale, provinciaNazionale);
             decessiAnnualiTableView.getItems().add(decessiNazione);
         }
+        Platform.runLater(() -> {
+            decessiAnnualiTableView.getSortOrder().remove(decessiAnnualiAnnoColumn);
+            decessiAnnualiTableView.getSortOrder().add(decessiAnnualiAnnoColumn);
+        });
     }
 
     @FXML
@@ -442,7 +460,12 @@ public class AnalisiDatiController implements Initializable {
                 malattieSettimanaliConfrontaTableView.getItems().add(malattieSettimanali);
             }
         }
-
+        Platform.runLater(() -> {
+            malattieSettimanaliConfrontaTableView.getSortOrder().remove(malattieSettimanaliAnnoConfrontaColumn);
+            malattieSettimanaliConfrontaTableView.getSortOrder().add(malattieSettimanaliAnnoConfrontaColumn);
+            decessiAnnualiConfrontaTableView.getSortOrder().remove(decessiAnnualiAnnoConfrontaColumn);
+            decessiAnnualiConfrontaTableView.getSortOrder().add(decessiAnnualiAnnoConfrontaColumn);
+        });
     }
 
     @FXML
@@ -562,6 +585,10 @@ public class AnalisiDatiController implements Initializable {
                 }
             }
         }
+        Platform.runLater(() -> {
+            malattieSettimanaliTableView.getSortOrder().remove(malattieSettimanaliAnnoColumn);
+            malattieSettimanaliTableView.getSortOrder().add(malattieSettimanaliAnnoColumn);
+        });
     }
 
     @FXML
@@ -652,6 +679,10 @@ public class AnalisiDatiController implements Initializable {
                 }
             }
         }
+        Platform.runLater(() -> {
+            malattieSettimanaliTableView.getSortOrder().remove(malattieSettimanaliAnnoColumn);
+            malattieSettimanaliTableView.getSortOrder().add(malattieSettimanaliAnnoColumn);
+        });
     }
 
     @FXML
@@ -736,6 +767,10 @@ public class AnalisiDatiController implements Initializable {
             MalattieSettimanali malattieNazione = new MalattieSettimanali(id, anno, 0, rInfluenzaNazionale, cInfluenzaNazionale, cRespiratorieNazionale, rPolmoniteNazionale, cPolmoniteNazionale, rMeningiteNazionale, cMeningiteNazionale, rEpatiteNazionale, cEpatiteNazionale, rMorbilloNazionale, cMorbilloNazionale, rTubercolosiNazionale, cTubercolosiNazionale, rGastroenteriteNazionale, cGastroenteriteNazionale, comuneNazionale);
             malattieSettimanaliTableView.getItems().add(malattieNazione);
         }
+        Platform.runLater(() -> {
+            malattieSettimanaliTableView.getSortOrder().remove(malattieSettimanaliAnnoColumn);
+            malattieSettimanaliTableView.getSortOrder().add(malattieSettimanaliAnnoColumn);
+        });
     }
 
     @FXML
