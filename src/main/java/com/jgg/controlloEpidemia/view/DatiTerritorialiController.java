@@ -503,16 +503,25 @@ public class DatiTerritorialiController implements Initializable {
                 comuneService.findByNome(comuneDiCapoluogoInserimentoProvinceComboBox.getValue()).getCodiceIstat(),
                 regioneService.findByNome(regioneInserimentoProvinceComboBox.getValue())
         );
-        provinciaService.save(provincia);
-        if (provinciaService.findById(provincia.getId()) != null) {
-            logger.info("Inserito record provincia: " + provincia);
-            idInserimentoProvinceTextField.clear();
-            nomeInserimentoProvinceTextField.clear();
-            superficieInserimentoProvinceTextField.clear();
-            comuneDiCapoluogoInserimentoProvinceComboBox.getValue();
-            regioneInserimentoProvinceComboBox.getSelectionModel().clearSelection();
+        if(provinciaService.findById(provincia.getId())==null) {
+            provinciaService.save(provincia);
+            if (provinciaService.findById(provincia.getId()) != null) {
+                logger.info("Inserito record provincia: " + provincia);
+                idInserimentoProvinceTextField.clear();
+                nomeInserimentoProvinceTextField.clear();
+                superficieInserimentoProvinceTextField.clear();
+                comuneDiCapoluogoInserimentoProvinceComboBox.getValue();
+                regioneInserimentoProvinceComboBox.getSelectionModel().clearSelection();
+            }
+            updateListProvince();
         }
-        updateListProvince();
+        else{
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Errore inserimento Provincia");
+            alert.setHeaderText(null);
+            alert.setContentText("Provincia con id: "+provincia.getId()+" già presente nel database");
+            alert.showAndWait();
+        }
     }
 
     @FXML
@@ -555,6 +564,7 @@ public class DatiTerritorialiController implements Initializable {
 
     @FXML
     private void modificaModificaProvinciaButtonOnClicked() {
+        Integer idNonModificato = provinceTableView.getSelectionModel().getSelectedItem().getId();
         Provincia provincia = new Provincia(
                 Integer.parseInt(idModificaProvinceTextField.getText()),
                 nomeModificaProvinceTextField.getText(),
@@ -562,20 +572,30 @@ public class DatiTerritorialiController implements Initializable {
                 comuneService.findByNome(comuneDiCapoluogoModificaProvinceComboBox.getValue()).getCodiceIstat(),
                 regioneService.findByNome(regioneModificaProvinceComboBox.getValue())
         );
-        provinciaService.update(provincia);
-        if (provinciaService.findById(provincia.getId()) != null) {
-            logger.info("Modificato record provincia: " + provincia);
-            idInserimentoProvinceTextField.clear();
-            nomeInserimentoProvinceTextField.clear();
-            superficieInserimentoProvinceTextField.clear();
-            comuneDiCapoluogoInserimentoProvinceComboBox.getValue();
-            regioneInserimentoProvinceComboBox.getSelectionModel().clearSelection();
+        if(provinciaService.findById(provincia.getId())==null || provinciaService.findById(idNonModificato).getId().equals(provincia.getId())) {
+            provinciaService.update(provincia);
+
+            if (provinciaService.findById(provincia.getId()) != null) {
+                logger.info("Modificato record provincia: " + provincia);
+                idInserimentoProvinceTextField.clear();
+                nomeInserimentoProvinceTextField.clear();
+                superficieInserimentoProvinceTextField.clear();
+                comuneDiCapoluogoInserimentoProvinceComboBox.getValue();
+                regioneInserimentoProvinceComboBox.getSelectionModel().clearSelection();
+            }
+            datiTerritorialiTabPane.getSelectionModel().select(0);
+            modificaTab.setDisable(true);
+            visualizzazioneTab.setDisable(false);
+            inserimentoTab.setDisable(false);
+            updateListProvince();
         }
-        datiTerritorialiTabPane.getSelectionModel().select(0);
-        modificaTab.setDisable(true);
-        visualizzazioneTab.setDisable(false);
-        inserimentoTab.setDisable(false);
-        updateListProvince();
+        else{
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Errore modifica Provincia");
+            alert.setHeaderText(null);
+            alert.setContentText("Stai cercando di modificare una provincia già esistente con id: " +provincia.getId());
+            alert.showAndWait();
+        }
     }
 
     @FXML
@@ -589,18 +609,27 @@ public class DatiTerritorialiController implements Initializable {
                 tipoTerritorioService.findByNome(tipoTerritorioInserimentoComuniComboBox.getValue()),
                 provinciaService.findByNome(provinciaInserimentoComuniComboBox.getValue())
         );
-        comuneService.save(comune);
-        if (comuneService.findByCodiceIstat(comune.getCodiceIstat()) != null) {
-            logger.info("Inserito record comune: " + comune);
-            codiceIstatInserimentoComuniTextField.clear();
-            nomeInserimentoComuniTextField.clear();
-            superficieInserimentoComuniTextField.clear();
-            dataDiIstituzioneInserimentoComuniDatePicker.getEditor().clear();
-            siAffacciaSulMareInserimentoComuniComboBox.getSelectionModel().clearSelection();
-            tipoTerritorioInserimentoComuniComboBox.getSelectionModel().clearSelection();
-            provinciaInserimentoComuniComboBox.getSelectionModel().clearSelection();
+        if(comuneService.findByCodiceIstat(comune.getCodiceIstat())==null) {
+            comuneService.save(comune);
+            if (comuneService.findByCodiceIstat(comune.getCodiceIstat()) != null) {
+                logger.info("Inserito record comune: " + comune);
+                codiceIstatInserimentoComuniTextField.clear();
+                nomeInserimentoComuniTextField.clear();
+                superficieInserimentoComuniTextField.clear();
+                dataDiIstituzioneInserimentoComuniDatePicker.getEditor().clear();
+                siAffacciaSulMareInserimentoComuniComboBox.getSelectionModel().clearSelection();
+                tipoTerritorioInserimentoComuniComboBox.getSelectionModel().clearSelection();
+                provinciaInserimentoComuniComboBox.getSelectionModel().clearSelection();
+            }
+            updateListComuni();
         }
-        updateListComuni();
+        else{
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Errore inserimento Comune");
+            alert.setHeaderText(null);
+            alert.setContentText("Comune con codice istat: "+comune.getCodiceIstat() +" già presente nel database");
+            alert.showAndWait();
+        }
     }
 
     @FXML
@@ -645,6 +674,7 @@ public class DatiTerritorialiController implements Initializable {
 
     @FXML
     private void modificaModificaComuneButtonOnClicked() {
+        String codiceIstatNonModificato = comuniTableView.getSelectionModel().getSelectedItem().getCodiceIstat();
         Comune comune = new Comune(
                 codiceIstatModificaComuniTextField.getText(),
                 nomeModificaComuniTextField.getText(),
@@ -654,22 +684,31 @@ public class DatiTerritorialiController implements Initializable {
                 tipoTerritorioService.findByNome(tipoTerritorioModificaComuniComboBox.getValue()),
                 provinciaService.findByNome(provinciaModificaComuniComboBox.getValue())
         );
-        comuneService.update(comune);
-        if (comuneService.findByCodiceIstat(comune.getCodiceIstat()) != null) {
-            logger.info("Inserito record comune: " + comune);
-            codiceIstatInserimentoComuniTextField.clear();
-            nomeInserimentoComuniTextField.clear();
-            superficieInserimentoComuniTextField.clear();
-            dataDiIstituzioneInserimentoComuniDatePicker.getEditor().clear();
-            siAffacciaSulMareInserimentoComuniComboBox.getSelectionModel().clearSelection();
-            tipoTerritorioInserimentoComuniComboBox.getSelectionModel().clearSelection();
-            provinciaInserimentoComuniComboBox.getSelectionModel().clearSelection();
+        if(comuneService.findByCodiceIstat(comune.getCodiceIstat())==null || comuneService.findByCodiceIstat(codiceIstatNonModificato).getCodiceIstat().equals(comune.getCodiceIstat())) {
+            comuneService.update(comune);
+            if (comuneService.findByCodiceIstat(comune.getCodiceIstat()) != null) {
+                logger.info("Inserito record comune: " + comune);
+                codiceIstatInserimentoComuniTextField.clear();
+                nomeInserimentoComuniTextField.clear();
+                superficieInserimentoComuniTextField.clear();
+                dataDiIstituzioneInserimentoComuniDatePicker.getEditor().clear();
+                siAffacciaSulMareInserimentoComuniComboBox.getSelectionModel().clearSelection();
+                tipoTerritorioInserimentoComuniComboBox.getSelectionModel().clearSelection();
+                provinciaInserimentoComuniComboBox.getSelectionModel().clearSelection();
+            }
+            datiTerritorialiTabPane.getSelectionModel().select(0);
+            modificaTab.setDisable(true);
+            visualizzazioneTab.setDisable(false);
+            inserimentoTab.setDisable(false);
+            updateListComuni();
         }
-        datiTerritorialiTabPane.getSelectionModel().select(0);
-        modificaTab.setDisable(true);
-        visualizzazioneTab.setDisable(false);
-        inserimentoTab.setDisable(false);
-        updateListComuni();
+        else{
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Errore modifica Comune");
+            alert.setHeaderText(null);
+            alert.setContentText("Stai cercando di modificare un comune già esistente con codice istat: " +comune.getCodiceIstat());
+            alert.showAndWait();
+        }
     }
 
     private void errorAnimation(Label label) {
