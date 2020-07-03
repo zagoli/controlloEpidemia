@@ -296,16 +296,13 @@ public class AnalisiDatiController implements Initializable {
                         Platform.runLater(() -> {
                             analisiDatiBorderPane.setDisable(false);
                             loadingAggregazione.setVisible(false);
+                            decessiAnnualiTableView.getSortOrder().remove(decessiAnnualiAnnoColumn);
+                            decessiAnnualiTableView.getSortOrder().add(decessiAnnualiAnnoColumn);
                         });
                         return null;
                     }
                 }
         ).start();
-
-        Platform.runLater(() -> {
-            decessiAnnualiTableView.getSortOrder().remove(decessiAnnualiAnnoColumn);
-            decessiAnnualiTableView.getSortOrder().add(decessiAnnualiAnnoColumn);
-        });
     }
 
     private void updateListVisualizzaDatiMalattie() {
@@ -334,15 +331,14 @@ public class AnalisiDatiController implements Initializable {
                         Platform.runLater(() -> {
                             analisiDatiBorderPane.setDisable(false);
                             loadingAggregazione.setVisible(false);
+                            malattieSettimanaliTableView.getSortOrder().remove(malattieSettimanaliAnnoColumn);
+                            malattieSettimanaliTableView.getSortOrder().add(malattieSettimanaliAnnoColumn);
+
                         });
                         return null;
                     }
                 }
         ).start();
-        Platform.runLater(() -> {
-            malattieSettimanaliTableView.getSortOrder().remove(malattieSettimanaliAnnoColumn);
-            malattieSettimanaliTableView.getSortOrder().add(malattieSettimanaliAnnoColumn);
-        });
     }
 
     @FXML
@@ -416,15 +412,13 @@ public class AnalisiDatiController implements Initializable {
                         Platform.runLater(() -> {
                             analisiDatiBorderPane.setDisable(false);
                             loadingAggregazione.setVisible(false);
+                            decessiAnnualiTableView.getSortOrder().remove(decessiAnnualiAnnoColumn);
+                            decessiAnnualiTableView.getSortOrder().add(decessiAnnualiAnnoColumn);
                         });
                         return null;
                     }
                 }
         ).start();
-        Platform.runLater(() -> {
-            decessiAnnualiTableView.getSortOrder().remove(decessiAnnualiAnnoColumn);
-            decessiAnnualiTableView.getSortOrder().add(decessiAnnualiAnnoColumn);
-        });
     }
 
     @FXML
@@ -483,15 +477,13 @@ public class AnalisiDatiController implements Initializable {
                         Platform.runLater(() -> {
                             analisiDatiBorderPane.setDisable(false);
                             loadingAggregazione.setVisible(false);
+                            decessiAnnualiTableView.getSortOrder().remove(decessiAnnualiAnnoColumn);
+                            decessiAnnualiTableView.getSortOrder().add(decessiAnnualiAnnoColumn);
                         });
                         return null;
                     }
                 }
         ).start();
-        Platform.runLater(() -> {
-            decessiAnnualiTableView.getSortOrder().remove(decessiAnnualiAnnoColumn);
-            decessiAnnualiTableView.getSortOrder().add(decessiAnnualiAnnoColumn);
-        });
     }
 
     @FXML
@@ -641,15 +633,13 @@ public class AnalisiDatiController implements Initializable {
                         Platform.runLater(() -> {
                             analisiDatiBorderPane.setDisable(false);
                             loadingAggregazione.setVisible(false);
+                            malattieSettimanaliTableView.getSortOrder().remove(malattieSettimanaliAnnoColumn);
+                            malattieSettimanaliTableView.getSortOrder().add(malattieSettimanaliAnnoColumn);
                         });
                         return null;
                     }
                 }
         ).start();
-        Platform.runLater(() -> {
-            malattieSettimanaliTableView.getSortOrder().remove(malattieSettimanaliAnnoColumn);
-            malattieSettimanaliTableView.getSortOrder().add(malattieSettimanaliAnnoColumn);
-        });
     }
 
     @FXML
@@ -749,15 +739,13 @@ public class AnalisiDatiController implements Initializable {
                         Platform.runLater(() -> {
                             analisiDatiBorderPane.setDisable(false);
                             loadingAggregazione.setVisible(false);
+                            malattieSettimanaliTableView.getSortOrder().remove(malattieSettimanaliAnnoColumn);
+                            malattieSettimanaliTableView.getSortOrder().add(malattieSettimanaliAnnoColumn);
                         });
                         return null;
                     }
                 }
         ).start();
-        Platform.runLater(() -> {
-            malattieSettimanaliTableView.getSortOrder().remove(malattieSettimanaliAnnoColumn);
-            malattieSettimanaliTableView.getSortOrder().add(malattieSettimanaliAnnoColumn);
-        });
     }
 
     @FXML
@@ -851,15 +839,13 @@ public class AnalisiDatiController implements Initializable {
                         Platform.runLater(() -> {
                             analisiDatiBorderPane.setDisable(false);
                             loadingAggregazione.setVisible(false);
+                            malattieSettimanaliTableView.getSortOrder().remove(malattieSettimanaliAnnoColumn);
+                            malattieSettimanaliTableView.getSortOrder().add(malattieSettimanaliAnnoColumn);
                         });
                         return null;
                     }
                 }
         ).start();
-        Platform.runLater(() -> {
-            malattieSettimanaliTableView.getSortOrder().remove(malattieSettimanaliAnnoColumn);
-            malattieSettimanaliTableView.getSortOrder().add(malattieSettimanaliAnnoColumn);
-        });
     }
 
     @FXML

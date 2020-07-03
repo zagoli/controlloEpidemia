@@ -114,15 +114,13 @@ public class VisualizzaDecessiController implements Initializable {
                         Platform.runLater(() -> {
                             loadingAggregazione.setVisible(false);
                             visualizzaDecessiBorderPane.setDisable(false);
+                            decessiAnnualiTableView.getSortOrder().remove(annoColumn);
+                            decessiAnnualiTableView.getSortOrder().add(annoColumn);
                         });
                         return null;
                     }
                 }
         ).start();
-        Platform.runLater(() -> {
-            decessiAnnualiTableView.getSortOrder().remove(annoColumn);
-            decessiAnnualiTableView.getSortOrder().add(annoColumn);
-        });
     }
 
 
@@ -192,15 +190,13 @@ public class VisualizzaDecessiController implements Initializable {
                         Platform.runLater(() -> {
                             visualizzaDecessiBorderPane.setDisable(false);
                             loadingAggregazione.setVisible(false);
+                            decessiAnnualiTableView.getSortOrder().remove(annoColumn);
+                            decessiAnnualiTableView.getSortOrder().add(annoColumn);
                         });
                         return null;
                     }
                 }
         ).start();
-        Platform.runLater(() -> {
-            decessiAnnualiTableView.getSortOrder().remove(annoColumn);
-            decessiAnnualiTableView.getSortOrder().add(annoColumn);
-        });
     }
 
     @FXML
@@ -264,15 +260,13 @@ public class VisualizzaDecessiController implements Initializable {
                         Platform.runLater(() -> {
                             visualizzaDecessiBorderPane.setDisable(false);
                             loadingAggregazione.setVisible(false);
+                            decessiAnnualiTableView.getSortOrder().remove(annoColumn);
+                            decessiAnnualiTableView.getSortOrder().add(annoColumn);
                         });
                         return null;
                     }
                 }
         ).start();
-        Platform.runLater(() -> {
-            decessiAnnualiTableView.getSortOrder().remove(annoColumn);
-            decessiAnnualiTableView.getSortOrder().add(annoColumn);
-        });
     }
 
 }
