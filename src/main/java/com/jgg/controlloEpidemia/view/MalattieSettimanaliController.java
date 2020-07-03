@@ -9,6 +9,7 @@ import com.jgg.controlloEpidemia.service.MalattieSettimanaliService;
 import javafx.animation.ScaleTransition;
 import javafx.application.Platform;
 import javafx.beans.binding.Bindings;
+import javafx.beans.binding.BooleanBinding;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -24,10 +25,7 @@ import org.apache.log4j.Logger;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
-import java.util.ResourceBundle;
+import java.util.*;
 
 public class MalattieSettimanaliController implements Initializable {
 
@@ -202,46 +200,318 @@ public class MalattieSettimanaliController implements Initializable {
             }
         });
 
+        BooleanBinding annoInserimentoTextFieldValid = Bindings.createBooleanBinding(() -> {
+            if (!annoInserimentoTextField.getText().isEmpty() && annoInserimentoTextField.getText().matches("[0-9]+") && Integer.parseInt(annoInserimentoTextField.getText()) > 1500 && Integer.parseInt(annoInserimentoTextField.getText()) <= Calendar.getInstance().get(Calendar.YEAR)) {
+                return false;
+            } else {
+                return true;
+            }
+        }, annoInserimentoTextField.textProperty());
+
+        BooleanBinding settimanaInserimentoTextFieldValid = Bindings.createBooleanBinding(() -> {
+            if (!settimanaInserimentoTextField.getText().isEmpty() && settimanaInserimentoTextField.getText().matches("[0-9]+") && Integer.parseInt(settimanaInserimentoTextField.getText()) > 0 && Integer.parseInt(settimanaInserimentoTextField.getText()) <= 53) {
+                return false;
+            } else {
+                return true;
+            }
+        }, settimanaInserimentoTextField.textProperty());
+
+        BooleanBinding ricoveratiConInfluenzaInserimentoTextFieldValid = Bindings.createBooleanBinding(() -> {
+            if (!ricoveratiConInfluenzaInserimentoTextField.getText().isEmpty() && ricoveratiConInfluenzaInserimentoTextField.getText().matches("[0-9]+") && Integer.parseInt(ricoveratiConInfluenzaInserimentoTextField.getText()) >= 0) {
+                return false;
+            } else {
+                return true;
+            }
+        }, ricoveratiConInfluenzaInserimentoTextField.textProperty());
+
+        BooleanBinding inCuraConInfluenzaInserimentoTextFieldValid = Bindings.createBooleanBinding(() -> {
+            if (!inCuraConInfluenzaInserimentoTextField.getText().isEmpty() && inCuraConInfluenzaInserimentoTextField.getText().matches("[0-9]+") && Integer.parseInt(inCuraConInfluenzaInserimentoTextField.getText()) >= 0) {
+                return false;
+            } else {
+                return true;
+            }
+        }, inCuraConInfluenzaInserimentoTextField.textProperty());
+
+        BooleanBinding complicanzeRespiratorieInserimentoTextFieldValid = Bindings.createBooleanBinding(() -> {
+            if (!complicanzeRespiratorieInserimentoTextField.getText().isEmpty() && complicanzeRespiratorieInserimentoTextField.getText().matches("[0-9]+") && Integer.parseInt(complicanzeRespiratorieInserimentoTextField.getText()) >= 0) {
+                return false;
+            } else {
+                return true;
+            }
+        }, complicanzeRespiratorieInserimentoTextField.textProperty());
+
+        BooleanBinding ricoveratiConPolmoniteInserimentoTextFieldValid = Bindings.createBooleanBinding(() -> {
+            if (!ricoveratiConPolmoniteInserimentoTextField.getText().isEmpty() && ricoveratiConPolmoniteInserimentoTextField.getText().matches("[0-9]+") && Integer.parseInt(ricoveratiConPolmoniteInserimentoTextField.getText()) >= 0) {
+                return false;
+            } else {
+                return true;
+            }
+        }, ricoveratiConPolmoniteInserimentoTextField.textProperty());
+
+        BooleanBinding inCuraConPolmoniteInserimentoTextFieldValid = Bindings.createBooleanBinding(() -> {
+            if (!inCuraConPolmoniteInserimentoTextField.getText().isEmpty() && inCuraConPolmoniteInserimentoTextField.getText().matches("[0-9]+") && Integer.parseInt(inCuraConPolmoniteInserimentoTextField.getText()) >= 0) {
+                return false;
+            } else {
+                return true;
+            }
+        }, inCuraConPolmoniteInserimentoTextField.textProperty());
+
+        BooleanBinding ricoveratiConMeningiteInserimentoTextFieldValid = Bindings.createBooleanBinding(() -> {
+            if (!ricoveratiConMeningiteInserimentoTextField.getText().isEmpty() && ricoveratiConMeningiteInserimentoTextField.getText().matches("[0-9]+") && Integer.parseInt(ricoveratiConMeningiteInserimentoTextField.getText()) >= 0) {
+                return false;
+            } else {
+                return true;
+            }
+        }, ricoveratiConMeningiteInserimentoTextField.textProperty());
+
+        BooleanBinding inCuraConMeningiteInserimentoTextFieldValid = Bindings.createBooleanBinding(() -> {
+            if (!inCuraConPolmoniteInserimentoTextField.getText().isEmpty() && inCuraConPolmoniteInserimentoTextField.getText().matches("[0-9]+") && Integer.parseInt(inCuraConPolmoniteInserimentoTextField.getText()) >= 0) {
+                return false;
+            } else {
+                return true;
+            }
+        }, inCuraConPolmoniteInserimentoTextField.textProperty());
+
+        BooleanBinding ricoveratiConEpatiteInserimentoTextFieldValid = Bindings.createBooleanBinding(() -> {
+            if (!ricoveratiConEpatiteInserimentoTextField.getText().isEmpty() && ricoveratiConEpatiteInserimentoTextField.getText().matches("[0-9]+") && Integer.parseInt(ricoveratiConEpatiteInserimentoTextField.getText()) >= 0) {
+                return false;
+            } else {
+                return true;
+            }
+        }, ricoveratiConEpatiteInserimentoTextField.textProperty());
+
+        BooleanBinding inCuraConEpatiteInserimentoTextFieldValid = Bindings.createBooleanBinding(() -> {
+            if (!inCuraConEpatiteInserimentoTextField.getText().isEmpty() && inCuraConEpatiteInserimentoTextField.getText().matches("[0-9]+") && Integer.parseInt(inCuraConEpatiteInserimentoTextField.getText()) >= 0) {
+                return false;
+            } else {
+                return true;
+            }
+        }, inCuraConEpatiteInserimentoTextField.textProperty());
+
+        BooleanBinding ricoveratiConMorbilloInserimentoTextFieldValid = Bindings.createBooleanBinding(() -> {
+            if (!ricoveratiConMorbilloInserimentoTextField.getText().isEmpty() && ricoveratiConMorbilloInserimentoTextField.getText().matches("[0-9]+") && Integer.parseInt(ricoveratiConMorbilloInserimentoTextField.getText()) >= 0) {
+                return false;
+            } else {
+                return true;
+            }
+        }, ricoveratiConMorbilloInserimentoTextField.textProperty());
+
+        BooleanBinding inCuraConMorbilloInserimentoTextFieldValid = Bindings.createBooleanBinding(() -> {
+            if (!inCuraConMorbilloInserimentoTextField.getText().isEmpty() && inCuraConMorbilloInserimentoTextField.getText().matches("[0-9]+") && Integer.parseInt(inCuraConMorbilloInserimentoTextField.getText()) >= 0) {
+                return false;
+            } else {
+                return true;
+            }
+        }, inCuraConMorbilloInserimentoTextField.textProperty());
+
+        BooleanBinding ricoveratiConTubercolosiInserimentoTextFieldValid = Bindings.createBooleanBinding(() -> {
+            if (!ricoveratiConTubercolosiInserimentoTextField.getText().isEmpty() && ricoveratiConTubercolosiInserimentoTextField.getText().matches("[0-9]+") && Integer.parseInt(ricoveratiConTubercolosiInserimentoTextField.getText()) >= 0) {
+                return false;
+            } else {
+                return true;
+            }
+        }, ricoveratiConTubercolosiInserimentoTextField.textProperty());
+
+        BooleanBinding inCuraConTubercolosiInserimentoTextFieldValid = Bindings.createBooleanBinding(() -> {
+            if (!inCuraConTubercolosiInserimentoTextField.getText().isEmpty() && inCuraConTubercolosiInserimentoTextField.getText().matches("[0-9]+") && Integer.parseInt(inCuraConTubercolosiInserimentoTextField.getText()) >= 0) {
+                return false;
+            } else {
+                return true;
+            }
+        }, inCuraConTubercolosiInserimentoTextField.textProperty());
+
+        BooleanBinding ricoveratiConGastroenteriteInserimentoTextFieldValid = Bindings.createBooleanBinding(() -> {
+            if (!ricoveratiConGastroenteriteInserimentoTextField.getText().isEmpty() && ricoveratiConGastroenteriteInserimentoTextField.getText().matches("[0-9]+") && Integer.parseInt(ricoveratiConGastroenteriteInserimentoTextField.getText()) >= 0) {
+                return false;
+            } else {
+                return true;
+            }
+        }, ricoveratiConGastroenteriteInserimentoTextField.textProperty());
+
+        BooleanBinding inCuraConGastroenteriteInserimentoTextFieldValid = Bindings.createBooleanBinding(() -> {
+            if (!inCuraConGastroenteriteInserimentoTextField.getText().isEmpty() && inCuraConGastroenteriteInserimentoTextField.getText().matches("[0-9]+") && Integer.parseInt(inCuraConGastroenteriteInserimentoTextField.getText()) >= 0) {
+                return false;
+            } else {
+                return true;
+            }
+        }, inCuraConGastroenteriteInserimentoTextField.textProperty());
+
+        BooleanBinding annoModificaTextFieldValid = Bindings.createBooleanBinding(() -> {
+            if (!annoModificaTextField.getText().isEmpty() && annoModificaTextField.getText().matches("[0-9]+") && Integer.parseInt(annoModificaTextField.getText()) > 1500 && Integer.parseInt(annoModificaTextField.getText()) <= Calendar.getInstance().get(Calendar.YEAR)) {
+                return false;
+            } else {
+                return true;
+            }
+        }, annoModificaTextField.textProperty());
+
+        BooleanBinding settimanaModificaTextFieldValid = Bindings.createBooleanBinding(() -> {
+            if (!settimanaModificaTextField.getText().isEmpty() && settimanaModificaTextField.getText().matches("[0-9]+") && Integer.parseInt(settimanaModificaTextField.getText()) > 0 && Integer.parseInt(settimanaModificaTextField.getText()) <= 53) {
+                return false;
+            } else {
+                return true;
+            }
+        }, settimanaModificaTextField.textProperty());
+
+        BooleanBinding ricoveratiConInfluenzaModificaTextFieldValid = Bindings.createBooleanBinding(() -> {
+            if (!ricoveratiConInfluenzaModificaTextField.getText().isEmpty() && ricoveratiConInfluenzaModificaTextField.getText().matches("[0-9]+") && Integer.parseInt(ricoveratiConInfluenzaModificaTextField.getText()) >= 0) {
+                return false;
+            } else {
+                return true;
+            }
+        }, ricoveratiConInfluenzaModificaTextField.textProperty());
+
+        BooleanBinding inCuraConInfluenzaModificaTextFieldValid = Bindings.createBooleanBinding(() -> {
+            if (!inCuraConInfluenzaModificaTextField.getText().isEmpty() && inCuraConInfluenzaModificaTextField.getText().matches("[0-9]+") && Integer.parseInt(inCuraConInfluenzaModificaTextField.getText()) >= 0) {
+                return false;
+            } else {
+                return true;
+            }
+        }, inCuraConInfluenzaModificaTextField.textProperty());
+
+        BooleanBinding complicanzeRespiratorieModificaTextFieldValid = Bindings.createBooleanBinding(() -> {
+            if (!complicanzeRespiratorieModificaTextField.getText().isEmpty() && complicanzeRespiratorieModificaTextField.getText().matches("[0-9]+") && Integer.parseInt(complicanzeRespiratorieModificaTextField.getText()) >= 0) {
+                return false;
+            } else {
+                return true;
+            }
+        }, complicanzeRespiratorieModificaTextField.textProperty());
+
+        BooleanBinding ricoveratiConPolmoniteModificaTextFieldValid = Bindings.createBooleanBinding(() -> {
+            if (!ricoveratiConPolmoniteModificaTextField.getText().isEmpty() && ricoveratiConPolmoniteModificaTextField.getText().matches("[0-9]+") && Integer.parseInt(ricoveratiConPolmoniteModificaTextField.getText()) >= 0) {
+                return false;
+            } else {
+                return true;
+            }
+        }, ricoveratiConPolmoniteModificaTextField.textProperty());
+
+        BooleanBinding inCuraConPolmoniteModificaTextFieldValid = Bindings.createBooleanBinding(() -> {
+            if (!inCuraConPolmoniteModificaTextField.getText().isEmpty() && inCuraConPolmoniteModificaTextField.getText().matches("[0-9]+") && Integer.parseInt(inCuraConPolmoniteModificaTextField.getText()) >= 0) {
+                return false;
+            } else {
+                return true;
+            }
+        }, inCuraConPolmoniteModificaTextField.textProperty());
+
+        BooleanBinding ricoveratiConMeningiteModificaTextFieldValid = Bindings.createBooleanBinding(() -> {
+            if (!ricoveratiConMeningiteModificaTextField.getText().isEmpty() && ricoveratiConMeningiteModificaTextField.getText().matches("[0-9]+") && Integer.parseInt(ricoveratiConMeningiteModificaTextField.getText()) >= 0) {
+                return false;
+            } else {
+                return true;
+            }
+        }, ricoveratiConMeningiteModificaTextField.textProperty());
+
+        BooleanBinding inCuraConMeningiteModificaTextFieldValid = Bindings.createBooleanBinding(() -> {
+            if (!inCuraConPolmoniteModificaTextField.getText().isEmpty() && inCuraConPolmoniteModificaTextField.getText().matches("[0-9]+") && Integer.parseInt(inCuraConPolmoniteModificaTextField.getText()) >= 0) {
+                return false;
+            } else {
+                return true;
+            }
+        }, inCuraConPolmoniteModificaTextField.textProperty());
+
+        BooleanBinding ricoveratiConEpatiteModificaTextFieldValid = Bindings.createBooleanBinding(() -> {
+            if (!ricoveratiConEpatiteModificaTextField.getText().isEmpty() && ricoveratiConEpatiteModificaTextField.getText().matches("[0-9]+") && Integer.parseInt(ricoveratiConEpatiteModificaTextField.getText()) >= 0) {
+                return false;
+            } else {
+                return true;
+            }
+        }, ricoveratiConEpatiteModificaTextField.textProperty());
+
+        BooleanBinding inCuraConEpatiteModificaTextFieldValid = Bindings.createBooleanBinding(() -> {
+            if (!inCuraConEpatiteModificaTextField.getText().isEmpty() && inCuraConEpatiteModificaTextField.getText().matches("[0-9]+") && Integer.parseInt(inCuraConEpatiteModificaTextField.getText()) >= 0) {
+                return false;
+            } else {
+                return true;
+            }
+        }, inCuraConEpatiteModificaTextField.textProperty());
+
+        BooleanBinding ricoveratiConMorbilloModificaTextFieldValid = Bindings.createBooleanBinding(() -> {
+            if (!ricoveratiConMorbilloModificaTextField.getText().isEmpty() && ricoveratiConMorbilloModificaTextField.getText().matches("[0-9]+") && Integer.parseInt(ricoveratiConMorbilloModificaTextField.getText()) >= 0) {
+                return false;
+            } else {
+                return true;
+            }
+        }, ricoveratiConMorbilloModificaTextField.textProperty());
+
+        BooleanBinding inCuraConMorbilloModificaTextFieldValid = Bindings.createBooleanBinding(() -> {
+            if (!inCuraConMorbilloModificaTextField.getText().isEmpty() && inCuraConMorbilloModificaTextField.getText().matches("[0-9]+") && Integer.parseInt(inCuraConMorbilloModificaTextField.getText()) >= 0) {
+                return false;
+            } else {
+                return true;
+            }
+        }, inCuraConMorbilloModificaTextField.textProperty());
+
+        BooleanBinding ricoveratiConTubercolosiModificaTextFieldValid = Bindings.createBooleanBinding(() -> {
+            if (!ricoveratiConTubercolosiModificaTextField.getText().isEmpty() && ricoveratiConTubercolosiModificaTextField.getText().matches("[0-9]+") && Integer.parseInt(ricoveratiConTubercolosiModificaTextField.getText()) >= 0) {
+                return false;
+            } else {
+                return true;
+            }
+        }, ricoveratiConTubercolosiModificaTextField.textProperty());
+
+        BooleanBinding inCuraConTubercolosiModificaTextFieldValid = Bindings.createBooleanBinding(() -> {
+            if (!inCuraConTubercolosiModificaTextField.getText().isEmpty() && inCuraConTubercolosiModificaTextField.getText().matches("[0-9]+") && Integer.parseInt(inCuraConTubercolosiModificaTextField.getText()) >= 0) {
+                return false;
+            } else {
+                return true;
+            }
+        }, inCuraConTubercolosiModificaTextField.textProperty());
+
+        BooleanBinding ricoveratiConGastroenteriteModificaTextFieldValid = Bindings.createBooleanBinding(() -> {
+            if (!ricoveratiConGastroenteriteModificaTextField.getText().isEmpty() && ricoveratiConGastroenteriteModificaTextField.getText().matches("[0-9]+") && Integer.parseInt(ricoveratiConGastroenteriteModificaTextField.getText()) >= 0) {
+                return false;
+            } else {
+                return true;
+            }
+        }, ricoveratiConGastroenteriteModificaTextField.textProperty());
+
+        BooleanBinding inCuraConGastroenteriteModificaTextFieldValid = Bindings.createBooleanBinding(() -> {
+            if (!inCuraConGastroenteriteModificaTextField.getText().isEmpty() && inCuraConGastroenteriteModificaTextField.getText().matches("[0-9]+") && Integer.parseInt(inCuraConGastroenteriteModificaTextField.getText()) >= 0) {
+                return false;
+            } else {
+                return true;
+            }
+        }, inCuraConGastroenteriteModificaTextField.textProperty());
+
         malattieSettimanaliInserisciButton.disableProperty().bind(
-                Bindings.isEmpty(annoInserimentoTextField.textProperty())
-                        .or(Bindings.isEmpty(settimanaInserimentoTextField.textProperty()))
-                        .or(Bindings.isEmpty(ricoveratiConInfluenzaInserimentoTextField.textProperty()))
-                        .or(Bindings.isEmpty(inCuraConInfluenzaInserimentoTextField.textProperty()))
-                        .or(Bindings.isEmpty(complicanzeRespiratorieInserimentoTextField.textProperty()))
-                        .or(Bindings.isEmpty(ricoveratiConPolmoniteInserimentoTextField.textProperty()))
-                        .or(Bindings.isEmpty(inCuraConPolmoniteInserimentoTextField.textProperty()))
-                        .or(Bindings.isEmpty(ricoveratiConMeningiteInserimentoTextField.textProperty()))
-                        .or(Bindings.isEmpty(inCuraConMeningiteInserimentoTextField.textProperty()))
-                        .or(Bindings.isEmpty(ricoveratiConEpatiteInserimentoTextField.textProperty()))
-                        .or(Bindings.isEmpty(inCuraConEpatiteInserimentoTextField.textProperty()))
-                        .or(Bindings.isEmpty(ricoveratiConMorbilloInserimentoTextField.textProperty()))
-                        .or(Bindings.isEmpty(inCuraConMorbilloInserimentoTextField.textProperty()))
-                        .or(Bindings.isEmpty(ricoveratiConTubercolosiInserimentoTextField.textProperty()))
-                        .or(Bindings.isEmpty(inCuraConTubercolosiInserimentoTextField.textProperty()))
-                        .or(Bindings.isEmpty(ricoveratiConGastroenteriteInserimentoTextField.textProperty()))
-                        .or(Bindings.isEmpty(inCuraConGastroenteriteInserimentoTextField.textProperty()))
-                        .or(comuneInserimentoComboBox.valueProperty().isNull())
-        );
+                annoInserimentoTextFieldValid
+                        .or(settimanaInserimentoTextFieldValid)
+                        .or(ricoveratiConInfluenzaInserimentoTextFieldValid)
+                        .or(inCuraConInfluenzaInserimentoTextFieldValid)
+                        .or(complicanzeRespiratorieInserimentoTextFieldValid)
+                        .or(ricoveratiConPolmoniteInserimentoTextFieldValid)
+                        .or(inCuraConPolmoniteInserimentoTextFieldValid)
+                        .or(ricoveratiConMeningiteInserimentoTextFieldValid)
+                        .or(inCuraConMeningiteModificaTextFieldValid)
+                        .or(ricoveratiConEpatiteInserimentoTextFieldValid)
+                        .or(inCuraConEpatiteInserimentoTextFieldValid)
+                        .or(ricoveratiConMorbilloInserimentoTextFieldValid)
+                        .or(inCuraConMorbilloInserimentoTextFieldValid)
+                        .or(ricoveratiConTubercolosiInserimentoTextFieldValid)
+                        .or(inCuraConTubercolosiInserimentoTextFieldValid)
+                        .or(ricoveratiConGastroenteriteInserimentoTextFieldValid)
+                        .or(inCuraConGastroenteriteInserimentoTextFieldValid)
+                        .or(comuneInserimentoComboBox.valueProperty().isNull()));
+
         malattieSettimanaliModificaButton.disableProperty().bind(
-                Bindings.isEmpty(annoModificaTextField.textProperty())
-                        .or(Bindings.isEmpty(settimanaModificaTextField.textProperty()))
-                        .or(Bindings.isEmpty(ricoveratiConInfluenzaModificaTextField.textProperty()))
-                        .or(Bindings.isEmpty(inCuraConInfluenzaModificaTextField.textProperty()))
-                        .or(Bindings.isEmpty(complicanzeRespiratorieModificaTextField.textProperty()))
-                        .or(Bindings.isEmpty(ricoveratiConPolmoniteModificaTextField.textProperty()))
-                        .or(Bindings.isEmpty(inCuraConPolmoniteModificaTextField.textProperty()))
-                        .or(Bindings.isEmpty(ricoveratiConMeningiteModificaTextField.textProperty()))
-                        .or(Bindings.isEmpty(inCuraConMeningiteModificaTextField.textProperty()))
-                        .or(Bindings.isEmpty(ricoveratiConEpatiteModificaTextField.textProperty()))
-                        .or(Bindings.isEmpty(inCuraConEpatiteModificaTextField.textProperty()))
-                        .or(Bindings.isEmpty(ricoveratiConMorbilloModificaTextField.textProperty()))
-                        .or(Bindings.isEmpty(inCuraConMorbilloModificaTextField.textProperty()))
-                        .or(Bindings.isEmpty(ricoveratiConTubercolosiModificaTextField.textProperty()))
-                        .or(Bindings.isEmpty(inCuraConTubercolosiModificaTextField.textProperty()))
-                        .or(Bindings.isEmpty(ricoveratiConGastroenteriteModificaTextField.textProperty()))
-                        .or(Bindings.isEmpty(inCuraConGastroenteriteModificaTextField.textProperty()))
-                        .or(comuneModificaComboBox.valueProperty().isNull())
-        );
+                annoModificaTextFieldValid
+                        .or(settimanaModificaTextFieldValid)
+                        .or(ricoveratiConInfluenzaModificaTextFieldValid)
+                        .or(inCuraConInfluenzaModificaTextFieldValid)
+                        .or(complicanzeRespiratorieModificaTextFieldValid)
+                        .or(ricoveratiConPolmoniteModificaTextFieldValid)
+                        .or(inCuraConPolmoniteModificaTextFieldValid)
+                        .or(ricoveratiConMeningiteModificaTextFieldValid)
+                        .or(inCuraConMeningiteModificaTextFieldValid)
+                        .or(ricoveratiConEpatiteModificaTextFieldValid)
+                        .or(inCuraConEpatiteModificaTextFieldValid)
+                        .or(ricoveratiConMorbilloModificaTextFieldValid)
+                        .or(inCuraConMorbilloModificaTextFieldValid)
+                        .or(ricoveratiConTubercolosiModificaTextFieldValid)
+                        .or(inCuraConTubercolosiModificaTextFieldValid)
+                        .or(ricoveratiConGastroenteriteModificaTextFieldValid)
+                        .or(inCuraConGastroenteriteModificaTextFieldValid)
+                        .or(comuneModificaComboBox.valueProperty().isNull()
+                        ));
         alert.setTitle("Autorizzazioni comuni");
         alert.setHeaderText(null);
         alert.setContentText("Non sei autorizzato a gestire questo comune!");

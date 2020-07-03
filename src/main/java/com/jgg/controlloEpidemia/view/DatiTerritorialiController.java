@@ -13,6 +13,7 @@ import com.jgg.controlloEpidemia.service.TipoTerritorioService;
 import javafx.animation.ScaleTransition;
 import javafx.application.Platform;
 import javafx.beans.binding.Bindings;
+import javafx.beans.binding.BooleanBinding;
 import javafx.collections.FXCollections;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
@@ -248,33 +249,63 @@ public class DatiTerritorialiController implements Initializable {
             }
         });
 
+        //controllo id gia usati
+        BooleanBinding idInserimentoProvinceTextFieldValid = Bindings.createBooleanBinding(() -> idInserimentoProvinceTextField.getText().isEmpty() || !idInserimentoProvinceTextField.getText().matches("[0-9]+") || Integer.parseInt(idInserimentoProvinceTextField.getText()) <= 0, idInserimentoProvinceTextField.textProperty());
+
+        BooleanBinding nomeInserimentoProvinceTextFieldValid = Bindings.createBooleanBinding(() -> nomeInserimentoProvinceTextField.getText().isEmpty() || !nomeInserimentoProvinceTextField.getText().matches("[- a-zA-Z'àèéìòóù]+"), nomeInserimentoProvinceTextField.textProperty());
+
+        BooleanBinding superficieInserimentoProvinceTextFieldValid = Bindings.createBooleanBinding(() -> superficieInserimentoProvinceTextField.getText().isEmpty() || !superficieInserimentoProvinceTextField.getText().matches("[0-9]+") || Integer.parseInt(superficieInserimentoProvinceTextField.getText()) <= 0, superficieInserimentoProvinceTextField.textProperty());
+
+        //controllo id gia usati
+        BooleanBinding idModificaProvinceTextFieldValid = Bindings.createBooleanBinding(() -> idModificaProvinceTextField.getText().isEmpty() || !idModificaProvinceTextField.getText().matches("[0-9]+") || Integer.parseInt(idModificaProvinceTextField.getText()) <= 0, idModificaProvinceTextField.textProperty());
+
+        BooleanBinding nomeModificaProvinceTextFieldValid = Bindings.createBooleanBinding(() -> nomeModificaProvinceTextField.getText().isEmpty() || !nomeModificaProvinceTextField.getText().matches("[- a-zA-Z'àèéìòóù]+"), nomeModificaProvinceTextField.textProperty());
+
+        BooleanBinding superficieModificaProvinceTextFieldValid = Bindings.createBooleanBinding(() -> superficieModificaProvinceTextField.getText().isEmpty() || !superficieModificaProvinceTextField.getText().matches("[0-9]+") || Integer.parseInt(superficieModificaProvinceTextField.getText()) <= 0, superficieModificaProvinceTextField.textProperty());
+
+        //controllo id gia usati
+        BooleanBinding codiceIstatInserimentoComuniTextFieldValid = Bindings.createBooleanBinding(() -> codiceIstatInserimentoComuniTextField.getText().isEmpty() || !codiceIstatInserimentoComuniTextField.getText().matches("[0-9]+") || codiceIstatInserimentoComuniTextField.getText().length() != 6, codiceIstatInserimentoComuniTextField.textProperty());
+
+        BooleanBinding nomeInserimentoComuniTextFieldValid = Bindings.createBooleanBinding(() -> nomeInserimentoComuniTextField.getText().isEmpty() || !nomeInserimentoComuniTextField.getText().matches("[-. ()a-zA-Z'àâßèéêìö/òôóçüù]+"), nomeInserimentoComuniTextField.textProperty());
+
+        BooleanBinding superficieInserimentoComuniTextFieldValid = Bindings.createBooleanBinding(() -> superficieInserimentoComuniTextField.getText().isEmpty() || !superficieInserimentoComuniTextField.getText().matches("[0-9]+") || Integer.parseInt(superficieInserimentoComuniTextField.getText()) <= 0, superficieInserimentoComuniTextField.textProperty());
+
+        //controllo id gia usati
+        BooleanBinding codiceIstatModificaComuniTextFieldValid = Bindings.createBooleanBinding(() -> codiceIstatModificaComuniTextField.getText().isEmpty() || !codiceIstatModificaComuniTextField.getText().matches("[0-9]+") || codiceIstatModificaComuniTextField.getText().length() != 6, codiceIstatModificaComuniTextField.textProperty());
+
+        BooleanBinding nomeModificaComuniTextFieldValid = Bindings.createBooleanBinding(() -> nomeModificaComuniTextField.getText().isEmpty() || !nomeModificaComuniTextField.getText().matches("[-. ()a-zA-Z'àâßèéêìö/òôóçüù]+"), nomeModificaComuniTextField.textProperty());
+
+        BooleanBinding superficieModificaComuniTextFieldValid = Bindings.createBooleanBinding(() -> superficieModificaComuniTextField.getText().isEmpty() || !superficieModificaComuniTextField.getText().matches("[0-9]+") || Integer.parseInt(superficieModificaComuniTextField.getText()) <= 0, superficieModificaComuniTextField.textProperty());
+
         provinciaInserisciButton.disableProperty().bind(
-                Bindings.isEmpty(idInserimentoProvinceTextField.textProperty())
-                        .or(Bindings.isEmpty(nomeInserimentoProvinceTextField.textProperty()))
-                        .or(Bindings.isEmpty(superficieInserimentoProvinceTextField.textProperty()))
+                idInserimentoProvinceTextFieldValid
+                        .or(nomeInserimentoProvinceTextFieldValid)
+                        .or(superficieInserimentoProvinceTextFieldValid)
                         .or(comuneDiCapoluogoInserimentoProvinceComboBox.valueProperty().isNull())
                         .or(regioneInserimentoProvinceComboBox.valueProperty().isNull())
         );
+
         provinciaModificaButton.disableProperty().bind(
-                Bindings.isEmpty(idModificaProvinceTextField.textProperty())
-                        .or(Bindings.isEmpty(nomeModificaProvinceTextField.textProperty()))
-                        .or(Bindings.isEmpty(superficieModificaProvinceTextField.textProperty()))
+                idModificaProvinceTextFieldValid
+                        .or(nomeModificaProvinceTextFieldValid)
+                        .or(superficieModificaProvinceTextFieldValid)
                         .or(comuneDiCapoluogoModificaProvinceComboBox.valueProperty().isNull())
                         .or(regioneModificaProvinceComboBox.valueProperty().isNull())
         );
+
         comuneInserisciButton.disableProperty().bind(
-                Bindings.isEmpty(codiceIstatInserimentoComuniTextField.textProperty())
-                        .or(Bindings.isEmpty(nomeInserimentoComuniTextField.textProperty()))
-                        .or(Bindings.isEmpty(superficieInserimentoComuniTextField.textProperty()))
+                codiceIstatInserimentoComuniTextFieldValid
+                        .or(nomeInserimentoComuniTextFieldValid)
+                        .or(superficieInserimentoComuniTextFieldValid)
                         .or(siAffacciaSulMareInserimentoComuniComboBox.valueProperty().isNull())
                         .or(tipoTerritorioInserimentoComuniComboBox.valueProperty().isNull())
                         .or(provinciaInserimentoComuniComboBox.valueProperty().isNull())
                         .or(dataDiIstituzioneInserimentoComuniDatePicker.valueProperty().isNull())
         );
         comuneModificaButton.disableProperty().bind(
-                Bindings.isEmpty(codiceIstatModificaComuniTextField.textProperty())
-                        .or(Bindings.isEmpty(nomeModificaComuniTextField.textProperty()))
-                        .or(Bindings.isEmpty(superficieModificaComuniTextField.textProperty()))
+                codiceIstatModificaComuniTextFieldValid
+                        .or(nomeModificaComuniTextFieldValid)
+                        .or(superficieModificaComuniTextFieldValid)
                         .or(siAffacciaSulMareModificaComuniComboBox.valueProperty().isNull())
                         .or(tipoTerritorioModificaComuniComboBox.valueProperty().isNull())
                         .or(provinciaModificaComuniComboBox.valueProperty().isNull())

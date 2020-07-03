@@ -8,6 +8,7 @@ import com.jgg.controlloEpidemia.service.ProvinciaService;
 import javafx.animation.ScaleTransition;
 import javafx.application.Platform;
 import javafx.beans.binding.Bindings;
+import javafx.beans.binding.BooleanBinding;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -23,10 +24,7 @@ import org.apache.log4j.Logger;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
-import java.util.ResourceBundle;
+import java.util.*;
 
 public class DecessiAnnualiController implements Initializable {
 
@@ -119,25 +117,46 @@ public class DecessiAnnualiController implements Initializable {
                 }
             }
         });
+
         incidentiStradaliColumn.setCellValueFactory(new PropertyValueFactory<>("incidentiStradali"));
         malattieTumoraliColumn.setCellValueFactory(new PropertyValueFactory<>("malattieTumorali"));
         malattieContagioseColumn.setCellValueFactory(new PropertyValueFactory<>("malattieContagiose"));
         malattieCardiovascolariColumn.setCellValueFactory(new PropertyValueFactory<>("malattieCardiovascolari"));
 
+        BooleanBinding annoInserimentoTextFieldValid = Bindings.createBooleanBinding(() -> annoInserimentoTextField.getText().isEmpty() || !annoInserimentoTextField.getText().matches("[0-9]+") || Integer.parseInt(annoInserimentoTextField.getText()) <= 1500 || Integer.parseInt(annoInserimentoTextField.getText()) > Calendar.getInstance().get(Calendar.YEAR), annoInserimentoTextField.textProperty());
+
+        BooleanBinding incidentiStradaliInserimentoTextFieldValid = Bindings.createBooleanBinding(() -> incidentiStradaliInserimentoTextField.getText().isEmpty() || !incidentiStradaliInserimentoTextField.getText().matches("[0-9]+") || Integer.parseInt(incidentiStradaliInserimentoTextField.getText()) < 0, incidentiStradaliInserimentoTextField.textProperty());
+
+        BooleanBinding malattieTumoraliInserimentoTextFieldValid = Bindings.createBooleanBinding(() -> malattieTumoraliInserimentoTextField.getText().isEmpty() || !malattieTumoraliInserimentoTextField.getText().matches("[0-9]+") || Integer.parseInt(malattieTumoraliInserimentoTextField.getText()) < 0, malattieTumoraliInserimentoTextField.textProperty());
+
+        BooleanBinding malattieCardiovascolariInserimentoTextFieldValid = Bindings.createBooleanBinding(() -> malattieCardiovascolariInserimentoTextField.getText().isEmpty() || !malattieCardiovascolariInserimentoTextField.getText().matches("[0-9]+") || Integer.parseInt(malattieCardiovascolariInserimentoTextField.getText()) < 0, malattieCardiovascolariInserimentoTextField.textProperty());
+
+        BooleanBinding malattieContagioseInserimentoTextFieldValid = Bindings.createBooleanBinding(() -> malattieContagioseInserimentoTextField.getText().isEmpty() || !malattieContagioseInserimentoTextField.getText().matches("[0-9]+") || Integer.parseInt(malattieContagioseInserimentoTextField.getText()) < 0, malattieContagioseInserimentoTextField.textProperty());
+
+        BooleanBinding annoModificaTextFieldValid = Bindings.createBooleanBinding(() -> annoModificaTextField.getText().isEmpty() || !annoModificaTextField.getText().matches("[0-9]+") || Integer.parseInt(annoModificaTextField.getText()) <= 1500 || Integer.parseInt(annoModificaTextField.getText()) > Calendar.getInstance().get(Calendar.YEAR), annoModificaTextField.textProperty());
+
+        BooleanBinding incidentiStradaliModificaTextFieldValid = Bindings.createBooleanBinding(() -> incidentiStradaliModificaTextField.getText().isEmpty() || !incidentiStradaliModificaTextField.getText().matches("[0-9]+") || Integer.parseInt(incidentiStradaliModificaTextField.getText()) < 0, incidentiStradaliModificaTextField.textProperty());
+
+        BooleanBinding malattieTumoraliModificaTextFieldValid = Bindings.createBooleanBinding(() -> malattieTumoraliModificaTextField.getText().isEmpty() || !malattieTumoraliModificaTextField.getText().matches("[0-9]+") || Integer.parseInt(malattieTumoraliModificaTextField.getText()) < 0, malattieTumoraliModificaTextField.textProperty());
+
+        BooleanBinding malattieCardiovascolariModificaTextFieldValid = Bindings.createBooleanBinding(() -> malattieCardiovascolariModificaTextField.getText().isEmpty() || !malattieCardiovascolariModificaTextField.getText().matches("[0-9]+") || Integer.parseInt(malattieCardiovascolariModificaTextField.getText()) < 0, malattieCardiovascolariModificaTextField.textProperty());
+
+        BooleanBinding malattieContagioseModificaTextFieldValid = Bindings.createBooleanBinding(() -> malattieContagioseModificaTextField.getText().isEmpty() || !malattieContagioseModificaTextField.getText().matches("[0-9]+") || Integer.parseInt(malattieContagioseModificaTextField.getText()) < 0, malattieContagioseModificaTextField.textProperty());
+
         decessiAnnualiInserisciButton.disableProperty().bind(
-                Bindings.isEmpty(incidentiStradaliInserimentoTextField.textProperty())
-                        .or(Bindings.isEmpty(annoInserimentoTextField.textProperty()))
-                        .or(Bindings.isEmpty(malattieTumoraliInserimentoTextField.textProperty()))
-                        .or(Bindings.isEmpty(malattieCardiovascolariInserimentoTextField.textProperty()))
-                        .or(Bindings.isEmpty(malattieContagioseInserimentoTextField.textProperty()))
+                annoInserimentoTextFieldValid
+                        .or(incidentiStradaliInserimentoTextFieldValid)
+                        .or(malattieTumoraliInserimentoTextFieldValid)
+                        .or(malattieCardiovascolariInserimentoTextFieldValid)
+                        .or(malattieContagioseInserimentoTextFieldValid)
                         .or(provinciaInserimentoComboBox.valueProperty().isNull())
         );
         decessiAnnualiModificaButton.disableProperty().bind(
-                Bindings.isEmpty(incidentiStradaliModificaTextField.textProperty())
-                        .or(Bindings.isEmpty(annoModificaTextField.textProperty()))
-                        .or(Bindings.isEmpty(malattieTumoraliModificaTextField.textProperty()))
-                        .or(Bindings.isEmpty(malattieCardiovascolariModificaTextField.textProperty()))
-                        .or(Bindings.isEmpty(malattieContagioseModificaTextField.textProperty()))
+                annoModificaTextFieldValid
+                        .or(incidentiStradaliModificaTextFieldValid)
+                        .or(malattieTumoraliModificaTextFieldValid)
+                        .or(malattieCardiovascolariModificaTextFieldValid)
+                        .or(malattieContagioseModificaTextFieldValid)
                         .or(provinciaModificaComboBox.valueProperty().isNull())
         );
 
@@ -227,6 +246,7 @@ public class DecessiAnnualiController implements Initializable {
                 Integer.parseInt(malattieContagioseInserimentoTextField.getText()),
                 provinciaService.findByNome(provinciaInserimentoComboBox.getValue())
         );
+
         decessiAnnualiService.save(decessiAnnuali);
 
         if (decessiAnnualiService.findById(decessiAnnuali.getId()) != null) {
@@ -279,6 +299,7 @@ public class DecessiAnnualiController implements Initializable {
             logger.error("File non selezionato");
         }
     }
+
 
     @FXML
     private void modificaModificaButtonOnClicked() {
