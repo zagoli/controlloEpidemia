@@ -200,277 +200,73 @@ public class MalattieSettimanaliController implements Initializable {
             }
         });
 
-        BooleanBinding annoInserimentoTextFieldValid = Bindings.createBooleanBinding(() -> {
-            if (!annoInserimentoTextField.getText().isEmpty() && annoInserimentoTextField.getText().matches("[0-9]+") && Integer.parseInt(annoInserimentoTextField.getText()) > 1500 && Integer.parseInt(annoInserimentoTextField.getText()) <= Calendar.getInstance().get(Calendar.YEAR)) {
-                return false;
-            } else {
-                return true;
-            }
-        }, annoInserimentoTextField.textProperty());
+        BooleanBinding annoInserimentoTextFieldValid = Bindings.createBooleanBinding(() -> annoInserimentoTextField.getText().isEmpty() || !annoInserimentoTextField.getText().matches("[0-9]+") || Integer.parseInt(annoInserimentoTextField.getText()) <= 1500 || Integer.parseInt(annoInserimentoTextField.getText()) > Calendar.getInstance().get(Calendar.YEAR), annoInserimentoTextField.textProperty());
 
-        BooleanBinding settimanaInserimentoTextFieldValid = Bindings.createBooleanBinding(() -> {
-            if (!settimanaInserimentoTextField.getText().isEmpty() && settimanaInserimentoTextField.getText().matches("[0-9]+") && Integer.parseInt(settimanaInserimentoTextField.getText()) > 0 && Integer.parseInt(settimanaInserimentoTextField.getText()) <= 53) {
-                return false;
-            } else {
-                return true;
-            }
-        }, settimanaInserimentoTextField.textProperty());
+        BooleanBinding settimanaInserimentoTextFieldValid = Bindings.createBooleanBinding(() -> settimanaInserimentoTextField.getText().isEmpty() || !settimanaInserimentoTextField.getText().matches("[0-9]+") || Integer.parseInt(settimanaInserimentoTextField.getText()) <= 0 || Integer.parseInt(settimanaInserimentoTextField.getText()) > 53, settimanaInserimentoTextField.textProperty());
 
-        BooleanBinding ricoveratiConInfluenzaInserimentoTextFieldValid = Bindings.createBooleanBinding(() -> {
-            if (!ricoveratiConInfluenzaInserimentoTextField.getText().isEmpty() && ricoveratiConInfluenzaInserimentoTextField.getText().matches("[0-9]+") && Integer.parseInt(ricoveratiConInfluenzaInserimentoTextField.getText()) >= 0) {
-                return false;
-            } else {
-                return true;
-            }
-        }, ricoveratiConInfluenzaInserimentoTextField.textProperty());
+        BooleanBinding ricoveratiConInfluenzaInserimentoTextFieldValid = Bindings.createBooleanBinding(() -> ricoveratiConInfluenzaInserimentoTextField.getText().isEmpty() || !ricoveratiConInfluenzaInserimentoTextField.getText().matches("[0-9]+") || Integer.parseInt(ricoveratiConInfluenzaInserimentoTextField.getText()) < 0, ricoveratiConInfluenzaInserimentoTextField.textProperty());
 
-        BooleanBinding inCuraConInfluenzaInserimentoTextFieldValid = Bindings.createBooleanBinding(() -> {
-            if (!inCuraConInfluenzaInserimentoTextField.getText().isEmpty() && inCuraConInfluenzaInserimentoTextField.getText().matches("[0-9]+") && Integer.parseInt(inCuraConInfluenzaInserimentoTextField.getText()) >= 0) {
-                return false;
-            } else {
-                return true;
-            }
-        }, inCuraConInfluenzaInserimentoTextField.textProperty());
+        BooleanBinding inCuraConInfluenzaInserimentoTextFieldValid = Bindings.createBooleanBinding(() -> inCuraConInfluenzaInserimentoTextField.getText().isEmpty() || !inCuraConInfluenzaInserimentoTextField.getText().matches("[0-9]+") || Integer.parseInt(inCuraConInfluenzaInserimentoTextField.getText()) < 0, inCuraConInfluenzaInserimentoTextField.textProperty());
 
-        BooleanBinding complicanzeRespiratorieInserimentoTextFieldValid = Bindings.createBooleanBinding(() -> {
-            if (!complicanzeRespiratorieInserimentoTextField.getText().isEmpty() && complicanzeRespiratorieInserimentoTextField.getText().matches("[0-9]+") && Integer.parseInt(complicanzeRespiratorieInserimentoTextField.getText()) >= 0) {
-                return false;
-            } else {
-                return true;
-            }
-        }, complicanzeRespiratorieInserimentoTextField.textProperty());
+        BooleanBinding complicanzeRespiratorieInserimentoTextFieldValid = Bindings.createBooleanBinding(() -> complicanzeRespiratorieInserimentoTextField.getText().isEmpty() || !complicanzeRespiratorieInserimentoTextField.getText().matches("[0-9]+") || Integer.parseInt(complicanzeRespiratorieInserimentoTextField.getText()) < 0, complicanzeRespiratorieInserimentoTextField.textProperty());
 
-        BooleanBinding ricoveratiConPolmoniteInserimentoTextFieldValid = Bindings.createBooleanBinding(() -> {
-            if (!ricoveratiConPolmoniteInserimentoTextField.getText().isEmpty() && ricoveratiConPolmoniteInserimentoTextField.getText().matches("[0-9]+") && Integer.parseInt(ricoveratiConPolmoniteInserimentoTextField.getText()) >= 0) {
-                return false;
-            } else {
-                return true;
-            }
-        }, ricoveratiConPolmoniteInserimentoTextField.textProperty());
+        BooleanBinding ricoveratiConPolmoniteInserimentoTextFieldValid = Bindings.createBooleanBinding(() -> ricoveratiConPolmoniteInserimentoTextField.getText().isEmpty() || !ricoveratiConPolmoniteInserimentoTextField.getText().matches("[0-9]+") || Integer.parseInt(ricoveratiConPolmoniteInserimentoTextField.getText()) < 0, ricoveratiConPolmoniteInserimentoTextField.textProperty());
 
-        BooleanBinding inCuraConPolmoniteInserimentoTextFieldValid = Bindings.createBooleanBinding(() -> {
-            if (!inCuraConPolmoniteInserimentoTextField.getText().isEmpty() && inCuraConPolmoniteInserimentoTextField.getText().matches("[0-9]+") && Integer.parseInt(inCuraConPolmoniteInserimentoTextField.getText()) >= 0) {
-                return false;
-            } else {
-                return true;
-            }
-        }, inCuraConPolmoniteInserimentoTextField.textProperty());
+        BooleanBinding inCuraConPolmoniteInserimentoTextFieldValid = Bindings.createBooleanBinding(() -> inCuraConPolmoniteInserimentoTextField.getText().isEmpty() || !inCuraConPolmoniteInserimentoTextField.getText().matches("[0-9]+") || Integer.parseInt(inCuraConPolmoniteInserimentoTextField.getText()) < 0, inCuraConPolmoniteInserimentoTextField.textProperty());
 
-        BooleanBinding ricoveratiConMeningiteInserimentoTextFieldValid = Bindings.createBooleanBinding(() -> {
-            if (!ricoveratiConMeningiteInserimentoTextField.getText().isEmpty() && ricoveratiConMeningiteInserimentoTextField.getText().matches("[0-9]+") && Integer.parseInt(ricoveratiConMeningiteInserimentoTextField.getText()) >= 0) {
-                return false;
-            } else {
-                return true;
-            }
-        }, ricoveratiConMeningiteInserimentoTextField.textProperty());
+        BooleanBinding ricoveratiConMeningiteInserimentoTextFieldValid = Bindings.createBooleanBinding(() -> ricoveratiConMeningiteInserimentoTextField.getText().isEmpty() || !ricoveratiConMeningiteInserimentoTextField.getText().matches("[0-9]+") || Integer.parseInt(ricoveratiConMeningiteInserimentoTextField.getText()) < 0, ricoveratiConMeningiteInserimentoTextField.textProperty());
 
-        BooleanBinding inCuraConMeningiteInserimentoTextFieldValid = Bindings.createBooleanBinding(() -> {
-            if (!inCuraConPolmoniteInserimentoTextField.getText().isEmpty() && inCuraConPolmoniteInserimentoTextField.getText().matches("[0-9]+") && Integer.parseInt(inCuraConPolmoniteInserimentoTextField.getText()) >= 0) {
-                return false;
-            } else {
-                return true;
-            }
-        }, inCuraConPolmoniteInserimentoTextField.textProperty());
+        BooleanBinding inCuraConMeningiteInserimentoTextFieldValid = Bindings.createBooleanBinding(() -> inCuraConPolmoniteInserimentoTextField.getText().isEmpty() || !inCuraConPolmoniteInserimentoTextField.getText().matches("[0-9]+") || Integer.parseInt(inCuraConPolmoniteInserimentoTextField.getText()) < 0, inCuraConPolmoniteInserimentoTextField.textProperty());
 
-        BooleanBinding ricoveratiConEpatiteInserimentoTextFieldValid = Bindings.createBooleanBinding(() -> {
-            if (!ricoveratiConEpatiteInserimentoTextField.getText().isEmpty() && ricoveratiConEpatiteInserimentoTextField.getText().matches("[0-9]+") && Integer.parseInt(ricoveratiConEpatiteInserimentoTextField.getText()) >= 0) {
-                return false;
-            } else {
-                return true;
-            }
-        }, ricoveratiConEpatiteInserimentoTextField.textProperty());
+        BooleanBinding ricoveratiConEpatiteInserimentoTextFieldValid = Bindings.createBooleanBinding(() -> ricoveratiConEpatiteInserimentoTextField.getText().isEmpty() || !ricoveratiConEpatiteInserimentoTextField.getText().matches("[0-9]+") || Integer.parseInt(ricoveratiConEpatiteInserimentoTextField.getText()) < 0, ricoveratiConEpatiteInserimentoTextField.textProperty());
 
-        BooleanBinding inCuraConEpatiteInserimentoTextFieldValid = Bindings.createBooleanBinding(() -> {
-            if (!inCuraConEpatiteInserimentoTextField.getText().isEmpty() && inCuraConEpatiteInserimentoTextField.getText().matches("[0-9]+") && Integer.parseInt(inCuraConEpatiteInserimentoTextField.getText()) >= 0) {
-                return false;
-            } else {
-                return true;
-            }
-        }, inCuraConEpatiteInserimentoTextField.textProperty());
+        BooleanBinding inCuraConEpatiteInserimentoTextFieldValid = Bindings.createBooleanBinding(() -> inCuraConEpatiteInserimentoTextField.getText().isEmpty() || !inCuraConEpatiteInserimentoTextField.getText().matches("[0-9]+") || Integer.parseInt(inCuraConEpatiteInserimentoTextField.getText()) < 0, inCuraConEpatiteInserimentoTextField.textProperty());
 
-        BooleanBinding ricoveratiConMorbilloInserimentoTextFieldValid = Bindings.createBooleanBinding(() -> {
-            if (!ricoveratiConMorbilloInserimentoTextField.getText().isEmpty() && ricoveratiConMorbilloInserimentoTextField.getText().matches("[0-9]+") && Integer.parseInt(ricoveratiConMorbilloInserimentoTextField.getText()) >= 0) {
-                return false;
-            } else {
-                return true;
-            }
-        }, ricoveratiConMorbilloInserimentoTextField.textProperty());
+        BooleanBinding ricoveratiConMorbilloInserimentoTextFieldValid = Bindings.createBooleanBinding(() -> ricoveratiConMorbilloInserimentoTextField.getText().isEmpty() || !ricoveratiConMorbilloInserimentoTextField.getText().matches("[0-9]+") || Integer.parseInt(ricoveratiConMorbilloInserimentoTextField.getText()) < 0, ricoveratiConMorbilloInserimentoTextField.textProperty());
 
-        BooleanBinding inCuraConMorbilloInserimentoTextFieldValid = Bindings.createBooleanBinding(() -> {
-            if (!inCuraConMorbilloInserimentoTextField.getText().isEmpty() && inCuraConMorbilloInserimentoTextField.getText().matches("[0-9]+") && Integer.parseInt(inCuraConMorbilloInserimentoTextField.getText()) >= 0) {
-                return false;
-            } else {
-                return true;
-            }
-        }, inCuraConMorbilloInserimentoTextField.textProperty());
+        BooleanBinding inCuraConMorbilloInserimentoTextFieldValid = Bindings.createBooleanBinding(() -> inCuraConMorbilloInserimentoTextField.getText().isEmpty() || !inCuraConMorbilloInserimentoTextField.getText().matches("[0-9]+") || Integer.parseInt(inCuraConMorbilloInserimentoTextField.getText()) < 0, inCuraConMorbilloInserimentoTextField.textProperty());
 
-        BooleanBinding ricoveratiConTubercolosiInserimentoTextFieldValid = Bindings.createBooleanBinding(() -> {
-            if (!ricoveratiConTubercolosiInserimentoTextField.getText().isEmpty() && ricoveratiConTubercolosiInserimentoTextField.getText().matches("[0-9]+") && Integer.parseInt(ricoveratiConTubercolosiInserimentoTextField.getText()) >= 0) {
-                return false;
-            } else {
-                return true;
-            }
-        }, ricoveratiConTubercolosiInserimentoTextField.textProperty());
+        BooleanBinding ricoveratiConTubercolosiInserimentoTextFieldValid = Bindings.createBooleanBinding(() -> ricoveratiConTubercolosiInserimentoTextField.getText().isEmpty() || !ricoveratiConTubercolosiInserimentoTextField.getText().matches("[0-9]+") || Integer.parseInt(ricoveratiConTubercolosiInserimentoTextField.getText()) < 0, ricoveratiConTubercolosiInserimentoTextField.textProperty());
 
-        BooleanBinding inCuraConTubercolosiInserimentoTextFieldValid = Bindings.createBooleanBinding(() -> {
-            if (!inCuraConTubercolosiInserimentoTextField.getText().isEmpty() && inCuraConTubercolosiInserimentoTextField.getText().matches("[0-9]+") && Integer.parseInt(inCuraConTubercolosiInserimentoTextField.getText()) >= 0) {
-                return false;
-            } else {
-                return true;
-            }
-        }, inCuraConTubercolosiInserimentoTextField.textProperty());
+        BooleanBinding inCuraConTubercolosiInserimentoTextFieldValid = Bindings.createBooleanBinding(() -> inCuraConTubercolosiInserimentoTextField.getText().isEmpty() || !inCuraConTubercolosiInserimentoTextField.getText().matches("[0-9]+") || Integer.parseInt(inCuraConTubercolosiInserimentoTextField.getText()) < 0, inCuraConTubercolosiInserimentoTextField.textProperty());
 
-        BooleanBinding ricoveratiConGastroenteriteInserimentoTextFieldValid = Bindings.createBooleanBinding(() -> {
-            if (!ricoveratiConGastroenteriteInserimentoTextField.getText().isEmpty() && ricoveratiConGastroenteriteInserimentoTextField.getText().matches("[0-9]+") && Integer.parseInt(ricoveratiConGastroenteriteInserimentoTextField.getText()) >= 0) {
-                return false;
-            } else {
-                return true;
-            }
-        }, ricoveratiConGastroenteriteInserimentoTextField.textProperty());
+        BooleanBinding ricoveratiConGastroenteriteInserimentoTextFieldValid = Bindings.createBooleanBinding(() -> ricoveratiConGastroenteriteInserimentoTextField.getText().isEmpty() || !ricoveratiConGastroenteriteInserimentoTextField.getText().matches("[0-9]+") || Integer.parseInt(ricoveratiConGastroenteriteInserimentoTextField.getText()) < 0, ricoveratiConGastroenteriteInserimentoTextField.textProperty());
 
-        BooleanBinding inCuraConGastroenteriteInserimentoTextFieldValid = Bindings.createBooleanBinding(() -> {
-            if (!inCuraConGastroenteriteInserimentoTextField.getText().isEmpty() && inCuraConGastroenteriteInserimentoTextField.getText().matches("[0-9]+") && Integer.parseInt(inCuraConGastroenteriteInserimentoTextField.getText()) >= 0) {
-                return false;
-            } else {
-                return true;
-            }
-        }, inCuraConGastroenteriteInserimentoTextField.textProperty());
+        BooleanBinding inCuraConGastroenteriteInserimentoTextFieldValid = Bindings.createBooleanBinding(() -> inCuraConGastroenteriteInserimentoTextField.getText().isEmpty() || !inCuraConGastroenteriteInserimentoTextField.getText().matches("[0-9]+") || Integer.parseInt(inCuraConGastroenteriteInserimentoTextField.getText()) < 0, inCuraConGastroenteriteInserimentoTextField.textProperty());
 
-        BooleanBinding annoModificaTextFieldValid = Bindings.createBooleanBinding(() -> {
-            if (!annoModificaTextField.getText().isEmpty() && annoModificaTextField.getText().matches("[0-9]+") && Integer.parseInt(annoModificaTextField.getText()) > 1500 && Integer.parseInt(annoModificaTextField.getText()) <= Calendar.getInstance().get(Calendar.YEAR)) {
-                return false;
-            } else {
-                return true;
-            }
-        }, annoModificaTextField.textProperty());
+        BooleanBinding annoModificaTextFieldValid = Bindings.createBooleanBinding(() -> annoModificaTextField.getText().isEmpty() || !annoModificaTextField.getText().matches("[0-9]+") || Integer.parseInt(annoModificaTextField.getText()) <= 1500 || Integer.parseInt(annoModificaTextField.getText()) > Calendar.getInstance().get(Calendar.YEAR), annoModificaTextField.textProperty());
 
-        BooleanBinding settimanaModificaTextFieldValid = Bindings.createBooleanBinding(() -> {
-            if (!settimanaModificaTextField.getText().isEmpty() && settimanaModificaTextField.getText().matches("[0-9]+") && Integer.parseInt(settimanaModificaTextField.getText()) > 0 && Integer.parseInt(settimanaModificaTextField.getText()) <= 53) {
-                return false;
-            } else {
-                return true;
-            }
-        }, settimanaModificaTextField.textProperty());
+        BooleanBinding settimanaModificaTextFieldValid = Bindings.createBooleanBinding(() -> settimanaModificaTextField.getText().isEmpty() || !settimanaModificaTextField.getText().matches("[0-9]+") || Integer.parseInt(settimanaModificaTextField.getText()) <= 0 || Integer.parseInt(settimanaModificaTextField.getText()) > 53, settimanaModificaTextField.textProperty());
 
-        BooleanBinding ricoveratiConInfluenzaModificaTextFieldValid = Bindings.createBooleanBinding(() -> {
-            if (!ricoveratiConInfluenzaModificaTextField.getText().isEmpty() && ricoveratiConInfluenzaModificaTextField.getText().matches("[0-9]+") && Integer.parseInt(ricoveratiConInfluenzaModificaTextField.getText()) >= 0) {
-                return false;
-            } else {
-                return true;
-            }
-        }, ricoveratiConInfluenzaModificaTextField.textProperty());
+        BooleanBinding ricoveratiConInfluenzaModificaTextFieldValid = Bindings.createBooleanBinding(() -> ricoveratiConInfluenzaModificaTextField.getText().isEmpty() || !ricoveratiConInfluenzaModificaTextField.getText().matches("[0-9]+") || Integer.parseInt(ricoveratiConInfluenzaModificaTextField.getText()) < 0, ricoveratiConInfluenzaModificaTextField.textProperty());
 
-        BooleanBinding inCuraConInfluenzaModificaTextFieldValid = Bindings.createBooleanBinding(() -> {
-            if (!inCuraConInfluenzaModificaTextField.getText().isEmpty() && inCuraConInfluenzaModificaTextField.getText().matches("[0-9]+") && Integer.parseInt(inCuraConInfluenzaModificaTextField.getText()) >= 0) {
-                return false;
-            } else {
-                return true;
-            }
-        }, inCuraConInfluenzaModificaTextField.textProperty());
+        BooleanBinding inCuraConInfluenzaModificaTextFieldValid = Bindings.createBooleanBinding(() -> inCuraConInfluenzaModificaTextField.getText().isEmpty() || !inCuraConInfluenzaModificaTextField.getText().matches("[0-9]+") || Integer.parseInt(inCuraConInfluenzaModificaTextField.getText()) < 0, inCuraConInfluenzaModificaTextField.textProperty());
 
-        BooleanBinding complicanzeRespiratorieModificaTextFieldValid = Bindings.createBooleanBinding(() -> {
-            if (!complicanzeRespiratorieModificaTextField.getText().isEmpty() && complicanzeRespiratorieModificaTextField.getText().matches("[0-9]+") && Integer.parseInt(complicanzeRespiratorieModificaTextField.getText()) >= 0) {
-                return false;
-            } else {
-                return true;
-            }
-        }, complicanzeRespiratorieModificaTextField.textProperty());
+        BooleanBinding complicanzeRespiratorieModificaTextFieldValid = Bindings.createBooleanBinding(() -> complicanzeRespiratorieModificaTextField.getText().isEmpty() || !complicanzeRespiratorieModificaTextField.getText().matches("[0-9]+") || Integer.parseInt(complicanzeRespiratorieModificaTextField.getText()) < 0, complicanzeRespiratorieModificaTextField.textProperty());
 
-        BooleanBinding ricoveratiConPolmoniteModificaTextFieldValid = Bindings.createBooleanBinding(() -> {
-            if (!ricoveratiConPolmoniteModificaTextField.getText().isEmpty() && ricoveratiConPolmoniteModificaTextField.getText().matches("[0-9]+") && Integer.parseInt(ricoveratiConPolmoniteModificaTextField.getText()) >= 0) {
-                return false;
-            } else {
-                return true;
-            }
-        }, ricoveratiConPolmoniteModificaTextField.textProperty());
+        BooleanBinding ricoveratiConPolmoniteModificaTextFieldValid = Bindings.createBooleanBinding(() -> ricoveratiConPolmoniteModificaTextField.getText().isEmpty() || !ricoveratiConPolmoniteModificaTextField.getText().matches("[0-9]+") || Integer.parseInt(ricoveratiConPolmoniteModificaTextField.getText()) < 0, ricoveratiConPolmoniteModificaTextField.textProperty());
 
-        BooleanBinding inCuraConPolmoniteModificaTextFieldValid = Bindings.createBooleanBinding(() -> {
-            if (!inCuraConPolmoniteModificaTextField.getText().isEmpty() && inCuraConPolmoniteModificaTextField.getText().matches("[0-9]+") && Integer.parseInt(inCuraConPolmoniteModificaTextField.getText()) >= 0) {
-                return false;
-            } else {
-                return true;
-            }
-        }, inCuraConPolmoniteModificaTextField.textProperty());
+        BooleanBinding inCuraConPolmoniteModificaTextFieldValid = Bindings.createBooleanBinding(() -> inCuraConPolmoniteModificaTextField.getText().isEmpty() || !inCuraConPolmoniteModificaTextField.getText().matches("[0-9]+") || Integer.parseInt(inCuraConPolmoniteModificaTextField.getText()) < 0, inCuraConPolmoniteModificaTextField.textProperty());
 
-        BooleanBinding ricoveratiConMeningiteModificaTextFieldValid = Bindings.createBooleanBinding(() -> {
-            if (!ricoveratiConMeningiteModificaTextField.getText().isEmpty() && ricoveratiConMeningiteModificaTextField.getText().matches("[0-9]+") && Integer.parseInt(ricoveratiConMeningiteModificaTextField.getText()) >= 0) {
-                return false;
-            } else {
-                return true;
-            }
-        }, ricoveratiConMeningiteModificaTextField.textProperty());
+        BooleanBinding ricoveratiConMeningiteModificaTextFieldValid = Bindings.createBooleanBinding(() -> ricoveratiConMeningiteModificaTextField.getText().isEmpty() || !ricoveratiConMeningiteModificaTextField.getText().matches("[0-9]+") || Integer.parseInt(ricoveratiConMeningiteModificaTextField.getText()) < 0, ricoveratiConMeningiteModificaTextField.textProperty());
 
-        BooleanBinding inCuraConMeningiteModificaTextFieldValid = Bindings.createBooleanBinding(() -> {
-            if (!inCuraConPolmoniteModificaTextField.getText().isEmpty() && inCuraConPolmoniteModificaTextField.getText().matches("[0-9]+") && Integer.parseInt(inCuraConPolmoniteModificaTextField.getText()) >= 0) {
-                return false;
-            } else {
-                return true;
-            }
-        }, inCuraConPolmoniteModificaTextField.textProperty());
+        BooleanBinding inCuraConMeningiteModificaTextFieldValid = Bindings.createBooleanBinding(() -> inCuraConPolmoniteModificaTextField.getText().isEmpty() || !inCuraConPolmoniteModificaTextField.getText().matches("[0-9]+") || Integer.parseInt(inCuraConPolmoniteModificaTextField.getText()) < 0, inCuraConPolmoniteModificaTextField.textProperty());
 
-        BooleanBinding ricoveratiConEpatiteModificaTextFieldValid = Bindings.createBooleanBinding(() -> {
-            if (!ricoveratiConEpatiteModificaTextField.getText().isEmpty() && ricoveratiConEpatiteModificaTextField.getText().matches("[0-9]+") && Integer.parseInt(ricoveratiConEpatiteModificaTextField.getText()) >= 0) {
-                return false;
-            } else {
-                return true;
-            }
-        }, ricoveratiConEpatiteModificaTextField.textProperty());
+        BooleanBinding ricoveratiConEpatiteModificaTextFieldValid = Bindings.createBooleanBinding(() -> ricoveratiConEpatiteModificaTextField.getText().isEmpty() || !ricoveratiConEpatiteModificaTextField.getText().matches("[0-9]+") || Integer.parseInt(ricoveratiConEpatiteModificaTextField.getText()) < 0, ricoveratiConEpatiteModificaTextField.textProperty());
 
-        BooleanBinding inCuraConEpatiteModificaTextFieldValid = Bindings.createBooleanBinding(() -> {
-            if (!inCuraConEpatiteModificaTextField.getText().isEmpty() && inCuraConEpatiteModificaTextField.getText().matches("[0-9]+") && Integer.parseInt(inCuraConEpatiteModificaTextField.getText()) >= 0) {
-                return false;
-            } else {
-                return true;
-            }
-        }, inCuraConEpatiteModificaTextField.textProperty());
+        BooleanBinding inCuraConEpatiteModificaTextFieldValid = Bindings.createBooleanBinding(() -> inCuraConEpatiteModificaTextField.getText().isEmpty() || !inCuraConEpatiteModificaTextField.getText().matches("[0-9]+") || Integer.parseInt(inCuraConEpatiteModificaTextField.getText()) < 0, inCuraConEpatiteModificaTextField.textProperty());
 
-        BooleanBinding ricoveratiConMorbilloModificaTextFieldValid = Bindings.createBooleanBinding(() -> {
-            if (!ricoveratiConMorbilloModificaTextField.getText().isEmpty() && ricoveratiConMorbilloModificaTextField.getText().matches("[0-9]+") && Integer.parseInt(ricoveratiConMorbilloModificaTextField.getText()) >= 0) {
-                return false;
-            } else {
-                return true;
-            }
-        }, ricoveratiConMorbilloModificaTextField.textProperty());
+        BooleanBinding ricoveratiConMorbilloModificaTextFieldValid = Bindings.createBooleanBinding(() -> ricoveratiConMorbilloModificaTextField.getText().isEmpty() || !ricoveratiConMorbilloModificaTextField.getText().matches("[0-9]+") || Integer.parseInt(ricoveratiConMorbilloModificaTextField.getText()) < 0, ricoveratiConMorbilloModificaTextField.textProperty());
 
-        BooleanBinding inCuraConMorbilloModificaTextFieldValid = Bindings.createBooleanBinding(() -> {
-            if (!inCuraConMorbilloModificaTextField.getText().isEmpty() && inCuraConMorbilloModificaTextField.getText().matches("[0-9]+") && Integer.parseInt(inCuraConMorbilloModificaTextField.getText()) >= 0) {
-                return false;
-            } else {
-                return true;
-            }
-        }, inCuraConMorbilloModificaTextField.textProperty());
+        BooleanBinding inCuraConMorbilloModificaTextFieldValid = Bindings.createBooleanBinding(() -> inCuraConMorbilloModificaTextField.getText().isEmpty() || !inCuraConMorbilloModificaTextField.getText().matches("[0-9]+") || Integer.parseInt(inCuraConMorbilloModificaTextField.getText()) < 0, inCuraConMorbilloModificaTextField.textProperty());
 
-        BooleanBinding ricoveratiConTubercolosiModificaTextFieldValid = Bindings.createBooleanBinding(() -> {
-            if (!ricoveratiConTubercolosiModificaTextField.getText().isEmpty() && ricoveratiConTubercolosiModificaTextField.getText().matches("[0-9]+") && Integer.parseInt(ricoveratiConTubercolosiModificaTextField.getText()) >= 0) {
-                return false;
-            } else {
-                return true;
-            }
-        }, ricoveratiConTubercolosiModificaTextField.textProperty());
+        BooleanBinding ricoveratiConTubercolosiModificaTextFieldValid = Bindings.createBooleanBinding(() -> ricoveratiConTubercolosiModificaTextField.getText().isEmpty() || !ricoveratiConTubercolosiModificaTextField.getText().matches("[0-9]+") || Integer.parseInt(ricoveratiConTubercolosiModificaTextField.getText()) < 0, ricoveratiConTubercolosiModificaTextField.textProperty());
 
-        BooleanBinding inCuraConTubercolosiModificaTextFieldValid = Bindings.createBooleanBinding(() -> {
-            if (!inCuraConTubercolosiModificaTextField.getText().isEmpty() && inCuraConTubercolosiModificaTextField.getText().matches("[0-9]+") && Integer.parseInt(inCuraConTubercolosiModificaTextField.getText()) >= 0) {
-                return false;
-            } else {
-                return true;
-            }
-        }, inCuraConTubercolosiModificaTextField.textProperty());
+        BooleanBinding inCuraConTubercolosiModificaTextFieldValid = Bindings.createBooleanBinding(() -> inCuraConTubercolosiModificaTextField.getText().isEmpty() || !inCuraConTubercolosiModificaTextField.getText().matches("[0-9]+") || Integer.parseInt(inCuraConTubercolosiModificaTextField.getText()) < 0, inCuraConTubercolosiModificaTextField.textProperty());
 
-        BooleanBinding ricoveratiConGastroenteriteModificaTextFieldValid = Bindings.createBooleanBinding(() -> {
-            if (!ricoveratiConGastroenteriteModificaTextField.getText().isEmpty() && ricoveratiConGastroenteriteModificaTextField.getText().matches("[0-9]+") && Integer.parseInt(ricoveratiConGastroenteriteModificaTextField.getText()) >= 0) {
-                return false;
-            } else {
-                return true;
-            }
-        }, ricoveratiConGastroenteriteModificaTextField.textProperty());
+        BooleanBinding ricoveratiConGastroenteriteModificaTextFieldValid = Bindings.createBooleanBinding(() -> ricoveratiConGastroenteriteModificaTextField.getText().isEmpty() || !ricoveratiConGastroenteriteModificaTextField.getText().matches("[0-9]+") || Integer.parseInt(ricoveratiConGastroenteriteModificaTextField.getText()) < 0, ricoveratiConGastroenteriteModificaTextField.textProperty());
 
-        BooleanBinding inCuraConGastroenteriteModificaTextFieldValid = Bindings.createBooleanBinding(() -> {
-            if (!inCuraConGastroenteriteModificaTextField.getText().isEmpty() && inCuraConGastroenteriteModificaTextField.getText().matches("[0-9]+") && Integer.parseInt(inCuraConGastroenteriteModificaTextField.getText()) >= 0) {
-                return false;
-            } else {
-                return true;
-            }
-        }, inCuraConGastroenteriteModificaTextField.textProperty());
+        BooleanBinding inCuraConGastroenteriteModificaTextFieldValid = Bindings.createBooleanBinding(() -> inCuraConGastroenteriteModificaTextField.getText().isEmpty() || !inCuraConGastroenteriteModificaTextField.getText().matches("[0-9]+") || Integer.parseInt(inCuraConGastroenteriteModificaTextField.getText()) < 0, inCuraConGastroenteriteModificaTextField.textProperty());
 
         malattieSettimanaliInserisciButton.disableProperty().bind(
                 annoInserimentoTextFieldValid
@@ -481,7 +277,7 @@ public class MalattieSettimanaliController implements Initializable {
                         .or(ricoveratiConPolmoniteInserimentoTextFieldValid)
                         .or(inCuraConPolmoniteInserimentoTextFieldValid)
                         .or(ricoveratiConMeningiteInserimentoTextFieldValid)
-                        .or(inCuraConMeningiteModificaTextFieldValid)
+                        .or(inCuraConMeningiteInserimentoTextFieldValid)
                         .or(ricoveratiConEpatiteInserimentoTextFieldValid)
                         .or(inCuraConEpatiteInserimentoTextFieldValid)
                         .or(ricoveratiConMorbilloInserimentoTextFieldValid)
