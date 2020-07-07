@@ -25,7 +25,9 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.FileChooser;
 import javafx.util.Duration;
-import org.apache.log4j.Logger;
+
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
 
 import java.io.File;
 import java.io.IOException;
@@ -38,7 +40,7 @@ import java.util.*;
 
 public class DatiTerritorialiController implements Initializable {
 
-    static Logger logger = Logger.getLogger(DatiTerritorialiController.class);
+    static Logger logger = LogManager.getLogger(DatiTerritorialiController.class);
 
     private final ProvinciaService provinciaService = new ProvinciaService();
     private final ComuneService comuneService = new ComuneService();

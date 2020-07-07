@@ -20,7 +20,9 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.FileChooser;
 import javafx.util.Duration;
-import org.apache.log4j.Logger;
+
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
 
 import java.io.File;
 import java.io.IOException;
@@ -29,7 +31,7 @@ import java.util.*;
 
 public class MalattieSettimanaliController implements Initializable {
 
-    static Logger logger = Logger.getLogger(MalattieSettimanaliController.class);
+    static Logger logger = LogManager.getLogger(MalattieSettimanaliController.class);
 
     private final ComuneService comuneService = new ComuneService();
     private final MalattieSettimanaliService malattieSettimanaliService = new MalattieSettimanaliService();

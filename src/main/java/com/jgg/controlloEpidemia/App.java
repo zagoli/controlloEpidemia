@@ -8,15 +8,16 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
-import org.apache.log4j.Logger;
-import org.apache.log4j.PropertyConfigurator;
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+
 
 import java.io.IOException;
 
 public class App extends Application {
 
     public static Utente utenteCorrente;
-    public static Logger logger = Logger.getLogger(App.class);
+    public static Logger logger = LogManager.getLogger(App.class);
 
     public static void main(String[] args) {
         launch(args);
@@ -35,7 +36,6 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) {
-        PropertyConfigurator.configure("src\\main\\resources\\log4j.properties");
         logger.info("Logger inizializzato");
 
         new LoadRuolo().load();
