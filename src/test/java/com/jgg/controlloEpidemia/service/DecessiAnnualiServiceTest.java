@@ -8,7 +8,6 @@ import java.util.Date;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
 
 public class DecessiAnnualiServiceTest {
     @Test
@@ -39,6 +38,20 @@ public class DecessiAnnualiServiceTest {
         //Cerco tutti  i model
         List<DecessiAnnuali> decessiAnnualiList = decessiAnnualiService.findAll();
         assertEquals(2, decessiAnnualiList.size());
+        //Save della lista
+        decessiAnnualiList.removeAll(decessiAnnualiService.findAll());
+        decessiAnnualiList.add(decessiAnnuali);
+        decessiAnnualiList.add(decessiAnnuali2);
+        decessiAnnualiService.saveOrUpdate(decessiAnnualiList);
+        //Find by anno della lista
+        decessiAnnualiList.removeAll(decessiAnnualiService.findAll());
+        decessiAnnualiList = decessiAnnualiService.findByAnno(decessiAnnuali.getAnno());
+        assertEquals(1, decessiAnnualiList.size());
+        //Find inserted years
+        List<Integer> anni = decessiAnnualiService.findInsertedYears();
+        Collections.sort(anni);
+        assertEquals(2019, anni.get(0));
+        assertEquals(2020, anni.get(1));
         //Aggiorno i model
         decessiAnnuali.setAnno(2021);
         decessiAnnualiService.update(decessiAnnuali);
@@ -56,13 +69,4 @@ public class DecessiAnnualiServiceTest {
         assertEquals(0, decessiAnnualiList.size());
     }
 
-    // Dopo aver fatto partire EtlDecessiTest
-    @Test
-    void findInsertedYears() {
-        DecessiAnnualiService decessiAnnualiService = new DecessiAnnualiService();
-        List<Integer> anni = decessiAnnualiService.findInsertedYears();
-        Collections.sort(anni);
-        assertEquals(2011, anni.get(0));
-        assertEquals(2019, anni.get(4));
-    }
 }

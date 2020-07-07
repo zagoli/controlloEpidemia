@@ -57,18 +57,18 @@ public class MalattieSettimanaliService {
         return malattieSettimanaliByAnno;
     }
 
-    public List<Integer> findInsertedYears() {
-        malattieSettimanaliDao.openCurrentSession();
-        List<Integer> malattieSettimanaliInsertedYears = malattieSettimanaliDao.findInsertedYears();
-        malattieSettimanaliDao.closeCurrentSession();
-        return malattieSettimanaliInsertedYears;
-    }
-
     public List<MalattieSettimanali> findAll() {
         malattieSettimanaliDao.openCurrentSession();
         List<MalattieSettimanali> malattieSettimanaliAll = malattieSettimanaliDao.findAll();
         malattieSettimanaliDao.closeCurrentSession();
         return malattieSettimanaliAll;
+    }
+
+    public List<Integer> findInsertedYears() {
+        malattieSettimanaliDao.openCurrentSession();
+        List<Integer> malattieSettimanaliInsertedYears = malattieSettimanaliDao.findInsertedYears();
+        malattieSettimanaliDao.closeCurrentSession();
+        return malattieSettimanaliInsertedYears;
     }
 
 }

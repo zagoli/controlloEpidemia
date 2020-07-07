@@ -3,6 +3,7 @@ package com.jgg.controlloEpidemia.service;
 import com.jgg.controlloEpidemia.model.*;
 import org.junit.jupiter.api.Test;
 
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
@@ -39,6 +40,20 @@ class MalattieSettimanaliServiceTest {
         //Cerco tutti  i model
         List<MalattieSettimanali> malattieSettimanaliList = malattieSettimanaliService.findAll();
         assertEquals(2, malattieSettimanaliList.size());
+        //Save della lista
+        malattieSettimanaliList.removeAll(malattieSettimanaliService.findAll());
+        malattieSettimanaliList.add(malattieSettimanali);
+        malattieSettimanaliList.add(malattieSettimanali2);
+        malattieSettimanaliService.saveOrUpdate(malattieSettimanaliList);
+        //Find by anno della lista
+        malattieSettimanaliList.removeAll(malattieSettimanaliService.findAll());
+        malattieSettimanaliList = malattieSettimanaliService.findByAnno(malattieSettimanali.getAnno());
+        assertEquals(1, malattieSettimanaliList.size());
+        //Find inserted years
+        List<Integer> anni = malattieSettimanaliService.findInsertedYears();
+        Collections.sort(anni);
+        assertEquals(2019, anni.get(0));
+        assertEquals(2020, anni.get(1));
         //Aggiorno i model
         malattieSettimanali.setAnno(2021);
         malattieSettimanaliService.update(malattieSettimanali);
