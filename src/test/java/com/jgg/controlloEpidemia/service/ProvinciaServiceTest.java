@@ -29,6 +29,11 @@ public class ProvinciaServiceTest {
         //Cerco tutti  i model
         List<Provincia> provinciaList = provinciaService.findAll();
         assertEquals(2, provinciaList.size());
+        //Save della lista
+        provinciaList.removeAll(provinciaService.findAll());
+        provinciaList.add(provincia);
+        provinciaList.add(provincia2);
+        provinciaService.saveOrUpdate(provinciaList);
         //Aggiorno i model
         provincia.setSuperficie(198);
         provinciaService.update(provincia);

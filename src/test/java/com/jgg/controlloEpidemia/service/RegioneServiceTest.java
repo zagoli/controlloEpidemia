@@ -29,6 +29,12 @@ public class RegioneServiceTest {
         //Cerco tutti i model
         List<Regione> regioneList = regioneService.findAll();
         assertEquals(2, regioneList.size());
+        //Save della lista
+        regioneList.removeAll(regioneService.findAll());
+        regioneList.add(regione);
+        regioneList.add(regione2);
+        regioneService.saveOrUpdate(regioneList);
+        //Aggiorno i model
         //Aggiorno i model
         regione.setSuperficie(987);
         regioneService.update(regione);

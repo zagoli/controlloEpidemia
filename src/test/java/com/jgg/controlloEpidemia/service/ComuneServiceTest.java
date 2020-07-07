@@ -41,6 +41,11 @@ class ComuneServiceTest {
         //Cerco tutti  i model
         List<Comune> comuneList = comuneService.findAll();
         assertEquals(2, comuneList.size());
+        //Save della lista
+        comuneList.removeAll(comuneService.findAll());
+        comuneList.add(comune);
+        comuneList.add(comune2);
+        comuneService.saveOrUpdate(comuneList);
         //Count comuni
         assertEquals(2,comuneService.countComuni());
         //Aggiorno i model
