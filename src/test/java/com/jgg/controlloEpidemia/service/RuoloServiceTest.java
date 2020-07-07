@@ -26,6 +26,11 @@ public class RuoloServiceTest {
         //Cerco tutti  i model
         List<Ruolo> ruoloList = ruoloService.findAll();
         assertEquals(2, ruoloList.size());
+        //Save della lista
+        ruoloList.removeAll(ruoloService.findAll());
+        ruoloList.add(ruolo);
+        ruoloList.add(ruolo2);
+        ruoloService.saveOrUpdate(ruoloList);
         //Aggiorno i model
         ruolo.setNome("Collinare");
         ruoloService.update(ruolo);

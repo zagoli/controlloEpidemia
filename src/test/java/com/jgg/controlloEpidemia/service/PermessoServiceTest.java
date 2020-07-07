@@ -25,6 +25,11 @@ public class PermessoServiceTest {
         //Cerco tutti  i model
         List<Permesso> permessoList = permessoService.findAll();
         assertEquals(2, permessoList.size());
+        //Save della lista
+        permessoList.removeAll(permessoService.findAll());
+        permessoList.add(permesso);
+        permessoList.add(permesso2);
+        permessoService.saveOrUpdate(permessoList);
         //Aggiorno i model
         permesso.setNome("Aggiornamento utenti");
         permessoService.update(permesso);
