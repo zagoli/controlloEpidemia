@@ -14,12 +14,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class EtlComuneTest {
 
     @Test
-    void testEtlComune() throws IOException {
+    void testEtlComune(){
         App.utenteCorrente = new UtenteService().findById(1);
         new EtlComune().load("src\\test\\resources\\csvToLoadTest\\comune.csv");
 
         List<Comune> comuneList = new ComuneService().findAll();
-        assertEquals(1206, comuneList.size());
+        assertEquals(8092, comuneList.size());
     }
 
 }

@@ -18,6 +18,6 @@ public class EtlMalattieTest {
         new EtlMalattie().load("src\\test\\resources\\csvToLoadTest\\malattie.csv",true);
 
         List<MalattieSettimanali> malattieSettimanaliList = new MalattieSettimanaliService().findAll();
-        assertEquals(11, malattieSettimanaliList.size());
+        assertEquals(99, malattieSettimanaliList.size());
     }
 }
