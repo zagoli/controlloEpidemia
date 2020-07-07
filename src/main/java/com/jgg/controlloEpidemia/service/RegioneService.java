@@ -30,9 +30,9 @@ public class RegioneService {
     }
 
     public void saveOrUpdate(Regione regione) {
-        regioneDao.openCurrentSession();
+        regioneDao.openCurrentSessionWithTransaction();
         regioneDao.saveOrUpdate(regione);
-        regioneDao.closeCurrentSession();
+        regioneDao.closeCurrentSessionWithTransaction();
     }
 
     public void saveOrUpdate(List<Regione> regioneList) {

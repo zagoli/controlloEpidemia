@@ -30,9 +30,9 @@ public class UtenteService {
     }
 
     public void saveOrUpdate(Utente utente) {
-        utenteDao.openCurrentSession();
+        utenteDao.openCurrentSessionWithTransaction();
         utenteDao.saveOrUpdate(utente);
-        utenteDao.closeCurrentSession();
+        utenteDao.closeCurrentSessionWithTransaction();
     }
 
     public void saveOrUpdate(List<Utente> utenteList) {

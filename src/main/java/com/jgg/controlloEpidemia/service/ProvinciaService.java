@@ -30,9 +30,9 @@ public class ProvinciaService {
     }
 
     public void saveOrUpdate(Provincia provincia) {
-        provinciaDao.openCurrentSession();
+        provinciaDao.openCurrentSessionWithTransaction();
         provinciaDao.saveOrUpdate(provincia);
-        provinciaDao.closeCurrentSession();
+        provinciaDao.closeCurrentSessionWithTransaction();
     }
 
     public void saveOrUpdate(List<Provincia> provinciaList) {

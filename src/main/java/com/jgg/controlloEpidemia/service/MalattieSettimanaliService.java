@@ -30,9 +30,9 @@ public class MalattieSettimanaliService {
     }
 
     public void saveOrUpdate(MalattieSettimanali malattieSettimanali) {
-        malattieSettimanaliDao.openCurrentSession();
+        malattieSettimanaliDao.openCurrentSessionWithTransaction();
         malattieSettimanaliDao.saveOrUpdate(malattieSettimanali);
-        malattieSettimanaliDao.closeCurrentSession();
+        malattieSettimanaliDao.closeCurrentSessionWithTransaction();
     }
 
     public void saveOrUpdate(List<MalattieSettimanali> malattieSettimanaliList) {

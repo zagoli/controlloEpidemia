@@ -20,11 +20,11 @@ public class DecessiAnnualiServiceTest {
         RegioneService regioneService = new RegioneService();
         DecessiAnnualiService decessiAnnualiService = new DecessiAnnualiService();
         //Creo i model
-        TipoTerritorio tipoTerritorio = new TipoTerritorio("PianeggianteTest");
+        TipoTerritorio tipoTerritorio = new TipoTerritorio(1,"PianeggianteTest");
         tipoTerritorioService.save(tipoTerritorio);
-        Regione r = new Regione("Banditizia", 1, "001001");
+        Regione r = new Regione(1,"Banditizia", 1, "001001");
         regioneService.save(r);
-        Provincia p = new Provincia(16, "CuneoTest", 3, "777777", r);
+        Provincia p = new Provincia(1, "CuneoTest", 3, "777777", r);
         provinciaService.save(p);
         Comune comune = new Comune("333333", "Castelnuovo", 1, new Date(), true, tipoTerritorio, p);
         DecessiAnnuali decessiAnnuali = new DecessiAnnuali(2019, 0, 0, 0, 0, p);
@@ -38,7 +38,7 @@ public class DecessiAnnualiServiceTest {
         assertEquals(decessiAnnuali, findDecessiAnnuali);
         //Cerco tutti  i model
         List<DecessiAnnuali> decessiAnnualiList = decessiAnnualiService.findAll();
-        assertEquals(7, decessiAnnualiList.size());
+        assertEquals(2, decessiAnnualiList.size());
         //Aggiorno i model
         decessiAnnuali.setAnno(2021);
         decessiAnnualiService.update(decessiAnnuali);
@@ -52,10 +52,8 @@ public class DecessiAnnualiServiceTest {
         regioneService.deleteById(r.getId());
         tipoTerritorioService.deleteById(tipoTerritorio.getId());
         //Assert dei model
-        decessiAnnuali = decessiAnnualiService.findById(decessiAnnuali.getId());
-        assertNull(decessiAnnuali);
         decessiAnnualiList = decessiAnnualiService.findAll();
-        assertEquals(5, decessiAnnualiList.size());
+        assertEquals(0, decessiAnnualiList.size());
     }
 
     // Dopo aver fatto partire EtlDecessiTest

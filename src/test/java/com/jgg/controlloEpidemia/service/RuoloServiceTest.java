@@ -15,17 +15,17 @@ public class RuoloServiceTest {
         //Inizializzo i service
         RuoloService ruoloService = new RuoloService();
         //Creo i model
-        Ruolo ruolo = new Ruolo("AmministratoreTests");
-        Ruolo ruolo2 = new Ruolo("AmministratoreTests2");
+        Ruolo ruolo = new Ruolo(1,"AmministratoreTest");
+        Ruolo ruolo2 = new Ruolo(2,"AmministratoreTest2");
         //Salvo i model
         ruoloService.save(ruolo);
         ruoloService.saveOrUpdate(ruolo2);
         //Cerco i model
-        Ruolo findRuolo = ruoloService.findById(ruolo.getId());
+        Ruolo findRuolo = ruoloService.findByNome(ruolo.getNome());
         assertEquals(ruolo, findRuolo);
         //Cerco tutti  i model
         List<Ruolo> ruoloList = ruoloService.findAll();
-        assertEquals(6, ruoloList.size());
+        assertEquals(2, ruoloList.size());
         //Aggiorno i model
         ruolo.setNome("Collinare");
         ruoloService.update(ruolo);
@@ -35,9 +35,7 @@ public class RuoloServiceTest {
         ruoloService.deleteById(ruolo.getId());
         ruoloService.deleteById(ruolo2.getId());
         //Assert dei model
-        ruolo = ruoloService.findById(ruolo.getId());
-        assertNull(ruolo);
         ruoloList = ruoloService.findAll();
-        assertEquals(4, ruoloList.size());
+        assertEquals(0, ruoloList.size());
     }
 }

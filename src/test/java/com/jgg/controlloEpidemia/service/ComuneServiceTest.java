@@ -22,9 +22,9 @@ class ComuneServiceTest {
         RegioneService regioneService = new RegioneService();
         ProvinciaService provinciaService = new ProvinciaService();
         //Creo i model
-        TipoTerritorio tipoTerritorio = new TipoTerritorio(4, "pianeggianteTest");
-        Regione r = new Regione("BanditiziaTest", 1, "001001");
-        Provincia p = new Provincia(1000, "CuneoTest", 3, "001001", r);
+        TipoTerritorio tipoTerritorio = new TipoTerritorio(1, "pianeggianteTest");
+        Regione r = new Regione(1,"BanditiziaTest", 1, "001001");
+        Provincia p = new Provincia(1, "CuneoTest", 3, "001001", r);
         Comune comune = new Comune("333333", "CastelnuovoTest", 1, new Date(), true, tipoTerritorio, p);
         Comune comune2 = new Comune("444444", "GelateriaTest", 4, new Date(), true, tipoTerritorio, p);
         //Salvo i model
@@ -37,11 +37,12 @@ class ComuneServiceTest {
         Comune findComune = comuneService.findByCodiceIstat("333333");
         assertEquals(comune, findComune);
         findComune = comuneService.findByNome("GelateriaTest");
-        System.out.println(findComune);
         assertEquals(comune2, findComune);
         //Cerco tutti  i model
         List<Comune> comuneList = comuneService.findAll();
-        assertEquals(52, comuneList.size());
+        assertEquals(2, comuneList.size());
+        //Count comuni
+        assertEquals(2,comuneService.countComuni());
         //Aggiorno i model
         comune.setSuperficie(158);
         comuneService.update(comune);
@@ -54,9 +55,7 @@ class ComuneServiceTest {
         regioneService.deleteById(r.getId());
         tipoTerritorioService.deleteById(tipoTerritorio.getId());
         //Assert dei model
-        comune = comuneService.findByCodiceIstat("333333");
-        assertNull(comune);
-        //Count comuni
-        assertEquals(0,comuneService.countComuni());
+        comuneList = comuneService.findAll();
+        assertEquals(0, comuneList.size());
     }
 }

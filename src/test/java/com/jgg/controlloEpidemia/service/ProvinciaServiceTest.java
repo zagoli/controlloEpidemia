@@ -16,7 +16,7 @@ public class ProvinciaServiceTest {
         RegioneService regioneService = new RegioneService();
         ProvinciaService provinciaService = new ProvinciaService();
         //Creo i model
-        Regione r = new Regione("BanditiziaTest", 1, "001006");
+        Regione r = new Regione(1,"BanditiziaTest", 1, "001006");
         regioneService.save(r);
         Provincia provincia = new Provincia(15, "Verona", 3, "001004", r);
         Provincia provincia2 = new Provincia(14, "Mantova", 3, "001005", r);
@@ -24,11 +24,11 @@ public class ProvinciaServiceTest {
         provinciaService.save(provincia);
         provinciaService.saveOrUpdate(provincia2);
         //Cerco i model
-        Provincia findProvincia = provinciaService.findById(provincia.getId());
+        Provincia findProvincia = provinciaService.findByNome(provincia.getNome());
         assertEquals(provincia, findProvincia);
         //Cerco tutti  i model
         List<Provincia> provinciaList = provinciaService.findAll();
-        assertEquals(10, provinciaList.size());
+        assertEquals(2, provinciaList.size());
         //Aggiorno i model
         provincia.setSuperficie(198);
         provinciaService.update(provincia);
@@ -39,9 +39,7 @@ public class ProvinciaServiceTest {
         provinciaService.deleteById(provincia2.getId());
         regioneService.deleteById(r.getId());
         //Assert dei model
-        provincia = provinciaService.findById(provincia.getId());
-        assertNull(provincia);
         provinciaList = provinciaService.findAll();
-        assertEquals(8, provinciaList.size());
+        assertEquals(0, provinciaList.size());
     }
 }

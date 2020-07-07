@@ -30,9 +30,9 @@ public class RuoloService {
     }
 
     public void saveOrUpdate(Ruolo ruolo) {
-        ruoloDao.openCurrentSession();
+        ruoloDao.openCurrentSessionWithTransaction();
         ruoloDao.saveOrUpdate(ruolo);
-        ruoloDao.closeCurrentSession();
+        ruoloDao.closeCurrentSessionWithTransaction();
     }
 
     public void saveOrUpdate(List<Ruolo> ruoloList) {

@@ -30,9 +30,9 @@ public class PermessoService {
     }
 
     public void saveOrUpdate(Permesso permesso) {
-        permessoDao.openCurrentSession();
+        permessoDao.openCurrentSessionWithTransaction();
         permessoDao.saveOrUpdate(permesso);
-        permessoDao.closeCurrentSession();
+        permessoDao.closeCurrentSessionWithTransaction();
     }
 
     public void saveOrUpdate(List<Permesso> permessoList) {

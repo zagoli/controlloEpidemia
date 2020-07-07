@@ -16,7 +16,7 @@ public class UtenteServiceTest {
         RuoloService ruoloService = new RuoloService();
         UtenteService utenteService = new UtenteService();
         //Creo i model
-        Ruolo ruolo = new Ruolo("AmministratoreTest");
+        Ruolo ruolo = new Ruolo(1,"AmministratoreTest");
         Utente utente = new Utente("utente1", "password", "Utente", "Uno", ruolo);
         Utente utente2 = new Utente("utente2", "password2", "Utente", "Due", ruolo);
         //Salvo i model
@@ -31,7 +31,7 @@ public class UtenteServiceTest {
         assertEquals(utente, findUtente);
         //Cerco tutti i model
         List<Utente> utenteList = utenteService.findAll();
-        assertEquals(6, utenteList.size());
+        assertEquals(2, utenteList.size());
         //Aggiorno i model
         utente.setCognome("DOS");
         utenteService.update(utente);
@@ -45,25 +45,24 @@ public class UtenteServiceTest {
         utente = utenteService.findById(utente.getId());
         assertNull(utente);
         utenteList = utenteService.findAll();
-        assertEquals(4, utenteList.size());
+        assertEquals(0, utenteList.size());
     }
 
     @Test
     void testFindPersonaleAContratto() {
         //Inizializzo i service
         RuoloService ruoloService = new RuoloService();
-        Ruolo r = new Ruolo("Personale a contratto Test");
-        ruoloService.save(r);
         UtenteService utenteService = new UtenteService();
         //Creo i model
+        Ruolo r = new Ruolo(1,"Personale a contratto Test");
         Utente utente = new Utente("utente1", "password", "Utente", "Uno", ruoloService.findById(1));
         // Salvo l'utente
+        ruoloService.save(r);
         utenteService.save(utente);
         // Cerco gli utenti con ruolo personale a contratto
         List<Utente> utenti = utenteService.findAllPersonaleContratto();
-        assertTrue(utenti.size() >= 1);
-
+        assertEquals(1, utenti.size());
         utenteService.deleteById(utente.getId());
-        ruoloService.deleteById(5);
+        ruoloService.deleteById(1);
     }
 }

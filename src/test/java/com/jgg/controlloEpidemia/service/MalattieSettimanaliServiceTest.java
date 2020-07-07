@@ -20,10 +20,10 @@ class MalattieSettimanaliServiceTest {
         RegioneService regioneService = new RegioneService();
         ProvinciaService provinciaService = new ProvinciaService();
         //Creo i model
-        TipoTerritorio tipoTerritorio = new TipoTerritorio("PianeggianteTest");
-        Regione r = new Regione("BanditiziaTest", 1, "333333");
+        TipoTerritorio tipoTerritorio = new TipoTerritorio(1,"PianeggianteTest");
+        Regione r = new Regione(1,"BanditiziaTest", 1, "333333");
         regioneService.save(r);
-        Provincia p = new Provincia(16, "CuneoTest", 3, "777777", r);
+        Provincia p = new Provincia(1, "CuneoTest", 3, "777777", r);
         provinciaService.save(p);
         Comune comune = new Comune("333333", "Castelnuovo", 1, new Date(), true, tipoTerritorio, p);
         MalattieSettimanali malattieSettimanali = new MalattieSettimanali(2019, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, comune);
@@ -38,7 +38,7 @@ class MalattieSettimanaliServiceTest {
         assertEquals(malattieSettimanali, findMalattieSettimanali);
         //Cerco tutti  i model
         List<MalattieSettimanali> malattieSettimanaliList = malattieSettimanaliService.findAll();
-        assertEquals(13, malattieSettimanaliList.size());
+        assertEquals(2, malattieSettimanaliList.size());
         //Aggiorno i model
         malattieSettimanali.setAnno(2021);
         malattieSettimanaliService.update(malattieSettimanali);
@@ -52,9 +52,7 @@ class MalattieSettimanaliServiceTest {
         regioneService.deleteById(r.getId());
         tipoTerritorioService.deleteById(tipoTerritorio.getId());
         //Assert dei model
-        malattieSettimanali = malattieSettimanaliService.findById(malattieSettimanali.getId());
-        assertNull(malattieSettimanali);
         malattieSettimanaliList = malattieSettimanaliService.findAll();
-        assertEquals(11, malattieSettimanaliList.size());
+        assertEquals(0, malattieSettimanaliList.size());
     }
 }

@@ -19,9 +19,8 @@ public class TipoTerritorioServiceTest {
         //Salvo i model
         tipoTerritorioService.save(tipoterritorio);
         tipoTerritorioService.saveOrUpdate(tipoterritorio2);
-
         //Cerco i model
-        TipoTerritorio findTipoTerritorio = tipoTerritorioService.findById(tipoterritorio.getId());
+        TipoTerritorio findTipoTerritorio = tipoTerritorioService.findByNome(tipoterritorio.getNome());
         assertEquals(tipoterritorio, findTipoTerritorio);
         //Cerco tutti i model
         List<TipoTerritorio> tipoTerritorioList = tipoTerritorioService.findAll();
@@ -35,8 +34,6 @@ public class TipoTerritorioServiceTest {
         tipoTerritorioService.deleteById(tipoterritorio.getId());
         tipoTerritorioService.deleteById(tipoterritorio2.getId());
         //Assert dei model
-        tipoterritorio = tipoTerritorioService.findById(tipoterritorio.getId());
-        assertNull(tipoterritorio);
         tipoTerritorioList = tipoTerritorioService.findAll();
         assertEquals(0, tipoTerritorioList.size());
     }

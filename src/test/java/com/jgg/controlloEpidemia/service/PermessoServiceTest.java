@@ -10,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 
 public class PermessoServiceTest {
     @Test
-    void testPermessi() {
+    void testPermesso() {
         //Inizializzo i service
         PermessoService permessoService = new PermessoService();
         //Creo i model
@@ -20,11 +20,11 @@ public class PermessoServiceTest {
         permessoService.save(permesso);
         permessoService.saveOrUpdate(permesso2);
         //Cerco i model
-        Permesso findRuolo = permessoService.findById(permesso.getId());
+        Permesso findRuolo = permessoService.findByNome(permesso.getNome());
         assertEquals(permesso, findRuolo);
         //Cerco tutti  i model
         List<Permesso> permessoList = permessoService.findAll();
-        assertEquals(3, permessoList.size());
+        assertEquals(2, permessoList.size());
         //Aggiorno i model
         permesso.setNome("Aggiornamento utenti");
         permessoService.update(permesso);
@@ -34,11 +34,7 @@ public class PermessoServiceTest {
         permessoService.deleteById(permesso.getId());
         permessoService.deleteById(permesso2.getId());
         //Assert dei model
-        permesso = permessoService.findById(permesso.getId());
-        assertNull(permesso);
-        permesso2 = permessoService.findByNome(permesso2.getNome());
-        assertNull(permesso2);
         permessoList = permessoService.findAll();
-        assertEquals(1, permessoList.size());
+        assertEquals(0, permessoList.size());
     }
 }

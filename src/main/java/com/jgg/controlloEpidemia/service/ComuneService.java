@@ -30,9 +30,9 @@ public class ComuneService {
     }
 
     public void saveOrUpdate(Comune comune) {
-        comuneDao.openCurrentSession();
+        comuneDao.openCurrentSessionWithTransaction();
         comuneDao.saveOrUpdate(comune);
-        comuneDao.closeCurrentSession();
+        comuneDao.closeCurrentSessionWithTransaction();
     }
 
     public void saveOrUpdate(List<Comune> comuneList) {
