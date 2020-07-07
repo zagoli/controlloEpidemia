@@ -12,6 +12,7 @@ import org.hibernate.query.Query;
 import javax.persistence.NoResultException;
 import java.util.List;
 
+@SuppressWarnings("rawtypes")
 @NoArgsConstructor
 public class DecessiAnnualiDao implements DecessiAnnualiDaoInterface {
 

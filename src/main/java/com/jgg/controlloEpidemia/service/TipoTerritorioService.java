@@ -30,9 +30,9 @@ public class TipoTerritorioService {
     }
 
     public void saveOrUpdate(TipoTerritorio tipoTerritorio) {
-        tipoTerritorioDao.openCurrentSession();
+        tipoTerritorioDao.openCurrentSessionWithTransaction();
         tipoTerritorioDao.saveOrUpdate(tipoTerritorio);
-        tipoTerritorioDao.closeCurrentSession();
+        tipoTerritorioDao.closeCurrentSessionWithTransaction();
     }
 
     public void saveOrUpdate(List<TipoTerritorio> tipoTerritorioList) {
