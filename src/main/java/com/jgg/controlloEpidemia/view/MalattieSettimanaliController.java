@@ -20,9 +20,8 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.FileChooser;
 import javafx.util.Duration;
-
-import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.io.File;
 import java.io.IOException;
@@ -312,7 +311,7 @@ public class MalattieSettimanaliController implements Initializable {
                         ));
         alert.setTitle("Autorizzazioni comuni");
         alert.setHeaderText(null);
-        alert.setContentText("Non sei autorizzato a gestire questo comune!");
+        alert.setContentText("Non sei autorizzato a gestire questo comune! \n Creato da Jacopo Zagoli, Gianluca Antolini e Giuseppe Brusco");
 
         new Thread(new Task<>() {
             @Override
