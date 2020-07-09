@@ -1,6 +1,7 @@
 package com.jgg.controlloEpidemia.service;
 
 import com.jgg.controlloEpidemia.dao.MalattieSettimanaliDao;
+import com.jgg.controlloEpidemia.model.Comune;
 import com.jgg.controlloEpidemia.model.MalattieSettimanali;
 import lombok.NoArgsConstructor;
 
@@ -41,6 +42,12 @@ public class MalattieSettimanaliService {
             malattieSettimanaliDao.saveOrUpdate(malattieSettimanali);
         }
         malattieSettimanaliDao.closeCurrentSessionWithTransaction();
+    }
+    public MalattieSettimanali findByAnnoSettimanaComune(Integer anno, Integer settimana, Comune comune) {
+        malattieSettimanaliDao.openCurrentSession();
+        MalattieSettimanali malattieSettimanaliById = malattieSettimanaliDao.findByAnnoSettimanaComune(anno,settimana,comune);
+        malattieSettimanaliDao.closeCurrentSession();
+        return malattieSettimanaliById;
     }
 
     public MalattieSettimanali findById(Integer id) {

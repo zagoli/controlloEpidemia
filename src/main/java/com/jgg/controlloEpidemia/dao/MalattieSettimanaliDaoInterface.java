@@ -1,5 +1,6 @@
 package com.jgg.controlloEpidemia.dao;
 
+import com.jgg.controlloEpidemia.model.Comune;
 import com.jgg.controlloEpidemia.model.MalattieSettimanali;
 
 import java.util.List;
@@ -13,6 +14,8 @@ public interface MalattieSettimanaliDaoInterface {
     void update(MalattieSettimanali malattieSettimanali);
 
     void saveOrUpdate(MalattieSettimanali malattieSettimanali);
+
+    MalattieSettimanali findByAnnoSettimanaComune(Integer anno, Integer settimana, Comune comune);
 
     MalattieSettimanali findById(Integer id);
 

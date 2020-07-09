@@ -2,6 +2,7 @@ package com.jgg.controlloEpidemia.service;
 
 import com.jgg.controlloEpidemia.dao.DecessiAnnualiDao;
 import com.jgg.controlloEpidemia.model.DecessiAnnuali;
+import com.jgg.controlloEpidemia.model.Provincia;
 import lombok.NoArgsConstructor;
 
 import java.util.List;
@@ -43,6 +44,13 @@ public class DecessiAnnualiService {
         decessiAnnualiDao.closeCurrentSessionWithTransaction();
     }
 
+    public DecessiAnnuali findByAnnoProvincia(Integer anno, Provincia provincia) {
+        decessiAnnualiDao.openCurrentSession();
+        DecessiAnnuali decessiAnnualiById = decessiAnnualiDao.findByAnnoProvincia(anno, provincia);
+        decessiAnnualiDao.closeCurrentSession();
+        return decessiAnnualiById;
+    }
+
     public DecessiAnnuali findById(Integer id) {
         decessiAnnualiDao.openCurrentSession();
         DecessiAnnuali decessiAnnualiById = decessiAnnualiDao.findById(id);
@@ -63,6 +71,7 @@ public class DecessiAnnualiService {
         decessiAnnualiDao.closeCurrentSession();
         return decessiAnnualiByAnno;
     }
+
 
     public List<Integer> findInsertedYears() {
         decessiAnnualiDao.openCurrentSession();
