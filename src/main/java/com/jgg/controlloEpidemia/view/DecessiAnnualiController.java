@@ -248,9 +248,9 @@ public class DecessiAnnualiController implements Initializable {
                 provinciaService.findByNome(provinciaInserimentoComboBox.getValue())
         );
 
-        decessiAnnualiService.save(decessiAnnuali);
+        decessiAnnualiService.saveOrUpdate(decessiAnnuali);
 
-        if (decessiAnnualiService.findById(decessiAnnuali.getId()) != null) {
+        if (decessiAnnualiService.findByAnnoProvincia(decessiAnnuali.getAnno(),decessiAnnuali.getProvincia()) != null) {
             logger.info("Inserito record decessi annuali: " + decessiAnnuali);
             annoInserimentoTextField.clear();
             incidentiStradaliInserimentoTextField.clear();

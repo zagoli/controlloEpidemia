@@ -50,6 +50,7 @@ public class MalattieSettimanaliDao implements MalattieSettimanaliDaoInterface {
         currentSession.close();
     }
 
+    @SuppressWarnings("rawtypes")
     public org.hibernate.query.Query createQuery(String hql) {
         return currentSession.createQuery(hql);
     }
@@ -102,7 +103,8 @@ public class MalattieSettimanaliDao implements MalattieSettimanaliDaoInterface {
         return currentSession.get(MalattieSettimanali.class, id);
     }
 
-    private MalattieSettimanali findByAnnoSettimanaComune(Integer anno, Integer settimana, Comune comune) {
+    @SuppressWarnings("rawtypes")
+    public MalattieSettimanali findByAnnoSettimanaComune(Integer anno, Integer settimana, Comune comune) {
         Query query = createQuery(FROM_MALATTIE_WHERE_ANNO_SETTIMANA_COMUNE);
         query.setParameter("anno", anno);
         query.setParameter("settimana", settimana);

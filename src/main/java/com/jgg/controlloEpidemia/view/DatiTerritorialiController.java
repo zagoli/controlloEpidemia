@@ -685,7 +685,7 @@ public class DatiTerritorialiController implements Initializable {
         if (comuneService.findByCodiceIstat(comune.getCodiceIstat()) == null || comuneService.findByCodiceIstat(codiceIstatNonModificato).getCodiceIstat().equals(comune.getCodiceIstat())) {
             comuneService.update(comune);
             if (comuneService.findByCodiceIstat(comune.getCodiceIstat()) != null) {
-                logger.info("Inserito record comune: " + comune);
+                logger.info("Modificato record comune: " + comune);
                 codiceIstatInserimentoComuniTextField.clear();
                 nomeInserimentoComuniTextField.clear();
                 superficieInserimentoComuniTextField.clear();

@@ -434,8 +434,8 @@ public class MalattieSettimanaliController implements Initializable {
                 comuneService.findByNome(comuneInserimentoComboBox.getValue())
         );
         if (App.utenteCorrente.getComuni().contains(malattieSettimanali.getComune()) || App.utenteCorrente.getRuolo().getId() == 1) {
-            malattieSettimanaliService.save(malattieSettimanali);
-            if (malattieSettimanaliService.findById(malattieSettimanali.getId()) != null) {
+            malattieSettimanaliService.saveOrUpdate(malattieSettimanali);
+            if (malattieSettimanaliService.findByAnnoSettimanaComune(malattieSettimanali.getAnno(),malattieSettimanali.getSettimana(),malattieSettimanali.getComune()) != null) {
                 logger.info("Inserito record malattie settimanali: " + malattieSettimanali);
                 annoInserimentoTextField.clear();
                 settimanaInserimentoTextField.clear();

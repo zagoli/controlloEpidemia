@@ -331,6 +331,7 @@ public class AnalisiDatiController implements Initializable {
                         Platform.runLater(() -> {
                             analisiDatiBorderPane.setDisable(false);
                             loadingAggregazione.setVisible(false);
+                            malattieSettimanaliSettimanaColumn.setVisible(true);
                             malattieSettimanaliTableView.getSortOrder().remove(malattieSettimanaliAnnoColumn);
                             malattieSettimanaliTableView.getSortOrder().add(malattieSettimanaliAnnoColumn);
 
@@ -448,7 +449,7 @@ public class AnalisiDatiController implements Initializable {
                     @Override
                     protected Void call() {
                         List<DecessiAnnuali> decessiAnnualiList = decessiAnnualiService.findAll();
-                        ArrayList<Integer> anniList = new ArrayList<>(malattieSettimanaliList.parallelStream().mapToInt(MalattieSettimanali::getAnno).distinct().collect(ArrayList::new, ArrayList::add, ArrayList::addAll));
+                        ArrayList<Integer> anniList = new ArrayList<>(decessiAnnualiList.parallelStream().mapToInt(DecessiAnnuali::getAnno).distinct().collect(ArrayList::new, ArrayList::add, ArrayList::addAll));
                         Integer incidentiNazionale,
                                 tumoraliNazionale,
                                 cardiovascolariNazionale,
@@ -633,6 +634,7 @@ public class AnalisiDatiController implements Initializable {
                         Platform.runLater(() -> {
                             analisiDatiBorderPane.setDisable(false);
                             loadingAggregazione.setVisible(false);
+                            malattieSettimanaliSettimanaColumn.setVisible(false);
                             malattieSettimanaliTableView.getSortOrder().remove(malattieSettimanaliAnnoColumn);
                             malattieSettimanaliTableView.getSortOrder().add(malattieSettimanaliAnnoColumn);
                         });
@@ -739,6 +741,7 @@ public class AnalisiDatiController implements Initializable {
                         Platform.runLater(() -> {
                             analisiDatiBorderPane.setDisable(false);
                             loadingAggregazione.setVisible(false);
+                            malattieSettimanaliSettimanaColumn.setVisible(false);
                             malattieSettimanaliTableView.getSortOrder().remove(malattieSettimanaliAnnoColumn);
                             malattieSettimanaliTableView.getSortOrder().add(malattieSettimanaliAnnoColumn);
                         });
@@ -839,6 +842,7 @@ public class AnalisiDatiController implements Initializable {
                         Platform.runLater(() -> {
                             analisiDatiBorderPane.setDisable(false);
                             loadingAggregazione.setVisible(false);
+                            malattieSettimanaliSettimanaColumn.setVisible(false);
                             malattieSettimanaliTableView.getSortOrder().remove(malattieSettimanaliAnnoColumn);
                             malattieSettimanaliTableView.getSortOrder().add(malattieSettimanaliAnnoColumn);
                         });

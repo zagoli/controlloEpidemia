@@ -86,7 +86,7 @@ public class DecessiAnnualiDao implements DecessiAnnualiDaoInterface {
         }
     }
 
-    private DecessiAnnuali findByAnnoProvincia(Integer anno, Provincia provincia) {
+    public DecessiAnnuali findByAnnoProvincia(Integer anno, Provincia provincia) {
         Query query = createQuery(FROM_DECESSI_WHERE_ANNO_PROVINCIA);
         query.setParameter("anno", anno);
         query.setParameter("provincia", provincia.getId());
