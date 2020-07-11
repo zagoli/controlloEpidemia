@@ -7,7 +7,6 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
 
 public class ProvinciaServiceTest {
     @Test
@@ -16,7 +15,7 @@ public class ProvinciaServiceTest {
         RegioneService regioneService = new RegioneService();
         ProvinciaService provinciaService = new ProvinciaService();
         //Creo i model
-        Regione r = new Regione(1,"BanditiziaTest", 1, "001006");
+        Regione r = new Regione(1, "BanditiziaTest", 1, "001006");
         regioneService.save(r);
         Provincia provincia = new Provincia(15, "Verona", 3, "001004", r);
         Provincia provincia2 = new Provincia(14, "Mantova", 3, "001005", r);

@@ -4,8 +4,8 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
-<BorderPane fx:id="visualizzaDecessiBorderPane" prefHeight="600.0" prefWidth="800.0"
-            xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
+<BorderPane xmlns:fx="http://javafx.com/fxml/1" fx:id="visualizzaDecessiBorderPane" prefHeight="600.0"
+            prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1"
             fx:controller="com.jgg.controlloEpidemia.view.VisualizzaDecessiController">
     <top>
         <MenuBar BorderPane.alignment="CENTER">

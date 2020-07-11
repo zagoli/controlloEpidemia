@@ -30,7 +30,7 @@ import java.util.*;
 
 public class MalattieSettimanaliController implements Initializable {
 
-    static Logger logger = LogManager.getLogger(MalattieSettimanaliController.class);
+    static final Logger logger = LogManager.getLogger(MalattieSettimanaliController.class);
 
     private final ComuneService comuneService = new ComuneService();
     private final MalattieSettimanaliService malattieSettimanaliService = new MalattieSettimanaliService();
@@ -482,7 +482,7 @@ public class MalattieSettimanaliController implements Initializable {
             new Thread(new Task<>() {
                 @Override
                 protected Void call() {
-                    int[] ritornoErrori = new EtlMalattie().load(selectedFile.getPath(),false);
+                    int[] ritornoErrori = new EtlMalattie().load(selectedFile.getPath(), false);
                     updateList();
                     Platform.runLater(() -> {
                         alert.setContentText("Righe con errore: " + ritornoErrori[0] + "\n" + "Righe non lette: " + ritornoErrori[1]);

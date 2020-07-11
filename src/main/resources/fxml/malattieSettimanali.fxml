@@ -105,7 +105,7 @@
                         <RowConstraints minHeight="10.0" vgrow="SOMETIMES"/>
                     </rowConstraints>
                     <padding>
-                        <Insets left="5.0" right="5.0" top="10.0"/>
+                        <Insets left="10.0" right="10.0" top="10.0"/>
                     </padding>
                     <VBox>
                         <Label prefHeight="20.0" prefWidth="52.0" text="Anno">
@@ -329,14 +329,14 @@
                         <ComboBox fx:id="comuneInserimentoComboBox" prefHeight="29.0" prefWidth="226.0"/>
                     </VBox>
                     <Button fx:id="malattieSettimanaliInserisciButton" mnemonicParsing="false"
-                            onAction="#inserisciInserimentoOnClicked" prefHeight="40.0" prefWidth="140.0"
-                            text="Inserisci" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="6">
+                            onAction="#inserisciInserimentoOnClicked" prefWidth="140.0" text="Inserisci"
+                            GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="6">
                         <font>
                             <Font name="Segoe UI" size="20.0"/>
                         </font>
                     </Button>
                     <VBox alignment="CENTER_RIGHT" spacing="5.0" GridPane.columnIndex="2" GridPane.rowIndex="7">
-                        <Button mnemonicParsing="false" onAction="#inserisciCsvInserimentoOnClicked" prefHeight="40.0"
+                        <Button mnemonicParsing="false" onAction="#inserisciCsvInserimentoOnClicked" prefWidth="140.0"
                                 text="Inserisci csv">
                             <font>
                                 <Font name="Segoe UI" size="20.0"/>
@@ -364,7 +364,7 @@
                         <RowConstraints minHeight="10.0" vgrow="SOMETIMES"/>
                     </rowConstraints>
                     <padding>
-                        <Insets left="5.0" right="5.0" top="10.0"/>
+                        <Insets left="10.0" right="10.0" top="10.0"/>
                     </padding>
                     <VBox GridPane.columnIndex="1">
                         <Label prefHeight="20.0" prefWidth="96.0" text="Settimana">
@@ -588,6 +588,9 @@
                             </font>
                         </TextField>
                     </VBox>
+                    <opaqueInsets>
+                        <Insets/>
+                    </opaqueInsets>
                 </GridPane>
             </Tab>
         </TabPane>

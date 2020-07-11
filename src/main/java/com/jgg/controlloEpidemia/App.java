@@ -8,16 +8,15 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
-import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
-
+import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
 
 public class App extends Application {
 
+    public static final Logger logger = LogManager.getLogger(App.class);
     public static Utente utenteCorrente;
-    public static Logger logger = LogManager.getLogger(App.class);
 
     public static void main(String[] args) {
         launch(args);

@@ -6,7 +6,8 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 public class UtenteServiceTest {
 
@@ -16,8 +17,8 @@ public class UtenteServiceTest {
         RuoloService ruoloService = new RuoloService();
         UtenteService utenteService = new UtenteService();
         //Creo i model
-        Ruolo ruolo = new Ruolo(1,"AmministratoreTest");
-        Ruolo ruolo2 = new Ruolo(2,"ContrattoTest");
+        Ruolo ruolo = new Ruolo(1, "AmministratoreTest");
+        Ruolo ruolo2 = new Ruolo(2, "ContrattoTest");
         Utente utente = new Utente("utente1", "password", "Utente", "Uno", ruolo);
         Utente utente2 = new Utente("utente2", "password2", "Utente", "Due", ruolo2);
         //Salvo i model

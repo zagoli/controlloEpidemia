@@ -19,9 +19,9 @@ public class DecessiAnnualiServiceTest {
         RegioneService regioneService = new RegioneService();
         DecessiAnnualiService decessiAnnualiService = new DecessiAnnualiService();
         //Creo i model
-        TipoTerritorio tipoTerritorio = new TipoTerritorio(1,"PianeggianteTest");
+        TipoTerritorio tipoTerritorio = new TipoTerritorio(1, "PianeggianteTest");
         tipoTerritorioService.save(tipoTerritorio);
-        Regione r = new Regione(1,"Banditizia", 1, "001001");
+        Regione r = new Regione(1, "Banditizia", 1, "001001");
         regioneService.save(r);
         Provincia p = new Provincia(1, "CuneoTest", 3, "777777", r);
         provinciaService.save(p);

@@ -19,9 +19,8 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.FileChooser;
 import javafx.util.Duration;
-
-import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.io.File;
 import java.io.IOException;
@@ -30,7 +29,7 @@ import java.util.*;
 
 public class DecessiAnnualiController implements Initializable {
 
-    static Logger logger = LogManager.getLogger(DecessiAnnualiController.class);
+    static final Logger logger = LogManager.getLogger(DecessiAnnualiController.class);
 
     private final ProvinciaService provinciaService = new ProvinciaService();
     private final DecessiAnnualiService decessiAnnualiService = new DecessiAnnualiService();

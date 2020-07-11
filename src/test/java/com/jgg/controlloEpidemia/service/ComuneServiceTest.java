@@ -10,7 +10,6 @@ import java.util.Date;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
 
 class ComuneServiceTest {
 
@@ -23,7 +22,7 @@ class ComuneServiceTest {
         ProvinciaService provinciaService = new ProvinciaService();
         //Creo i model
         TipoTerritorio tipoTerritorio = new TipoTerritorio(1, "pianeggianteTest");
-        Regione r = new Regione(1,"BanditiziaTest", 1, "001001");
+        Regione r = new Regione(1, "BanditiziaTest", 1, "001001");
         Provincia p = new Provincia(1, "CuneoTest", 3, "001001", r);
         Comune comune = new Comune("333333", "CastelnuovoTest", 1, new Date(), true, tipoTerritorio, p);
         Comune comune2 = new Comune("444444", "GelateriaTest", 4, new Date(), true, tipoTerritorio, p);
@@ -47,7 +46,7 @@ class ComuneServiceTest {
         comuneList.add(comune2);
         comuneService.saveOrUpdate(comuneList);
         //Count comuni
-        assertEquals(2,comuneService.countComuni());
+        assertEquals(2, comuneService.countComuni());
         //Aggiorno i model
         comune.setSuperficie(158);
         comuneService.update(comune);

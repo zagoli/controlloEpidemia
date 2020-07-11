@@ -8,7 +8,6 @@ import java.util.Date;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
 
 class MalattieSettimanaliServiceTest {
 
@@ -21,8 +20,8 @@ class MalattieSettimanaliServiceTest {
         RegioneService regioneService = new RegioneService();
         ProvinciaService provinciaService = new ProvinciaService();
         //Creo i model
-        TipoTerritorio tipoTerritorio = new TipoTerritorio(1,"PianeggianteTest");
-        Regione r = new Regione(1,"BanditiziaTest", 1, "333333");
+        TipoTerritorio tipoTerritorio = new TipoTerritorio(1, "PianeggianteTest");
+        Regione r = new Regione(1, "BanditiziaTest", 1, "333333");
         regioneService.save(r);
         Provincia p = new Provincia(1, "CuneoTest", 3, "777777", r);
         provinciaService.save(p);

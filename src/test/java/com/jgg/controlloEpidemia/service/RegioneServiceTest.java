@@ -7,7 +7,6 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
 
 public class RegioneServiceTest {
     @Test
@@ -16,9 +15,9 @@ public class RegioneServiceTest {
         TipoTerritorioService tipoTerritorioService = new TipoTerritorioService();
         RegioneService regioneService = new RegioneService();
         //Creo i model
-        TipoTerritorio tipoTerritorio = new TipoTerritorio(1,"PianeggianteTest");
-        Regione regione = new Regione(1,"Banditizia", 1, "333333");
-        Regione regione2 = new Regione(2,"Lombardia", 143, "123456");
+        TipoTerritorio tipoTerritorio = new TipoTerritorio(1, "PianeggianteTest");
+        Regione regione = new Regione(1, "Banditizia", 1, "333333");
+        Regione regione2 = new Regione(2, "Lombardia", 143, "123456");
         //Salvo i model
         tipoTerritorioService.save(tipoTerritorio);
         regioneService.save(regione);

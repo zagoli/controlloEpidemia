@@ -6,7 +6,6 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
 
 public class TipoTerritorioServiceTest {
     @Test
@@ -14,8 +13,8 @@ public class TipoTerritorioServiceTest {
         //Inizializzo i service
         TipoTerritorioService tipoTerritorioService = new TipoTerritorioService();
         //Creo i model
-        TipoTerritorio tipoterritorio = new TipoTerritorio(1,"PianeggianteTest");
-        TipoTerritorio tipoterritorio2 = new TipoTerritorio(2,"MontanoTest");
+        TipoTerritorio tipoterritorio = new TipoTerritorio(1, "PianeggianteTest");
+        TipoTerritorio tipoterritorio2 = new TipoTerritorio(2, "MontanoTest");
         //Salvo i model
         tipoTerritorioService.save(tipoterritorio);
         tipoTerritorioService.saveOrUpdate(tipoterritorio2);

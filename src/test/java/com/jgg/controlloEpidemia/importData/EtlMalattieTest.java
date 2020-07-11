@@ -6,16 +6,15 @@ import com.jgg.controlloEpidemia.service.MalattieSettimanaliService;
 import com.jgg.controlloEpidemia.service.UtenteService;
 import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class EtlMalattieTest {
     @Test
-    void testEtlMalattie(){
+    void testEtlMalattie() {
         App.utenteCorrente = new UtenteService().findById(1);
-        new EtlMalattie().load("src\\test\\resources\\csvToLoadTest\\malattie.csv",true);
+        new EtlMalattie().load("src\\test\\resources\\csvToLoadTest\\malattie.csv", true);
 
         List<MalattieSettimanali> malattieSettimanaliList = new MalattieSettimanaliService().findAll();
         assertEquals(99, malattieSettimanaliList.size());

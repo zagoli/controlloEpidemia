@@ -6,7 +6,6 @@ import com.jgg.controlloEpidemia.service.RegioneService;
 import com.jgg.controlloEpidemia.service.UtenteService;
 import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -14,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class EtlRegioneTest {
 
     @Test
-    void testEtlRegioni(){
+    void testEtlRegioni() {
         App.utenteCorrente = new UtenteService().findById(1);
         new EtlRegione().load("src\\test\\resources\\csvToLoadTest\\regione.csv");
 

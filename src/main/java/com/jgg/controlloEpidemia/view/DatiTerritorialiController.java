@@ -25,9 +25,8 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.FileChooser;
 import javafx.util.Duration;
-
-import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.io.File;
 import java.io.IOException;
@@ -40,7 +39,7 @@ import java.util.*;
 
 public class DatiTerritorialiController implements Initializable {
 
-    static Logger logger = LogManager.getLogger(DatiTerritorialiController.class);
+    static final Logger logger = LogManager.getLogger(DatiTerritorialiController.class);
 
     private final ProvinciaService provinciaService = new ProvinciaService();
     private final ComuneService comuneService = new ComuneService();
@@ -505,7 +504,7 @@ public class DatiTerritorialiController implements Initializable {
                 comuneService.findByNome(comuneDiCapoluogoInserimentoProvinceComboBox.getValue()).getCodiceIstat(),
                 regioneService.findByNome(regioneInserimentoProvinceComboBox.getValue())
         );
-        if(provinciaService.findById(provincia.getId())==null) {
+        if (provinciaService.findById(provincia.getId()) == null) {
             provinciaService.save(provincia);
             if (provinciaService.findById(provincia.getId()) != null) {
                 logger.info("Inserito record provincia: " + provincia);
@@ -516,12 +515,11 @@ public class DatiTerritorialiController implements Initializable {
                 regioneInserimentoProvinceComboBox.getSelectionModel().clearSelection();
             }
             updateListProvince();
-        }
-        else{
+        } else {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Errore inserimento Provincia");
             alert.setHeaderText(null);
-            alert.setContentText("Provincia con id: "+provincia.getId()+" già presente nel database");
+            alert.setContentText("Provincia con id: " + provincia.getId() + " già presente nel database");
             alert.showAndWait();
         }
     }
@@ -574,7 +572,7 @@ public class DatiTerritorialiController implements Initializable {
                 comuneService.findByNome(comuneDiCapoluogoModificaProvinceComboBox.getValue()).getCodiceIstat(),
                 regioneService.findByNome(regioneModificaProvinceComboBox.getValue())
         );
-        if(provinciaService.findById(provincia.getId())==null || provinciaService.findById(idNonModificato).getId().equals(provincia.getId())) {
+        if (provinciaService.findById(provincia.getId()) == null || provinciaService.findById(idNonModificato).getId().equals(provincia.getId())) {
             provinciaService.update(provincia);
 
             if (provinciaService.findById(provincia.getId()) != null) {
@@ -590,12 +588,11 @@ public class DatiTerritorialiController implements Initializable {
             visualizzazioneTab.setDisable(false);
             inserimentoTab.setDisable(false);
             updateListProvince();
-        }
-        else{
+        } else {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Errore modifica Provincia");
             alert.setHeaderText(null);
-            alert.setContentText("Stai cercando di modificare una provincia già esistente con id: " +provincia.getId());
+            alert.setContentText("Stai cercando di modificare una provincia già esistente con id: " + provincia.getId());
             alert.showAndWait();
         }
     }
@@ -611,7 +608,7 @@ public class DatiTerritorialiController implements Initializable {
                 tipoTerritorioService.findByNome(tipoTerritorioInserimentoComuniComboBox.getValue()),
                 provinciaService.findByNome(provinciaInserimentoComuniComboBox.getValue())
         );
-        if(comuneService.findByCodiceIstat(comune.getCodiceIstat())==null) {
+        if (comuneService.findByCodiceIstat(comune.getCodiceIstat()) == null) {
             comuneService.save(comune);
             if (comuneService.findByCodiceIstat(comune.getCodiceIstat()) != null) {
                 logger.info("Inserito record comune: " + comune);
@@ -624,12 +621,11 @@ public class DatiTerritorialiController implements Initializable {
                 provinciaInserimentoComuniComboBox.getSelectionModel().clearSelection();
             }
             updateListComuni();
-        }
-        else{
+        } else {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Errore inserimento Comune");
             alert.setHeaderText(null);
-            alert.setContentText("Comune con codice istat: "+comune.getCodiceIstat() +" già presente nel database");
+            alert.setContentText("Comune con codice istat: " + comune.getCodiceIstat() + " già presente nel database");
             alert.showAndWait();
         }
     }
@@ -686,7 +682,7 @@ public class DatiTerritorialiController implements Initializable {
                 tipoTerritorioService.findByNome(tipoTerritorioModificaComuniComboBox.getValue()),
                 provinciaService.findByNome(provinciaModificaComuniComboBox.getValue())
         );
-        if(comuneService.findByCodiceIstat(comune.getCodiceIstat())==null || comuneService.findByCodiceIstat(codiceIstatNonModificato).getCodiceIstat().equals(comune.getCodiceIstat())) {
+        if (comuneService.findByCodiceIstat(comune.getCodiceIstat()) == null || comuneService.findByCodiceIstat(codiceIstatNonModificato).getCodiceIstat().equals(comune.getCodiceIstat())) {
             comuneService.update(comune);
             if (comuneService.findByCodiceIstat(comune.getCodiceIstat()) != null) {
                 logger.info("Inserito record comune: " + comune);
@@ -703,12 +699,11 @@ public class DatiTerritorialiController implements Initializable {
             visualizzazioneTab.setDisable(false);
             inserimentoTab.setDisable(false);
             updateListComuni();
-        }
-        else{
+        } else {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Errore modifica Comune");
             alert.setHeaderText(null);
-            alert.setContentText("Stai cercando di modificare un comune già esistente con codice istat: " +comune.getCodiceIstat());
+            alert.setContentText("Stai cercando di modificare un comune già esistente con codice istat: " + comune.getCodiceIstat());
             alert.showAndWait();
         }
     }
