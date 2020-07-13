@@ -250,7 +250,7 @@ public class DecessiAnnualiController implements Initializable {
 
         decessiAnnualiService.saveOrUpdate(decessiAnnuali);
 
-        if (decessiAnnualiService.findByAnnoProvincia(decessiAnnuali.getAnno(),decessiAnnuali.getProvincia()) != null) {
+        if (decessiAnnualiService.findByAnnoProvincia(decessiAnnuali.getAnno(), decessiAnnuali.getProvincia()) != null) {
             logger.info("Inserito record decessi annuali: " + decessiAnnuali);
             annoInserimentoTextField.clear();
             incidentiStradaliInserimentoTextField.clear();

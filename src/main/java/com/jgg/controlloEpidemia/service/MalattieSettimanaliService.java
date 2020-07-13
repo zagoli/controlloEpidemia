@@ -43,9 +43,10 @@ public class MalattieSettimanaliService {
         }
         malattieSettimanaliDao.closeCurrentSessionWithTransaction();
     }
+
     public MalattieSettimanali findByAnnoSettimanaComune(Integer anno, Integer settimana, Comune comune) {
         malattieSettimanaliDao.openCurrentSession();
-        MalattieSettimanali malattieSettimanaliById = malattieSettimanaliDao.findByAnnoSettimanaComune(anno,settimana,comune);
+        MalattieSettimanali malattieSettimanaliById = malattieSettimanaliDao.findByAnnoSettimanaComune(anno, settimana, comune);
         malattieSettimanaliDao.closeCurrentSession();
         return malattieSettimanaliById;
     }
