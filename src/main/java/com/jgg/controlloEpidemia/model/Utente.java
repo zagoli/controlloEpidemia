@@ -30,7 +30,7 @@ public class Utente {
     @NotNull
     @EqualsAndHashCode.Exclude
     @ToString.Exclude
-    @OneToMany(cascade = CascadeType.REMOVE)
+    @ManyToMany(cascade = CascadeType.REMOVE)
     @LazyCollection(LazyCollectionOption.FALSE)
     private final List<Comune> comuni = new ArrayList<>();
 
